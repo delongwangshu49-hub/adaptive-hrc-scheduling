@@ -2,7 +2,7 @@
 
 本文件记录可以公开的研究决策、实施状态、检查证据和下一步工作。日期采用 UTC+08:00；历史准备记录依据项目讨论整理到日，不补造精确时刻。私人身份、来源文件位置、原始对话、机器配置和敏感运行日志不在此记录。
 
-本文件当前版本为 0.2.2，更新于 2026-09-30。项目范围与路线已确认；实施阶段 P0 至 P5 均未验收。S00 首发 r1（v0.2.1）已验收、批准并发布；本次 r2（v0.2.2）是获准在本地开展的有限修订，仍待确切快照的验收与上传批准。工作状态、人工决定和远端状态分别记录。
+本文件当前版本为 0.3.0，更新于 2026-09-30。项目范围与路线已确认；实施阶段 P0 至 P5 均未验收。S00 r1 与 r2 均已验收、批准并发布；S01 已获本地实施授权，确切快照仍待人工验收与上传批准。工作状态、人工决定和远端状态分别记录。
 
 ## 状态约定
 
@@ -20,12 +20,12 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 
 ## 当前步骤台账
 
-研究范围和路线仍为 CONFIRMED，依据 PR008、PR009；逐步审批上传要求来自 PR011，治理认可与 S00 启动见 PR012，仓库配置确认见 PR013。S00 首发的实际验收与上传批准见 PR014 和 LOG007；PR015、PR016 记录完成性审阅及有限修复授权，均不授予 r2 上传许可；其他步骤未实施。
+研究范围和路线仍为 CONFIRMED，依据 PR008、PR009；逐步审批上传要求来自 PR011，治理认可与 S00 启动见 PR012，仓库配置确认见 PR013。S00 首发的实际验收与上传批准见 PR014 和 LOG007；PR015、PR016 记录完成性审阅及有限修复授权；随后发生的 r2 批准见 PR017、LOG009。PR018 授权 S01 本地实施，未授权上传；S02—S28 未实施。
 
 | 步骤 | 工作 | 工作状态 | 人工验收 | 上传许可 | 发布状态 |
 | --- | --- | --- | --- | --- | --- |
-| S00 | 治理基线与仓库首次发布（r1） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
-| S01 | 开发环境与依赖复现 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
+| S00 | 治理基线与仓库首次发布（r1、r2） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
+| S01 | 开发环境与依赖复现 | VERIFIED | PENDING_REVIEW | PENDING_APPROVAL | NOT_PUBLISHED |
 | S02 | 基础检查与持续集成 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S03 | Isaac Sim 最小运行验证 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S04 | 相关工作与研究假设核对 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
@@ -54,9 +54,9 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 | S27 | 项目报告与演示材料 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S28 | 版本归档与最终交付 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 
-台账列示已完成的首发 r1；当前 r2 仅有四份公开文档变更，本地 VERIFIED、人工 PENDING_REVIEW、上传 PENDING_APPROVAL、发布 NOT_PUBLISHED，详见 [S00 步骤卡](docs/steps/S00.md)。工作清单见 [公开总纲](README.md#步骤化路线图)。
+台账列示当前实际状态；r2 回执已在本次 S01 候选更新中补录，详见 [S00 步骤卡](docs/steps/S00.md)。S01 检查范围与待批操作见 [S01 步骤卡](docs/steps/S01.md)。工作清单见 [公开总纲](README.md#步骤化路线图)。
 
-以下 LOG001—LOG006 保留各自记录时的事实和状态，其中“当前”“尚未”等词只指该条历史记录的时间；当前发布事实由 LOG007 补录，r2 状态见 LOG008。
+以下 LOG001—LOG008 保留各自记录时的事实和状态，其中“当前”“尚未”等词只指该条历史记录的时间；r1 与 r2 发布事实分别由 LOG007、LOG009 补录，S01 状态见 LOG010。
 
 ## 2026年9月25日 研究准备启动
 
@@ -155,11 +155,34 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 - 工作 VERIFIED；本次人工验收 PENDING_REVIEW，上传 PENDING_APPROVAL，发布 NOT_PUBLISHED；关联 PR015、PR016。
 - 范围未变：不修改研究方法、仓库配置、许可、既有提交或标签；不进入 S01。
 
+## 2026年9月30日 S00 r2 回执补录
+
+- 记录编号：LOG009；记录类型：RECEIPT；步骤 S00，修订 r2。
+- 负责人行为：对 S00-20260930-r2 确切四文件快照验收并批准提交及推送；决定编号 S00-R2-APPROVAL-001；关联 PR017。
+- 状态：VERIFIED / ACCEPTED / APPROVED / PUBLISHED。
+- 批准包 SHA-256：`fba78a0e460dee8327321c71f58c454fb48568edcca49308613a5605c5c356e9`。
+- 实际提交：[afb9770d5d7ba5e310d868ad3e933c3b8b524cac](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/commit/afb9770d5d7ba5e310d868ad3e933c3b8b524cac)；父提交 `c2d76841758a87d2add110a3342206ba4b194aab`；树 `ea221283aec9f8702dcc064cd0db6d64a427e0ec`。
+- 实际标签：[step-S00-r2](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/tree/step-S00-r2)；标签对象 `ae82a3caec259947c81af45e3028ad03f1e0a4ac`。
+- 核验时间：2026-09-30T23:01:26+08:00；21 项远端检查通过，精确四文件差异及完整八文件摘要与批准快照匹配。r1 提交及标签不变；S00 无 CI。
+- 边界：这是已发生的 r2 回执，取代 LOG008 对现在状态的解释，不改写 LOG008 当时事实，不授予 S01 上传许可。
+
+## 2026年9月30日 S01 环境与依赖复现
+
+- 记录编号：LOG010；记录类型：CURRENT；步骤 S01，修订 r1；治理文档版本 0.3.0。
+- 负责人行为：授权直接开展 S01 本地工作，沿用现有目录和 main，不新建分支或 worktree；要求环境重建与解释器隔离，维持逐步快照审批。关联 PR018。
+- 辅助工作：核对干净基线及远端引用，建立 src 布局、依赖声明、锁文件、最小安装入口和两项标准库自检；核查官方资料及实际版本，补录 S00 r2 批准和真实回执。
+- 轻量选择：CPython 3.12.13、uv 0.12.3、uv_build 0.12.3；当前运行依赖为空，包版本 0.1.0。构建工具版本是本步工程选择，不冒称负责人逐项指定。
+- 版本边界：Isaac 候选安装为 6.1.0-rc.26，自带 Python 3.12.13；仅核验解释器入口与模块发现，未启动场景。6.0 兼容性检查环境不计作完整仿真环境。
+- 检查：18 项环境命令成功；开发环境、独立源文件副本的非 editable 安装及独立 wheel 安装均通过两项自检；116 项快照检查通过，原 75 个 S00 本地证据文件摘要不变。范围和限制见本步卡；完整证据留本地。
+- 工作 VERIFIED；人工 PENDING_REVIEW；上传 PENDING_APPROVAL；发布 NOT_PUBLISHED。
+- 公开产物：本步卡的确切十二文件集合；机器配置、原始日志和审批材料仅本地留存。
+- 限制：本步仅安装骨架，不含领域实现、实验或 CI；跨平台与 Isaac 场景兼容性未验证。S02—S28 未开始。
+
 ## 下一步
 
-1. 审阅 S00-20260930-r2 的四文件差异、检查证据和拟执行操作。
-2. 获得针对 r2 的验收及上传批准后，向既有 main 追加修订提交和新标签 step-S00-r2；保留 step-S00-r1。
-3. 核验修订远端后交付独立回执；当前修复授权不等于 r2 上传授权。本任务不进入 S01。
+1. 审阅 S01-20260930-r1 的十二文件快照、完整差异、检查证据和限制。
+2. 负责人对确切快照验收并批准上传后，才在现有 main 追加一个提交和新注释标签 step-S01-r1，并向既有远端推送这两个引用。
+3. 核验远端提交、父提交、文件树、标签及实际检查状态，交付真实回执。S01 启动授权不含上述提交或上传操作，后续步骤仍需授权。
 
 ## 步骤记录与发布回执
 

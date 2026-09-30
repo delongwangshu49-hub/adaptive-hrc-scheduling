@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.2.2，整理日期为 2026-09-30。操作字段采用英文枚举，解释与术语采用中文。负责人已验收并批准 v0.2.1 首发 r1；本次 v0.2.2 新增记录属于 r2 修订，仍待独立审阅与上传批准。历史记录保留各自时点的语义。
+版本为 0.3.0，整理日期为 2026-09-30。操作字段采用英文枚举，解释与术语采用中文。S00 r1 与 r2 均已验收、批准并发布；本次补录 r2 的实际批准，以及 S01 本地启动指令。S01 快照仍待独立审阅与上传批准；历史记录保留各自时点的语义。
 
 ## 记录规则
 
@@ -34,6 +34,7 @@
 | ACCEPT_GOVERNANCE_AND_START_STEP | 认可治理基线并授权本地开展步骤，不等于上传批准 |
 | CONFIRM_REPOSITORY_CONFIGURATION | 确认仓库配置、许可和提交身份，不等于上传批准 |
 | APPROVE_STEP_PUBLICATION | 仅在负责人实际批准特定快照上传时使用 |
+| START_STEP | 授权本地执行具体步骤，不等于验收或上传批准 |
 | REQUEST_STEP_REVISION | 负责人要求修改具体步骤 |
 | HUMAN_CONFIRMED | 负责人已确认该决策 |
 | REVIEW_COMPLETED | 复核工作已进行，不代表所有结论成立 |
@@ -45,7 +46,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.2.2",
+  "document_version": "0.3.0",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -582,6 +583,79 @@
         "docs/steps/S00.md"
       ],
       "limit": "REPAIR_AUTHORIZATION_IS_NOT_EXACT_R2_UPLOAD_APPROVAL"
+    },
+    {
+      "id": "PR017",
+      "date": "2026-09-30",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S00_GOVERNANCE_AND_BOOTSTRAP",
+        "parameters": {
+          "step_id": "S00",
+          "revision": 2,
+          "packet_id": "S00-20260930-r2",
+          "packet_sha256": "fba78a0e460dee8327321c71f58c454fb48568edcca49308613a5605c5c356e9",
+          "decision": "ACCEPTED_AND_APPROVED",
+          "permitted_remote_actions": [
+            "PUSH_MAIN_AND_STEP_S00_R2"
+          ]
+        }
+      },
+      "human_contribution": [
+        "REVIEWED_AND_APPROVED_EXACT_R2_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "EXECUTED_APPROVED_R2_PUBLICATION",
+        "VERIFIED_REMOTE_AND_PRESERVED_R1"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年9月30日-s00-r2-回执补录",
+        "docs/steps/S00.md"
+      ],
+      "limit": "AUTHORIZATION_LIMITED_TO_S00_R2_SNAPSHOT"
+    },
+    {
+      "id": "PR018",
+      "date": "2026-09-30",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "START_STEP",
+        "target": "S01_ENVIRONMENT_AND_REPRODUCIBILITY",
+        "parameters": {
+          "step_id": "S01",
+          "reuse_current_directory": true,
+          "branch": "main",
+          "create_extra_branch": false,
+          "create_worktree": false,
+          "authorized_scope": [
+            "LOCAL_ENVIRONMENT_SETUP",
+            "DEPENDENCY_LOCKING",
+            "FRESH_ENVIRONMENT_INSTALLATION_CHECK",
+            "INTERPRETER_SEPARATION",
+            "RECORD_EXISTING_S00_R2_RECEIPT"
+          ],
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_S01_LOCAL_IMPLEMENTATION",
+        "SET_BRANCH_AND_ENVIRONMENT_BOUNDARIES",
+        "RETAINED_EXACT_SNAPSHOT_PUBLICATION_GATE"
+      ],
+      "assistant_support": [
+        "CHECKED_BASELINE_AND_AVAILABLE_RUNTIMES",
+        "CREATED_INSTALLABLE_SCAFFOLD_AND_CHECKS",
+        "DOCUMENTED_VERSIONS_AND_REPRODUCTION"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年9月30日-s01-环境与依赖复现",
+        "docs/steps/S01.md",
+        "docs/setup.md"
+      ],
+      "limit": "NO_S01_ACCEPTANCE_OR_UPLOAD_APPROVAL_NO_S02_CI_OR_S03_SIMULATION"
     }
   ]
 }
@@ -603,4 +677,4 @@ schema 必须保留操作、目标、参数、人的贡献、辅助工作、处�
 
 批准原话和私有证据位置不公开，规范化决策编号与进度日志对应。某步没有新的实质指令时只维护进度与发布记录，不为凑编号伪造提示词。实际回执按进度日志规则补录，不能预写成功。
 
-PR010 保留此前仅准备文件的历史语义；PR011 增加今后的逐步审批发布机制，该记录当时授权仍是本地文档修订。PR012、PR013 进一步确认治理基线、启动 S00 和落实元数据；PR014 补录随后发生的 r1 首发批准。PR015、PR016 仅授权审阅与有限修复，r2 仍必须取得针对新快照的上传批准。
+PR010 保留此前仅准备文件的历史语义；PR011 增加今后的逐步审批发布机制，该记录当时授权仍是本地文档修订。PR012、PR013 进一步确认治理基线、启动 S00 和落实元数据；PR014 补录随后发生的 r1 首发批准。PR015、PR016 当时仅授权审阅与有限修复；PR017 补录随后针对 r2 确切快照的批准。PR018 另行启动 S01 本地工作，取代此前停止在 S00 的执行边界，但不授权 S01 上传。
