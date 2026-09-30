@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.3.0，整理日期为 2026-09-30。操作字段采用英文枚举，解释与术语采用中文。S00 r1 与 r2 均已验收、批准并发布；本次补录 r2 的实际批准，以及 S01 本地启动指令。S01 快照仍待独立审阅与上传批准；历史记录保留各自时点的语义。
+版本为 0.3.1，整理日期为 2026-09-30。操作字段采用英文枚举，解释与术语采用中文。本次补录 S01 r1 的实际批准、完成性审阅及 r2 有限修复授权。S01 r1 已发布；r2 截至审阅包封存仍待独立验收与上传批准，后续事实应结合步骤标签和下次获批回执核对。历史记录保留各自时点的语义。
 
 ## 记录规则
 
@@ -46,7 +46,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.3.0",
+  "document_version": "0.3.1",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -656,6 +656,101 @@
         "docs/setup.md"
       ],
       "limit": "NO_S01_ACCEPTANCE_OR_UPLOAD_APPROVAL_NO_S02_CI_OR_S03_SIMULATION"
+    },
+    {
+      "id": "PR019",
+      "date": "2026-09-30",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S01_ENVIRONMENT_AND_REPRODUCIBILITY",
+        "parameters": {
+          "step_id": "S01",
+          "revision": 1,
+          "packet_id": "S01-20260930-r1",
+          "packet_sha256": "c205d7971d6643d5d9bf74aeb3e268f2f94a63f0e89b1e45e55a8ac5dc2a8d32",
+          "decision": "ACCEPTED_AND_APPROVED",
+          "permitted_remote_actions": [
+            "PUSH_MAIN_AND_STEP_S01_R1"
+          ]
+        }
+      },
+      "human_contribution": [
+        "REVIEWED_AND_APPROVED_EXACT_S01_R1_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "EXECUTED_APPROVED_PUBLICATION",
+        "VERIFIED_REMOTE_SNAPSHOT_AND_PRIOR_EVIDENCE"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年9月30日-s01-r1-回执补录",
+        "docs/steps/S01.md"
+      ],
+      "limit": "AUTHORIZATION_LIMITED_TO_S01_R1"
+    },
+    {
+      "id": "PR020",
+      "date": "2026-09-30",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "S01_ENVIRONMENT_AND_REPRODUCIBILITY",
+        "parameters": {
+          "step_id": "S01",
+          "check_completion": true,
+          "review_logic": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_COMPLETENESS_AND_LOGIC_AUDIT"
+      ],
+      "assistant_support": [
+        "REBUILT_FROM_PUBLISHED_SOURCE",
+        "CHECKED_ACCEPTANCE_AND_PUBLICATION",
+        "REPRODUCED_LOCAL_LOG_OVERWRITE_RISK"
+      ],
+      "resolution": "REVIEW_COMPLETED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年9月30日-s01-有限修订"
+      ],
+      "limit": "AUDIT_DOES_NOT_AUTHORIZE_UPLOAD"
+    },
+    {
+      "id": "PR021",
+      "date": "2026-09-30",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "S01_ENVIRONMENT_AND_REPRODUCIBILITY",
+        "parameters": {
+          "step_id": "S01",
+          "revision": 2,
+          "scope": [
+            "LOCAL_EVIDENCE_WRITE_PROTECTION",
+            "INDEPENDENT_RUN_DIRECTORIES",
+            "GOVERNANCE_AS_OF_WORDING",
+            "RECORD_EXISTING_S01_R1_RECEIPT"
+          ],
+          "start_S02": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_LIMITED_LOCAL_REPAIR"
+      ],
+      "assistant_support": [
+        "CREATED_PROTECTED_REPLACEMENT_TOOL",
+        "PRESERVED_HISTORICAL_ORIGINALS",
+        "CLARIFIED_SNAPSHOT_TIME_BOUNDARY"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年9月30日-s01-有限修订",
+        "docs/steps/S01.md"
+      ],
+      "limit": "LOCAL_REPAIR_IS_NOT_EXACT_R2_UPLOAD_APPROVAL"
     }
   ]
 }
@@ -678,3 +773,5 @@ schema 必须保留操作、目标、参数、人的贡献、辅助工作、处�
 批准原话和私有证据位置不公开，规范化决策编号与进度日志对应。某步没有新的实质指令时只维护进度与发布记录，不为凑编号伪造提示词。实际回执按进度日志规则补录，不能预写成功。
 
 PR010 保留此前仅准备文件的历史语义；PR011 增加今后的逐步审批发布机制，该记录当时授权仍是本地文档修订。PR012、PR013 进一步确认治理基线、启动 S00 和落实元数据；PR014 补录随后发生的 r1 首发批准。PR015、PR016 当时仅授权审阅与有限修复；PR017 补录随后针对 r2 确切快照的批准。PR018 另行启动 S01 本地工作，取代此前停止在 S00 的执行边界，但不授权 S01 上传。
+
+PR019 补录 S01 r1 的确切快照批准；PR020 为完成性审阅；PR021 仅授权 r2 有限本地修复，不继承或扩大 PR019 的上传许可。
