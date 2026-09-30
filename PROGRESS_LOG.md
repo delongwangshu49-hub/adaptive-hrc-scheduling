@@ -2,7 +2,7 @@
 
 本文件记录可以公开的研究决策、实施状态、检查证据和下一步工作。日期采用 UTC+08:00；历史准备记录依据项目讨论整理到日，不补造精确时刻。私人身份、来源文件位置、原始对话、机器配置和敏感运行日志不在此记录。
 
-本文件当前版本为 0.2.1，更新于 2026-09-30。项目范围与路线已确认；实施阶段 P0 至 P5 均未验收。负责人已认可治理基线 v0.2.0，并启动 S00；本次 v0.2.1 首发快照仍待单独验收和上传批准。工作状态、人工决定和远端状态分别记录。
+本文件当前版本为 0.2.2，更新于 2026-09-30。项目范围与路线已确认；实施阶段 P0 至 P5 均未验收。S00 首发 r1（v0.2.1）已验收、批准并发布；本次 r2（v0.2.2）是获准在本地开展的有限修订，仍待确切快照的验收与上传批准。工作状态、人工决定和远端状态分别记录。
 
 ## 状态约定
 
@@ -20,11 +20,11 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 
 ## 当前步骤台账
 
-研究范围和路线仍为 CONFIRMED，依据 PR008、PR009；逐步审批上传要求来自 PR011，治理认可与 S00 启动见 PR012，仓库配置确认见 PR013。S00 本地文件及指定检查已完成，等待本次快照人工审阅；其他步骤未实施。
+研究范围和路线仍为 CONFIRMED，依据 PR008、PR009；逐步审批上传要求来自 PR011，治理认可与 S00 启动见 PR012，仓库配置确认见 PR013。S00 首发的实际验收与上传批准见 PR014 和 LOG007；PR015、PR016 记录完成性审阅及有限修复授权，均不授予 r2 上传许可；其他步骤未实施。
 
 | 步骤 | 工作 | 工作状态 | 人工验收 | 上传许可 | 发布状态 |
 | --- | --- | --- | --- | --- | --- |
-| S00 | 治理基线与仓库首次发布 | VERIFIED（本地检查） | PENDING_REVIEW | PENDING_APPROVAL | NOT_PUBLISHED |
+| S00 | 治理基线与仓库首次发布（r1） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
 | S01 | 开发环境与依赖复现 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S02 | 基础检查与持续集成 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S03 | Isaac Sim 最小运行验证 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
@@ -54,7 +54,9 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 | S27 | 项目报告与演示材料 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S28 | 版本归档与最终交付 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 
-首发包包括八个文件，配置已确认，完整清单见 [S00 步骤卡](docs/steps/S00.md)。当前没有根项目 Git 仓库、远端地址、提交或标签，相应字段保持空值。工作清单见 [公开总纲](README.md#步骤化路线图)。
+台账列示已完成的首发 r1；当前 r2 仅有四份公开文档变更，本地 VERIFIED、人工 PENDING_REVIEW、上传 PENDING_APPROVAL、发布 NOT_PUBLISHED，详见 [S00 步骤卡](docs/steps/S00.md)。工作清单见 [公开总纲](README.md#步骤化路线图)。
+
+以下 LOG001—LOG006 保留各自记录时的事实和状态，其中“当前”“尚未”等词只指该条历史记录的时间；当前发布事实由 LOG007 补录，r2 状态见 LOG008。
 
 ## 2026年9月25日 研究准备启动
 
@@ -131,12 +133,33 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 - 关联指令：PR012、PR013。PR012 对 v0.2.0 的认可不追溯改写 LOG004、LOG005 当时的待审状态；PR013 配置确认不构成首发上传批准。
 - 限制：根项目未初始化，尚无提交、标签或远端；本步未运行仿真、算法或 CI。S01—S28 未开始。
 
+## 2026年9月30日 S00 首发回执补录
+
+- 记录编号：LOG007；记录类型：RECEIPT；步骤 S00，修订 r1。
+- 负责人行为：对 S00-20260930-r1 的确切八文件快照，明确批准验收、首次初始化 main、创建 public 仓库及首发推送。
+- 关联指令：PR014；工作 VERIFIED、人工 ACCEPTED、上传 APPROVED、发布 PUBLISHED。
+- 实际提交：[c2d76841758a87d2add110a3342206ba4b194aab](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/commit/c2d76841758a87d2add110a3342206ba4b194aab)。
+- 实际标签：[step-S00-r1](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/tree/step-S00-r1)；文件树 `16e0c59a3ac84c807be4d5db8a077f8ffc24e208`。
+- 批准包 SHA-256：`119d332b7b3ee581104cadd9c1ba74d3fc0eabc5b3d34ee645cf527dfee6045f`。
+- 核验时间：2026-09-30T22:42:48+08:00；18 项发布核验通过，八文件内容与批准快照一致；CI 在 S00 不适用，没有声称 CI 通过。
+- 后续复核：23 项完成性核查通过；未发现会否定 r1 发布有效性的阻断问题。发现的工具保护和时间措辞问题按 LOG008 有限修正。
+- 补录边界：此处记录已经发生的 r1 事实，不填入本次 r2 尚未产生的提交哈希或发布结果，不修改既有标签。
+
+## 2026年9月30日 S00 有限修订
+
+- 记录编号：LOG008；记录类型：CORRECTION；步骤 S00，修订 r2，文档版本 0.2.2。
+- 负责人行为：要求核查 S00 完成性和逻辑问题，随后批准有限度修复；范围限于本地封存保护及治理状态表述。
+- 辅助工作：封存生成器在已有包、审批或发布回执时拒绝写入；检查失败时不生成审批包。明确审批前快照的时间语义，补录 r1 回执，区分已发布 r1 与待审 r2。
+- 检查：5 个本地工具保护回归用例通过，原始审批包与回执摘要不变；本次文档的链接、结构、状态、脱敏和精确变更范围随 r2 快照核验。原 r1 的 68 项检查不冒充本次检查。
+- 公开变更：README.md、PROGRESS_LOG.md、PROMPT_LEDGER.md、docs/steps/S00.md；内部总纲和封存工具修复仅本地保存。
+- 工作 VERIFIED；本次人工验收 PENDING_REVIEW，上传 PENDING_APPROVAL，发布 NOT_PUBLISHED；关联 PR015、PR016。
+- 范围未变：不修改研究方法、仓库配置、许可、既有提交或标签；不进入 S01。
+
 ## 下一步
 
-1. 审阅已封存的八文件完整差异、内容摘要、本地检查证据及拟执行操作。
-2. 取得负责人对确切 S00 快照的人工验收，以及创建 public 仓库和首次推送的明确批准。
-3. 获批后首次初始化 main，创建空远端，提交并推送获批文件和步骤标签；核验真实远端，交付回执。任何实质变化重新审阅。
-4. 本任务仅开展 S00；后续 S01 需另行启动。未获首发批准时保留本地成果。
+1. 审阅 S00-20260930-r2 的四文件差异、检查证据和拟执行操作。
+2. 获得针对 r2 的验收及上传批准后，向既有 main 追加修订提交和新标签 step-S00-r2；保留 step-S00-r1。
+3. 核验修订远端后交付独立回执；当前修复授权不等于 r2 上传授权。本任务不进入 S01。
 
 ## 步骤记录与发布回执
 

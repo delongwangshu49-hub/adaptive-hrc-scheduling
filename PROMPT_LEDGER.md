@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.2.1，整理日期为 2026-09-30。操作字段采用英文枚举，解释与术语采用中文。负责人已认可 v0.2.0；本次新增记录及 v0.2.1 首发快照仍待审阅。
+版本为 0.2.2，整理日期为 2026-09-30。操作字段采用英文枚举，解释与术语采用中文。负责人已验收并批准 v0.2.1 首发 r1；本次 v0.2.2 新增记录属于 r2 修订，仍待独立审阅与上传批准。历史记录保留各自时点的语义。
 
 ## 记录规则
 
@@ -45,7 +45,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.2.1",
+  "document_version": "0.2.2",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -488,6 +488,100 @@
         "docs/steps/S00.md"
       ],
       "limit": "CONFIGURATION_CONFIRMED_BUT_EXACT_SNAPSHOT_CREATION_AND_PUSH_APPROVAL_PENDING"
+    },
+    {
+      "id": "PR014",
+      "date": "2026-09-30",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S00_GOVERNANCE_AND_BOOTSTRAP",
+        "parameters": {
+          "step_id": "S00",
+          "packet_id": "S00-20260930-r1",
+          "decision": "ACCEPTED_AND_APPROVED",
+          "packet_sha256": "119d332b7b3ee581104cadd9c1ba74d3fc0eabc5b3d34ee645cf527dfee6045f",
+          "permitted_remote_actions": [
+            "CREATE_EMPTY_PUBLIC_REPOSITORY",
+            "PUSH_MAIN_AND_STEP_TAG"
+          ]
+        }
+      },
+      "human_contribution": [
+        "REVIEWED_AND_APPROVED_EXACT_FIRST_PUBLICATION"
+      ],
+      "assistant_support": [
+        "EXECUTED_APPROVED_PUBLICATION",
+        "VERIFIED_REMOTE_SNAPSHOT"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年9月30日-s00-首发回执补录",
+        "docs/steps/S00.md"
+      ],
+      "limit": "AUTHORIZATION_LIMITED_TO_R1_SNAPSHOT"
+    },
+    {
+      "id": "PR015",
+      "date": "2026-09-30",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "S00_GOVERNANCE_AND_BOOTSTRAP",
+        "parameters": {
+          "step_id": "S00",
+          "check_completion": true,
+          "review_logic": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_COMPLETENESS_AND_LOGIC_AUDIT"
+      ],
+      "assistant_support": [
+        "VERIFIED_COMPLETION_AND_REMOTE_STATE",
+        "IDENTIFIED_EVIDENCE_TOOL_AND_TIME_WORDING_ISSUES"
+      ],
+      "resolution": "REVIEW_COMPLETED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年9月30日-s00-有限修订",
+        "docs/steps/S00.md"
+      ],
+      "limit": "AUDIT_DOES_NOT_AUTHORIZE_UPLOAD"
+    },
+    {
+      "id": "PR016",
+      "date": "2026-09-30",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "S00_GOVERNANCE_AND_BOOTSTRAP",
+        "parameters": {
+          "step_id": "S00",
+          "revision": 2,
+          "scope": [
+            "LOCAL_PACKET_OVERWRITE_PROTECTION",
+            "GOVERNANCE_TIME_AND_STATUS_CLARITY",
+            "RECORD_EXISTING_R1_RECEIPT"
+          ],
+          "start_S01": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_LIMITED_LOCAL_REPAIR"
+      ],
+      "assistant_support": [
+        "FIXED_LOCAL_EVIDENCE_PROTECTION",
+        "CLARIFIED_HISTORICAL_AND_CURRENT_STATUS",
+        "PREPARED_REVISION_REVIEW_PACKET"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年9月30日-s00-有限修订",
+        "docs/steps/S00.md"
+      ],
+      "limit": "REPAIR_AUTHORIZATION_IS_NOT_EXACT_R2_UPLOAD_APPROVAL"
     }
   ]
 }
@@ -509,4 +603,4 @@ schema 必须保留操作、目标、参数、人的贡献、辅助工作、处�
 
 批准原话和私有证据位置不公开，规范化决策编号与进度日志对应。某步没有新的实质指令时只维护进度与发布记录，不为凑编号伪造提示词。实际回执按进度日志规则补录，不能预写成功。
 
-PR010 保留此前仅准备文件的历史语义；PR011 增加今后的逐步审批发布机制，该记录当时授权仍是本地文档修订。PR012、PR013 进一步确认治理基线、启动 S00 和落实元数据；S00 创建与首发仍必须取得针对具体首发包的批准。
+PR010 保留此前仅准备文件的历史语义；PR011 增加今后的逐步审批发布机制，该记录当时授权仍是本地文档修订。PR012、PR013 进一步确认治理基线、启动 S00 和落实元数据；PR014 补录随后发生的 r1 首发批准。PR015、PR016 仅授权审阅与有限修复，r2 仍必须取得针对新快照的上传批准。
