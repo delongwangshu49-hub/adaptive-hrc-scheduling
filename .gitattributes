@@ -1,0 +1,20 @@
+# Repository text uses LF; executable scripts follow their runtime requirements.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary assets must not be newline-normalized.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.7z binary
+*.mp4 binary
+*.wav binary
+*.usd binary
+*.usdc binary
+*.usdz binary

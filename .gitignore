@@ -1,0 +1,73 @@
+# Local governance and private context
+/.local/
+/private/
+/.local-work/
+/raw-prompts/
+/raw-conversations/
+/reference-materials/
+/reference-extracts/
+/course-materials/
+
+# Reading and rendering intermediates
+/tmp/
+/temp/
+/scratch/
+/output/
+/artifacts/
+/runs/
+/logs/
+/data/raw/
+/data/private/
+/assets/local/
+
+# Original reference documents and local archives
+*.pdf
+*.ppt
+*.pptx
+*.doc
+*.docx
+*.zip
+*.7z
+*.rar
+
+# Credentials and machine-specific settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*credentials*.json
+*service-account*.json
+*.local.json
+*.local.yaml
+*.local.yml
+/.aws/
+/.codex/
+/.agents/
+/.vscode/
+/.idea/
+
+# Python and build products
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Keep future reviewed summaries in a separate results/public directory.
+# Ignore rules do not remove tracked files and do not prevent force-add.
