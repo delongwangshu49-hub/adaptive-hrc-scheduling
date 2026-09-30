@@ -1,6 +1,6 @@
-# S01 开发环境与依赖复现
+# 开发环境与依赖复现（S01 / S02）
 
-本页只覆盖项目安装骨架。生产领域模型、事件仿真、调度、CP-SAT 和 Isaac Sim 闭环尚未实现。包版本为 `0.1.0`，治理文档版本为 `0.3.0`，二者用途不同。
+本页只覆盖项目安装骨架。生产领域模型、事件仿真、调度、CP-SAT 和 Isaac Sim 闭环尚未实现。包版本为 `0.1.0`，治理文档版本为 `0.4.0`，二者用途不同。
 
 ## 版本与隔离
 
@@ -11,7 +11,8 @@
 | 环境工具 | uv 0.12.3；`tool.uv.required-version` 阻止静默切换版本 |
 | 构建后端 | uv_build 0.12.3；`build-system.requires` 精确固定 |
 | 运行依赖 | 当前为空；最小自检使用标准库 unittest |
-| 轻量锁 | `uv.lock`；当前仅一个项目条目，路径为相对的 `.` |
+| 开发依赖 | S02 新增 Ruff 0.16.9；默认 dev 组，运行依赖仍为空 |
+| 轻量锁 | `uv.lock`；项目与 Ruff 两个条目，项目路径为相对的 `.` |
 | Isaac 候选安装 | 现有独立安装的 VERSION 为 `6.1.0-rc.26+release.49347.2d230af4.gl`，自带 Python 3.12.13 |
 | Isaac 核验边界 | 启动包装器可执行解释器，模块入口可发现；未创建 SimulationApp，未验证场景或 GPU |
 
@@ -49,6 +50,8 @@ uv run --locked python -m unittest discover -s tests -v
 uv python find 3.12.13
 uv run --locked python -c "import sys; print(sys.executable); print(sys.version)"
 ```
+
+S02 日常完整检查使用 `uv run --locked --no-editable python scripts/check.py`，内容和发布后核验要求见 [开发说明](development.md)。下方保留安装复建方法，其两项安装自检不能替代 S02 完整入口。
 
 ## 从全新轻量环境复验
 
@@ -92,4 +95,4 @@ Get-Content (Join-Path $env:ISAAC_SIM_ROOT 'VERSION')
 
 未来已实现的 standalone 脚本由 `& (Join-Path $env:ISAAC_SIM_ROOT 'python.bat') $IsaacScript` 启动，其中 `$IsaacScript` 指向届时审阅的脚本；S01 不提供假场景脚本。包装器设置 Kit 的运行路径，不能仅用裸的内置 python.exe 替代。Isaac 的上层模块需遵循 SimulationApp 初始化顺序，单纯可发现模块不等于可运行场景。[NVIDIA Python 环境说明](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/python_scripting/manual_standalone_python.html)
 
-安装与版本匹配参照 [NVIDIA 6.1 Python 安装文档](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/install_python.html)；[官方硬件要求](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/requirements.html) 仍需在 S03 结合实际场景核验。当前不能宣称硬件兼容或闭环通过。跨平台复现和其他 Python 补丁版本未测，CI 留待 S02。
+安装与版本匹配参照 [NVIDIA 6.1 Python 安装文档](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/install_python.html)；[官方硬件要求](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/requirements.html) 仍需在 S03 结合实际场景核验。当前不能宣称硬件兼容或闭环通过。其他 Python 补丁版本未测；S02 的本地检查及候选 CI 入口见 [开发说明](development.md)，Linux 与托管 Windows 的远端 CI 仍待获批推送后验证。

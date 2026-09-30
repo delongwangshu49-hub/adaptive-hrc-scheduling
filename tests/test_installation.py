@@ -14,7 +14,10 @@ class InstallationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             result = subprocess.run(
                 [sys.executable, "-I", "-m", "adaptive_hrc_scheduling"],
-                cwd=directory, capture_output=True, text=True, check=True,
+                cwd=directory,
+                capture_output=True,
+                text=True,
+                check=True,
             )
         report = json.loads(result.stdout)
         self.assertEqual(report["version"], distribution("adaptive-hrc-scheduling").version)
