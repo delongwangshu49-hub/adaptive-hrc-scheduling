@@ -1,6 +1,6 @@
-# 开发环境与依赖复现（S01 / S02）
+# 开发环境与依赖复现（S01 / S02 / S03）
 
-本页只覆盖项目安装骨架。生产领域模型、事件仿真、调度、CP-SAT 和 Isaac Sim 闭环尚未实现。包版本为 `0.1.0`，治理文档版本为 `0.4.0`，二者用途不同。
+本页只覆盖项目安装骨架。生产领域模型、事件仿真、调度、CP-SAT 和 Isaac Sim 闭环尚未实现。包版本为 `0.1.0`，治理文档版本为 `0.5.0`，二者用途不同。
 
 ## 版本与隔离
 
@@ -14,9 +14,9 @@
 | 开发依赖 | S02 新增 Ruff 0.16.9；默认 dev 组，运行依赖仍为空 |
 | 轻量锁 | `uv.lock`；项目与 Ruff 两个条目，项目路径为相对的 `.` |
 | Isaac 候选安装 | 现有独立安装的 VERSION 为 `6.1.0-rc.26+release.49347.2d230af4.gl`，自带 Python 3.12.13 |
-| Isaac 核验边界 | 启动包装器可执行解释器，模块入口可发现；未创建 SimulationApp，未验证场景或 GPU |
+| Isaac 核验边界 | S03 实测指定最小场景的启动、回调、重置与退出；不代表生产闭环或一般兼容性，见 [运行验证](validation/runtime.md) |
 
-Isaac 候选是 RC 构建，不能写成 6.1 正式版已经通过验证。另一个现有环境仅含 `isaacsim`、`isaacsim-app`、`isaacsim-kernel` 6.0.0.1，属于兼容性检查用途，不能充当完整仿真安装。本步没有下载、升级或改写这些安装；S03 再按实际版本验证启动、推进、回调和重置。
+Isaac 候选是 RC 构建，不能写成 6.1 正式版已经通过验证。另一个现有环境仅含 `isaacsim`、`isaacsim-app`、`isaacsim-kernel` 6.0.0.1，属于兼容性检查用途，不能充当完整仿真安装。S01 没有下载或升级这些安装；S03 沿用候选 RC 安装，实测范围和运行时限制另行记录。
 
 本步先固定已实测可用的轻量工具链，不预装后续 OR-Tools、数值分析库或 Isaac 依赖。未来需要时在对应步骤更新声明与锁文件，重新检查。`uv.lock` 管理项目依赖，不包含 Python 二进制或构建后端；前者由 `.python-version` 固定，后者由精确构建要求及固定 uv 版本控制。当前 uv 使用其匹配版本的内置构建后端。[uv 构建后端说明](https://docs.astral.sh/uv/configuration/build-backend/)
 
@@ -93,6 +93,6 @@ Get-Content (Join-Path $env:ISAAC_SIM_ROOT 'VERSION')
 & (Join-Path $env:ISAAC_SIM_ROOT 'python.bat') -c "import sys; print(sys.version); print(sys.executable)"
 ```
 
-未来已实现的 standalone 脚本由 `& (Join-Path $env:ISAAC_SIM_ROOT 'python.bat') $IsaacScript` 启动，其中 `$IsaacScript` 指向届时审阅的脚本；S01 不提供假场景脚本。包装器设置 Kit 的运行路径，不能仅用裸的内置 python.exe 替代。Isaac 的上层模块需遵循 SimulationApp 初始化顺序，单纯可发现模块不等于可运行场景。[NVIDIA Python 环境说明](https://docs.isaacsim.omniverse.nvidia.com/6.0.0/python_scripting/manual_standalone_python.html)
+S03 自有脚本位于 `scripts/isaac_smoke.py`，由安装包装器执行，命令见 [运行验证](validation/runtime.md)。包装器设置 Kit 路径，不能用裸的内置 python.exe 替代。Isaac 上层模块遵循 SimulationApp 初始化顺序；CPU 静态通过不代表场景通过。[NVIDIA Python 环境说明](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/python_scripting/manual_standalone_python.html)
 
-安装与版本匹配参照 [NVIDIA 6.1 Python 安装文档](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/install_python.html)；[官方硬件要求](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/requirements.html) 仍需在 S03 结合实际场景核验。当前不能宣称硬件兼容或闭环通过。其他 Python 补丁版本未测；S02 的本地检查及候选 CI 入口见 [开发说明](development.md)，Linux 与托管 Windows 的远端 CI 仍待获批推送后验证。
+安装与版本匹配参照 [NVIDIA 6.1 Python 安装文档](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/install_python.html)。[官方硬件要求](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/requirements.html) 与最小场景实测是不同口径：成功仅覆盖测试负载，不构成完整兼容性认证。S02 已发布提交的 Linux / 托管 Windows CPU CI 已核验，见 [开发说明](development.md)；S03 候选尚无本步远端 CI。

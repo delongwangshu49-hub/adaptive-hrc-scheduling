@@ -2,7 +2,7 @@
 
 本文件记录可以公开的研究决策、实施状态、检查证据和下一步工作。日期采用 UTC+08:00；历史准备记录依据项目讨论整理到日，不补造精确时刻。私人身份、来源文件位置、原始对话、机器配置和敏感运行日志不在此记录。
 
-本文件版本为 0.4.0，更新于 2026-10-01。以下汇总截至 S02 r2 审阅包封存时点：S00 r1/r2 与 S01 r1/r2 均已验收、批准并发布；S02 本地 VERIFIED，待人工验收及上传批准，远端 CI 尚未运行。项目范围与路线已确认，实施阶段 P0 至 P5 均未验收。封存时状态不自动代表后续时点，实际发布结合步骤标签和下次获批回执核对。
+本文件版本为 0.5.0，更新于 2026-10-01。以下汇总截至 S03 r1 审阅包封存：S00、S01 与 S02 已完成各自实际验收、批准和发布；S03 本地指定检查通过，待独立人工验收与上传批准。研究范围与路线不变，P0—P5 阶段仍未获人工验收。
 
 ## 状态约定
 
@@ -20,14 +20,14 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 
 ## 当前步骤台账
 
-研究范围和路线仍为 CONFIRMED，依据 PR008、PR009；逐步审批上传要求来自 PR011，治理认可与 S00 启动见 PR012，仓库配置确认见 PR013。S00 首发的实际验收与上传批准见 PR014 和 LOG007；PR015、PR016 记录完成性审阅及有限修复授权；随后发生的 r2 批准见 PR017、LOG009。PR018 当时授权 S01 本地实施；随后针对 r1 的批准见 PR019、LOG011。PR020 记录完成性审阅，PR021 当时仅授权 r2 本地有限修复；随后实际批准见 PR022、LOG013。PR023 另行授权 S02 本地实施，尚未授权上传；S03—S28 未实施。
+研究范围和路线仍为 CONFIRMED，依据 PR008、PR009；逐步审批上传要求来自 PR011，治理认可与 S00 启动见 PR012，仓库配置确认见 PR013。S00 首发的实际验收与上传批准见 PR014 和 LOG007；PR015、PR016 记录完成性审阅及有限修复授权；随后发生的 r2 批准见 PR017、LOG009。PR018 当时授权 S01 本地实施；随后针对 r1 的批准见 PR019、LOG011。PR020 记录完成性审阅，PR021 当时仅授权 r2 本地有限修复；随后实际批准见 PR022、LOG013。PR023 当时启动 S02；其后实际批准见 PR024 / LOG015，完成性复核见 PR025 / LOG016。PR026 本次授权 S03 本地验证；S04—S28 未实施。
 
 | 步骤 | 工作 | 工作状态 | 人工验收 | 上传许可 | 发布状态 |
 | --- | --- | --- | --- | --- | --- |
 | S00 | 治理基线与仓库首次发布（r1、r2） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
 | S01 | 开发环境与依赖复现（已发布 r1、r2） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
-| S02 | 基础检查与持续集成 | VERIFIED | PENDING_REVIEW | PENDING_APPROVAL | NOT_PUBLISHED |
-| S03 | Isaac Sim 最小运行验证 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
+| S02 | 基础检查与持续集成（已发布 r2） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
+| S03 | Isaac Sim 最小运行验证 | VERIFIED | PENDING_REVIEW | PENDING_APPROVAL | NOT_PUBLISHED |
 | S04 | 相关工作与研究假设核对 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S05 | 生产流程与数学规格冻结 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S06 | 数据对象与接口契约 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
@@ -223,11 +223,40 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 - 状态：工作 VERIFIED；人工 PENDING_REVIEW；上传 PENDING_APPROVAL；发布 NOT_PUBLISHED。远端 CI 尚未运行，Linux 与托管 Windows 的真实执行待获批推送后核验。
 - 限制：不包含生产领域模型、Isaac 场景、调度或实验；没有修改分支保护，没有创建 PR、Release 或上传附件。
 
+## 2026年10月1日 S02 r2 回执补录
+
+- 记录编号：LOG015；记录类型：RECEIPT；步骤 S02，修订 r2；关联 PR024。
+- 负责人针对 S02-20261001-r2 确切十三文件快照批准验收与提交推送；决定 S02-R2-APPROVAL-001，记录时间 2026-10-01T00:10:41.365607+08:00。
+- 状态：VERIFIED / ACCEPTED / APPROVED / PUBLISHED。
+- 批准包 SHA-256：`7b23eaed6fc91b95c738518fa4cc35cfc69df9bc0a694fc808351a1a033d22b1`。
+- 实际提交：[ba8c8532af937771fcecf8f2f89c38c2bcf05998](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/commit/ba8c8532af937771fcecf8f2f89c38c2bcf05998)；父提交 `f94bf016f5b5457216bf4deeecd63417223ac419`；树 `8ff6180722a9ea65b01e10e06c6fcfa8e3e42b16`。
+- 实际标签 step-S02-r2；附注对象 `4842b9ceb949874f8796f55d66e25f4b2aa88ead`。
+- 核验时间 2026-10-01T00:15:01.528249+08:00；47 项远端检查通过，完整二十文件逐字节匹配批准快照，旧标签及 1515 份历史证据保持不变。
+- [真实 CI 运行](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36742427800) 的 push 事件绑定上述提交，windows-2025 与 ubuntu-24.04 两项作业成功。没有创建 PR、Release 或上传附件。
+- 本条补录既有事实，保留 LOG014 的封存时状态；S02 批准不授予 S03 上传许可。
+
+## 2026年10月1日 S02 完成性与逻辑复核
+
+- 记录编号：LOG016；记录类型：REVIEW；关联 PR025。
+- 负责人要求检查 S02 完成情况及逻辑问题；AI 助手复核验收、快照、发布、CI、历史证据和独立已发布副本重建，共 17 项通过，未发现需修复的逻辑问题。
+- 零测试误报猜测已排除：固定 CPython 3.12.13 的 unittest 在零测试时退出 5，统一入口随之失败。最初辅助审阅脚本错误预期该猜测可复现，其失败断言和原件保留；不将该猜测写成项目缺陷。
+- 本次审阅未修改公开文件或追加上传，原 S02 发布有效。
+
+## 2026年10月1日 S03 最小运行验证
+
+- 记录编号：LOG017；记录类型：CURRENT；步骤 S03，修订 r1；治理版本 0.5.0；关联 PR026。
+- 负责人授权最小场景、实际推进/回调/重置/退出检查、资源测量与本地审阅包；沿用现有目录和 main，不创建分支或 worktree。
+- AI 助手核查 6.1 RC 安装和官方 API，编写自有地面与基础刚体脚本，执行真实 Isaac 场景，并整理去标识结果；详细次数、资源口径、失败和边界见 [运行验证](docs/validation/runtime.md)。
+- CPU 统一入口只静态检查 Isaac 脚本，不导入 Kit 或替代实际运行；运行依赖、锁文件和工作流未改。
+- S02 实际批准/回执和完成性复核按 LOG015 / LOG016 补录；未改写旧步骤证据、提交或标签。
+- 截至封存：本地指定检查 VERIFIED；人工 PENDING_REVIEW，上传 PENDING_APPROVAL，发布 NOT_PUBLISHED。本步远端 CI 尚未运行，不把 S02 的成功继承为本步结果。
+- 确切文件与拟操作见 [S03 步骤卡](docs/steps/S03.md)。未实现生产模型、派工反馈闭环、调度或实验；S04 及后续未启动。
+
 ## 下一步
 
-1. 审阅 S02-20261001-r2 的确切十三文件、完整差异、证据和拟执行操作。
-2. 负责人独立验收并批准确切快照后，才在 main 追加一个提交、创建新注释标签 step-S02-r2，并仅推送这两个引用。
-3. 核对远端完整文件树、历史、标签及对应提交的两平台 CPU checks，均成功后才记录 PUBLISHED；CI 失败保留证据，修复内容重新审阅。不启动 S03。
+1. 审阅 S03-20261001-r1 的确切文件、完整差异、实际运行证据和边界。
+2. 独立验收并批准确切快照后，才在 main 追加一个提交，创建新注释标签 step-S03-r1，仅推送这两个引用。
+3. 核验远端文件树、历史、标签及绑定本次提交的两平台 CPU CI，均成功后才记录 PUBLISHED；不自动启动 S04。
 
 ## 步骤记录与发布回执
 

@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.4.0，整理日期为 2026-10-01。本次补录 S01 r2 确切快照的实际批准，并记录 S02 本地启动授权。S01 r1/r2 均已发布；S02 截至审阅包封存待独立人工验收与上传批准，远端 CI 尚未运行。历史记录保留各自时点的语义。
+版本为 0.5.0，整理日期为 2026-10-01。本次补录 S02 r2 实际批准、发布和随后完成性复核，记录 S03 本地启动授权。S02 已发布；S03 待独立人工验收与上传批准。历史记录保留各自时点的语义。
 
 ## 记录规则
 
@@ -46,7 +46,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.4.0",
+  "document_version": "0.5.0",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -824,6 +824,107 @@
         "docs/steps/S02.md"
       ],
       "limit": "NO_S02_UPLOAD_APPROVAL_NO_REMOTE_CI_RESULT_NO_S03_IMPLEMENTATION"
+    },
+    {
+      "id": "PR024",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S02_BASIC_CHECKS_AND_CONTINUOUS_INTEGRATION",
+        "parameters": {
+          "step_id": "S02",
+          "revision": 2,
+          "packet_id": "S02-20261001-r2",
+          "packet_sha256": "7b23eaed6fc91b95c738518fa4cc35cfc69df9bc0a694fc808351a1a033d22b1",
+          "decision_ref": "S02-R2-APPROVAL-001",
+          "decision": "ACCEPTED_AND_APPROVED",
+          "permitted_remote_actions": [
+            "PUSH_MAIN_AND_STEP_S02_R2"
+          ]
+        }
+      },
+      "human_contribution": [
+        "REVIEWED_AND_APPROVED_EXACT_S02_R2_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "EXECUTED_APPROVED_PUBLICATION",
+        "VERIFIED_REMOTE_TREE_AND_TWO_PLATFORM_CI"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年10月1日-s02-r2-回执补录",
+        "docs/steps/S02.md"
+      ],
+      "limit": "AUTHORIZATION_LIMITED_TO_S02_R2"
+    },
+    {
+      "id": "PR025",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "S02_BASIC_CHECKS_AND_CONTINUOUS_INTEGRATION",
+        "parameters": {
+          "check_completion": true,
+          "review_logic": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_COMPLETENESS_AND_LOGIC_REVIEW"
+      ],
+      "assistant_support": [
+        "CHECKED_PUBLICATION_AND_CI",
+        "REBUILT_PUBLISHED_COPY",
+        "ELIMINATED_ZERO_TEST_FALSE_GREEN_HYPOTHESIS"
+      ],
+      "resolution": "REVIEW_COMPLETED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年10月1日-s02-完成性与逻辑复核"
+      ],
+      "limit": "NO_DEFECT_FOUND_NO_REPAIR_OR_NEW_UPLOAD"
+    },
+    {
+      "id": "PR026",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "START_STEP",
+        "target": "S03_ISAAC_SIM_MINIMUM_RUNTIME_VALIDATION",
+        "parameters": {
+          "step_id": "S03",
+          "reuse_current_directory": true,
+          "branch": "main",
+          "create_extra_branch": false,
+          "create_worktree": false,
+          "authorized_scope": [
+            "MINIMAL_SCENE",
+            "ACTUAL_RUNTIME_CALLBACK_RESET_EXIT_CHECKS",
+            "RESOURCE_MEASUREMENT_AND_BOUNDED_CAPACITY",
+            "REVIEW_PACKET",
+            "RECORD_S02_RECEIPT_AND_AUDIT"
+          ],
+          "start_S04": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_S03_LOCAL_IMPLEMENTATION",
+        "REQUIRED_ACTUAL_RUNTIME_EVIDENCE",
+        "RETAINED_PUBLICATION_GATE"
+      ],
+      "assistant_support": [
+        "IMPLEMENTED_MINIMAL_ISAAC_SCRIPT",
+        "CHECKED_INSTALLED_RC_API_AND_RUNTIME",
+        "PREPARED_REVIEW_PACKET"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年10月1日-s03-最小运行验证",
+        "docs/steps/S03.md"
+      ],
+      "limit": "LOCAL_EXECUTION_ONLY_NO_S03_UPLOAD_APPROVAL_NO_S04_IMPLEMENTATION"
     }
   ]
 }
@@ -850,3 +951,5 @@ PR010 保留此前仅准备文件的历史语义；PR011 增加今后的逐步�
 PR019 补录 S01 r1 的确切快照批准；PR020 为完成性审阅；PR021 仅授权 r2 有限本地修复，不继承或扩大 PR019 的上传许可。
 
 PR022 补录 S01 r2 实际批准；PR023 明确启动 S02 本地实施，取代旧记录对 S02 尚未授权的执行边界，不授予 S02 上传许可。
+
+PR024 补录 S02 r2 实际批准；PR025 为其完成性与逻辑复核；PR026 另行启动 S03 本地验证，取代旧记录对 S03 未授权的执行边界，不继承 S02 上传许可。
