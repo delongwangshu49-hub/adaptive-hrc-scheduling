@@ -1,0 +1,220 @@
+{
+  "case": "S05_FIXED_MANUAL_DISPATCH_EXECUTED_BY_S09",
+  "status": "DRAINED",
+  "completion_min": 32.604108,
+  "drained_min": 33.604108,
+  "window_min": 40.0,
+  "phases": [
+    {
+      "operation_id": "J1.C1",
+      "group_id": "J1.C1.process",
+      "phase_id": "setup",
+      "start_min": 0.0,
+      "completed_min": 1.0
+    },
+    {
+      "operation_id": "J1.B1",
+      "group_id": "J1.B1.process",
+      "phase_id": "work",
+      "start_min": 0.0,
+      "completed_min": 3.5999999999999996
+    },
+    {
+      "operation_id": "J1.C1",
+      "group_id": "J1.C1.process",
+      "phase_id": "work",
+      "start_min": 1.0,
+      "completed_min": 4.0
+    },
+    {
+      "operation_id": "J1.B1",
+      "group_id": "J1.B1.process",
+      "phase_id": "handoff",
+      "start_min": 3.5999999999999996,
+      "completed_min": 4.6
+    },
+    {
+      "operation_id": "J1.C1",
+      "group_id": "J1.C1.process",
+      "phase_id": "handoff",
+      "start_min": 4.0,
+      "completed_min": 5.0
+    },
+    {
+      "operation_id": "J1.A1",
+      "group_id": "J1.A1.process",
+      "phase_id": "setup",
+      "start_min": 5.0,
+      "completed_min": 6.0
+    },
+    {
+      "operation_id": "J1.A1",
+      "group_id": "J1.A1.process",
+      "phase_id": "align",
+      "start_min": 6.0,
+      "completed_min": 6.5
+    },
+    {
+      "operation_id": "J1.A1",
+      "group_id": "J1.A1.process",
+      "phase_id": "work",
+      "start_min": 6.5,
+      "completed_min": 8.876999999999999
+    },
+    {
+      "operation_id": "J1.A1",
+      "group_id": "J1.A1.process",
+      "phase_id": "handoff",
+      "start_min": 8.876999999999999,
+      "completed_min": 9.876999999999999
+    },
+    {
+      "operation_id": "J1.W1",
+      "group_id": "J1.W1.in.A1_out",
+      "phase_id": "preposition",
+      "start_min": 9.876999999999999,
+      "completed_min": 10.876999999999999
+    },
+    {
+      "operation_id": "J1.W1",
+      "group_id": "J1.W1.in.A1_out",
+      "phase_id": "rig",
+      "start_min": 10.876999999999999,
+      "completed_min": 11.876999999999999
+    },
+    {
+      "operation_id": "J1.W1",
+      "group_id": "J1.W1.in.A1_out",
+      "phase_id": "move",
+      "start_min": 11.876999999999999,
+      "completed_min": 13.876999999999999
+    },
+    {
+      "operation_id": "J1.W1",
+      "group_id": "J1.W1.in.A1_out",
+      "phase_id": "unload",
+      "start_min": 13.876999999999999,
+      "completed_min": 14.876999999999999
+    },
+    {
+      "operation_id": "J1.W1",
+      "group_id": "J1.W1.in.A1_out",
+      "phase_id": "reset",
+      "start_min": 14.876999999999999,
+      "completed_min": 15.876999999999999
+    },
+    {
+      "operation_id": "J1.W1",
+      "group_id": "J1.W1.process",
+      "phase_id": "setup",
+      "start_min": 14.876999999999999,
+      "completed_min": 15.876999999999999
+    },
+    {
+      "operation_id": "J1.W1",
+      "group_id": "J1.W1.process",
+      "phase_id": "work",
+      "start_min": 15.876999999999999,
+      "completed_min": 18.877
+    },
+    {
+      "operation_id": "J1.W1",
+      "group_id": "J1.W1.process",
+      "phase_id": "handoff",
+      "start_min": 18.877,
+      "completed_min": 19.877
+    },
+    {
+      "operation_id": "J1.I1",
+      "group_id": "J1.I1.in.W1_out",
+      "phase_id": "preposition",
+      "start_min": 19.877,
+      "completed_min": 20.877
+    },
+    {
+      "operation_id": "J1.I1",
+      "group_id": "J1.I1.in.W1_out",
+      "phase_id": "rig",
+      "start_min": 20.877,
+      "completed_min": 21.877
+    },
+    {
+      "operation_id": "J1.I1",
+      "group_id": "J1.I1.in.W1_out",
+      "phase_id": "move",
+      "start_min": 21.877,
+      "completed_min": 23.877
+    },
+    {
+      "operation_id": "J1.I1",
+      "group_id": "J1.I1.in.W1_out",
+      "phase_id": "unload",
+      "start_min": 23.877,
+      "completed_min": 24.877
+    },
+    {
+      "operation_id": "J1.I1",
+      "group_id": "J1.I1.in.W1_out",
+      "phase_id": "reset",
+      "start_min": 24.877,
+      "completed_min": 25.877
+    },
+    {
+      "operation_id": "J1.I1",
+      "group_id": "J1.I1.process",
+      "phase_id": "work",
+      "start_min": 24.877,
+      "completed_min": 27.604108
+    },
+    {
+      "operation_id": "J1.L1",
+      "group_id": "J1.L1.in.I1_out",
+      "phase_id": "preposition",
+      "start_min": 27.604108,
+      "completed_min": 28.604108
+    },
+    {
+      "operation_id": "J1.L1",
+      "group_id": "J1.L1.in.I1_out",
+      "phase_id": "rig",
+      "start_min": 28.604108,
+      "completed_min": 29.604108
+    },
+    {
+      "operation_id": "J1.L1",
+      "group_id": "J1.L1.in.I1_out",
+      "phase_id": "move",
+      "start_min": 29.604108,
+      "completed_min": 31.604108
+    },
+    {
+      "operation_id": "J1.L1",
+      "group_id": "J1.L1.in.I1_out",
+      "phase_id": "unload",
+      "start_min": 31.604108,
+      "completed_min": 32.604108
+    },
+    {
+      "operation_id": "J1.L1",
+      "group_id": "J1.L1.in.I1_out",
+      "phase_id": "reset",
+      "start_min": 32.604108,
+      "completed_min": 33.604108
+    }
+  ],
+  "workers": [
+    {
+      "worker_id": "W1",
+      "fatigue": 0.27282691599999986,
+      "exposure_min": 11.479625070578535,
+      "activity": "rest"
+    },
+    {
+      "worker_id": "W2",
+      "fatigue": 0.3021783200000001,
+      "exposure_min": 13.811084135486723,
+      "activity": "rest"
+    }
+  ],
+  "limitation": "DETERMINISTIC_EXECUTION_WITNESS_NOT_OPTIMIZATION_OR_EXPERIMENT"
+}

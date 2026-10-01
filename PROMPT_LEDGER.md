@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.10.1，整理日期为 2026-10-01。PR052 补录 S08 r1 的真实批准；PR053 补录完成性与逻辑审阅；PR054 仅授权本步三项问题的有限本地修复。r2 新快照待人工验收与上传批准，历史记录保留各自时点语义。
+版本为 0.11.0，整理日期为 2026-10-01。PR055 补录 S08 r2 的实际验收、批准和发布；PR056 单独授权 S09 本地实施、检查及审阅包。S09 新快照待人工验收与上传批准，历史记录保留各自时点语义。
 
 ## 记录规则
 
@@ -46,7 +46,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.10.1",
+  "document_version": "0.11.0",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -1916,6 +1916,73 @@
         "docs/validation/events.md"
       ],
       "limit": "NO_R2_ACCEPTANCE_OR_UPLOAD_APPROVAL_NO_S09"
+    },
+    {
+      "id": "PR055",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S08_R2_EXACT_SNAPSHOT",
+        "parameters": {
+          "packet_id": "S08-20261001-r2",
+          "packet_sha256": "abb51bebd9791c220dfb452b078408056f3986b26c4d7d040abcdd9c68f13b11",
+          "approval_decision_id": "S08-R2-APPROVAL-001",
+          "branch": "main",
+          "tag": "step-S08-r2"
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_AND_APPROVED_EXACT_S08_R2_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "PUBLISHED_APPROVED_SNAPSHOT",
+        "VERIFIED_REMOTE_TREE_HISTORY_AND_TWO_PLATFORM_CI"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "S08_APPROVAL_DID_NOT_AUTHORIZE_S09_START_OR_PUBLICATION"
+    },
+    {
+      "id": "PR056",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "START_STEP",
+        "target": "S09_LOCAL_IMPLEMENTATION",
+        "parameters": {
+          "step_id": "S09",
+          "continue_current_main": true,
+          "create_branch_or_worktree": false,
+          "scope": [
+            "LIGHTWEIGHT_EXECUTION_KERNEL",
+            "DETERMINISTIC_INTEGRATION_WITNESSES",
+            "LOCAL_CHECKS",
+            "EXACT_REVIEW_PACKET"
+          ],
+          "preserve_previous_evidence": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_S09_IN_NEW_CHAT",
+        "REQUIRED_DIRECT_LOCAL_IMPLEMENTATION",
+        "MAINTAINED_EXACT_SNAPSHOT_APPROVAL_BOUNDARY"
+      ],
+      "assistant_support": [
+        "IMPLEMENTED_EXECUTION_KERNEL",
+        "RAN_LOCAL_AND_WHEEL_CHECKS",
+        "PREPARED_REVIEW_PACKET"
+      ],
+      "resolution": "DRAFTED_PENDING_REVIEW",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S09.md",
+        "docs/validation/execution.md"
+      ],
+      "limit": "LOCAL_WORK_ONLY_NO_S09_UPLOAD_APPROVAL_NO_S10_START"
     }
   ]
 }

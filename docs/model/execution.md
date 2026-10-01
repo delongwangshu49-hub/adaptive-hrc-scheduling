@@ -1,0 +1,61 @@
+# S09 轻量执行内核
+
+治理版本 0.11.0；2026-10-01。实现位于 `adaptive_hrc_scheduling.event_backend`，依据 [S05 规格](specification.md)、[S06 契约](../contracts.md)、[S07 数值规则](fatigue.md) 和 [S08 事件规则](events.md)。本步状态见 [步骤卡](../steps/S09.md)，实际检查及限制见 [验证摘要](../validation/execution.md)。
+
+## 入口与职责
+
+`EventBackend(config, scenario, run_id=..., cleanup_space_id=...)` 构造独立执行世界。配置和隐藏事件先校验，原料在实际释放时创建；场景未显式列出的订单释放事件由配置的 release_min 补入。外生事件按时刻和稳定 ID 排序、只消费一次。缺省清场空间 ID 为示例声明的 `SCRAP_RECEIVE`；其他布局须显式传入其已声明 space ID，不另造空间容量或路线。模块与成品必须每个稳定物料 ID 表示一个实体；quantity>1 的模块明确拒绝，不能把多件载荷塞入单容量吊机或接收槽。非模块库存按 quantity 计容量，清场 carry 成本按件数累加。
+
+| API / 记录 | 行为 |
+| --- | --- |
+| `select_process(operation_id, mode_id, allocation_id)` | 显式选择接收加工组的合格 Q；只绑定，不提前占空间 |
+| `dispatch(DispatchCommand)` | start/resume/rest/wait/cleanup 的实际执行许可；返回 accepted 与原因 |
+| `advance(until_min)` | 在阶段完成、外生事件、休息结束和等待保护边界分段推进到指定时刻 |
+| `completion_time(group_id)` | 当前正在执行阶段的世界日历时刻，只供可信执行端或手工见证使用 |
+| `snapshot` | 当前不可变 S06 ExecutionSnapshot 视图 |
+| `events` / `interruptions` | 实际执行事件、S08 中断和丢弃净量记录 |
+| `activity_intervals` | 全体人员实际活动区间，包含等待和排空后休息 |
+| `cleanup_records` / `picked_materials` | 清场各段及已原子领取、尚在 feed 中的实体 |
+| `status()` / `drained_at_min` | RUNNING、DRAINED 或带理由 WAITING；实际排空时刻 |
+
+正常阶段须由调用方显式派工，本内核不选生产顺序或优化模式。S06 运输命令不包含接收加工者 Q，因此第一次 preposition 前须调用 `select_process`；后续正式加工仍须独立许可。此选择遵守已有绑定、资格及公共前缀兼容规则，不是额外抢占预留。
+
+命令的 issued_min 必须等于实际时钟，run/config 必须匹配，命令 ID 不可重放。结构错误抛出 ContractError；执行条件不满足返回拒绝。整条命令在候选副本内完成校验、绑定、取料、预留和资源获取，通过后一次提交；拒绝仅增加拒绝事件及命令消费事实，不改变物理快照。advance 同样在副本成功后提交；例如非法 repair 不会消费事件游标或留下半次推进。planned_end_min 是计划字段，不参与计算实际完工。
+
+## 净推进、积分和同刻顺序
+
+每次推进先用 S07 evolve 积分全部人员，再用 S08 advance_phase 推进 running 阶段净量。暂停时保留剩余基础量和取样倍率；CUT/WELD.work 失效尝试保留，实际重启才创建 attempt+1 并取新 F。restore 单独累计正成本，序号稳定，不重领物料或重做工艺前缀。固定工时与 HR 同步工时由阶段声明及实际起点取样决定。
+
+到达时刻 t 后先处理全部完成、物料落点、到库和资源释放，再执行同刻外生事件、取消尾部更新与预留撤销，随后保护休息和已请求清场的合法推进。调用方获得控制后才能采样授权观测并发出新的正常派工。恰在故障时完成算完成；取消先于后续新启动。清场与正常生产都不能越过故障或剩余净量。
+
+无主动劳动且未休息的人员按 wait 积分。S07 共同 cap 保护覆盖加工到必要 handoff、恢复及运输必要释放劳动；实际每段积分继续严格校验 cap。等待接触上限时安排不少于 protective_rest_min 的显式正休息，休后重新检查；故障人员的停止阶段允许安全锁止后退出主动占用并休息，但故障事实及工件保持锁保留。拒绝只返回统一 FATIGUE_PROTECTION，不返回隐藏 F 或所需恢复时长。
+
+时间为浮点 min。阶段日历边界使用前向加法；提前一个可表示时刻不会完成，不使用 epsilon 放宽 cap 或提前释放。等待保护时界向安全侧选取可表示时刻；无可表示的正时间推进明确拒绝。任意分段逐位相同未被证明，手算核对采用既有 1e-10 绝对比较容差，容差仅用于验证。
+
+## 占用、物料与容量
+
+主动角色和固定保持角色在一次事务中取并集；不能先扣留 HR 的一方等另一方。资格仅来自配置 Q；已绑定的人、工位和已使用机器人不任意替换。ASSEMBLE/WELD 的兼容公共 setup 历史保留，进入后缀即冻结。机器人原准备完成、后因故障或改派失效时必须显式 restore；准备状态不代替占用锁。
+
+CUT/BRACKET 的源位在等待 handoff 时保持，人员与机器人释放。handoff 启动先预留有限输出缓冲，实际库存加预留不能超过容量；缓冲故障通过预留锁中断交接，修复后保留剩余量续作。已开始的 handoff 固定实际目标；取消后新启动的必要 handoff 可选废料终端，并占清场接收空间。
+
+ASSEMBLE.setup 原子领取全部备料及 feed 空间。由于 S06 MaterialPosition 没有人工搬运位置，领取后实体进入内核 picked_materials（物料 ID、加工组、feed 空间及原位置），从缓冲实际库存扣除；setup 完成才记录消耗并生成合并模块。汇合来源关系继续由配置 input_ids/output_id 保留。不能把 S06 快照中暂缺的 feed 实体当作不存在或已生成输出。
+
+每次运输由同一 Q 完成 preposition→rig→move→unload→reset，rig/unload 使用同一人，吊机和路线保持至 reset 结束。源站在 rig 完成才释放；unload 将预留变实际占位。单输入接收允许加工与 reset 并行；多模块汇合在首次 preposition 原子预留接收站、夹具及所有槽，各输入逐件卸载，最后一次 reset 完成后才允许 setup。清场或撤销单个空槽不会释放仍有其他残件或预留的站锁。
+
+LIFT.unload 生成成品到库事实；订单全部必需成品到库才记录实际完成。reset 仍须执行，不能用订单到库冒充系统排空。
+
+## 取消、清场与等待
+
+首次取消逐组保存 S08 cancellation_tail，后续持续传回 committed_tail；包括 restore_sequence。restore 与其暂停 work 共存时，完成已承诺 restore 后不能重新引入生产后缀。取消后的 restart work 再故障可缩短尾部到清场。未开始 rig 的 preposition 完成后直接 reset；已提交 rig/move/unload 必须完成原目标卸载及 reset，之后才处置落点上的取消件。
+
+cleanup 命令只请求指定实体，不能整单瞬时删除。相关加工/运输组的安全尾部和故障解锁必须满足，正常订单、在途件和已经处置的实体不能再次清场。小件按声明的正 carry 时长、合格运输人员及清场空间执行；模块使用配置中从当前来源到废料终端的合格运输 Q 和完整五段循环。源位在 carry 结束或 rig 结束才释放，废料空间保持至卸载。固定工装 release_allowed=false 时等待修复；吊机故障即使 release_allowed=true 也不跳过移动/卸载。
+
+S06 cleanup 命令没有 Q 字段：本实现固定选择按 ID 排序的首个已声明合格人员或清场运输 Q，随后绑定不变；若其资源忙、故障或保护不允许，则保留 pending/paused 并等待。它不承诺寻找所有可行替代人员，替代选择策略仍属后续调度工作。请求 accepted 仅表示请求已登记，不能当作清场已经开始或完成；实际状态在 cleanup_records 和事件中核对。
+
+DRAINED 要求全体订单已释放、正常订单全部到库、取消实体均消耗/废弃/已到库，无运行阶段、feed 载荷、未结束清场、预留或保持锁。其后人员显式休息至调用方的共同观察终点。存在尚未派工的阶段、锁定等待、未修复故障或未请求清场时明确返回 WAITING 及理由，不自动删锁、不声称完成，也不凭缺少当前运行任务断言死锁。内核不搜索所有可行派工组合，因此没有通用死锁判定器。
+
+## 状态和研究边界
+
+S06 snapshot 不是完整恢复检查点：事件游标、命令消费、已承诺取消尾部、日历时界、休息结束、feed 载荷和清场进度均属于执行器状态，必须共同保留。当前不提供进程重启后的序列化恢复接口，也不扩展或回写 S06 Schema。不能仅凭事后快照重建取消边界。
+
+执行真值、未来事件和 completion_time 只供可信执行适配器。规划端仍只接收 S08 授权采样后形成的 PlanningInput；本步没有把完整执行对象交给真实调度器，也没有完成跨进程隔离。S10 的独立日志检查器与研究指标核算、S11 排程策略、CP-SAT、Isaac 生产闭环和性能实验均未实施。事务副本优先保证可复核的失败边界，尚无性能或大规模可用性结论。
