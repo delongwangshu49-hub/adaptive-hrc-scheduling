@@ -1,6 +1,6 @@
 # 基础检查与持续集成（S02 / S03）
 
-统一 CPU 入口检查轻量安装骨架，并对 `scripts/isaac_smoke.py` 做静态和格式检查。它不导入 Isaac 或运行场景；S03 实际 Kit 证据见 [运行验证](validation/runtime.md)。当前没有生产模型、调度算法或研究仿真实验。
+统一 CPU 入口检查轻量安装骨架，并对 `scripts/isaac_smoke.py` 做静态、格式和纯回调契约检查。它不导入 Isaac 或运行场景；S03 实际 Kit 证据见 [运行验证](validation/runtime.md)。当前没有生产模型、调度算法或研究仿真实验。
 
 ## 统一入口
 
@@ -18,9 +18,9 @@ Windows 使用 PowerShell 7，先确认 `$PSVersionTable.PSVersion.Major` 为 7�
 | --- | --- |
 | 版本与锁 | 解释器必须匹配 `.python-version`；`uv lock --check` 核对声明与锁 |
 | 静态与格式 | Ruff 0.16.9；对 `src`、`tests`、`scripts` 检查 E4/E7/E9/F/I 规则及格式 |
-| 安装自检 | unittest 两项：隔离模式从仓库外运行包，且分发元数据无运行依赖 |
+| CPU 自检 | unittest 共七项：两项安装自检（隔离包入口、无运行依赖），五项纯回调契约测试（正常、遗漏/重复、错误步号、错误时间、错误 dt） |
 | 环境一致性 | `uv pip check` 检查项目环境 |
-| 构建与 wheel | 禁用构建包缓存，生成 sdist 并由其构建 wheel；新建独立环境，只安装 wheel，重跑两项自检与依赖检查 |
+| 构建与 wheel | 禁用构建包缓存，生成 sdist 并由其构建 wheel；新建独立环境，只安装 wheel，重跑七项自检与依赖检查；回调契约测试读取仓库脚本，不表示脚本已装入 wheel |
 
 每次构建使用独立临时目录，完成或异常退出时清理。失败命令会显示在控制台，必要日志应保存在新的本地运行目录。指定 Python 安装可以复用；这不等于重新下载所有工具或完全离线复现。标准错误中的工具进度输出本身不代表失败，以退出码为准。
 
@@ -54,6 +54,6 @@ S02 封存时已完成 Windows 本地检查与独立源文件副本检查，其�
 
 ## 已发生的远端核验与 S03 边界
 
-S02 已发布提交 `ba8c8532af937771fcecf8f2f89c38c2bcf05998` 的 [push 工作流](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36742427800) 在 windows-2025 与 ubuntu-24.04 均成功。S03 没有修改该工作流、检查入口或依赖锁；候选仍需获批推送后核验绑定新提交的两平台结果。
+S02 已发布提交 `ba8c8532af937771fcecf8f2f89c38c2bcf05998` 的 [push 工作流](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36742427800) 在 windows-2025 与 ubuntu-24.04 均成功。S03 r1 的 [push 工作流](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36834194178) 两平台也已成功。r2 未修改工作流、检查入口或依赖锁；新增纯回调测试由原入口自动发现，候选仍需获批推送后核验绑定新提交的两平台结果。
 
 不要在轻量环境中执行 Isaac 运行验收，也不要让普通 CI 安装 GPU 环境。Isaac 脚本的 `--help` 可由普通 Python 读取；实际运行需要 Isaac 解释器、场景断言及外部进程正常退出共同通过。脚本不进入项目 wheel，复验需要仓库源文件及独立安装。

@@ -95,4 +95,4 @@ Get-Content (Join-Path $env:ISAAC_SIM_ROOT 'VERSION')
 
 S03 自有脚本位于 `scripts/isaac_smoke.py`，由安装包装器执行，命令见 [运行验证](validation/runtime.md)。包装器设置 Kit 路径，不能用裸的内置 python.exe 替代。Isaac 上层模块遵循 SimulationApp 初始化顺序；CPU 静态通过不代表场景通过。[NVIDIA Python 环境说明](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/python_scripting/manual_standalone_python.html)
 
-安装与版本匹配参照 [NVIDIA 6.1 Python 安装文档](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/install_python.html)。[官方硬件要求](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/requirements.html) 与最小场景实测是不同口径：成功仅覆盖测试负载，不构成完整兼容性认证。S02 已发布提交的 Linux / 托管 Windows CPU CI 已核验，见 [开发说明](development.md)；S03 候选尚无本步远端 CI。
+安装与版本匹配参照 [NVIDIA 6.1 Python 安装文档](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/install_python.html)。[官方硬件要求](https://docs.isaacsim.omniverse.nvidia.com/6.1.0/installation/requirements.html) 与最小场景实测是不同口径：成功仅覆盖测试负载，不构成完整兼容性认证。S02 已发布提交的 Linux / 托管 Windows CPU CI 已核验，见 [开发说明](development.md)；S03 r1 两平台 CPU CI 已核验；r2 修订尚无新提交的远端 CI。

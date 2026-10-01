@@ -2,7 +2,7 @@
 
 本文件记录可以公开的研究决策、实施状态、检查证据和下一步工作。日期采用 UTC+08:00；历史准备记录依据项目讨论整理到日，不补造精确时刻。私人身份、来源文件位置、原始对话、机器配置和敏感运行日志不在此记录。
 
-本文件版本为 0.5.0，更新于 2026-10-01。以下汇总截至 S03 r1 审阅包封存：S00、S01 与 S02 已完成各自实际验收、批准和发布；S03 本地指定检查通过，待独立人工验收与上传批准。研究范围与路线不变，P0—P5 阶段仍未获人工验收。
+本文件版本为 0.5.1，更新于 2026-10-01。以下汇总截至 S03 r2 审阅包封存：S00、S01、S02 与 S03 r1 已完成实际验收、批准和发布；S03 r2 有限修复已本地验证，待独立人工验收与上传批准。研究范围与路线不变，P0—P5 阶段仍未获人工验收。
 
 ## 状态约定
 
@@ -20,14 +20,15 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 
 ## 当前步骤台账
 
-研究范围和路线仍为 CONFIRMED，依据 PR008、PR009；逐步审批上传要求来自 PR011，治理认可与 S00 启动见 PR012，仓库配置确认见 PR013。S00 首发的实际验收与上传批准见 PR014 和 LOG007；PR015、PR016 记录完成性审阅及有限修复授权；随后发生的 r2 批准见 PR017、LOG009。PR018 当时授权 S01 本地实施；随后针对 r1 的批准见 PR019、LOG011。PR020 记录完成性审阅，PR021 当时仅授权 r2 本地有限修复；随后实际批准见 PR022、LOG013。PR023 当时启动 S02；其后实际批准见 PR024 / LOG015，完成性复核见 PR025 / LOG016。PR026 本次授权 S03 本地验证；S04—S28 未实施。
+研究范围和路线仍为 CONFIRMED，依据 PR008、PR009；逐步审批上传要求来自 PR011，治理认可与 S00 启动见 PR012，仓库配置确认见 PR013。S00 首发的实际验收与上传批准见 PR014 和 LOG007；PR015、PR016 记录完成性审阅及有限修复授权；随后发生的 r2 批准见 PR017、LOG009。PR018 当时授权 S01 本地实施；随后针对 r1 的批准见 PR019、LOG011。PR020 记录完成性审阅，PR021 当时仅授权 r2 本地有限修复；随后实际批准见 PR022、LOG013。PR023 当时启动 S02；其后实际批准见 PR024 / LOG015，完成性复核见 PR025 / LOG016。PR026 当时授权 S03 本地验证；随后 r1 实际批准见 PR027 / LOG018，完成性审阅见 PR028 / LOG019，本次有限修复授权见 PR029 / LOG020；S04—S28 未实施。
 
 | 步骤 | 工作 | 工作状态 | 人工验收 | 上传许可 | 发布状态 |
 | --- | --- | --- | --- | --- | --- |
 | S00 | 治理基线与仓库首次发布（r1、r2） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
 | S01 | 开发环境与依赖复现（已发布 r1、r2） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
 | S02 | 基础检查与持续集成（已发布 r2） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
-| S03 | Isaac Sim 最小运行验证 | VERIFIED | PENDING_REVIEW | PENDING_APPROVAL | NOT_PUBLISHED |
+| S03 r1 | Isaac Sim 最小运行验证（已发布） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
+| S03 r2 | 回调核验与本地监督器有限修复 | VERIFIED | PENDING_REVIEW | PENDING_APPROVAL | NOT_PUBLISHED |
 | S04 | 相关工作与研究假设核对 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S05 | 生产流程与数学规格冻结 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S06 | 数据对象与接口契约 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
@@ -54,7 +55,7 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 | S27 | 项目报告与演示材料 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S28 | 版本归档与最终交付 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 
-台账列示封存时已有发布事实；S00 r2 回执见 [S00 步骤卡](docs/steps/S00.md)。S01 r1/r2 已发布，详见 [S01 步骤卡](docs/steps/S01.md)；S02 本地检查与待批操作见 [S02 步骤卡](docs/steps/S02.md)。工作清单见 [公开总纲](README.md#步骤化路线图)。
+台账列示封存时已有发布事实；S00 r2 回执见 [S00 步骤卡](docs/steps/S00.md)。S01 r1/r2 已发布，详见 [S01 步骤卡](docs/steps/S01.md)；S02 已发布记录见 [S02 步骤卡](docs/steps/S02.md)。工作清单见 [公开总纲](README.md#步骤化路线图)。
 
 以下 LOG001—LOG010 保留各自记录时的事实和状态，其中“当前”“尚未”等词只指该条历史记录的时间。S00 发布事实由 LOG007、LOG009 补录，S01 r1 由 LOG011 补录；S01 r2 的封存时状态见 LOG012，随后批准及真实回执见 LOG013。
 
@@ -252,11 +253,41 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 - 截至封存：本地指定检查 VERIFIED；人工 PENDING_REVIEW，上传 PENDING_APPROVAL，发布 NOT_PUBLISHED。本步远端 CI 尚未运行，不把 S02 的成功继承为本步结果。
 - 确切文件与拟操作见 [S03 步骤卡](docs/steps/S03.md)。未实现生产模型、派工反馈闭环、调度或实验；S04 及后续未启动。
 
+## 2026年10月1日 S03 r1 回执补录
+
+- 记录编号：LOG018；记录类型：RECEIPT；步骤 S03，修订 r1；关联 PR027。
+- 负责人对 S03-20261001-r1 确切九文件快照验收并批准；决定 S03-R1-APPROVAL-001，记录时间 2026-10-01T16:04:07.494052+08:00。
+- 状态：VERIFIED / ACCEPTED / APPROVED / PUBLISHED。
+- 批准包 SHA-256：`e0a44234a944bac89275d6050355aa70d0086fcda98c3b4b72ac2bfb05df4fb5`。
+- 实际提交：[e005788dfa115ce1868bf9e0f21084c4679bf8f8](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/commit/e005788dfa115ce1868bf9e0f21084c4679bf8f8)；父提交 `ba8c8532af937771fcecf8f2f89c38c2bcf05998`；树 `4b336a8e95b0442be86c521373c7aafc0ac1ad03`。
+- 实际标签：[step-S03-r1](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/tree/step-S03-r1)；标签对象 `d8ea05a0dc70337bc8245d95b4b0ee0b57743022`。
+- 核验时间 2026-10-01T16:08:23.778745+08:00；53 项远端核验通过，完整二十三文件匹配批准快照，旧标签与历史证据不变。
+- [绑定该提交的 push 工作流](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36834194178) 在 Windows / Linux 均成功；CPU CI 不替代本地 Isaac 实测。
+- 边界：补录已发生的 r1 事实，不将 r1 批准延伸到 r2，不回填本次尚未产生的提交哈希。
+
+## 2026年10月1日 S03 完成性与逻辑审阅
+
+- 记录编号：LOG019；记录类型：REVIEW；关联 PR028。
+- 负责人要求核查全量完成与逻辑问题；AI 助手完成 53 项证据、发布和完成性复核，并在全新环境中运行已发布副本的 CPU 入口。
+- 发现一：真实回调注入中，漏第 10 次并重复第 11 次，r1 仍返回 PASSED；总数相等不能证明逐步唯一。
+- 发现二：本地监督器的采样命令超时会绕过子进程清理与最终结果写入。用无害子进程复现，测试进程已清理。
+- 两项均为 P2。原正常运行与发布事实仍有效；注入试验不证明原三次运行发生同类异常。原脚本、失败证据、审阅记录和已发布标签保留。
+
+## 2026年10月1日 S03 有限修复
+
+- 记录编号：LOG020；记录类型：CORRECTION；步骤 S03，修订 r2，治理版本 0.5.1；关联 PR029。
+- 负责人授权修复上述两处问题；本次授权为本地有限修复，不包含新快照提交或上传，不启动 S04。
+- 回调修复：每次推进检查回调增量恰好一次，核对真实物理步号、仿真时间与 dt；日志保留真实编号及失败前观察值，不将缺失或重复重新编号为连续成功轨迹。
+- 本地监督修复：新工具替代旧工作入口；采样异常记录为失败，退出路径清理本工具启动的进程树、等待回收并写最终结果。清理自身失败也显式记录，不算成功；同时检查场景状态和关闭标志，拒绝退出 0 但场景失败或结果缺失的情况；历史工具不改写。
+- 验证：最终源码在 1、16、64 个刚体的三个独立进程中各完成三轮 240 步；两次真实回调故障注入被拒绝且正常关闭；12 项监督器回归通过。新增 5 项纯回调契约 CPU 测试，与原 2 项安装自检合计 7 项；统一入口通过。独立结果重读与 CPU 检查共 93 项通过，快照检查见本地审阅包。
+- 公开变更严格限本步卡所列九文件；工具、设备信息、原始日志与审批材料仅本地留存。依赖、锁文件、CI 工作流和生产范围不变。
+- 截至 r2 封存：VERIFIED / PENDING_REVIEW / PENDING_APPROVAL / NOT_PUBLISHED；本次远端 CI 未运行，不能继承 r1 的成功。旧批准及标签继续只对应旧快照。
+
 ## 下一步
 
-1. 审阅 S03-20261001-r1 的确切文件、完整差异、实际运行证据和边界。
-2. 独立验收并批准确切快照后，才在 main 追加一个提交，创建新注释标签 step-S03-r1，仅推送这两个引用。
-3. 核验远端文件树、历史、标签及绑定本次提交的两平台 CPU CI，均成功后才记录 PUBLISHED；不自动启动 S04。
+1. 审阅 S03-20261001-r2 的九文件完整差异、逐文件摘要、真实复验与故障注入证据。
+2. 独立验收并批准确切快照后，在 main 追加一个以 S03 r1 为父的提交，创建新附注标签 step-S03-r2，仅推送这两个引用。
+3. 核验远端文件树、历史、标签及绑定新提交的两平台 CPU CI；通过后才记录 PUBLISHED，不自动启动 S04。
 
 ## 步骤记录与发布回执
 

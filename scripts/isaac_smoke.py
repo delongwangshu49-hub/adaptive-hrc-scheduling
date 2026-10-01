@@ -1,7 +1,7 @@
 """S03: real Isaac Sim 6.1 smoke check; run with its standalone interpreter.
 
-CPU CI only lints this file. A completed result and a zero process exit are both
-required for runtime success. Output is local evidence, never a public log.
+CPU CI checks the pure callback contract without importing Isaac. Runtime success
+requires a completed result and zero exit. Output is local evidence, not a public log.
 """
 
 import argparse
@@ -24,6 +24,15 @@ def write_json(path, value):
 def require(condition, message):
     if not condition:
         raise RuntimeError(message)
+
+
+def check_step_callbacks(records, expected_step, expected_time, dt):
+    """Reject missing, duplicate, stale or mistimed observations of one step."""
+    require(len(records) == 1, "Expected exactly one callback for this physics step")
+    record = records[0]
+    require(record["physics_step"] == expected_step, "Callback physics step mismatch")
+    require(abs(record["simulation_time"] - expected_time) < 1e-4, "Callback time mismatch")
+    require(abs(record["dt"] - dt) < 1e-6, "Unexpected callback dt")
 
 
 def run_scene(app, args, output):
@@ -89,12 +98,18 @@ def run_scene(app, args, output):
             )
             samples = []
             callback_errors = []
-            callback_dt = []
+            callback_records = []
 
             def observe(dt, context):
                 try:
-                    samples.append(state())
-                    callback_dt.append(float(dt))
+                    sample = state()
+                    record = {
+                        "physics_step": SimulationManager.get_num_physics_steps(),
+                        "simulation_time": SimulationManager.get_simulation_time(),
+                        "dt": float(dt),
+                    }
+                    samples.append(sample)
+                    callback_records.append(record)
                 except Exception:
                     callback_errors.append(traceback.format_exc())
 
@@ -103,12 +118,19 @@ def run_scene(app, args, output):
             start_steps = SimulationManager.get_num_physics_steps()
             started = time.perf_counter()
             try:
-                for _ in range(args.steps):
+                for index in range(args.steps):
+                    before = len(callback_records)
                     SimulationManager.step()
+                    require(not callback_errors, str(callback_errors))
+                    check_step_callbacks(
+                        callback_records[before:],
+                        start_steps + index + 1,
+                        start_time + (index + 1) / 60,
+                        1 / 60,
+                    )
                 duration = time.perf_counter() - started
                 require(not callback_errors, str(callback_errors))
                 require(len(samples) == args.steps, "Missing or duplicated physics callbacks")
-                require(all(abs(dt - 1 / 60) < 1e-6 for dt in callback_dt), "Unexpected dt")
                 require(
                     SimulationManager.get_num_physics_steps() - start_steps == args.steps,
                     "Unexpected physics step count",
@@ -128,24 +150,12 @@ def run_scene(app, args, output):
                 require(repeat_error <= 1e-4, "Reset replay differs from first trajectory")
                 if reference is None:
                     reference = samples
-                for index, (sample, dt) in enumerate(zip(samples, callback_dt, strict=True)):
-                    log.write(
-                        json.dumps(
-                            {
-                                "cycle": cycle,
-                                "kind": "post_physics_step",
-                                "step": index + 1,
-                                "dt": dt,
-                                "state": [item.tolist() for item in sample],
-                            }
-                        )
-                        + "\n"
-                    )
-                log.flush()
                 cycles.append(
                     {
                         "cycle": cycle,
                         "callbacks": len(samples),
+                        "start_physics_step": start_steps,
+                        "start_simulation_time": start_time,
                         "simulation_seconds": elapsed,
                         "step_wall_seconds": duration,
                         "reset_max_abs_error": reset_error,
@@ -156,6 +166,21 @@ def run_scene(app, args, output):
                 )
             finally:
                 SimulationManager.deregister_callback(callback)
+                # Keep partial observations on failure, without relabeling missing steps.
+                for sample, record in zip(samples, callback_records, strict=True):
+                    log.write(
+                        json.dumps(
+                            {
+                                "cycle": cycle,
+                                "kind": "post_physics_step",
+                                "step": record["physics_step"] - start_steps,
+                                **record,
+                                "state": [item.tolist() for item in sample],
+                            }
+                        )
+                        + "\n"
+                    )
+                log.flush()
         app_utils.stop()
         app.update()
         require(app_utils.is_stopped(), "Timeline failed to stop")
