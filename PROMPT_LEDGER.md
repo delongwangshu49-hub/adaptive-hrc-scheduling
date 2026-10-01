@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.7.1，整理日期为 2026-10-01。本次补录 S04 实际批准和完成性审阅，记录 S05 启动、暂不冻结及全面复核要求。S05 修订候选已形成，关键规则裁定、人工验收和上传许可仍待独立审阅；历史记录保留各自时点语义。
+版本为 0.7.2，整理日期为 2026-10-01。本次补录 S05 r2 真实批准、完成性审阅及两项有限修复授权。r2 已发布，r3 新快照待独立验收与上传批准；历史记录保留各自时点语义。
 
 ## 记录规则
 
@@ -46,7 +46,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.7.1",
+  "document_version": "0.7.2",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -1330,6 +1330,108 @@
         "docs/steps/S05.md"
       ],
       "limit": "OPTIMIZATION_DIRECTION_AUTHORIZED; FINAL_RULES_ACCEPTANCE_AND_UPLOAD_STILL_PENDING"
+    },
+    {
+      "id": "PR039",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S05_R2_MODEL_BASELINE_AND_EXACT_SNAPSHOT",
+        "parameters": {
+          "step_id": "S05",
+          "revision": 2,
+          "packet_id": "S05-20261001-r2",
+          "packet_sha256": "d1a688a03e8a67ae8d1576f863a67694797efbf4f423f6cf6d8b8cc744496493",
+          "decision_ref": "S05-R2-APPROVAL-001",
+          "decision": "ACCEPTED_AND_APPROVED",
+          "model_freeze": "FROZEN_S05_BASELINE",
+          "experiment_protocol": "NOT_FROZEN",
+          "start_S06": false,
+          "permitted_remote_actions": [
+            "PUSH_MAIN_AND_STEP_S05_R2"
+          ]
+        }
+      },
+      "human_contribution": [
+        "APPROVED_S05_R2_MODEL_BASELINE_AND_EXACT_PUBLICATION"
+      ],
+      "assistant_support": [
+        "PUBLISHED_APPROVED_NINE_FILES",
+        "VERIFIED_REMOTE_AND_TWO_PLATFORM_CI"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "docs/steps/S05.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "AUTHORIZATION_LIMITED_TO_R2"
+    },
+    {
+      "id": "PR040",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "S05_COMPLETENESS_AND_LOGIC",
+        "parameters": {
+          "check_full_completion": true,
+          "review_logic": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_COMPLETENESS_AND_LOGIC_REVIEW"
+      ],
+      "assistant_support": [
+        "RECONFIRMED_PUBLISHED_EVIDENCE",
+        "IDENTIFIED_TWO_P2_SPECIFICATION_GAPS"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "docs/steps/S05.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "REVIEW_NOT_REPAIR_OR_NEW_UPLOAD_APPROVAL"
+    },
+    {
+      "id": "PR041",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_LIMITED_REPAIR",
+        "target": "S05_TWO_REVIEW_FINDINGS",
+        "parameters": {
+          "step_id": "S05",
+          "revision": 3,
+          "findings": [
+            "S05-AUDIT-001",
+            "S05-AUDIT-002"
+          ],
+          "local_scope": [
+            "ROBOT_PREPARATION_VALIDITY_AND_RESTORE",
+            "CAUSAL_ONLINE_OBJECTIVE_VS_OFFLINE_EVALUATION",
+            "TARGETED_BOUNDARY_CHECKS",
+            "NEW_REVIEW_PACKET"
+          ],
+          "start_S06": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_LIMITED_LOCAL_CORRECTION"
+      ],
+      "assistant_support": [
+        "SPECIFIED_RESTORE_AND_PREPARATION_INVALIDATION",
+        "SEPARATED_ONLINE_AND_OFFLINE_OBJECTIVES",
+        "CHECKED_FINITE_BOUNDARY_CASES"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "docs/steps/S05.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_R3_MODEL_ACCEPTANCE_OR_PUBLICATION_APPROVAL"
     }
   ]
 }
@@ -1366,3 +1468,5 @@ PR030 仅补录 S03 r2 的实际批准；PR031 另行授权 S04 本地文献核�
 PR032 仅补录 S04 r1 既有批准；PR033 记录发布后审阅。PR034 单独启动 S05 本地规格准备；PR035 要求修改、暂不冻结；PR036 要求全部重新核查并落实到本步产物，未指定或确认最终替代规则，不授权 S06、提交、标签或上传。
 
 PR037 记录负责人对规模与论证力度的质疑；PR038 授权依建议开展 S05 本地优化，完成后重新呈交并索要上传权限。方向授权不等于确切新快照已被验收或允许上传，S06 未启动。
+
+PR039 仅补录 S05 r2 建模基线与确切快照的实际批准；PR040 为完成性与逻辑审阅；PR041 仅授权两项缺口的本地有限修复，不包含 r3 上传或 S06 启动。

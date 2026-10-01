@@ -2,7 +2,7 @@
 
 本文件记录可以公开的研究决策、实施状态、检查证据和下一步工作。日期采用 UTC+08:00；历史准备记录依据项目讨论整理到日，不补造精确时刻。私人身份、来源文件位置、原始对话、机器配置和敏感运行日志不在此记录。
 
-本文件版本为 0.7.1，更新于 2026-10-01。汇总截至 S05 r2 审阅快照：S00—S04 已完成实际验收、批准和发布；S04 r1 真实回执见 LOG023。S05 修订候选规格及小例已完成本地指定检查，模型冻结、人工验收与上传批准仍待负责人审阅；生产实现和实验尚未开展。P0—P5 阶段未获人工验收。
+本文件版本为 0.7.2，更新于 2026-10-01。S00—S04 及 S05 r2 已验收、批准并发布；S05 r2 回执见 LOG028。r3 对审阅发现的两项规格缺口完成有限本地修复与指定检查，待新快照验收和上传批准。生产实现与实验尚未开展，S06 未获启动授权。
 
 ## 状态约定
 
@@ -30,7 +30,7 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 | S03 r1 | Isaac Sim 最小运行验证（已发布） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
 | S03 r2 | 回调核验与本地监督器有限修复（已发布） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
 | S04 | 相关工作与研究假设核对（r1 已发布） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
-| S05 | 生产规格修订候选（冻结待裁定） | VERIFIED | PENDING_REVIEW | PENDING_APPROVAL | NOT_PUBLISHED |
+| S05 | r2 已发布；r3 两项有限修复待审 | VERIFIED | PENDING_REVIEW | PENDING_APPROVAL | NOT_PUBLISHED |
 | S06 | 数据对象与接口契约 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S07 | 疲劳与恢复模型 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S08 | 扰动与信息可见性规则 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
@@ -349,11 +349,36 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 - 本地检查包含原见证复算、扩展 DAG/物料/资格/路线/配置引用检查、破坏性反例拒绝、编号重命名不变性、文档/历史/快照核验；完整结果见审阅材料。结构通过不是仿真可行或性能收益证明。
 - 公开候选九文件、完整树三十四文件；旧 r1 快照和所有既有证据保持原样。无代码/依赖/CI 改动，无批量实验或 Isaac 复跑。工作 VERIFIED 仅指指定检查；冻结 PENDING_DECISION、人工 PENDING_REVIEW、上传 PENDING_APPROVAL、NOT_PUBLISHED。
 
+## 2026年10月1日 S05 r2 回执补录
+
+- 记录编号：LOG028；记录类型：RECEIPT；关联 PR039。
+- 负责人接受 S05 r2 为建模基线并批准确切九文件快照；决定 S05-R2-APPROVAL-001，记录时间 2026-10-01T19:07:23.555272+08:00；状态 VERIFIED / ACCEPTED / APPROVED / PUBLISHED。
+- 批准包 SHA-256：`d1a688a03e8a67ae8d1576f863a67694797efbf4f423f6cf6d8b8cc744496493`。
+- 实际提交：[e0dd16405db3c3ccdab26b7fcd41377ee8ed204c](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/commit/e0dd16405db3c3ccdab26b7fcd41377ee8ed204c)；父提交 `970192a797bae40299832d1b7c0c6e5415e069a5`；树 `1fb6598ef7d2c7cbdf2cbc66fe1d926b3114fd68`。
+- 附注标签 [step-S05-r2](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/tree/step-S05-r2)；标签对象 `1c4af8478b39b2a63e7a3b62262f79de5dde9bd2`。
+- 2026-10-01T19:09:10.604517+08:00 完成 56 项发布核验，完整 34 文件匹配批准快照，九文件增量，3619 项历史文件及旧标签保全；[绑定新提交的 CI](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36853439009) Windows/Linux 均成功。
+- 该批准未冻结实验规模或 S20 统计协议，未启动 S06，不授予 r3 上传许可；保留 r2 步骤记录当时的待批事实。
+
+## 2026年10月1日 S05 r2 完成性与逻辑审阅
+
+- 记录编号：LOG029；记录类型：REVIEW；关联 PR040。
+- 63 项完成性、证据与有限反例核查通过；原见证 20 组及扩展结构 19 组复算通过。已有交付与发布完整，检查通过不等于规格无缺陷。
+- 两项 P2：机器人改派后原定位有效性/再定位成本未定义；在线优化目标未与全窗口取消清单确定的事后评价集合分离。各有有限手工反例，不冒称已执行算法发生信息泄漏。
+- 建议 S06 前修正规格，r2 批准、发布与正常小例事实仍有效；该次审阅未修改公开文件。
+
+## 2026年10月1日 S05 r3 有限修复
+
+- 记录编号：LOG030；记录类型：CORRECTION；步骤 S05 r3，治理版本 0.7.2；关联 PR041。
+- 负责人授权两项有限本地修复。R3-01 定义按组/工位的机器人准备状态、改派及故障失效、显式 restore、正时长/人力占用和与重做/续作/取消的衔接；R3-02 分离只读授权历史的在线 K_t/预测目标与离线 J_eval/实际绩效。
+- restore 参数复用该实例原准备阶段的成本和活动，是保守合成规则，不重取物料或重做已完成工艺前缀。在线预算使用授权历史和预测，真实暴露由评价器核算；保留实际违反/截尾。
+- 有限边界检查覆盖原反例拒绝、有效状态保持/失效、重复改派、同站异组、故障续作/重做、取消及非预知集合/评分。旧小例和结构示例原样复查，完整证据见审阅包；未实现生产调度器或接口。
+- 候选仅六份既有文档；两个 JSON、实例族、代码、依赖及 CI 不变。原 r1/r2 快照、审阅与发布证据保全；工作 VERIFIED 仅指指定检查，r3 补充规则/验收/上传均待独立批准，无新提交/标签/推送，S06 未启动。
+
 ## 下一步
 
-1. 审阅 S05-20261001-r2 的 D01—D05、通用资源/流程族修订方案、九文件完整差异、逐文件摘要及独立核算证据；负责人裁定关键规则是否冻结。
-2. 对本确切快照独立验收和批准后，才在 main 追加一个以 S04 r1 为父的提交，创建 step-S05-r2，仅推送这两个引用。
-3. 核验完整树、历史、标签和新提交绑定的 Windows/Linux CPU CI 后才记录 PUBLISHED；S06 仍须另行授权。实质修改后重新封包审阅。
+1. 审阅 S05-20261001-r3 的两项有限补充、六文件完整差异、逐文件摘要和边界检查；既有 r2 批准不替代本次验收。
+2. 对确切 r3 快照验收并批准上传后，才在 main 追加一个以 S05 r2 为父的提交，创建 step-S05-r3，仅推送这两个引用。
+3. 核验完整 34 文件树、历史、标签及新提交绑定的两平台 CPU CI 后才记录 PUBLISHED；S06 仍须另行授权。
 
 ## 步骤记录与发布回执
 
