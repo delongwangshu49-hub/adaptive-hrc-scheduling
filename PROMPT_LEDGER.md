@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.10.0，整理日期为 2026-10-01。PR049 补录 S07 r1 的真实验收与确切上传批准；PR050 补录其完成性审阅；PR051 另行启动 S08 本地实施和验证。S08 新快照仍待人工验收与上传批准，历史记录保留各自时点语义。
+版本为 0.10.1，整理日期为 2026-10-01。PR052 补录 S08 r1 的真实批准；PR053 补录完成性与逻辑审阅；PR054 仅授权本步三项问题的有限本地修复。r2 新快照待人工验收与上传批准，历史记录保留各自时点语义。
 
 ## 记录规则
 
@@ -46,7 +46,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.10.0",
+  "document_version": "0.10.1",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -1804,6 +1804,118 @@
         "PROGRESS_LOG.md"
       ],
       "limit": "NO_S08_ACCEPTANCE_OR_UPLOAD_APPROVAL_NO_S09"
+    },
+    {
+      "id": "PR052",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S08_EXACT_R1_SNAPSHOT",
+        "parameters": {
+          "step_id": "S08",
+          "packet_id": "S08-20261001-r1",
+          "packet_sha256": "c08cf9bb3361613a26ca86c2e15caafdc48f72dd9eaa8f2c8a3b6959398c195d",
+          "decision": "ACCEPTED_AND_APPROVED",
+          "decision_ref": "S08-R1-APPROVAL-001",
+          "permitted_remote_actions": [
+            "STAGE_EXACT_TEN_FILES",
+            "ONE_CHILD_COMMIT_ON_MAIN",
+            "NEW_ANNOTATED_STEP_S08_R1",
+            "ATOMIC_PUSH_MAIN_AND_TAG",
+            "VERIFY_TREE_HISTORY_AND_TWO_PLATFORM_CI"
+          ]
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_AND_APPROVED_EXACT_S08_R1_PUBLICATION"
+      ],
+      "assistant_support": [
+        "PUBLISHED_APPROVED_SNAPSHOT",
+        "VERIFIED_REMOTE_TREE_AND_CI",
+        "BACKFILLED_RECEIPT"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S08.md",
+        "docs/validation/events.md"
+      ],
+      "limit": "R1_APPROVAL_DOES_NOT_AUTHORIZE_R2_UPLOAD_OR_S09"
+    },
+    {
+      "id": "PR053",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "S08_COMPLETENESS_AND_LOGIC",
+        "parameters": {
+          "step_id": "S08",
+          "scope": [
+            "COMPLETENESS",
+            "PUBLICATION_EVIDENCE",
+            "EVENT_AND_OBSERVATION_LOGIC"
+          ],
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_COMPLETENESS_AND_LOGIC_REVIEW"
+      ],
+      "assistant_support": [
+        "CHECKED_PUBLISHED_SNAPSHOT_AND_HISTORICAL_EVIDENCE",
+        "RAN_INDEPENDENT_STANDARD_CHECKS",
+        "REPRODUCED_THREE_P2_EVENT_DEFECTS"
+      ],
+      "resolution": "REVIEW_COMPLETED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S08.md",
+        "docs/validation/events.md"
+      ],
+      "limit": "REVIEW_DID_NOT_MODIFY_PUBLIC_FILES_OR_START_S09"
+    },
+    {
+      "id": "PR054",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "S08_LIMITED_R2_REPAIR",
+        "parameters": {
+          "step_id": "S08",
+          "revision": 2,
+          "scope": [
+            "F01_RESTORE_CANCELLATION",
+            "F02_PHASE_RESOURCE_DEPENDENCIES",
+            "F03_FLOAT_CLOCK_BOUNDARY",
+            "REGRESSION_TESTS_AND_REQUIRED_DOCUMENTATION",
+            "EXACT_LOCAL_REVIEW_PACKET"
+          ],
+          "branch": "main",
+          "create_branch": false,
+          "create_worktree": false,
+          "start_S09": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_LIMITED_S08_REPAIR"
+      ],
+      "assistant_support": [
+        "IMPLEMENTED_THREE_LOCAL_CORRECTIONS",
+        "ADDED_BOUNDARY_REGRESSIONS",
+        "RAN_STANDARD_PROJECT_AND_WHEEL_CHECKS",
+        "PREPARED_EXACT_REVIEW_PACKET"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S08.md",
+        "docs/validation/events.md"
+      ],
+      "limit": "NO_R2_ACCEPTANCE_OR_UPLOAD_APPROVAL_NO_S09"
     }
   ]
 }
@@ -1850,3 +1962,5 @@ PR044 仅补录 S06 r2 的实际批准；PR045 为发布后审阅；PR046 授权
 PR047 只补录 S06 r3 确切快照的实际验收与上传批准；PR048 单独授权 S07 本地实施及验证，覆盖旧回执在其时点对 S07 未启动的描述，不授予 S07 新快照上传许可，不启动 S08。
 
 PR049 仅补录 S07 r1 确切快照的实际批准；PR050 是发布后完成性与逻辑审阅。PR051 单独授权 S08 本地实现、检查及审阅包，覆盖旧记录在历史时点对 S08 未授权的描述，不继承 S07 上传许可，不启动 S09。
+
+PR052 只补录 S08 r1 的实际验收与确切上传批准；PR053 为发布后审阅，确认三项 P2。PR054 授权这三项问题及相应测试、说明和审阅包的本地有限修复，不继承 r1 上传许可，不启动 S09。

@@ -497,6 +497,211 @@ class EventTests(unittest.TestCase):
         self.assertEqual(result.snapshot.phases, state.phases)
         self.assertTrue(result.snapshot.preparations[0].valid)
 
+    def suspended_assembly(self):
+        state = process_state(self.config, self.initial, "ASSEMBLE", "HR", status="paused")
+        work = replace(state.phases[0], started_min=1.5, remaining_base_min=1.5)
+        setup = replace(
+            work,
+            phase_id="setup",
+            status="completed",
+            remaining_base_min=0.0,
+            sampled_f=None,
+            speed_multiplier=1.0,
+            started_min=0.0,
+            completed_min=1.0,
+        )
+        align = replace(setup, phase_id="align", started_min=1.0, completed_min=1.5)
+        return replace(
+            state,
+            sim_time_min=3.0,
+            phases=(setup, align, work),
+            preparations=(replace(state.preparations[0], valid=False),),
+            locks=tuple(x for x in state.locks if x.purpose == "held"),
+        )
+
+    def test_cancel_restore_keeps_suspended_work_history(self):
+        for status in ("running", "paused"):
+            with self.subTest(status=status):
+                state = self.suspended_assembly()
+                group = state.bindings[0].group_id
+                restore = restore_progress(self.config, state, group, "mode.ASSEMBLE.HR")
+                state = replace(state, phases=state.phases + (replace(restore, status=status),))
+                state = apply_events(
+                    self.config, state, (WorldEvent("cancel.J1", 3.0, "cancel", "J1", None),)
+                ).snapshot
+                tail = cancellation_tail(self.config, state, group)
+                self.assertEqual(tail.phase_ids, ("restore",))
+                self.assertEqual(state.phases[2].status, "paused")
+                self.assertEqual(state.phases[2].remaining_base_min, 1.5)
+                self.assertFalse(tail.wait_for_repair)
+
+    def test_committed_restore_tail_stays_empty_after_its_own_boundary(self):
+        state = self.suspended_assembly()
+        group = state.bindings[0].group_id
+        first = restore_progress(self.config, state, group, "mode.ASSEMBLE.HR")
+        done_first = advance_phase(first, 0.5, 3.5)
+        state = replace(state, sim_time_min=4.0, phases=state.phases + (done_first,))
+        second = restore_progress(self.config, state, group, "mode.ASSEMBLE.HR")
+        state = replace(
+            state,
+            phases=state.phases + (second,),
+            orders=(replace(state.orders[0], cancelled=True),),
+        )
+        tail = cancellation_tail(self.config, state, group)
+        self.assertEqual(tail.phase_ids, ("restore",))
+        self.assertEqual(tail.restore_sequence, 2)
+        self.assertEqual(cancellation_tail(self.config, state, group, committed_tail=tail), tail)
+        finished = replace(
+            state, sim_time_min=4.5, phases=state.phases[:-1] + (advance_phase(second, 0.5, 4.5),)
+        )
+        empty = cancellation_tail(self.config, finished, group, committed_tail=tail)
+        self.assertEqual(empty.phase_ids, ())
+        self.assertEqual(
+            cancellation_tail(self.config, finished, group, committed_tail=empty), empty
+        )
+        self.assertEqual(finished.phases[2], state.phases[2])
+
+    def test_cancel_rejects_unrelated_concurrent_process_phases(self):
+        state = self.suspended_assembly()
+        align = replace(
+            state.phases[1], status="running", remaining_base_min=0.25, completed_min=None
+        )
+        state = replace(
+            state,
+            phases=(state.phases[0], align, state.phases[2]),
+            orders=(replace(state.orders[0], cancelled=True),),
+        )
+        with self.assertRaisesRegex(ContractError, "multiple active"):
+            cancellation_tail(self.config, state, state.bindings[0].group_id)
+
+    def test_handoff_ignores_released_robot_failure(self):
+        for kind, mode in (("CUT", "R"), ("ASSEMBLE", "HR"), ("WELD", "R")):
+            with self.subTest(kind=kind):
+                state = process_state(self.config, self.initial, kind, mode, "handoff")
+                state = replace(
+                    state,
+                    preparations=(clear_preparation("R1"),),
+                    locks=tuple(x for x in state.locks if x.resource_id != "R1"),
+                )
+                result = apply_events(self.config, state, (self.event("failure", "R1"),))
+                self.assertEqual(result.snapshot.phases, state.phases)
+                self.assertEqual(result.snapshot.locks, state.locks)
+                self.assertFalse(result.interruptions)
+
+    def test_cancel_handoff_waits_only_for_required_resources(self):
+        for rid, flag, blocked in (("R1", None, False), ("W1", None, True), ("CS1_M", True, True)):
+            with self.subTest(resource=rid):
+                state = process_state(self.config, self.initial, phase="handoff")
+                state = replace(
+                    state,
+                    preparations=(clear_preparation("R1"),),
+                    locks=tuple(x for x in state.locks if x.resource_id != "R1"),
+                )
+                failed = apply_events(
+                    self.config, state, (self.event("failure", rid, flag),)
+                ).snapshot
+                tail = cancellation_tail(
+                    self.config, self.cancel(failed), state.bindings[0].group_id
+                )
+                self.assertEqual(tail.phase_ids, ("handoff",))
+                self.assertEqual(tail.wait_for_repair, blocked)
+
+    def test_restore_requires_align_resources_but_not_completed_feed(self):
+        for rid in ("FEED_ROUTE", "W1", "R1", "AS1", "AS1_X"):
+            with self.subTest(resource=rid):
+                state = self.suspended_assembly()
+                state = replace(
+                    state,
+                    resources=tuple(
+                        replace(
+                            r,
+                            failed=True,
+                            release_allowed=False if rid in {"AS1", "AS1_X"} else None,
+                        )
+                        if r.resource_id == rid
+                        else r
+                        for r in state.resources
+                    ),
+                )
+                validate(state, config=self.config)
+                group = state.bindings[0].group_id
+                if rid == "FEED_ROUTE":
+                    self.assertEqual(
+                        restore_progress(self.config, state, group, "mode.ASSEMBLE.HR").phase_id,
+                        "restore",
+                    )
+                else:
+                    with self.assertRaisesRegex(ContractError, "restore resources failed"):
+                        restore_progress(self.config, state, group, "mode.ASSEMBLE.HR")
+
+    def test_cancel_reset_ignores_released_transport_worker_and_target(self):
+        for rid in ("W1", "FINISHED"):
+            state = transfer_state(self.config, self.initial, "reset")
+            state = replace(
+                state, locks=tuple(x for x in state.locks if x.resource_id in {"G1", "LIFT_ROUTE"})
+            )
+            failed = apply_events(self.config, state, (self.event("failure", rid),)).snapshot
+            tail = cancellation_tail(self.config, self.cancel(failed), state.bindings[0].group_id)
+            self.assertEqual(tail.phase_ids, ("reset",))
+            self.assertFalse(tail.wait_for_repair)
+            self.assertEqual(failed.phases, state.phases)
+
+    def test_forward_float_clock_completes_at_declared_boundary(self):
+        p = process_state(self.config, self.initial).phases[0]
+        for start in (0.1, 1.1, 12.3):
+            for elapsed in (0.4, 0.5, 0.6, 0.7, 0.8):
+                with self.subTest(start=start, elapsed=elapsed):
+                    phase = replace(p, started_min=start, remaining_base_min=elapsed)
+                    done = advance_phase(phase, elapsed, start + elapsed)
+                    self.assertEqual(
+                        (done.status, done.completed_min), ("completed", start + elapsed)
+                    )
+
+    def test_clock_fix_does_not_accept_earlier_or_overlong_advances(self):
+        import math
+
+        p = replace(
+            process_state(self.config, self.initial).phases[0],
+            started_min=0.1,
+            remaining_base_min=0.4,
+        )
+        for elapsed, at in (
+            (0.4, math.nextafter(0.5, 0.0)),
+            (math.nextafter(0.4, math.inf), 0.6),
+            (0.0, 0.0),
+        ):
+            with self.subTest(elapsed=elapsed, at=at), self.assertRaises(ContractError):
+                advance_phase(p, elapsed, at)
+        earlier = advance_phase(p, math.nextafter(0.4, 0.0), 0.5)
+        self.assertEqual(earlier.status, "running")
+
+    def test_committed_cancel_tail_cannot_cross_groups(self):
+        state = self.cancel(process_state(self.config, self.initial))
+        tail = cancellation_tail(self.config, state, state.bindings[0].group_id)
+        with self.assertRaises(ContractError):
+            cancellation_tail(
+                self.config,
+                state,
+                state.bindings[0].group_id,
+                committed_tail=replace(tail, group_id="J1.A1.process"),
+            )
+
+    def test_committed_work_tail_shrinks_on_completion_or_restart_failure(self):
+        state = self.cancel(process_state(self.config, self.initial))
+        group = state.bindings[0].group_id
+        tail = cancellation_tail(self.config, state, group)
+        done = replace(state, phases=(advance_phase(state.phases[0], 0.25, 2.0),))
+        self.assertEqual(
+            cancellation_tail(self.config, done, group, committed_tail=tail).phase_ids, ("handoff",)
+        )
+        for allowed in (False, True):
+            failed = apply_events(
+                self.config, state, (self.event("failure", "CS1_M", allowed),)
+            ).snapshot
+            updated = cancellation_tail(self.config, failed, group, committed_tail=tail)
+            self.assertEqual(updated.phase_ids, ())
+            self.assertEqual(updated.wait_for_repair, not allowed)
+
 
 if __name__ == "__main__":
     unittest.main()

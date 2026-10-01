@@ -4,11 +4,11 @@
 
 核心研究聚焦状态依赖的协作模式选择及其人因权衡：某项工序采用人机协作后更快，是否能改善整条生产线的交付表现？这种收益如何随资源竞争、同步开销和人员负荷变化？
 
-**状态记录（截至 S08 r1 本地审阅快照）：S00—S07 已验收、批准并发布；S07 r1 回执见 LOG038，发布后审阅见 LOG039。S08 事件与观测规则及本地检查完成，待人工验收与确切快照上传批准。完整执行内核、生产仿真、反馈闭环、调度算法及实验尚未完成。**本文是项目公开总纲，运行范围见 [S03 验证摘要](docs/validation/runtime.md)。
+**状态记录（截至 S08 r2 本地审阅快照）：S00—S08 r1 已验收、批准并发布；S08 r1 回执见 LOG041，发布后审阅见 LOG042。S08 r2 三项事件逻辑有限修复及本地检查完成，待人工验收与确切快照上传批准。完整执行内核、生产仿真、反馈闭环、调度算法及实验尚未完成。**本文是项目公开总纲，运行范围见 [S03 验证摘要](docs/validation/runtime.md)。
 
 | 字段 | 内容 |
 | --- | --- |
-| 文档版本 | 0.10.0 |
+| 文档版本 | 0.10.1 |
 | 更新日期 | 2026-10-01 |
 | 研究性质 | 基于受控仿真的方法与机制研究 |
 | 计划技术栈 | Python、Isaac Sim、OR-Tools CP-SAT |
@@ -160,7 +160,7 @@ P0—P5 只作阶段归类，实际执行和发布以 S00—S28 为单位。下�
 | S27 | 项目报告与演示材料 | 主张可追溯，公开版本获审阅 |
 | S28 | 版本归档与最终交付 | 逐步记录齐备，最终归档单独获批 |
 
-S00 r1 与 r2 已完成；真实回执见 [r1 补录](PROGRESS_LOG.md#2026年9月30日-s00-首发回执补录) 与 [r2 补录](PROGRESS_LOG.md#2026年9月30日-s00-r2-回执补录)。S01 r1 的真实发布事实见 [回执补录](PROGRESS_LOG.md#2026年9月30日-s01-r1-回执补录)，r2 见 [真实回执补录](PROGRESS_LOG.md#2026年9月30日-s01-r2-回执补录)。历史待批字段只描述各自封存时点。S02 真实发布与 CI 见 [LOG015](PROGRESS_LOG.md#2026年10月1日-s02-r2-回执补录)。S03 r1 真实发布见 [LOG018](PROGRESS_LOG.md#2026年10月1日-s03-r1-回执补录)，完成性审阅与有限修复见 [S03 步骤卡](docs/steps/S03.md)。S03 r2 实际发布见 [LOG021](PROGRESS_LOG.md#2026年10月1日-s03-r2-回执补录)。S04 实际发布见 [LOG023](PROGRESS_LOG.md#2026年10月1日-s04-r1-回执补录)。S05 [修订规格](docs/model/specification.md)、[参数台账](docs/model/parameters.md)、[手算小例](examples/toy_instance.json) 与 [步骤卡](docs/steps/S05.md) 已作为 r2 建模基线获批发布，见 [LOG028](PROGRESS_LOG.md#2026年10月1日-s05-r2-回执补录)；r3 两项补充已获批准发布，见 [LOG031](PROGRESS_LOG.md#2026年10月1日-s05-r3-回执补录)。[S06 接口](docs/contracts.md) 与 [检查摘要](docs/validation/contracts.md) r3 已发布，见 LOG036；旧步骤卡的待批文字保留其封存时点语义。[S07 疲劳模型](docs/model/fatigue.md) 已验收发布，见 LOG038；完成性审阅见 LOG039。[S08 事件与观测规则](docs/model/events.md) 本地完成，项目和独立 wheel 各 126 项测试通过，见 [验证摘要](docs/validation/events.md)；[S08 快照](docs/steps/S08.md) 待人工验收与确切上传批准。S09—S28 未开始。最小场景通过不代表生产闭环或算法实验已验证。
+S00 r1 与 r2 已完成；真实回执见 [r1 补录](PROGRESS_LOG.md#2026年9月30日-s00-首发回执补录) 与 [r2 补录](PROGRESS_LOG.md#2026年9月30日-s00-r2-回执补录)。S01 r1 的真实发布事实见 [回执补录](PROGRESS_LOG.md#2026年9月30日-s01-r1-回执补录)，r2 见 [真实回执补录](PROGRESS_LOG.md#2026年9月30日-s01-r2-回执补录)。历史待批字段只描述各自封存时点。S02 真实发布与 CI 见 [LOG015](PROGRESS_LOG.md#2026年10月1日-s02-r2-回执补录)。S03 r1 真实发布见 [LOG018](PROGRESS_LOG.md#2026年10月1日-s03-r1-回执补录)，完成性审阅与有限修复见 [S03 步骤卡](docs/steps/S03.md)。S03 r2 实际发布见 [LOG021](PROGRESS_LOG.md#2026年10月1日-s03-r2-回执补录)。S04 实际发布见 [LOG023](PROGRESS_LOG.md#2026年10月1日-s04-r1-回执补录)。S05 [修订规格](docs/model/specification.md)、[参数台账](docs/model/parameters.md)、[手算小例](examples/toy_instance.json) 与 [步骤卡](docs/steps/S05.md) 已作为 r2 建模基线获批发布，见 [LOG028](PROGRESS_LOG.md#2026年10月1日-s05-r2-回执补录)；r3 两项补充已获批准发布，见 [LOG031](PROGRESS_LOG.md#2026年10月1日-s05-r3-回执补录)。[S06 接口](docs/contracts.md) 与 [检查摘要](docs/validation/contracts.md) r3 已发布，见 LOG036；旧步骤卡的待批文字保留其封存时点语义。[S07 疲劳模型](docs/model/fatigue.md) 已验收发布，见 LOG038；完成性审阅见 LOG039。[S08 事件与观测规则](docs/model/events.md) r1 已发布；r2 三项有限修复完成，项目和独立 wheel 各 137 项测试通过，见 [验证摘要](docs/validation/events.md)；[S08 r2 快照](docs/steps/S08.md) 待人工验收与确切上传批准。S09—S28 未开始。最小场景通过不代表生产闭环或算法实验已验证。
 
 ## 研究主导与辅助工具
 

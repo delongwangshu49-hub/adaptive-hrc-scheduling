@@ -98,7 +98,8 @@ def advance_phase(progress, elapsed_min, at_min):
         progress.status == "running" and progress.completed_min is None,
         "only running work advances",
     )
-    require(progress.started_min <= at_min - elapsed_min, "elapsed before start")
+    # Compare the forward float clock, not its rounded inverse subtraction.
+    require(progress.started_min + elapsed_min <= at_min, "elapsed before start")
     require(progress.remaining_base_min > 0, "running phase has no work")
     duration = decode(Positive, progress.remaining_base_min * progress.speed_multiplier)
     require(elapsed_min <= duration, "advance crosses completion; split at boundary")
@@ -182,30 +183,53 @@ def group_resources(ctx, binding):
     return ids - {None}
 
 
-def _interruption_resources(ctx, binding, snapshot):
+def _phase_resources(ctx, binding, mode_id, phase_id):
+    """Actual stage requirements, including declared fixed holding resources."""
     op, transfer, q = ctx.binding(binding.operation_id, binding.group_id, binding.allocation_id)
     if transfer is None:
-        ids = group_resources(ctx, binding)
-        if not any(
-            p.group_id == binding.group_id
-            and p.phase_id == "setup"
-            and p.status in {"running", "paused"}
-            for p in snapshot.phases
-        ):
-            ids.discard(op.feed_space_id)
-        return ids
-    route = ctx.routes[q.route_id]
-    ids = {q.crane_id, route.space_id}
-    for p in snapshot.phases:
-        if p.group_id != binding.group_id or p.status not in {"running", "paused"}:
-            continue
-        if p.phase_id in {"rig", "unload"}:
+        mode = ctx.modes[mode_id]
+        rule = resolve_process_phase(ctx.c, op.id, mode_id, phase_id)
+        ids = {getattr(q, role + "_id") for role in (*rule.active_roles, *mode.held_roles)}
+        if phase_id == "setup":
+            ids.add(op.feed_space_id)
+        # S06 requires valid preparation throughout robot work. A bound group's
+        # failure can invalidate that preparation even when its worker is idle.
+        if rule.requires_preparation:
+            ids.update((q.worker_id, q.robot_id, q.equipment_id, q.station_id, q.fixture_id))
+    else:
+        route = ctx.routes[q.route_id]
+        ids = {q.crane_id, route.space_id}
+        if phase_id in {"rig", "unload"}:
             ids.add(q.worker_id)
-        if p.phase_id in {"preposition", "rig"}:
+        if phase_id in {"preposition", "rig"}:
             ids.add(route.source_id)
-        if p.phase_id in {"preposition", "unload"}:
+        if phase_id in {"preposition", "unload"}:
             ids.update((route.target_id, q.fixture_id))
     return ids - {None}
+
+
+def _interruption_resources(ctx, binding, snapshot):
+    ids = set()
+    for p in snapshot.phases:
+        if p.group_id == binding.group_id and p.status in {"running", "paused"}:
+            ids.update(_phase_resources(ctx, binding, p.mode_id, p.phase_id))
+    return ids
+
+
+def _preparation_resources(ctx, binding, snapshot):
+    # Preparation validity and stage interruption are distinct decisions.
+    op, transfer, q = ctx.binding(binding.operation_id, binding.group_id, binding.allocation_id)
+    if transfer is not None or q.robot_id is None:
+        return set()
+    ids = group_resources(ctx, binding)
+    if not any(
+        p.group_id == binding.group_id
+        and p.phase_id == "setup"
+        and p.status in {"running", "paused"}
+        for p in snapshot.phases
+    ):
+        ids.discard(op.feed_space_id)
+    return ids
 
 
 @dataclass(frozen=True)
@@ -271,6 +295,11 @@ def apply_events(config, snapshot, events):
         affected.update(
             lock.owner_group_id for lock in state.locks if lock.resource_id == event.entity_id
         )
+        preparation_affected = {
+            b.group_id
+            for b in state.bindings
+            if event.entity_id in _preparation_resources(ctx, b, state)
+        }
         phases = []
         stopped = set()
         for p in state.phases:
@@ -310,7 +339,7 @@ def apply_events(config, snapshot, events):
             phases=tuple(phases),
             preparations=tuple(
                 replace(p, valid=False)
-                if p.robot_id == event.entity_id or p.group_id in affected
+                if p.robot_id == event.entity_id or p.group_id in preparation_affected
                 else p
                 for p in state.preparations
             ),
@@ -337,13 +366,16 @@ class CancellationTail:
     phase_ids: tuple[str, ...]
     wait_for_repair: bool
     cleanup_required: bool
+    restore_sequence: Index = 0
 
 
-def cancellation_tail(config, snapshot, group_id):
+def cancellation_tail(config, snapshot, group_id, *, committed_tail=None):
     """Minimal committed phase sequence before cleanup; never a start permission.
 
     Cleanup cost/route allocation and actual reservation withdrawal remain S09.
     Failure-locked fixtures block cleanup, and transport cannot bypass failures.
+    Retain the first result and pass it back as committed_tail while consuming
+    that boundary. Snapshot history alone cannot tell when cancellation occurred.
     """
     validate(snapshot, config=config)
     ctx = Context(config)
@@ -356,11 +388,58 @@ def cancellation_tail(config, snapshot, group_id):
         return CancellationTail(group_id, (), False, order.actual_completion_min is None)
     history = [p for p in snapshot.phases if p.group_id == group_id]
     active = [p for p in history if p.status in {"running", "paused"}]
-    require(len(active) <= 1, "multiple active phases in one group")
+    restores = [p for p in active if p.phase_id == "restore"]
+    if restores:
+        require(
+            len(restores) == 1
+            and all(
+                p == restores[0] or (p.phase_id == "work" and p.status == "paused") for p in active
+            )
+            and len(active) <= 2,
+            "multiple active phases in one group",
+        )
+        current = restores[0]
+    else:
+        require(len(active) <= 1, "multiple active phases in one group")
+        current = active[0] if active else None
     completed = {p.phase_id for p in history if p.status == "completed"}
-    current = active[0] if active else None
+    restore_sequence = current.restore_sequence if current and current.phase_id == "restore" else 0
     tail = []
-    if transfer:
+    if committed_tail is not None:
+        require(
+            isinstance(committed_tail, CancellationTail), "expected committed cancellation tail"
+        )
+        prior = decode(CancellationTail, as_data(committed_tail))
+        require(prior.group_id == group_id, "cancellation tail group mismatch")
+        restore_sequence = prior.restore_sequence
+        if "restore" in prior.phase_ids:
+            require(
+                any(
+                    p.phase_id == "restore" and p.restore_sequence == restore_sequence
+                    for p in history
+                ),
+                "missing committed restore",
+            )
+        tail = [
+            name
+            for name in prior.phase_ids
+            if not any(
+                p.phase_id == name
+                and p.status == "completed"
+                and (name != "restore" or p.restore_sequence == restore_sequence)
+                for p in history
+            )
+        ]
+        # A later failure can shorten a committed boundary: cancelled restart
+        # work is discarded, never restarted just to reach its former handoff.
+        if (
+            "work" in tail
+            and "work" not in completed
+            and any(p.phase_id == "work" and p.status == "failed" for p in history)
+            and not any(p.phase_id == "work" for p in active)
+        ):
+            tail = []
+    elif transfer:
         names = ("preposition", "rig", "move", "unload", "reset")
         if current:
             i = names.index(current.phase_id)
@@ -382,11 +461,12 @@ def cancellation_tail(config, snapshot, group_id):
         successful = next(p for p in history if p.phase_id == "work" and p.status == "completed")
         if phase_rule(config, successful).cancel_boundary == "handoff_then_clear":
             tail = ["handoff"]
-    relevant = (
-        group_resources(ctx, binding)
-        | _interruption_resources(ctx, binding, snapshot)
-        | {lock.resource_id for lock in snapshot.locks if lock.owner_group_id == group_id}
+    relevant = {lock.resource_id for lock in snapshot.locks if lock.owner_group_id == group_id}
+    mode_id = (
+        current.mode_id if current else next((p.mode_id for p in reversed(history)), op.mode_ids[0])
     )
+    for name in tail:
+        relevant.update(_phase_resources(ctx, binding, mode_id, name))
     failures = [r for r in snapshot.resources if r.failed and r.resource_id in relevant]
     blocked = any(
         transfer is not None
@@ -397,7 +477,9 @@ def cancellation_tail(config, snapshot, group_id):
         )
         for r in failures
     )
-    return CancellationTail(group_id, tuple(tail), blocked, order.actual_completion_min is None)
+    return CancellationTail(
+        group_id, tuple(tail), blocked, order.actual_completion_min is None, restore_sequence
+    )
 
 
 def restore_progress(config, snapshot, group_id, mode_id):
@@ -433,10 +515,10 @@ def restore_progress(config, snapshot, group_id, mode_id):
         not any(p.phase_id == "work" and p.status == "completed" for p in history),
         "robot work already completed",
     )
+    required = _phase_resources(ctx, binding, mode_id, "restore")
+    required.update(lock.resource_id for lock in snapshot.locks if lock.owner_group_id == group_id)
     require(
-        not any(
-            r.failed and r.resource_id in group_resources(ctx, binding) for r in snapshot.resources
-        ),
+        not any(r.failed and r.resource_id in required for r in snapshot.resources),
         "restore resources failed",
     )
     require(
