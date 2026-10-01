@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.8.0，整理日期为 2026-10-01。本次 PR042 补录 S05 r3 真实批准，PR043 记录 S06 本地实施与审阅授权。S06 尚无人工验收或上传批准；历史记录保留各自时点语义。
+版本为 0.8.1，整理日期为 2026-10-01。PR044 补录 S06 r2 真实批准，PR045 记录完成性审阅，PR046 仅授权七项问题的本地有限修复。r3 新快照仍待人工验收与上传批准；历史记录保留各自时点语义。
 
 ## 记录规则
 
@@ -46,7 +46,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.8.0",
+  "document_version": "0.8.1",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -1507,6 +1507,118 @@
         "PROGRESS_LOG.md"
       ],
       "limit": "NO_S06_ACCEPTANCE_OR_UPLOAD_APPROVAL_NO_SIMULATION_CLAIM"
+    },
+    {
+      "id": "PR044",
+      "date": "2026-10-01",
+      "record_type": "RETROSPECTIVE_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S06_R2_EXACT_SNAPSHOT",
+        "parameters": {
+          "step_id": "S06",
+          "packet_id": "S06-20261001-r2",
+          "packet_sha256": "66c558e5e47a510dcd28229416d6d57b64df257bf043eecfce7a9ed308f40ced",
+          "decision": "ACCEPTED_AND_APPROVED",
+          "decision_ref": "S06-R2-APPROVAL-001",
+          "permitted_remote_actions": [
+            "STAGE_EXACT_39_FILES",
+            "ONE_CHILD_COMMIT_ON_MAIN",
+            "NEW_ANNOTATED_STEP_S06_R2",
+            "ATOMIC_PUSH_MAIN_AND_TAG",
+            "VERIFY_COMPLETE_TREE_OLD_TAGS_AND_TWO_PLATFORM_CI"
+          ]
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_AND_APPROVED_EXACT_R2_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "VERIFIED_PUBLICATION_AND_TWO_PLATFORM_CI"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S06.md"
+      ],
+      "limit": "R2_APPROVAL_DOES_NOT_AUTHORIZE_R3_UPLOAD_OR_S07"
+    },
+    {
+      "id": "PR045",
+      "date": "2026-10-01",
+      "record_type": "RETROSPECTIVE_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "S06_COMPLETENESS_AND_LOGIC",
+        "parameters": {
+          "step_id": "S06",
+          "review_published_revision": 2,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_COMPLETION_AND_LOGIC_AUDIT"
+      ],
+      "assistant_support": [
+        "VERIFIED_DELIVERY_AND_PUBLICATION",
+        "REPRODUCED_CONTRACT_DEFECTS",
+        "IDENTIFIED_OBSERVATION_INTERFACE_GAP"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "docs/validation/contracts.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "AUDIT_DID_NOT_MODIFY_PUBLISHED_SNAPSHOT"
+    },
+    {
+      "id": "PR046",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "AUTHORIZE_LIMITED_REPAIR",
+        "target": "S06_SEVEN_REVIEW_FINDINGS",
+        "parameters": {
+          "step_id": "S06",
+          "revision": 3,
+          "branch": "main",
+          "create_branch": false,
+          "create_worktree": false,
+          "finding_ids": [
+            "S06-A01",
+            "S06-A02",
+            "S06-A03",
+            "S06-A04",
+            "S06-A05",
+            "S06-A06",
+            "S06-A07"
+          ],
+          "local_scope": [
+            "CONTRACT_REPAIR",
+            "VERSIONED_SCHEMA_MIGRATION",
+            "REGRESSION_TESTS",
+            "RECEIPT_AND_AUDIT_BACKFILL",
+            "EXACT_REVIEW_PACKET"
+          ],
+          "start_S07": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_LIMITED_LOCAL_REPAIR"
+      ],
+      "assistant_support": [
+        "IMPLEMENTED_AND_CHECKED_SEVEN_CONTRACT_REPAIRS",
+        "PREPARED_NEW_REVIEW_SNAPSHOT"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "docs/steps/S06.md",
+        "docs/contracts.md",
+        "docs/validation/contracts.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_NEW_SNAPSHOT_ACCEPTANCE_OR_UPLOAD_APPROVAL_NO_S07"
     }
   ]
 }
@@ -1547,3 +1659,5 @@ PR037 记录负责人对规模与论证力度的质疑；PR038 授权依建议�
 PR039 仅补录 S05 r2 建模基线与确切快照的实际批准；PR040 为完成性与逻辑审阅；PR041 仅授权两项缺口的本地有限修复，不包含 r3 上传或 S06 启动。
 
 PR042 仅补录 S05 r3 确切快照的实际验收和上传批准；PR043 单独授权 S06 本地实现、检查及审阅包，覆盖历史未启动状态，不继承 S05 上传许可，不启动 S07。
+
+PR044 仅补录 S06 r2 的实际批准；PR045 为发布后审阅；PR046 授权七项问题的有限本地修复与新审阅包，不授权 r3 上传，不启动 S07。

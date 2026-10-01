@@ -35,6 +35,7 @@ class Binding:
 class PhaseState:
     operation_id: ID
     mode_id: ID
+    allocation_id: ID
     group_id: ID
     phase_id: ID
     attempt: Count
@@ -87,7 +88,7 @@ class OrderState:
 
 @dataclass(frozen=True)
 class ExecutionSnapshot:
-    schema_version: Literal["S06-1.0"]
+    schema_version: Literal["S06-1.1"]
     kind: Literal["execution_snapshot"]
     run_id: ID
     configuration_id: ID

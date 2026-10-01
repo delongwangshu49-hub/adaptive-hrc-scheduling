@@ -2,6 +2,7 @@
   "as_of_min": 0.0,
   "configuration_id": "toy.S06",
   "estimates": [],
+  "execution": null,
   "id": "obs.0",
   "kind": "planning_observation",
   "known_orders": [
@@ -15,7 +16,7 @@
   ],
   "observed_event_ids": [],
   "run_id": "example.run",
-  "schema_version": "S06-1.0",
+  "schema_version": "S06-1.1",
   "units": {
     "capacity": "count",
     "exposure": "min",

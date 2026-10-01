@@ -21,6 +21,6 @@ def planning_input(configuration, observation):
         operations=tuple(o for o in configuration.operations if o.order_id in ids),
         materials=tuple(m for m in configuration.materials if m.order_id in ids),
     )
-    result = PlanningInput("S06-1.0", "planning_input", configuration.id, observation, visible)
+    result = PlanningInput("S06-1.1", "planning_input", configuration.id, observation, visible)
     validate(result, config=configuration)
     return result

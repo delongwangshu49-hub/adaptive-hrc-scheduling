@@ -1,11 +1,13 @@
 """S06 static acceptance checks. No time advancement or scheduling is performed."""
 
+import hashlib
 import re
+from itertools import combinations
 
 from ..domain.models import Configuration
 from ..domain.phases import resolve_process_phase
 from ..domain.state import ExecutionSnapshot
-from .codec import ContractError, as_data, decode, require
+from .codec import ContractError, as_data, decode, dumps, require
 from .messages import (
     DispatchCommand,
     ExecutionEvent,
@@ -46,6 +48,40 @@ def dag(edges):
         roots = {key for key, value in pending.items() if not value}
         require(bool(roots), "cyclic dependency")
         pending = {key: value - roots for key, value in pending.items() if key not in roots}
+
+
+def distinct_sources(options):
+    """Bipartite matching, without enumerating all source combinations."""
+    matched = {}
+
+    def augment(item, visited):
+        for source in sorted(options[item]):
+            if source not in visited:
+                visited.add(source)
+                if source not in matched or augment(matched[source], visited):
+                    matched[source] = item
+                    return True
+        return False
+
+    return all(augment(item, set()) for item in range(len(options)))
+
+
+def compatible_prefix(ctx, op, left, right):
+    """Compare effective setup semantics, including operation overrides."""
+    return (
+        op.kind in {"ASSEMBLE", "WELD"}
+        and left.switch_after == right.switch_after == "setup"
+        and set(left.held_roles) == set(right.held_roles)
+        and resolve_process_phase(ctx.c, op.id, left.id, "setup")
+        == resolve_process_phase(ctx.c, op.id, right.id, "setup")
+    )
+
+
+def same_process_identity(left, right):
+    return all(
+        getattr(left, key) == getattr(right, key)
+        for key in ("worker_id", "equipment_id", "station_id", "fixture_id")
+    ) and (left.robot_id is None or right.robot_id is None or left.robot_id == right.robot_id)
 
 
 class Context:
@@ -162,8 +198,10 @@ def configuration(c):
         require((r.worker_parameters is not None) == (r.kind == "worker"), "worker parameters")
         if r.worker_parameters:
             require(r.worker_parameters.initial_f <= c.fatigue_cap, "initial fatigue above cap")
-        if r.kind == "buffer":
+        if r.kind in {"buffer", "terminal"}:
             require(bool(r.accepted_materials), "typed buffer required")
+        if r.kind == "terminal":
+            require(set(r.accepted_materials) <= {"raw", "finished", "scrap"}, "terminal purpose")
     for route in c.routes:
         source, target = ctx.resource(route.source_id), ctx.resource(route.target_id)
         require(source.id != target.id, "route source equals destination")
@@ -393,25 +431,25 @@ def configuration(c):
                         "join receiving capacity",
                     )
         if modules and op.kind == "ASSEMBLE":
-            source_stations = set().union(*(set(x.storage_ids) for x in modules))
-            require(
-                len(source_stations) >= len(modules) + 1, "join needs distinct sources and target"
-            )
             targets = {
                 ctx.routes[ctx.q[q].route_id].target_id for q in op.transfers[0].allocation_ids
             }
             require(
                 any(
-                    all(
-                        any(
-                            ctx.routes[ctx.q[q].route_id].target_id == target
-                            for q in t.allocation_ids
-                        )
-                        for t in op.transfers
+                    distinct_sources(
+                        [
+                            {
+                                ctx.routes[ctx.q[q].route_id].source_id
+                                for q in t.allocation_ids
+                                if ctx.routes[ctx.q[q].route_id].target_id == target
+                                and ctx.routes[ctx.q[q].route_id].source_id != target
+                            }
+                            for t in op.transfers
+                        ]
                     )
                     for target in targets
                 ),
-                "no common join target",
+                "no distinct sources with common join target",
             )
         feed = any(x.kind in {"pipe", "bracket"} for x in inputs)
         require((op.feed_space_id is not None) == feed, "explicit feed route")
@@ -424,6 +462,9 @@ def configuration(c):
                 and override.phase_id in index(ctx.modes[override.mode_id].phases),
                 "duration override reference",
             )
+        if op.kind in {"ASSEMBLE", "WELD"}:
+            for left, right in combinations((ctx.modes[mid] for mid in op.mode_ids), 2):
+                require(compatible_prefix(ctx, op, left, right), "incompatible common prefix")
     for material in c.materials:
         require(material.order_id in ctx.orders, "material order")
         require(bool(material.storage_ids), "material locations required")
@@ -463,6 +504,16 @@ def configuration(c):
         for loc in material.storage_ids:
             r = ctx.resource(loc)
             require(r.kind in {"station", "buffer", "terminal"}, "material storage kind")
+            expected_storage = {
+                "pipe": "buffer",
+                "bracket": "buffer",
+                "module": "station",
+                "raw": "terminal",
+                "finished": "terminal",
+            }[material.kind]
+            require(r.kind == expected_storage, "material storage purpose")
+            if r.kind == "terminal":
+                require(material.kind in r.accepted_materials, "terminal material purpose")
             if r.kind == "buffer":
                 require(
                     material.kind in r.accepted_materials and material.quantity <= r.capacity,
@@ -535,6 +586,69 @@ def observation(value, ctx):
             r.kind == "worker" or (e.fatigue_estimate is None and e.exposure_estimate_min is None),
             "fatigue belongs to worker",
         )
+    if value.execution is not None:
+        execution = value.execution
+        require(
+            execution.sampled_min <= execution.received_min <= value.as_of_min,
+            "future execution observation",
+        )
+        known = index(value.known_orders, "order_id")
+        for b in execution.bindings:
+            require(ctx.ops[b.operation_id].order_id in known, "unobserved execution order")
+            require(
+                ctx.orders[ctx.ops[b.operation_id].order_id].release_min <= execution.sampled_min,
+                "execution before release",
+            )
+        for item in (*execution.materials, *execution.reservations):
+            require(ctx.materials[item.material_id].order_id in known, "unobserved material order")
+        execution_details(execution, ctx, execution.sampled_min, set(), complete=False)
+
+
+def required_tail(a, observed, ctx):
+    """Structural evidence for committed tails; runtime authorization remains separate."""
+    if observed.execution is None:
+        return False
+    known = next(k for k in observed.known_orders if k.order_id == ctx.ops[a.operation_id].order_id)
+    binding = next((b for b in observed.execution.bindings if b.group_id == a.group_id), None)
+    if binding is None or binding.allocation_id != a.allocation_id:
+        return False
+    history = [p for p in observed.execution.phases if p.group_id == a.group_id]
+    if any(p.phase_id == a.phase_id and p.status == "completed" for p in history):
+        return False
+
+    def same(p):
+        return (p.mode_id, p.allocation_id) == (
+            a.mode_id,
+            a.allocation_id,
+        )
+
+    completed = {p.phase_id for p in history if same(p) and p.status == "completed"}
+    in_progress = {p.phase_id for p in history if same(p) and p.status in {"running", "paused"}}
+    underway = {
+        p.phase_id
+        for p in history
+        if same(p)
+        and p.status in {"running", "paused"}
+        and (p.attempt, p.restore_sequence) == (a.attempt, a.restore_sequence)
+    }
+    _, transfer = ctx.groups[a.group_id]
+    if known.actual_completion_min is not None:
+        return (
+            transfer is not None
+            and a.phase_id == "reset"
+            and ("unload" in completed or "reset" in underway)
+        )
+    if known.cancel_observed_min is None:
+        return False
+    if a.phase_id in underway:
+        return True
+    if transfer:
+        if a.phase_id == "reset":
+            return bool((completed | underway) & {"preposition", "rig", "move", "unload"})
+        if a.phase_id in {"move", "unload"}:
+            return "rig" in completed or "rig" in underway or "move" in underway
+        return False
+    return a.phase_id == "handoff" and bool({"work"} & (completed | in_progress))
 
 
 def scenario(value, ctx):
@@ -632,14 +746,17 @@ def validate(record, *, config=None):
             selected_modes = {}
             for a in record.assignments:
                 q = ctx.assignment(a)
-                require(
-                    ctx.ops[a.operation_id].order_id in active,
-                    "assignment to invisible/cancelled order",
-                )
-                require(
-                    active[ctx.ops[a.operation_id].order_id].actual_completion_min is None,
-                    "assignment to completed order",
-                )
+                known = index(record.observation.known_orders, "order_id")
+                oid = ctx.ops[a.operation_id].order_id
+                require(oid in known, "assignment to invisible order")
+                if (
+                    known[oid].cancel_observed_min is not None
+                    or known[oid].actual_completion_min is not None
+                ):
+                    require(
+                        required_tail(a, record.observation, ctx),
+                        "assignment requires observed committed tail",
+                    )
                 require(a.planned_start_min >= record.observation.as_of_min, "plan starts in past")
                 require(
                     a.group_id not in bindings or bindings[a.group_id] == q.id,
@@ -709,6 +826,11 @@ def validate(record, *, config=None):
                 "event entity reference",
             )
         elif isinstance(record, RunManifest):
+            require(
+                record.configuration_sha256
+                == hashlib.sha256(dumps(config).encode("utf-8")).hexdigest(),
+                "configuration digest mismatch",
+            )
             require(
                 re.fullmatch(r"[0-9a-f]{40}", record.code_revision) is not None
                 or (record.status == "planned" and record.code_revision == "example.uncommitted"),
@@ -796,14 +918,20 @@ def snapshot(s, ctx):
                 <= s.sim_time_min,
                 "actual completion time",
             )
+    execution_details(
+        s, ctx, s.sim_time_min, {r.resource_id for r in s.resources if r.failed}, complete=True
+    )
+
+
+def execution_details(s, ctx, at_min, failed, *, complete):
     bindings = index(s.bindings, "group_id")
     for b in s.bindings:
         ctx.binding(b.operation_id, b.group_id, b.allocation_id)
     ctx.compatible_bindings({gid: b.allocation_id for gid, b in bindings.items()})
+    preparations = set(index(s.preparations, "robot_id"))
+    robots = {r.id for r in ctx.c.resources if r.kind == "robot"}
     require(
-        set(index(s.preparations, "robot_id"))
-        == {r.id for r in ctx.c.resources if r.kind == "robot"},
-        "robot preparation coverage",
+        preparations == robots if complete else preparations <= robots, "robot preparation coverage"
     )
     for p in s.preparations:
         refs = (p.operation_id, p.group_id, p.station_id)
@@ -813,7 +941,6 @@ def snapshot(s, ctx):
         )
         if p.valid:
             require(all(x is not None for x in refs), "valid preparation needs origin")
-            failed = {r.resource_id for r in s.resources if r.failed}
             b = bindings[p.group_id]
             q = ctx.q[b.allocation_id]
             require(
@@ -834,14 +961,50 @@ def snapshot(s, ctx):
         "phase execution",
     )
     for p in s.phases:
-        b = bindings[p.group_id]
-        op, transfer, q = ctx.binding(p.operation_id, p.group_id, b.allocation_id, p.mode_id)
-        require(p.mode_id in op.mode_ids, "phase mode")
-        require(p.started_min <= s.sim_time_min, "phase from future")
         require((p.completed_min is not None) == (p.status == "completed"), "completion status")
+        b = bindings[p.group_id]
+        op, transfer, q = ctx.binding(p.operation_id, p.group_id, p.allocation_id, p.mode_id)
+        current = ctx.q[b.allocation_id]
+        if p.allocation_id != b.allocation_id:
+            require(
+                transfer is None
+                and p.phase_id == "setup"
+                and p.status == "completed"
+                and same_process_identity(q, current)
+                and any(
+                    b.allocation_id in ctx.modes[mid].allocation_ids
+                    and compatible_prefix(ctx, op, ctx.modes[p.mode_id], ctx.modes[mid])
+                    for mid in op.mode_ids
+                ),
+                "historical allocation incompatible with current binding",
+            )
+        # After a switch boundary, all already-started suffixes retain their mode.
+        suffix_modes = {
+            x.mode_id for x in s.phases if x.group_id == p.group_id and x.phase_id != "setup"
+        }
+        if not transfer:
+            require(len(suffix_modes) <= 1, "started suffix mode is frozen")
+            if suffix_modes and p.mode_id not in suffix_modes:
+                target = ctx.modes[next(iter(suffix_modes))]
+                require(
+                    p.phase_id == "setup"
+                    and p.status == "completed"
+                    and compatible_prefix(ctx, op, ctx.modes[p.mode_id], target),
+                    "mode change outside compatible boundary",
+                )
+                require(
+                    all(
+                        p.completed_min <= x.started_min
+                        for x in s.phases
+                        if x.group_id == p.group_id and x.phase_id != "setup"
+                    ),
+                    "suffix started before common prefix completed",
+                )
+        require(p.mode_id in op.mode_ids, "phase mode")
+        require(p.started_min <= at_min, "phase from future")
         if p.completed_min is not None:
             require(
-                p.started_min <= p.completed_min <= s.sim_time_min and p.remaining_base_min == 0,
+                p.started_min <= p.completed_min <= at_min and p.remaining_base_min == 0,
                 "completed phase remainder/time",
             )
         mode = ctx.modes[p.mode_id]
@@ -932,8 +1095,19 @@ def snapshot(s, ctx):
                 (r.kind == "crane") == (item.status == "in_transit"),
                 "load must be explicitly in transit",
             )
-        if hasattr(item, "status") and item.status in {"consumed", "scrapped"}:
-            continue
+        if hasattr(item, "status"):
+            if item.status == "scrapped":
+                require(
+                    r.kind == "terminal" and "scrap" in r.accepted_materials,
+                    "scrap terminal purpose",
+                )
+                continue
+            if item.status == "consumed":
+                continue
+            if r.kind == "terminal":
+                require(m.kind in r.accepted_materials, "stored terminal material purpose")
+            if item.status == "stored" and m.kind in {"pipe", "bracket"}:
+                require(r.kind == "buffer", "intermediate stored material requires buffer")
         if hasattr(item, "owner_group_id"):
             require(item.owner_group_id in bindings, "reservation owner")
             require(r.kind in {"station", "buffer"}, "only finite receiving positions are reserved")

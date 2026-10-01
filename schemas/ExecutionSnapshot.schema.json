@@ -90,7 +90,7 @@
         },
         "schema_version": {
           "enum": [
-            "S06-1.0"
+            "S06-1.1"
           ]
         },
         "sim_time_min": {
@@ -229,6 +229,10 @@
     "PhaseState": {
       "additionalProperties": false,
       "properties": {
+        "allocation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
         "attempt": {
           "exclusiveMinimum": 0,
           "type": "integer"
@@ -300,6 +304,7 @@
       "required": [
         "operation_id",
         "mode_id",
+        "allocation_id",
         "group_id",
         "phase_id",
         "attempt",

@@ -180,7 +180,7 @@
         },
         "schema_version": {
           "enum": [
-            "S06-1.0"
+            "S06-1.1"
           ]
         },
         "units": {

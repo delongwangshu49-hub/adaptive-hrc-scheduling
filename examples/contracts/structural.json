@@ -9736,7 +9736,9 @@
       "worker_parameters": null
     },
     {
-      "accepted_materials": [],
+      "accepted_materials": [
+        "raw"
+      ],
       "capacity": null,
       "id": "RAW",
       "kind": "terminal",
@@ -9747,7 +9749,9 @@
       "worker_parameters": null
     },
     {
-      "accepted_materials": [],
+      "accepted_materials": [
+        "finished"
+      ],
       "capacity": null,
       "id": "FINISHED",
       "kind": "terminal",
@@ -9758,7 +9762,9 @@
       "worker_parameters": null
     },
     {
-      "accepted_materials": [],
+      "accepted_materials": [
+        "scrap"
+      ],
       "capacity": null,
       "id": "SCRAP",
       "kind": "terminal",
@@ -10071,7 +10077,7 @@
       "unload_min": 1.0
     }
   ],
-  "schema_version": "S06-1.0",
+  "schema_version": "S06-1.1",
   "units": {
     "capacity": "count",
     "exposure": "min",

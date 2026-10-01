@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Literal
 
 from ..domain.models import Configuration, Units
+from ..domain.state import Binding, Lock, MaterialPosition, PhaseState, Preparation, Reservation
 from .codec import ID, Count, Digest, Fraction, Index, Nonnegative, Positive
 
 
@@ -29,8 +30,22 @@ class Estimate:
 
 
 @dataclass(frozen=True)
+class ObservedExecution:
+    """Authorized, possibly partial state at sampled_min; absence means unknown."""
+
+    sampled_min: Nonnegative
+    received_min: Nonnegative
+    bindings: tuple[Binding, ...]
+    phases: tuple[PhaseState, ...]
+    locks: tuple[Lock, ...]
+    materials: tuple[MaterialPosition, ...]
+    reservations: tuple[Reservation, ...]
+    preparations: tuple[Preparation, ...]
+
+
+@dataclass(frozen=True)
 class PlanningObservation:
-    schema_version: Literal["S06-1.0"]
+    schema_version: Literal["S06-1.1"]
     kind: Literal["planning_observation"]
     id: ID
     run_id: ID
@@ -40,11 +55,12 @@ class PlanningObservation:
     known_orders: tuple[KnownOrder, ...]
     estimates: tuple[Estimate, ...]
     observed_event_ids: tuple[ID, ...]
+    execution: ObservedExecution | None
 
 
 @dataclass(frozen=True)
 class PlanningInput:
-    schema_version: Literal["S06-1.0"]
+    schema_version: Literal["S06-1.1"]
     kind: Literal["planning_input"]
     configuration_id: ID
     observation: PlanningObservation
@@ -80,7 +96,7 @@ class ExposureEstimate:
 
 @dataclass(frozen=True)
 class Plan:
-    schema_version: Literal["S06-1.0"]
+    schema_version: Literal["S06-1.1"]
     kind: Literal["plan"]
     id: ID
     observation: PlanningObservation
@@ -96,7 +112,7 @@ class Plan:
 
 @dataclass(frozen=True)
 class DispatchCommand:
-    schema_version: Literal["S06-1.0"]
+    schema_version: Literal["S06-1.1"]
     kind: Literal["dispatch"]
     id: ID
     run_id: ID
@@ -122,7 +138,7 @@ class WorldEvent:
 
 @dataclass(frozen=True)
 class HiddenScenario:
-    schema_version: Literal["S06-1.0"]
+    schema_version: Literal["S06-1.1"]
     kind: Literal["hidden_scenario"]
     configuration_id: ID
     units: Units
@@ -132,7 +148,7 @@ class HiddenScenario:
 
 @dataclass(frozen=True)
 class ExecutionEvent:
-    schema_version: Literal["S06-1.0"]
+    schema_version: Literal["S06-1.1"]
     kind: Literal["execution_event"]
     run_id: ID
     configuration_id: ID
@@ -158,7 +174,7 @@ class ExecutionEvent:
 
 @dataclass(frozen=True)
 class RunManifest:
-    schema_version: Literal["S06-1.0"]
+    schema_version: Literal["S06-1.1"]
     kind: Literal["run_manifest"]
     run_id: ID
     configuration_id: ID
@@ -194,7 +210,7 @@ class WorkerExposure:
 
 @dataclass(frozen=True)
 class OfflineEvaluation:
-    schema_version: Literal["S06-1.0"]
+    schema_version: Literal["S06-1.1"]
     kind: Literal["offline_evaluation"]
     run_id: ID
     configuration_id: ID

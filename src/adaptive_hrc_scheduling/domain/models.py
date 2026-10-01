@@ -157,7 +157,7 @@ class Order:
 
 @dataclass(frozen=True)
 class Configuration:
-    schema_version: Literal["S06-1.0"]
+    schema_version: Literal["S06-1.1"]
     kind: Literal["configuration"]
     id: ID
     units: Units

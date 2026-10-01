@@ -120,7 +120,12 @@ def build_configuration(toy_only=False):
     for item in rm["buffers"]:
         resource(item["id"], "buffer", capacity=item["capacity"], accepted=(item["kind"],))
     for item in rm["terminals"]:
-        resource(item["id"], "terminal", capacity=None)
+        resource(
+            item["id"],
+            "terminal",
+            capacity=None,
+            accepted=({"RAW": "raw", "FINISHED": "finished", "SCRAP": "scrap"}[item["id"]],),
+        )
     routes = tuple(
         Route(
             f"route.{r['source']}.{r['target']}",
@@ -351,7 +356,7 @@ def build_configuration(toy_only=False):
             )
     assert qmap  # Q is explicitly enumerated; no runtime enlargement.
     return Configuration(
-        "S06-1.0",
+        "S06-1.1",
         "configuration",
         "toy.S06" if toy_only else "structural.S06",
         UNITS,
@@ -399,7 +404,7 @@ def artifacts():
         "capacity": "count",
     }
     observation = {
-        "schema_version": "S06-1.0",
+        "schema_version": "S06-1.1",
         "kind": "planning_observation",
         "id": "obs.0",
         "run_id": "example.run",
@@ -417,9 +422,10 @@ def artifacts():
         ],
         "estimates": [],
         "observed_event_ids": [],
+        "execution": None,
     }
     hidden = {
-        "schema_version": "S06-1.0",
+        "schema_version": "S06-1.1",
         "kind": "hidden_scenario",
         "configuration_id": small.id,
         "units": units,
@@ -428,7 +434,7 @@ def artifacts():
     }
     examples = [(PlanningObservation, observation), (HiddenScenario, hidden)]
     plan = {
-        "schema_version": "S06-1.0",
+        "schema_version": "S06-1.1",
         "kind": "plan",
         "id": "plan.0",
         "observation": observation,
@@ -448,7 +454,7 @@ def artifacts():
         (
             DispatchCommand,
             {
-                "schema_version": "S06-1.0",
+                "schema_version": "S06-1.1",
                 "kind": "dispatch",
                 "id": "command.wait",
                 "run_id": "example.run",
@@ -465,7 +471,7 @@ def artifacts():
         )
     )
     snapshot = {
-        "schema_version": "S06-1.0",
+        "schema_version": "S06-1.1",
         "kind": "execution_snapshot",
         "run_id": "example.run",
         "configuration_id": small.id,
@@ -513,7 +519,7 @@ def artifacts():
         (
             ExecutionEvent,
             {
-                "schema_version": "S06-1.0",
+                "schema_version": "S06-1.1",
                 "kind": "execution_event",
                 "run_id": "example.run",
                 "configuration_id": small.id,
@@ -538,7 +544,7 @@ def artifacts():
         (
             RunManifest,
             {
-                "schema_version": "S06-1.0",
+                "schema_version": "S06-1.1",
                 "kind": "run_manifest",
                 "run_id": "example.run",
                 "configuration_id": small.id,
@@ -565,7 +571,7 @@ def artifacts():
         (
             OfflineEvaluation,
             {
-                "schema_version": "S06-1.0",
+                "schema_version": "S06-1.1",
                 "kind": "offline_evaluation",
                 "run_id": "example.not_executed",
                 "configuration_id": small.id,

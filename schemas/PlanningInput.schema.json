@@ -102,6 +102,29 @@
       ],
       "type": "object"
     },
+    "Binding": {
+      "additionalProperties": false,
+      "properties": {
+        "allocation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "group_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "operation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "operation_id",
+        "group_id",
+        "allocation_id"
+      ],
+      "type": "object"
+    },
     "Configuration": {
       "additionalProperties": false,
       "properties": {
@@ -180,7 +203,7 @@
         },
         "schema_version": {
           "enum": [
-            "S06-1.0"
+            "S06-1.1"
           ]
         },
         "units": {
@@ -343,6 +366,33 @@
       ],
       "type": "object"
     },
+    "Lock": {
+      "additionalProperties": false,
+      "properties": {
+        "owner_group_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "purpose": {
+          "enum": [
+            "active",
+            "held",
+            "reserved",
+            "occupied"
+          ]
+        },
+        "resource_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "resource_id",
+        "owner_group_id",
+        "purpose"
+      ],
+      "type": "object"
+    },
     "Material": {
       "additionalProperties": false,
       "properties": {
@@ -423,6 +473,46 @@
         "storage_ids",
         "movement",
         "available_at"
+      ],
+      "type": "object"
+    },
+    "MaterialPosition": {
+      "additionalProperties": false,
+      "properties": {
+        "location_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "material_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "slot": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "stored",
+            "in_transit",
+            "consumed",
+            "scrapped",
+            "finished"
+          ]
+        }
+      },
+      "required": [
+        "material_id",
+        "location_id",
+        "status",
+        "slot"
       ],
       "type": "object"
     },
@@ -514,6 +604,66 @@
         "freeze_at",
         "preparation_phase_id",
         "held_roles"
+      ],
+      "type": "object"
+    },
+    "ObservedExecution": {
+      "additionalProperties": false,
+      "properties": {
+        "bindings": {
+          "items": {
+            "$ref": "#/$defs/Binding"
+          },
+          "type": "array"
+        },
+        "locks": {
+          "items": {
+            "$ref": "#/$defs/Lock"
+          },
+          "type": "array"
+        },
+        "materials": {
+          "items": {
+            "$ref": "#/$defs/MaterialPosition"
+          },
+          "type": "array"
+        },
+        "phases": {
+          "items": {
+            "$ref": "#/$defs/PhaseState"
+          },
+          "type": "array"
+        },
+        "preparations": {
+          "items": {
+            "$ref": "#/$defs/Preparation"
+          },
+          "type": "array"
+        },
+        "received_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "reservations": {
+          "items": {
+            "$ref": "#/$defs/Reservation"
+          },
+          "type": "array"
+        },
+        "sampled_min": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "sampled_min",
+        "received_min",
+        "bindings",
+        "phases",
+        "locks",
+        "materials",
+        "reservations",
+        "preparations"
       ],
       "type": "object"
     },
@@ -741,6 +891,98 @@
       ],
       "type": "object"
     },
+    "PhaseState": {
+      "additionalProperties": false,
+      "properties": {
+        "allocation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "attempt": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        "completed_min": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "group_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "mode_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "operation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "phase_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "remaining_base_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "restore_sequence": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "sampled_f": {
+          "anyOf": [
+            {
+              "exclusiveMaximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "speed_multiplier": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "started_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "status": {
+          "enum": [
+            "running",
+            "paused",
+            "completed",
+            "failed"
+          ]
+        }
+      },
+      "required": [
+        "operation_id",
+        "mode_id",
+        "allocation_id",
+        "group_id",
+        "phase_id",
+        "attempt",
+        "restore_sequence",
+        "status",
+        "remaining_base_min",
+        "sampled_f",
+        "speed_multiplier",
+        "started_min",
+        "completed_min"
+      ],
+      "type": "object"
+    },
     "PlanningInput": {
       "additionalProperties": false,
       "properties": {
@@ -758,7 +1000,7 @@
         },
         "schema_version": {
           "enum": [
-            "S06-1.0"
+            "S06-1.1"
           ]
         },
         "visible_configuration": {
@@ -791,6 +1033,16 @@
           },
           "type": "array"
         },
+        "execution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ObservedExecution"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "id": {
           "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
           "type": "string"
@@ -819,7 +1071,7 @@
         },
         "schema_version": {
           "enum": [
-            "S06-1.0"
+            "S06-1.1"
           ]
         },
         "units": {
@@ -836,7 +1088,96 @@
         "as_of_min",
         "known_orders",
         "estimates",
-        "observed_event_ids"
+        "observed_event_ids",
+        "execution"
+      ],
+      "type": "object"
+    },
+    "Preparation": {
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "operation_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "robot_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "station_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "robot_id",
+        "operation_id",
+        "group_id",
+        "station_id",
+        "valid"
+      ],
+      "type": "object"
+    },
+    "Reservation": {
+      "additionalProperties": false,
+      "properties": {
+        "location_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "material_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "owner_group_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "slot": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "material_id",
+        "location_id",
+        "owner_group_id",
+        "slot"
       ],
       "type": "object"
     },

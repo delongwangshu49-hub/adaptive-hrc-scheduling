@@ -78,6 +78,7 @@ class ContractTests(unittest.TestCase):
                 for k in (
                     "operation_id",
                     "mode_id",
+                    "allocation_id",
                     "group_id",
                     "phase_id",
                     "attempt",
