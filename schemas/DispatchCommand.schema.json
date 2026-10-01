@@ -1,0 +1,210 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "Assignment": {
+      "additionalProperties": false,
+      "properties": {
+        "allocation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "attempt": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        "group_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "mode_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "operation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "phase_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "planned_end_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "planned_start_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "reason_code": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "restore_sequence": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "operation_id",
+        "mode_id",
+        "group_id",
+        "phase_id",
+        "allocation_id",
+        "attempt",
+        "restore_sequence",
+        "planned_start_min",
+        "planned_end_min",
+        "reason_code"
+      ],
+      "type": "object"
+    },
+    "DispatchCommand": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "enum": [
+            "start",
+            "resume",
+            "rest",
+            "wait",
+            "cleanup"
+          ]
+        },
+        "assignment": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Assignment"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cleanup_material_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "configuration_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "duration_min": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "issued_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "kind": {
+          "enum": [
+            "dispatch"
+          ]
+        },
+        "observation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S06-1.0"
+          ]
+        },
+        "units": {
+          "$ref": "#/$defs/Units"
+        },
+        "worker_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "id",
+        "run_id",
+        "configuration_id",
+        "observation_id",
+        "units",
+        "issued_min",
+        "action",
+        "assignment",
+        "worker_id",
+        "duration_min",
+        "cleanup_material_id"
+      ],
+      "type": "object"
+    },
+    "Units": {
+      "additionalProperties": false,
+      "properties": {
+        "capacity": {
+          "enum": [
+            "count"
+          ]
+        },
+        "exposure": {
+          "enum": [
+            "min"
+          ]
+        },
+        "fatigue": {
+          "enum": [
+            "dimensionless"
+          ]
+        },
+        "rate": {
+          "enum": [
+            "min^-1"
+          ]
+        },
+        "time": {
+          "enum": [
+            "min"
+          ]
+        }
+      },
+      "required": [
+        "time",
+        "rate",
+        "fatigue",
+        "exposure",
+        "capacity"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/DispatchCommand",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DispatchCommand"
+}

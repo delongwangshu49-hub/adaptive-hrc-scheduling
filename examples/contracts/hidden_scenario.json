@@ -1,0 +1,14 @@
+{
+  "configuration_id": "toy.S06",
+  "events": [],
+  "kind": "hidden_scenario",
+  "scenario_seed": 0,
+  "schema_version": "S06-1.0",
+  "units": {
+    "capacity": "count",
+    "exposure": "min",
+    "fatigue": "dimensionless",
+    "rate": "min^-1",
+    "time": "min"
+  }
+}

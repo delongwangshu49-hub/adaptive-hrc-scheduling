@@ -2,7 +2,7 @@
 
 本文件记录可以公开的研究决策、实施状态、检查证据和下一步工作。日期采用 UTC+08:00；历史准备记录依据项目讨论整理到日，不补造精确时刻。私人身份、来源文件位置、原始对话、机器配置和敏感运行日志不在此记录。
 
-本文件版本为 0.7.2，更新于 2026-10-01。S00—S04 及 S05 r2 已验收、批准并发布；S05 r2 回执见 LOG028。r3 对审阅发现的两项规格缺口完成有限本地修复与指定检查，待新快照验收和上传批准。生产实现与实验尚未开展，S06 未获启动授权。
+本文件版本为 0.8.0，更新于 2026-10-01。S00—S05 已验收、批准并发布；S05 r3 回执见 LOG031。S06 本地数据对象、接口契约与检查已完成，待本步人工验收及上传批准；S07 及后续未启动。
 
 ## 状态约定
 
@@ -20,7 +20,7 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 
 ## 当前步骤台账
 
-研究范围和路线仍为 CONFIRMED，依据 PR008、PR009；逐步审批上传要求来自 PR011，治理认可与 S00 启动见 PR012，仓库配置确认见 PR013。S00 首发的实际验收与上传批准见 PR014 和 LOG007；PR015、PR016 记录完成性审阅及有限修复授权；随后发生的 r2 批准见 PR017、LOG009。PR018 当时授权 S01 本地实施；随后针对 r1 的批准见 PR019、LOG011。PR020 记录完成性审阅，PR021 当时仅授权 r2 本地有限修复；随后实际批准见 PR022、LOG013。PR023 当时启动 S02；其后实际批准见 PR024 / LOG015，完成性复核见 PR025 / LOG016。PR026 当时授权 S03 本地验证；随后 r1 实际批准见 PR027 / LOG018，完成性审阅见 PR028 / LOG019，有限修复授权见 PR029 / LOG020，r2 实际批准见 PR030 / LOG021；PR031 另行授权 S04 本地文献核查和审阅包，见 LOG022。PR032 / LOG023 补录 S04 实际发布；PR033 / LOG024 为完成性复核；PR034 启动 S05，PR035 暂不冻结，PR036 要求全面复核和落实方案，见 LOG025。S06—S28 未实施。
+研究范围和路线仍为 CONFIRMED，依据 PR008、PR009；逐步审批上传要求来自 PR011，治理认可与 S00 启动见 PR012，仓库配置确认见 PR013。S00 首发的实际验收与上传批准见 PR014 和 LOG007；PR015、PR016 记录完成性审阅及有限修复授权；随后发生的 r2 批准见 PR017、LOG009。PR018 当时授权 S01 本地实施；随后针对 r1 的批准见 PR019、LOG011。PR020 记录完成性审阅，PR021 当时仅授权 r2 本地有限修复；随后实际批准见 PR022、LOG013。PR023 当时启动 S02；其后实际批准见 PR024 / LOG015，完成性复核见 PR025 / LOG016。PR026 当时授权 S03 本地验证；随后 r1 实际批准见 PR027 / LOG018，完成性审阅见 PR028 / LOG019，有限修复授权见 PR029 / LOG020，r2 实际批准见 PR030 / LOG021；PR031 另行授权 S04 本地文献核查和审阅包，见 LOG022。PR032 / LOG023 补录 S04 实际发布；PR033 / LOG024 为完成性复核；PR034 启动 S05，PR035 暂不冻结，PR036 要求全面复核和落实方案，见 LOG025。PR042 / LOG031 补录 S05 r3 发布；PR043 授权 S06 本地工作，见 LOG032。S07—S28 未实施。
 
 | 步骤 | 工作 | 工作状态 | 人工验收 | 上传许可 | 发布状态 |
 | --- | --- | --- | --- | --- | --- |
@@ -30,8 +30,8 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 | S03 r1 | Isaac Sim 最小运行验证（已发布） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
 | S03 r2 | 回调核验与本地监督器有限修复（已发布） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
 | S04 | 相关工作与研究假设核对（r1 已发布） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
-| S05 | r2 已发布；r3 两项有限修复待审 | VERIFIED | PENDING_REVIEW | PENDING_APPROVAL | NOT_PUBLISHED |
-| S06 | 数据对象与接口契约 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
+| S05 | r2 基线及 r3 两项补充已发布 | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
+| S06 | 数据对象与接口契约 | VERIFIED | PENDING_REVIEW | PENDING_APPROVAL | NOT_PUBLISHED |
 | S07 | 疲劳与恢复模型 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S08 | 扰动与信息可见性规则 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S09 | 轻量执行内核 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
@@ -374,11 +374,29 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 - 有限边界检查覆盖原反例拒绝、有效状态保持/失效、重复改派、同站异组、故障续作/重做、取消及非预知集合/评分。旧小例和结构示例原样复查，完整证据见审阅包；未实现生产调度器或接口。
 - 候选仅六份既有文档；两个 JSON、实例族、代码、依赖及 CI 不变。原 r1/r2 快照、审阅与发布证据保全；工作 VERIFIED 仅指指定检查，r3 补充规则/验收/上传均待独立批准，无新提交/标签/推送，S06 未启动。
 
+## 2026年10月1日 S05 r3 回执补录
+
+- 记录编号：LOG031；记录类型：PUBLICATION_RECEIPT；关联 PR042。实际批准 S05-R3-APPROVAL-001，时间 2026-10-01 19:33:40 UTC+08:00；核验时间 19:35:21。
+- S05-20261001-r3 六文件快照获验收及批准，包 SHA-256 `bf68fcf1dc78d4bc38dfd4c045764a818bbefae8f70b2ba3f1160904c51bca61`；r2 建模基线与 r3 两项补充均 CONFIRMED。
+- 提交 `b024b81f8c1df618ee53468aad9ec0585e0f495d`，父提交 `e0dd16405db3c3ccdab26b7fcd41377ee8ed204c`，完整树 `f7de94db6d5c401254a8ea060a702a761cbaf489`；main / step-S05-r3；附注标签对象 `48d9f20e34c600356702edae5f207bf18ee11f62`。
+- 100 项上传前检查、56 项远端核验通过，完整 34 文件匹配批准快照。原子推送只含 main 与该标签；旧标签及 3720 项历史证据保全。
+- [CI run 36856189074](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36856189074) 绑定该提交，Windows/Ubuntu 均成功。状态 VERIFIED / ACCEPTED / APPROVED / PUBLISHED。
+- 历史 S05 步骤卡及规格保留批准前封存语态，不否认实际发布。实验规模和 S20 协议未冻结，S05 批准不授权 S06 上传。
+
+## 2026年10月1日 S06 本地实现与检查
+
+- 记录编号：LOG032；记录类型：CURRENT；关联 PR043；治理版本 0.8.0。负责人授权在原目录/main 直接完成本步，不创建分支或 worktree。
+- AI 助手实现不可变领域对象、严格序列化、静态跨引用/DAG/资格/单位校验，以及规划输入、计划、派工、执行状态/事件、隐藏场景、离线评价和运行清单结构。S05 两份 JSON 及规格保持原样，另有显式迁移的 S06 配置与消息示例。
+- 本地统一 CPU 入口、源码包/独立 wheel 安装、契约正反例与生成文件一致性检查通过；详细范围见 [契约说明](docs/contracts.md) 和 [检查摘要](docs/validation/contracts.md)。首次旧包缓存、可空类型与静态格式诊断保留，修复后重新验证。
+- 12 单、96 工序、52 模式选择、6 人、3 机器人是配置结构证据；无生产调度器、仿真或性能结论。S07 疲劳积分与 S08/S09 事件推进均未实施，静态校验不冒充跨时刻语义验证。
+- r1 本地封存后自查修复运行清单对数字开头 Git 哈希的错误限制，并增测；旧 r1 保留且未获批发布。本步最终 41 项测试在项目及独立 wheel 均通过。
+- 包 S06-20261001-r2；目标既有仓库 main / step-S06-r2。工作 VERIFIED；人工 PENDING_REVIEW；上传 PENDING_APPROVAL；NOT_PUBLISHED；本步远端 CI NOT_RUN。未暂存、提交、创建标签或推送。
+
 ## 下一步
 
-1. 审阅 S05-20261001-r3 的两项有限补充、六文件完整差异、逐文件摘要和边界检查；既有 r2 批准不替代本次验收。
-2. 对确切 r3 快照验收并批准上传后，才在 main 追加一个以 S05 r2 为父的提交，创建 step-S05-r3，仅推送这两个引用。
-3. 核验完整 34 文件树、历史、标签及新提交绑定的两平台 CPU CI 后才记录 PUBLISHED；S06 仍须另行授权。
+1. 审阅 S06-20261001-r2 的确切文件、完整差异、逐文件摘要、检查证据和限制。
+2. 针对该快照明确验收并批准上传后，精确暂存、追加一个以 S05 r3 为父的提交、新建 step-S06-r2，仅推送 main 和该标签。
+3. 核验完整树、历史和新提交绑定的两平台 CPU CI 后才记录 PUBLISHED。S07 仍须另行授权。
 
 ## 步骤记录与发布回执
 

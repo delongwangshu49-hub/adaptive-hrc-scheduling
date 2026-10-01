@@ -1,0 +1,180 @@
+{
+  "bindings": [],
+  "configuration_id": "toy.S06",
+  "kind": "execution_snapshot",
+  "locks": [],
+  "materials": [
+    {
+      "location_id": "RAW",
+      "material_id": "J1.C1.raw",
+      "slot": null,
+      "status": "stored"
+    },
+    {
+      "location_id": "RAW",
+      "material_id": "J1.B1.raw",
+      "slot": null,
+      "status": "stored"
+    }
+  ],
+  "orders": [
+    {
+      "actual_completion_min": null,
+      "cancelled": false,
+      "order_id": "J1",
+      "released": true
+    }
+  ],
+  "phases": [],
+  "preparations": [
+    {
+      "group_id": null,
+      "operation_id": null,
+      "robot_id": "R1",
+      "station_id": null,
+      "valid": false
+    }
+  ],
+  "reservations": [],
+  "resources": [
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "W1"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "W2"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "R1"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "CS1"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "PS1"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "AS1"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "WS1"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "IS1"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "CS1_M"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "WS1_M"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "IS1_M"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "AS1_X"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "WS1_X"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "IS1_X"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "G1"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "FEED_ROUTE"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "LIFT_ROUTE"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "SCRAP_RECEIVE"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "PIPE_BUFFER"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "BRACKET_BUFFER"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "RAW"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "FINISHED"
+    },
+    {
+      "failed": false,
+      "release_allowed": null,
+      "resource_id": "SCRAP"
+    }
+  ],
+  "run_id": "example.run",
+  "schema_version": "S06-1.0",
+  "sim_time_min": 0.0,
+  "units": {
+    "capacity": "count",
+    "exposure": "min",
+    "fatigue": "dimensionless",
+    "rate": "min^-1",
+    "time": "min"
+  },
+  "workers": [
+    {
+      "activity": "wait",
+      "exposure_min": 0.0,
+      "fatigue": 0.1,
+      "worker_id": "W1"
+    },
+    {
+      "activity": "wait",
+      "exposure_min": 0.0,
+      "fatigue": 0.2,
+      "worker_id": "W2"
+    }
+  ]
+}

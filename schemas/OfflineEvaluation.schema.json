@@ -1,0 +1,264 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "ActualCompletion": {
+      "additionalProperties": false,
+      "properties": {
+        "actual_completion_min": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "order_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "order_id",
+        "actual_completion_min"
+      ],
+      "type": "object"
+    },
+    "HiddenScenario": {
+      "additionalProperties": false,
+      "properties": {
+        "configuration_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/WorldEvent"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "enum": [
+            "hidden_scenario"
+          ]
+        },
+        "scenario_seed": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_version": {
+          "enum": [
+            "S06-1.0"
+          ]
+        },
+        "units": {
+          "$ref": "#/$defs/Units"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "configuration_id",
+        "units",
+        "scenario_seed",
+        "events"
+      ],
+      "type": "object"
+    },
+    "OfflineEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "budget_violated": {
+          "type": "boolean"
+        },
+        "completions": {
+          "items": {
+            "$ref": "#/$defs/ActualCompletion"
+          },
+          "type": "array"
+        },
+        "configuration_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "drained_at_min": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evaluation_order_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "enum": [
+            "offline_evaluation"
+          ]
+        },
+        "observation_window_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "scenario": {
+          "$ref": "#/$defs/HiddenScenario"
+        },
+        "schema_version": {
+          "enum": [
+            "S06-1.0"
+          ]
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "units": {
+          "$ref": "#/$defs/Units"
+        },
+        "workers": {
+          "items": {
+            "$ref": "#/$defs/WorkerExposure"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "run_id",
+        "configuration_id",
+        "units",
+        "observation_window_min",
+        "scenario",
+        "evaluation_order_ids",
+        "completions",
+        "workers",
+        "drained_at_min",
+        "truncated",
+        "budget_violated"
+      ],
+      "type": "object"
+    },
+    "Units": {
+      "additionalProperties": false,
+      "properties": {
+        "capacity": {
+          "enum": [
+            "count"
+          ]
+        },
+        "exposure": {
+          "enum": [
+            "min"
+          ]
+        },
+        "fatigue": {
+          "enum": [
+            "dimensionless"
+          ]
+        },
+        "rate": {
+          "enum": [
+            "min^-1"
+          ]
+        },
+        "time": {
+          "enum": [
+            "min"
+          ]
+        }
+      },
+      "required": [
+        "time",
+        "rate",
+        "fatigue",
+        "exposure",
+        "capacity"
+      ],
+      "type": "object"
+    },
+    "WorkerExposure": {
+      "additionalProperties": false,
+      "properties": {
+        "actual_exposure_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "actual_peak": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "worker_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "worker_id",
+        "actual_exposure_min",
+        "actual_peak"
+      ],
+      "type": "object"
+    },
+    "WorldEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "release_allowed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sim_time_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "type": {
+          "enum": [
+            "release",
+            "cancel",
+            "failure",
+            "repair"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "sim_time_min",
+        "type",
+        "entity_id",
+        "release_allowed"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/OfflineEvaluation",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OfflineEvaluation"
+}

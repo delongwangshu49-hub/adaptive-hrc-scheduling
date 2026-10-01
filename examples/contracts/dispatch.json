@@ -1,0 +1,21 @@
+{
+  "action": "wait",
+  "assignment": null,
+  "cleanup_material_id": null,
+  "configuration_id": "toy.S06",
+  "duration_min": 1.0,
+  "id": "command.wait",
+  "issued_min": 0.0,
+  "kind": "dispatch",
+  "observation_id": "obs.0",
+  "run_id": "example.run",
+  "schema_version": "S06-1.0",
+  "units": {
+    "capacity": "count",
+    "exposure": "min",
+    "fatigue": "dimensionless",
+    "rate": "min^-1",
+    "time": "min"
+  },
+  "worker_id": null
+}

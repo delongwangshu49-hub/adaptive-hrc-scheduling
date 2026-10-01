@@ -1,0 +1,135 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "ExecutionEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "cause": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "configuration_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "event_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "event_type": {
+          "enum": [
+            "started",
+            "completed",
+            "interrupted",
+            "released",
+            "arrived",
+            "rejected",
+            "cancelled",
+            "restored"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "execution_event"
+          ]
+        },
+        "new_state": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "old_state": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "phase_execution_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S06-1.0"
+          ]
+        },
+        "sim_time_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "units": {
+          "$ref": "#/$defs/Units"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "run_id",
+        "configuration_id",
+        "event_id",
+        "units",
+        "sim_time_min",
+        "event_type",
+        "entity_id",
+        "phase_execution_id",
+        "old_state",
+        "new_state",
+        "cause"
+      ],
+      "type": "object"
+    },
+    "Units": {
+      "additionalProperties": false,
+      "properties": {
+        "capacity": {
+          "enum": [
+            "count"
+          ]
+        },
+        "exposure": {
+          "enum": [
+            "min"
+          ]
+        },
+        "fatigue": {
+          "enum": [
+            "dimensionless"
+          ]
+        },
+        "rate": {
+          "enum": [
+            "min^-1"
+          ]
+        },
+        "time": {
+          "enum": [
+            "min"
+          ]
+        }
+      },
+      "required": [
+        "time",
+        "rate",
+        "fatigue",
+        "exposure",
+        "capacity"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/ExecutionEvent",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExecutionEvent"
+}

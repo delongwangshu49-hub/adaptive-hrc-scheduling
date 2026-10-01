@@ -1,0 +1,163 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "RunManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "backend": {
+          "enum": [
+            "event",
+            "isaac"
+          ]
+        },
+        "code_revision": {
+          "type": "string"
+        },
+        "configuration_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "configuration_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "decision_budget_ms": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "decision_seed": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "dependency_lock_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "fatigue_cap": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "kind": {
+          "enum": [
+            "run_manifest"
+          ]
+        },
+        "observation_window_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "scenario_seed": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "scenario_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S06-1.0"
+          ]
+        },
+        "solver_pauses_simulation": {
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "planned",
+            "completed",
+            "deadlock",
+            "truncated",
+            "failed"
+          ]
+        },
+        "termination_reason": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "units": {
+          "$ref": "#/$defs/Units"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "run_id",
+        "configuration_id",
+        "units",
+        "configuration_sha256",
+        "scenario_sha256",
+        "dependency_lock_sha256",
+        "code_revision",
+        "scenario_seed",
+        "decision_seed",
+        "algorithm_id",
+        "backend",
+        "decision_budget_ms",
+        "observation_window_min",
+        "fatigue_cap",
+        "status",
+        "solver_pauses_simulation",
+        "termination_reason"
+      ],
+      "type": "object"
+    },
+    "Units": {
+      "additionalProperties": false,
+      "properties": {
+        "capacity": {
+          "enum": [
+            "count"
+          ]
+        },
+        "exposure": {
+          "enum": [
+            "min"
+          ]
+        },
+        "fatigue": {
+          "enum": [
+            "dimensionless"
+          ]
+        },
+        "rate": {
+          "enum": [
+            "min^-1"
+          ]
+        },
+        "time": {
+          "enum": [
+            "min"
+          ]
+        }
+      },
+      "required": [
+        "time",
+        "rate",
+        "fatigue",
+        "exposure",
+        "capacity"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/RunManifest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunManifest"
+}

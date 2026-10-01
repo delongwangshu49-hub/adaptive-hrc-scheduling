@@ -1,0 +1,21 @@
+{
+  "cause": "illustrative_not_executed",
+  "configuration_id": "toy.S06",
+  "entity_id": "J1",
+  "event_id": "example.release",
+  "event_type": "released",
+  "kind": "execution_event",
+  "new_state": "released",
+  "old_state": "unreleased",
+  "phase_execution_id": null,
+  "run_id": "example.run",
+  "schema_version": "S06-1.0",
+  "sim_time_min": 0.0,
+  "units": {
+    "capacity": "count",
+    "exposure": "min",
+    "fatigue": "dimensionless",
+    "rate": "min^-1",
+    "time": "min"
+  }
+}

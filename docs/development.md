@@ -1,6 +1,6 @@
-# 基础检查与持续集成（S02 / S03）
+# 基础检查与持续集成（S02 / S03 / S06）
 
-统一 CPU 入口检查轻量安装骨架，并对 `scripts/isaac_smoke.py` 做静态、格式和纯回调契约检查。它不导入 Isaac 或运行场景；S03 实际 Kit 证据见 [运行验证](validation/runtime.md)。当前没有生产模型、调度算法或研究仿真实验。
+统一 CPU 入口检查轻量安装骨架，并对 `scripts/isaac_smoke.py` 做静态、格式和纯回调契约检查。它不导入 Isaac 或运行场景；S03 实际 Kit 证据见 [运行验证](validation/runtime.md)。S06 已加入领域对象、静态接口契约及测试，见 [契约说明](contracts.md)；没有生产执行内核、调度算法或研究仿真实验。
 
 ## 统一入口
 
@@ -18,9 +18,9 @@ Windows 使用 PowerShell 7，先确认 `$PSVersionTable.PSVersion.Major` 为 7�
 | --- | --- |
 | 版本与锁 | 解释器必须匹配 `.python-version`；`uv lock --check` 核对声明与锁 |
 | 静态与格式 | Ruff 0.16.9；对 `src`、`tests`、`scripts` 检查 E4/E7/E9/F/I 规则及格式 |
-| CPU 自检 | unittest 共七项：两项安装自检（隔离包入口、无运行依赖），五项纯回调契约测试（正常、遗漏/重复、错误步号、错误时间、错误 dt） |
+| CPU 自检 | unittest 自动发现：S06 契约测试（见检查摘要），原两项安装自检（隔离包入口、无运行依赖），五项纯回调契约测试（正常、遗漏/重复、错误步号、错误时间、错误 dt） |
 | 环境一致性 | `uv pip check` 检查项目环境 |
-| 构建与 wheel | 禁用构建包缓存，生成 sdist 并由其构建 wheel；新建独立环境，只安装 wheel，重跑七项自检与依赖检查；回调契约测试读取仓库脚本，不表示脚本已装入 wheel |
+| 构建与 wheel | 禁用构建包缓存，生成 sdist 并由其构建 wheel；新建独立环境，只安装 wheel，重跑全部 unittest 与依赖检查；回调契约测试读取仓库脚本，不表示脚本已装入 wheel |
 
 每次构建使用独立临时目录，完成或异常退出时清理。失败命令会显示在控制台，必要日志应保存在新的本地运行目录。指定 Python 安装可以复用；这不等于重新下载所有工具或完全离线复现。标准错误中的工具进度输出本身不代表失败，以退出码为准。
 
@@ -32,7 +32,7 @@ Ruff 是 MIT 许可的开发工具，精确版本与下载摘要由 `uv.lock` �
 uv run --locked python -m ruff format src tests scripts
 ```
 
-更新工具时修改 `pyproject.toml`，运行 `uv lock`，再跑统一入口；版本升级属于新的审阅差异。没有加入类型检查器、覆盖率门槛或领域约束测试；应在后续实现有相应契约和行为后扩充。
+更新工具时修改 `pyproject.toml`，运行 `uv lock`，再跑统一入口；版本升级属于新的审阅差异。S06 已加入静态领域/接口约束测试；尚无类型检查器或覆盖率门槛。源码改变后可先用 `uv sync --locked --no-editable --reinstall-package adaptive-hrc-scheduling` 重建本地安装，避免旧非 editable 构建缓存；统一入口另以独立 wheel 安装复验。
 
 ## GitHub Actions
 

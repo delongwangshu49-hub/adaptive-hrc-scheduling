@@ -1,0 +1,27 @@
+{
+  "algorithm_id": "not_implemented",
+  "backend": "event",
+  "code_revision": "example.uncommitted",
+  "configuration_id": "toy.S06",
+  "configuration_sha256": "4ec9fc18fbe25f5dd7807299d9cf8238f230f20a50aab5ca022312c1a1fdcf79",
+  "decision_budget_ms": 1.0,
+  "decision_seed": 0,
+  "dependency_lock_sha256": "3a328b78c1e737d91f8811c628ca6bfe9e0c9eca5a8a4f825f07eb7780579cd1",
+  "fatigue_cap": 0.8,
+  "kind": "run_manifest",
+  "observation_window_min": 40.0,
+  "run_id": "example.run",
+  "scenario_seed": 0,
+  "scenario_sha256": "634a14af6af096521021f4580d64540bfc6345b20295934331540e3531881197",
+  "schema_version": "S06-1.0",
+  "solver_pauses_simulation": true,
+  "status": "planned",
+  "termination_reason": null,
+  "units": {
+    "capacity": "count",
+    "exposure": "min",
+    "fatigue": "dimensionless",
+    "rate": "min^-1",
+    "time": "min"
+  }
+}

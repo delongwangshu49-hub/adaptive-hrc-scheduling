@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.7.2，整理日期为 2026-10-01。本次补录 S05 r2 真实批准、完成性审阅及两项有限修复授权。r2 已发布，r3 新快照待独立验收与上传批准；历史记录保留各自时点语义。
+版本为 0.8.0，整理日期为 2026-10-01。本次 PR042 补录 S05 r3 真实批准，PR043 记录 S06 本地实施与审阅授权。S06 尚无人工验收或上传批准；历史记录保留各自时点语义。
 
 ## 记录规则
 
@@ -46,7 +46,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.7.2",
+  "document_version": "0.8.0",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -1432,6 +1432,81 @@
         "PROGRESS_LOG.md"
       ],
       "limit": "NO_R3_MODEL_ACCEPTANCE_OR_PUBLICATION_APPROVAL"
+    },
+    {
+      "id": "PR042",
+      "date": "2026-10-01",
+      "record_type": "RETROSPECTIVE_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S05_R3_EXACT_SNAPSHOT",
+        "parameters": {
+          "step_id": "S05",
+          "packet_id": "S05-20261001-r3",
+          "packet_sha256": "bf68fcf1dc78d4bc38dfd4c045764a818bbefae8f70b2ba3f1160904c51bca61",
+          "decision": "ACCEPTED_AND_APPROVED",
+          "decision_ref": "S05-R3-APPROVAL-001",
+          "permitted_remote_actions": [
+            "RECORD_OWNER_ACCEPTANCE_OF_R3_ADDENDUM",
+            "STAGE_EXACT_SIX_FILES",
+            "ONE_CHILD_COMMIT_ON_MAIN",
+            "NEW_ANNOTATED_STEP_S05_R3",
+            "PUSH_MAIN_AND_STEP_S05_R3",
+            "VERIFY_FULL_TREE_HISTORY_TAGS_AND_MATCHING_TWO_PLATFORM_CI"
+          ]
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_R3_ADDENDUM_AND_APPROVED_EXACT_PUBLICATION"
+      ],
+      "assistant_support": [
+        "VERIFIED_APPROVAL_PUBLICATION_AND_TWO_PLATFORM_CI_RECEIPTS"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S06.md"
+      ],
+      "limit": "S05_APPROVAL_DOES_NOT_AUTHORIZE_S06_UPLOAD"
+    },
+    {
+      "id": "PR043",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "START_STEP",
+        "target": "S06_DOMAIN_AND_INTERFACE_CONTRACTS",
+        "parameters": {
+          "step_id": "S06",
+          "branch": "main",
+          "create_branch": false,
+          "create_worktree": false,
+          "local_scope": [
+            "DOMAIN_OBJECTS",
+            "VERSIONED_CONTRACTS_AND_SCHEMAS",
+            "EXAMPLES_AND_TESTS",
+            "S05_RECEIPT_BACKFILL",
+            "REVIEW_PACKET"
+          ],
+          "start_S07": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_LOCAL_S06_IMPLEMENTATION_CHECKS_AND_REVIEW"
+      ],
+      "assistant_support": [
+        "IMPLEMENTED_STATIC_CONTRACTS",
+        "CHECKED_NEGATIVE_CASES_AND_SERIALIZATION",
+        "PREPARED_REVIEW_SNAPSHOT"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "docs/steps/S06.md",
+        "docs/contracts.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_S06_ACCEPTANCE_OR_UPLOAD_APPROVAL_NO_SIMULATION_CLAIM"
     }
   ]
 }
@@ -1470,3 +1545,5 @@ PR032 仅补录 S04 r1 既有批准；PR033 记录发布后审阅。PR034 单独
 PR037 记录负责人对规模与论证力度的质疑；PR038 授权依建议开展 S05 本地优化，完成后重新呈交并索要上传权限。方向授权不等于确切新快照已被验收或允许上传，S06 未启动。
 
 PR039 仅补录 S05 r2 建模基线与确切快照的实际批准；PR040 为完成性与逻辑审阅；PR041 仅授权两项缺口的本地有限修复，不包含 r3 上传或 S06 启动。
+
+PR042 仅补录 S05 r3 确切快照的实际验收和上传批准；PR043 单独授权 S06 本地实现、检查及审阅包，覆盖历史未启动状态，不继承 S05 上传许可，不启动 S07。

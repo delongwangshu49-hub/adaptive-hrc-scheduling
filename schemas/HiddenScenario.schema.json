@@ -1,0 +1,130 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "HiddenScenario": {
+      "additionalProperties": false,
+      "properties": {
+        "configuration_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/WorldEvent"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "enum": [
+            "hidden_scenario"
+          ]
+        },
+        "scenario_seed": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_version": {
+          "enum": [
+            "S06-1.0"
+          ]
+        },
+        "units": {
+          "$ref": "#/$defs/Units"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "configuration_id",
+        "units",
+        "scenario_seed",
+        "events"
+      ],
+      "type": "object"
+    },
+    "Units": {
+      "additionalProperties": false,
+      "properties": {
+        "capacity": {
+          "enum": [
+            "count"
+          ]
+        },
+        "exposure": {
+          "enum": [
+            "min"
+          ]
+        },
+        "fatigue": {
+          "enum": [
+            "dimensionless"
+          ]
+        },
+        "rate": {
+          "enum": [
+            "min^-1"
+          ]
+        },
+        "time": {
+          "enum": [
+            "min"
+          ]
+        }
+      },
+      "required": [
+        "time",
+        "rate",
+        "fatigue",
+        "exposure",
+        "capacity"
+      ],
+      "type": "object"
+    },
+    "WorldEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "release_allowed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sim_time_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "type": {
+          "enum": [
+            "release",
+            "cancel",
+            "failure",
+            "repair"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "sim_time_min",
+        "type",
+        "entity_id",
+        "release_allowed"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/HiddenScenario",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HiddenScenario"
+}

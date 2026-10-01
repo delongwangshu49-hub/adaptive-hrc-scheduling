@@ -1,0 +1,1466 @@
+{
+  "allocations": [
+    {
+      "crane_id": null,
+      "equipment_id": "CS1_M",
+      "fixture_id": null,
+      "id": "q.CUT.H.CS1.W1.none",
+      "robot_id": null,
+      "route_id": null,
+      "skill": "CUT",
+      "station_id": "CS1",
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": "CS1_M",
+      "fixture_id": null,
+      "id": "q.CUT.H.CS1.W2.none",
+      "robot_id": null,
+      "route_id": null,
+      "skill": "CUT",
+      "station_id": "CS1",
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": "CS1_M",
+      "fixture_id": null,
+      "id": "q.CUT.R.CS1.W1.R1",
+      "robot_id": "R1",
+      "route_id": null,
+      "skill": "CUT",
+      "station_id": "CS1",
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": "CS1_M",
+      "fixture_id": null,
+      "id": "q.CUT.R.CS1.W2.R1",
+      "robot_id": "R1",
+      "route_id": null,
+      "skill": "CUT",
+      "station_id": "CS1",
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": null,
+      "fixture_id": null,
+      "id": "q.BRACKET.H.PS1.W1.none",
+      "robot_id": null,
+      "route_id": null,
+      "skill": "BRACKET",
+      "station_id": "PS1",
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": null,
+      "fixture_id": null,
+      "id": "q.BRACKET.H.PS1.W2.none",
+      "robot_id": null,
+      "route_id": null,
+      "skill": "BRACKET",
+      "station_id": "PS1",
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": null,
+      "fixture_id": "AS1_X",
+      "id": "q.ASSEMBLE.H.AS1.W1.none",
+      "robot_id": null,
+      "route_id": null,
+      "skill": "ASSEMBLE",
+      "station_id": "AS1",
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": null,
+      "fixture_id": "AS1_X",
+      "id": "q.ASSEMBLE.H.AS1.W2.none",
+      "robot_id": null,
+      "route_id": null,
+      "skill": "ASSEMBLE",
+      "station_id": "AS1",
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": null,
+      "fixture_id": "AS1_X",
+      "id": "q.ASSEMBLE.HR.AS1.W1.R1",
+      "robot_id": "R1",
+      "route_id": null,
+      "skill": "ASSEMBLE",
+      "station_id": "AS1",
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": null,
+      "fixture_id": "AS1_X",
+      "id": "q.ASSEMBLE.HR.AS1.W2.R1",
+      "robot_id": "R1",
+      "route_id": null,
+      "skill": "ASSEMBLE",
+      "station_id": "AS1",
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": "WS1_M",
+      "fixture_id": "WS1_X",
+      "id": "q.WELD.R.WS1.W2.R1",
+      "robot_id": "R1",
+      "route_id": null,
+      "skill": "WELD",
+      "station_id": "WS1",
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": "WS1_M",
+      "fixture_id": "WS1_X",
+      "id": "q.WELD.HR.WS1.W2.R1",
+      "robot_id": "R1",
+      "route_id": null,
+      "skill": "WELD",
+      "station_id": "WS1",
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": "IS1_M",
+      "fixture_id": "IS1_X",
+      "id": "q.INSPECT.H.IS1.W1.none",
+      "robot_id": null,
+      "route_id": null,
+      "skill": "INSPECT",
+      "station_id": "IS1",
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": null,
+      "equipment_id": "IS1_M",
+      "fixture_id": "IS1_X",
+      "id": "q.INSPECT.H.IS1.W2.none",
+      "robot_id": null,
+      "route_id": null,
+      "skill": "INSPECT",
+      "station_id": "IS1",
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": "WS1_X",
+      "id": "q.transfer.AS1.WS1.W1",
+      "robot_id": null,
+      "route_id": "route.AS1.WS1",
+      "skill": "TRANSFER",
+      "station_id": "WS1",
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": "WS1_X",
+      "id": "q.transfer.AS1.WS1.W2",
+      "robot_id": null,
+      "route_id": "route.AS1.WS1",
+      "skill": "TRANSFER",
+      "station_id": "WS1",
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": null,
+      "id": "q.transfer.AS1.SCRAP.W1",
+      "robot_id": null,
+      "route_id": "route.AS1.SCRAP",
+      "skill": "TRANSFER",
+      "station_id": null,
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": null,
+      "id": "q.transfer.AS1.SCRAP.W2",
+      "robot_id": null,
+      "route_id": "route.AS1.SCRAP",
+      "skill": "TRANSFER",
+      "station_id": null,
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": "IS1_X",
+      "id": "q.transfer.WS1.IS1.W1",
+      "robot_id": null,
+      "route_id": "route.WS1.IS1",
+      "skill": "TRANSFER",
+      "station_id": "IS1",
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": "IS1_X",
+      "id": "q.transfer.WS1.IS1.W2",
+      "robot_id": null,
+      "route_id": "route.WS1.IS1",
+      "skill": "TRANSFER",
+      "station_id": "IS1",
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": null,
+      "id": "q.transfer.WS1.SCRAP.W1",
+      "robot_id": null,
+      "route_id": "route.WS1.SCRAP",
+      "skill": "TRANSFER",
+      "station_id": null,
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": null,
+      "id": "q.transfer.WS1.SCRAP.W2",
+      "robot_id": null,
+      "route_id": "route.WS1.SCRAP",
+      "skill": "TRANSFER",
+      "station_id": null,
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": null,
+      "id": "q.transfer.IS1.SCRAP.W1",
+      "robot_id": null,
+      "route_id": "route.IS1.SCRAP",
+      "skill": "TRANSFER",
+      "station_id": null,
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": null,
+      "id": "q.transfer.IS1.SCRAP.W2",
+      "robot_id": null,
+      "route_id": "route.IS1.SCRAP",
+      "skill": "TRANSFER",
+      "station_id": null,
+      "worker_id": "W2"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": null,
+      "id": "q.transfer.IS1.FINISHED.W1",
+      "robot_id": null,
+      "route_id": "route.IS1.FINISHED",
+      "skill": "TRANSFER",
+      "station_id": null,
+      "worker_id": "W1"
+    },
+    {
+      "crane_id": "G1",
+      "equipment_id": null,
+      "fixture_id": null,
+      "id": "q.transfer.IS1.FINISHED.W2",
+      "robot_id": null,
+      "route_id": "route.IS1.FINISHED",
+      "skill": "TRANSFER",
+      "station_id": null,
+      "worker_id": "W2"
+    }
+  ],
+  "cleanup_piece_min": 1.0,
+  "fatigue_cap": 0.8,
+  "id": "toy.S06",
+  "kind": "configuration",
+  "materials": [
+    {
+      "available_at": "handoff",
+      "consumer_id": "J1.A1",
+      "id": "J1.C1_out",
+      "kind": "pipe",
+      "movement": "feed",
+      "order_id": "J1",
+      "producer_id": "J1.C1",
+      "quantity": 1,
+      "storage_ids": [
+        "PIPE_BUFFER"
+      ]
+    },
+    {
+      "available_at": "release",
+      "consumer_id": "J1.C1",
+      "id": "J1.C1.raw",
+      "kind": "raw",
+      "movement": "raw_at_release",
+      "order_id": "J1",
+      "producer_id": null,
+      "quantity": 1,
+      "storage_ids": [
+        "RAW"
+      ]
+    },
+    {
+      "available_at": "handoff",
+      "consumer_id": "J1.A1",
+      "id": "J1.B1_out",
+      "kind": "bracket",
+      "movement": "feed",
+      "order_id": "J1",
+      "producer_id": "J1.B1",
+      "quantity": 1,
+      "storage_ids": [
+        "BRACKET_BUFFER"
+      ]
+    },
+    {
+      "available_at": "release",
+      "consumer_id": "J1.B1",
+      "id": "J1.B1.raw",
+      "kind": "raw",
+      "movement": "raw_at_release",
+      "order_id": "J1",
+      "producer_id": null,
+      "quantity": 1,
+      "storage_ids": [
+        "RAW"
+      ]
+    },
+    {
+      "available_at": "handoff",
+      "consumer_id": "J1.W1",
+      "id": "J1.A1_out",
+      "kind": "module",
+      "movement": "crane",
+      "order_id": "J1",
+      "producer_id": "J1.A1",
+      "quantity": 1,
+      "storage_ids": [
+        "AS1"
+      ]
+    },
+    {
+      "available_at": "handoff",
+      "consumer_id": "J1.I1",
+      "id": "J1.W1_out",
+      "kind": "module",
+      "movement": "crane",
+      "order_id": "J1",
+      "producer_id": "J1.W1",
+      "quantity": 1,
+      "storage_ids": [
+        "WS1"
+      ]
+    },
+    {
+      "available_at": "work",
+      "consumer_id": "J1.L1",
+      "id": "J1.I1_out",
+      "kind": "module",
+      "movement": "crane",
+      "order_id": "J1",
+      "producer_id": "J1.I1",
+      "quantity": 1,
+      "storage_ids": [
+        "IS1"
+      ]
+    },
+    {
+      "available_at": "unload",
+      "consumer_id": null,
+      "id": "J1.L1_out",
+      "kind": "finished",
+      "movement": "retained",
+      "order_id": "J1",
+      "producer_id": "J1.L1",
+      "quantity": 1,
+      "storage_ids": [
+        "FINISHED"
+      ]
+    }
+  ],
+  "modes": [
+    {
+      "allocation_ids": [
+        "q.CUT.H.CS1.W1.none",
+        "q.CUT.H.CS1.W2.none"
+      ],
+      "freeze_at": "setup",
+      "held_roles": [
+        "station",
+        "equipment"
+      ],
+      "id": "mode.CUT.H",
+      "name": "H",
+      "operation_kind": "CUT",
+      "phases": [
+        {
+          "active_roles": [
+            "worker",
+            "equipment"
+          ],
+          "activity": "work",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "setup",
+          "interruption": "resume",
+          "predecessors": [],
+          "requires_preparation": false
+        },
+        {
+          "active_roles": [
+            "worker",
+            "equipment"
+          ],
+          "activity": "work",
+          "base_min": 4.0,
+          "cancel_boundary": "handoff_then_clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": true,
+          "id": "work",
+          "interruption": "restart",
+          "predecessors": [
+            "setup"
+          ],
+          "requires_preparation": false
+        },
+        {
+          "active_roles": [
+            "worker",
+            "equipment"
+          ],
+          "activity": "carry",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "handoff",
+          "interruption": "resume",
+          "predecessors": [
+            "work"
+          ],
+          "requires_preparation": false
+        }
+      ],
+      "preparation_phase_id": null,
+      "switch_after": null
+    },
+    {
+      "allocation_ids": [
+        "q.CUT.R.CS1.W1.R1",
+        "q.CUT.R.CS1.W2.R1"
+      ],
+      "freeze_at": "setup",
+      "held_roles": [
+        "station",
+        "equipment"
+      ],
+      "id": "mode.CUT.R",
+      "name": "R",
+      "operation_kind": "CUT",
+      "phases": [
+        {
+          "active_roles": [
+            "worker",
+            "equipment",
+            "robot"
+          ],
+          "activity": "work",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": true,
+          "fatigue_sensitive": false,
+          "id": "setup",
+          "interruption": "resume",
+          "predecessors": [],
+          "requires_preparation": false
+        },
+        {
+          "active_roles": [
+            "equipment",
+            "robot"
+          ],
+          "activity": null,
+          "base_min": 3.0,
+          "cancel_boundary": "handoff_then_clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "work",
+          "interruption": "restart",
+          "predecessors": [
+            "setup"
+          ],
+          "requires_preparation": true
+        },
+        {
+          "active_roles": [
+            "worker",
+            "equipment"
+          ],
+          "activity": "carry",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "handoff",
+          "interruption": "resume",
+          "predecessors": [
+            "work"
+          ],
+          "requires_preparation": false
+        }
+      ],
+      "preparation_phase_id": "setup",
+      "switch_after": null
+    },
+    {
+      "allocation_ids": [
+        "q.BRACKET.H.PS1.W1.none",
+        "q.BRACKET.H.PS1.W2.none"
+      ],
+      "freeze_at": "work",
+      "held_roles": [
+        "station"
+      ],
+      "id": "mode.BRACKET.H",
+      "name": "H",
+      "operation_kind": "BRACKET",
+      "phases": [
+        {
+          "active_roles": [
+            "worker"
+          ],
+          "activity": "work",
+          "base_min": 3.0,
+          "cancel_boundary": "handoff_then_clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": true,
+          "id": "work",
+          "interruption": "resume",
+          "predecessors": [],
+          "requires_preparation": false
+        },
+        {
+          "active_roles": [
+            "worker"
+          ],
+          "activity": "carry",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "handoff",
+          "interruption": "resume",
+          "predecessors": [
+            "work"
+          ],
+          "requires_preparation": false
+        }
+      ],
+      "preparation_phase_id": null,
+      "switch_after": null
+    },
+    {
+      "allocation_ids": [
+        "q.ASSEMBLE.H.AS1.W1.none",
+        "q.ASSEMBLE.H.AS1.W2.none"
+      ],
+      "freeze_at": "work",
+      "held_roles": [
+        "station",
+        "fixture"
+      ],
+      "id": "mode.ASSEMBLE.H",
+      "name": "H",
+      "operation_kind": "ASSEMBLE",
+      "phases": [
+        {
+          "active_roles": [
+            "worker"
+          ],
+          "activity": "carry",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "setup",
+          "interruption": "resume",
+          "predecessors": [],
+          "requires_preparation": false
+        },
+        {
+          "active_roles": [
+            "worker"
+          ],
+          "activity": "work",
+          "base_min": 4.0,
+          "cancel_boundary": "handoff_then_clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": true,
+          "id": "work",
+          "interruption": "resume",
+          "predecessors": [
+            "setup"
+          ],
+          "requires_preparation": false
+        },
+        {
+          "active_roles": [
+            "worker"
+          ],
+          "activity": "supervise",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "handoff",
+          "interruption": "resume",
+          "predecessors": [
+            "work"
+          ],
+          "requires_preparation": false
+        }
+      ],
+      "preparation_phase_id": null,
+      "switch_after": "setup"
+    },
+    {
+      "allocation_ids": [
+        "q.ASSEMBLE.HR.AS1.W1.R1",
+        "q.ASSEMBLE.HR.AS1.W2.R1"
+      ],
+      "freeze_at": "align",
+      "held_roles": [
+        "station",
+        "fixture"
+      ],
+      "id": "mode.ASSEMBLE.HR",
+      "name": "HR",
+      "operation_kind": "ASSEMBLE",
+      "phases": [
+        {
+          "active_roles": [
+            "worker"
+          ],
+          "activity": "carry",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "setup",
+          "interruption": "resume",
+          "predecessors": [],
+          "requires_preparation": false
+        },
+        {
+          "active_roles": [
+            "worker",
+            "robot"
+          ],
+          "activity": "supervise",
+          "base_min": 0.5,
+          "cancel_boundary": "clear",
+          "establishes_preparation": true,
+          "fatigue_sensitive": false,
+          "id": "align",
+          "interruption": "resume",
+          "predecessors": [
+            "setup"
+          ],
+          "requires_preparation": false
+        },
+        {
+          "active_roles": [
+            "worker",
+            "robot"
+          ],
+          "activity": "collaborate",
+          "base_min": 2.0,
+          "cancel_boundary": "handoff_then_clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": true,
+          "id": "work",
+          "interruption": "resume",
+          "predecessors": [
+            "align"
+          ],
+          "requires_preparation": true
+        },
+        {
+          "active_roles": [
+            "worker"
+          ],
+          "activity": "supervise",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "handoff",
+          "interruption": "resume",
+          "predecessors": [
+            "work"
+          ],
+          "requires_preparation": false
+        }
+      ],
+      "preparation_phase_id": "align",
+      "switch_after": "setup"
+    },
+    {
+      "allocation_ids": [
+        "q.WELD.R.WS1.W2.R1"
+      ],
+      "freeze_at": "work",
+      "held_roles": [
+        "station",
+        "fixture",
+        "equipment"
+      ],
+      "id": "mode.WELD.R",
+      "name": "R",
+      "operation_kind": "WELD",
+      "phases": [
+        {
+          "active_roles": [
+            "worker",
+            "equipment",
+            "robot"
+          ],
+          "activity": "work",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": true,
+          "fatigue_sensitive": false,
+          "id": "setup",
+          "interruption": "resume",
+          "predecessors": [],
+          "requires_preparation": false
+        },
+        {
+          "active_roles": [
+            "equipment",
+            "robot"
+          ],
+          "activity": null,
+          "base_min": 3.0,
+          "cancel_boundary": "handoff_then_clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "work",
+          "interruption": "restart",
+          "predecessors": [
+            "setup"
+          ],
+          "requires_preparation": true
+        },
+        {
+          "active_roles": [
+            "worker",
+            "equipment"
+          ],
+          "activity": "supervise",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "handoff",
+          "interruption": "resume",
+          "predecessors": [
+            "work"
+          ],
+          "requires_preparation": false
+        }
+      ],
+      "preparation_phase_id": "setup",
+      "switch_after": "setup"
+    },
+    {
+      "allocation_ids": [
+        "q.WELD.HR.WS1.W2.R1"
+      ],
+      "freeze_at": "work",
+      "held_roles": [
+        "station",
+        "fixture",
+        "equipment"
+      ],
+      "id": "mode.WELD.HR",
+      "name": "HR",
+      "operation_kind": "WELD",
+      "phases": [
+        {
+          "active_roles": [
+            "worker",
+            "equipment",
+            "robot"
+          ],
+          "activity": "work",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": true,
+          "fatigue_sensitive": false,
+          "id": "setup",
+          "interruption": "resume",
+          "predecessors": [],
+          "requires_preparation": false
+        },
+        {
+          "active_roles": [
+            "worker",
+            "equipment",
+            "robot"
+          ],
+          "activity": "collaborate",
+          "base_min": 2.5,
+          "cancel_boundary": "handoff_then_clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": true,
+          "id": "work",
+          "interruption": "restart",
+          "predecessors": [
+            "setup"
+          ],
+          "requires_preparation": true
+        },
+        {
+          "active_roles": [
+            "worker",
+            "equipment"
+          ],
+          "activity": "supervise",
+          "base_min": 1.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": false,
+          "id": "handoff",
+          "interruption": "resume",
+          "predecessors": [
+            "work"
+          ],
+          "requires_preparation": false
+        }
+      ],
+      "preparation_phase_id": "setup",
+      "switch_after": "setup"
+    },
+    {
+      "allocation_ids": [
+        "q.INSPECT.H.IS1.W1.none",
+        "q.INSPECT.H.IS1.W2.none"
+      ],
+      "freeze_at": "work",
+      "held_roles": [
+        "station",
+        "fixture"
+      ],
+      "id": "mode.INSPECT.H",
+      "name": "H",
+      "operation_kind": "INSPECT",
+      "phases": [
+        {
+          "active_roles": [
+            "worker",
+            "equipment"
+          ],
+          "activity": "work",
+          "base_min": 2.0,
+          "cancel_boundary": "clear",
+          "establishes_preparation": false,
+          "fatigue_sensitive": true,
+          "id": "work",
+          "interruption": "resume",
+          "predecessors": [],
+          "requires_preparation": false
+        }
+      ],
+      "preparation_phase_id": null,
+      "switch_after": null
+    },
+    {
+      "allocation_ids": [],
+      "freeze_at": "preposition",
+      "held_roles": [],
+      "id": "mode.LIFT.H",
+      "name": "H",
+      "operation_kind": "LIFT",
+      "phases": [],
+      "preparation_phase_id": null,
+      "switch_after": null
+    }
+  ],
+  "observation_window_min": 40.0,
+  "operations": [
+    {
+      "duration_overrides": [],
+      "feed_space_id": null,
+      "id": "J1.C1",
+      "input_ids": [
+        "J1.C1.raw"
+      ],
+      "kind": "CUT",
+      "mode_ids": [
+        "mode.CUT.H",
+        "mode.CUT.R"
+      ],
+      "order_id": "J1",
+      "output_id": "J1.C1_out",
+      "predecessors": [],
+      "process_group_id": "J1.C1.process",
+      "transfers": []
+    },
+    {
+      "duration_overrides": [],
+      "feed_space_id": null,
+      "id": "J1.B1",
+      "input_ids": [
+        "J1.B1.raw"
+      ],
+      "kind": "BRACKET",
+      "mode_ids": [
+        "mode.BRACKET.H"
+      ],
+      "order_id": "J1",
+      "output_id": "J1.B1_out",
+      "predecessors": [],
+      "process_group_id": "J1.B1.process",
+      "transfers": []
+    },
+    {
+      "duration_overrides": [],
+      "feed_space_id": "FEED_ROUTE",
+      "id": "J1.A1",
+      "input_ids": [
+        "J1.C1_out",
+        "J1.B1_out"
+      ],
+      "kind": "ASSEMBLE",
+      "mode_ids": [
+        "mode.ASSEMBLE.H",
+        "mode.ASSEMBLE.HR"
+      ],
+      "order_id": "J1",
+      "output_id": "J1.A1_out",
+      "predecessors": [
+        "J1.C1",
+        "J1.B1"
+      ],
+      "process_group_id": "J1.A1.process",
+      "transfers": []
+    },
+    {
+      "duration_overrides": [],
+      "feed_space_id": null,
+      "id": "J1.W1",
+      "input_ids": [
+        "J1.A1_out"
+      ],
+      "kind": "WELD",
+      "mode_ids": [
+        "mode.WELD.R",
+        "mode.WELD.HR"
+      ],
+      "order_id": "J1",
+      "output_id": "J1.W1_out",
+      "predecessors": [
+        "J1.A1"
+      ],
+      "process_group_id": "J1.W1.process",
+      "transfers": [
+        {
+          "allocation_ids": [
+            "q.transfer.AS1.WS1.W1",
+            "q.transfer.AS1.WS1.W2"
+          ],
+          "id": "J1.W1.in.A1_out",
+          "material_id": "J1.A1_out",
+          "reserve_all_receiving_slots": false,
+          "wait_for_reset": false
+        }
+      ]
+    },
+    {
+      "duration_overrides": [],
+      "feed_space_id": null,
+      "id": "J1.I1",
+      "input_ids": [
+        "J1.W1_out"
+      ],
+      "kind": "INSPECT",
+      "mode_ids": [
+        "mode.INSPECT.H"
+      ],
+      "order_id": "J1",
+      "output_id": "J1.I1_out",
+      "predecessors": [
+        "J1.W1"
+      ],
+      "process_group_id": "J1.I1.process",
+      "transfers": [
+        {
+          "allocation_ids": [
+            "q.transfer.WS1.IS1.W1",
+            "q.transfer.WS1.IS1.W2"
+          ],
+          "id": "J1.I1.in.W1_out",
+          "material_id": "J1.W1_out",
+          "reserve_all_receiving_slots": false,
+          "wait_for_reset": false
+        }
+      ]
+    },
+    {
+      "duration_overrides": [],
+      "feed_space_id": null,
+      "id": "J1.L1",
+      "input_ids": [
+        "J1.I1_out"
+      ],
+      "kind": "LIFT",
+      "mode_ids": [
+        "mode.LIFT.H"
+      ],
+      "order_id": "J1",
+      "output_id": "J1.L1_out",
+      "predecessors": [
+        "J1.I1"
+      ],
+      "process_group_id": null,
+      "transfers": [
+        {
+          "allocation_ids": [
+            "q.transfer.IS1.FINISHED.W1",
+            "q.transfer.IS1.FINISHED.W2"
+          ],
+          "id": "J1.L1.in.I1_out",
+          "material_id": "J1.I1_out",
+          "reserve_all_receiving_slots": false,
+          "wait_for_reset": false
+        }
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "due_min": 32.0,
+      "family": "F1",
+      "id": "J1",
+      "release_min": 0.0,
+      "required_finished_ids": [
+        "J1.L1_out"
+      ],
+      "weight": 2.0
+    }
+  ],
+  "protective_rest_min": 1.0,
+  "provenance": "PROJECT_CHOICE_SYNTHETIC_UNCALIBRATED",
+  "resources": [
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "W1",
+      "kind": "worker",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [
+        "CUT",
+        "BRACKET",
+        "ASSEMBLE",
+        "INSPECT",
+        "TRANSFER"
+      ],
+      "station_id": null,
+      "worker_parameters": {
+        "carry_per_min": 0.03,
+        "collaborate_per_min": 0.01,
+        "initial_f": 0.1,
+        "recovery_per_min": 0.025,
+        "speed_kappa": 1.0,
+        "supervise_per_min": 0.005,
+        "wait_per_min": 0.002,
+        "work_per_min": 0.02
+      }
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "W2",
+      "kind": "worker",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [
+        "CUT",
+        "BRACKET",
+        "ASSEMBLE",
+        "INSPECT",
+        "TRANSFER",
+        "WELD"
+      ],
+      "station_id": null,
+      "worker_parameters": {
+        "carry_per_min": 0.03,
+        "collaborate_per_min": 0.01,
+        "initial_f": 0.2,
+        "recovery_per_min": 0.02,
+        "speed_kappa": 1.0,
+        "supervise_per_min": 0.005,
+        "wait_per_min": 0.002,
+        "work_per_min": 0.02
+      }
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "R1",
+      "kind": "robot",
+      "reachable_station_ids": [
+        "CS1",
+        "AS1",
+        "WS1"
+      ],
+      "receiving_slots": 0,
+      "skills": [
+        "CUT",
+        "ASSEMBLE",
+        "WELD"
+      ],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "CS1",
+      "kind": "station",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [
+        "CUT"
+      ],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "PS1",
+      "kind": "station",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [
+        "BRACKET"
+      ],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "AS1",
+      "kind": "station",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [
+        "ASSEMBLE"
+      ],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "WS1",
+      "kind": "station",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [
+        "WELD"
+      ],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "IS1",
+      "kind": "station",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [
+        "INSPECT"
+      ],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "CS1_M",
+      "kind": "equipment",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": "CS1",
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "WS1_M",
+      "kind": "equipment",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": "WS1",
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "IS1_M",
+      "kind": "equipment",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": "IS1",
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "AS1_X",
+      "kind": "fixture",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": "AS1",
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "WS1_X",
+      "kind": "fixture",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": "WS1",
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "IS1_X",
+      "kind": "fixture",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": "IS1",
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "G1",
+      "kind": "crane",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "FEED_ROUTE",
+      "kind": "space",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "LIFT_ROUTE",
+      "kind": "space",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": 1,
+      "id": "SCRAP_RECEIVE",
+      "kind": "space",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [
+        "pipe"
+      ],
+      "capacity": 1,
+      "id": "PIPE_BUFFER",
+      "kind": "buffer",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [
+        "bracket"
+      ],
+      "capacity": 1,
+      "id": "BRACKET_BUFFER",
+      "kind": "buffer",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": null,
+      "id": "RAW",
+      "kind": "terminal",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": null,
+      "id": "FINISHED",
+      "kind": "terminal",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": null,
+      "worker_parameters": null
+    },
+    {
+      "accepted_materials": [],
+      "capacity": null,
+      "id": "SCRAP",
+      "kind": "terminal",
+      "reachable_station_ids": [],
+      "receiving_slots": 0,
+      "skills": [],
+      "station_id": null,
+      "worker_parameters": null
+    }
+  ],
+  "routes": [
+    {
+      "id": "route.AS1.WS1",
+      "kind": "crane",
+      "move_min": 2.0,
+      "preposition_min": 1.0,
+      "reset_min": 1.0,
+      "rig_min": 1.0,
+      "source_id": "AS1",
+      "space_id": "LIFT_ROUTE",
+      "target_id": "WS1",
+      "unload_min": 1.0
+    },
+    {
+      "id": "route.AS1.SCRAP",
+      "kind": "crane",
+      "move_min": 2.0,
+      "preposition_min": 1.0,
+      "reset_min": 1.0,
+      "rig_min": 1.0,
+      "source_id": "AS1",
+      "space_id": "LIFT_ROUTE",
+      "target_id": "SCRAP",
+      "unload_min": 1.0
+    },
+    {
+      "id": "route.WS1.IS1",
+      "kind": "crane",
+      "move_min": 2.0,
+      "preposition_min": 1.0,
+      "reset_min": 1.0,
+      "rig_min": 1.0,
+      "source_id": "WS1",
+      "space_id": "LIFT_ROUTE",
+      "target_id": "IS1",
+      "unload_min": 1.0
+    },
+    {
+      "id": "route.WS1.SCRAP",
+      "kind": "crane",
+      "move_min": 2.0,
+      "preposition_min": 1.0,
+      "reset_min": 1.0,
+      "rig_min": 1.0,
+      "source_id": "WS1",
+      "space_id": "LIFT_ROUTE",
+      "target_id": "SCRAP",
+      "unload_min": 1.0
+    },
+    {
+      "id": "route.IS1.SCRAP",
+      "kind": "crane",
+      "move_min": 2.0,
+      "preposition_min": 1.0,
+      "reset_min": 1.0,
+      "rig_min": 1.0,
+      "source_id": "IS1",
+      "space_id": "LIFT_ROUTE",
+      "target_id": "SCRAP",
+      "unload_min": 1.0
+    },
+    {
+      "id": "route.IS1.FINISHED",
+      "kind": "crane",
+      "move_min": 2.0,
+      "preposition_min": 1.0,
+      "reset_min": 1.0,
+      "rig_min": 1.0,
+      "source_id": "IS1",
+      "space_id": "LIFT_ROUTE",
+      "target_id": "FINISHED",
+      "unload_min": 1.0
+    }
+  ],
+  "schema_version": "S06-1.0",
+  "units": {
+    "capacity": "count",
+    "exposure": "min",
+    "fatigue": "dimensionless",
+    "rate": "min^-1",
+    "time": "min"
+  }
+}

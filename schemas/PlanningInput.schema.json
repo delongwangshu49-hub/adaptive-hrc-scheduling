@@ -1,0 +1,1131 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "Allocation": {
+      "additionalProperties": false,
+      "properties": {
+        "crane_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "equipment_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fixture_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "robot_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "route_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "skill": {
+          "enum": [
+            "CUT",
+            "BRACKET",
+            "ASSEMBLE",
+            "WELD",
+            "INSPECT",
+            "TRANSFER"
+          ]
+        },
+        "station_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "worker_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "skill",
+        "worker_id",
+        "robot_id",
+        "equipment_id",
+        "station_id",
+        "fixture_id",
+        "crane_id",
+        "route_id"
+      ],
+      "type": "object"
+    },
+    "Configuration": {
+      "additionalProperties": false,
+      "properties": {
+        "allocations": {
+          "items": {
+            "$ref": "#/$defs/Allocation"
+          },
+          "type": "array"
+        },
+        "cleanup_piece_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "fatigue_cap": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "configuration"
+          ]
+        },
+        "materials": {
+          "items": {
+            "$ref": "#/$defs/Material"
+          },
+          "type": "array"
+        },
+        "modes": {
+          "items": {
+            "$ref": "#/$defs/Mode"
+          },
+          "type": "array"
+        },
+        "observation_window_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "operations": {
+          "items": {
+            "$ref": "#/$defs/Operation"
+          },
+          "type": "array"
+        },
+        "orders": {
+          "items": {
+            "$ref": "#/$defs/Order"
+          },
+          "type": "array"
+        },
+        "protective_rest_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "provenance": {
+          "enum": [
+            "PROJECT_CHOICE_SYNTHETIC_UNCALIBRATED"
+          ]
+        },
+        "resources": {
+          "items": {
+            "$ref": "#/$defs/Resource"
+          },
+          "type": "array"
+        },
+        "routes": {
+          "items": {
+            "$ref": "#/$defs/Route"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "S06-1.0"
+          ]
+        },
+        "units": {
+          "$ref": "#/$defs/Units"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "id",
+        "units",
+        "provenance",
+        "fatigue_cap",
+        "protective_rest_min",
+        "observation_window_min",
+        "cleanup_piece_min",
+        "resources",
+        "routes",
+        "allocations",
+        "modes",
+        "orders",
+        "operations",
+        "materials"
+      ],
+      "type": "object"
+    },
+    "DurationOverride": {
+      "additionalProperties": false,
+      "properties": {
+        "base_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "mode_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "phase_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mode_id",
+        "phase_id",
+        "base_min"
+      ],
+      "type": "object"
+    },
+    "Estimate": {
+      "additionalProperties": false,
+      "properties": {
+        "available_estimate": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "exposure_estimate_min": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fatigue_estimate": {
+          "anyOf": [
+            {
+              "exclusiveMaximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "received_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "resource_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "sampled_min": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "resource_id",
+        "sampled_min",
+        "received_min",
+        "fatigue_estimate",
+        "exposure_estimate_min",
+        "available_estimate"
+      ],
+      "type": "object"
+    },
+    "KnownOrder": {
+      "additionalProperties": false,
+      "properties": {
+        "actual_completion_min": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cancel_observed_min": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completion_observed_min": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "order_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "released_observed_min": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "order_id",
+        "released_observed_min",
+        "cancel_observed_min",
+        "completion_observed_min",
+        "actual_completion_min"
+      ],
+      "type": "object"
+    },
+    "Material": {
+      "additionalProperties": false,
+      "properties": {
+        "available_at": {
+          "enum": [
+            "release",
+            "handoff",
+            "work",
+            "unload"
+          ]
+        },
+        "consumer_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "raw",
+            "pipe",
+            "bracket",
+            "module",
+            "finished"
+          ]
+        },
+        "movement": {
+          "enum": [
+            "raw_at_release",
+            "feed",
+            "crane",
+            "retained"
+          ]
+        },
+        "order_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "producer_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "quantity": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        "storage_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "order_id",
+        "kind",
+        "quantity",
+        "producer_id",
+        "consumer_id",
+        "storage_ids",
+        "movement",
+        "available_at"
+      ],
+      "type": "object"
+    },
+    "Mode": {
+      "additionalProperties": false,
+      "properties": {
+        "allocation_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "freeze_at": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "held_roles": {
+          "items": {
+            "enum": [
+              "worker",
+              "robot",
+              "equipment",
+              "station",
+              "fixture",
+              "crane",
+              "route"
+            ]
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "name": {
+          "enum": [
+            "H",
+            "R",
+            "HR"
+          ]
+        },
+        "operation_kind": {
+          "enum": [
+            "CUT",
+            "BRACKET",
+            "ASSEMBLE",
+            "WELD",
+            "INSPECT",
+            "LIFT"
+          ]
+        },
+        "phases": {
+          "items": {
+            "$ref": "#/$defs/Phase"
+          },
+          "type": "array"
+        },
+        "preparation_phase_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "switch_after": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "operation_kind",
+        "name",
+        "phases",
+        "allocation_ids",
+        "switch_after",
+        "freeze_at",
+        "preparation_phase_id",
+        "held_roles"
+      ],
+      "type": "object"
+    },
+    "Operation": {
+      "additionalProperties": false,
+      "properties": {
+        "duration_overrides": {
+          "items": {
+            "$ref": "#/$defs/DurationOverride"
+          },
+          "type": "array"
+        },
+        "feed_space_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "input_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "enum": [
+            "CUT",
+            "BRACKET",
+            "ASSEMBLE",
+            "WELD",
+            "INSPECT",
+            "LIFT"
+          ]
+        },
+        "mode_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "order_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "output_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "predecessors": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "process_group_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "transfers": {
+          "items": {
+            "$ref": "#/$defs/TransferGroup"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "order_id",
+        "kind",
+        "predecessors",
+        "mode_ids",
+        "input_ids",
+        "output_id",
+        "process_group_id",
+        "transfers",
+        "duration_overrides",
+        "feed_space_id"
+      ],
+      "type": "object"
+    },
+    "Order": {
+      "additionalProperties": false,
+      "properties": {
+        "due_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "family": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "release_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "required_finished_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "weight": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "family",
+        "release_min",
+        "due_min",
+        "weight",
+        "required_finished_ids"
+      ],
+      "type": "object"
+    },
+    "Phase": {
+      "additionalProperties": false,
+      "properties": {
+        "active_roles": {
+          "items": {
+            "enum": [
+              "worker",
+              "robot",
+              "equipment",
+              "station",
+              "fixture",
+              "crane",
+              "route"
+            ]
+          },
+          "type": "array"
+        },
+        "activity": {
+          "anyOf": [
+            {
+              "enum": [
+                "work",
+                "collaborate",
+                "carry",
+                "supervise",
+                "wait",
+                "rest"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "base_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "cancel_boundary": {
+          "enum": [
+            "clear",
+            "handoff_then_clear",
+            "unload_reset",
+            "reset"
+          ]
+        },
+        "establishes_preparation": {
+          "type": "boolean"
+        },
+        "fatigue_sensitive": {
+          "type": "boolean"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "interruption": {
+          "enum": [
+            "restart",
+            "resume"
+          ]
+        },
+        "predecessors": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requires_preparation": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "predecessors",
+        "base_min",
+        "active_roles",
+        "activity",
+        "fatigue_sensitive",
+        "interruption",
+        "cancel_boundary",
+        "establishes_preparation",
+        "requires_preparation"
+      ],
+      "type": "object"
+    },
+    "PlanningInput": {
+      "additionalProperties": false,
+      "properties": {
+        "configuration_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "planning_input"
+          ]
+        },
+        "observation": {
+          "$ref": "#/$defs/PlanningObservation"
+        },
+        "schema_version": {
+          "enum": [
+            "S06-1.0"
+          ]
+        },
+        "visible_configuration": {
+          "$ref": "#/$defs/Configuration"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "configuration_id",
+        "observation",
+        "visible_configuration"
+      ],
+      "type": "object"
+    },
+    "PlanningObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "as_of_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "configuration_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "estimates": {
+          "items": {
+            "$ref": "#/$defs/Estimate"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "planning_observation"
+          ]
+        },
+        "known_orders": {
+          "items": {
+            "$ref": "#/$defs/KnownOrder"
+          },
+          "type": "array"
+        },
+        "observed_event_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S06-1.0"
+          ]
+        },
+        "units": {
+          "$ref": "#/$defs/Units"
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "id",
+        "run_id",
+        "configuration_id",
+        "units",
+        "as_of_min",
+        "known_orders",
+        "estimates",
+        "observed_event_ids"
+      ],
+      "type": "object"
+    },
+    "Resource": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted_materials": {
+          "items": {
+            "enum": [
+              "raw",
+              "pipe",
+              "bracket",
+              "module",
+              "finished",
+              "scrap"
+            ]
+          },
+          "type": "array"
+        },
+        "capacity": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "worker",
+            "robot",
+            "equipment",
+            "station",
+            "fixture",
+            "crane",
+            "space",
+            "buffer",
+            "terminal"
+          ]
+        },
+        "reachable_station_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "receiving_slots": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "skills": {
+          "items": {
+            "enum": [
+              "CUT",
+              "BRACKET",
+              "ASSEMBLE",
+              "WELD",
+              "INSPECT",
+              "TRANSFER"
+            ]
+          },
+          "type": "array"
+        },
+        "station_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "worker_parameters": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WorkerParameters"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "capacity",
+        "skills",
+        "station_id",
+        "reachable_station_ids",
+        "accepted_materials",
+        "receiving_slots",
+        "worker_parameters"
+      ],
+      "type": "object"
+    },
+    "Route": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "feed",
+            "crane"
+          ]
+        },
+        "move_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "preposition_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "reset_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "rig_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "source_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "space_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "target_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "unload_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "source_id",
+        "target_id",
+        "space_id",
+        "kind",
+        "preposition_min",
+        "rig_min",
+        "move_min",
+        "unload_min",
+        "reset_min"
+      ],
+      "type": "object"
+    },
+    "TransferGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "allocation_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "material_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "reserve_all_receiving_slots": {
+          "type": "boolean"
+        },
+        "wait_for_reset": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "material_id",
+        "allocation_ids",
+        "wait_for_reset",
+        "reserve_all_receiving_slots"
+      ],
+      "type": "object"
+    },
+    "Units": {
+      "additionalProperties": false,
+      "properties": {
+        "capacity": {
+          "enum": [
+            "count"
+          ]
+        },
+        "exposure": {
+          "enum": [
+            "min"
+          ]
+        },
+        "fatigue": {
+          "enum": [
+            "dimensionless"
+          ]
+        },
+        "rate": {
+          "enum": [
+            "min^-1"
+          ]
+        },
+        "time": {
+          "enum": [
+            "min"
+          ]
+        }
+      },
+      "required": [
+        "time",
+        "rate",
+        "fatigue",
+        "exposure",
+        "capacity"
+      ],
+      "type": "object"
+    },
+    "WorkerParameters": {
+      "additionalProperties": false,
+      "properties": {
+        "carry_per_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "collaborate_per_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "initial_f": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "recovery_per_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "speed_kappa": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "supervise_per_min": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "wait_per_min": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "work_per_min": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "initial_f",
+        "recovery_per_min",
+        "speed_kappa",
+        "work_per_min",
+        "collaborate_per_min",
+        "carry_per_min",
+        "supervise_per_min",
+        "wait_per_min"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/PlanningInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlanningInput"
+}

@@ -1,0 +1,51 @@
+{
+  "assignments": [],
+  "budget_kind": "D0",
+  "completions": [
+    {
+      "actual_completion_min": null,
+      "order_id": "J1",
+      "predicted_completion_min": null
+    }
+  ],
+  "exposure_budget_min": null,
+  "exposure_estimates": [],
+  "id": "plan.0",
+  "kind": "plan",
+  "observation": {
+    "as_of_min": 0.0,
+    "configuration_id": "toy.S06",
+    "estimates": [],
+    "id": "obs.0",
+    "kind": "planning_observation",
+    "known_orders": [
+      {
+        "actual_completion_min": null,
+        "cancel_observed_min": null,
+        "completion_observed_min": null,
+        "order_id": "J1",
+        "released_observed_min": 0.0
+      }
+    ],
+    "observed_event_ids": [],
+    "run_id": "example.run",
+    "schema_version": "S06-1.0",
+    "units": {
+      "capacity": "count",
+      "exposure": "min",
+      "fatigue": "dimensionless",
+      "rate": "min^-1",
+      "time": "min"
+    }
+  },
+  "reason_code": "contract_example_no_scheduler",
+  "schema_version": "S06-1.0",
+  "status": "incomplete",
+  "units": {
+    "capacity": "count",
+    "exposure": "min",
+    "fatigue": "dimensionless",
+    "rate": "min^-1",
+    "time": "min"
+  }
+}
