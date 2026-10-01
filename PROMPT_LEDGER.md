@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.6.0，整理日期为 2026-10-01。本次补录 S03 r2 实际批准，并记录 S04 本地启动授权。S03 r2 已发布；S04 待独立人工验收与上传批准。历史记录保留各自时点的语义。
+版本为 0.7.1，整理日期为 2026-10-01。本次补录 S04 实际批准和完成性审阅，记录 S05 启动、暂不冻结及全面复核要求。S05 修订候选已形成，关键规则裁定、人工验收和上传许可仍待独立审阅；历史记录保留各自时点语义。
 
 ## 记录规则
 
@@ -46,7 +46,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.6.0",
+  "document_version": "0.7.1",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -1098,6 +1098,238 @@
         "docs/steps/S04.md"
       ],
       "limit": "NO_S04_ACCEPTANCE_OR_UPLOAD_APPROVAL_NO_S05_IMPLEMENTATION"
+    },
+    {
+      "id": "PR032",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S04_RELATED_WORK_AND_RESEARCH_HYPOTHESES",
+        "parameters": {
+          "step_id": "S04",
+          "revision": 1,
+          "packet_id": "S04-20261001-r1",
+          "packet_sha256": "25d36237915ba6949886268356d3babdcb47c281193aa9fb57102a8ac7e9645c",
+          "decision_ref": "S04-R1-APPROVAL-001",
+          "decision": "ACCEPTED_AND_APPROVED",
+          "permitted_remote_actions": [
+            "PUSH_MAIN_AND_STEP_S04_R1"
+          ]
+        }
+      },
+      "human_contribution": [
+        "APPROVED_EXACT_S04_R1_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "EXECUTED_APPROVED_PUBLICATION",
+        "VERIFIED_REMOTE_TREE_AND_TWO_PLATFORM_CI"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年10月1日-s04-r1-回执补录"
+      ],
+      "limit": "AUTHORIZATION_LIMITED_TO_S04_R1"
+    },
+    {
+      "id": "PR033",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "S04_COMPLETENESS_AND_LOGIC",
+        "parameters": {
+          "check_completion": true,
+          "review_logic": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_COMPLETENESS_AND_LOGIC_REVIEW"
+      ],
+      "assistant_support": [
+        "RECHECKED_EVIDENCE_AND_PUBLICATION",
+        "PRESERVED_FIRST_AUDITOR_FALSE_POSITIVE"
+      ],
+      "resolution": "REVIEW_COMPLETED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md#2026年10月1日-s04-完成性与逻辑复核"
+      ],
+      "limit": "NO_S05_START_OR_NEW_UPLOAD_FROM_AUDIT"
+    },
+    {
+      "id": "PR034",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "START_STEP",
+        "target": "S05_PRODUCTION_AND_MATHEMATICAL_SPECIFICATION",
+        "parameters": {
+          "step_id": "S05",
+          "new_chat": "S05",
+          "reuse_current_directory": true,
+          "branch": "main",
+          "create_extra_branch": false,
+          "create_worktree": false,
+          "authorized_scope": [
+            "DAG_AND_PHASES",
+            "DECISION_VARIABLES_AND_NUMBERED_CONSTRAINTS",
+            "PARAMETER_PROVENANCE",
+            "HAND_CHECKABLE_TOY_INSTANCE",
+            "LOCAL_REVIEW_PACKET",
+            "RECORD_S04_RECEIPT_AND_AUDIT"
+          ],
+          "start_S06": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_S05_LOCAL_WORK",
+        "REQUIRED_OWNER_DECISIONS_ON_KEY_ASSUMPTIONS"
+      ],
+      "assistant_support": [
+        "DRAFTED_SPECIFICATION_AND_TOY_WITNESS",
+        "CHECKED_UNITS_AND_RESOURCE_SEMANTICS"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "docs/steps/S05.md",
+        "PROGRESS_LOG.md#2026年10月1日-s05-规格准备与全面复核"
+      ],
+      "limit": "NO_FREEZE_ACCEPTANCE_OR_UPLOAD_APPROVAL"
+    },
+    {
+      "id": "PR035",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "S05_DECISIONS_D01_D05",
+        "parameters": {
+          "decisions": [
+            "D01",
+            "D02",
+            "D03",
+            "D04",
+            "D05"
+          ],
+          "freeze": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_MODIFICATION_INSTEAD_OF_FREEZE"
+      ],
+      "assistant_support": [
+        "PRESERVED_INITIAL_CANDIDATE",
+        "KEPT_RULES_UNFROZEN"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "docs/model/specification.md"
+      ],
+      "limit": "NO_SPECIFIC_REPLACEMENT_RULE_CONFIRMED"
+    },
+    {
+      "id": "PR036",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "S05_COMPLETE_REASSESSMENT_AND_CONCRETE_SPECIFICATION",
+        "parameters": {
+          "decisions": [
+            "D01",
+            "D02",
+            "D03",
+            "D04",
+            "D05"
+          ],
+          "recheck_all": true,
+          "assess_improvements": true,
+          "deliver_concrete_artifacts": true,
+          "start_S06": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "DIRECTED_FULL_REASSESSMENT_AND_IMPLEMENTATION_IN_STEP_ARTIFACTS"
+      ],
+      "assistant_support": [
+        "REVISED_LAYOUT_COMPATIBLE_MODE_BOUNDARIES_AND_CANCELLATION",
+        "SEPARATED_DELIVERY_FROM_RESOURCE_RESET",
+        "RECOMPUTED_WITNESS_AND_CHECKED_NEGATIVE_CASES"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "docs/model/specification.md",
+        "docs/model/parameters.md",
+        "examples/toy_instance.json",
+        "docs/steps/S05.md"
+      ],
+      "limit": "REVIEW_AUTHORIZATION_IS_NOT_CONFIRMATION_OF_REVISED_RULES_OR_PUBLICATION"
+    },
+    {
+      "id": "PR037",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "S05_SCALE_AND_RESEARCH_EVIDENCE",
+        "parameters": {
+          "presentation_completeness_satisfactory": true,
+          "question_process_and_staffing_scale": true,
+          "request_judgment": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "QUESTIONED_STRENGTH_OF_EVIDENCE_FROM_SMALL_MODEL"
+      ],
+      "assistant_support": [
+        "DISTINGUISHED_RULE_WITNESS_FROM_A_D_EVIDENCE",
+        "ASSESSED_TOPOLOGY_SKILL_BOTTLENECK_AND_SCALE_GAPS"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "docs/model/instance_families.md",
+        "docs/steps/S05.md"
+      ],
+      "limit": "SATISFACTION_WITH_PRESENTATION_IS_NOT_MODEL_FREEZE_OR_PUBLICATION_APPROVAL"
+    },
+    {
+      "id": "PR038",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "S05_GENERIC_MODEL_AND_EVIDENCE_COVERAGE",
+        "parameters": {
+          "step_id": "S05",
+          "revision": 2,
+          "follow_recommendations": true,
+          "deliver_for_review": true,
+          "request_upload_permission_after_completion": true,
+          "start_S06": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_LOCAL_OPTIMIZATION",
+        "REQUIRED_REVIEW_AND_SEPARATE_UPLOAD_PERMISSION"
+      ],
+      "assistant_support": [
+        "PARAMETERIZED_RESOURCE_ELIGIBILITY_AND_MATERIAL_JOINS",
+        "ADDED_THREE_FAMILIES_AND_STRUCTURAL_EXAMPLE",
+        "PRESERVED_TOY_AND_R1_SNAPSHOT",
+        "PREPARED_NEW_REVIEW_PACKET"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "docs/model/instance_families.md",
+        "docs/steps/S05.md"
+      ],
+      "limit": "OPTIMIZATION_DIRECTION_AUTHORIZED; FINAL_RULES_ACCEPTANCE_AND_UPLOAD_STILL_PENDING"
     }
   ]
 }
@@ -1130,3 +1362,7 @@ PR024 补录 S02 r2 实际批准；PR025 为其完成性与逻辑复核；PR026 
 PR027 仅补录 S03 r1 的实际批准；PR028 为完成性与逻辑审阅；PR029 仅授权两项问题的有限本地修复，不授权 r2 提交上传，不启动 S04。
 
 PR030 仅补录 S03 r2 的实际批准；PR031 另行授权 S04 本地文献核查与审阅快照，取代旧记录对 S04 未启动的执行边界，不继承 S03 上传许可，不启动 S05。
+
+PR032 仅补录 S04 r1 既有批准；PR033 记录发布后审阅。PR034 单独启动 S05 本地规格准备；PR035 要求修改、暂不冻结；PR036 要求全部重新核查并落实到本步产物，未指定或确认最终替代规则，不授权 S06、提交、标签或上传。
+
+PR037 记录负责人对规模与论证力度的质疑；PR038 授权依建议开展 S05 本地优化，完成后重新呈交并索要上传权限。方向授权不等于确切新快照已被验收或允许上传，S06 未启动。

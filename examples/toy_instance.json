@@ -1,0 +1,2024 @@
+{
+  "example_version": "S05-candidate-0.2",
+  "status": "REVISED_PROPOSAL_PENDING_OWNER_REVIEW",
+  "implementation_contract": false,
+  "description": "Single synthetic hand-specified witness; no simulation or optimization result.",
+  "units": {
+    "time": "min",
+    "fatigue": "dimensionless",
+    "rate": "min^-1",
+    "exposure": "min",
+    "capacity": "count"
+  },
+  "pending_decisions": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05"
+  ],
+  "provenance_document": "docs/model/parameters.md",
+  "parameter_families": [
+    "M01",
+    "M02",
+    "M03",
+    "M04",
+    "M05",
+    "M06",
+    "M07",
+    "M08",
+    "M09",
+    "M10",
+    "M11",
+    "M12",
+    "M13",
+    "M14",
+    "M15",
+    "M16",
+    "M17",
+    "M18"
+  ],
+  "workers": {
+    "W1": {
+      "initial_F": 0.1,
+      "recovery_per_min": 0.025,
+      "speed_kappa": 1,
+      "activity_rates_per_min": {
+        "work": 0.02,
+        "collaborate": 0.01,
+        "carry": 0.03,
+        "supervise": 0.005,
+        "wait": 0.002
+      },
+      "provenance": [
+        "M02",
+        "M05",
+        "M06",
+        "M07",
+        "M09"
+      ]
+    },
+    "W2": {
+      "initial_F": 0.2,
+      "recovery_per_min": 0.02,
+      "speed_kappa": 1,
+      "activity_rates_per_min": {
+        "work": 0.02,
+        "collaborate": 0.01,
+        "carry": 0.03,
+        "supervise": 0.005,
+        "wait": 0.002
+      },
+      "provenance": [
+        "M02",
+        "M05",
+        "M06",
+        "M07",
+        "M09"
+      ]
+    }
+  },
+  "fatigue_cap": {
+    "value": 0.8,
+    "provenance": [
+      "M08"
+    ]
+  },
+  "protective_rest_min": {
+    "value": 1,
+    "provenance": [
+      "M08"
+    ]
+  },
+  "capacities": {
+    "W1": 1,
+    "W2": 1,
+    "R1": 1,
+    "M_CUT": 1,
+    "M_WELD": 1,
+    "M_INSPECT": 1,
+    "FIX_A": 1,
+    "FIX_W": 1,
+    "FIX_I": 1,
+    "G1": 1,
+    "Z_CUT": 1,
+    "Z_PREP": 1,
+    "Z_ASSEMBLE": 1,
+    "Z_WELD": 1,
+    "Z_INSPECT": 1,
+    "Z_FEED": 1,
+    "Z_LIFT": 1,
+    "Z_SCRAP": 1,
+    "B_PIPE": 1,
+    "B_PART": 1
+  },
+  "capacity_provenance": [
+    "M01",
+    "M10",
+    "M11"
+  ],
+  "terminal_capacity": "UNCONSTRAINED_PROJECT_ABSTRACTION",
+  "orders": [
+    {
+      "id": "J1",
+      "release_min": 0,
+      "due_min": 32,
+      "weight": 2,
+      "module_count": 1,
+      "provenance": [
+        "M12"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "id": "J1.CUT",
+      "predecessors": [],
+      "station": "Z_CUT",
+      "qualified_process_workers": [
+        "W1",
+        "W2"
+      ],
+      "qualified_transfer_workers": [
+        "W1",
+        "W2"
+      ],
+      "modes": {
+        "H": [
+          {
+            "id": "setup",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "work",
+            "active_resources": [
+              "M_CUT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": []
+          },
+          {
+            "id": "work",
+            "base_min": 4,
+            "worker_role": "process_worker",
+            "activity": "work",
+            "active_resources": [
+              "M_CUT"
+            ],
+            "fatigue_sensitive": true,
+            "interruption": "RESTART",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "setup"
+            ]
+          },
+          {
+            "id": "handoff",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "carry",
+            "active_resources": [
+              "M_CUT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "work"
+            ]
+          }
+        ],
+        "R": [
+          {
+            "id": "setup",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "work",
+            "active_resources": [
+              "M_CUT",
+              "R1"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": []
+          },
+          {
+            "id": "work",
+            "base_min": 3,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "M_CUT",
+              "R1"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESTART",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "setup"
+            ]
+          },
+          {
+            "id": "handoff",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "carry",
+            "active_resources": [
+              "M_CUT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "work"
+            ]
+          }
+        ]
+      },
+      "mode_commit_boundary": "BEFORE_SETUP",
+      "provenance": [
+        "M01",
+        "M02",
+        "M03",
+        "M11",
+        "M16"
+      ]
+    },
+    {
+      "id": "J1.BRACKET",
+      "predecessors": [],
+      "station": "Z_PREP",
+      "qualified_process_workers": [
+        "W1",
+        "W2"
+      ],
+      "qualified_transfer_workers": [
+        "W1",
+        "W2"
+      ],
+      "modes": {
+        "H": [
+          {
+            "id": "work",
+            "base_min": 3,
+            "worker_role": "process_worker",
+            "activity": "work",
+            "active_resources": [],
+            "fatigue_sensitive": true,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": []
+          },
+          {
+            "id": "handoff",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "carry",
+            "active_resources": [],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "work"
+            ]
+          }
+        ]
+      },
+      "mode_commit_boundary": "BEFORE_WORK",
+      "provenance": [
+        "M01",
+        "M02",
+        "M03",
+        "M11",
+        "M16"
+      ]
+    },
+    {
+      "id": "J1.ASSEMBLE",
+      "predecessors": [
+        "J1.CUT",
+        "J1.BRACKET"
+      ],
+      "station": "Z_ASSEMBLE",
+      "qualified_process_workers": [
+        "W1",
+        "W2"
+      ],
+      "qualified_transfer_workers": [
+        "W1",
+        "W2"
+      ],
+      "modes": {
+        "H": [
+          {
+            "id": "setup",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "carry",
+            "active_resources": [
+              "Z_FEED"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": []
+          },
+          {
+            "id": "work",
+            "base_min": 4,
+            "worker_role": "process_worker",
+            "activity": "work",
+            "active_resources": [],
+            "fatigue_sensitive": true,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "setup"
+            ]
+          },
+          {
+            "id": "handoff",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "supervise",
+            "active_resources": [],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "work"
+            ]
+          }
+        ],
+        "HR": [
+          {
+            "id": "setup",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "carry",
+            "active_resources": [
+              "Z_FEED"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": []
+          },
+          {
+            "id": "align",
+            "base_min": 0.5,
+            "worker_role": "process_worker",
+            "activity": "supervise",
+            "active_resources": [
+              "R1"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "setup"
+            ]
+          },
+          {
+            "id": "work",
+            "base_min": 2,
+            "worker_role": "process_worker",
+            "activity": "collaborate",
+            "active_resources": [
+              "R1"
+            ],
+            "fatigue_sensitive": true,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "align"
+            ]
+          },
+          {
+            "id": "handoff",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "supervise",
+            "active_resources": [],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "work"
+            ]
+          }
+        ]
+      },
+      "mode_commit_boundary": "AFTER_COMMON_SETUP_BEFORE_SUFFIX",
+      "provenance": [
+        "M01",
+        "M02",
+        "M03",
+        "M11",
+        "M16"
+      ]
+    },
+    {
+      "id": "J1.WELD",
+      "predecessors": [
+        "J1.ASSEMBLE"
+      ],
+      "station": "Z_WELD",
+      "qualified_process_workers": [
+        "W2"
+      ],
+      "qualified_transfer_workers": [
+        "W1",
+        "W2"
+      ],
+      "modes": {
+        "R": [
+          {
+            "id": "in_preposition",
+            "base_min": 1,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": []
+          },
+          {
+            "id": "in_rig",
+            "base_min": 1,
+            "worker_role": "transfer_worker",
+            "activity": "carry",
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_preposition"
+            ]
+          },
+          {
+            "id": "in_move",
+            "base_min": 2,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_rig"
+            ]
+          },
+          {
+            "id": "in_unload",
+            "base_min": 1,
+            "worker_role": "transfer_worker",
+            "activity": "carry",
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_move"
+            ]
+          },
+          {
+            "id": "in_reset",
+            "base_min": 1,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_unload"
+            ]
+          },
+          {
+            "id": "setup",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "work",
+            "active_resources": [
+              "M_WELD",
+              "R1"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_unload"
+            ]
+          },
+          {
+            "id": "work",
+            "base_min": 3,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "M_WELD",
+              "R1"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESTART",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "setup"
+            ]
+          },
+          {
+            "id": "handoff",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "supervise",
+            "active_resources": [
+              "M_WELD"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "work"
+            ]
+          }
+        ],
+        "HR": [
+          {
+            "id": "in_preposition",
+            "base_min": 1,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": []
+          },
+          {
+            "id": "in_rig",
+            "base_min": 1,
+            "worker_role": "transfer_worker",
+            "activity": "carry",
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_preposition"
+            ]
+          },
+          {
+            "id": "in_move",
+            "base_min": 2,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_rig"
+            ]
+          },
+          {
+            "id": "in_unload",
+            "base_min": 1,
+            "worker_role": "transfer_worker",
+            "activity": "carry",
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_move"
+            ]
+          },
+          {
+            "id": "in_reset",
+            "base_min": 1,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_unload"
+            ]
+          },
+          {
+            "id": "setup",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "work",
+            "active_resources": [
+              "M_WELD",
+              "R1"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_unload"
+            ]
+          },
+          {
+            "id": "work",
+            "base_min": 2.5,
+            "worker_role": "process_worker",
+            "activity": "collaborate",
+            "active_resources": [
+              "M_WELD",
+              "R1"
+            ],
+            "fatigue_sensitive": true,
+            "interruption": "RESTART",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "setup"
+            ]
+          },
+          {
+            "id": "handoff",
+            "base_min": 1,
+            "worker_role": "process_worker",
+            "activity": "supervise",
+            "active_resources": [
+              "M_WELD"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "work"
+            ]
+          }
+        ]
+      },
+      "mode_commit_boundary": "AFTER_COMMON_SETUP_BEFORE_WORK",
+      "provenance": [
+        "M01",
+        "M02",
+        "M03",
+        "M11",
+        "M16"
+      ]
+    },
+    {
+      "id": "J1.INSPECT",
+      "predecessors": [
+        "J1.WELD"
+      ],
+      "station": "Z_INSPECT",
+      "qualified_process_workers": [
+        "W1",
+        "W2"
+      ],
+      "qualified_transfer_workers": [
+        "W1",
+        "W2"
+      ],
+      "modes": {
+        "H": [
+          {
+            "id": "in_preposition",
+            "base_min": 1,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": []
+          },
+          {
+            "id": "in_rig",
+            "base_min": 1,
+            "worker_role": "transfer_worker",
+            "activity": "carry",
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_preposition"
+            ]
+          },
+          {
+            "id": "in_move",
+            "base_min": 2,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_rig"
+            ]
+          },
+          {
+            "id": "in_unload",
+            "base_min": 1,
+            "worker_role": "transfer_worker",
+            "activity": "carry",
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_move"
+            ]
+          },
+          {
+            "id": "in_reset",
+            "base_min": 1,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_unload"
+            ]
+          },
+          {
+            "id": "work",
+            "base_min": 2,
+            "worker_role": "process_worker",
+            "activity": "work",
+            "active_resources": [
+              "M_INSPECT"
+            ],
+            "fatigue_sensitive": true,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "in_unload"
+            ]
+          }
+        ]
+      },
+      "mode_commit_boundary": "BEFORE_WORK",
+      "provenance": [
+        "M01",
+        "M02",
+        "M03",
+        "M11",
+        "M16"
+      ]
+    },
+    {
+      "id": "J1.LIFT",
+      "predecessors": [
+        "J1.INSPECT"
+      ],
+      "station": null,
+      "qualified_process_workers": [
+        "W1",
+        "W2"
+      ],
+      "qualified_transfer_workers": [
+        "W1",
+        "W2"
+      ],
+      "modes": {
+        "H": [
+          {
+            "id": "preposition",
+            "base_min": 1,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": []
+          },
+          {
+            "id": "rig",
+            "base_min": 1,
+            "worker_role": "transfer_worker",
+            "activity": "carry",
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "preposition"
+            ]
+          },
+          {
+            "id": "move",
+            "base_min": 2,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "rig"
+            ]
+          },
+          {
+            "id": "unload",
+            "base_min": 1,
+            "worker_role": "transfer_worker",
+            "activity": "carry",
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "move"
+            ]
+          },
+          {
+            "id": "reset",
+            "base_min": 1,
+            "worker_role": null,
+            "activity": null,
+            "active_resources": [
+              "G1",
+              "Z_LIFT"
+            ],
+            "fatigue_sensitive": false,
+            "interruption": "RESUME",
+            "provenance": [
+              "M03",
+              "M04",
+              "M09",
+              "M13"
+            ],
+            "predecessors": [
+              "unload"
+            ]
+          }
+        ]
+      },
+      "mode_commit_boundary": "BEFORE_PREPOSITION",
+      "provenance": [
+        "M01",
+        "M02",
+        "M03",
+        "M11",
+        "M16"
+      ]
+    }
+  ],
+  "events": [],
+  "event_provenance": [
+    "M13",
+    "M14",
+    "M15",
+    "M18"
+  ],
+  "observation": {
+    "delay_min": 0,
+    "noise": 0,
+    "missing_fraction": 0,
+    "provenance": [
+      "M15"
+    ]
+  },
+  "observation_horizon": {
+    "value_min": 40,
+    "tail": "EXPLICIT_REST_AFTER_SYSTEM_DRAINED",
+    "provenance": [
+      "M17"
+    ]
+  },
+  "objective": {
+    "primary": "WEIGHTED_TARDINESS",
+    "tie_break": "MAKESPAN",
+    "total_exposure_budget_min": null,
+    "max_individual_exposure_budget_min": null,
+    "provenance": [
+      "M17",
+      "M18"
+    ]
+  },
+  "witness": {
+    "kind": "HAND_SPECIFIED_ARITHMETIC_WITNESS",
+    "phases": [
+      {
+        "phase_id": "J1.CUT.setup",
+        "operation_id": "J1.CUT",
+        "mode": "R",
+        "start_min": 0.0,
+        "end_min": 1.0,
+        "worker": "W1",
+        "activity": "work",
+        "active_resources": [
+          "M_CUT",
+          "R1",
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.CUT.work",
+        "operation_id": "J1.CUT",
+        "mode": "R",
+        "start_min": 1.0,
+        "end_min": 4.0,
+        "worker": null,
+        "activity": null,
+        "active_resources": [
+          "M_CUT",
+          "R1"
+        ]
+      },
+      {
+        "phase_id": "J1.CUT.handoff",
+        "operation_id": "J1.CUT",
+        "mode": "R",
+        "start_min": 4.0,
+        "end_min": 5.0,
+        "worker": "W1",
+        "activity": "carry",
+        "active_resources": [
+          "M_CUT",
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.BRACKET.work",
+        "operation_id": "J1.BRACKET",
+        "mode": "H",
+        "start_min": 0.0,
+        "end_min": 3.6,
+        "worker": "W2",
+        "activity": "work",
+        "active_resources": [
+          "W2"
+        ]
+      },
+      {
+        "phase_id": "J1.BRACKET.handoff",
+        "operation_id": "J1.BRACKET",
+        "mode": "H",
+        "start_min": 3.6,
+        "end_min": 4.6,
+        "worker": "W2",
+        "activity": "carry",
+        "active_resources": [
+          "W2"
+        ]
+      },
+      {
+        "phase_id": "J1.ASSEMBLE.setup",
+        "operation_id": "J1.ASSEMBLE",
+        "mode": "HR",
+        "start_min": 5.0,
+        "end_min": 6.0,
+        "worker": "W1",
+        "activity": "carry",
+        "active_resources": [
+          "Z_FEED",
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.ASSEMBLE.align",
+        "operation_id": "J1.ASSEMBLE",
+        "mode": "HR",
+        "start_min": 6.0,
+        "end_min": 6.5,
+        "worker": "W1",
+        "activity": "supervise",
+        "active_resources": [
+          "R1",
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.ASSEMBLE.work",
+        "operation_id": "J1.ASSEMBLE",
+        "mode": "HR",
+        "start_min": 6.5,
+        "end_min": 8.877,
+        "worker": "W1",
+        "activity": "collaborate",
+        "active_resources": [
+          "R1",
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.ASSEMBLE.handoff",
+        "operation_id": "J1.ASSEMBLE",
+        "mode": "HR",
+        "start_min": 8.877,
+        "end_min": 9.877,
+        "worker": "W1",
+        "activity": "supervise",
+        "active_resources": [
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.WELD.in_preposition",
+        "operation_id": "J1.WELD",
+        "mode": "R",
+        "start_min": 9.877,
+        "end_min": 10.877,
+        "worker": null,
+        "activity": null,
+        "active_resources": [
+          "G1",
+          "Z_LIFT"
+        ]
+      },
+      {
+        "phase_id": "J1.WELD.in_rig",
+        "operation_id": "J1.WELD",
+        "mode": "R",
+        "start_min": 10.877,
+        "end_min": 11.877,
+        "worker": "W1",
+        "activity": "carry",
+        "active_resources": [
+          "G1",
+          "Z_LIFT",
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.WELD.in_move",
+        "operation_id": "J1.WELD",
+        "mode": "R",
+        "start_min": 11.877,
+        "end_min": 13.877,
+        "worker": null,
+        "activity": null,
+        "active_resources": [
+          "G1",
+          "Z_LIFT"
+        ]
+      },
+      {
+        "phase_id": "J1.WELD.in_unload",
+        "operation_id": "J1.WELD",
+        "mode": "R",
+        "start_min": 13.877,
+        "end_min": 14.877,
+        "worker": "W1",
+        "activity": "carry",
+        "active_resources": [
+          "G1",
+          "Z_LIFT",
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.WELD.in_reset",
+        "operation_id": "J1.WELD",
+        "mode": "R",
+        "start_min": 14.877,
+        "end_min": 15.877,
+        "worker": null,
+        "activity": null,
+        "active_resources": [
+          "G1",
+          "Z_LIFT"
+        ]
+      },
+      {
+        "phase_id": "J1.WELD.setup",
+        "operation_id": "J1.WELD",
+        "mode": "R",
+        "start_min": 14.877,
+        "end_min": 15.877,
+        "worker": "W2",
+        "activity": "work",
+        "active_resources": [
+          "M_WELD",
+          "R1",
+          "W2"
+        ]
+      },
+      {
+        "phase_id": "J1.WELD.work",
+        "operation_id": "J1.WELD",
+        "mode": "R",
+        "start_min": 15.877,
+        "end_min": 18.877,
+        "worker": null,
+        "activity": null,
+        "active_resources": [
+          "M_WELD",
+          "R1"
+        ]
+      },
+      {
+        "phase_id": "J1.WELD.handoff",
+        "operation_id": "J1.WELD",
+        "mode": "R",
+        "start_min": 18.877,
+        "end_min": 19.877,
+        "worker": "W2",
+        "activity": "supervise",
+        "active_resources": [
+          "M_WELD",
+          "W2"
+        ]
+      },
+      {
+        "phase_id": "J1.INSPECT.in_preposition",
+        "operation_id": "J1.INSPECT",
+        "mode": "H",
+        "start_min": 19.877,
+        "end_min": 20.877,
+        "worker": null,
+        "activity": null,
+        "active_resources": [
+          "G1",
+          "Z_LIFT"
+        ]
+      },
+      {
+        "phase_id": "J1.INSPECT.in_rig",
+        "operation_id": "J1.INSPECT",
+        "mode": "H",
+        "start_min": 20.877,
+        "end_min": 21.877,
+        "worker": "W1",
+        "activity": "carry",
+        "active_resources": [
+          "G1",
+          "Z_LIFT",
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.INSPECT.in_move",
+        "operation_id": "J1.INSPECT",
+        "mode": "H",
+        "start_min": 21.877,
+        "end_min": 23.877,
+        "worker": null,
+        "activity": null,
+        "active_resources": [
+          "G1",
+          "Z_LIFT"
+        ]
+      },
+      {
+        "phase_id": "J1.INSPECT.in_unload",
+        "operation_id": "J1.INSPECT",
+        "mode": "H",
+        "start_min": 23.877,
+        "end_min": 24.877,
+        "worker": "W1",
+        "activity": "carry",
+        "active_resources": [
+          "G1",
+          "Z_LIFT",
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.INSPECT.in_reset",
+        "operation_id": "J1.INSPECT",
+        "mode": "H",
+        "start_min": 24.877,
+        "end_min": 25.877,
+        "worker": null,
+        "activity": null,
+        "active_resources": [
+          "G1",
+          "Z_LIFT"
+        ]
+      },
+      {
+        "phase_id": "J1.INSPECT.work",
+        "operation_id": "J1.INSPECT",
+        "mode": "H",
+        "start_min": 24.877,
+        "end_min": 27.604108,
+        "worker": "W2",
+        "activity": "work",
+        "active_resources": [
+          "M_INSPECT",
+          "W2"
+        ]
+      },
+      {
+        "phase_id": "J1.LIFT.preposition",
+        "operation_id": "J1.LIFT",
+        "mode": "H",
+        "start_min": 27.604108,
+        "end_min": 28.604108,
+        "worker": null,
+        "activity": null,
+        "active_resources": [
+          "G1",
+          "Z_LIFT"
+        ]
+      },
+      {
+        "phase_id": "J1.LIFT.rig",
+        "operation_id": "J1.LIFT",
+        "mode": "H",
+        "start_min": 28.604108,
+        "end_min": 29.604108,
+        "worker": "W1",
+        "activity": "carry",
+        "active_resources": [
+          "G1",
+          "Z_LIFT",
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.LIFT.move",
+        "operation_id": "J1.LIFT",
+        "mode": "H",
+        "start_min": 29.604108,
+        "end_min": 31.604108,
+        "worker": null,
+        "activity": null,
+        "active_resources": [
+          "G1",
+          "Z_LIFT"
+        ]
+      },
+      {
+        "phase_id": "J1.LIFT.unload",
+        "operation_id": "J1.LIFT",
+        "mode": "H",
+        "start_min": 31.604108,
+        "end_min": 32.604108,
+        "worker": "W1",
+        "activity": "carry",
+        "active_resources": [
+          "G1",
+          "Z_LIFT",
+          "W1"
+        ]
+      },
+      {
+        "phase_id": "J1.LIFT.reset",
+        "operation_id": "J1.LIFT",
+        "mode": "H",
+        "start_min": 32.604108,
+        "end_min": 33.604108,
+        "worker": null,
+        "activity": null,
+        "active_resources": [
+          "G1",
+          "Z_LIFT"
+        ]
+      }
+    ],
+    "occupancy": [
+      {
+        "resource": "Z_CUT",
+        "owner": "J1",
+        "start_min": 0,
+        "end_min": 5
+      },
+      {
+        "resource": "M_CUT",
+        "owner": "J1",
+        "start_min": 0,
+        "end_min": 5
+      },
+      {
+        "resource": "Z_PREP",
+        "owner": "J1",
+        "start_min": 0,
+        "end_min": 4.6
+      },
+      {
+        "resource": "Z_ASSEMBLE",
+        "owner": "J1",
+        "start_min": 5,
+        "end_min": 11.877
+      },
+      {
+        "resource": "FIX_A",
+        "owner": "J1",
+        "start_min": 5,
+        "end_min": 11.877
+      },
+      {
+        "resource": "Z_FEED",
+        "owner": "J1",
+        "start_min": 5,
+        "end_min": 6
+      },
+      {
+        "resource": "Z_WELD",
+        "owner": "J1",
+        "start_min": 9.877,
+        "end_min": 21.877
+      },
+      {
+        "resource": "FIX_W",
+        "owner": "J1",
+        "start_min": 9.877,
+        "end_min": 21.877
+      },
+      {
+        "resource": "Z_INSPECT",
+        "owner": "J1",
+        "start_min": 19.877,
+        "end_min": 29.604108
+      },
+      {
+        "resource": "FIX_I",
+        "owner": "J1",
+        "start_min": 19.877,
+        "end_min": 29.604108
+      },
+      {
+        "resource": "M_WELD",
+        "owner": "J1",
+        "start_min": 14.877,
+        "end_min": 19.877
+      }
+    ],
+    "buffer_events": [
+      {
+        "time_min": 3.6,
+        "sequence": 1,
+        "buffer": "B_PART",
+        "event": "RESERVE",
+        "delta_actual": 0,
+        "delta_reserved": 1,
+        "token": "J1.part"
+      },
+      {
+        "time_min": 4,
+        "sequence": 1,
+        "buffer": "B_PIPE",
+        "event": "RESERVE",
+        "delta_actual": 0,
+        "delta_reserved": 1,
+        "token": "J1.pipe"
+      },
+      {
+        "time_min": 4.6,
+        "sequence": 1,
+        "buffer": "B_PART",
+        "event": "DEPOSIT",
+        "delta_actual": 1,
+        "delta_reserved": -1,
+        "token": "J1.part"
+      },
+      {
+        "time_min": 5,
+        "sequence": 1,
+        "buffer": "B_PIPE",
+        "event": "DEPOSIT",
+        "delta_actual": 1,
+        "delta_reserved": -1,
+        "token": "J1.pipe"
+      },
+      {
+        "time_min": 5,
+        "sequence": 2,
+        "buffer": "B_PIPE",
+        "event": "PICKUP",
+        "delta_actual": -1,
+        "delta_reserved": 0,
+        "token": "J1.pipe"
+      },
+      {
+        "time_min": 5,
+        "sequence": 3,
+        "buffer": "B_PART",
+        "event": "PICKUP",
+        "delta_actual": -1,
+        "delta_reserved": 0,
+        "token": "J1.part"
+      }
+    ],
+    "material_events": [
+      {
+        "time_min": 0,
+        "event": "RAW_INPUTS_AVAILABLE"
+      },
+      {
+        "time_min": 5,
+        "event": "PICKUP_BOTH_FOR_FEED"
+      },
+      {
+        "time_min": 6,
+        "event": "JOIN_AT_ASSEMBLY"
+      },
+      {
+        "time_min": 11.877,
+        "event": "LEAVE_ASSEMBLY"
+      },
+      {
+        "time_min": 14.877,
+        "event": "ARRIVE_WELD"
+      },
+      {
+        "time_min": 21.877,
+        "event": "LEAVE_WELD"
+      },
+      {
+        "time_min": 24.877,
+        "event": "ARRIVE_INSPECT"
+      },
+      {
+        "time_min": 29.604108,
+        "event": "LEAVE_INSPECT"
+      },
+      {
+        "time_min": 32.604108,
+        "event": "ARRIVE_STORE_AND_COMPLETE_ORDER"
+      },
+      {
+        "time_min": 33.604108,
+        "event": "G1_RETURN_AND_SYSTEM_DRAIN"
+      }
+    ],
+    "worker_timeline": {
+      "W1": [
+        {
+          "start_min": 0.0,
+          "end_min": 1.0,
+          "activity": "work",
+          "phase_id": "J1.CUT.setup",
+          "F_start": 0.1,
+          "F_end": 0.12,
+          "exposure_min": 0.11
+        },
+        {
+          "start_min": 1.0,
+          "end_min": 4.0,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.12,
+          "F_end": 0.126,
+          "exposure_min": 0.369
+        },
+        {
+          "start_min": 4.0,
+          "end_min": 5.0,
+          "activity": "carry",
+          "phase_id": "J1.CUT.handoff",
+          "F_start": 0.126,
+          "F_end": 0.156,
+          "exposure_min": 0.141
+        },
+        {
+          "start_min": 5.0,
+          "end_min": 6.0,
+          "activity": "carry",
+          "phase_id": "J1.ASSEMBLE.setup",
+          "F_start": 0.156,
+          "F_end": 0.186,
+          "exposure_min": 0.171
+        },
+        {
+          "start_min": 6.0,
+          "end_min": 6.5,
+          "activity": "supervise",
+          "phase_id": "J1.ASSEMBLE.align",
+          "F_start": 0.186,
+          "F_end": 0.1885,
+          "exposure_min": 0.093625
+        },
+        {
+          "start_min": 6.5,
+          "end_min": 8.877,
+          "activity": "collaborate",
+          "phase_id": "J1.ASSEMBLE.work",
+          "F_start": 0.1885,
+          "F_end": 0.21227,
+          "exposure_min": 0.476315145
+        },
+        {
+          "start_min": 8.877,
+          "end_min": 9.877,
+          "activity": "supervise",
+          "phase_id": "J1.ASSEMBLE.handoff",
+          "F_start": 0.21227,
+          "F_end": 0.21727,
+          "exposure_min": 0.21477
+        },
+        {
+          "start_min": 9.877,
+          "end_min": 10.877,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.21727,
+          "F_end": 0.21927,
+          "exposure_min": 0.21827
+        },
+        {
+          "start_min": 10.877,
+          "end_min": 11.877,
+          "activity": "carry",
+          "phase_id": "J1.WELD.in_rig",
+          "F_start": 0.21927,
+          "F_end": 0.24927,
+          "exposure_min": 0.23427
+        },
+        {
+          "start_min": 11.877,
+          "end_min": 13.877,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.24927,
+          "F_end": 0.25327,
+          "exposure_min": 0.50254
+        },
+        {
+          "start_min": 13.877,
+          "end_min": 14.877,
+          "activity": "carry",
+          "phase_id": "J1.WELD.in_unload",
+          "F_start": 0.25327,
+          "F_end": 0.28327,
+          "exposure_min": 0.26827
+        },
+        {
+          "start_min": 14.877,
+          "end_min": 20.877,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.28327,
+          "F_end": 0.29527,
+          "exposure_min": 1.73562
+        },
+        {
+          "start_min": 20.877,
+          "end_min": 21.877,
+          "activity": "carry",
+          "phase_id": "J1.INSPECT.in_rig",
+          "F_start": 0.29527,
+          "F_end": 0.32527,
+          "exposure_min": 0.31027
+        },
+        {
+          "start_min": 21.877,
+          "end_min": 23.877,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.32527,
+          "F_end": 0.32927,
+          "exposure_min": 0.65454
+        },
+        {
+          "start_min": 23.877,
+          "end_min": 24.877,
+          "activity": "carry",
+          "phase_id": "J1.INSPECT.in_unload",
+          "F_start": 0.32927,
+          "F_end": 0.35927,
+          "exposure_min": 0.34427
+        },
+        {
+          "start_min": 24.877,
+          "end_min": 28.604108,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.35927,
+          "F_end": 0.366724216,
+          "exposure_min": 1.352929425203664
+        },
+        {
+          "start_min": 28.604108,
+          "end_min": 29.604108,
+          "activity": "carry",
+          "phase_id": "J1.LIFT.rig",
+          "F_start": 0.366724216,
+          "F_end": 0.396724216,
+          "exposure_min": 0.381724216
+        },
+        {
+          "start_min": 29.604108,
+          "end_min": 31.604108,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.396724216,
+          "F_end": 0.400724216,
+          "exposure_min": 0.797448432
+        },
+        {
+          "start_min": 31.604108,
+          "end_min": 32.604108,
+          "activity": "carry",
+          "phase_id": "J1.LIFT.unload",
+          "F_start": 0.400724216,
+          "F_end": 0.430724216,
+          "exposure_min": 0.415724216
+        },
+        {
+          "start_min": 32.604108,
+          "end_min": 33.604108,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.430724216,
+          "F_end": 0.432724216,
+          "exposure_min": 0.431724216
+        },
+        {
+          "start_min": 33.604108,
+          "end_min": 40.0,
+          "activity": "rest",
+          "phase_id": null,
+          "F_start": 0.432724216,
+          "F_end": 0.272826916,
+          "exposure_min": 2.256314420374872
+        }
+      ],
+      "W2": [
+        {
+          "start_min": 0.0,
+          "end_min": 3.6,
+          "activity": "work",
+          "phase_id": "J1.BRACKET.work",
+          "F_start": 0.2,
+          "F_end": 0.272,
+          "exposure_min": 0.8496
+        },
+        {
+          "start_min": 3.6,
+          "end_min": 4.6,
+          "activity": "carry",
+          "phase_id": "J1.BRACKET.handoff",
+          "F_start": 0.272,
+          "F_end": 0.302,
+          "exposure_min": 0.287
+        },
+        {
+          "start_min": 4.6,
+          "end_min": 14.877,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.302,
+          "F_end": 0.322554,
+          "exposure_min": 3.209270729
+        },
+        {
+          "start_min": 14.877,
+          "end_min": 15.877,
+          "activity": "work",
+          "phase_id": "J1.WELD.setup",
+          "F_start": 0.322554,
+          "F_end": 0.342554,
+          "exposure_min": 0.332554
+        },
+        {
+          "start_min": 15.877,
+          "end_min": 18.877,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.342554,
+          "F_end": 0.348554,
+          "exposure_min": 1.036662
+        },
+        {
+          "start_min": 18.877,
+          "end_min": 19.877,
+          "activity": "supervise",
+          "phase_id": "J1.WELD.handoff",
+          "F_start": 0.348554,
+          "F_end": 0.353554,
+          "exposure_min": 0.351054
+        },
+        {
+          "start_min": 19.877,
+          "end_min": 24.877,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.353554,
+          "F_end": 0.363554,
+          "exposure_min": 1.79277
+        },
+        {
+          "start_min": 24.877,
+          "end_min": 27.604108,
+          "activity": "work",
+          "phase_id": "J1.INSPECT.work",
+          "F_start": 0.363554,
+          "F_end": 0.41809616,
+          "exposure_min": 1.06582220226864
+        },
+        {
+          "start_min": 27.604108,
+          "end_min": 33.604108,
+          "activity": "wait",
+          "phase_id": null,
+          "F_start": 0.41809616,
+          "F_end": 0.43009616,
+          "exposure_min": 2.54457696
+        },
+        {
+          "start_min": 33.604108,
+          "end_min": 40.0,
+          "activity": "rest",
+          "phase_id": null,
+          "F_start": 0.43009616,
+          "F_end": 0.30217832,
+          "exposure_min": 2.34177424421808
+        }
+      ]
+    },
+    "metrics": {
+      "worker": {
+        "W1": {
+          "final_F": 0.272826916,
+          "peak_F": 0.432724216,
+          "exposure_min": 11.479625070578535
+        },
+        "W2": {
+          "final_F": 0.30217832,
+          "peak_F": 0.43009616,
+          "exposure_min": 13.81108413548672
+        }
+      },
+      "F_peak": 0.432724216,
+      "E_total_min": 25.290709206065255,
+      "E_max_min": 13.81108413548672,
+      "physical_arrival_and_completion_min": 32.604108,
+      "system_drained_min": 33.604108,
+      "makespan_min": 32.604108,
+      "tardiness_min": 0.604108,
+      "weighted_tardiness_min": 1.208216
+    }
+  },
+  "limitations": [
+    "SYNTHETIC_NOT_CALIBRATED",
+    "OWNER_FREEZE_PENDING",
+    "NO_S06_CONTRACT",
+    "NO_EXECUTION_BACKEND",
+    "NO_OPTIMALITY_OR_SAFETY_CLAIM",
+    "NO_MULTI_ORDER_DEADLOCK_PROOF"
+  ]
+}

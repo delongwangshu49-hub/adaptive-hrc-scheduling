@@ -1,0 +1,1061 @@
+{
+  "version": "S05-structural-0.3",
+  "status": "STRUCTURAL_EXAMPLE_NOT_EXECUTED",
+  "implementation_contract": false,
+  "provenance": "PROJECT_CHOICE_SYNTHETIC_UNCALIBRATED",
+  "semantics_ref": "../docs/model/specification.md",
+  "parameter_ref": "../docs/model/parameters.md",
+  "id_expansion": "Order instance node and output IDs are order_id + dot + family-local ID; family references do not share physical entities across orders.",
+  "resource_model": {
+    "workers": [
+      {
+        "id": "H1",
+        "capacity": 1,
+        "skills": [
+          "CUT",
+          "BRACKET",
+          "ASSEMBLE",
+          "TRANSFER"
+        ],
+        "state_profile": "T0_W1"
+      },
+      {
+        "id": "H2",
+        "capacity": 1,
+        "skills": [
+          "CUT",
+          "BRACKET",
+          "ASSEMBLE",
+          "WELD",
+          "TRANSFER"
+        ],
+        "state_profile": "T0_W2"
+      },
+      {
+        "id": "H3",
+        "capacity": 1,
+        "skills": [
+          "ASSEMBLE",
+          "WELD",
+          "INSPECT",
+          "TRANSFER"
+        ],
+        "state_profile": "T0_W1"
+      },
+      {
+        "id": "H4",
+        "capacity": 1,
+        "skills": [
+          "BRACKET",
+          "ASSEMBLE",
+          "INSPECT",
+          "TRANSFER"
+        ],
+        "state_profile": "T0_W2"
+      },
+      {
+        "id": "H5",
+        "capacity": 1,
+        "skills": [
+          "CUT",
+          "WELD",
+          "TRANSFER"
+        ],
+        "state_profile": "T0_W1"
+      },
+      {
+        "id": "H6",
+        "capacity": 1,
+        "skills": [
+          "CUT",
+          "BRACKET",
+          "ASSEMBLE",
+          "INSPECT",
+          "TRANSFER"
+        ],
+        "state_profile": "T0_W2"
+      }
+    ],
+    "robots": [
+      {
+        "id": "R1",
+        "capacity": 1,
+        "capabilities": [
+          "CUT",
+          "ASSEMBLE",
+          "WELD"
+        ],
+        "reachable_stations": [
+          "CS1",
+          "CS2",
+          "WS1",
+          "WS2",
+          "AS1",
+          "AS3"
+        ]
+      },
+      {
+        "id": "R2",
+        "capacity": 1,
+        "capabilities": [
+          "CUT",
+          "ASSEMBLE",
+          "WELD"
+        ],
+        "reachable_stations": [
+          "CS1",
+          "CS2",
+          "WS1",
+          "WS2",
+          "AS2",
+          "AS3"
+        ]
+      },
+      {
+        "id": "R3",
+        "capacity": 1,
+        "capabilities": [
+          "CUT",
+          "ASSEMBLE",
+          "WELD"
+        ],
+        "reachable_stations": [
+          "CS1",
+          "CS2",
+          "WS1",
+          "WS2",
+          "AS1",
+          "AS2"
+        ]
+      }
+    ],
+    "stations": [
+      {
+        "id": "CS1",
+        "kind": "CUT",
+        "capacity": 1,
+        "equipment": "CS1_M",
+        "fixture": null,
+        "module_receiving_slots": 0
+      },
+      {
+        "id": "CS2",
+        "kind": "CUT",
+        "capacity": 1,
+        "equipment": "CS2_M",
+        "fixture": null,
+        "module_receiving_slots": 0
+      },
+      {
+        "id": "PS1",
+        "kind": "BRACKET",
+        "capacity": 1,
+        "equipment": null,
+        "fixture": null,
+        "module_receiving_slots": 0
+      },
+      {
+        "id": "PS2",
+        "kind": "BRACKET",
+        "capacity": 1,
+        "equipment": null,
+        "fixture": null,
+        "module_receiving_slots": 0
+      },
+      {
+        "id": "AS1",
+        "kind": "ASSEMBLE",
+        "capacity": 1,
+        "equipment": null,
+        "fixture": "AS1_X",
+        "module_receiving_slots": 2
+      },
+      {
+        "id": "AS2",
+        "kind": "ASSEMBLE",
+        "capacity": 1,
+        "equipment": null,
+        "fixture": "AS2_X",
+        "module_receiving_slots": 2
+      },
+      {
+        "id": "AS3",
+        "kind": "ASSEMBLE",
+        "capacity": 1,
+        "equipment": null,
+        "fixture": "AS3_X",
+        "module_receiving_slots": 2
+      },
+      {
+        "id": "WS1",
+        "kind": "WELD",
+        "capacity": 1,
+        "equipment": "WS1_M",
+        "fixture": "WS1_X",
+        "module_receiving_slots": 0
+      },
+      {
+        "id": "WS2",
+        "kind": "WELD",
+        "capacity": 1,
+        "equipment": "WS2_M",
+        "fixture": "WS2_X",
+        "module_receiving_slots": 0
+      },
+      {
+        "id": "IS1",
+        "kind": "INSPECT",
+        "capacity": 1,
+        "equipment": "IS1_M",
+        "fixture": "IS1_X",
+        "module_receiving_slots": 0
+      },
+      {
+        "id": "IS2",
+        "kind": "INSPECT",
+        "capacity": 1,
+        "equipment": "IS2_M",
+        "fixture": "IS2_X",
+        "module_receiving_slots": 0
+      }
+    ],
+    "equipment": [
+      {
+        "id": "CS1_M",
+        "station": "CS1",
+        "capacity": 1
+      },
+      {
+        "id": "CS2_M",
+        "station": "CS2",
+        "capacity": 1
+      },
+      {
+        "id": "WS1_M",
+        "station": "WS1",
+        "capacity": 1
+      },
+      {
+        "id": "WS2_M",
+        "station": "WS2",
+        "capacity": 1
+      },
+      {
+        "id": "IS1_M",
+        "station": "IS1",
+        "capacity": 1
+      },
+      {
+        "id": "IS2_M",
+        "station": "IS2",
+        "capacity": 1
+      }
+    ],
+    "fixtures": [
+      {
+        "id": "AS1_X",
+        "station": "AS1",
+        "capacity": 1
+      },
+      {
+        "id": "AS2_X",
+        "station": "AS2",
+        "capacity": 1
+      },
+      {
+        "id": "AS3_X",
+        "station": "AS3",
+        "capacity": 1
+      },
+      {
+        "id": "WS1_X",
+        "station": "WS1",
+        "capacity": 1
+      },
+      {
+        "id": "WS2_X",
+        "station": "WS2",
+        "capacity": 1
+      },
+      {
+        "id": "IS1_X",
+        "station": "IS1",
+        "capacity": 1
+      },
+      {
+        "id": "IS2_X",
+        "station": "IS2",
+        "capacity": 1
+      }
+    ],
+    "crane": {
+      "id": "G1",
+      "capacity": 1,
+      "home": "PARK"
+    },
+    "shared_spaces": [
+      {
+        "id": "FEED_ROUTE",
+        "capacity": 1
+      },
+      {
+        "id": "LIFT_ROUTE",
+        "capacity": 1
+      },
+      {
+        "id": "SCRAP_RECEIVE",
+        "capacity": 1
+      }
+    ],
+    "buffers": [
+      {
+        "id": "PIPE_BUFFER",
+        "kind": "pipe",
+        "capacity": 4
+      },
+      {
+        "id": "BRACKET_BUFFER",
+        "kind": "bracket",
+        "capacity": 4
+      }
+    ],
+    "terminals": [
+      {
+        "id": "RAW",
+        "capacity": "UNBOUNDED"
+      },
+      {
+        "id": "FINISHED",
+        "capacity": "UNBOUNDED"
+      },
+      {
+        "id": "SCRAP",
+        "capacity": "UNBOUNDED"
+      }
+    ],
+    "routes": [
+      {
+        "source": "AS1",
+        "target": "AS2",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS1",
+        "target": "AS3",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS1",
+        "target": "WS1",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS1",
+        "target": "WS2",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS1",
+        "target": "SCRAP",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS2",
+        "target": "AS1",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS2",
+        "target": "AS3",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS2",
+        "target": "WS1",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS2",
+        "target": "WS2",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS2",
+        "target": "SCRAP",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS3",
+        "target": "AS1",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS3",
+        "target": "AS2",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS3",
+        "target": "WS1",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS3",
+        "target": "WS2",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "AS3",
+        "target": "SCRAP",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "WS1",
+        "target": "IS1",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "WS1",
+        "target": "IS2",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "WS1",
+        "target": "SCRAP",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "WS2",
+        "target": "IS1",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "WS2",
+        "target": "IS2",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "WS2",
+        "target": "SCRAP",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "IS1",
+        "target": "SCRAP",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "IS1",
+        "target": "FINISHED",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "IS2",
+        "target": "SCRAP",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      },
+      {
+        "source": "IS2",
+        "target": "FINISHED",
+        "resource": "LIFT_ROUTE",
+        "profile": "T0_TRANSFER"
+      }
+    ]
+  },
+  "qualifications": {
+    "process": "Worker skill equals operation kind; robot required iff the mode or common setup/align uses it, with matching capability and reachable station. Equipment/fixture must be bound to selected station.",
+    "transport": "TRANSFER-skilled worker and G1, declared source-target route, destination lock and receiving slots; same worker for rig/unload.",
+    "compatibility": "No additional pair exclusions in this synthetic example; do not assume this in other instances."
+  },
+  "duration_profiles": {
+    "base": "T0 tables in parameters.md; all unlisted stages retain their T0 durations and sensitivity flags.",
+    "overrides": {
+      "F2_WIDE_FEED": {
+        "base": "T0_ASSEMBLE",
+        "setup_min": 2
+      },
+      "F3_MODULE_JOIN": {
+        "base": "T0_ASSEMBLE",
+        "setup_min": 2,
+        "H_work_min": 6,
+        "HR_work_min": 3
+      }
+    },
+    "transfer": "T0_TRANSFER: preposition/rig/move/unload/reset = 1/1/2/1/1 min for every declared route; topology-only synthetic assumption."
+  },
+  "material_policy": {
+    "raw": "One available raw entity per CUT/BRACKET source node at order release; each produces exactly one output.",
+    "feed": "Pipe/bracket outputs use typed finite buffers and FEED_ROUTE; all raw inputs to assembly acquired atomically.",
+    "module_join": "Each module input transferred separately to a distinct reserved slot on the target assembly station; all input slots and target station reserved before first transfer; setup after last unload AND reset.",
+    "output": "Single module per ASSEMBLE/WELD/INSPECT, consumed once downstream; finished output retained at FINISHED."
+  },
+  "families": {
+    "F1": {
+      "nodes": [
+        {
+          "id": "C1",
+          "kind": "CUT",
+          "modes": [
+            "H",
+            "R"
+          ],
+          "inputs": [],
+          "output": {
+            "id": "C1_out",
+            "kind": "pipe",
+            "quantity": 1
+          },
+          "duration_profile": "T0_CUT"
+        },
+        {
+          "id": "B1",
+          "kind": "BRACKET",
+          "modes": [
+            "H"
+          ],
+          "inputs": [],
+          "output": {
+            "id": "B1_out",
+            "kind": "bracket",
+            "quantity": 1
+          },
+          "duration_profile": "T0_BRACKET"
+        },
+        {
+          "id": "A1",
+          "kind": "ASSEMBLE",
+          "modes": [
+            "H",
+            "HR"
+          ],
+          "inputs": [
+            "C1_out",
+            "B1_out"
+          ],
+          "output": {
+            "id": "A1_out",
+            "kind": "module",
+            "quantity": 1
+          },
+          "duration_profile": "T0_ASSEMBLE"
+        },
+        {
+          "id": "W1",
+          "kind": "WELD",
+          "modes": [
+            "R",
+            "HR"
+          ],
+          "inputs": [
+            "A1_out"
+          ],
+          "output": {
+            "id": "W1_out",
+            "kind": "module",
+            "quantity": 1
+          },
+          "duration_profile": "T0_WELD"
+        },
+        {
+          "id": "I1",
+          "kind": "INSPECT",
+          "modes": [
+            "H"
+          ],
+          "inputs": [
+            "W1_out"
+          ],
+          "output": {
+            "id": "I1_out",
+            "kind": "module",
+            "quantity": 1
+          },
+          "duration_profile": "T0_INSPECT"
+        },
+        {
+          "id": "L1",
+          "kind": "LIFT",
+          "modes": [
+            "H"
+          ],
+          "inputs": [
+            "I1_out"
+          ],
+          "output": {
+            "id": "L1_out",
+            "kind": "finished",
+            "quantity": 1
+          },
+          "duration_profile": "T0_LIFT"
+        }
+      ],
+      "required_finished_outputs": [
+        "L1_out"
+      ],
+      "minimum_assembly_stations": 1,
+      "minimum_raw_buffer_capacity_per_kind": 1
+    },
+    "F2": {
+      "nodes": [
+        {
+          "id": "C1",
+          "kind": "CUT",
+          "modes": [
+            "H",
+            "R"
+          ],
+          "inputs": [],
+          "output": {
+            "id": "C1_out",
+            "kind": "pipe",
+            "quantity": 1
+          },
+          "duration_profile": "T0_CUT"
+        },
+        {
+          "id": "B1",
+          "kind": "BRACKET",
+          "modes": [
+            "H"
+          ],
+          "inputs": [],
+          "output": {
+            "id": "B1_out",
+            "kind": "bracket",
+            "quantity": 1
+          },
+          "duration_profile": "T0_BRACKET"
+        },
+        {
+          "id": "C2",
+          "kind": "CUT",
+          "modes": [
+            "H",
+            "R"
+          ],
+          "inputs": [],
+          "output": {
+            "id": "C2_out",
+            "kind": "pipe",
+            "quantity": 1
+          },
+          "duration_profile": "T0_CUT"
+        },
+        {
+          "id": "B2",
+          "kind": "BRACKET",
+          "modes": [
+            "H"
+          ],
+          "inputs": [],
+          "output": {
+            "id": "B2_out",
+            "kind": "bracket",
+            "quantity": 1
+          },
+          "duration_profile": "T0_BRACKET"
+        },
+        {
+          "id": "A1",
+          "kind": "ASSEMBLE",
+          "modes": [
+            "H",
+            "HR"
+          ],
+          "inputs": [
+            "C1_out",
+            "B1_out",
+            "C2_out",
+            "B2_out"
+          ],
+          "output": {
+            "id": "A1_out",
+            "kind": "module",
+            "quantity": 1
+          },
+          "duration_profile": "F2_WIDE_FEED"
+        },
+        {
+          "id": "W1",
+          "kind": "WELD",
+          "modes": [
+            "R",
+            "HR"
+          ],
+          "inputs": [
+            "A1_out"
+          ],
+          "output": {
+            "id": "W1_out",
+            "kind": "module",
+            "quantity": 1
+          },
+          "duration_profile": "T0_WELD"
+        },
+        {
+          "id": "I1",
+          "kind": "INSPECT",
+          "modes": [
+            "H"
+          ],
+          "inputs": [
+            "W1_out"
+          ],
+          "output": {
+            "id": "I1_out",
+            "kind": "module",
+            "quantity": 1
+          },
+          "duration_profile": "T0_INSPECT"
+        },
+        {
+          "id": "L1",
+          "kind": "LIFT",
+          "modes": [
+            "H"
+          ],
+          "inputs": [
+            "I1_out"
+          ],
+          "output": {
+            "id": "L1_out",
+            "kind": "finished",
+            "quantity": 1
+          },
+          "duration_profile": "T0_LIFT"
+        }
+      ],
+      "required_finished_outputs": [
+        "L1_out"
+      ],
+      "minimum_assembly_stations": 1,
+      "minimum_raw_buffer_capacity_per_kind": 2
+    },
+    "F3": {
+      "nodes": [
+        {
+          "id": "C1",
+          "kind": "CUT",
+          "modes": [
+            "H",
+            "R"
+          ],
+          "inputs": [],
+          "output": {
+            "id": "C1_out",
+            "kind": "pipe",
+            "quantity": 1
+          },
+          "duration_profile": "T0_CUT"
+        },
+        {
+          "id": "B1",
+          "kind": "BRACKET",
+          "modes": [
+            "H"
+          ],
+          "inputs": [],
+          "output": {
+            "id": "B1_out",
+            "kind": "bracket",
+            "quantity": 1
+          },
+          "duration_profile": "T0_BRACKET"
+        },
+        {
+          "id": "A1",
+          "kind": "ASSEMBLE",
+          "modes": [
+            "H",
+            "HR"
+          ],
+          "inputs": [
+            "C1_out",
+            "B1_out"
+          ],
+          "output": {
+            "id": "A1_out",
+            "kind": "module",
+            "quantity": 1
+          },
+          "duration_profile": "T0_ASSEMBLE"
+        },
+        {
+          "id": "C2",
+          "kind": "CUT",
+          "modes": [
+            "H",
+            "R"
+          ],
+          "inputs": [],
+          "output": {
+            "id": "C2_out",
+            "kind": "pipe",
+            "quantity": 1
+          },
+          "duration_profile": "T0_CUT"
+        },
+        {
+          "id": "B2",
+          "kind": "BRACKET",
+          "modes": [
+            "H"
+          ],
+          "inputs": [],
+          "output": {
+            "id": "B2_out",
+            "kind": "bracket",
+            "quantity": 1
+          },
+          "duration_profile": "T0_BRACKET"
+        },
+        {
+          "id": "A2",
+          "kind": "ASSEMBLE",
+          "modes": [
+            "H",
+            "HR"
+          ],
+          "inputs": [
+            "C2_out",
+            "B2_out"
+          ],
+          "output": {
+            "id": "A2_out",
+            "kind": "module",
+            "quantity": 1
+          },
+          "duration_profile": "T0_ASSEMBLE"
+        },
+        {
+          "id": "A3",
+          "kind": "ASSEMBLE",
+          "modes": [
+            "H",
+            "HR"
+          ],
+          "inputs": [
+            "A1_out",
+            "A2_out"
+          ],
+          "output": {
+            "id": "A3_out",
+            "kind": "module",
+            "quantity": 1
+          },
+          "duration_profile": "F3_MODULE_JOIN"
+        },
+        {
+          "id": "W1",
+          "kind": "WELD",
+          "modes": [
+            "R",
+            "HR"
+          ],
+          "inputs": [
+            "A3_out"
+          ],
+          "output": {
+            "id": "W1_out",
+            "kind": "module",
+            "quantity": 1
+          },
+          "duration_profile": "T0_WELD"
+        },
+        {
+          "id": "I1",
+          "kind": "INSPECT",
+          "modes": [
+            "H"
+          ],
+          "inputs": [
+            "W1_out"
+          ],
+          "output": {
+            "id": "I1_out",
+            "kind": "module",
+            "quantity": 1
+          },
+          "duration_profile": "T0_INSPECT"
+        },
+        {
+          "id": "L1",
+          "kind": "LIFT",
+          "modes": [
+            "H"
+          ],
+          "inputs": [
+            "I1_out"
+          ],
+          "output": {
+            "id": "L1_out",
+            "kind": "finished",
+            "quantity": 1
+          },
+          "duration_profile": "T0_LIFT"
+        }
+      ],
+      "required_finished_outputs": [
+        "L1_out"
+      ],
+      "minimum_assembly_stations": 3,
+      "minimum_raw_buffer_capacity_per_kind": 1
+    }
+  },
+  "orders": [
+    {
+      "id": "J01",
+      "family": "F1",
+      "release_min": 0,
+      "due_min": 160,
+      "weight": 1
+    },
+    {
+      "id": "J02",
+      "family": "F2",
+      "release_min": 0,
+      "due_min": 160,
+      "weight": 2
+    },
+    {
+      "id": "J03",
+      "family": "F3",
+      "release_min": 0,
+      "due_min": 160,
+      "weight": 3
+    },
+    {
+      "id": "J04",
+      "family": "F1",
+      "release_min": 15,
+      "due_min": 175,
+      "weight": 1
+    },
+    {
+      "id": "J05",
+      "family": "F2",
+      "release_min": 15,
+      "due_min": 175,
+      "weight": 2
+    },
+    {
+      "id": "J06",
+      "family": "F3",
+      "release_min": 15,
+      "due_min": 175,
+      "weight": 3
+    },
+    {
+      "id": "J07",
+      "family": "F1",
+      "release_min": 30,
+      "due_min": 190,
+      "weight": 1
+    },
+    {
+      "id": "J08",
+      "family": "F2",
+      "release_min": 30,
+      "due_min": 190,
+      "weight": 2
+    },
+    {
+      "id": "J09",
+      "family": "F3",
+      "release_min": 30,
+      "due_min": 190,
+      "weight": 3
+    },
+    {
+      "id": "J10",
+      "family": "F1",
+      "release_min": 45,
+      "due_min": 205,
+      "weight": 1
+    },
+    {
+      "id": "J11",
+      "family": "F2",
+      "release_min": 45,
+      "due_min": 205,
+      "weight": 2
+    },
+    {
+      "id": "J12",
+      "family": "F3",
+      "release_min": 45,
+      "due_min": 205,
+      "weight": 3
+    }
+  ],
+  "state_parameters": {
+    "profiles": {
+      "T0_W1": {
+        "F0": 0.1,
+        "recovery_per_min": 0.025
+      },
+      "T0_W2": {
+        "F0": 0.2,
+        "recovery_per_min": 0.02
+      }
+    },
+    "activity_rates_per_min": {
+      "work": 0.02,
+      "collaborate": 0.01,
+      "carry": 0.03,
+      "supervise": 0.005,
+      "wait": 0.002
+    },
+    "kappa": 1,
+    "cap": 0.8,
+    "minimum_protective_rest_min": 1
+  },
+  "evaluation": {
+    "observation_window_min": 600,
+    "budgets": "NOT_SELECTED",
+    "events": [],
+    "observation": "ZERO_DELAY_NOISE_MISSINGNESS",
+    "duration_noise": "NONE",
+    "window_clearance": "NOT_VERIFIED",
+    "schedule": null,
+    "performance_results": null
+  },
+  "declared_counts": {
+    "orders": 12,
+    "operations": 96,
+    "mode_choice_nodes": 52,
+    "workers": 6,
+    "robots": 3,
+    "cranes": 1
+  },
+  "limits": [
+    "NO_FEASIBLE_SCHEDULE_CLAIM",
+    "NO_PERFORMANCE_EVIDENCE",
+    "NO_PHYSICAL_CALIBRATION",
+    "NO_S06_INTERFACE_CONTRACT"
+  ]
+}
