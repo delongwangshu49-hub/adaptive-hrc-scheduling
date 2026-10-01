@@ -183,7 +183,22 @@ def group_resources(ctx, binding):
     return ids - {None}
 
 
-def _phase_resources(ctx, binding, mode_id, phase_id):
+def source_holding_resources(ctx, snapshot, source_id):
+    """Actual fixed source holds, including a receiving group's fixture lock.
+
+    Do not infer dependencies from every device installed at the source station.
+    A released or unused fixture must not interrupt an outgoing transport.
+    """
+    return {source_id} | {
+        lock.resource_id
+        for lock in snapshot.locks
+        if lock.purpose == "held"
+        and ctx.r[lock.resource_id].kind in {"fixture", "equipment"}
+        and ctx.r[lock.resource_id].station_id == source_id
+    }
+
+
+def _phase_resources(ctx, binding, mode_id, phase_id, *, snapshot=None):
     """Actual stage requirements, including declared fixed holding resources."""
     op, transfer, q = ctx.binding(binding.operation_id, binding.group_id, binding.allocation_id)
     if transfer is None:
@@ -203,6 +218,8 @@ def _phase_resources(ctx, binding, mode_id, phase_id):
             ids.add(q.worker_id)
         if phase_id in {"preposition", "rig"}:
             ids.add(route.source_id)
+            if snapshot is not None:
+                ids.update(source_holding_resources(ctx, snapshot, route.source_id))
         if phase_id in {"preposition", "unload"}:
             ids.update((route.target_id, q.fixture_id))
     return ids - {None}
@@ -212,7 +229,7 @@ def _interruption_resources(ctx, binding, snapshot):
     ids = set()
     for p in snapshot.phases:
         if p.group_id == binding.group_id and p.status in {"running", "paused"}:
-            ids.update(_phase_resources(ctx, binding, p.mode_id, p.phase_id))
+            ids.update(_phase_resources(ctx, binding, p.mode_id, p.phase_id, snapshot=snapshot))
     return ids
 
 
@@ -466,7 +483,7 @@ def cancellation_tail(config, snapshot, group_id, *, committed_tail=None):
         current.mode_id if current else next((p.mode_id for p in reversed(history)), op.mode_ids[0])
     )
     for name in tail:
-        relevant.update(_phase_resources(ctx, binding, mode_id, name))
+        relevant.update(_phase_resources(ctx, binding, mode_id, name, snapshot=snapshot))
     failures = [r for r in snapshot.resources if r.failed and r.resource_id in relevant]
     blocked = any(
         transfer is not None

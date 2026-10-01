@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.11.0，整理日期为 2026-10-01。PR055 补录 S08 r2 的实际验收、批准和发布；PR056 单独授权 S09 本地实施、检查及审阅包。S09 新快照待人工验收与上传批准，历史记录保留各自时点语义。
+版本为 0.11.1，整理日期为 2026-10-02。PR057 补录 S09 r1 实际批准与发布，PR058 记录完成性审阅，PR059 仅授权两项问题的有限本地修复及新审阅包。r2 待独立验收与上传批准，历史记录保留各自时点语义。
 
 ## 记录规则
 
@@ -46,7 +46,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.11.0",
+  "document_version": "0.11.1",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -1983,6 +1983,103 @@
         "docs/validation/execution.md"
       ],
       "limit": "LOCAL_WORK_ONLY_NO_S09_UPLOAD_APPROVAL_NO_S10_START"
+    },
+    {
+      "id": "PR057",
+      "date": "2026-10-01",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S09_R1_EXACT_SNAPSHOT",
+        "parameters": {
+          "packet_id": "S09-20261001-r1",
+          "packet_sha256": "4ed04d2fa332a4e64fa237ec3e4c2d6393e7a3c4ba6d02886502602b7ccf19fe",
+          "approval_decision_id": "S09-R1-APPROVAL-001",
+          "branch": "main",
+          "tag": "step-S09-r1"
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_AND_APPROVED_EXACT_S09_R1_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "PUBLISHED_APPROVED_SNAPSHOT",
+        "VERIFIED_REMOTE_TREE_ARCHIVE_AND_TWO_PLATFORM_CI"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S09.md",
+        "docs/validation/execution.md"
+      ],
+      "limit": "R1_APPROVAL_DOES_NOT_AUTHORIZE_R2_PUBLICATION_OR_S10"
+    },
+    {
+      "id": "PR058",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REVIEW_STEP",
+        "target": "S09_COMPLETENESS_AND_LOGIC",
+        "parameters": {
+          "scope": [
+            "DELIVERY_AND_PUBLICATION",
+            "EXECUTION_LOGIC"
+          ],
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_COMPLETENESS_AND_LOGIC_AUDIT"
+      ],
+      "assistant_support": [
+        "VERIFIED_PUBLISHED_DELIVERABLES",
+        "REPRODUCED_TWO_P2_DEFECTS"
+      ],
+      "resolution": "REVIEW_COMPLETED_TWO_DEFECTS_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S09.md",
+        "docs/validation/execution.md"
+      ],
+      "limit": "REVIEW_ONLY_NO_REPAIR_OR_PUBLICATION"
+    },
+    {
+      "id": "PR059",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "AUTHORIZE_LIMITED_REPAIR",
+        "target": "S09_TWO_CONFIRMED_FINDINGS",
+        "parameters": {
+          "scope": [
+            "SOURCE_HOLD_RELEASE_AND_INTERRUPTION",
+            "PARTITION_STABLE_CALENDAR_COMPLETION",
+            "NECESSARY_REGRESSIONS_AND_DOCUMENTATION",
+            "EXACT_REVIEW_PACKET"
+          ],
+          "continue_current_main": true,
+          "create_branch_or_worktree": false,
+          "preserve_previous_evidence": true,
+          "start_S10": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_BOUNDED_LOCAL_CORRECTION"
+      ],
+      "assistant_support": [
+        "IMPLEMENTED_TWO_LIMITED_REPAIRS",
+        "VERIFIED_180_TESTS_IN_PROJECT_AND_WHEEL",
+        "PREPARED_NEW_REVIEW_PACKET"
+      ],
+      "resolution": "DRAFTED_PENDING_REVIEW",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S09.md",
+        "docs/validation/execution.md"
+      ],
+      "limit": "NO_R2_ACCEPTANCE_OR_UPLOAD_APPROVAL_NO_S10"
     }
   ]
 }
@@ -2031,3 +2128,6 @@ PR047 只补录 S06 r3 确切快照的实际验收与上传批准；PR048 单独
 PR049 仅补录 S07 r1 确切快照的实际批准；PR050 是发布后完成性与逻辑审阅。PR051 单独授权 S08 本地实现、检查及审阅包，覆盖旧记录在历史时点对 S08 未授权的描述，不继承 S07 上传许可，不启动 S09。
 
 PR052 只补录 S08 r1 的实际验收与确切上传批准；PR053 为发布后审阅，确认三项 P2。PR054 授权这三项问题及相应测试、说明和审阅包的本地有限修复，不继承 r1 上传许可，不启动 S09。
+
+
+PR055 补录 S08 r2 实际批准；PR056 单独授权 S09 本地实施。PR057 仅补录 S09 r1 确切批准，PR058 为发布后审阅，PR059 仅授权两项问题及必要回归、治理记录和新审阅包的有限本地修复，不授权 r2 上传，不启动 S10。

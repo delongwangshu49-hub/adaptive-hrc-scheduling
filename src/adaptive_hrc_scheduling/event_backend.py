@@ -7,6 +7,7 @@ the event cursor, committed cancellation tails, timers and cleanup records.
 import copy
 import math
 from dataclasses import dataclass, replace
+from fractions import Fraction
 
 from .contracts.codec import ContractError, Nonnegative, decode, require
 from .contracts.messages import ExecutionEvent, HiddenScenario, WorldEvent, phase_execution_id
@@ -23,7 +24,6 @@ from .domain.state import (
     WorkerState,
 )
 from .events import (
-    advance_phase,
     apply_events,
     cancellation_tail,
     clear_preparation,
@@ -31,6 +31,7 @@ from .events import (
     preparation_for,
     restart_attempt,
     restore_progress,
+    source_holding_resources,
     withdrawable_reservations,
 )
 from .human_state import evolve, process_start_allowed, sample_phase, time_to_cap
@@ -107,6 +108,7 @@ class EventBackend:
         self._cursor = 0
         self._tails = {}
         self._deadlines = {}
+        self._net_windows = {}
         self._rests = {}
         self._cleanups = {}
         self._picked = {}
@@ -590,13 +592,42 @@ class EventBackend:
         else:
             phases = self._state.phases + (p,)
         self._set(phases=phases)
-        self._timer(_key(p), p.remaining_base_min * p.speed_multiplier)
+        self._timer(
+            _key(p), p.remaining_base_min * p.speed_multiplier, net_amount=p.remaining_base_min
+        )
         self._record("started", op.id, "ready", "running", "DISPATCH", _key(p))
 
-    def _timer(self, key, duration):
+    def _timer(self, key, duration, *, net_amount=None):
         end = self.now + duration
         require(math.isfinite(end) and end > self.now, "UNREPRESENTABLE_TIME")
         self._deadlines[key] = end
+        self._net_windows[key] = (self.now, end, duration if net_amount is None else net_amount)
+
+    def _remaining_at(self, key, at):
+        """Project the original net amount onto the representable calendar interval.
+
+        Exact ratios avoid accumulating partition-dependent subtraction error.
+        Only the stored deadline completes work; no epsilon or early clipping.
+        A resume creates a new interval from its preserved remaining net amount.
+        """
+        start, end, amount = self._net_windows[key]
+        require(start <= at <= end, "CLOCK_OUTSIDE_NET_WINDOW")
+        if at == end:
+            return 0.0
+        remaining = float(
+            Fraction(amount) * (Fraction(end) - Fraction(at)) / (Fraction(end) - Fraction(start))
+        )
+        require(remaining > 0, "UNREPRESENTABLE_REMAINING_WORK")
+        return remaining
+
+    def _require_source_release(self, source_id):
+        held = source_holding_resources(self.ctx, self._state, source_id)
+        for state in self._state.resources:
+            if state.resource_id in held:
+                require(
+                    not state.failed or state.release_allowed is True,
+                    "SOURCE_HOLD_RELEASE_FORBIDDEN",
+                )
 
     def _start_transfer(self, op, transfer, q, p, prior):
         route = self.ctx.routes[q.route_id]
@@ -616,6 +647,7 @@ class EventBackend:
         if p.phase_id in {"preposition", "rig"}:
             state = next(r for r in self._state.resources if r.resource_id == route.source_id)
             require(not state.failed, "SOURCE_FAILED")
+            self._require_source_release(route.source_id)
         if p.phase_id in {"preposition", "unload"}:
             target_owner = op.process_group_id or gid
             self._available(route.target_id, target_owner)
@@ -657,6 +689,7 @@ class EventBackend:
             route = self.ctx.routes[q.route_id]
             mid = transfer.material_id
             if p.phase_id == "rig":
+                self._require_source_release(route.source_id)
                 self._put_material(mid, q.crane_id, "in_transit")
                 self._release_source(route.source_id)
             elif p.phase_id == "unload":
@@ -816,6 +849,7 @@ class EventBackend:
             for p in self._state.phases:
                 if p.status != "running":
                     self._deadlines.pop(_key(p), None)
+                    self._net_windows.pop(_key(p), None)
             for e in batch:
                 if e.type == "release":
                     for m in self.config.materials:
@@ -942,9 +976,13 @@ class EventBackend:
             phases, completed = [], []
             for p in self._state.phases:
                 if p.status == "running":
-                    duration = p.remaining_base_min * p.speed_multiplier
-                    elapsed = duration if self._deadlines[_key(p)] == at else dt
-                    p = advance_phase(p, elapsed, at)
+                    done = self._deadlines[_key(p)] == at
+                    p = replace(
+                        p,
+                        remaining_base_min=self._remaining_at(_key(p), at),
+                        status="completed" if done else "running",
+                        completed_min=at if done else None,
+                    )
                     if p.status == "completed":
                         completed.append(p)
                 phases.append(p)
@@ -953,15 +991,17 @@ class EventBackend:
             self._set(sim_time_min=at, workers=tuple(workers), phases=tuple(phases))
             for p in sorted(completed, key=_key):
                 self._deadlines.pop(_key(p), None)
+                self._net_windows.pop(_key(p), None)
                 self._complete(p)
             for mid, c in tuple(self._cleanups.items()):
                 if c.status == "running":
                     key = "cleanup." + mid
                     if self._deadlines[key] == at:
                         self._deadlines.pop(key)
+                        self._net_windows.pop(key)
                         self._cleanup_complete(c)
                     else:
-                        self._cleanups[mid] = replace(c, remaining_min=c.remaining_min - dt)
+                        self._cleanups[mid] = replace(c, remaining_min=self._remaining_at(key, at))
             self._at_tick()
         return self._state
 
@@ -1141,6 +1181,7 @@ class EventBackend:
             if c.status == "running" and required & failed:
                 self._cleanups[mid] = replace(c, status="paused")
                 self._deadlines.pop("cleanup." + mid, None)
+                self._net_windows.pop("cleanup." + mid, None)
                 self._unlock(c.owner, resources={c.worker_id})
                 self._record("interrupted", mid, "running", "paused", "CLEANUP_FAILURE")
 
