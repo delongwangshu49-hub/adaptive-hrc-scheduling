@@ -2,7 +2,7 @@
 
 研究钢框架、水泥板楼板基底、轻质围护和指定湿区的完整居住模块，从结构制造贯通MEP/内装、质量放行及出厂就绪。重点为A状态依赖模式与排程联合决策、D人因权衡；B仅反馈稳健性，C仅恢复评价。
 
-**C04/C05 r2及S10 r2已验收并发布；S11已单独获本地实施授权，当前静态规则候选另行审阅。** SR-W1/W2完整日志从原始事件独立重建，检查器不调用执行器许可函数或复用其派生PASS。默认研究输入仍因工艺证据UNKNOWN而HOLD，HR禁用；受控合成资格不是工业资格。S11已实现静态EDD/SPT/当前合法最快模式与完整轨迹核验；动态调度、Isaac生产闭环与正式研究实验尚未实施；旧180项仅作旧域回归。
+**C04/C05 r2、S10 r2及S11 r1已验收并发布；S11审阅后三项有限修复形成r2候选，另行审阅。** SR-W1/W2完整日志从原始事件独立重建，检查器不调用执行器许可函数或复用其派生PASS。默认研究输入仍因工艺证据UNKNOWN而HOLD，HR禁用；受控合成资格不是工业资格。S11已实现静态EDD/SPT/当前合法最快模式与完整轨迹核验；动态调度、Isaac生产闭环与正式研究实验尚未实施；旧180项仅作旧域回归。
 
 | 阅读目的 | 入口 |
 | --- | --- |
@@ -21,9 +21,9 @@ uv run --locked python -m adaptive_hrc_scheduling
 uv run --locked python -m unittest discover -s tests -v
 ```
 
-包入口是安装自检。运行/检查边界见[开发说明](docs/development.md)，本轮本地CPU验证与远端CI分开，实际结果见步骤卡；C04/C05 r2与S10 r2双平台CI成功，S11远端CI未运行。负责人主导目标、选型、冻结与验收，AI在授权范围辅助核查、文档及后续实现，见[规范化决策记录](PROMPT_LEDGER.md)。
+包入口是安装自检。运行/检查边界见[开发说明](docs/development.md)，本轮本地CPU验证与远端CI分开，实际结果见步骤卡；C04/C05 r2、S10 r2及S11 r1双平台CI成功；S11 r2本地验证见步骤卡，r2远端CI未运行。负责人主导目标、选型、冻结与验收，AI在授权范围辅助核查、文档及后续实现，见[规范化决策记录](PROMPT_LEDGER.md)。
 
-自有代码采用[MIT](LICENSE)，第三方原件/资产许可独立。本文仅为入口，版本S11-0.1，2026-10-02；本次S11仅获本地实现与审阅包授权，尚无新提交、标签、推送或远端名称/About修改批准。
+自有代码采用[MIT](LICENSE)，第三方原件/资产许可独立。本文仅为入口，版本S11-0.2，2026-10-02；本次S11 r2仅获三项有限本地修复及新审阅包授权，尚无r2暂存、提交、标签、推送或远端名称/About修改批准。
 
 建筑合成见证：`uv run --locked --no-editable python scripts/run_building_witness.py --output .local/building-witness`。建筑Schema/样例校验：`uv run --locked --no-editable python scripts/build_building_contracts.py --check`。完整原始输出留本地。
 

@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.14.2，整理日期为 2026-10-02。PR060 补录 S09 r2 实际批准与发布；PR061 授权生产领域适配审查；PR062 要求以证据重审结构选型、生产流程及 README/总纲职责，并优先满足目标。PR063 进一步要求所有总纲实质重写、配套更新及显式选型比较、工作量与先后说明。PR064 认可纠偏原则与比较方法并要求整合执行指导书，指导书审阅和新对话交接批准尚待进行。PR065 将 GitHub 仓库名称和简介修改纳入指导书；具体名称与简介尚未确定。PR066 随后明确批准新对话交接并立即按指导书启动本地修正，沿用原目录/main，不建分支或worktree；未批准材料选型或远端发布。S09 r2 已发布，历史记录保留各自时点语义。
+版本为 0.14.4，整理日期为 2026-10-02。PR060 补录 S09 r2 实际批准与发布；PR061 授权生产领域适配审查；PR062 要求以证据重审结构选型、生产流程及 README/总纲职责，并优先满足目标。PR063 进一步要求所有总纲实质重写、配套更新及显式选型比较、工作量与先后说明。PR064 认可纠偏原则与比较方法并要求整合执行指导书，指导书审阅和新对话交接批准尚待进行。PR065 将 GitHub 仓库名称和简介修改纳入指导书；具体名称与简介尚未确定。PR066 随后明确批准新对话交接并立即按指导书启动本地修正，沿用原目录/main，不建分支或worktree；未批准材料选型或远端发布。S09 r2 已发布，历史记录保留各自时点语义。
 
 C00—C02本地交付见LOG056—LOG058。PR067随后确认推荐钢体系及明确标注的合成时间/负荷研究方式，授权创建“紧急修正C03”并直接且仅开展C03；要求C04—C05归入后续修复栏目，将原C06—C08对应S10—S28内容重新逐步细分。该决定不冻结专属规格、不启动后续实现、不批准发布。
 
@@ -23,6 +23,10 @@ PR078补录S10 r1确切批准与实际发布；PR079要求本步骤全量完成�
 PR080随后明确批准上述六组问题的有限本地修复，含必要回归、说明和新审阅包；r1批准不扩展至r2，S11未启动。
 
 PR081补录S10 r2确切验收、批准与实际发布；PR082随后单独授权S11本地实现和确切审阅包，覆盖旧时点未启动边界，不继承S10发布许可。S12—S28及S11新快照Git/远端写入未授权。
+
+PR083补录S11 r1确切验收、发布批准及实际回执；PR084要求本步骤完成性与逻辑审阅。审阅确认三组待修问题，结论REOPEN_REQUIRED；保留r1发布事实，不自动授权修复、新快照发布或S12。
+
+PR085随后明确批准上述三组问题的有限本地修复及必要回归、说明、治理和新审阅包。r1发布事实保持；r2另行验收/批准，S12—S28未启动。
 
 ## 记录规则
 
@@ -64,7 +68,7 @@ PR081补录S10 r2确切验收、批准与实际发布；PR082随后单独授权S
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.13.4",
+  "document_version": "0.14.4",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -2960,6 +2964,116 @@ PR081补录S10 r2确切验收、批准与实际发布；PR082随后单独授权S
         "docs/steps/S11.md"
       ],
       "limit": "LOCAL_S11_ONLY_NO_STAGE_COMMIT_TAG_PUSH_PR_ATTACHMENT_OR_REMOTE_METADATA_CHANGE"
+    },
+    {
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "HUMAN_CONFIRMED",
+      "id": "PR083",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S11",
+        "parameters": {
+          "step_id": "S11",
+          "packet_id": "S11-20261002-r1",
+          "decision": "ACCEPT_AND_APPROVE",
+          "decision_id": "S11-R1-APPROVAL-001",
+          "packet_sha256": "1daea550d33efce6cc52443fbb519fa12d5d1643f5403ae2a47f71d1b40c8634",
+          "branch": "main",
+          "tag": "step-S11-r1",
+          "permitted_remote_actions": [
+            "EXACT_STAGE",
+            "ONE_COMMIT",
+            "NEW_ANNOTATED_TAG",
+            "NONFORCE_PUSH_MAIN_AND_TAG",
+            "REMOTE_AND_CPU_CI_VERIFICATION"
+          ]
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_AND_APPROVED_EXACT_S11_R1_SNAPSHOT",
+        "EXPLICITLY_AUTHORIZED_RETRY_OF_BLOCKED_PUBLICATION"
+      ],
+      "assistant_support": [
+        "PUBLISHED_UNCHANGED_APPROVED_SNAPSHOT",
+        "VERIFIED_REMOTE_OBJECTS_AND_CI",
+        "PRESERVED_RECEIPT"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S11.md"
+      ],
+      "limit": "S11_R1_ONLY_NO_NEW_SNAPSHOT_OR_S12_PERMISSION"
+    },
+    {
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "REVIEW_COMPLETED",
+      "id": "PR084",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "S11",
+        "parameters": {
+          "scope": [
+            "STEP_COMPLETENESS",
+            "IMPLEMENTATION_LOGIC",
+            "VALIDATION_AND_PUBLICATION_EVIDENCE"
+          ],
+          "repair_authorized": false,
+          "new_publication": false
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_FULL_STEP_COMPLETENESS_AND_LOGIC_REVIEW"
+      ],
+      "assistant_support": [
+        "AUDITED_DELIVERABLES_AND_PUBLISHED_SNAPSHOT",
+        "RAN_FULL_CPU_CHECKS_AND_TARGETED_COUNTEREXAMPLES",
+        "RECORDED_THREE_FINDING_GROUPS_AND_LIMITATIONS"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S11.md"
+      ],
+      "limit": "REVIEW_AND_LOCAL_GOVERNANCE_ONLY_NO_IMPLEMENTATION_REPAIR_OR_S12_OR_GIT_PUBLICATION"
+    },
+    {
+      "id": "PR085",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "HUMAN_CONFIRMED",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "S11",
+        "parameters": {
+          "findings": [
+            "AUD-S11-01",
+            "AUD-S11-02",
+            "AUD-S11-03"
+          ],
+          "scope": [
+            "LIMITED_LOCAL_REPAIR",
+            "NECESSARY_REGRESSION_DOCUMENTATION_GOVERNANCE_AND_EXACT_REVIEW_PACKET"
+          ],
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "new_publication": false
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_LIMITED_REPAIR_OF_THREE_REVIEW_FINDINGS"
+      ],
+      "assistant_support": [
+        "PRESERVED_BASELINE_AND_REVIEW_EVIDENCE",
+        "IMPLEMENTED_TARGETED_REPAIRS_AND_REGRESSIONS",
+        "PREPARED_R2_REVIEW_CANDIDATE"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S11.md"
+      ],
+      "limit": "S11_THREE_LOCAL_REPAIRS_ONLY_R2_REQUIRES_SEPARATE_ACCEPTANCE_AND_PUBLICATION_APPROVAL_NO_S12"
     }
   ]
 }

@@ -9,6 +9,7 @@ in the report even when its overall status is INCOMPLETE.
 import hashlib
 import json
 import math
+import re
 import types
 from dataclasses import asdict, dataclass, field, fields, is_dataclass
 from functools import lru_cache
@@ -149,14 +150,16 @@ def _hints(kind):
     return get_type_hints(kind, include_extras=True)
 
 
-def _shape(value, kind):
+def _shape(value, kind, *, ids=False):
     """Independent structural boundary and canonical numeric normalization."""
     origin, args = get_origin(kind), get_args(kind)
     if origin is Annotated:
-        result = _shape(value, args[0])
+        result = _shape(value, args[0], ids=ids)
         # Metadata names belong to immutable types; inequalities are local.
         if "nonnegative" in args and result < 0 or "positive" in args and result <= 0:
             raise ValueError("numeric bound")
+        if ids and "id" in args and re.fullmatch(r"[A-Za-z][A-Za-z0-9_.:-]{0,159}", result) is None:
+            raise ValueError("candidate identifier")
         return result
     if origin is Literal:
         if value not in args or isinstance(value, bool):
@@ -165,19 +168,21 @@ def _shape(value, kind):
     if origin in (types.UnionType, Union):
         for option in args:
             try:
-                return _shape(value, option)
+                return _shape(value, option, ids=ids)
             except (ValueError, TypeError):
                 pass
         raise ValueError("union")
     if origin is tuple:
         if not isinstance(value, tuple):
             raise ValueError("tuple")
-        return [_shape(x, args[0]) for x in value]
+        return [_shape(x, args[0], ids=ids) for x in value]
     if is_dataclass(kind):
         if type(value) is not kind:
             raise ValueError("record type")
         hints = _hints(kind)
-        return {f.name: _shape(getattr(value, f.name), hints[f.name]) for f in fields(kind)}
+        return {
+            f.name: _shape(getattr(value, f.name), hints[f.name], ids=ids) for f in fields(kind)
+        }
     if kind is float:
         if type(value) not in (int, float) or not math.isfinite(value):
             raise ValueError("finite number")
@@ -1850,9 +1855,9 @@ def check_run(
         ):
             raise ValueError("window")
         if plan is not None:
-            _shape(plan, b.Plan)
+            _shape(plan, b.Plan, ids=candidate_trace)
         if observation is not None:
-            _shape(observation, b.PlanningObservation)
+            _shape(observation, b.PlanningObservation, ids=candidate_trace)
     except (ValueError, TypeError, AttributeError):
         return Report(
             "INCOMPLETE",
@@ -1860,6 +1865,7 @@ def check_run(
             {"validity": "DIAGNOSTIC_ONLY"},
             {},
             {},
+            "S10-1.3" if candidate_trace is True else "S10-1.1",
         )
     audit = _Audit(config, snapshot, snapshot.time_h if window_h is None else window_h)
     try:
@@ -2073,7 +2079,7 @@ def check_run(
             "water_present": sorted(audit.water),
         },
         scope,
-        "S10-1.2" if candidate_trace else "S10-1.1",
+        "S10-1.3" if candidate_trace else "S10-1.1",
     )
 
 
@@ -2086,6 +2092,19 @@ def _check_candidate_trace(audit, plan, observation):
     candidates without repair/handover services. Old unbound calls stay incomplete.
     """
     s = audit.s
+    audit.need(
+        len({p.product_id for p in observation.products}) == len(observation.products),
+        "R14",
+        observation.id,
+        "DUPLICATE_OBSERVED_PRODUCT",
+    )
+    for command in plan.commands:
+        audit.need(
+            command.config_id == audit.c.id,
+            "R09",
+            command.id,
+            "COMMAND_CONFIG_MISMATCH",
+        )
     audit.need(
         not s.scenario.events
         and not any(

@@ -90,11 +90,12 @@ def _bindings(world, activity, mode, index, previous):
     yield from visit(0, [])
 
 
-def legal_candidates(world, *, max_bindings=10000):
+def legal_candidates(world, *, max_bindings=10000, instant_only=False):
     """Probe immutable snapshot copies; rejected probes never alter the trace.
 
     Return all admitted candidates in the bounded enumeration, rejection/wait
     reasons and exhaustion flag. The caller must not rank a truncated set.
+    At the horizon, instant_only excludes active work before binding enumeration.
     """
     latest = _latest(world)
     humans = {h.person_id: h for h in world.snapshot.people}
@@ -116,6 +117,8 @@ def legal_candidates(world, *, max_bindings=10000):
             waits.append(Wait(world.time, a.id, "", "PREDECESSOR", unfinished))
             continue
         for mode in sorted(a.modes, key=lambda m: m.id):
+            if instant_only and mode.units:
+                continue
             if prior and prior.mode_id != mode.id:
                 continue
             if not mode.enabled or not evidence_pass(world.config, mode.qualification_ids):
@@ -318,6 +321,8 @@ def generate_plan(config, observation, options=Options()):
         validate(config)
         validate(observation, config=config)
         visible = {p.product_id for p in observation.products}
+        if visible != {p.id for p in config.products if p.release_h == 0}:
+            return result("INVALID_INPUT", "COMPLETE_PRISTINE_T0_OBSERVATION_REQUIRED")
         if not visible:
             return result("NO_PLAN_FOUND", "NO_VISIBLE_PRODUCTS")
         visible_orders = {p.order_id for p in config.products if p.id in visible}
@@ -365,12 +370,14 @@ def generate_plan(config, observation, options=Options()):
                 if commands and report.status == "PASS":
                     return result("FEASIBLE", "COMPLETE_VERIFIED_CANDIDATE", plan, report)
                 return result("NO_PLAN_FOUND", "INDEPENDENT_CHECK_REJECTED", report=report)
-            if world.time >= options.horizon_h:
+            if world.time > options.horizon_h:
                 return result("NO_PLAN_FOUND", "HORIZON_EXHAUSTED")
+            at_horizon = world.time == options.horizon_h
             candidates, blocked, exhausted = legal_candidates(
-                world, max_bindings=options.max_bindings
+                world, max_bindings=options.max_bindings, instant_only=at_horizon
             )
-            waits.extend(blocked)
+            if not at_horizon:
+                waits.extend(blocked)
             if exhausted:
                 return result("NO_PLAN_FOUND", "BINDING_BUDGET_EXHAUSTED")
             if candidates:
@@ -380,6 +387,8 @@ def generate_plan(config, observation, options=Options()):
                     return result("NO_PLAN_FOUND", "ADMISSION_CHANGED:" + receipt.reason)
                 commands.append(chosen)
                 continue
+            if at_horizon:
+                return result("NO_PLAN_FOUND", "HORIZON_EXHAUSTED")
             # Rest is an explicit charged action at an idle point. No locks or
             # residencies are cleared to make a candidate feasible.
             busy = {lock.resource_id for lock in world.snapshot.locks}

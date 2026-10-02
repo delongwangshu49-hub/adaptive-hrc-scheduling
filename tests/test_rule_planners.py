@@ -387,6 +387,127 @@ class RulePlannerTests(unittest.TestCase):
         ]
         self.assertTrue(all(a["end_h"] <= z["start_h"] for a, z in zip(spans, spans[1:])))
 
+    def test_missing_released_products_rejected_before_projection(self):
+        c = configuration(products=2)
+        obs = BuildingBackend(c).observe()[0]
+        for rule in ("EDD", "SPT", "FASTEST_MODE"):
+            for products in (obs.products[:1], obs.products[1:], ()):
+                with self.subTest(rule=rule, products=products):
+                    r = generate_plan(
+                        c,
+                        replace(obs, products=products),
+                        Options(rule=rule, synthetic_gate_assumptions=True),
+                    )
+                    self.assertEqual(r.status, "INVALID_INPUT")
+                    self.assertIsNone(r.configuration)
+                    self.assertIsNone(r.plan)
+
+    def test_complete_two_products_remain_in_evaluation(self):
+        c = configuration(products=2)
+        c = replace(
+            c,
+            resources=tuple(replace(x, capacity=2) if x.id == "OUT1" else x for x in c.resources),
+        )
+        for rule in ("EDD", "SPT", "FASTEST_MODE"):
+            with self.subTest(rule=rule):
+                r = run(c, rule=rule, synthetic_gate_assumptions=True)
+                self.assertEqual(r.status, "FEASIBLE", r.reason)
+                self.assertEqual(len(r.configuration.products), 2)
+                self.assertEqual(r.report.metrics["ready_products"], 2)
+
+    def test_all_future_products_leave_a_genuinely_empty_window(self):
+        c = configuration()
+        c = replace(c, products=(replace(c.products[0], release_h=300, due_h=400),))
+        r = run(c, synthetic_gate_assumptions=True)
+        self.assertEqual((r.status, r.reason), ("NO_PLAN_FOUND", "NO_VISIBLE_PRODUCTS"))
+
+    def test_every_candidate_command_has_matching_configuration(self):
+        for i in (0, len(self.r.plan.commands) // 2, len(self.r.plan.commands) - 1):
+            with self.subTest(index=i):
+                commands = list(self.r.plan.commands)
+                commands[i] = replace(commands[i], config_id="OTHER-CONFIG")
+                report = self.audit(plan=replace(self.r.plan, commands=tuple(commands)))
+                self.assertNotEqual(report.status, "PASS")
+                self.assertTrue(any(f.code == "COMMAND_CONFIG_MISMATCH" for f in report.findings))
+
+    def test_invalid_candidate_command_ids_rejected_with_matching_consumption(self):
+        for value in ("", "1BAD", "A B", "A\n", "无效", "A" * 161):
+            with self.subTest(value=value):
+                plan = replace(
+                    self.r.plan,
+                    commands=(replace(self.r.plan.commands[0], id=value),)
+                    + self.r.plan.commands[1:],
+                )
+                trace = replace(
+                    self.r.trace, consumed_commands=(value,) + self.r.trace.consumed_commands[1:]
+                )
+                report = self.audit(plan=plan, trace=trace)
+                self.assertNotEqual(report.status, "PASS")
+                self.assertEqual(report.report_version, "S10-1.3")
+
+    def test_valid_boundary_command_ids_preserve_candidate_pass(self):
+        for value in ("A", "A" * 160, "A_1.-:z"):
+            with self.subTest(value=value):
+                plan = replace(
+                    self.r.plan,
+                    commands=(replace(self.r.plan.commands[0], id=value),)
+                    + self.r.plan.commands[1:],
+                )
+                trace = replace(
+                    self.r.trace, consumed_commands=(value,) + self.r.trace.consumed_commands[1:]
+                )
+                self.assertEqual(self.audit(plan=plan, trace=trace).status, "PASS")
+
+    def test_duplicate_product_observation_is_not_a_complete_candidate_input(self):
+        obs = replace(self.r.observation, products=self.r.observation.products * 2)
+        report = self.audit(observation=obs)
+        self.assertNotEqual(report.status, "PASS")
+        self.assertTrue(any(f.code == "DUPLICATE_OBSERVED_PRODUCT" for f in report.findings))
+
+    def test_exact_horizon_allows_same_time_ready_for_all_rules_and_variants(self):
+        for (variant, rule), reference in self.results.items():
+            with self.subTest(variant=variant, rule=rule):
+                end = reference.plan.predicted_ready[0].ready_h
+                r = run(
+                    configuration(variant),
+                    rule=rule,
+                    horizon_h=end,
+                    synthetic_gate_assumptions=True,
+                )
+                self.assertEqual(r.status, "FEASIBLE", r.reason)
+                self.assertEqual(r.plan, reference.plan)
+                self.assertEqual(r.trace, reference.trace)
+
+    def test_horizon_just_before_and_after_completion(self):
+        for (variant, rule), reference in self.results.items():
+            end = reference.plan.predicted_ready[0].ready_h
+            for delta in (-1e-6, 1e-6):
+                with self.subTest(variant=variant, rule=rule, delta=delta):
+                    r = run(
+                        configuration(variant),
+                        rule=rule,
+                        horizon_h=end + delta,
+                        synthetic_gate_assumptions=True,
+                    )
+                    self.assertLessEqual(r.trace.time_h, end + delta)
+                    if delta < 0:
+                        self.assertEqual(r.status, "NO_PLAN_FOUND")
+                        self.assertIsNone(r.plan)
+                        self.assertFalse(any(e.kind == "READY" for e in r.trace.events))
+                    else:
+                        self.assertEqual(r.status, "FEASIBLE", r.reason)
+                        self.assertEqual(r.plan, reference.plan)
+
+    def test_horizon_does_not_start_active_work_at_endpoint(self):
+        end = next(e.time_h for e in self.r.trace.events if e.kind == "UNIT_COMPLETE")
+        self.assertTrue(
+            any(e.time_h == end and e.kind == "UNIT_START" for e in self.r.trace.events)
+        )
+        r = run(configuration(), horizon_h=end, synthetic_gate_assumptions=True)
+        self.assertEqual(r.reason, "HORIZON_EXHAUSTED")
+        self.assertEqual(r.trace.time_h, end)
+        self.assertFalse(any(e.time_h == end and e.kind == "UNIT_START" for e in r.trace.events))
+
 
 if __name__ == "__main__":
     unittest.main()

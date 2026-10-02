@@ -57,7 +57,7 @@ def reproduce(output):
         if result.status != case["expected_status"]:
             raise RuntimeError(f"{case['id']}: {result.status} != {case['expected_status']}")
     summary = {
-        "version": "S11-1.0",
+        "version": "S11-1.1",
         "scope": "STATIC_SYNTHETIC_CODE_VALIDATION",
         "industrial_qualification": "NOT_ESTABLISHED",
         "default_hr": "DISABLED",
