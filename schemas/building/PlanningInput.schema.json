@@ -1,0 +1,571 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "Activity": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "face": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "material_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "modes": {
+          "items": {
+            "$ref": "#/$defs/Mode"
+          },
+          "type": "array"
+        },
+        "move": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Move"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quality_evidence": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "release_evidence": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wait_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "code",
+        "location",
+        "face",
+        "modes",
+        "material_ids",
+        "wait_h",
+        "release_evidence",
+        "quality_evidence",
+        "move"
+      ],
+      "type": "object"
+    },
+    "BOMItem": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quantity": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "quantity",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "HumanState": {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "fatigue": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "peak": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "rest_until_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "person_id",
+        "fatigue",
+        "exposure",
+        "peak",
+        "rest_until_h"
+      ],
+      "type": "object"
+    },
+    "Mode": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "H",
+            "H-team",
+            "HR-seq",
+            "MOVE",
+            "WAIT",
+            "GATE"
+          ]
+        },
+        "output_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "qualification_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "qualification_revisions": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "units": {
+          "items": {
+            "$ref": "#/$defs/WorkUnit"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "output_revision",
+        "qualification_ids",
+        "qualification_revisions",
+        "units",
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "Move": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "equipment": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "landing_h": {
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "qualification_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "qualification_revisions": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "route": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "source": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "route",
+        "equipment",
+        "entity_ids",
+        "landing_h",
+        "qualification_ids",
+        "qualification_revisions"
+      ],
+      "type": "object"
+    },
+    "ObservedProduct": {
+      "additionalProperties": false,
+      "properties": {
+        "cancelled": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completed_activity_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "product_id",
+        "state",
+        "location",
+        "completed_activity_ids",
+        "cancelled"
+      ],
+      "type": "object"
+    },
+    "PlanningInput": {
+      "additionalProperties": false,
+      "properties": {
+        "activities": {
+          "items": {
+            "$ref": "#/$defs/Activity"
+          },
+          "type": "array"
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "decision_budget_ms": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "observation": {
+          "$ref": "#/$defs/PlanningObservation"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/$defs/Product"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "observation",
+        "products",
+        "activities",
+        "decision_budget_ms"
+      ],
+      "type": "object"
+    },
+    "PlanningObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "event_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "observed_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "people": {
+          "items": {
+            "$ref": "#/$defs/HumanState"
+          },
+          "type": "array"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/$defs/ObservedProduct"
+          },
+          "type": "array"
+        },
+        "received_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "sampled_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "state_revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "unavailable_resources": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "id",
+        "sampled_h",
+        "received_h",
+        "observed_h",
+        "state_revision",
+        "products",
+        "people",
+        "unavailable_resources",
+        "event_ids"
+      ],
+      "type": "object"
+    },
+    "Product": {
+      "additionalProperties": false,
+      "properties": {
+        "bom": {
+          "items": {
+            "$ref": "#/$defs/BOMItem"
+          },
+          "type": "array"
+        },
+        "due_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "mass_t": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "order_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "release_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "rigging_t": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "variant": {
+          "enum": [
+            "SR-W1",
+            "SR-W2"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "order_id",
+        "variant",
+        "revision",
+        "bom",
+        "mass_t",
+        "rigging_t",
+        "release_h",
+        "due_h"
+      ],
+      "type": "object"
+    },
+    "Role": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "qualification": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "qualification"
+      ],
+      "type": "object"
+    },
+    "WorkUnit": {
+      "additionalProperties": false,
+      "properties": {
+        "base_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "checkpoint_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "equipment": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kappa": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "phase": {
+          "enum": [
+            "SETUP",
+            "WORK",
+            "ROBOT",
+            "UNLOAD",
+            "CHECK",
+            "MOVE"
+          ]
+        },
+        "resumable": {
+          "type": "boolean"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/Role"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "base_h",
+        "checkpoint_id",
+        "phase",
+        "roles",
+        "equipment",
+        "kappa",
+        "resumable"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/PlanningInput",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlanningInput"
+}

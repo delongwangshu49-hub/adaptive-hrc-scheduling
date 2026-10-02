@@ -1,0 +1,1029 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "Attempt": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "completed_units": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "mode_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "number": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prepared": {
+          "type": "boolean"
+        },
+        "state": {
+          "enum": [
+            "NOT_READY",
+            "RUNNING",
+            "PAUSED_AT_CHECKPOINT",
+            "WAITING_RELEASE",
+            "FAILED",
+            "COMPLETED",
+            "CANCELLED"
+          ]
+        },
+        "wait_until_h": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "activity_id",
+        "number",
+        "mode_id",
+        "completed_units",
+        "state",
+        "wait_until_h",
+        "prepared"
+      ],
+      "type": "object"
+    },
+    "ComponentState": {
+      "additionalProperties": false,
+      "properties": {
+        "component_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "incorporated": {
+          "type": "boolean"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "component_id",
+        "location",
+        "incorporated"
+      ],
+      "type": "object"
+    },
+    "ExecutionEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "time_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "id",
+        "time_h",
+        "kind",
+        "entity_id",
+        "attempt",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "ExecutionSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "attempts": {
+          "items": {
+            "$ref": "#/$defs/Attempt"
+          },
+          "type": "array"
+        },
+        "components": {
+          "items": {
+            "$ref": "#/$defs/ComponentState"
+          },
+          "type": "array"
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "consumed_commands": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "event_cursor": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/ExecutionEvent"
+          },
+          "type": "array"
+        },
+        "failed_resources": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "intervals": {
+          "items": {
+            "$ref": "#/$defs/HumanInterval"
+          },
+          "type": "array"
+        },
+        "locks": {
+          "items": {
+            "$ref": "#/$defs/Lock"
+          },
+          "type": "array"
+        },
+        "materials": {
+          "items": {
+            "$ref": "#/$defs/MaterialState"
+          },
+          "type": "array"
+        },
+        "observation_queue": {
+          "items": {
+            "$ref": "#/$defs/PlanningObservation"
+          },
+          "type": "array"
+        },
+        "people": {
+          "items": {
+            "$ref": "#/$defs/HumanState"
+          },
+          "type": "array"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/$defs/ProductState"
+          },
+          "type": "array"
+        },
+        "quality": {
+          "items": {
+            "$ref": "#/$defs/QualityRecord"
+          },
+          "type": "array"
+        },
+        "random_cursor": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "released_processes": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "released_products": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "residencies": {
+          "items": {
+            "$ref": "#/$defs/Residency"
+          },
+          "type": "array"
+        },
+        "revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "running": {
+          "items": {
+            "$ref": "#/$defs/Running"
+          },
+          "type": "array"
+        },
+        "scenario": {
+          "$ref": "#/$defs/HiddenScenario"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "services": {
+          "items": {
+            "$ref": "#/$defs/Service"
+          },
+          "type": "array"
+        },
+        "time_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "config_sha256",
+        "time_h",
+        "revision",
+        "products",
+        "components",
+        "materials",
+        "attempts",
+        "running",
+        "people",
+        "residencies",
+        "locks",
+        "quality",
+        "failed_resources",
+        "released_processes",
+        "released_products",
+        "consumed_commands",
+        "event_cursor",
+        "random_cursor",
+        "scenario",
+        "observation_queue",
+        "events",
+        "intervals",
+        "services"
+      ],
+      "type": "object"
+    },
+    "HiddenScenario": {
+      "additionalProperties": false,
+      "properties": {
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/WorldEvent"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "seed": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "seed",
+        "events"
+      ],
+      "type": "object"
+    },
+    "HumanInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "activity": {
+          "enum": [
+            "WORK",
+            "SUPERVISE",
+            "WAIT",
+            "REST",
+            "OFF_SHIFT",
+            "HANDOVER",
+            "RESTORE",
+            "EMERGENCY_HOLD"
+          ]
+        },
+        "end_f": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "end_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "exposure": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "rate": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "start_f": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "start_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "person_id",
+        "start_h",
+        "end_h",
+        "activity",
+        "rate",
+        "start_f",
+        "end_f",
+        "exposure"
+      ],
+      "type": "object"
+    },
+    "HumanState": {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "fatigue": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "peak": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "rest_until_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "person_id",
+        "fatigue",
+        "exposure",
+        "peak",
+        "rest_until_h"
+      ],
+      "type": "object"
+    },
+    "Lock": {
+      "additionalProperties": false,
+      "properties": {
+        "owner": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "resource_id",
+        "owner"
+      ],
+      "type": "object"
+    },
+    "MaterialState": {
+      "additionalProperties": false,
+      "properties": {
+        "arrived": {
+          "type": "boolean"
+        },
+        "consumed_by": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "identified": {
+          "type": "boolean"
+        },
+        "material_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "released": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "material_id",
+        "arrived",
+        "identified",
+        "released",
+        "consumed_by"
+      ],
+      "type": "object"
+    },
+    "ObservedProduct": {
+      "additionalProperties": false,
+      "properties": {
+        "cancelled": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completed_activity_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "product_id",
+        "state",
+        "location",
+        "completed_activity_ids",
+        "cancelled"
+      ],
+      "type": "object"
+    },
+    "PlanningObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "event_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "observed_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "people": {
+          "items": {
+            "$ref": "#/$defs/HumanState"
+          },
+          "type": "array"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/$defs/ObservedProduct"
+          },
+          "type": "array"
+        },
+        "received_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "sampled_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "state_revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "unavailable_resources": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "id",
+        "sampled_h",
+        "received_h",
+        "observed_h",
+        "state_revision",
+        "products",
+        "people",
+        "unavailable_resources",
+        "event_ids"
+      ],
+      "type": "object"
+    },
+    "ProductState": {
+      "additionalProperties": false,
+      "properties": {
+        "cancelled": {
+          "type": "boolean"
+        },
+        "installed_bom": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "ready_h": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "state": {
+          "enum": [
+            "RELEASED",
+            "IN_PROCESS",
+            "BLOCKED",
+            "QUALITY_HOLD",
+            "CANCEL_PENDING",
+            "QUARANTINED",
+            "READY",
+            "RECEIVED"
+          ]
+        },
+        "water_present": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "product_id",
+        "location",
+        "state",
+        "cancelled",
+        "ready_h",
+        "installed_bom",
+        "water_present"
+      ],
+      "type": "object"
+    },
+    "QualityRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "criterion_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "inspector_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "result": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN"
+          ]
+        },
+        "time_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "activity_id",
+        "attempt",
+        "product_revision",
+        "criterion_revision",
+        "inspector_id",
+        "time_h",
+        "result",
+        "valid"
+      ],
+      "type": "object"
+    },
+    "Residency": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "owner": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "reserved": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "entity_id",
+        "location",
+        "owner",
+        "reserved"
+      ],
+      "type": "object"
+    },
+    "RoleBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "role_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role_id",
+        "person_id"
+      ],
+      "type": "object"
+    },
+    "Running": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "end_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "equipment": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "landings_done": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "mode_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "multiplier": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/RoleBinding"
+          },
+          "type": "array"
+        },
+        "sampled_max_f": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "start_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "state": {
+          "enum": [
+            "ACTIVE",
+            "EMERGENCY_HOLD"
+          ]
+        },
+        "unit_index": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "activity_id",
+        "attempt",
+        "unit_index",
+        "mode_id",
+        "start_h",
+        "end_h",
+        "sampled_max_f",
+        "multiplier",
+        "roles",
+        "equipment",
+        "state",
+        "landings_done"
+      ],
+      "type": "object"
+    },
+    "Service": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "end_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "HANDOVER",
+            "RESTORE",
+            "REPAIR",
+            "CLEANUP"
+          ]
+        },
+        "outgoing_person": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "people": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "replacement_person": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "start_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "state": {
+          "enum": [
+            "ACTIVE",
+            "EMERGENCY_HOLD"
+          ]
+        },
+        "target": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "activity_id",
+        "product_id",
+        "people",
+        "start_h",
+        "end_h",
+        "source",
+        "target",
+        "state",
+        "replacement_person",
+        "outgoing_person"
+      ],
+      "type": "object"
+    },
+    "WorldEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "MATERIAL_ARRIVAL",
+            "MATERIAL_IDENTIFY",
+            "MATERIAL_RELEASE",
+            "PROCESS_RELEASE",
+            "QUALITY_RESULT",
+            "INVALIDATE",
+            "FAILURE",
+            "REPAIR",
+            "ORDER_ARRIVAL",
+            "CANCEL",
+            "RECEIVED"
+          ]
+        },
+        "time_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "UNKNOWN"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "time_h",
+        "kind",
+        "entity_id",
+        "value",
+        "attempt"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/ExecutionSnapshot",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExecutionSnapshot"
+}

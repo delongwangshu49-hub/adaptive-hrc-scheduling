@@ -1,0 +1,126 @@
+{
+  "cancelled_count": 0,
+  "config_id": "BW-SR-W1-1",
+  "incomplete_count": 1,
+  "people": [
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "P1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "W1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "W2",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "OP1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "AF1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "AF2",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "E1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "PL1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "T1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "T2",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "C1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "QA1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "Lop",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "Lrig",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "Lsig",
+      "rest_until_h": 0.0
+    }
+  ],
+  "products": [
+    {
+      "cancelled": false,
+      "installed_bom": [],
+      "location": "UNASSEMBLED",
+      "product_id": "PRODUCT-1",
+      "ready_h": null,
+      "state": "RELEASED",
+      "water_present": false
+    }
+  ],
+  "schema_version": "C04-1.0",
+  "scope": "EXECUTOR_SUMMARY_NOT_S10",
+  "window_h": 240.0
+}

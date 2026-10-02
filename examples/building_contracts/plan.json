@@ -1,0 +1,13 @@
+{
+  "commands": [],
+  "config_id": "BW-SR-W1-1",
+  "observation_id": "OBS-0",
+  "predicted_ready": [
+    {
+      "product_id": "PRODUCT-1",
+      "ready_h": null
+    }
+  ],
+  "schema_version": "C04-1.0",
+  "status": "INCOMPLETE"
+}

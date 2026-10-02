@@ -1,0 +1,171 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "HumanState": {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "fatigue": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "peak": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "rest_until_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "person_id",
+        "fatigue",
+        "exposure",
+        "peak",
+        "rest_until_h"
+      ],
+      "type": "object"
+    },
+    "ObservedProduct": {
+      "additionalProperties": false,
+      "properties": {
+        "cancelled": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "completed_activity_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "product_id",
+        "state",
+        "location",
+        "completed_activity_ids",
+        "cancelled"
+      ],
+      "type": "object"
+    },
+    "PlanningObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "event_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "observed_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "people": {
+          "items": {
+            "$ref": "#/$defs/HumanState"
+          },
+          "type": "array"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/$defs/ObservedProduct"
+          },
+          "type": "array"
+        },
+        "received_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "sampled_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "state_revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "unavailable_resources": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "id",
+        "sampled_h",
+        "received_h",
+        "observed_h",
+        "state_revision",
+        "products",
+        "people",
+        "unavailable_resources",
+        "event_ids"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/PlanningObservation",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlanningObservation"
+}

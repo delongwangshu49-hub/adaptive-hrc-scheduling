@@ -1,0 +1,2509 @@
+{
+  "version": "C02-0.1",
+  "all_times": "E: uncalibrated illustrative estimates",
+  "traces": [
+    {
+      "id": "S1",
+      "system": "S",
+      "kind": "MANUALLY_SPECIFIED_MACRO_TRACE_NOT_SIMULATOR_OUTPUT",
+      "time_unit": "synthetic_hour",
+      "rows": [
+        {
+          "product": "S-1",
+          "activity": "S0",
+          "label": "材料与切割齐套",
+          "start_h": 0,
+          "end_h": 1,
+          "resources": [
+            "P1",
+            "CUT"
+          ],
+          "after": [],
+          "gate": "KIT_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "S1a",
+          "label": "2D人工装夹",
+          "start_h": 1,
+          "end_h": 1.5,
+          "resources": [
+            "W1"
+          ],
+          "after": [
+            "S0"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "S1b",
+          "label": "2D机器人焊接",
+          "start_h": 1.5,
+          "end_h": 2.5,
+          "resources": [
+            "R1"
+          ],
+          "after": [
+            "S1a"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "S1c",
+          "label": "2D人工检查收尾",
+          "start_h": 2.5,
+          "end_h": 3,
+          "resources": [
+            "W1"
+          ],
+          "after": [
+            "S1b"
+          ],
+          "gate": "FRAMES_COMPLETE"
+        },
+        {
+          "product": "S-1",
+          "activity": "S2",
+          "label": "2D汇合为3D框",
+          "start_h": 3,
+          "end_h": 5,
+          "resources": [
+            "W1",
+            "W2"
+          ],
+          "after": [
+            "S1c"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "S3",
+          "label": "结构检查/检具等价试拼",
+          "start_h": 5,
+          "end_h": 6,
+          "resources": [
+            "QA1",
+            "W2"
+          ],
+          "after": [
+            "S2"
+          ],
+          "gate": "STRUCTURE_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "S4a",
+          "label": "表面保护施工",
+          "start_h": 6,
+          "end_h": 7,
+          "resources": [
+            "Paint1"
+          ],
+          "after": [
+            "S3"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "S4b",
+          "label": "表面释放等待",
+          "start_h": 7,
+          "end_h": 9,
+          "resources": [],
+          "after": [
+            "S4a"
+          ],
+          "gate": "SURFACE_RELEASE"
+        },
+        {
+          "product": "S-1",
+          "activity": "S5",
+          "label": "结构到装修位",
+          "start_h": 9,
+          "end_h": 10,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "S4b"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K0",
+          "label": "楼板基底/找平、轻质隔墙",
+          "start_h": 10,
+          "end_h": 12,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "S5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K1",
+          "label": "MEP安装",
+          "start_h": 12,
+          "end_h": 14,
+          "resources": [
+            "E1",
+            "Plumb1"
+          ],
+          "after": [
+            "K0"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K2",
+          "label": "MEP测试放行",
+          "start_h": 14,
+          "end_h": 15,
+          "resources": [
+            "QA1",
+            "E1"
+          ],
+          "after": [
+            "K1"
+          ],
+          "gate": "MEP_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "K3",
+          "label": "封板/墙顶基层和检查",
+          "start_h": 15,
+          "end_h": 17,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K2"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K4",
+          "label": "防水施工",
+          "start_h": 17,
+          "end_h": 18,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K3"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K5",
+          "label": "防水材料等待",
+          "start_h": 18,
+          "end_h": 22,
+          "resources": [],
+          "after": [
+            "K4"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K6",
+          "label": "蓄水试验设置",
+          "start_h": 22,
+          "end_h": 23,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K7",
+          "label": "蓄水等待",
+          "start_h": 23,
+          "end_h": 27,
+          "resources": [],
+          "after": [
+            "K6"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K8",
+          "label": "蓄水复验",
+          "start_h": 27,
+          "end_h": 28,
+          "resources": [
+            "QA1",
+            "Wet1"
+          ],
+          "after": [
+            "K7"
+          ],
+          "gate": "POND_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "K9",
+          "label": "墙地面铺贴",
+          "start_h": 28,
+          "end_h": 30,
+          "resources": [
+            "Wet1",
+            "Wet2"
+          ],
+          "after": [
+            "K8"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K10",
+          "label": "胶粘/饰面等待",
+          "start_h": 30,
+          "end_h": 34,
+          "resources": [],
+          "after": [
+            "K9"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K11",
+          "label": "门窗/外覆层及检查",
+          "start_h": 34,
+          "end_h": 36,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K10"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K12",
+          "label": "涂装",
+          "start_h": 36,
+          "end_h": 37,
+          "resources": [
+            "Paint1"
+          ],
+          "after": [
+            "K11"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K13",
+          "label": "干燥等待",
+          "start_h": 37,
+          "end_h": 41,
+          "resources": [],
+          "after": [
+            "K12"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K14",
+          "label": "吊顶/洁具/柜体及MEP收尾",
+          "start_h": 41,
+          "end_h": 43,
+          "resources": [
+            "Fitter1",
+            "Plumb1",
+            "E1"
+          ],
+          "after": [
+            "K13"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K15",
+          "label": "最终质量放行",
+          "start_h": 43,
+          "end_h": 44,
+          "resources": [
+            "QA1"
+          ],
+          "after": [
+            "K14"
+          ],
+          "gate": "FINAL_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "K16",
+          "label": "保护/标签/覆盖检查",
+          "start_h": 44,
+          "end_h": 45,
+          "resources": [
+            "P1",
+            "QA1"
+          ],
+          "after": [
+            "K15"
+          ],
+          "gate": "PROTECTION_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "K17",
+          "label": "转移到出厂位",
+          "start_h": 45,
+          "end_h": 46,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "K16"
+          ],
+          "gate": "READY"
+        }
+      ],
+      "occupancy": [
+        {
+          "product": "S-1",
+          "resource": "J2",
+          "start_h": 1,
+          "end_h": 3
+        },
+        {
+          "product": "S-1",
+          "resource": "J3",
+          "start_h": 3,
+          "end_h": 10
+        },
+        {
+          "product": "S-1",
+          "resource": "F1",
+          "start_h": 9,
+          "end_h": 46
+        },
+        {
+          "product": "S-1",
+          "resource": "OUT1",
+          "start_h": 45,
+          "end_h": 47
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "system": "S",
+      "kind": "MANUALLY_SPECIFIED_MACRO_TRACE_NOT_SIMULATOR_OUTPUT",
+      "time_unit": "synthetic_hour",
+      "rows": [
+        {
+          "product": "S-1",
+          "activity": "S0",
+          "label": "材料与切割齐套",
+          "start_h": 0,
+          "end_h": 1,
+          "resources": [
+            "P1",
+            "CUT"
+          ],
+          "after": [],
+          "gate": "KIT_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "S1a",
+          "label": "2D人工装夹",
+          "start_h": 1,
+          "end_h": 1.5,
+          "resources": [
+            "W1"
+          ],
+          "after": [
+            "S0"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "S1b",
+          "label": "2D机器人焊接",
+          "start_h": 1.5,
+          "end_h": 2.5,
+          "resources": [
+            "R1"
+          ],
+          "after": [
+            "S1a"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "S1c",
+          "label": "2D人工检查收尾",
+          "start_h": 2.5,
+          "end_h": 3,
+          "resources": [
+            "W1"
+          ],
+          "after": [
+            "S1b"
+          ],
+          "gate": "FRAMES_COMPLETE"
+        },
+        {
+          "product": "S-1",
+          "activity": "S2",
+          "label": "2D汇合为3D框",
+          "start_h": 3,
+          "end_h": 5,
+          "resources": [
+            "W1",
+            "W2"
+          ],
+          "after": [
+            "S1c"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "S3",
+          "label": "结构检查/检具等价试拼",
+          "start_h": 5,
+          "end_h": 6,
+          "resources": [
+            "QA1",
+            "W2"
+          ],
+          "after": [
+            "S2"
+          ],
+          "gate": "STRUCTURE_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "S4a",
+          "label": "表面保护施工",
+          "start_h": 6,
+          "end_h": 7,
+          "resources": [
+            "Paint1"
+          ],
+          "after": [
+            "S3"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "S4b",
+          "label": "表面释放等待",
+          "start_h": 7,
+          "end_h": 9,
+          "resources": [],
+          "after": [
+            "S4a"
+          ],
+          "gate": "SURFACE_RELEASE"
+        },
+        {
+          "product": "S-1",
+          "activity": "S5",
+          "label": "结构到装修位",
+          "start_h": 9,
+          "end_h": 10,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "S4b"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K0",
+          "label": "楼板基底/找平、轻质隔墙",
+          "start_h": 10,
+          "end_h": 12,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "S5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K1",
+          "label": "MEP安装",
+          "start_h": 12,
+          "end_h": 14,
+          "resources": [
+            "E1",
+            "Plumb1"
+          ],
+          "after": [
+            "K0"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K2",
+          "label": "MEP测试放行",
+          "start_h": 14,
+          "end_h": 15,
+          "resources": [
+            "QA1",
+            "E1"
+          ],
+          "after": [
+            "K1"
+          ],
+          "gate": "MEP_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "K3",
+          "label": "封板/墙顶基层和检查",
+          "start_h": 15,
+          "end_h": 17,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K2"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K4",
+          "label": "防水施工",
+          "start_h": 17,
+          "end_h": 18,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K3"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K5",
+          "label": "防水材料等待",
+          "start_h": 18,
+          "end_h": 22,
+          "resources": [],
+          "after": [
+            "K4"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K6",
+          "label": "蓄水试验设置",
+          "start_h": 22,
+          "end_h": 23,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K7",
+          "label": "蓄水等待",
+          "start_h": 23,
+          "end_h": 27,
+          "resources": [],
+          "after": [
+            "K6"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K8",
+          "label": "蓄水复验",
+          "start_h": 27,
+          "end_h": 28,
+          "resources": [
+            "QA1",
+            "Wet1"
+          ],
+          "after": [
+            "K7"
+          ],
+          "gate": "POND_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "K9",
+          "label": "墙地面铺贴",
+          "start_h": 28,
+          "end_h": 30,
+          "resources": [
+            "Wet1",
+            "Wet2"
+          ],
+          "after": [
+            "K8"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K10",
+          "label": "胶粘/饰面等待",
+          "start_h": 30,
+          "end_h": 34,
+          "resources": [],
+          "after": [
+            "K9"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K11",
+          "label": "门窗/外覆层及检查",
+          "start_h": 34,
+          "end_h": 36,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K10"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K12",
+          "label": "涂装",
+          "start_h": 36,
+          "end_h": 37,
+          "resources": [
+            "Paint1"
+          ],
+          "after": [
+            "K11"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K13",
+          "label": "干燥等待",
+          "start_h": 37,
+          "end_h": 41,
+          "resources": [],
+          "after": [
+            "K12"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K14",
+          "label": "吊顶/洁具/柜体及MEP收尾",
+          "start_h": 41,
+          "end_h": 43,
+          "resources": [
+            "Fitter1",
+            "Plumb1",
+            "E1"
+          ],
+          "after": [
+            "K13"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-1",
+          "activity": "K15",
+          "label": "最终质量放行",
+          "start_h": 43,
+          "end_h": 44,
+          "resources": [
+            "QA1"
+          ],
+          "after": [
+            "K14"
+          ],
+          "gate": "FINAL_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "K16",
+          "label": "保护/标签/覆盖检查",
+          "start_h": 44,
+          "end_h": 45,
+          "resources": [
+            "P1",
+            "QA1"
+          ],
+          "after": [
+            "K15"
+          ],
+          "gate": "PROTECTION_PASS"
+        },
+        {
+          "product": "S-1",
+          "activity": "K17",
+          "label": "转移到出厂位",
+          "start_h": 45,
+          "end_h": 46,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "K16"
+          ],
+          "gate": "READY"
+        },
+        {
+          "product": "S-2",
+          "activity": "S0",
+          "label": "材料与切割齐套",
+          "start_h": 1,
+          "end_h": 2,
+          "resources": [
+            "P1",
+            "CUT"
+          ],
+          "after": [],
+          "gate": "KIT_PASS"
+        },
+        {
+          "product": "S-2",
+          "activity": "S1a",
+          "label": "2D人工装夹",
+          "start_h": 5,
+          "end_h": 5.5,
+          "resources": [
+            "W1"
+          ],
+          "after": [
+            "S0"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "S1b",
+          "label": "2D机器人焊接",
+          "start_h": 5.5,
+          "end_h": 6.5,
+          "resources": [
+            "R1"
+          ],
+          "after": [
+            "S1a"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "S1c",
+          "label": "2D人工检查收尾",
+          "start_h": 6.5,
+          "end_h": 7,
+          "resources": [
+            "W1"
+          ],
+          "after": [
+            "S1b"
+          ],
+          "gate": "FRAMES_COMPLETE"
+        },
+        {
+          "product": "S-2",
+          "activity": "S2",
+          "label": "2D汇合为3D框",
+          "start_h": 10,
+          "end_h": 12,
+          "resources": [
+            "W1",
+            "W2"
+          ],
+          "after": [
+            "S1c"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "S3",
+          "label": "结构检查/检具等价试拼",
+          "start_h": 12,
+          "end_h": 13,
+          "resources": [
+            "QA1",
+            "W2"
+          ],
+          "after": [
+            "S2"
+          ],
+          "gate": "STRUCTURE_PASS"
+        },
+        {
+          "product": "S-2",
+          "activity": "S4a",
+          "label": "表面保护施工",
+          "start_h": 13,
+          "end_h": 14,
+          "resources": [
+            "Paint1"
+          ],
+          "after": [
+            "S3"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "S4b",
+          "label": "表面释放等待",
+          "start_h": 14,
+          "end_h": 16,
+          "resources": [],
+          "after": [
+            "S4a"
+          ],
+          "gate": "SURFACE_RELEASE"
+        },
+        {
+          "product": "S-2",
+          "activity": "BLOCK",
+          "label": "等待唯一装修位",
+          "start_h": 16,
+          "end_h": 46,
+          "resources": [],
+          "after": [
+            "S4b"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "S5",
+          "label": "结构到装修位",
+          "start_h": 46,
+          "end_h": 47,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "S4b"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K0",
+          "label": "楼板基底/找平、轻质隔墙",
+          "start_h": 47,
+          "end_h": 49,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "S5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K1",
+          "label": "MEP安装",
+          "start_h": 49,
+          "end_h": 51,
+          "resources": [
+            "E1",
+            "Plumb1"
+          ],
+          "after": [
+            "K0"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K2",
+          "label": "MEP测试放行",
+          "start_h": 51,
+          "end_h": 52,
+          "resources": [
+            "QA1",
+            "E1"
+          ],
+          "after": [
+            "K1"
+          ],
+          "gate": "MEP_PASS"
+        },
+        {
+          "product": "S-2",
+          "activity": "K3",
+          "label": "封板/墙顶基层和检查",
+          "start_h": 52,
+          "end_h": 54,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K2"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K4",
+          "label": "防水施工",
+          "start_h": 54,
+          "end_h": 55,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K3"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K5",
+          "label": "防水材料等待",
+          "start_h": 55,
+          "end_h": 59,
+          "resources": [],
+          "after": [
+            "K4"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K6",
+          "label": "蓄水试验设置",
+          "start_h": 59,
+          "end_h": 60,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K7",
+          "label": "蓄水等待",
+          "start_h": 60,
+          "end_h": 64,
+          "resources": [],
+          "after": [
+            "K6"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K8",
+          "label": "蓄水复验",
+          "start_h": 64,
+          "end_h": 65,
+          "resources": [
+            "QA1",
+            "Wet1"
+          ],
+          "after": [
+            "K7"
+          ],
+          "gate": "POND_PASS"
+        },
+        {
+          "product": "S-2",
+          "activity": "K9",
+          "label": "墙地面铺贴",
+          "start_h": 65,
+          "end_h": 67,
+          "resources": [
+            "Wet1",
+            "Wet2"
+          ],
+          "after": [
+            "K8"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K10",
+          "label": "胶粘/饰面等待",
+          "start_h": 67,
+          "end_h": 71,
+          "resources": [],
+          "after": [
+            "K9"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K11",
+          "label": "门窗/外覆层及检查",
+          "start_h": 71,
+          "end_h": 73,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K10"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K12",
+          "label": "涂装",
+          "start_h": 73,
+          "end_h": 74,
+          "resources": [
+            "Paint1"
+          ],
+          "after": [
+            "K11"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K13",
+          "label": "干燥等待",
+          "start_h": 74,
+          "end_h": 78,
+          "resources": [],
+          "after": [
+            "K12"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K14",
+          "label": "吊顶/洁具/柜体及MEP收尾",
+          "start_h": 78,
+          "end_h": 80,
+          "resources": [
+            "Fitter1",
+            "Plumb1",
+            "E1"
+          ],
+          "after": [
+            "K13"
+          ],
+          "gate": null
+        },
+        {
+          "product": "S-2",
+          "activity": "K15",
+          "label": "最终质量放行",
+          "start_h": 80,
+          "end_h": 81,
+          "resources": [
+            "QA1"
+          ],
+          "after": [
+            "K14"
+          ],
+          "gate": "FINAL_PASS"
+        },
+        {
+          "product": "S-2",
+          "activity": "K16",
+          "label": "保护/标签/覆盖检查",
+          "start_h": 81,
+          "end_h": 82,
+          "resources": [
+            "P1",
+            "QA1"
+          ],
+          "after": [
+            "K15"
+          ],
+          "gate": "PROTECTION_PASS"
+        },
+        {
+          "product": "S-2",
+          "activity": "K17",
+          "label": "转移到出厂位",
+          "start_h": 82,
+          "end_h": 83,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "K16"
+          ],
+          "gate": "READY"
+        }
+      ],
+      "occupancy": [
+        {
+          "product": "S-1",
+          "resource": "J2",
+          "start_h": 1,
+          "end_h": 3
+        },
+        {
+          "product": "S-1",
+          "resource": "J3",
+          "start_h": 3,
+          "end_h": 10
+        },
+        {
+          "product": "S-1",
+          "resource": "F1",
+          "start_h": 9,
+          "end_h": 46
+        },
+        {
+          "product": "S-1",
+          "resource": "OUT1",
+          "start_h": 45,
+          "end_h": 47
+        },
+        {
+          "product": "S-2",
+          "resource": "J2",
+          "start_h": 5,
+          "end_h": 7
+        },
+        {
+          "product": "S-2",
+          "resource": "J3",
+          "start_h": 10,
+          "end_h": 47
+        },
+        {
+          "product": "S-2",
+          "resource": "F1",
+          "start_h": 46,
+          "end_h": 83
+        },
+        {
+          "product": "S-2",
+          "resource": "OUT1",
+          "start_h": 82,
+          "end_h": 84
+        }
+      ]
+    },
+    {
+      "id": "C1",
+      "system": "C",
+      "kind": "MANUALLY_SPECIFIED_MACRO_TRACE_NOT_SIMULATOR_OUTPUT",
+      "time_unit": "synthetic_hour",
+      "rows": [
+        {
+          "product": "C-1",
+          "activity": "C0a",
+          "label": "材料放行",
+          "start_h": 0,
+          "end_h": 1,
+          "resources": [
+            "P1"
+          ],
+          "after": [],
+          "gate": "KIT_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "C0b",
+          "label": "模具清理设定",
+          "start_h": 0,
+          "end_h": 1,
+          "resources": [
+            "Mould1"
+          ],
+          "after": [],
+          "gate": "MOULD_READY"
+        },
+        {
+          "product": "C-1",
+          "activity": "C1",
+          "label": "钢筋笼与预埋",
+          "start_h": 1,
+          "end_h": 4,
+          "resources": [
+            "B1",
+            "B2",
+            "E1"
+          ],
+          "after": [
+            "C0a"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "C2",
+          "label": "入模定位与浇筑前检查",
+          "start_h": 4,
+          "end_h": 5,
+          "resources": [
+            "B1",
+            "B2",
+            "QA1",
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "C1",
+            "C0b"
+          ],
+          "gate": "PREPOUR_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "C3",
+          "label": "浇筑振实",
+          "start_h": 5,
+          "end_h": 7,
+          "resources": [
+            "Concrete1",
+            "Concrete2",
+            "D1"
+          ],
+          "after": [
+            "C2"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "C4",
+          "label": "养护及释放记录",
+          "start_h": 7,
+          "end_h": 19,
+          "resources": [],
+          "after": [
+            "C3"
+          ],
+          "gate": "CURE_RELEASE"
+        },
+        {
+          "product": "C-1",
+          "activity": "C5",
+          "label": "脱模及结构/搬运放行",
+          "start_h": 19,
+          "end_h": 20,
+          "resources": [
+            "B1",
+            "B2",
+            "QA1"
+          ],
+          "after": [
+            "C4"
+          ],
+          "gate": "STRUCTURE_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "C6",
+          "label": "到装修位",
+          "start_h": 20,
+          "end_h": 21,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "C5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K0",
+          "label": "楼板基底/找平、轻质隔墙",
+          "start_h": 21,
+          "end_h": 23,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "C6"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K1",
+          "label": "MEP安装",
+          "start_h": 23,
+          "end_h": 25,
+          "resources": [
+            "E1",
+            "Plumb1"
+          ],
+          "after": [
+            "K0"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K2",
+          "label": "MEP测试放行",
+          "start_h": 25,
+          "end_h": 26,
+          "resources": [
+            "QA1",
+            "E1"
+          ],
+          "after": [
+            "K1"
+          ],
+          "gate": "MEP_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "K3",
+          "label": "封板/墙顶基层和检查",
+          "start_h": 26,
+          "end_h": 28,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K2"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K4",
+          "label": "防水施工",
+          "start_h": 28,
+          "end_h": 29,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K3"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K5",
+          "label": "防水材料等待",
+          "start_h": 29,
+          "end_h": 33,
+          "resources": [],
+          "after": [
+            "K4"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K6",
+          "label": "蓄水试验设置",
+          "start_h": 33,
+          "end_h": 34,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K7",
+          "label": "蓄水等待",
+          "start_h": 34,
+          "end_h": 38,
+          "resources": [],
+          "after": [
+            "K6"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K8",
+          "label": "蓄水复验",
+          "start_h": 38,
+          "end_h": 39,
+          "resources": [
+            "QA1",
+            "Wet1"
+          ],
+          "after": [
+            "K7"
+          ],
+          "gate": "POND_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "K9",
+          "label": "墙地面铺贴",
+          "start_h": 39,
+          "end_h": 41,
+          "resources": [
+            "Wet1",
+            "Wet2"
+          ],
+          "after": [
+            "K8"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K10",
+          "label": "胶粘/饰面等待",
+          "start_h": 41,
+          "end_h": 45,
+          "resources": [],
+          "after": [
+            "K9"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K11",
+          "label": "门窗/外覆层及检查",
+          "start_h": 45,
+          "end_h": 47,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K10"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K12",
+          "label": "涂装",
+          "start_h": 47,
+          "end_h": 48,
+          "resources": [
+            "Paint1"
+          ],
+          "after": [
+            "K11"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K13",
+          "label": "干燥等待",
+          "start_h": 48,
+          "end_h": 52,
+          "resources": [],
+          "after": [
+            "K12"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K14",
+          "label": "吊顶/洁具/柜体及MEP收尾",
+          "start_h": 52,
+          "end_h": 54,
+          "resources": [
+            "Fitter1",
+            "Plumb1",
+            "E1"
+          ],
+          "after": [
+            "K13"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K15",
+          "label": "最终质量放行",
+          "start_h": 54,
+          "end_h": 55,
+          "resources": [
+            "QA1"
+          ],
+          "after": [
+            "K14"
+          ],
+          "gate": "FINAL_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "K16",
+          "label": "保护/标签/覆盖检查",
+          "start_h": 55,
+          "end_h": 56,
+          "resources": [
+            "P1",
+            "QA1"
+          ],
+          "after": [
+            "K15"
+          ],
+          "gate": "PROTECTION_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "K17",
+          "label": "转移到出厂位",
+          "start_h": 56,
+          "end_h": 57,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "K16"
+          ],
+          "gate": "READY"
+        }
+      ],
+      "occupancy": [
+        {
+          "product": "C-1",
+          "resource": "M1",
+          "start_h": 0,
+          "end_h": 21
+        },
+        {
+          "product": "C-1",
+          "resource": "T1",
+          "start_h": 1,
+          "end_h": 4
+        },
+        {
+          "product": "C-1",
+          "resource": "CH1",
+          "start_h": 7,
+          "end_h": 19
+        },
+        {
+          "product": "C-1",
+          "resource": "F1",
+          "start_h": 20,
+          "end_h": 57
+        },
+        {
+          "product": "C-1",
+          "resource": "OUT1",
+          "start_h": 56,
+          "end_h": 58
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "system": "C",
+      "kind": "MANUALLY_SPECIFIED_MACRO_TRACE_NOT_SIMULATOR_OUTPUT",
+      "time_unit": "synthetic_hour",
+      "rows": [
+        {
+          "product": "C-1",
+          "activity": "C0a",
+          "label": "材料放行",
+          "start_h": 0,
+          "end_h": 1,
+          "resources": [
+            "P1"
+          ],
+          "after": [],
+          "gate": "KIT_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "C0b",
+          "label": "模具清理设定",
+          "start_h": 0,
+          "end_h": 1,
+          "resources": [
+            "Mould1"
+          ],
+          "after": [],
+          "gate": "MOULD_READY"
+        },
+        {
+          "product": "C-1",
+          "activity": "C1",
+          "label": "钢筋笼与预埋",
+          "start_h": 1,
+          "end_h": 4,
+          "resources": [
+            "B1",
+            "B2",
+            "E1"
+          ],
+          "after": [
+            "C0a"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "C2",
+          "label": "入模定位与浇筑前检查",
+          "start_h": 4,
+          "end_h": 5,
+          "resources": [
+            "B1",
+            "B2",
+            "QA1",
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "C1",
+            "C0b"
+          ],
+          "gate": "PREPOUR_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "C3",
+          "label": "浇筑振实",
+          "start_h": 5,
+          "end_h": 7,
+          "resources": [
+            "Concrete1",
+            "Concrete2",
+            "D1"
+          ],
+          "after": [
+            "C2"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "C4",
+          "label": "养护及释放记录",
+          "start_h": 7,
+          "end_h": 19,
+          "resources": [],
+          "after": [
+            "C3"
+          ],
+          "gate": "CURE_RELEASE"
+        },
+        {
+          "product": "C-1",
+          "activity": "C5",
+          "label": "脱模及结构/搬运放行",
+          "start_h": 19,
+          "end_h": 20,
+          "resources": [
+            "B1",
+            "B2",
+            "QA1"
+          ],
+          "after": [
+            "C4"
+          ],
+          "gate": "STRUCTURE_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "C6",
+          "label": "到装修位",
+          "start_h": 20,
+          "end_h": 21,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "C5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K0",
+          "label": "楼板基底/找平、轻质隔墙",
+          "start_h": 21,
+          "end_h": 23,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "C6"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K1",
+          "label": "MEP安装",
+          "start_h": 23,
+          "end_h": 25,
+          "resources": [
+            "E1",
+            "Plumb1"
+          ],
+          "after": [
+            "K0"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K2",
+          "label": "MEP测试放行",
+          "start_h": 25,
+          "end_h": 26,
+          "resources": [
+            "QA1",
+            "E1"
+          ],
+          "after": [
+            "K1"
+          ],
+          "gate": "MEP_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "K3",
+          "label": "封板/墙顶基层和检查",
+          "start_h": 26,
+          "end_h": 28,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K2"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K4",
+          "label": "防水施工",
+          "start_h": 28,
+          "end_h": 29,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K3"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K5",
+          "label": "防水材料等待",
+          "start_h": 29,
+          "end_h": 33,
+          "resources": [],
+          "after": [
+            "K4"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K6",
+          "label": "蓄水试验设置",
+          "start_h": 33,
+          "end_h": 34,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K7",
+          "label": "蓄水等待",
+          "start_h": 34,
+          "end_h": 38,
+          "resources": [],
+          "after": [
+            "K6"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K8",
+          "label": "蓄水复验",
+          "start_h": 38,
+          "end_h": 39,
+          "resources": [
+            "QA1",
+            "Wet1"
+          ],
+          "after": [
+            "K7"
+          ],
+          "gate": "POND_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "K9",
+          "label": "墙地面铺贴",
+          "start_h": 39,
+          "end_h": 41,
+          "resources": [
+            "Wet1",
+            "Wet2"
+          ],
+          "after": [
+            "K8"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K10",
+          "label": "胶粘/饰面等待",
+          "start_h": 41,
+          "end_h": 45,
+          "resources": [],
+          "after": [
+            "K9"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K11",
+          "label": "门窗/外覆层及检查",
+          "start_h": 45,
+          "end_h": 47,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K10"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K12",
+          "label": "涂装",
+          "start_h": 47,
+          "end_h": 48,
+          "resources": [
+            "Paint1"
+          ],
+          "after": [
+            "K11"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K13",
+          "label": "干燥等待",
+          "start_h": 48,
+          "end_h": 52,
+          "resources": [],
+          "after": [
+            "K12"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K14",
+          "label": "吊顶/洁具/柜体及MEP收尾",
+          "start_h": 52,
+          "end_h": 54,
+          "resources": [
+            "Fitter1",
+            "Plumb1",
+            "E1"
+          ],
+          "after": [
+            "K13"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-1",
+          "activity": "K15",
+          "label": "最终质量放行",
+          "start_h": 54,
+          "end_h": 55,
+          "resources": [
+            "QA1"
+          ],
+          "after": [
+            "K14"
+          ],
+          "gate": "FINAL_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "K16",
+          "label": "保护/标签/覆盖检查",
+          "start_h": 55,
+          "end_h": 56,
+          "resources": [
+            "P1",
+            "QA1"
+          ],
+          "after": [
+            "K15"
+          ],
+          "gate": "PROTECTION_PASS"
+        },
+        {
+          "product": "C-1",
+          "activity": "K17",
+          "label": "转移到出厂位",
+          "start_h": 56,
+          "end_h": 57,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "K16"
+          ],
+          "gate": "READY"
+        },
+        {
+          "product": "C-2",
+          "activity": "C0a",
+          "label": "材料放行",
+          "start_h": 1,
+          "end_h": 2,
+          "resources": [
+            "P1"
+          ],
+          "after": [],
+          "gate": "KIT_PASS"
+        },
+        {
+          "product": "C-2",
+          "activity": "C0b",
+          "label": "模具清理设定",
+          "start_h": 21,
+          "end_h": 22,
+          "resources": [
+            "Mould1"
+          ],
+          "after": [],
+          "gate": "MOULD_READY"
+        },
+        {
+          "product": "C-2",
+          "activity": "C1",
+          "label": "钢筋笼与预埋",
+          "start_h": 5,
+          "end_h": 8,
+          "resources": [
+            "B1",
+            "B2",
+            "E1"
+          ],
+          "after": [
+            "C0a"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "C2",
+          "label": "入模定位与浇筑前检查",
+          "start_h": 22,
+          "end_h": 23,
+          "resources": [
+            "B1",
+            "B2",
+            "QA1",
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "C1",
+            "C0b"
+          ],
+          "gate": "PREPOUR_PASS"
+        },
+        {
+          "product": "C-2",
+          "activity": "C3",
+          "label": "浇筑振实",
+          "start_h": 23,
+          "end_h": 25,
+          "resources": [
+            "Concrete1",
+            "Concrete2",
+            "D1"
+          ],
+          "after": [
+            "C2"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "C4",
+          "label": "养护及释放记录",
+          "start_h": 25,
+          "end_h": 37,
+          "resources": [],
+          "after": [
+            "C3"
+          ],
+          "gate": "CURE_RELEASE"
+        },
+        {
+          "product": "C-2",
+          "activity": "C5",
+          "label": "脱模及结构/搬运放行",
+          "start_h": 37,
+          "end_h": 38,
+          "resources": [
+            "B1",
+            "B2",
+            "QA1"
+          ],
+          "after": [
+            "C4"
+          ],
+          "gate": "STRUCTURE_PASS"
+        },
+        {
+          "product": "C-2",
+          "activity": "BLOCK",
+          "label": "脱模后等待装修位",
+          "start_h": 38,
+          "end_h": 57,
+          "resources": [],
+          "after": [
+            "C5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "C6",
+          "label": "到装修位",
+          "start_h": 57,
+          "end_h": 58,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "C5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K0",
+          "label": "楼板基底/找平、轻质隔墙",
+          "start_h": 58,
+          "end_h": 60,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "C6"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K1",
+          "label": "MEP安装",
+          "start_h": 60,
+          "end_h": 62,
+          "resources": [
+            "E1",
+            "Plumb1"
+          ],
+          "after": [
+            "K0"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K2",
+          "label": "MEP测试放行",
+          "start_h": 62,
+          "end_h": 63,
+          "resources": [
+            "QA1",
+            "E1"
+          ],
+          "after": [
+            "K1"
+          ],
+          "gate": "MEP_PASS"
+        },
+        {
+          "product": "C-2",
+          "activity": "K3",
+          "label": "封板/墙顶基层和检查",
+          "start_h": 63,
+          "end_h": 65,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K2"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K4",
+          "label": "防水施工",
+          "start_h": 65,
+          "end_h": 66,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K3"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K5",
+          "label": "防水材料等待",
+          "start_h": 66,
+          "end_h": 70,
+          "resources": [],
+          "after": [
+            "K4"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K6",
+          "label": "蓄水试验设置",
+          "start_h": 70,
+          "end_h": 71,
+          "resources": [
+            "Wet1"
+          ],
+          "after": [
+            "K5"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K7",
+          "label": "蓄水等待",
+          "start_h": 71,
+          "end_h": 75,
+          "resources": [],
+          "after": [
+            "K6"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K8",
+          "label": "蓄水复验",
+          "start_h": 75,
+          "end_h": 76,
+          "resources": [
+            "QA1",
+            "Wet1"
+          ],
+          "after": [
+            "K7"
+          ],
+          "gate": "POND_PASS"
+        },
+        {
+          "product": "C-2",
+          "activity": "K9",
+          "label": "墙地面铺贴",
+          "start_h": 76,
+          "end_h": 78,
+          "resources": [
+            "Wet1",
+            "Wet2"
+          ],
+          "after": [
+            "K8"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K10",
+          "label": "胶粘/饰面等待",
+          "start_h": 78,
+          "end_h": 82,
+          "resources": [],
+          "after": [
+            "K9"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K11",
+          "label": "门窗/外覆层及检查",
+          "start_h": 82,
+          "end_h": 84,
+          "resources": [
+            "Fitter1",
+            "Fitter2"
+          ],
+          "after": [
+            "K10"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K12",
+          "label": "涂装",
+          "start_h": 84,
+          "end_h": 85,
+          "resources": [
+            "Paint1"
+          ],
+          "after": [
+            "K11"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K13",
+          "label": "干燥等待",
+          "start_h": 85,
+          "end_h": 89,
+          "resources": [],
+          "after": [
+            "K12"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K14",
+          "label": "吊顶/洁具/柜体及MEP收尾",
+          "start_h": 89,
+          "end_h": 91,
+          "resources": [
+            "Fitter1",
+            "Plumb1",
+            "E1"
+          ],
+          "after": [
+            "K13"
+          ],
+          "gate": null
+        },
+        {
+          "product": "C-2",
+          "activity": "K15",
+          "label": "最终质量放行",
+          "start_h": 91,
+          "end_h": 92,
+          "resources": [
+            "QA1"
+          ],
+          "after": [
+            "K14"
+          ],
+          "gate": "FINAL_PASS"
+        },
+        {
+          "product": "C-2",
+          "activity": "K16",
+          "label": "保护/标签/覆盖检查",
+          "start_h": 92,
+          "end_h": 93,
+          "resources": [
+            "P1",
+            "QA1"
+          ],
+          "after": [
+            "K15"
+          ],
+          "gate": "PROTECTION_PASS"
+        },
+        {
+          "product": "C-2",
+          "activity": "K17",
+          "label": "转移到出厂位",
+          "start_h": 93,
+          "end_h": 94,
+          "resources": [
+            "L1",
+            "Lop",
+            "Lrig"
+          ],
+          "after": [
+            "K16"
+          ],
+          "gate": "READY"
+        }
+      ],
+      "occupancy": [
+        {
+          "product": "C-1",
+          "resource": "M1",
+          "start_h": 0,
+          "end_h": 21
+        },
+        {
+          "product": "C-1",
+          "resource": "T1",
+          "start_h": 1,
+          "end_h": 4
+        },
+        {
+          "product": "C-1",
+          "resource": "CH1",
+          "start_h": 7,
+          "end_h": 19
+        },
+        {
+          "product": "C-1",
+          "resource": "F1",
+          "start_h": 20,
+          "end_h": 57
+        },
+        {
+          "product": "C-1",
+          "resource": "OUT1",
+          "start_h": 56,
+          "end_h": 58
+        },
+        {
+          "product": "C-2",
+          "resource": "M1",
+          "start_h": 21,
+          "end_h": 58
+        },
+        {
+          "product": "C-2",
+          "resource": "T1",
+          "start_h": 5,
+          "end_h": 8
+        },
+        {
+          "product": "C-2",
+          "resource": "CH1",
+          "start_h": 25,
+          "end_h": 37
+        },
+        {
+          "product": "C-2",
+          "resource": "F1",
+          "start_h": 57,
+          "end_h": 94
+        },
+        {
+          "product": "C-2",
+          "resource": "OUT1",
+          "start_h": 93,
+          "end_h": 95
+        }
+      ]
+    }
+  ]
+}

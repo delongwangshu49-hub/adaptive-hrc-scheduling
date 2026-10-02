@@ -1,0 +1,4542 @@
+{
+  "activities": [
+    {
+      "code": "KIT",
+      "face": "PRE",
+      "id": "PRODUCT-1.KIT",
+      "location": "PRE",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-KIT",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-KIT",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "P1",
+                  "qualification": "PREP"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "CUT",
+      "face": "PRE",
+      "id": "PRODUCT-1.CUT",
+      "location": "PRE",
+      "material_ids": [
+        "PRODUCT-1.KIT-CUT"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-CUT",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-CUT",
+              "equipment": [
+                "CUT1"
+              ],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "P1",
+                  "qualification": "PREP"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-CUT",
+              "equipment": [
+                "CUT1"
+              ],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "P1",
+                  "qualification": "PREP"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "MV-IN-B",
+      "face": "MOVE",
+      "id": "PRODUCT-1.MV-IN-B",
+      "location": "PRE",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.MOVE",
+          "kind": "MOVE",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-MV-IN-B",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.25,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MV-IN-B",
+              "equipment": [
+                "HST1"
+              ],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "MOVE",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "P1",
+                  "qualification": "HOIST"
+                },
+                {
+                  "id": "Lrig",
+                  "qualification": "RIG"
+                },
+                {
+                  "id": "Lsig",
+                  "qualification": "SIGNAL"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": {
+        "entity_ids": [
+          "PRODUCT-1.BOTTOM"
+        ],
+        "equipment": "HST1",
+        "landing_h": [
+          0.25
+        ],
+        "qualification_ids": [
+          "G1",
+          "G6",
+          "PRODUCT-1.METHOD-MV-IN-B"
+        ],
+        "qualification_revisions": [
+          "v1",
+          "v1",
+          "v1"
+        ],
+        "route": "ROUTE-COMP",
+        "source": "PRE",
+        "target": "J2"
+      },
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "W-B",
+      "face": "HOT",
+      "id": "PRODUCT-1.W-B",
+      "location": "J2",
+      "material_ids": [
+        "PRODUCT-1.KIT-W-B"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H",
+          "kind": "H",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-W-B",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "SETUP",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U3",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U4",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U5",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U6",
+              "kappa": 0.0,
+              "phase": "UNLOAD",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "enabled": false,
+          "id": "PRODUCT-1.HR-seq",
+          "kind": "HR-seq",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-W-B",
+            "G5",
+            "G2-JOINT",
+            "G2-WPS",
+            "G2-PROGRAM",
+            "G2-FIXTURE",
+            "G2-PEOPLE",
+            "G2-ISOLATION",
+            "G2-INSPECTION",
+            "G2-OUTPUT"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "SETUP",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "OP1",
+                  "qualification": "ROBOT"
+                }
+              ]
+            },
+            {
+              "base_h": 1.0,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "id": "U2",
+              "kappa": 0.0,
+              "phase": "ROBOT",
+              "resumable": false,
+              "roles": []
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "id": "U3",
+              "kappa": 0.0,
+              "phase": "UNLOAD",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "OP1",
+                  "qualification": "ROBOT"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "MV-B",
+      "face": "MOVE",
+      "id": "PRODUCT-1.MV-B",
+      "location": "J2",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.MOVE",
+          "kind": "MOVE",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-MV-B",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.25,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MV-B",
+              "equipment": [
+                "HST1"
+              ],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "MOVE",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "P1",
+                  "qualification": "HOIST"
+                },
+                {
+                  "id": "Lrig",
+                  "qualification": "RIG"
+                },
+                {
+                  "id": "Lsig",
+                  "qualification": "SIGNAL"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": {
+        "entity_ids": [
+          "PRODUCT-1.BOTTOM"
+        ],
+        "equipment": "HST1",
+        "landing_h": [
+          0.25
+        ],
+        "qualification_ids": [
+          "G1",
+          "G6",
+          "PRODUCT-1.METHOD-MV-B"
+        ],
+        "qualification_revisions": [
+          "v1",
+          "v1",
+          "v1"
+        ],
+        "route": "ROUTE-COMP",
+        "source": "J2",
+        "target": "BUF"
+      },
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "MV-IN-T",
+      "face": "MOVE",
+      "id": "PRODUCT-1.MV-IN-T",
+      "location": "PRE",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.MOVE",
+          "kind": "MOVE",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-MV-IN-T",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.25,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MV-IN-T",
+              "equipment": [
+                "HST1"
+              ],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "MOVE",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "P1",
+                  "qualification": "HOIST"
+                },
+                {
+                  "id": "Lrig",
+                  "qualification": "RIG"
+                },
+                {
+                  "id": "Lsig",
+                  "qualification": "SIGNAL"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": {
+        "entity_ids": [
+          "PRODUCT-1.TOP"
+        ],
+        "equipment": "HST1",
+        "landing_h": [
+          0.25
+        ],
+        "qualification_ids": [
+          "G1",
+          "G6",
+          "PRODUCT-1.METHOD-MV-IN-T"
+        ],
+        "qualification_revisions": [
+          "v1",
+          "v1",
+          "v1"
+        ],
+        "route": "ROUTE-COMP",
+        "source": "PRE",
+        "target": "J2"
+      },
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "W-T",
+      "face": "HOT",
+      "id": "PRODUCT-1.W-T",
+      "location": "J2",
+      "material_ids": [
+        "PRODUCT-1.KIT-W-T"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H",
+          "kind": "H",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-W-T",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "SETUP",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U3",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U4",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U5",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "equipment": [
+                "WELD1",
+                "FIX-J2"
+              ],
+              "id": "U6",
+              "kappa": 0.0,
+              "phase": "UNLOAD",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "enabled": false,
+          "id": "PRODUCT-1.HR-seq",
+          "kind": "HR-seq",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-W-T",
+            "G5",
+            "G2-JOINT",
+            "G2-WPS",
+            "G2-PROGRAM",
+            "G2-FIXTURE",
+            "G2-PEOPLE",
+            "G2-ISOLATION",
+            "G2-INSPECTION",
+            "G2-OUTPUT"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "SETUP",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "OP1",
+                  "qualification": "ROBOT"
+                }
+              ]
+            },
+            {
+              "base_h": 1.0,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "id": "U2",
+              "kappa": 0.0,
+              "phase": "ROBOT",
+              "resumable": false,
+              "roles": []
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "id": "U3",
+              "kappa": 0.0,
+              "phase": "UNLOAD",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "OP1",
+                  "qualification": "ROBOT"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "MV-T",
+      "face": "MOVE",
+      "id": "PRODUCT-1.MV-T",
+      "location": "J2",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.MOVE",
+          "kind": "MOVE",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-MV-T",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.25,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MV-T",
+              "equipment": [
+                "HST1"
+              ],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "MOVE",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "P1",
+                  "qualification": "HOIST"
+                },
+                {
+                  "id": "Lrig",
+                  "qualification": "RIG"
+                },
+                {
+                  "id": "Lsig",
+                  "qualification": "SIGNAL"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": {
+        "entity_ids": [
+          "PRODUCT-1.TOP"
+        ],
+        "equipment": "HST1",
+        "landing_h": [
+          0.25
+        ],
+        "qualification_ids": [
+          "G1",
+          "G6",
+          "PRODUCT-1.METHOD-MV-T"
+        ],
+        "qualification_revisions": [
+          "v1",
+          "v1",
+          "v1"
+        ],
+        "route": "ROUTE-COMP",
+        "source": "J2",
+        "target": "BUF"
+      },
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "JOIN-IN",
+      "face": "MOVE",
+      "id": "PRODUCT-1.JOIN-IN",
+      "location": "BUF",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.MOVE",
+          "kind": "MOVE",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-JOIN-IN",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 1.0,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-JOIN-IN",
+              "equipment": [
+                "CR1"
+              ],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "MOVE",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "Lop",
+                  "qualification": "CRANE"
+                },
+                {
+                  "id": "Lrig",
+                  "qualification": "RIG"
+                },
+                {
+                  "id": "Lsig",
+                  "qualification": "SIGNAL"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": {
+        "entity_ids": [
+          "PRODUCT-1.BOTTOM",
+          "PRODUCT-1.TOP",
+          "PRODUCT-1.COLUMNS"
+        ],
+        "equipment": "CR1",
+        "landing_h": [
+          0.25,
+          0.5,
+          1.0
+        ],
+        "qualification_ids": [
+          "G1",
+          "G6",
+          "PRODUCT-1.METHOD-JOIN-IN"
+        ],
+        "qualification_revisions": [
+          "v1",
+          "v1",
+          "v1"
+        ],
+        "route": "ROUTE-MODULE",
+        "source": "BUF",
+        "target": "J3"
+      },
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "W-3D",
+      "face": "HOT",
+      "id": "PRODUCT-1.W-3D",
+      "location": "J3",
+      "material_ids": [
+        "PRODUCT-1.KIT-W-3D"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-W-3D",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-3D",
+              "equipment": [
+                "WELD1",
+                "FIX-J3"
+              ],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                },
+                {
+                  "id": "W2",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-3D",
+              "equipment": [
+                "WELD1",
+                "FIX-J3"
+              ],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                },
+                {
+                  "id": "W2",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-3D",
+              "equipment": [
+                "WELD1",
+                "FIX-J3"
+              ],
+              "id": "U3",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                },
+                {
+                  "id": "W2",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-3D",
+              "equipment": [
+                "WELD1",
+                "FIX-J3"
+              ],
+              "id": "U4",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                },
+                {
+                  "id": "W2",
+                  "qualification": "WELD"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "Q-STR",
+      "face": "ALL",
+      "id": "PRODUCT-1.Q-STR",
+      "location": "J3",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-Q-STR",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-Q-STR",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "CHECK",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "QA1",
+                  "qualification": "QA"
+                },
+                {
+                  "id": "W2",
+                  "qualification": "WELD"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-Q-STR",
+              "equipment": [],
+              "id": "U2",
+              "kappa": 0.0,
+              "phase": "CHECK",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "QA1",
+                  "qualification": "QA"
+                },
+                {
+                  "id": "W2",
+                  "qualification": "WELD"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": "PRODUCT-1.CRITERION-Q-STR",
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "COAT",
+      "face": "ALL",
+      "id": "PRODUCT-1.COAT",
+      "location": "J3",
+      "material_ids": [
+        "PRODUCT-1.KIT-COAT"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-COAT",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-COAT",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "C1",
+                  "qualification": "COAT"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-COAT",
+              "equipment": [],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "C1",
+                  "qualification": "COAT"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "WAIT-COAT",
+      "face": "ALL",
+      "id": "PRODUCT-1.WAIT-COAT",
+      "location": "J3",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.WAIT",
+          "kind": "WAIT",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-WAIT-COAT",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.1,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-WAIT-COAT",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "CHECK",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "QA1",
+                  "qualification": "QA"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": "PRODUCT-1.RELEASE-WAIT-COAT",
+      "wait_h": 2.0
+    },
+    {
+      "code": "MOVE-F",
+      "face": "MOVE",
+      "id": "PRODUCT-1.MOVE-F",
+      "location": "J3",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.MOVE",
+          "kind": "MOVE",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-MOVE-F",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 1.0,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MOVE-F",
+              "equipment": [
+                "CR1"
+              ],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "MOVE",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "Lop",
+                  "qualification": "CRANE"
+                },
+                {
+                  "id": "Lrig",
+                  "qualification": "RIG"
+                },
+                {
+                  "id": "Lsig",
+                  "qualification": "SIGNAL"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": {
+        "entity_ids": [
+          "PRODUCT-1"
+        ],
+        "equipment": "CR1",
+        "landing_h": [
+          1.0
+        ],
+        "qualification_ids": [
+          "G1",
+          "G6",
+          "PRODUCT-1.METHOD-MOVE-F"
+        ],
+        "qualification_revisions": [
+          "v1",
+          "v1",
+          "v1"
+        ],
+        "route": "ROUTE-MODULE",
+        "source": "J3",
+        "target": "F1"
+      },
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "FLOOR",
+      "face": "ALL",
+      "id": "PRODUCT-1.FLOOR",
+      "location": "F1",
+      "material_ids": [
+        "PRODUCT-1.KIT-FLOOR"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-FLOOR",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-FLOOR",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-FLOOR",
+              "equipment": [],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-FLOOR",
+              "equipment": [],
+              "id": "U3",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-FLOOR",
+              "equipment": [],
+              "id": "U4",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "MEP-E",
+      "face": "D-E",
+      "id": "PRODUCT-1.MEP-E",
+      "location": "F1",
+      "material_ids": [
+        "PRODUCT-1.KIT-MEP-E"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-MEP-E",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MEP-E",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "E1",
+                  "qualification": "ELECTRIC"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MEP-E",
+              "equipment": [],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "E1",
+                  "qualification": "ELECTRIC"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MEP-E",
+              "equipment": [],
+              "id": "U3",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "E1",
+                  "qualification": "ELECTRIC"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "MEP-P",
+      "face": "W-P",
+      "id": "PRODUCT-1.MEP-P",
+      "location": "F1",
+      "material_ids": [
+        "PRODUCT-1.KIT-MEP-P"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-MEP-P",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MEP-P",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "PL1",
+                  "qualification": "PLUMB"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MEP-P",
+              "equipment": [],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "PL1",
+                  "qualification": "PLUMB"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MEP-P",
+              "equipment": [],
+              "id": "U3",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "PL1",
+                  "qualification": "PLUMB"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "Q-MEP",
+      "face": "ALL",
+      "id": "PRODUCT-1.Q-MEP",
+      "location": "F1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-Q-MEP",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-Q-MEP",
+              "equipment": [
+                "TEST1"
+              ],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "CHECK",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "QA1",
+                  "qualification": "QA"
+                },
+                {
+                  "id": "E1",
+                  "qualification": "ELECTRIC"
+                },
+                {
+                  "id": "PL1",
+                  "qualification": "PLUMB"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-Q-MEP",
+              "equipment": [
+                "TEST1"
+              ],
+              "id": "U2",
+              "kappa": 0.0,
+              "phase": "CHECK",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "QA1",
+                  "qualification": "QA"
+                },
+                {
+                  "id": "E1",
+                  "qualification": "ELECTRIC"
+                },
+                {
+                  "id": "PL1",
+                  "qualification": "PLUMB"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": "PRODUCT-1.CRITERION-Q-MEP",
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "LINING",
+      "face": "DRY",
+      "id": "PRODUCT-1.LINING",
+      "location": "F1",
+      "material_ids": [
+        "PRODUCT-1.KIT-LINING"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-LINING",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-LINING",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-LINING",
+              "equipment": [],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-LINING",
+              "equipment": [],
+              "id": "U3",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-LINING",
+              "equipment": [],
+              "id": "U4",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "Q-LIN",
+      "face": "DRY",
+      "id": "PRODUCT-1.Q-LIN",
+      "location": "F1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-Q-LIN",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-Q-LIN",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "CHECK",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "QA1",
+                  "qualification": "QA"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": "PRODUCT-1.CRITERION-Q-LIN",
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "WPROOF",
+      "face": "WET",
+      "id": "PRODUCT-1.WPROOF",
+      "location": "F1",
+      "material_ids": [
+        "PRODUCT-1.KIT-WPROOF"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-WPROOF",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-WPROOF",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "T1",
+                  "qualification": "WET"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-WPROOF",
+              "equipment": [],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "T1",
+                  "qualification": "WET"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "WAIT-W",
+      "face": "WET",
+      "id": "PRODUCT-1.WAIT-W",
+      "location": "F1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.WAIT",
+          "kind": "WAIT",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-WAIT-W",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": []
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": "PRODUCT-1.RELEASE-WAIT-W",
+      "wait_h": 4.0
+    },
+    {
+      "code": "TEST-SET",
+      "face": "WET",
+      "id": "PRODUCT-1.TEST-SET",
+      "location": "F1",
+      "material_ids": [
+        "PRODUCT-1.KIT-TEST-SET"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-TEST-SET",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-TEST-SET",
+              "equipment": [
+                "TEST1"
+              ],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "T1",
+                  "qualification": "WET"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "WAIT-TEST",
+      "face": "WET",
+      "id": "PRODUCT-1.WAIT-TEST",
+      "location": "F1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.WAIT",
+          "kind": "WAIT",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-WAIT-TEST",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": []
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": "PRODUCT-1.RELEASE-WAIT-TEST",
+      "wait_h": 4.0
+    },
+    {
+      "code": "Q-POND",
+      "face": "WET",
+      "id": "PRODUCT-1.Q-POND",
+      "location": "F1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-Q-POND",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-Q-POND",
+              "equipment": [
+                "TEST1"
+              ],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "CHECK",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "QA1",
+                  "qualification": "QA"
+                },
+                {
+                  "id": "T1",
+                  "qualification": "WET"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": "PRODUCT-1.CRITERION-Q-POND",
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "TILE",
+      "face": "WET",
+      "id": "PRODUCT-1.TILE",
+      "location": "F1",
+      "material_ids": [
+        "PRODUCT-1.KIT-TILE"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-TILE",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-TILE",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "T1",
+                  "qualification": "WET"
+                },
+                {
+                  "id": "T2",
+                  "qualification": "WET"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-TILE",
+              "equipment": [],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "T1",
+                  "qualification": "WET"
+                },
+                {
+                  "id": "T2",
+                  "qualification": "WET"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-TILE",
+              "equipment": [],
+              "id": "U3",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "T1",
+                  "qualification": "WET"
+                },
+                {
+                  "id": "T2",
+                  "qualification": "WET"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-TILE",
+              "equipment": [],
+              "id": "U4",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "T1",
+                  "qualification": "WET"
+                },
+                {
+                  "id": "T2",
+                  "qualification": "WET"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "WAIT-TILE",
+      "face": "WET",
+      "id": "PRODUCT-1.WAIT-TILE",
+      "location": "F1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.WAIT",
+          "kind": "WAIT",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-WAIT-TILE",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": []
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": "PRODUCT-1.RELEASE-WAIT-TILE",
+      "wait_h": 4.0
+    },
+    {
+      "code": "EXT",
+      "face": "EXT",
+      "id": "PRODUCT-1.EXT",
+      "location": "F1",
+      "material_ids": [
+        "PRODUCT-1.KIT-EXT"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-EXT",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-EXT",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-EXT",
+              "equipment": [],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-EXT",
+              "equipment": [],
+              "id": "U3",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-EXT",
+              "equipment": [],
+              "id": "U4",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "AF2",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "Q-EXT",
+      "face": "EXT",
+      "id": "PRODUCT-1.Q-EXT",
+      "location": "F1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-Q-EXT",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-Q-EXT",
+              "equipment": [
+                "TEST1"
+              ],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "CHECK",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "QA1",
+                  "qualification": "QA"
+                },
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": "PRODUCT-1.CRITERION-Q-EXT",
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "PAINT",
+      "face": "DRY",
+      "id": "PRODUCT-1.PAINT",
+      "location": "F1",
+      "material_ids": [
+        "PRODUCT-1.KIT-PAINT"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-PAINT",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-PAINT",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "C1",
+                  "qualification": "COAT"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-PAINT",
+              "equipment": [],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "C1",
+                  "qualification": "COAT"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "WAIT-PAINT",
+      "face": "DRY",
+      "id": "PRODUCT-1.WAIT-PAINT",
+      "location": "F1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.WAIT",
+          "kind": "WAIT",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-WAIT-PAINT",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": []
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": "PRODUCT-1.RELEASE-WAIT-PAINT",
+      "wait_h": 4.0
+    },
+    {
+      "code": "FIT",
+      "face": "ALL",
+      "id": "PRODUCT-1.FIT",
+      "location": "F1",
+      "material_ids": [
+        "PRODUCT-1.KIT-FIT"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-FIT",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-FIT",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "E1",
+                  "qualification": "ELECTRIC"
+                },
+                {
+                  "id": "PL1",
+                  "qualification": "PLUMB"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-FIT",
+              "equipment": [],
+              "id": "U2",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "E1",
+                  "qualification": "ELECTRIC"
+                },
+                {
+                  "id": "PL1",
+                  "qualification": "PLUMB"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-FIT",
+              "equipment": [],
+              "id": "U3",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "E1",
+                  "qualification": "ELECTRIC"
+                },
+                {
+                  "id": "PL1",
+                  "qualification": "PLUMB"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-FIT",
+              "equipment": [],
+              "id": "U4",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                },
+                {
+                  "id": "E1",
+                  "qualification": "ELECTRIC"
+                },
+                {
+                  "id": "PL1",
+                  "qualification": "PLUMB"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "Q-FIN",
+      "face": "ALL",
+      "id": "PRODUCT-1.Q-FIN",
+      "location": "F1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-Q-FIN",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-Q-FIN",
+              "equipment": [
+                "TEST1"
+              ],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "CHECK",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "QA1",
+                  "qualification": "QA"
+                },
+                {
+                  "id": "E1",
+                  "qualification": "ELECTRIC"
+                },
+                {
+                  "id": "PL1",
+                  "qualification": "PLUMB"
+                }
+              ]
+            },
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-Q-FIN",
+              "equipment": [
+                "TEST1"
+              ],
+              "id": "U2",
+              "kappa": 0.0,
+              "phase": "CHECK",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "QA1",
+                  "qualification": "QA"
+                },
+                {
+                  "id": "E1",
+                  "qualification": "ELECTRIC"
+                },
+                {
+                  "id": "PL1",
+                  "qualification": "PLUMB"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": "PRODUCT-1.CRITERION-Q-FIN",
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "PACK",
+      "face": "ALL",
+      "id": "PRODUCT-1.PACK",
+      "location": "F1",
+      "material_ids": [
+        "PRODUCT-1.KIT-PACK"
+      ],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-PACK",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-PACK",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.5,
+              "phase": "WORK",
+              "resumable": false,
+              "roles": [
+                {
+                  "id": "P1",
+                  "qualification": "PREP"
+                },
+                {
+                  "id": "AF1",
+                  "qualification": "ASSEMBLE"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "Q-PACK",
+      "face": "ALL",
+      "id": "PRODUCT-1.Q-PACK",
+      "location": "F1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.H-team",
+          "kind": "H-team",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-Q-PACK",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-Q-PACK",
+              "equipment": [],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "CHECK",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "QA1",
+                  "qualification": "QA"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": "PRODUCT-1.CRITERION-Q-PACK",
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "MOVE-OUT",
+      "face": "MOVE",
+      "id": "PRODUCT-1.MOVE-OUT",
+      "location": "F1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.MOVE",
+          "kind": "MOVE",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-MOVE-OUT",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": [
+            {
+              "base_h": 1.0,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-MOVE-OUT",
+              "equipment": [
+                "CR1"
+              ],
+              "id": "U1",
+              "kappa": 0.0,
+              "phase": "MOVE",
+              "resumable": true,
+              "roles": [
+                {
+                  "id": "Lop",
+                  "qualification": "CRANE"
+                },
+                {
+                  "id": "Lrig",
+                  "qualification": "RIG"
+                },
+                {
+                  "id": "Lsig",
+                  "qualification": "SIGNAL"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "move": {
+        "entity_ids": [
+          "PRODUCT-1"
+        ],
+        "equipment": "CR1",
+        "landing_h": [
+          1.0
+        ],
+        "qualification_ids": [
+          "G1",
+          "G6",
+          "PRODUCT-1.METHOD-MOVE-OUT"
+        ],
+        "qualification_revisions": [
+          "v1",
+          "v1",
+          "v1"
+        ],
+        "route": "ROUTE-MODULE",
+        "source": "F1",
+        "target": "OUT1"
+      },
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    },
+    {
+      "code": "READY",
+      "face": "-",
+      "id": "PRODUCT-1.READY",
+      "location": "OUT1",
+      "material_ids": [],
+      "modes": [
+        {
+          "enabled": true,
+          "id": "PRODUCT-1.GATE",
+          "kind": "GATE",
+          "output_revision": "v1",
+          "qualification_ids": [
+            "PRODUCT-1.METHOD-READY",
+            "G5"
+          ],
+          "qualification_revisions": [
+            "v1",
+            "v1"
+          ],
+          "units": []
+        }
+      ],
+      "move": null,
+      "product_id": "PRODUCT-1",
+      "quality_evidence": null,
+      "release_evidence": null,
+      "wait_h": 0.0
+    }
+  ],
+  "cap": 0.8,
+  "components": [
+    {
+      "id": "PRODUCT-1.BOTTOM",
+      "initial_location": "PRE",
+      "kind": "BOTTOM",
+      "mass_t": 2.0,
+      "product_id": "PRODUCT-1",
+      "quantity": 1
+    },
+    {
+      "id": "PRODUCT-1.TOP",
+      "initial_location": "PRE",
+      "kind": "TOP",
+      "mass_t": 2.0,
+      "product_id": "PRODUCT-1",
+      "quantity": 1
+    },
+    {
+      "id": "PRODUCT-1.COLUMNS",
+      "initial_location": "PRE",
+      "kind": "COLUMNS",
+      "mass_t": 4.0,
+      "product_id": "PRODUCT-1",
+      "quantity": 4
+    }
+  ],
+  "edges": [
+    {
+      "relation": "material",
+      "source": "PRODUCT-1.KIT",
+      "target": "PRODUCT-1.CUT"
+    },
+    {
+      "relation": "material",
+      "source": "PRODUCT-1.CUT",
+      "target": "PRODUCT-1.MV-IN-B"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.MV-IN-B",
+      "target": "PRODUCT-1.W-B"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.W-B",
+      "target": "PRODUCT-1.MV-B"
+    },
+    {
+      "relation": "material",
+      "source": "PRODUCT-1.CUT",
+      "target": "PRODUCT-1.MV-IN-T"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.MV-IN-T",
+      "target": "PRODUCT-1.W-T"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.W-T",
+      "target": "PRODUCT-1.MV-T"
+    },
+    {
+      "relation": "material",
+      "source": "PRODUCT-1.MV-B",
+      "target": "PRODUCT-1.JOIN-IN"
+    },
+    {
+      "relation": "material",
+      "source": "PRODUCT-1.MV-T",
+      "target": "PRODUCT-1.JOIN-IN"
+    },
+    {
+      "relation": "material",
+      "source": "PRODUCT-1.KIT",
+      "target": "PRODUCT-1.JOIN-IN"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.JOIN-IN",
+      "target": "PRODUCT-1.W-3D"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.W-3D",
+      "target": "PRODUCT-1.Q-STR"
+    },
+    {
+      "relation": "quality",
+      "source": "PRODUCT-1.Q-STR",
+      "target": "PRODUCT-1.COAT"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.COAT",
+      "target": "PRODUCT-1.WAIT-COAT"
+    },
+    {
+      "relation": "wait_release",
+      "source": "PRODUCT-1.WAIT-COAT",
+      "target": "PRODUCT-1.MOVE-F"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.MOVE-F",
+      "target": "PRODUCT-1.FLOOR"
+    },
+    {
+      "relation": "material",
+      "source": "PRODUCT-1.KIT",
+      "target": "PRODUCT-1.FLOOR"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.FLOOR",
+      "target": "PRODUCT-1.MEP-E"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.FLOOR",
+      "target": "PRODUCT-1.MEP-P"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.MEP-E",
+      "target": "PRODUCT-1.Q-MEP"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.MEP-P",
+      "target": "PRODUCT-1.Q-MEP"
+    },
+    {
+      "relation": "quality",
+      "source": "PRODUCT-1.Q-MEP",
+      "target": "PRODUCT-1.LINING"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.LINING",
+      "target": "PRODUCT-1.Q-LIN"
+    },
+    {
+      "relation": "quality",
+      "source": "PRODUCT-1.Q-LIN",
+      "target": "PRODUCT-1.WPROOF"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.WPROOF",
+      "target": "PRODUCT-1.WAIT-W"
+    },
+    {
+      "relation": "wait_release",
+      "source": "PRODUCT-1.WAIT-W",
+      "target": "PRODUCT-1.TEST-SET"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.TEST-SET",
+      "target": "PRODUCT-1.WAIT-TEST"
+    },
+    {
+      "relation": "wait_release",
+      "source": "PRODUCT-1.WAIT-TEST",
+      "target": "PRODUCT-1.Q-POND"
+    },
+    {
+      "relation": "quality",
+      "source": "PRODUCT-1.Q-POND",
+      "target": "PRODUCT-1.TILE"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.TILE",
+      "target": "PRODUCT-1.WAIT-TILE"
+    },
+    {
+      "relation": "wait_release",
+      "source": "PRODUCT-1.WAIT-TILE",
+      "target": "PRODUCT-1.EXT"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.EXT",
+      "target": "PRODUCT-1.Q-EXT"
+    },
+    {
+      "relation": "quality",
+      "source": "PRODUCT-1.Q-EXT",
+      "target": "PRODUCT-1.PAINT"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.PAINT",
+      "target": "PRODUCT-1.WAIT-PAINT"
+    },
+    {
+      "relation": "wait_release",
+      "source": "PRODUCT-1.WAIT-PAINT",
+      "target": "PRODUCT-1.FIT"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.FIT",
+      "target": "PRODUCT-1.Q-FIN"
+    },
+    {
+      "relation": "quality",
+      "source": "PRODUCT-1.Q-FIN",
+      "target": "PRODUCT-1.PACK"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.PACK",
+      "target": "PRODUCT-1.Q-PACK"
+    },
+    {
+      "relation": "quality",
+      "source": "PRODUCT-1.Q-PACK",
+      "target": "PRODUCT-1.MOVE-OUT"
+    },
+    {
+      "relation": "precedence",
+      "source": "PRODUCT-1.MOVE-OUT",
+      "target": "PRODUCT-1.READY"
+    }
+  ],
+  "evidence": [
+    {
+      "basis": "UNRESOLVED",
+      "id": "G1",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G4",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G5",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G6",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G7",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G2-JOINT",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G2-WPS",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G2-PROGRAM",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G2-FIXTURE",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G2-PEOPLE",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G2-ISOLATION",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G2-INSPECTION",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "G2-OUTPUT",
+      "reference": "docs/research/production_evidence.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-KIT",
+      "reference": "B01:p49",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-KIT",
+      "reference": "批次",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-CUT",
+      "reference": "B01:p49",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-CUT",
+      "reference": "单件",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-MV-IN-B",
+      "reference": "A:组件实物转移",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-MV-IN-B",
+      "reference": "落位",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-W-B",
+      "reference": "B01:pp48,50",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-W-B",
+      "reference": "合格焊段",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-MV-B",
+      "reference": "A:有限缓冲",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-MV-B",
+      "reference": "落位",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-MV-IN-T",
+      "reference": "A:组件实物转移",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-MV-IN-T",
+      "reference": "落位",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-W-T",
+      "reference": "B01:pp48,50",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-W-T",
+      "reference": "合格焊段",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-MV-T",
+      "reference": "A:有限缓冲",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-MV-T",
+      "reference": "落位",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-JOIN-IN",
+      "reference": "B01:p50;A:搬运展开",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-JOIN-IN",
+      "reference": "稳定支承",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-W-3D",
+      "reference": "B01:p50",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-W-3D",
+      "reference": "合格焊段",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-Q-STR",
+      "reference": "B01:pp50-51;U:试拼替代",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-Q-STR",
+      "reference": "检查结束",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CRITERION-Q-STR",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-COAT",
+      "reference": "A:防腐方法待证",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-COAT",
+      "reference": "材料许可分区",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-WAIT-COAT",
+      "reference": "A/U:材料方法",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-WAIT-COAT",
+      "reference": "释放记录",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.RELEASE-WAIT-COAT",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-MOVE-F",
+      "reference": "B01:p55;A:厂内路线",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-MOVE-F",
+      "reference": "落位",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-FLOOR",
+      "reference": "B01:pp51,83;B10",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-FLOOR",
+      "reference": "固定板/段",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-MEP-E",
+      "reference": "B01:p51",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-MEP-E",
+      "reference": "安全断电单元",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-MEP-P",
+      "reference": "B01:p51",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-MEP-P",
+      "reference": "封端单元",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-Q-MEP",
+      "reference": "A:隐蔽质量门;B01:sec8",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-Q-MEP",
+      "reference": "卸压断电",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CRITERION-Q-MEP",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-LINING",
+      "reference": "B01:p51",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-LINING",
+      "reference": "固定板",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-Q-LIN",
+      "reference": "B01:p52",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-Q-LIN",
+      "reference": "检查结束",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CRITERION-Q-LIN",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-WPROOF",
+      "reference": "B01:p52;B10",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-WPROOF",
+      "reference": "材料许可分区",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-WAIT-W",
+      "reference": "A/E:非工业时长",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-WAIT-W",
+      "reference": "材料释放",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.RELEASE-WAIT-W",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-TEST-SET",
+      "reference": "B01:p52",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-TEST-SET",
+      "reference": "蓄水稳定",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-WAIT-TEST",
+      "reference": "B01:p52;E:4h",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-WAIT-TEST",
+      "reference": "试验时界",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.RELEASE-WAIT-TEST",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-Q-POND",
+      "reference": "B01:p52;A:分段",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-Q-POND",
+      "reference": "排水完成",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CRITERION-Q-POND",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-TILE",
+      "reference": "B01:p52",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-TILE",
+      "reference": "材料许可分区",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-WAIT-TILE",
+      "reference": "B01:p53;A/E:等待",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-WAIT-TILE",
+      "reference": "材料释放",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.RELEASE-WAIT-TILE",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-EXT",
+      "reference": "B01:pp53-54",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-EXT",
+      "reference": "固定件",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-Q-EXT",
+      "reference": "B01:p53",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-Q-EXT",
+      "reference": "试验结束",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CRITERION-Q-EXT",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-PAINT",
+      "reference": "B01:p54",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-PAINT",
+      "reference": "材料许可分区",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-WAIT-PAINT",
+      "reference": "A/E:非工业时长",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-WAIT-PAINT",
+      "reference": "材料释放",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.RELEASE-WAIT-PAINT",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-FIT",
+      "reference": "B01:p54;A:吊顶归并",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-FIT",
+      "reference": "固定/封端单元",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-Q-FIN",
+      "reference": "B01:sec8;A:最终合取门",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-Q-FIN",
+      "reference": "试验结束",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CRITERION-Q-FIN",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-PACK",
+      "reference": "B01:pp55,57",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-PACK",
+      "reference": "保护完成",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-Q-PACK",
+      "reference": "B01:p57",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-Q-PACK",
+      "reference": "检查结束",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CRITERION-Q-PACK",
+      "reference": "docs/model/selected_steel.md",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-MOVE-OUT",
+      "reference": "B01:p55;A:出厂位",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-MOVE-OUT",
+      "reference": "落位",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.METHOD-READY",
+      "reference": "A:交付定义",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    },
+    {
+      "basis": "UNRESOLVED",
+      "id": "PRODUCT-1.CHECKPOINT-READY",
+      "reference": "全门满足",
+      "revision": "v1",
+      "status": "UNKNOWN"
+    }
+  ],
+  "face_pairs": [
+    {
+      "first": "D-E",
+      "qualification_id": "G6",
+      "second": "W-P"
+    }
+  ],
+  "id": "BW-SR-W1-1",
+  "materials": [
+    {
+      "activity_id": "PRODUCT-1.CUT",
+      "arrived": true,
+      "bom_ids": [
+        "B-ST"
+      ],
+      "id": "PRODUCT-1.KIT-CUT",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.W-B",
+      "arrived": true,
+      "bom_ids": [
+        "B-ST"
+      ],
+      "id": "PRODUCT-1.KIT-W-B",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.W-T",
+      "arrived": true,
+      "bom_ids": [
+        "B-ST"
+      ],
+      "id": "PRODUCT-1.KIT-W-T",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.W-3D",
+      "arrived": true,
+      "bom_ids": [
+        "B-ST"
+      ],
+      "id": "PRODUCT-1.KIT-W-3D",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.COAT",
+      "arrived": true,
+      "bom_ids": [
+        "B-ST"
+      ],
+      "id": "PRODUCT-1.KIT-COAT",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.FLOOR",
+      "arrived": true,
+      "bom_ids": [
+        "B-FL",
+        "B-WT"
+      ],
+      "id": "PRODUCT-1.KIT-FLOOR",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.MEP-E",
+      "arrived": true,
+      "bom_ids": [
+        "B-ME"
+      ],
+      "id": "PRODUCT-1.KIT-MEP-E",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.MEP-P",
+      "arrived": true,
+      "bom_ids": [
+        "B-ME"
+      ],
+      "id": "PRODUCT-1.KIT-MEP-P",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.LINING",
+      "arrived": true,
+      "bom_ids": [
+        "B-EN"
+      ],
+      "id": "PRODUCT-1.KIT-LINING",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.WPROOF",
+      "arrived": true,
+      "bom_ids": [
+        "B-WT"
+      ],
+      "id": "PRODUCT-1.KIT-WPROOF",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.TEST-SET",
+      "arrived": true,
+      "bom_ids": [
+        "B-WT"
+      ],
+      "id": "PRODUCT-1.KIT-TEST-SET",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.TILE",
+      "arrived": true,
+      "bom_ids": [
+        "B-WT"
+      ],
+      "id": "PRODUCT-1.KIT-TILE",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.EXT",
+      "arrived": true,
+      "bom_ids": [
+        "B-FI",
+        "B-EN"
+      ],
+      "id": "PRODUCT-1.KIT-EXT",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.PAINT",
+      "arrived": true,
+      "bom_ids": [
+        "B-EN"
+      ],
+      "id": "PRODUCT-1.KIT-PAINT",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.FIT",
+      "arrived": true,
+      "bom_ids": [
+        "B-FI",
+        "B-ME"
+      ],
+      "id": "PRODUCT-1.KIT-FIT",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.PACK",
+      "arrived": true,
+      "bom_ids": [
+        "B-PR"
+      ],
+      "id": "PRODUCT-1.KIT-PACK",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.TEST-SET",
+      "arrived": true,
+      "bom_ids": [
+        "B-WT"
+      ],
+      "id": "PRODUCT-1.REPAIR-TEST-KIT",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    },
+    {
+      "activity_id": "PRODUCT-1.Q-POND",
+      "arrived": true,
+      "bom_ids": [
+        "B-WT"
+      ],
+      "id": "PRODUCT-1.REPAIR-KIT",
+      "identified": true,
+      "product_id": "PRODUCT-1",
+      "quantity": 1.0,
+      "released": true
+    }
+  ],
+  "min_rest_h": 0.25,
+  "observation_window_h": 240.0,
+  "parameters": [
+    {
+      "classification": "E",
+      "id": "N07-cap",
+      "source": "docs/model/parameters.md",
+      "unit": "1",
+      "validity": "SYNTHETIC_UNCALIBRATED",
+      "value": 0.8
+    },
+    {
+      "classification": "E",
+      "id": "N09-recovery",
+      "source": "docs/model/parameters.md",
+      "unit": "h^-1",
+      "validity": "SYNTHETIC_UNCALIBRATED",
+      "value": 0.2
+    },
+    {
+      "classification": "E",
+      "id": "N12-rest",
+      "source": "docs/model/parameters.md",
+      "unit": "h",
+      "validity": "SYNTHETIC_UNCALIBRATED",
+      "value": 0.25
+    },
+    {
+      "classification": "E",
+      "id": "N06-handover",
+      "source": "docs/model/parameters.md",
+      "unit": "h",
+      "validity": "SYNTHETIC_UNCALIBRATED",
+      "value": 0.1
+    },
+    {
+      "classification": "E",
+      "id": "N06-restore",
+      "source": "docs/model/parameters.md",
+      "unit": "h",
+      "validity": "SYNTHETIC_UNCALIBRATED",
+      "value": 0.1
+    }
+  ],
+  "people": [
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "P1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "PREP",
+        "HOIST"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.08
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "W1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "WELD"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.15
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "W2",
+      "initial_f": 0.2,
+      "qualifications": [
+        "WELD"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.15
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "OP1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "ROBOT"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.04
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "AF1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "ASSEMBLE"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.12
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "AF2",
+      "initial_f": 0.2,
+      "qualifications": [
+        "ASSEMBLE"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.12
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "E1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "ELECTRIC"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.1
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "PL1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "PLUMB"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.1
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "T1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "WET"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.12
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "T2",
+      "initial_f": 0.2,
+      "qualifications": [
+        "WET"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.12
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "C1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "COAT"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.12
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "QA1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "QA"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.08
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "Lop",
+      "initial_f": 0.2,
+      "qualifications": [
+        "CRANE"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.15
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "Lrig",
+      "initial_f": 0.2,
+      "qualifications": [
+        "RIG"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.15
+    },
+    {
+      "calendar": {
+        "period_h": 24.0,
+        "windows": [
+          {
+            "end_h": 4.0,
+            "start_h": 0.0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "Lsig",
+      "initial_f": 0.2,
+      "qualifications": [
+        "SIGNAL"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000.0,
+      "wait_rate": 0.02,
+      "work_rate": 0.15
+    }
+  ],
+  "products": [
+    {
+      "bom": [
+        {
+          "id": "B-ST",
+          "quantity": 1.0,
+          "unit": "set"
+        },
+        {
+          "id": "B-FL",
+          "quantity": 18.0,
+          "unit": "m2"
+        },
+        {
+          "id": "B-EN",
+          "quantity": 1.0,
+          "unit": "set"
+        },
+        {
+          "id": "B-WT",
+          "quantity": 1.0,
+          "unit": "set"
+        },
+        {
+          "id": "B-ME",
+          "quantity": 1.0,
+          "unit": "set"
+        },
+        {
+          "id": "B-FI",
+          "quantity": 1.0,
+          "unit": "set"
+        },
+        {
+          "id": "B-PR",
+          "quantity": 1.0,
+          "unit": "set"
+        }
+      ],
+      "due_h": 168.0,
+      "id": "PRODUCT-1",
+      "mass_t": 8.0,
+      "order_id": "ORDER-1",
+      "release_h": 0.0,
+      "revision": "v1",
+      "rigging_t": 1.0,
+      "variant": "SR-W1"
+    }
+  ],
+  "purpose": "RESEARCH_BLOCKED",
+  "resources": [
+    {
+      "capacity": 1,
+      "id": "PRE",
+      "kind": "BAY",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "J2",
+      "kind": "BAY",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 2,
+      "id": "BUF",
+      "kind": "BUFFER",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "J3",
+      "kind": "BAY",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "F1",
+      "kind": "BAY",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "Q1",
+      "kind": "BAY",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "OUT1",
+      "kind": "BAY",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "CUT1",
+      "kind": "EQUIPMENT",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "WELD1",
+      "kind": "EQUIPMENT",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "R1",
+      "kind": "EQUIPMENT",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "HST1",
+      "kind": "EQUIPMENT",
+      "load_t": 3.0
+    },
+    {
+      "capacity": 1,
+      "id": "CR1",
+      "kind": "EQUIPMENT",
+      "load_t": 12.0
+    },
+    {
+      "capacity": 1,
+      "id": "TEST1",
+      "kind": "EQUIPMENT",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "FIX-J2",
+      "kind": "FIXTURE",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "FIX-J3",
+      "kind": "FIXTURE",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "ROUTE-COMP",
+      "kind": "ROUTE",
+      "load_t": 0.0
+    },
+    {
+      "capacity": 1,
+      "id": "ROUTE-MODULE",
+      "kind": "ROUTE",
+      "load_t": 0.0
+    }
+  ],
+  "schema_version": "C04-1.0",
+  "specification": "C03-0.3",
+  "units": {
+    "exposure": "F.h",
+    "length": "m",
+    "mass": "t",
+    "rate": "h^-1",
+    "time": "h"
+  }
+}

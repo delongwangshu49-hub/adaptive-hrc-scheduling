@@ -1,0 +1,156 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "HumanState": {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "fatigue": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "peak": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "rest_until_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "person_id",
+        "fatigue",
+        "exposure",
+        "peak",
+        "rest_until_h"
+      ],
+      "type": "object"
+    },
+    "OfflineEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "cancelled_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "incomplete_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "people": {
+          "items": {
+            "$ref": "#/$defs/HumanState"
+          },
+          "type": "array"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/$defs/ProductState"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "scope": {
+          "enum": [
+            "EXECUTOR_SUMMARY_NOT_S10"
+          ]
+        },
+        "window_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "window_h",
+        "products",
+        "people",
+        "incomplete_count",
+        "cancelled_count",
+        "scope"
+      ],
+      "type": "object"
+    },
+    "ProductState": {
+      "additionalProperties": false,
+      "properties": {
+        "cancelled": {
+          "type": "boolean"
+        },
+        "installed_bom": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "ready_h": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "state": {
+          "enum": [
+            "RELEASED",
+            "IN_PROCESS",
+            "BLOCKED",
+            "QUALITY_HOLD",
+            "CANCEL_PENDING",
+            "QUARANTINED",
+            "READY",
+            "RECEIVED"
+          ]
+        },
+        "water_present": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "product_id",
+        "location",
+        "state",
+        "cancelled",
+        "ready_h",
+        "installed_bom",
+        "water_present"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/OfflineEvaluation",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OfflineEvaluation"
+}

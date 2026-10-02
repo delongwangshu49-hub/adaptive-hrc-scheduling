@@ -1,0 +1,149 @@
+path	action	scope	reason	recovery
+.gitattributes	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Repository configuration or public source text	HEAD
+.github/workflows/ci.yml	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Repository configuration or public source text	HEAD
+.gitignore	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Repository configuration or public source text	HEAD
+.python-version	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Repository configuration or public source text	HEAD
+AGENTS.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	仓库协作规则	handoff byte snapshot or review candidate copy; no reset
+LICENSE	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Repository configuration or public source text	HEAD
+PROGRESS_LOG.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	项目进度日志	handoff byte snapshot or review candidate copy; no reset
+PROMPT_LEDGER.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	规范化提示词记录	handoff byte snapshot or review candidate copy; no reset
+README.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	完整建筑模块的多资源自适应生产调度	handoff byte snapshot or review candidate copy; no reset
+docs/PROJECT_CHARTER.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	完整钢建筑模块生产调度研究总纲	handoff byte snapshot or review candidate copy; no reset
+docs/architecture.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	完整钢模块下一版架构	handoff byte snapshot or review candidate copy; no reset
+docs/contracts.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	C04-1.0 建筑契约与历史接口	handoff byte snapshot or review candidate copy; no reset
+docs/correction_disposition.tsv	ADD	C00_C03_AND_CURRENT_GOVERNANCE	TSV 115 data rows	handoff byte snapshot or review candidate copy; no reset
+docs/development.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	基础检查与持续集成（S02 / S03 / S06）	handoff byte snapshot or review candidate copy; no reset
+docs/model/candidate_comparison.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	钢框架与整体浇筑 RC：选型呈交	handoff byte snapshot or review candidate copy; no reset
+docs/model/candidate_rc.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	C 候选：整体浇筑 RC 建筑模块	handoff byte snapshot or review candidate copy; no reset
+docs/model/candidate_steel.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	S 候选：夹具焊装钢框架建筑模块	handoff byte snapshot or review candidate copy; no reset
+docs/model/candidate_traces.json	ADD	C00_C03_AND_CURRENT_GOVERNANCE	JSON structured fixture	handoff byte snapshot or review candidate copy; no reset
+docs/model/candidate_traces.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	四条完整产品小规模轨迹	handoff byte snapshot or review candidate copy; no reset
+docs/model/events.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	钢模块事件、可见性及取消规则	handoff byte snapshot or review candidate copy; no reset
+docs/model/execution.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	钢模块生产执行状态与释放契约	handoff byte snapshot or review candidate copy; no reset
+docs/model/fatigue.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	钢模块逐人人因、日历和长工时规则	handoff byte snapshot or review candidate copy; no reset
+docs/model/instance_families.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	钢模块实例与研究覆盖	handoff byte snapshot or review candidate copy; no reset
+docs/model/parameters.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	钢模块研究参数与单位	handoff byte snapshot or review candidate copy; no reset
+docs/model/selected_steel.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	钢体系完整居住模块：C03 专属生产规格	handoff byte snapshot or review candidate copy; no reset
+docs/model/specification.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	完整钢建筑模块调度：下一版模型规格	handoff byte snapshot or review candidate copy; no reset
+docs/model/steel_edges.tsv	ADD	C00_C03_AND_CURRENT_GOVERNANCE	TSV 40 data rows	handoff byte snapshot or review candidate copy; no reset
+docs/model/steel_modes.tsv	ADD	C00_C03_AND_CURRENT_GOVERNANCE	TSV 39 data rows	handoff byte snapshot or review candidate copy; no reset
+docs/model/steel_process.tsv	ADD	C00_C03_AND_CURRENT_GOVERNANCE	TSV 37 data rows	handoff byte snapshot or review candidate copy; no reset
+docs/repair_plan.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	现有资产修复：C04—C05统一栏目	handoff byte snapshot or review candidate copy; no reset
+docs/repository_links.tsv	ADD	C00_C03_AND_CURRENT_GOVERNANCE	TSV 68 data rows	handoff byte snapshot or review candidate copy; no reset
+docs/repository_migration.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	C03 仓库名称、About与链接迁移候选	handoff byte snapshot or review candidate copy; no reset
+docs/research/hypotheses.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	建筑领域研究假设与反证口径	handoff byte snapshot or review candidate copy; no reset
+docs/research/production_evidence.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	建筑生产证据与抽象台账	handoff byte snapshot or review candidate copy; no reset
+docs/research/references.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	参考文献与核查记录	handoff byte snapshot or review candidate copy; no reset
+docs/research/related_work.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	完整建筑模块生产：相关工作与研究定位	handoff byte snapshot or review candidate copy; no reset
+docs/roadmap.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	钢建筑模块研究逐步路线	handoff byte snapshot or review candidate copy; no reset
+docs/setup.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	开发环境与依赖复现（S01 / S02 / S03）	handoff byte snapshot or review candidate copy; no reset
+docs/steps/C00-C02.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	C00—C02 接手、共通纠偏与材料比较	handoff byte snapshot or review candidate copy; no reset
+docs/steps/C03.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	C03 钢体系规格：r2验收与限定冻结	handoff byte snapshot or review candidate copy; no reset
+docs/steps/C04-C05.md	ADD	C04_C05	C04—C05 现有资产修复与阶段收尾	handoff byte snapshot or review candidate copy; no reset
+docs/steps/S00.md	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S00 治理基线与仓库首次发布	HEAD
+docs/steps/S01.md	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S01 开发环境与依赖复现	HEAD
+docs/steps/S02.md	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S02 基础检查与持续集成	HEAD
+docs/steps/S03.md	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S03 Isaac Sim 最小运行验证	HEAD
+docs/steps/S04.md	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S04 相关工作与研究假设核对	HEAD
+docs/steps/S05.md	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S05 r3 有限规格修复	HEAD
+docs/steps/S06.md	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S06 数据对象与接口契约	HEAD
+docs/steps/S07.md	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S07 疲劳与恢复模型	HEAD
+docs/steps/S08.md	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S08 扰动与信息可见性规则	HEAD
+docs/steps/S09.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	S09 轻量执行内核	handoff byte snapshot or review candidate copy; no reset
+docs/validation/building_execution.md	ADD	C04_C05	C04—C05 建筑执行验证	handoff byte snapshot or review candidate copy; no reset
+docs/validation/building_witnesses.md	ADD	C04_C05	C03 独立规则与建筑生产见证设计	handoff byte snapshot or review candidate copy; no reset
+docs/validation/c00_c05_closeout.md	ADD	C04_C05	C00—C05 工作区与内部一致性收尾	handoff byte snapshot or review candidate copy; no reset
+docs/validation/c03_review.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	C03 文档检查与证据边界	handoff byte snapshot or review candidate copy; no reset
+docs/validation/contracts.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	历史验证范围：contracts	handoff byte snapshot or review candidate copy; no reset
+docs/validation/correction.md	ADD	C00_C03_AND_CURRENT_GOVERNANCE	C00—C02 本地核查	handoff byte snapshot or review candidate copy; no reset
+docs/validation/events.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	历史验证范围：events	handoff byte snapshot or review candidate copy; no reset
+docs/validation/execution.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	历史验证范围：execution	handoff byte snapshot or review candidate copy; no reset
+docs/validation/fatigue.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	历史验证范围：fatigue	handoff byte snapshot or review candidate copy; no reset
+docs/validation/runtime.md	MODIFY	C00_C03_AND_CURRENT_GOVERNANCE	历史验证范围：runtime	handoff byte snapshot or review candidate copy; no reset
+docs/workspace_disposition.tsv	ADD	C04_C05	逐文件公开候选处置与职责	handoff byte snapshot or review candidate copy; no reset
+examples/building_contracts/configuration.json	ADD	C04_C05	JSON C04-1.0	handoff byte snapshot or review candidate copy; no reset
+examples/building_contracts/dispatch.json	ADD	C04_C05	JSON C04-1.0	handoff byte snapshot or review candidate copy; no reset
+examples/building_contracts/execution_event.json	ADD	C04_C05	JSON C04-1.0	handoff byte snapshot or review candidate copy; no reset
+examples/building_contracts/execution_snapshot.json	ADD	C04_C05	JSON C04-1.0	handoff byte snapshot or review candidate copy; no reset
+examples/building_contracts/hidden_scenario.json	ADD	C04_C05	JSON C04-1.0	handoff byte snapshot or review candidate copy; no reset
+examples/building_contracts/offline_evaluation.json	ADD	C04_C05	JSON C04-1.0	handoff byte snapshot or review candidate copy; no reset
+examples/building_contracts/plan.json	ADD	C04_C05	JSON C04-1.0	handoff byte snapshot or review candidate copy; no reset
+examples/building_contracts/planning_input.json	ADD	C04_C05	JSON C04-1.0	handoff byte snapshot or review candidate copy; no reset
+examples/building_contracts/planning_observation.json	ADD	C04_C05	JSON C04-1.0	handoff byte snapshot or review candidate copy; no reset
+examples/building_contracts/run_manifest.json	ADD	C04_C05	JSON C04-1.0	handoff byte snapshot or review candidate copy; no reset
+examples/building_contracts/sr_w2.json	ADD	C04_C05	JSON C04-1.0	handoff byte snapshot or review candidate copy; no reset
+examples/building_execution/summary.json	ADD	C04_C05	JSON SYNTHETIC_TEST_ONLY	handoff byte snapshot or review candidate copy; no reset
+examples/contracts/dispatch.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON S06-1.1	HEAD
+examples/contracts/execution_event.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON S06-1.1	HEAD
+examples/contracts/execution_snapshot.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON S06-1.1	HEAD
+examples/contracts/hidden_scenario.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON S06-1.1	HEAD
+examples/contracts/offline_evaluation.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON S06-1.1	HEAD
+examples/contracts/plan.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON S06-1.1	HEAD
+examples/contracts/planning_input.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON S06-1.1	HEAD
+examples/contracts/planning_observation.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON S06-1.1	HEAD
+examples/contracts/run_manifest.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON S06-1.1	HEAD
+examples/contracts/structural.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON S06-1.1	HEAD
+examples/contracts/toy.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON S06-1.1	HEAD
+examples/execution_cases/toy_summary.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON structured fixture	HEAD
+examples/structural_instance.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON structured fixture	HEAD
+examples/toy_instance.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON structured fixture	HEAD
+pyproject.toml	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Repository configuration or public source text	HEAD
+schemas/Configuration.schema.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON Configuration	HEAD
+schemas/DispatchCommand.schema.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON DispatchCommand	HEAD
+schemas/ExecutionEvent.schema.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON ExecutionEvent	HEAD
+schemas/ExecutionSnapshot.schema.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON ExecutionSnapshot	HEAD
+schemas/HiddenScenario.schema.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON HiddenScenario	HEAD
+schemas/OfflineEvaluation.schema.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON OfflineEvaluation	HEAD
+schemas/Plan.schema.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON Plan	HEAD
+schemas/PlanningInput.schema.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON PlanningInput	HEAD
+schemas/PlanningObservation.schema.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON PlanningObservation	HEAD
+schemas/RunManifest.schema.json	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	JSON RunManifest	HEAD
+schemas/building/Configuration.schema.json	ADD	C04_C05	JSON Configuration	handoff byte snapshot or review candidate copy; no reset
+schemas/building/DispatchCommand.schema.json	ADD	C04_C05	JSON DispatchCommand	handoff byte snapshot or review candidate copy; no reset
+schemas/building/ExecutionEvent.schema.json	ADD	C04_C05	JSON ExecutionEvent	handoff byte snapshot or review candidate copy; no reset
+schemas/building/ExecutionSnapshot.schema.json	ADD	C04_C05	JSON ExecutionSnapshot	handoff byte snapshot or review candidate copy; no reset
+schemas/building/HiddenScenario.schema.json	ADD	C04_C05	JSON HiddenScenario	handoff byte snapshot or review candidate copy; no reset
+schemas/building/OfflineEvaluation.schema.json	ADD	C04_C05	JSON OfflineEvaluation	handoff byte snapshot or review candidate copy; no reset
+schemas/building/Plan.schema.json	ADD	C04_C05	JSON Plan	handoff byte snapshot or review candidate copy; no reset
+schemas/building/PlanningInput.schema.json	ADD	C04_C05	JSON PlanningInput	handoff byte snapshot or review candidate copy; no reset
+schemas/building/PlanningObservation.schema.json	ADD	C04_C05	JSON PlanningObservation	handoff byte snapshot or review candidate copy; no reset
+schemas/building/RunManifest.schema.json	ADD	C04_C05	JSON RunManifest	handoff byte snapshot or review candidate copy; no reset
+scripts/build_building_contracts.py	ADD	C04_C05	Generate only the frozen C04 steel fixtures; not an S11 instance generator.	handoff byte snapshot or review candidate copy; no reset
+scripts/build_contract_examples.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Deterministic S05-to-S06 example translation, not an experiment generator.	HEAD
+scripts/check.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Run the same lightweight checks locally and in CI; stop on any failure.	HEAD
+scripts/isaac_smoke.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S03: real Isaac Sim 6.1 smoke check; run with its standalone interpreter.	HEAD
+scripts/run_building_witness.py	ADD	C04_C05	Fixed C05 witness script, not a general scheduling policy or S10 checker.	handoff byte snapshot or review candidate copy; no reset
+scripts/run_execution_witness.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Run the fixed S05 manual dispatch order through S09; no scheduling search.	HEAD
+src/adaptive_hrc_scheduling/__init__.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Environment scaffold; scheduling and simulation are not implemented yet.	HEAD
+src/adaptive_hrc_scheduling/__main__.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Report installation metadata without starting a simulation.	HEAD
+src/adaptive_hrc_scheduling/building_backend.py	ADD	C04_C05	C05 trusted building executor. Explicit manual dispatch; no scheduling policy.	handoff byte snapshot or review candidate copy; no reset
+src/adaptive_hrc_scheduling/building_human.py	ADD	C04_C05	Hour-domain adapter of the tested minute-domain linear integrator.	handoff byte snapshot or review candidate copy; no reset
+src/adaptive_hrc_scheduling/contracts/__init__.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Versioned wire contracts; no scheduler or execution engine.	HEAD
+src/adaptive_hrc_scheduling/contracts/building.py	ADD	C04_C05	C04 building semantic boundary; no pipe-to-building coercion.	handoff byte snapshot or review candidate copy; no reset
+src/adaptive_hrc_scheduling/contracts/codec.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Strict JSON boundary and generated Draft 2020-12 structural schemas.	HEAD
+src/adaptive_hrc_scheduling/contracts/messages.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Planning, dispatch, execution, hidden-world and evaluation envelopes.	HEAD
+src/adaptive_hrc_scheduling/contracts/planning.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Project authorized records at the planning boundary; no event processing.	HEAD
+src/adaptive_hrc_scheduling/contracts/validation.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S06 static acceptance checks. No time advancement or scheduling is performed.	HEAD
+src/adaptive_hrc_scheduling/domain/__init__.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Immutable production configuration and execution-state records (S06).	HEAD
+src/adaptive_hrc_scheduling/domain/building.py	ADD	C04_C05	Building-domain C04-1.0 records. Hours, tonnes and explicit unknown evidence.	handoff byte snapshot or review candidate copy; no reset
+src/adaptive_hrc_scheduling/domain/models.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S06 configuration objects. Times are minutes; rates are inverse minutes.	HEAD
+src/adaptive_hrc_scheduling/domain/phases.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Resolve declared process/restore costs without executing any transition.	HEAD
+src/adaptive_hrc_scheduling/domain/state.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Execution truth records, deliberately separate from planning observations.	HEAD
+src/adaptive_hrc_scheduling/event_backend.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S09 deterministic execution of explicit commands, without a scheduling policy.	HEAD
+src/adaptive_hrc_scheduling/events.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S08 deterministic disturbance rules; no resource allocator or event loop.	HEAD
+src/adaptive_hrc_scheduling/human_state.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S07 pure fatigue arithmetic; no clock, dispatch or observation generation.	HEAD
+src/adaptive_hrc_scheduling/observation.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S08 explicit sampling grants and causal delivery into the S06 planning view.	HEAD
+tests/test_building_contracts.py	ADD	C04_C05	Building contract positive/negative witnesses, separate from historical tests.	handoff byte snapshot or review candidate copy; no reset
+tests/test_building_execution.py	ADD	C04_C05	C05 targeted witnesses. Oracles are constants, arithmetic and state invariants.	handoff byte snapshot or review candidate copy; no reset
+tests/test_contract_repairs.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S06 r3 regressions for the seven reviewed contract defects.	HEAD
+tests/test_contracts.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S06 adversarial contract checks, not simulator or scheduler experiments.	HEAD
+tests/test_event_backend.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Deterministic S09 execution witnesses; no scheduling algorithm or benchmark.	HEAD
+tests/test_events.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S08 state-transition regressions; hand-constructed states, not production runs.	HEAD
+tests/test_execution_boundaries.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S09 capacity, cancellation and multi-input integration regressions.	HEAD
+tests/test_execution_repairs.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S09 r2: source release faults and calendar partition regressions.	HEAD
+tests/test_execution_witness.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Compare actual execution with S05's independent, unchanged hand arithmetic.	HEAD
+tests/test_human_state.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S07 analytic and S05 witness checks; no simulated production claims.	HEAD
+tests/test_installation.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S01 installation checks only; no domain or simulator tests.	HEAD
+tests/test_isaac_callbacks.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	CPU regressions for the real smoke script's per-step callback contract.	HEAD
+tests/test_observation.py	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	S08 authorization, delayed/partial observations and nonanticipation checks.	HEAD
+uv.lock	KEEP	HISTORICAL_OR_ENGINEERING_BASELINE	Repository configuration or public source text	HEAD

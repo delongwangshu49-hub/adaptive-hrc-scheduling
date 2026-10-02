@@ -1,0 +1,862 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "Activity": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "face": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "material_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "modes": {
+          "items": {
+            "$ref": "#/$defs/Mode"
+          },
+          "type": "array"
+        },
+        "move": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Move"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quality_evidence": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "release_evidence": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wait_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "code",
+        "location",
+        "face",
+        "modes",
+        "material_ids",
+        "wait_h",
+        "release_evidence",
+        "quality_evidence",
+        "move"
+      ],
+      "type": "object"
+    },
+    "BOMItem": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quantity": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "quantity",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "Calendar": {
+      "additionalProperties": false,
+      "properties": {
+        "period_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "windows": {
+          "items": {
+            "$ref": "#/$defs/Window"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "period_h",
+        "windows"
+      ],
+      "type": "object"
+    },
+    "Component": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "initial_location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "BOTTOM",
+            "TOP",
+            "COLUMNS"
+          ]
+        },
+        "mass_t": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quantity": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "kind",
+        "quantity",
+        "initial_location",
+        "mass_t"
+      ],
+      "type": "object"
+    },
+    "Configuration": {
+      "additionalProperties": false,
+      "properties": {
+        "activities": {
+          "items": {
+            "$ref": "#/$defs/Activity"
+          },
+          "type": "array"
+        },
+        "cap": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "components": {
+          "items": {
+            "$ref": "#/$defs/Component"
+          },
+          "type": "array"
+        },
+        "edges": {
+          "items": {
+            "$ref": "#/$defs/Edge"
+          },
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "type": "array"
+        },
+        "face_pairs": {
+          "items": {
+            "$ref": "#/$defs/FacePair"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "materials": {
+          "items": {
+            "$ref": "#/$defs/Material"
+          },
+          "type": "array"
+        },
+        "min_rest_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "observation_window_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "parameters": {
+          "items": {
+            "$ref": "#/$defs/Parameter"
+          },
+          "type": "array"
+        },
+        "people": {
+          "items": {
+            "$ref": "#/$defs/Person"
+          },
+          "type": "array"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/$defs/Product"
+          },
+          "type": "array"
+        },
+        "purpose": {
+          "enum": [
+            "RESEARCH_BLOCKED",
+            "SYNTHETIC_TEST_ONLY"
+          ]
+        },
+        "resources": {
+          "items": {
+            "$ref": "#/$defs/Resource"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "specification": {
+          "enum": [
+            "C03-0.3"
+          ]
+        },
+        "units": {
+          "$ref": "#/$defs/Units"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "specification",
+        "units",
+        "purpose",
+        "cap",
+        "min_rest_h",
+        "observation_window_h",
+        "people",
+        "resources",
+        "products",
+        "components",
+        "materials",
+        "activities",
+        "edges",
+        "evidence",
+        "face_pairs",
+        "parameters"
+      ],
+      "type": "object"
+    },
+    "Edge": {
+      "additionalProperties": false,
+      "properties": {
+        "relation": {
+          "enum": [
+            "material",
+            "precedence",
+            "quality",
+            "wait_release"
+          ]
+        },
+        "source": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "relation"
+      ],
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "enum": [
+            "INDUSTRIAL",
+            "SYNTHETIC_TEST",
+            "UNRESOLVED"
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "status",
+        "basis",
+        "reference",
+        "revision"
+      ],
+      "type": "object"
+    },
+    "FacePair": {
+      "additionalProperties": false,
+      "properties": {
+        "first": {
+          "type": "string"
+        },
+        "qualification_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "second": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "first",
+        "second",
+        "qualification_id"
+      ],
+      "type": "object"
+    },
+    "Material": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "arrived": {
+          "type": "boolean"
+        },
+        "bom_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "identified": {
+          "type": "boolean"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quantity": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "released": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "activity_id",
+        "bom_ids",
+        "quantity",
+        "arrived",
+        "identified",
+        "released"
+      ],
+      "type": "object"
+    },
+    "Mode": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "H",
+            "H-team",
+            "HR-seq",
+            "MOVE",
+            "WAIT",
+            "GATE"
+          ]
+        },
+        "output_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "qualification_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "qualification_revisions": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "units": {
+          "items": {
+            "$ref": "#/$defs/WorkUnit"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "output_revision",
+        "qualification_ids",
+        "qualification_revisions",
+        "units",
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "Move": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "equipment": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "landing_h": {
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "qualification_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "qualification_revisions": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "route": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "source": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "route",
+        "equipment",
+        "entity_ids",
+        "landing_h",
+        "qualification_ids",
+        "qualification_revisions"
+      ],
+      "type": "object"
+    },
+    "Parameter": {
+      "additionalProperties": false,
+      "properties": {
+        "classification": {
+          "enum": [
+            "F",
+            "A",
+            "E",
+            "U"
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "validity": {
+          "type": "string"
+        },
+        "value": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "value",
+        "unit",
+        "classification",
+        "source",
+        "validity"
+      ],
+      "type": "object"
+    },
+    "Person": {
+      "additionalProperties": false,
+      "properties": {
+        "calendar": {
+          "$ref": "#/$defs/Calendar"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "initial_f": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "qualifications": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "recovery_rate": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "valid_until_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "wait_rate": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "work_rate": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "qualifications",
+        "valid_until_h",
+        "initial_f",
+        "work_rate",
+        "wait_rate",
+        "recovery_rate",
+        "calendar"
+      ],
+      "type": "object"
+    },
+    "Product": {
+      "additionalProperties": false,
+      "properties": {
+        "bom": {
+          "items": {
+            "$ref": "#/$defs/BOMItem"
+          },
+          "type": "array"
+        },
+        "due_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "mass_t": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "order_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "release_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "rigging_t": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "variant": {
+          "enum": [
+            "SR-W1",
+            "SR-W2"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "order_id",
+        "variant",
+        "revision",
+        "bom",
+        "mass_t",
+        "rigging_t",
+        "release_h",
+        "due_h"
+      ],
+      "type": "object"
+    },
+    "Resource": {
+      "additionalProperties": false,
+      "properties": {
+        "capacity": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "BAY",
+            "BUFFER",
+            "EQUIPMENT",
+            "FIXTURE",
+            "ROUTE"
+          ]
+        },
+        "load_t": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "capacity",
+        "load_t"
+      ],
+      "type": "object"
+    },
+    "Role": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "qualification": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "qualification"
+      ],
+      "type": "object"
+    },
+    "Units": {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "enum": [
+            "F.h"
+          ]
+        },
+        "length": {
+          "enum": [
+            "m"
+          ]
+        },
+        "mass": {
+          "enum": [
+            "t"
+          ]
+        },
+        "rate": {
+          "enum": [
+            "h^-1"
+          ]
+        },
+        "time": {
+          "enum": [
+            "h"
+          ]
+        }
+      },
+      "required": [
+        "time",
+        "rate",
+        "exposure",
+        "mass",
+        "length"
+      ],
+      "type": "object"
+    },
+    "Window": {
+      "additionalProperties": false,
+      "properties": {
+        "end_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "start_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "start_h",
+        "end_h"
+      ],
+      "type": "object"
+    },
+    "WorkUnit": {
+      "additionalProperties": false,
+      "properties": {
+        "base_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "checkpoint_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "equipment": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kappa": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "phase": {
+          "enum": [
+            "SETUP",
+            "WORK",
+            "ROBOT",
+            "UNLOAD",
+            "CHECK",
+            "MOVE"
+          ]
+        },
+        "resumable": {
+          "type": "boolean"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/Role"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "base_h",
+        "checkpoint_id",
+        "phase",
+        "roles",
+        "equipment",
+        "kappa",
+        "resumable"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/Configuration",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuration"
+}

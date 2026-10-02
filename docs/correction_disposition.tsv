@@ -1,0 +1,116 @@
+file	disposition	package	reason	current_action
+.gitattributes	核对后原字节保留	共通工程	C03文档规格工作不需改变工程配置/许可/安装骨架；后续接口变化再核对	C03原字节保留
+.github/workflows/ci.yml	核对后原字节保留	共通工程	C03文档规格工作不需改变工程配置/许可/安装骨架；后续接口变化再核对	C03原字节保留
+.gitignore	核对后原字节保留	共通工程	C03文档规格工作不需改变工程配置/许可/安装骨架；后续接口变化再核对	C03原字节保留
+.python-version	核对后原字节保留	共通工程	C03文档规格工作不需改变工程配置/许可/安装骨架；后续接口变化再核对	C03原字节保留
+AGENTS.md	PR071交接授权与索引同步	C04-C05	记录实际启动决定，保留旧包及未提交成果	交接修改
+LICENSE	核对后原字节保留	共通工程	C03文档规格工作不需改变工程配置/许可/安装骨架；后续接口变化再核对	C03原字节保留
+PROGRESS_LOG.md	PR071交接授权与索引同步	C04-C05	记录实际启动决定，保留旧包及未提交成果	交接修改
+PROMPT_LEDGER.md	PR071交接授权与索引同步	C04-C05	记录实际启动决定，保留旧包及未提交成果	交接修改
+README.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/PROJECT_CHARTER.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/architecture.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/contracts.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/correction_disposition.tsv	PR071交接授权与索引同步	C04-C05	记录实际启动决定，保留旧包及未提交成果	交接修改
+docs/development.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/model/candidate_comparison.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/model/candidate_rc.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/model/candidate_steel.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/model/candidate_traces.json	核对后原字节保留	C01/C02	纠正完整产品目标或提供选型证据及明确下一版边界	C03原字节保留
+docs/model/candidate_traces.md	核对后原字节保留	C01/C02	纠正完整产品目标或提供选型证据及明确下一版边界	C03原字节保留
+docs/model/events.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/model/execution.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/model/fatigue.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/model/instance_families.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/model/parameters.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/model/selected_steel.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/model/specification.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/model/steel_edges.tsv	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	新增
+docs/model/steel_modes.tsv	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	新增
+docs/model/steel_process.tsv	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	新增
+docs/repair_plan.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/repository_links.tsv	PR071交接授权与索引同步	C04-C05	记录实际启动决定，保留旧包及未提交成果	交接修改
+docs/repository_migration.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/research/hypotheses.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/research/production_evidence.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/research/references.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/research/related_work.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/roadmap.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/setup.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/steps/C00-C02.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/steps/C03.md	PR071交接授权与索引同步	C04-C05	记录实际启动决定，保留旧包及未提交成果	交接修改
+docs/steps/C04-C05.md	PR071本地实施启动卡	C04-C05	当前授权范围、输入及收尾出口	新增
+docs/steps/S00.md	核对后原字节保留	历史	历史步骤卡不覆写，当前状态转引新日志	C03原字节保留
+docs/steps/S01.md	核对后原字节保留	历史	历史步骤卡不覆写，当前状态转引新日志	C03原字节保留
+docs/steps/S02.md	核对后原字节保留	历史	历史步骤卡不覆写，当前状态转引新日志	C03原字节保留
+docs/steps/S03.md	核对后原字节保留	历史	历史步骤卡不覆写，当前状态转引新日志	C03原字节保留
+docs/steps/S04.md	核对后原字节保留	历史	历史步骤卡不覆写，当前状态转引新日志	C03原字节保留
+docs/steps/S05.md	核对后原字节保留	历史	历史步骤卡不覆写，当前状态转引新日志	C03原字节保留
+docs/steps/S06.md	核对后原字节保留	历史	历史步骤卡不覆写，当前状态转引新日志	C03原字节保留
+docs/steps/S07.md	核对后原字节保留	历史	历史步骤卡不覆写，当前状态转引新日志	C03原字节保留
+docs/steps/S08.md	核对后原字节保留	历史	历史步骤卡不覆写，当前状态转引新日志	C03原字节保留
+docs/steps/S09.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/validation/building_witnesses.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	新增
+docs/validation/c03_review.md	C03 r3决定记录/收尾规划/状态同步	C03-r3	记录r2验收限定冻结及PR070指定补充；不改规格规则、不实施清理或代码	r3修改
+docs/validation/contracts.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/validation/correction.md	核对后原字节保留	C00/C01/C02	更新实际授权/检查/处置；旧批准记录保留	C03原字节保留
+docs/validation/events.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/validation/execution.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/validation/fatigue.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+docs/validation/runtime.md	C03文档实质重写/定稿或现行入口同步	C03	钢体系规格、来源/独立规则、逐步规划或真实治理状态；不实现后续代码	修改
+examples/contracts/dispatch.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/contracts/execution_event.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/contracts/execution_snapshot.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/contracts/hidden_scenario.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/contracts/offline_evaluation.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/contracts/plan.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/contracts/planning_input.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/contracts/planning_observation.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/contracts/run_manifest.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/contracts/structural.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/contracts/toy.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/execution_cases/toy_summary.json	核对后原字节保留	修复C04—C05新建建筑见证	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/structural_instance.json	核对后原字节保留	修复C04—C05新建建筑见证	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+examples/toy_instance.json	核对后原字节保留	修复C04—C05新建建筑见证	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+pyproject.toml	核对后原字节保留	共通工程	C03文档规格工作不需改变工程配置/许可/安装骨架；后续接口变化再核对	C03原字节保留
+schemas/Configuration.schema.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+schemas/DispatchCommand.schema.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+schemas/ExecutionEvent.schema.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+schemas/ExecutionSnapshot.schema.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+schemas/HiddenScenario.schema.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+schemas/OfflineEvaluation.schema.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+schemas/Plan.schema.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+schemas/PlanningInput.schema.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+schemas/PlanningObservation.schema.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+schemas/RunManifest.schema.json	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+scripts/build_contract_examples.py	核对后原字节保留	C04	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+scripts/check.py	核对后原字节保留	共通工程	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+scripts/isaac_smoke.py	核对后原字节保留	共通工程	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+scripts/run_execution_witness.py	核对后原字节保留	修复C04—C05新建建筑见证	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/__init__.py	核对后原字节保留	共通工程	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/__main__.py	核对后原字节保留	共通工程	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/contracts/__init__.py	核对后原字节保留	共通工程	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/contracts/codec.py	核对后原字节保留	修复C04—C05	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/contracts/messages.py	核对后原字节保留	修复C04—C05	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/contracts/planning.py	核对后原字节保留	修复C04—C05	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/contracts/validation.py	核对后原字节保留	修复C04—C05	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/domain/__init__.py	核对后原字节保留	共通工程	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/domain/models.py	核对后原字节保留	修复C04—C05	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/domain/phases.py	核对后原字节保留	修复C04—C05	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/domain/state.py	核对后原字节保留	修复C04—C05	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/event_backend.py	核对后原字节保留	修复C04—C05	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/events.py	核对后原字节保留	修复C04—C05	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/human_state.py	核对后原字节保留	修复C04—C05	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+src/adaptive_hrc_scheduling/observation.py	核对后原字节保留	修复C04—C05	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+tests/test_contract_repairs.py	核对后原字节保留	修复C04—C05及S10	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+tests/test_contracts.py	核对后原字节保留	修复C04—C05及S10	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+tests/test_event_backend.py	核对后原字节保留	修复C04—C05及S10	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+tests/test_events.py	核对后原字节保留	修复C04—C05及S10	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+tests/test_execution_boundaries.py	核对后原字节保留	修复C04—C05及S10	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+tests/test_execution_repairs.py	核对后原字节保留	修复C04—C05及S10	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+tests/test_execution_witness.py	核对后原字节保留	修复C04—C05及S10	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+tests/test_human_state.py	核对后原字节保留	修复C04—C05及S10	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+tests/test_installation.py	核对后原字节保留	共通工程	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+tests/test_isaac_callbacks.py	核对后原字节保留	共通工程	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+tests/test_observation.py	核对后原字节保留	修复C04—C05及S10	C03禁止改正式实现；修复栏目或后续独立步骤获授权后再处理；旧域证明范围保持	C03原字节保留
+uv.lock	核对后原字节保留	共通工程	C03文档规格工作不需改变工程配置/许可/安装骨架；后续接口变化再核对	C03原字节保留

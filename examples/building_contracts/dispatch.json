@@ -1,0 +1,17 @@
+{
+  "activity_id": "PRODUCT-1.KIT",
+  "attempt": 0,
+  "config_id": "BW-SR-W1-1",
+  "expected_revision": 0,
+  "id": "COMMAND-1",
+  "issued_h": 0.0,
+  "mode_id": "PRODUCT-1.H-team",
+  "roles": [
+    {
+      "person_id": "P1",
+      "role_id": "P1"
+    }
+  ],
+  "schema_version": "C04-1.0",
+  "unit_index": 0
+}

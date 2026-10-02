@@ -1,6 +1,6 @@
-# S04 参考文献与核查记录
+# 参考文献与核查记录
 
-核查日期：2026-10-01（UTC+08:00）。本清单服务于 [相关工作](related_work.md) 和 [研究假设与参数依据](hypotheses.md)，是针对已确认研究问题的定向核查，不是系统综述或穷尽性检索。论文结论与本项目结果严格分开。
+版本 C03-0.1；2026-10-02。建筑生产来源B01—B11和访问限制见[生产证据台账](production_evidence.md)，本次不将供应商说明当独立标定。下文方法来源原核查日期：2026-10-01（UTC+08:00）。本清单服务于 [相关工作](related_work.md) 和 [研究假设与参数依据](hypotheses.md)，是针对已确认研究问题的定向核查，不是系统综述或穷尽性检索。论文结论与本项目结果严格分开。
 
 ## 检索和证据口径
 
@@ -87,7 +87,7 @@ Google OR-Tools. *CP-SAT Solver*. [官方文档](https://developers.google.com/o
 Sawicki, Bartłomiej; Düking, Peter; Placzek, Gerrit; Masur, Lukas; Dörrie, Robin; Schwerdtner, Patrick; Kloft, Harald. (2026). *Human–robot collaboration in digital fabrication with concrete: quantifying productivity and psychophysiological strain of human workers*. Construction Robotics, 10, 4. [DOI及正文](https://doi.org/10.1007/s41693-025-00173-x)。
 
 - 证据：F；出版商 HTML，§1、§5–6 和出版记录；正式发布日期 2026-01-17，不按 DOI 中的 2025 推定出版年。
-- 核查要点：真实构件生产的探索性研究涉及生产率与人员负荷；作者明确未完成全流程分析。其混凝土工艺与测量值不能直接校准管道模块仿真。
+- 核查要点：真实构件生产的探索性研究涉及生产率与人员负荷；作者明确未完成全流程分析。其混凝土工艺与测量值不能直接校准传统整体浇筑建筑模块仿真。
 
 ## 日期或访问范围待复核的相近线索
 

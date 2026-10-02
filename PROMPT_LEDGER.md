@@ -4,7 +4,13 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.11.1，整理日期为 2026-10-02。PR057 补录 S09 r1 实际批准与发布，PR058 记录完成性审阅，PR059 仅授权两项问题的有限本地修复及新审阅包。r2 待独立验收与上传批准，历史记录保留各自时点语义。
+版本为 0.13.3，整理日期为 2026-10-02。PR060 补录 S09 r2 实际批准与发布；PR061 授权生产领域适配审查；PR062 要求以证据重审结构选型、生产流程及 README/总纲职责，并优先满足目标。PR063 进一步要求所有总纲实质重写、配套更新及显式选型比较、工作量与先后说明。PR064 认可纠偏原则与比较方法并要求整合执行指导书，指导书审阅和新对话交接批准尚待进行。PR065 将 GitHub 仓库名称和简介修改纳入指导书；具体名称与简介尚未确定。PR066 随后明确批准新对话交接并立即按指导书启动本地修正，沿用原目录/main，不建分支或worktree；未批准材料选型或远端发布。S09 r2 已发布，历史记录保留各自时点语义。
+
+C00—C02本地交付见LOG056—LOG058。PR067随后确认推荐钢体系及明确标注的合成时间/负荷研究方式，授权创建“紧急修正C03”并直接且仅开展C03；要求C04—C05归入后续修复栏目，将原C06—C08对应S10—S28内容重新逐步细分。该决定不冻结专属规格、不启动后续实现、不批准发布。
+
+C03 r1执行追踪见LOG060；PR068随后要求补足总纲的逐步指导，修订追踪见LOG061及[步骤卡](docs/steps/C03.md)。该时点其余暂未提出意见不表示整体冻结；随后PR069实际验收r2并限定冻结，PR070补充C05后收尾规划及指定对话备份，均不授权后续实施或远端操作。
+
+PR071随后授权创建“紧急修正C04-C05”，沿用原目录/main且不建分支/worktree，在新对话直接且仅实施C04、C05，含已规划的C05收尾；不授权S10或远端操作。
 
 ## 记录规则
 
@@ -46,7 +52,7 @@
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.11.1",
+  "document_version": "0.13.3",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -2080,6 +2086,456 @@
         "docs/validation/execution.md"
       ],
       "limit": "NO_R2_ACCEPTANCE_OR_UPLOAD_APPROVAL_NO_S10"
+    },
+    {
+      "id": "PR060",
+      "date": "2026-10-02",
+      "record_type": "RETROSPECTIVE_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S09_R2_EXACT_SNAPSHOT",
+        "parameters": {
+          "step_id": "S09",
+          "packet_id": "S09-20261002-r2",
+          "packet_sha256": "e3fb3e38df296e814276216f7331b958673d8351eaa3caafde381539f6059b96",
+          "approval_decision_id": "S09-R2-APPROVAL-001",
+          "decision": "ACCEPTED_AND_APPROVED",
+          "permitted_remote_actions": [
+            "STAGE_EXACT_NINE_FILES",
+            "ONE_CHILD_COMMIT_ON_MAIN",
+            "NEW_ANNOTATED_STEP_S09_R2",
+            "ATOMIC_PUSH_MAIN_AND_TAG",
+            "VERIFY_REMOTE_TREE_AND_TWO_PLATFORM_CI"
+          ],
+          "branch": "main",
+          "tag": "step-S09-r2"
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_AND_APPROVED_EXACT_S09_R2_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "BACKFILLED_EXISTING_APPROVAL_AND_PUBLICATION_RECEIPT"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "HISTORICAL_APPROVAL_ONLY_NO_DOMAIN_REVISION_OR_S10_AUTHORIZATION"
+    },
+    {
+      "id": "PR061",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "WHOLE_PROJECT_PRODUCTION_DOMAIN_ALIGNMENT",
+        "parameters": {
+          "scope": [
+            "PROJECT_REFERENCE_REVIEW",
+            "BUILDING_MODULE_TARGET_ALIGNMENT",
+            "S00_TO_S09_REUSE_AND_CHANGE_IMPACT",
+            "AUDIT_REPORT_AND_MODIFICATION_PROPOSAL"
+          ],
+          "confirmed_target": "MODULAR_BUILDING_PRODUCTION",
+          "implementation_requires_later_decision": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "IDENTIFIED_PRODUCTION_DOMAIN_ALIGNMENT_RISK",
+        "REQUIRED_FULL_REVIEW_AND_DECISION_PROPOSAL"
+      ],
+      "assistant_support": [
+        "REVIEWED_REQUIREMENTS_AND_CURRENT_MODEL",
+        "INDEXED_PROJECT_ARTIFACTS",
+        "RAN_EXISTING_REGRESSIONS_AND_DOMAIN_PROBES",
+        "PREPARED_LOCAL_AUDIT_AND_MODIFICATION_PLAN"
+      ],
+      "resolution": "DRAFTED_PENDING_REVIEW",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S09.md"
+      ],
+      "limit": "AUDIT_AND_PROPOSAL_ONLY_NO_DOMAIN_IMPLEMENTATION_OR_PUBLICATION_NO_S10"
+    },
+    {
+      "id": "PR062",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "DOMAIN_CORRECTION_PROPOSAL",
+        "parameters": {
+          "priorities": [
+            "SEPARATE_README_AND_CHARTER_RESPONSIBILITIES",
+            "REVIEW_PROVIDED_REFERENCES_BEFORE_MATERIAL_SELECTION",
+            "COMPARE_ACADEMIC_AND_PRODUCTION_EVIDENCE",
+            "TRACE_PROCESS_RULES_TO_CASES_OR_LITERATURE",
+            "PRIORITIZE_TARGET_FIDELITY_OVER_SUNK_COST"
+          ],
+          "material_choice": "NOT_CONFIRMED",
+          "implementation_requires_later_decision": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "IDENTIFIED_PUBLIC_DOCUMENT_ROLE_CONFUSION",
+        "REQUIRED_EVIDENCE_BASED_DOMAIN_SELECTION_AND_PROCESS_MODEL",
+        "REJECTED_SUNK_COST_DRIVEN_SCOPE"
+      ],
+      "assistant_support": [
+        "CHECKED_PUBLISHED_README_READ_ONLY",
+        "REVIEWED_REFERENCE_MATERIAL_AND_PRIMARY_WEB_SOURCES",
+        "REVISED_PROPOSAL_AND_PREPARED_README_CANDIDATE"
+      ],
+      "resolution": "DRAFTED_PENDING_REVIEW",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S09.md"
+      ],
+      "limit": "PROPOSAL_REVISION_ONLY_NO_MATERIAL_FREEZE_NO_DOMAIN_IMPLEMENTATION_NO_PUBLICATION_NO_S10"
+    },
+    {
+      "id": "PR063",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "DOMAIN_CORRECTION_PROPOSAL",
+        "parameters": {
+          "required_work": [
+            "SUBSTANTIVE_REWRITE_OF_PUBLIC_AND_PRIVATE_CHARTERS",
+            "UPDATE_DEPENDENT_DOCUMENTS",
+            "EXPLICIT_COMPARISON_OF_MATERIAL_ALTERNATIVES",
+            "EXPLAIN_SELECTION_METHOD_EFFORT_AND_PRIORITY"
+          ],
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUIRED_FULL_CHARTER_REWRITE_WITH_CHANGED_TARGET",
+        "REQUIRED_CONCRETE_SELECTION_COMPARISON_AND_WORK_SEQUENCE"
+      ],
+      "assistant_support": [
+        "AMENDED_PROPOSAL_REWRITE_SCOPE",
+        "PREPARED_PRELIMINARY_TRADEOFFS_AND_BOUNDED_SELECTION_PACKAGE"
+      ],
+      "resolution": "DRAFTED_PENDING_REVIEW",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S09.md"
+      ],
+      "limit": "PROPOSAL_AMENDMENT_ONLY_NO_MATERIAL_FREEZE_OR_DOMAIN_IMPLEMENTATION_OR_PUBLICATION"
+    },
+    {
+      "id": "PR064",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "AUTHOR_GOVERNANCE_DOCUMENTS",
+        "target": "CONSOLIDATED_DOMAIN_CORRECTION_GUIDE",
+        "parameters": {
+          "prior_correction_principles_and_method": "ACCEPTED",
+          "deliverable": "SINGLE_SELF_CONTAINED_EXECUTION_GUIDE",
+          "guide_review_required": true,
+          "handoff_requires_later_approval": true,
+          "material_choice": "NOT_DECIDED",
+          "domain_implementation_authorized_now": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_CORRECTION_DIRECTION_AND_PRECOMPARISON_METHOD",
+        "REQUIRED_CLEAR_GOAL_STRUCTURED_STEPS_AND_REVIEW_BEFORE_HANDOFF"
+      ],
+      "assistant_support": [
+        "CONSOLIDATED_GUIDANCE_SCOPE_SEQUENCE_GATES_AND_SOURCE_INDEX",
+        "PRESERVED_PRIOR_REVIEW_EVIDENCE"
+      ],
+      "resolution": "DRAFTED_PENDING_REVIEW",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S09.md"
+      ],
+      "limit": "GUIDE_AUTHORING_ONLY_NO_HANDOFF_OR_DOMAIN_IMPLEMENTATION_OR_PUBLICATION"
+    },
+    {
+      "id": "PR065",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "CONSOLIDATED_DOMAIN_CORRECTION_GUIDE",
+        "parameters": {
+          "required_addition": "REVISE_GITHUB_REPOSITORY_NAME_AND_DESCRIPTION_TO_MATCH_CORRECTED_PROJECT",
+          "exact_new_name_and_description": "NOT_DECIDED",
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUIRED_PUBLIC_REPOSITORY_IDENTITY_TO_MATCH_CORRECTED_PROJECT"
+      ],
+      "assistant_support": [
+        "ADDED_METADATA_REVISION_TO_GUIDE_SCOPE_AND_C03_DELIVERABLES"
+      ],
+      "resolution": "INCORPORATED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S09.md"
+      ],
+      "limit": "GUIDE_UPDATE_ONLY_NO_REMOTE_RENAME_OR_DESCRIPTION_CHANGE_NO_HANDOFF"
+    },
+    {
+      "id": "PR066",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "START_STEP",
+        "target": "DOMAIN_CORRECTION_HANDOFF_AND_LOCAL_START",
+        "parameters": {
+          "create_new_thread": true,
+          "thread_title": "紧急修正",
+          "use_existing_directory": true,
+          "create_branch": false,
+          "create_worktree": false,
+          "start_work_immediately": true,
+          "execution_basis": "CORRECTION_GUIDE_1_1",
+          "initial_work": [
+            "C00_BASELINE_HANDOFF",
+            "C01_COMMON_DOCUMENT_CORRECTION",
+            "C02_EVIDENCE_BASED_SELECTION_COMPARISON"
+          ],
+          "material_freeze_requires_owner_decision": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "APPROVED_NEW_THREAD_HANDOFF_AND_IMMEDIATE_CORRECTION_START",
+        "REQUIRED_EXISTING_BRANCH_AND_DIRECTORY"
+      ],
+      "assistant_support": [
+        "VERIFIED_BASELINE_AND_GUIDE_DIGEST",
+        "PREPARED_HANDOFF_AUTHORIZATION_AND_CONTEXT"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S09.md"
+      ],
+      "limit": "START_LOCAL_CORRECTION_UNDER_GUIDE_GATES_NO_MATERIAL_SELECTION_OR_PUBLICATION_APPROVAL"
+    },
+    {
+      "id": "PR067",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "CONFIRM_SELECTION_AND_START_STEP",
+        "target": "C03_STEEL_SPECIFICATION_AND_STEPWISE_ROADMAP",
+        "parameters": {
+          "selected_system": "STEEL_JIG_WELDED_FRAME_WITH_CEMENT_BOARD_FLOOR_BASE",
+          "product_boundary": "COMPLETE_RESIDENTIAL_MODULE_FACTORY_READY",
+          "synthetic_time_and_load": "ALLOWED_IF_EXPLICITLY_LABELLED_NOT_INDUSTRIAL_CALIBRATION",
+          "new_chat_title": "紧急修正C03",
+          "authorized_work": [
+            "C03_ONLY"
+          ],
+          "new_branch": false,
+          "new_worktree": false,
+          "existing_changes": "PRESERVE",
+          "future_repair_section": [
+            "C04",
+            "C05"
+          ],
+          "future_work_structure": "EXPAND_FORMER_C06_C08_INTO_STEPS_CORRESPONDING_TO_S10_S28",
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_RECOMMENDED_PRIMARY_SYSTEM",
+        "AUTHORIZED_NAMED_CHAT_HANDOFF_AND_IMMEDIATE_C03_ONLY_WORK",
+        "DISTINGUISHED_EXISTING_ASSET_REPAIR_FROM_UNIMPLEMENTED_FUTURE_STEPS",
+        "REQUIRED_STEPWISE_ROADMAP_IN_CHARTERS_AND_SUPPORTING_DOCUMENTS"
+      ],
+      "assistant_support": [
+        "PREPARED_SELECTION_AND_HANDOFF_RECORD",
+        "PRESERVED_PREVIOUS_PACKET_AND_WORKSPACE"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/C00-C02.md",
+        "docs/steps/S09.md"
+      ],
+      "limit": "C03_ONLY_NO_SPECIFICATION_FREEZE_NO_C04_C05_OR_S10_S28_IMPLEMENTATION_NO_PUBLICATION"
+    },
+    {
+      "id": "PR068",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "C03_CHARTER_STEPWISE_GUIDANCE",
+        "parameters": {
+          "authorized_work": [
+            "C03_CHARTER_AND_DEPENDENT_DOCUMENTS_LOCAL_REVISION",
+            "NEW_REVIEW_PACKET"
+          ],
+          "organization_reference": "HISTORICAL_PER_STEP_FORM_ONLY_NOT_PIPELINE_OBJECTIVE",
+          "required_detail": [
+            "PREREQUISITES",
+            "ACTIONS",
+            "OUTPUTS",
+            "VALIDATION",
+            "PUBLIC_SCOPE",
+            "FAILURE_BOUNDARIES",
+            "HANDOFF"
+          ],
+          "other_content": "NO_CURRENT_OBJECTION_PENDING_FINAL_REVIEW",
+          "approval_request": "AFTER_CHARTER_REFINEMENT_ONE_CONSOLIDATED_REQUEST",
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "IDENTIFIED_INSUFFICIENT_STEP_ORGANIZATION",
+        "REQUIRED_ACTIONABLE_PER_STEP_GUIDANCE",
+        "DEFERRED_CONSOLIDATED_AUTHORIZATION_UNTIL_REFINEMENT"
+      ],
+      "assistant_support": [
+        "COMPARED_HISTORICAL_STEP_FORMAT",
+        "EXPANDED_C04_C05_AND_S10_S28_IN_BOTH_CHARTERS",
+        "SYNCHRONIZED_ROADMAP_AND_REVIEW_PACKET"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "docs/PROJECT_CHARTER.md",
+        "docs/roadmap.md",
+        "docs/steps/C03.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "REVISION_INSTRUCTION_CONFIRMED_ONLY_NO_SPEC_FREEZE_NO_IMPLEMENTATION_NO_PUBLICATION"
+    },
+    {
+      "id": "PR069",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "ACCEPT_STEP_AND_FREEZE_RESEARCH_SCOPE",
+        "target": "C03-20261002-r2",
+        "parameters": {
+          "decision_id": "C03-R2-ACCEPTANCE-001",
+          "packet_sha256": "2145fa4b37ca3471d4f04ad444b82f890e2c93188a1cf967ae7fe1ce5da80a94",
+          "decisions": [
+            "D-C03-01",
+            "D-C03-02",
+            "D-C03-03",
+            "D-C03-04",
+            "D-C03-05",
+            "D-C03-06"
+          ],
+          "scope": "DOCUMENTS_RESEARCH_ABSTRACTIONS_AND_PLANNING_ONLY",
+          "unclosed_gaps": "PRESERVE",
+          "HR": "DISABLED",
+          "implementation_authorized": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_EXACT_C03_R2_PACKET",
+        "FROZE_D01_D06_WITH_EXISTING_BOUNDARIES"
+      ],
+      "assistant_support": [
+        "RECORDED_ACTUAL_DECISION",
+        "UPDATED_CHARTERS_AND_CURRENT_STATUS"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/C03.md",
+        "docs/PROJECT_CHARTER.md"
+      ],
+      "limit": "NO_IMPLEMENTATION_NO_CLEANUP_NOW_NO_REMOTE_OPERATIONS"
+    },
+    {
+      "id": "PR070",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUIRE_CLOSEOUT_PLAN_AND_BACKUP",
+        "target": "C05_POST_IMPLEMENTATION_CLOSEOUT",
+        "parameters": {
+          "authorized_now": [
+            "DOCUMENT_PLANNING_UPDATE",
+            "CHARTER_BACKUP_TO_DESIGNATED_EXISTING_CHAT"
+          ],
+          "future_closeout": [
+            "WORKSPACE_SELF_REVIEW",
+            "RECOVERABLE_CLUTTER_RETIREMENT",
+            "C00_C05_INTERNAL_CONSISTENCY",
+            "EXACT_GITHUB_CANDIDATE_PACKET",
+            "ONE_CONSOLIDATED_AUTHORIZATION_REQUEST_AFTER_COMPLETION"
+          ],
+          "backup": "ARCHIVAL_ONLY_NO_ANALYSIS_NO_REPLY",
+          "cleanup_now": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUIRED_C05_POST_COMPLETION_WORKSPACE_CLOSEOUT",
+        "REQUIRED_CONSOLIDATED_UPLOAD_REVIEW",
+        "AUTHORIZED_ARCHIVAL_CHAT_TRANSFER_ONLY"
+      ],
+      "assistant_support": [
+        "RECORDED_ACTUAL_DECISION",
+        "UPDATED_CHARTERS_AND_CURRENT_STATUS"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/C03.md",
+        "docs/PROJECT_CHARTER.md"
+      ],
+      "limit": "NO_IMPLEMENTATION_NO_CLEANUP_NOW_NO_REMOTE_OPERATIONS"
+    },
+    {
+      "id": "PR071",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "AUTHORIZE_HANDOFF_AND_START_STEPS",
+        "target": "C04_C05_LOCAL_REPAIR_ONLY",
+        "parameters": {
+          "new_chat_title": "紧急修正C04-C05",
+          "working_directory": "EXISTING",
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "authorized_steps": [
+            "C04",
+            "C05"
+          ],
+          "start_on_receipt": true,
+          "existing_changes": "PRESERVE",
+          "C05_closeout": "INCLUDES_PR070_WORKSPACE_REVIEW_RECOVERABLE_CLEANUP_AND_EXACT_UPLOAD_PACKET",
+          "S10_S28": "NOT_AUTHORIZED",
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_NAMED_NEW_CHAT_AND_IMMEDIATE_C04_C05_WORK",
+        "REQUIRED_EXISTING_DIRECTORY_BRANCH_AND_SCOPE_LIMIT"
+      ],
+      "assistant_support": [
+        "PREPARED_CONTEXT_HANDOFF_AND_START_RECORD"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/C03.md",
+        "docs/steps/C04-C05.md",
+        "docs/PROJECT_CHARTER.md"
+      ],
+      "limit": "LOCAL_C04_C05_ONLY_NO_S10_NO_REMOTE_OPERATIONS"
     }
   ]
 }

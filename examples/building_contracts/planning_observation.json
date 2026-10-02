@@ -1,0 +1,21 @@
+{
+  "config_id": "BW-SR-W1-1",
+  "event_ids": [],
+  "id": "OBS-0",
+  "observed_h": 0.0,
+  "people": [],
+  "products": [
+    {
+      "cancelled": false,
+      "completed_activity_ids": [],
+      "location": "UNASSEMBLED",
+      "product_id": "PRODUCT-1",
+      "state": "RELEASED"
+    }
+  ],
+  "received_h": 0.0,
+  "sampled_h": 0.0,
+  "schema_version": "C04-1.0",
+  "state_revision": 0,
+  "unavailable_resources": []
+}

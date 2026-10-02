@@ -1,0 +1,293 @@
+{
+  "attempts": [],
+  "components": [
+    {
+      "component_id": "PRODUCT-1.BOTTOM",
+      "incorporated": false,
+      "location": "UNFABRICATED"
+    },
+    {
+      "component_id": "PRODUCT-1.TOP",
+      "incorporated": false,
+      "location": "UNFABRICATED"
+    },
+    {
+      "component_id": "PRODUCT-1.COLUMNS",
+      "incorporated": false,
+      "location": "UNFABRICATED"
+    }
+  ],
+  "config_id": "BW-SR-W1-1",
+  "config_sha256": "f7d0e5b0104ccc8f6f28a5ac30eef6c0eda5de77fad8f85e5ed3cb9a3b9fef56",
+  "consumed_commands": [],
+  "event_cursor": 0,
+  "events": [],
+  "failed_resources": [],
+  "intervals": [],
+  "locks": [],
+  "materials": [
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-CUT",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-W-B",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-W-T",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-W-3D",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-COAT",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-FLOOR",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-MEP-E",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-MEP-P",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-LINING",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-WPROOF",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-TEST-SET",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-TILE",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-EXT",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-PAINT",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-FIT",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.KIT-PACK",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.REPAIR-TEST-KIT",
+      "released": true
+    },
+    {
+      "arrived": true,
+      "consumed_by": null,
+      "identified": true,
+      "material_id": "PRODUCT-1.REPAIR-KIT",
+      "released": true
+    }
+  ],
+  "observation_queue": [],
+  "people": [
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "P1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "W1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "W2",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "OP1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "AF1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "AF2",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "E1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "PL1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "T1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "T2",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "C1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "QA1",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "Lop",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "Lrig",
+      "rest_until_h": 0.0
+    },
+    {
+      "exposure": 0.0,
+      "fatigue": 0.2,
+      "peak": 0.2,
+      "person_id": "Lsig",
+      "rest_until_h": 0.0
+    }
+  ],
+  "products": [
+    {
+      "cancelled": false,
+      "installed_bom": [],
+      "location": "UNASSEMBLED",
+      "product_id": "PRODUCT-1",
+      "ready_h": null,
+      "state": "RELEASED",
+      "water_present": false
+    }
+  ],
+  "quality": [],
+  "random_cursor": 0,
+  "released_processes": [],
+  "released_products": [
+    "PRODUCT-1"
+  ],
+  "residencies": [],
+  "revision": 0,
+  "running": [],
+  "scenario": {
+    "config_id": "BW-SR-W1-1",
+    "events": [],
+    "schema_version": "C04-1.0",
+    "seed": 0
+  },
+  "schema_version": "C04-1.0",
+  "services": [],
+  "time_h": 0.0
+}

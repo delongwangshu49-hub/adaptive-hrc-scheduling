@@ -1,0 +1,19 @@
+{
+  "backend": "building-event",
+  "code_revision": "example.uncommitted",
+  "config_id": "BW-SR-W1-1",
+  "configuration_sha256": "f7d0e5b0104ccc8f6f28a5ac30eef6c0eda5de77fad8f85e5ed3cb9a3b9fef56",
+  "gaps": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G7"
+  ],
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "schema_version": "C04-1.0",
+  "seed": 0,
+  "specification": "C03-0.3",
+  "status": "PLANNED"
+}

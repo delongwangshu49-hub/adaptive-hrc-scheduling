@@ -1,0 +1,10 @@
+{
+  "attempt": null,
+  "config_id": "BW-SR-W1-1",
+  "entity_id": "BW-SR-W1-1",
+  "id": "EVENT-0",
+  "kind": "INITIALIZED",
+  "reason": "SYNTHETIC_UNCALIBRATED",
+  "schema_version": "C04-1.0",
+  "time_h": 0.0
+}

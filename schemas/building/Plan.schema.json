@@ -1,0 +1,157 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "DispatchCommand": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "expected_revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "issued_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "mode_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/RoleBinding"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "unit_index": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "id",
+        "issued_h",
+        "expected_revision",
+        "activity_id",
+        "mode_id",
+        "attempt",
+        "unit_index",
+        "roles"
+      ],
+      "type": "object"
+    },
+    "Plan": {
+      "additionalProperties": false,
+      "properties": {
+        "commands": {
+          "items": {
+            "$ref": "#/$defs/DispatchCommand"
+          },
+          "type": "array"
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "observation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "predicted_ready": {
+          "items": {
+            "$ref": "#/$defs/Prediction"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "status": {
+          "enum": [
+            "INCOMPLETE",
+            "CANDIDATE"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "observation_id",
+        "commands",
+        "predicted_ready",
+        "status"
+      ],
+      "type": "object"
+    },
+    "Prediction": {
+      "additionalProperties": false,
+      "properties": {
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "ready_h": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "product_id",
+        "ready_h"
+      ],
+      "type": "object"
+    },
+    "RoleBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "role_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role_id",
+        "person_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/Plan",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Plan"
+}

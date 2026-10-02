@@ -1,0 +1,62 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "ExecutionEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "time_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "id",
+        "time_h",
+        "kind",
+        "entity_id",
+        "attempt",
+        "reason"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/ExecutionEvent",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExecutionEvent"
+}

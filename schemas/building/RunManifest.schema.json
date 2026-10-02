@@ -1,0 +1,75 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "RunManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "backend": {
+          "enum": [
+            "building-event"
+          ]
+        },
+        "code_revision": {
+          "type": "string"
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "configuration_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "gaps": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "industrial_qualification": {
+          "enum": [
+            "NOT_ESTABLISHED"
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            "C04-1.0"
+          ]
+        },
+        "seed": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "specification": {
+          "enum": [
+            "C03-0.3"
+          ]
+        },
+        "status": {
+          "enum": [
+            "PLANNED",
+            "HOLD",
+            "SYNTHETIC_TEST_COMPLETE"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "configuration_sha256",
+        "specification",
+        "code_revision",
+        "seed",
+        "backend",
+        "status",
+        "gaps",
+        "industrial_qualification"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/RunManifest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunManifest"
+}

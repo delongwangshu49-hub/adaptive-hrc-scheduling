@@ -1,3 +1,38 @@
+# C04-1.0 建筑契约与历史接口
+
+2026-10-02；建筑契约已实现。`domain/building.py`定义十类不可变消息，`contracts/building.py`负责严格编解码及语义校验；生成器为`scripts/build_building_contracts.py`，产物为`schemas/building/`与`examples/building_contracts/`。运行时标准库，无新增锁定依赖。
+
+时间h、率h⁻¹、暴露F·h、质量t、长度m；字段必填，无值为null。拒绝重复JSON成员、未知字段/版本、bool冒数值、非有限量、悬空引用、跨产品材料、错误角色及冻结DAG漂移。资格包含来源类别、状态与修订绑定；UNKNOWN不成为PASS，资格修订改变使既有绑定拒绝。源对象往返与生成物一致；Schema仅结构，Python语义校验仍必须执行。
+
+| 消息 | 建筑实现与权限 |
+| --- | --- |
+| Configuration | 产品/BOM、组件、37活动/40边/39模式、逐人角色/日历、工作面/资源、资格/版本、参数来源 |
+| PlanningInput | 仅已观察产品及其活动的静态投影和观测/预算；无未来订单及HiddenScenario |
+| PlanningObservation | sampled/received/observed时刻、已见产品/进度/人员/不可用资源；缺失为null或部分表 |
+| Plan | 待提交命令、预测就绪和INCOMPLETE/CANDIDATE；不写实绩 |
+| DispatchCommand | ID、期望状态版本、活动/模式/attempt/单元与具名角色；执行时再原子核验 |
+| ExecutionEvent | 稳定ID、实际时刻、实体/attempt、原因和结构化细节；历史不覆盖 |
+| ExecutionSnapshot | 完整执行恢复状态、配置摘要、时界、物料/组件/产品、F/E、锁/驻留、事件/命令消费、延迟观测和服务承诺；含隐藏事实，不传规划器 |
+| HiddenScenario | 执行专用外生事实；重复ID和同刻矛盾故障/修复拒绝 |
+| OfflineEvaluation | 全产品/全人员窗口摘要、未完成/取消计数；明确不是S10独立绩效核算 |
+| RunManifest | 配置摘要、规格/代码/种子、后端、终止状态、资格缺口与NOT_ESTABLISHED |
+
+旧`S06-1.1`与建筑`C04-1.0`互不自动转换；旧源码、Schema、生成器和样例仍保留原入口，旧结果不能当建筑验收。新版字段不会塞入旧单人Allocation。模式资格绑定和恢复服务字段均在C04/C05当前待审版本中定稿，尚无已发布C04消费者。
+
+```python
+from pathlib import Path
+from adaptive_hrc_scheduling.domain.building import Configuration
+from adaptive_hrc_scheduling.contracts.building import loads, dumps
+config = loads(Configuration, Path("examples/building_contracts/configuration.json").read_text(encoding="utf-8"))
+assert loads(Configuration, dumps(config)) == config
+```
+
+默认样例为RESEARCH_BLOCKED；受控测试夹具明确SYNTHETIC_TEST_ONLY，不能作为工业输入或模式收益依据。实际检查和限制见[建筑执行验证](validation/building_execution.md)。
+
+## 现行 S09 r2 管道实现参考
+
+以下原文只解释旧运行接口，历史批准不延伸到建筑域。
+
 # S06 数据对象与接口契约
 
 版本 `S06-1.1`，2026-10-01。本接口依据已接受的 S05 r2 基线及 r3 补充；发布事实见 LOG031。它定义数据、静态校验与序列化，尚无疲劳积分、事件推进、仿真或调度器。S06 候选状态见 [步骤卡](steps/S06.md)。
