@@ -1,0 +1,13 @@
+[
+  {"id":"w1-edd","variant":"SR-W1","fixture":"synthetic","options":{"rule":"EDD","synthetic_gate_assumptions":true},"expected_status":"FEASIBLE"},
+  {"id":"w1-spt","variant":"SR-W1","fixture":"synthetic","options":{"rule":"SPT","synthetic_gate_assumptions":true},"expected_status":"FEASIBLE"},
+  {"id":"w1-fastest","variant":"SR-W1","fixture":"synthetic","options":{"rule":"FASTEST_MODE","synthetic_gate_assumptions":true},"expected_status":"FEASIBLE"},
+  {"id":"w2-edd","variant":"SR-W2","fixture":"synthetic","options":{"rule":"EDD","synthetic_gate_assumptions":true},"expected_status":"FEASIBLE"},
+  {"id":"w2-spt","variant":"SR-W2","fixture":"synthetic","options":{"rule":"SPT","synthetic_gate_assumptions":true},"expected_status":"FEASIBLE"},
+  {"id":"w2-fastest","variant":"SR-W2","fixture":"synthetic","options":{"rule":"FASTEST_MODE","synthetic_gate_assumptions":true},"expected_status":"FEASIBLE"},
+  {"id":"research-hold","variant":"SR-W1","fixture":"research","options":{},"expected_status":"NO_PLAN_FOUND"},
+  {"id":"quality-not-assumed","variant":"SR-W1","fixture":"synthetic","options":{},"expected_status":"NO_PLAN_FOUND"},
+  {"id":"fixed-overload","variant":"SR-W1","fixture":"synthetic","overload":true,"options":{"synthetic_gate_assumptions":true},"expected_status":"INFEASIBLE"},
+  {"id":"short-horizon","variant":"SR-W1","fixture":"synthetic","options":{"horizon_h":1,"synthetic_gate_assumptions":true},"expected_status":"NO_PLAN_FOUND"},
+  {"id":"finite-output","variant":"SR-W1","products":2,"fixture":"synthetic","options":{"synthetic_gate_assumptions":true},"expected_status":"NO_PLAN_FOUND"}
+]

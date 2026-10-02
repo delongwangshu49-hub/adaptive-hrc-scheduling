@@ -1,0 +1,278 @@
+{
+  "version": "S11-1.0",
+  "scope": "STATIC_SYNTHETIC_CODE_VALIDATION",
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "default_hr": "DISABLED",
+  "gaps": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G7"
+  ],
+  "cases": [
+    {
+      "id": "w1-edd",
+      "status": "FEASIBLE",
+      "reason": "COMPLETE_VERIFIED_CANDIDATE",
+      "expected_status": "FEASIBLE",
+      "assumptions": [
+        "SYNTHETIC_ALL_PASS_QUALITY_AND_PROCESS_RELEASE"
+      ],
+      "checker_status": "PASS",
+      "report_version": "S10-1.2",
+      "commands": 72,
+      "trace_end_h": 147.005,
+      "ready": [
+        {
+          "product_id": "PRODUCT-1",
+          "ready_h": 147.005
+        }
+      ],
+      "decisions": 164,
+      "wait_reason_counts": {
+        "CALENDAR_OR_QUALIFICATION": 23,
+        "FATIGUE_PROTECTION": 2,
+        "MODE_DISABLED_OR_UNQUALIFIED": 20,
+        "PREDECESSOR": 3202,
+        "WAIT_NOT_ELAPSED": 5,
+        "WORK_FACE_CONFLICT": 9
+      }
+    },
+    {
+      "id": "w1-spt",
+      "status": "FEASIBLE",
+      "reason": "COMPLETE_VERIFIED_CANDIDATE",
+      "expected_status": "FEASIBLE",
+      "assumptions": [
+        "SYNTHETIC_ALL_PASS_QUALITY_AND_PROCESS_RELEASE"
+      ],
+      "checker_status": "PASS",
+      "report_version": "S10-1.2",
+      "commands": 72,
+      "trace_end_h": 147.005,
+      "ready": [
+        {
+          "product_id": "PRODUCT-1",
+          "ready_h": 147.005
+        }
+      ],
+      "decisions": 162,
+      "wait_reason_counts": {
+        "CALENDAR_OR_QUALIFICATION": 23,
+        "MODE_DISABLED_OR_UNQUALIFIED": 20,
+        "PREDECESSOR": 3142,
+        "WAIT_NOT_ELAPSED": 5,
+        "WORK_FACE_CONFLICT": 9
+      }
+    },
+    {
+      "id": "w1-fastest",
+      "status": "FEASIBLE",
+      "reason": "COMPLETE_VERIFIED_CANDIDATE",
+      "expected_status": "FEASIBLE",
+      "assumptions": [
+        "SYNTHETIC_ALL_PASS_QUALITY_AND_PROCESS_RELEASE"
+      ],
+      "checker_status": "PASS",
+      "report_version": "S10-1.2",
+      "commands": 72,
+      "trace_end_h": 147.005,
+      "ready": [
+        {
+          "product_id": "PRODUCT-1",
+          "ready_h": 147.005
+        }
+      ],
+      "decisions": 162,
+      "wait_reason_counts": {
+        "CALENDAR_OR_QUALIFICATION": 23,
+        "MODE_DISABLED_OR_UNQUALIFIED": 20,
+        "PREDECESSOR": 3142,
+        "WAIT_NOT_ELAPSED": 5,
+        "WORK_FACE_CONFLICT": 9
+      }
+    },
+    {
+      "id": "w2-edd",
+      "status": "FEASIBLE",
+      "reason": "COMPLETE_VERIFIED_CANDIDATE",
+      "expected_status": "FEASIBLE",
+      "assumptions": [
+        "SYNTHETIC_ALL_PASS_QUALITY_AND_PROCESS_RELEASE"
+      ],
+      "checker_status": "PASS",
+      "report_version": "S10-1.2",
+      "commands": 74,
+      "trace_end_h": 147.5075,
+      "ready": [
+        {
+          "product_id": "PRODUCT-1",
+          "ready_h": 147.5075
+        }
+      ],
+      "decisions": 168,
+      "wait_reason_counts": {
+        "CALENDAR_OR_QUALIFICATION": 23,
+        "FATIGUE_PROTECTION": 2,
+        "MODE_DISABLED_OR_UNQUALIFIED": 20,
+        "PREDECESSOR": 3250,
+        "WAIT_NOT_ELAPSED": 5,
+        "WORK_FACE_CONFLICT": 9
+      }
+    },
+    {
+      "id": "w2-spt",
+      "status": "FEASIBLE",
+      "reason": "COMPLETE_VERIFIED_CANDIDATE",
+      "expected_status": "FEASIBLE",
+      "assumptions": [
+        "SYNTHETIC_ALL_PASS_QUALITY_AND_PROCESS_RELEASE"
+      ],
+      "checker_status": "PASS",
+      "report_version": "S10-1.2",
+      "commands": 74,
+      "trace_end_h": 147.5075,
+      "ready": [
+        {
+          "product_id": "PRODUCT-1",
+          "ready_h": 147.5075
+        }
+      ],
+      "decisions": 166,
+      "wait_reason_counts": {
+        "CALENDAR_OR_QUALIFICATION": 23,
+        "MODE_DISABLED_OR_UNQUALIFIED": 20,
+        "PREDECESSOR": 3190,
+        "WAIT_NOT_ELAPSED": 5,
+        "WORK_FACE_CONFLICT": 9
+      }
+    },
+    {
+      "id": "w2-fastest",
+      "status": "FEASIBLE",
+      "reason": "COMPLETE_VERIFIED_CANDIDATE",
+      "expected_status": "FEASIBLE",
+      "assumptions": [
+        "SYNTHETIC_ALL_PASS_QUALITY_AND_PROCESS_RELEASE"
+      ],
+      "checker_status": "PASS",
+      "report_version": "S10-1.2",
+      "commands": 74,
+      "trace_end_h": 147.5075,
+      "ready": [
+        {
+          "product_id": "PRODUCT-1",
+          "ready_h": 147.5075
+        }
+      ],
+      "decisions": 166,
+      "wait_reason_counts": {
+        "CALENDAR_OR_QUALIFICATION": 23,
+        "MODE_DISABLED_OR_UNQUALIFIED": 20,
+        "PREDECESSOR": 3190,
+        "WAIT_NOT_ELAPSED": 5,
+        "WORK_FACE_CONFLICT": 9
+      }
+    },
+    {
+      "id": "research-hold",
+      "status": "NO_PLAN_FOUND",
+      "reason": "BLOCKED_WITHOUT_KNOWN_PROGRESS_EVENT",
+      "expected_status": "NO_PLAN_FOUND",
+      "assumptions": [],
+      "checker_status": "NO_CANDIDATE",
+      "report_version": null,
+      "commands": 0,
+      "trace_end_h": 0,
+      "ready": null,
+      "decisions": 1,
+      "wait_reason_counts": {
+        "MODE_DISABLED_OR_UNQUALIFIED": 1,
+        "PREDECESSOR": 36
+      }
+    },
+    {
+      "id": "quality-not-assumed",
+      "status": "NO_PLAN_FOUND",
+      "reason": "BLOCKED_WITHOUT_KNOWN_PROGRESS_EVENT",
+      "expected_status": "NO_PLAN_FOUND",
+      "assumptions": [],
+      "checker_status": "NO_CANDIDATE",
+      "report_version": null,
+      "commands": 0,
+      "trace_end_h": 31.308591044021224,
+      "ready": null,
+      "decisions": 61,
+      "wait_reason_counts": {
+        "CALENDAR_OR_QUALIFICATION": 10,
+        "FATIGUE_PROTECTION": 2,
+        "MODE_DISABLED_OR_UNQUALIFIED": 20,
+        "PREDECESSOR": 1829,
+        "QUALITY_HOLD": 1,
+        "WORK_FACE_CONFLICT": 9
+      }
+    },
+    {
+      "id": "fixed-overload",
+      "status": "INFEASIBLE",
+      "reason": "MANDATORY_MOVE_OVERLOAD:PRODUCT-1.MOVE-F:PRODUCT-1:12+1>12",
+      "expected_status": "INFEASIBLE",
+      "assumptions": [
+        "SYNTHETIC_ALL_PASS_QUALITY_AND_PROCESS_RELEASE"
+      ],
+      "checker_status": "NO_CANDIDATE",
+      "report_version": null,
+      "commands": 0,
+      "trace_end_h": 0,
+      "ready": null,
+      "decisions": 0,
+      "wait_reason_counts": {}
+    },
+    {
+      "id": "short-horizon",
+      "status": "NO_PLAN_FOUND",
+      "reason": "HORIZON_EXHAUSTED",
+      "expected_status": "NO_PLAN_FOUND",
+      "assumptions": [
+        "SYNTHETIC_ALL_PASS_QUALITY_AND_PROCESS_RELEASE"
+      ],
+      "checker_status": "NO_CANDIDATE",
+      "report_version": null,
+      "commands": 0,
+      "trace_end_h": 1.0,
+      "ready": null,
+      "decisions": 5,
+      "wait_reason_counts": {
+        "PREDECESSOR": 142
+      }
+    },
+    {
+      "id": "finite-output",
+      "status": "NO_PLAN_FOUND",
+      "reason": "BLOCKED_WITHOUT_KNOWN_PROGRESS_EVENT",
+      "expected_status": "NO_PLAN_FOUND",
+      "assumptions": [
+        "SYNTHETIC_ALL_PASS_QUALITY_AND_PROCESS_RELEASE"
+      ],
+      "checker_status": "NO_CANDIDATE",
+      "report_version": null,
+      "commands": 0,
+      "trace_end_h": 244.5,
+      "ready": null,
+      "decisions": 320,
+      "wait_reason_counts": {
+        "CALENDAR_OR_QUALIFICATION": 77,
+        "DESTINATION_CAPACITY": 78,
+        "FATIGUE_PROTECTION": 6,
+        "MODE_DISABLED_OR_UNQUALIFIED": 61,
+        "PREDECESSOR": 12337,
+        "RESOURCE_BUSY": 12,
+        "REST_COMMITTED": 2,
+        "WAIT_NOT_ELAPSED": 17,
+        "WORK_FACE_CONFLICT": 38
+      }
+    }
+  ]
+}

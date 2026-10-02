@@ -1,5 +1,7 @@
 # 项目进度日志
 
+当前补录：S10 r2实际发布见LOG080；PR082单独启动的S11已完成列明本地验证，当前确切候选见[S11步骤卡](docs/steps/S11.md)。S12—S28及新快照Git/远端写入未获授权。以下历史叙述保留各自时点。
+
 本文件记录可以公开的研究决策、实施状态、检查证据和下一步工作。日期采用 UTC+08:00；历史准备记录依据项目讨论整理到日，不补造精确时刻。私人身份、来源文件位置、原始对话、机器配置和敏感运行日志不在此记录。
 
 本文件版本为 0.15.0，更新于 2026-10-02。S00—S09 r2 已验收、批准并发布，S09 r2 历史回执补录见 LOG049。LOG050 记录本次生产领域适配审查：当前管道模块工程证据不能直接证明完整建筑模块生产适配；LOG051 进一步记录文档职责与证据选型修订；LOG052 明确总纲和配套实质重写范围及选型前置；LOG053 记录负责人认可纠偏原则和比较方法并要求统一指导书；LOG054 将仓库名称和简介修改纳入指导书；LOG055 记录负责人随后批准交接并立即启动本地纠偏。LOG056—LOG058记录本轮C00—C02实际接手、共通文档重写与候选比较。LOG059记录负责人已采纳推荐钢体系并授权新对话仅开展C03，要求重编后续逐步路线；该时点专属规格尚未冻结。现行PR069已验收C03 r2并限定冻结D01—D06；C04/C05建筑内核已按PR071完成本地合成见证，状态见LOG066—LOG068；S10现按PR077启动，当前状态见LOG074；S11及后续未启动。
@@ -125,7 +127,9 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 
 ## 当前步骤台账
 
-当前建筑域：C03文档/规则设计已形成本地审阅候选（LOG060）；钢体系已选，规格待冻结。C04—C05与S10—S28均未实施。下表保留历史步骤事实。
+当前实施状态（PR081—PR082，2026-10-02）：S10 r2已验收、批准并发布，实际回执补录LOG080；PR082另行授权沿用现有main直接且仅开展S11本地实现、验证、必要治理与确切审阅包。S11当前候选待审，S12—S28及新快照暂存/提交/标签/推送/PR/附件/远端名称/About修改未获授权。C03限定冻结、J2同产品双框驻留/FIX-J2独占、工业证据缺口和默认HR禁用保持。
+
+当前建筑域：C03已限定冻结；C04/C05 r2与S10 r2已验收、批准并发布；S11本地候选已验证、待确切审阅。下文各历史记录保留原时点，当前状态以本表和LOG080—LOG082为准。
 
 研究范围和路线仍为 CONFIRMED，依据 PR008、PR009；逐步审批上传要求来自 PR011，治理认可与 S00 启动见 PR012，仓库配置确认见 PR013。S00 首发的实际验收与上传批准见 PR014 和 LOG007；PR015、PR016 记录完成性审阅及有限修复授权；随后发生的 r2 批准见 PR017、LOG009。PR018 当时授权 S01 本地实施；随后针对 r1 的批准见 PR019、LOG011。PR020 记录完成性审阅，PR021 当时仅授权 r2 本地有限修复；随后实际批准见 PR022、LOG013。PR023 当时启动 S02；其后实际批准见 PR024 / LOG015，完成性复核见 PR025 / LOG016。PR026 当时授权 S03 本地验证；随后 r1 实际批准见 PR027 / LOG018，完成性审阅见 PR028 / LOG019，有限修复授权见 PR029 / LOG020，r2 实际批准见 PR030 / LOG021；PR031 另行授权 S04 本地文献核查和审阅包，见 LOG022。PR032 / LOG023 补录 S04 实际发布；PR033 / LOG024 为完成性复核；PR034 启动 S05，PR035 暂不冻结，PR036 要求全面复核和落实方案，见 LOG025。PR042 / LOG031 补录 S05 r3 发布；PR043 授权 S06 本地工作，见 LOG032；PR044/LOG033 补录 r2 发布，PR045/LOG034 为审阅，PR046/LOG035 为有限修复。PR047/LOG036 补录 S06 r3 实际批准与回执；PR048 单独授权 S07 本地工作，见 LOG037，不授权 S07 上传。PR049/LOG038 补录 S07 实际发布，PR050/LOG039 补录审阅；PR051 单独启动 S08 本地工作，见 LOG040。PR052/LOG041 补录 S08 r1 发布，PR053/LOG042 记录审阅，PR054/LOG043 仅授权并记录 r2 本地有限修复。PR055 / LOG044 补录 S08 r2 实际发布；PR056 单独启动 S09 本地工作，见 LOG045。PR057/LOG046 补录 S09 r1 的实际批准与发布，PR058/LOG047 为发布后审阅，PR059/LOG048 为两项有限本地修复。S10—S28 未实施。
 
@@ -147,8 +151,8 @@ CONFIRMED 不等于 VERIFIED，VERIFIED 不等于人工验收，ACCEPTED 不自�
 | S09 r2 | 源夹具解锁与分段日历有限修复（LOG049） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
 | 领域适配审查 | 完整建筑模块审查、方案与指导书（LOG050—LOG053） | DRAFTED | PENDING_REVIEW | NOT_REQUESTED | NOT_PUBLISHED |
 | C00—C02 | 接手、共通纠偏、两候选比较（LOG056—LOG058） | VERIFIED | PENDING_REVIEW | NOT_REQUESTED | NOT_PUBLISHED |
-| S10 | 独立约束检查与指标核算 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
-| S11 | 可行调度生成器与规则基线 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
+| S10 r2 | 独立约束检查与指标核算（LOG080） | VERIFIED | ACCEPTED | APPROVED | PUBLISHED |
+| S11 | 可行调度生成器与规则基线（LOG082） | VERIFIED | PENDING_REVIEW | NOT_APPROVED | NOT_PUBLISHED |
 | S12 | 轻量闭环与动态重调度 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S13 | 自建 Isaac Sim 工厂场景 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
 | S14 | Isaac Sim 派工与反馈适配 | NOT_STARTED | NOT_REQUESTED | NOT_REQUESTED | NOT_PUBLISHED |
@@ -757,3 +761,22 @@ next_action: null
 - LOG079；LOCAL_LIMITED_REPAIR_VERIFIED；关联PR080。六组问题按范围完成独立修复；新增24项方法，S10合计66项，包含外生事实全字段/缺漏/重复、冻结必需资源及角色/BOM、旧attempt史/产品/质量/服务末态、READY幂等、取消等待与安全尾段、跨释放时刻订单。未复用执行器validator。
 - 完整CPU项目315项（97.866s）、独立wheel315项（98.085s）通过；其中S10 66、既有建筑69、旧域180。Ruff/格式/锁/依赖及构建通过；C04 11样例/10 Schema再生核对通过。封存21份输入中11份错误PASS改FAIL，正常前缀及修正后的指标病例通过。SR-W1/W2正常指标逐值保持，报告版本S10-1.1。新增回归对旧实现产生117个失败（含子用例），原始日志保留；该数不等于测试方法数。
 - packet_id S10-20261002-r2；17项修改、完整树156文件，无新增/删除。2194项历史证据及接手备份核对保全；只读检查目标main仍为r1提交，新step-S10-r2未创建。工作已按列明范围核验，人工PENDING_REVIEW、上传NOT_APPROVED、远端NOT_PUBLISHED；r2 CI NOT_RUN。确切集合/拟操作见S10步骤卡及新包；未暂存、提交、标签、推送、PR、附件或远端元数据修改，不启动S11。
+
+## 2026年10月2日 S10 r2实际批准与发布补录
+
+- LOG080；PUBLICATION_RECEIPT；关联PR081。负责人验收并批准确切包S10-20261002-r2，决定S10-R2-APPROVAL-001；包SHA-256 `48dbcda4974b758febddd6a078346d9deebdd0ba4c15cbb477bc570ed9da4fee`。17项修改、156文件完整树；实际提交`d20b048b64497fec6ba23bd102e8d4efe76a1037`，父提交`9ac367b8cff2c0def8b2b18162549cf5d45a67d4`，树`6c25c3f028f68f9241b808ab498efd193719513d`。
+- 标签step-S10-r2对象`88ada90ffd23fdab3c533d303e321b546940c7ad`；156文件远端逐项匹配。[双平台CPU CI](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36989793724)成功：Windows项目/独立wheel各315项（249.433s/254.861s），Ubuntu各315项（121.550s/116.875s）。以上为已保存实际回执的补录，不冒称本次重新运行远端验证。
+- 原快照VERIFIED / ACCEPTED / APPROVED / PUBLISHED均成立，原批准/封包/回执保留。S11启动另见PR082；S10发布许可不扩展为新快照批准。
+
+## 2026年10月2日 S11交接与直接本地实施
+
+- LOG081；LOCAL_STEP_AUTHORIZATION；关联PR082。负责人明确要求新对话S11沿用现有main、不建分支/worktree，交接后直接实施本步。接手HEAD与已发布S10 r2一致，工作区干净；156个公开文件逐项匹配，2605项历史保护文件摘要全部一致。
+- AI辅助实现可行候选集、EDD/SPT/当前合法估计最快模式、确定性平局、等待关系及失败区分；每份完整返回候选经S10独立轨迹核验。必要适配仅增加静态计划与原始轨迹的绑定检查，C05内核、冻结规格、契约、依赖和CI不改。实际验证与确切范围见S11步骤卡及后续LOG082。
+- 授权只含S11本地实现、验证、治理与确切审阅包。默认HR禁用、工业证据缺口保持；本次不暂存、提交、打标签、推送、建PR、上传附件或修改远端名称/About，S12—S28未启动。历史未授权/待审语句仅代表当时快照。
+
+## 2026年10月2日 S11本地验证与确切候选
+
+- LOG082；LOCAL_STEP_VERIFIED；关联PR082。AI辅助完成静态可行候选生成、EDD/SPT/当前合法最快模式、共同平局规则及等待关系/失败诊断。所有返回候选有非空命令、完整建筑READY轨迹、全员区间与S10独立PASS；检查器仅增加初始静态命令/轨迹/修订号绑定，原调用语义保持。
+- S11专项34项通过（7.288s）；完整项目349项（105.226s）、独立wheel349项（116.231s），包括S10既有66、建筑69和旧域180。Ruff、48份Python格式、锁/依赖、wheel/sdist构建与C04的11样例/10 Schema核对通过。11个公开成功/失败摘要再生成一致。原第一轮1失败/2错误及修复后结果保留，未删负例或放宽约束。
+- 六个完整合成成功均有显式条件质量/工艺释放假设；默认资格UNKNOWN和未知质量保持HOLD。双产品有限OUT1阻塞为NO_PLAN_FOUND，固定载荷不等式为INFEASIBLE；不把贪心未找到解说成数学无解，不与手工见证比较算法收益。J2/工装、工业证据缺口及HR禁用保持。
+- packet_id S11-20261002-r1；22文件增量（13修改/9新增）、165文件完整候选树，无删除。2605项历史保护文件及156文件接手基线保全；完整差异、逐文件摘要、证据/失败/限制、目标仓库/main/拟新step-S11-r1与拟发布动作均在本地审阅包。工作VERIFIED、人工PENDING_REVIEW、上传NOT_APPROVED、远端NOT_PUBLISHED；S11远端CI NOT_RUN。未暂存、提交、标签或远端写入，S12—S28未启动。

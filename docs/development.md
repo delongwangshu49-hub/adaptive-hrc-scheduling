@@ -1,8 +1,8 @@
 # 基础检查与持续集成（S02 / S03 / S06）
 
-当前适用边界（2026-10-02）：C03研究规格已按PR069限定冻结，C04/C05建筑契约与执行r2已验收并发布；S10 r1已按PR078发布，PR080仅授权审阅确认六组问题的有限本地修复，r2待审。[S11—S28](roadmap.md)仍未实施。默认工业资格缺口与HR禁用保持，本次不更改依赖、CI或安装配置。
+当前实施状态（PR081—PR082，2026-10-02）：S10 r2已验收、批准并发布，实际回执补录LOG080；PR082另行授权沿用现有main直接且仅开展S11本地实现、验证、必要治理与确切审阅包。S11当前候选待审，S12—S28及新快照暂存/提交/标签/推送/PR/附件/远端名称/About修改未获授权。C03限定冻结、J2同产品双框驻留/FIX-J2独占、工业证据缺口和默认HR禁用保持。
 
-统一 CPU 入口检查轻量安装骨架，并对 `scripts/isaac_smoke.py` 做静态、格式和纯回调契约检查。它不导入 Isaac 或运行场景；S03 实际 Kit 证据见 [运行验证](validation/runtime.md)。S06 已加入领域对象、静态接口契约及测试，见 [契约说明](contracts.md)；S09 r2 已有管道领域手工派工内核及180项旧域测试证据，调度算法和研究实验尚未完成。C04/C05建筑契约/执行与S10独立检查测试分别计数；现行入口及边界见[独立检查](validation/checker.md)和[S10步骤卡](steps/S10.md)。本文版本 S10-0.2（2026-10-02）。
+统一 CPU 入口检查轻量安装骨架，并对 `scripts/isaac_smoke.py` 做静态、格式和纯回调契约检查。它不导入 Isaac 或运行场景；S03 实际 Kit 证据见 [运行验证](validation/runtime.md)。S06 已加入领域对象、静态接口契约及测试，见 [契约说明](contracts.md)；S09 r2 已有管道领域手工派工内核及180项旧域测试证据，调度算法和研究实验尚未完成。C04/C05建筑契约/执行与S10独立检查测试分别计数；现行入口及边界见[独立检查](validation/checker.md)和[S10步骤卡](steps/S10.md)。本文版本 S11-0.1（2026-10-02）。
 
 ## 统一入口
 
@@ -59,3 +59,5 @@ S02 封存时已完成 Windows 本地检查与独立源文件副本检查，其�
 S02 已发布提交 `ba8c8532af937771fcecf8f2f89c38c2bcf05998` 的 [push 工作流](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36742427800) 在 windows-2025 与 ubuntu-24.04 均成功。S03 r1 的 [push 工作流](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36834194178) 两平台也已成功。r2 未修改工作流、检查入口或依赖锁；新增纯回调测试由原入口自动发现，候选仍需获批推送后核验绑定新提交的两平台结果。
 
 不要在轻量环境中执行 Isaac 运行验收，也不要让普通 CI 安装 GPU 环境。Isaac 脚本的 `--help` 可由普通 Python 读取；实际运行需要 Isaac 解释器、场景断言及外部进程正常退出共同通过。脚本不进入项目 wheel，复验需要仓库源文件及独立安装。
+
+S11专项为`tests/test_rule_planners.py`，纳入既有项目/独立wheel检查；入口`python scripts/run_rule_planners.py --output .local/s11-cases --check`。静态初始窗口与条件质量假设见[规则说明](algorithms/rule_baselines.md)。本步不改变依赖、CI、旧域或C05执行内核。

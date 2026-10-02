@@ -22,6 +22,8 @@ PR078补录S10 r1确切批准与实际发布；PR079要求本步骤全量完成�
 
 PR080随后明确批准上述六组问题的有限本地修复，含必要回归、说明和新审阅包；r1批准不扩展至r2，S11未启动。
 
+PR081补录S10 r2确切验收、批准与实际发布；PR082随后单独授权S11本地实现和确切审阅包，覆盖旧时点未启动边界，不继承S10发布许可。S12—S28及S11新快照Git/远端写入未授权。
+
 ## 记录规则
 
 - 每条记录表达一个实质性指令或决策；普通交流和反复表达不逐句复制。
@@ -2884,6 +2886,80 @@ PR080随后明确批准上述六组问题的有限本地修复，含必要回归
         "docs/validation/checker.md"
       ],
       "limit": "LOCAL_LIMITED_REPAIR_ONLY_R2_REQUIRES_SEPARATE_REVIEW_NO_STAGE_COMMIT_TAG_PUSH_PR_ATTACHMENT_OR_S11"
+    },
+    {
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "HUMAN_CONFIRMED",
+      "id": "PR081",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S10",
+        "parameters": {
+          "step_id": "S10",
+          "packet_id": "S10-20261002-r2",
+          "decision": "ACCEPT_AND_APPROVE",
+          "decision_id": "S10-R2-APPROVAL-001",
+          "packet_sha256": "48dbcda4974b758febddd6a078346d9deebdd0ba4c15cbb477bc570ed9da4fee",
+          "branch": "main",
+          "tag": "step-S10-r2",
+          "permitted_remote_actions": [
+            "EXACT_STAGE",
+            "ONE_COMMIT",
+            "NEW_ANNOTATED_TAG",
+            "NONFORCE_PUSH_MAIN_AND_TAG",
+            "REMOTE_AND_CPU_CI_VERIFICATION"
+          ]
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_AND_APPROVED_EXACT_S10_R2_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "PUBLISHED_APPROVED_SNAPSHOT",
+        "VERIFIED_REMOTE_OBJECTS_AND_CI",
+        "PRESERVED_RECEIPT"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S10.md"
+      ],
+      "limit": "S10_R2_SNAPSHOT_ONLY_NO_S11_PUBLICATION_PERMISSION"
+    },
+    {
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "HUMAN_CONFIRMED",
+      "id": "PR082",
+      "human_command": {
+        "operation": "START_STEP",
+        "target": "S11",
+        "parameters": {
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "scope": [
+            "FEASIBLE_SCHEDULE_GENERATOR",
+            "LEGAL_RULE_BASELINES",
+            "NECESSARY_REGRESSION_DOCUMENTATION_GOVERNANCE_AND_EXACT_REVIEW_PACKET"
+          ],
+          "S12_S28": "NOT_AUTHORIZED",
+          "new_publication": false
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_NEW_S11_CHAT_AND_DIRECT_LOCAL_IMPLEMENTATION"
+      ],
+      "assistant_support": [
+        "VERIFIED_HANDOFF_AND_PROTECTED_HISTORY",
+        "IMPLEMENTED_AND_TESTED_STATIC_RULE_PLANNERS",
+        "PREPARED_REVIEW_CANDIDATE"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S11.md"
+      ],
+      "limit": "LOCAL_S11_ONLY_NO_STAGE_COMMIT_TAG_PUSH_PR_ATTACHMENT_OR_REMOTE_METADATA_CHANGE"
     }
   ]
 }

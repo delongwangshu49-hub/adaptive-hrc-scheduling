@@ -1831,6 +1831,7 @@ def check_run(
     observation=None,
     computation_samples=(),
     order_weights=None,
+    candidate_trace=False,
 ):
     """Audit an actual prefix [0,T]; a valid unfinished prefix can PASS.
 
@@ -1840,6 +1841,8 @@ def check_run(
     """
     started = perf_counter()
     try:
+        if type(candidate_trace) is not bool:
+            raise ValueError("candidate_trace")
         _shape(config, b.Configuration)
         _shape(snapshot, b.ExecutionSnapshot)
         if window_h is not None and (
@@ -1944,13 +1947,21 @@ def check_run(
                     command.id,
                     "UNOBSERVED_DISPATCH",
                 )
-                audit.issue("R09", command.id, "PLAN_REQUIRES_ACTUAL_OR_CANDIDATE_TRACE", True)
+                if not candidate_trace:
+                    audit.issue("R09", command.id, "PLAN_REQUIRES_ACTUAL_OR_CANDIDATE_TRACE", True)
             audit.need(
                 {x.product_id for x in plan.predicted_ready} == visible,
                 "R17",
                 observation.id,
                 "PLANNING_EVALUATION_SET",
             )
+            if candidate_trace:
+                _check_candidate_trace(audit, plan, observation)
+                scope["R14"] = (
+                    "STATIC_INITIAL_CANDIDATE_TRACE; S12_POLICY_NONANTICIPATION_NOT_TESTED"
+                )
+    if candidate_trace and (plan is None or observation is None):
+        audit.issue("R14", config.id, "MISSING_PLANNING_EVIDENCE", True)
     costs = []
     for sample in computation_samples:
         if audit.need(
@@ -2062,4 +2073,135 @@ def check_run(
             "water_present": sorted(audit.water),
         },
         scope,
+        "S10-1.2" if candidate_trace else "S10-1.1",
+    )
+
+
+def _check_candidate_trace(audit, plan, observation):
+    """S11 opt-in: one-to-one command/actual-start matching, independent of decoder.
+
+    Full replay above verifies every actual resource, gate and human interval.
+    This static interface binds command work/time/crew/revision, not an S12 online
+    policy. Revision reconstruction is restricted to pristine, scenario-free
+    candidates without repair/handover services. Old unbound calls stay incomplete.
+    """
+    s = audit.s
+    audit.need(
+        not s.scenario.events
+        and not any(
+            e.kind in ("HANDOVER_START", "RESTORE_START", "REPAIR_START", "CLEANUP_START")
+            for e in s.events
+        ),
+        "R14",
+        observation.id,
+        "STATIC_TRACE_SCOPE",
+    )
+    audit.need(
+        observation.state_revision == 0
+        and not observation.event_ids
+        and not observation.unavailable_resources
+        and len(observation.people) == len(audit.c.people)
+        and {
+            h.person_id: (h.fatigue, h.exposure, h.peak, h.rest_until_h) for h in observation.people
+        }
+        == {p.id: (p.initial_f, 0, p.initial_f, 0) for p in audit.c.people}
+        and all(
+            p.state == "RELEASED"
+            and p.location == "UNASSEMBLED"
+            and p.cancelled is False
+            and not p.completed_activity_ids
+            for p in observation.products
+        ),
+        "R14",
+        observation.id,
+        "INITIAL_STATE_TRACE_MISMATCH",
+    )
+    audit.need(bool(plan.commands), "R09", plan.observation_id, "EMPTY_CANDIDATE", True)
+    audit.need(plan.status == "CANDIDATE", "R09", plan.observation_id, "CANDIDATE_STATUS")
+    audit.need(
+        observation.sampled_h == observation.received_h == observation.observed_h == 0,
+        "R14",
+        observation.id,
+        "STATIC_INITIAL_OBSERVATION_REQUIRED",
+    )
+    audit.need(
+        tuple(c.id for c in plan.commands) == s.consumed_commands
+        and len(set(c.id for c in plan.commands)) == len(plan.commands),
+        "R09",
+        plan.observation_id,
+        "COMMAND_TRACE_ID_COVERAGE",
+    )
+    starts = []
+    changes = 0
+    boundaries = {x.end_h for x in s.intervals}
+    for e in s.events:
+        revision = changes + sum(t <= e.time_h for t in boundaries)
+        if e.kind in ("REST_START", "EXTERNAL"):
+            changes += 1
+        if e.kind == "UNIT_START":
+            try:
+                d = _json(e.reason)
+                starts.append(
+                    (
+                        e.entity_id,
+                        d["mode_id"],
+                        d["attempt"],
+                        d["unit_index"],
+                        e.time_h,
+                        revision,
+                        tuple((r["role_id"], r["person_id"]) for r in d["roles"]),
+                    )
+                )
+                changes += 1
+            except (KeyError, TypeError, ValueError):
+                audit.issue("R09", e.entity_id, "UNREADABLE_CANDIDATE_START", True)
+        elif e.kind == "READY":
+            activities = [
+                a for a in audit.c.activities if a.product_id == e.entity_id and a.code == "READY"
+            ]
+            if len(activities) == 1:
+                a = activities[0]
+                starts.append((a.id, a.modes[0].id, 0, 0, e.time_h, revision, ()))
+                changes += 1
+        elif e.kind == "REJECTED":
+            audit.issue("R09", e.entity_id, "CANDIDATE_CONTAINS_REJECTION")
+    signatures = [
+        (
+            c.activity_id,
+            c.mode_id,
+            c.attempt,
+            c.unit_index,
+            c.issued_h,
+            c.expected_revision,
+            tuple((r.role_id, r.person_id) for r in c.roles),
+        )
+        for c in plan.commands
+    ]
+    audit.need(signatures == starts, "R09", plan.observation_id, "COMMAND_START_TRACE_MISMATCH")
+    audit.need(
+        s.revision == changes + len(boundaries),
+        "R09",
+        plan.observation_id,
+        "FINAL_CANDIDATE_REVISION_MISMATCH",
+    )
+    visible = {p.product_id for p in observation.products}
+    audit.need(
+        visible == set(audit.p) == set(audit.ready)
+        and not audit.running
+        and all(
+            aid in audit.attempts and audit.attempts[aid].state == "COMPLETED" for aid in audit.a
+        ),
+        "R15",
+        plan.observation_id,
+        "CANDIDATE_NOT_COMPLETE",
+    )
+    audit.need(
+        len(plan.predicted_ready) == len(visible)
+        and all(
+            x.product_id in audit.ready and x.ready_h == audit.ready[x.product_id]
+            for x in plan.predicted_ready
+        ),
+        "R15",
+        plan.observation_id,
+        "PREDICTION_TRACE_MISMATCH",
     )
