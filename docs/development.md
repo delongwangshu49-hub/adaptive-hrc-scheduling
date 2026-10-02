@@ -1,6 +1,6 @@
 # 基础检查与持续集成（S02 / S03 / S06）
 
-当前实施状态（PR086—PR087，2026-10-02）：S11 r2已验收、批准并发布，实际回执补录LOG087；PR087单独授权S12轻量反馈闭环的本地实现、验证、必要治理与确切审阅包，沿用现有main，不建分支/worktree。S12当前候选另行人工验收及发布批准；S13—S28及新快照暂存/提交/标签/推送/PR/附件/远端名称/About修改未授权。D01—D06限定冻结、工业证据缺口、J2同产品双框驻留/FIX-J2独占及默认HR禁用保持。
+当前实施状态（PR088—PR090，2026-10-02）：S12 r1已验收、批准并发布，回执见LOG090。PR089审阅确认三类独立决策审计漏检；PR090仅授权其有限本地修复、必要回归、说明、治理与新审阅包，沿用现有main，不建分支/worktree。r2须另行验收及发布批准；S13—S28与新快照暂存/提交/标签/推送/PR/附件/远端元数据修改未授权。D01—D06限定冻结、工业证据缺口、J2同产品双框驻留/FIX-J2独占及默认HR禁用保持。以下旧授权描述保留历史时点。
 
 统一 CPU 入口检查轻量安装骨架，并对 `scripts/isaac_smoke.py` 做静态、格式和纯回调契约检查。它不导入 Isaac 或运行场景；S03 实际 Kit 证据见 [运行验证](validation/runtime.md)。S06 已加入领域对象、静态接口契约及测试，见 [契约说明](contracts.md)；S09 r2 已有管道领域手工派工内核及180项旧域测试证据，调度算法和研究实验尚未完成。C04/C05建筑契约/执行与S10独立检查测试分别计数；现行入口及边界见[独立检查](validation/checker.md)和[S10步骤卡](steps/S10.md)。本文版本 S11-0.1（2026-10-02）。
 
@@ -63,3 +63,5 @@ S02 已发布提交 `ba8c8532af937771fcecf8f2f89c38c2bcf05998` 的 [push 工作�
 S11专项为`tests/test_rule_planners.py`，纳入既有项目/独立wheel检查；入口`python scripts/run_rule_planners.py --output .local/s11-cases --check`。静态初始窗口与条件质量假设见[规则说明](algorithms/rule_baselines.md)。本步不改变依赖、CI、旧域或C05执行内核。
 
 S12专项`tests/test_light_closed_loop.py`纳入统一项目与独立wheel检查；复现命令`python scripts/run_light_loop.py --output .local/s12-cases --check`。质量/工艺反馈是显式合成环境，仅在SYNTHETIC_TEST_ONLY配置启用；完整实际轨迹与去重观测证据只写指定本地目录。S12只为C05增加可选反馈唤醒，原默认行为及S10/S11接口版本保持。
+
+S12 r2本地决策证据标为S12-1.1，新增每轮动作前后实际事件计数；旧r1证据缺这些计数时决策审计返回INCOMPLETE发现，须从原用例重新生成新证据。旧证据原样保留，S10/S11接口及公开11例摘要保持。

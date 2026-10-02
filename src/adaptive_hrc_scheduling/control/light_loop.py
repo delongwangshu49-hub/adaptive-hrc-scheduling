@@ -89,6 +89,8 @@ class Turn:
     actual_event_ids: tuple[str, ...]
     after_revision: int
     after_h: float
+    before_event_count: int | None = None
+    after_event_count: int | None = None
 
 
 @dataclass(frozen=True)
@@ -323,6 +325,8 @@ def run_loop(config, scenario=None, options=Options(), *, feedback_source=None):
                 tuple(e.id for e in world.snapshot.events[before:]),
                 world.snapshot.revision,
                 world.time,
+                before,
+                len(world.snapshot.events),
             )
         )
         if d.action == "STOP" or not accepted:
@@ -363,6 +367,8 @@ def run_loop(config, scenario=None, options=Options(), *, feedback_source=None):
                 tuple(e.id for e in world.snapshot.events[before:]),
                 world.snapshot.revision,
                 world.time,
+                before,
+                len(world.snapshot.events),
             )
         )
     report = check_run(config, world.snapshot)
@@ -377,6 +383,16 @@ def run_loop(config, scenario=None, options=Options(), *, feedback_source=None):
 
 
 def audit_decisions(config, trace, turns):
+    """Fail closed on missing or unreadable evidence; independent of admission."""
+    from adaptive_hrc_scheduling.control.ledger import audit_prefixes
+
+    try:
+        return audit_prefixes(config, trace, turns) + _audit_decisions(config, trace, turns)
+    except (ValueError, TypeError, KeyError, AttributeError, IndexError, StopIteration):
+        return ("INCOMPLETE:UNREADABLE_DECISION_EVIDENCE",)
+
+
+def _audit_decisions(config, trace, turns):
     """Independent ledger binding, in addition to S10's full physical replay.
 
     Checks observations against earlier actual event IDs, actions against actual
@@ -390,6 +406,7 @@ def audit_decisions(config, trace, turns):
     prior_end = 0
     prior_revision = None
     used_starts = set()
+    used_services = set()
     for i, turn in enumerate(turns, 1):
         d, f = turn.decision, turn.feedback
         o = f.observation
@@ -444,7 +461,11 @@ def audit_decisions(config, trace, turns):
         )
         need(not set(o.event_ids) & set(turn.actual_event_ids), "SAME_TICK_FUTURE_LEAK")
         need(
-            d.plan.observation_id == o.id
+            d.plan.schema_version == o.schema_version == "C04-1.0"
+            and d.plan.config_id == o.config_id == config.id
+            and d.plan.observation_id == o.id
+            and {p.product_id for p in d.plan.predicted_ready} == {p.product_id for p in o.products}
+            and len(d.plan.predicted_ready) == len(o.products)
             and d.plan.status == "INCOMPLETE"
             and all(p.ready_h is None for p in d.plan.predicted_ready),
             "PLAN_IS_PROPOSAL",
@@ -494,23 +515,68 @@ def audit_decisions(config, trace, turns):
                             "START_BINDING",
                         )
                     else:
+                        mode = (
+                            next((m for m in a.modes if m.id == cmd.mode_id), None) if a else None
+                        )
+                        prior = next(
+                            (
+                                x
+                                for x in reversed(f.state.attempts)
+                                if x.activity_id == cmd.activity_id
+                            ),
+                            None,
+                        )
                         need(
-                            a is not None and e.entity_id in (a.id, a.product_id), "INSTANT_BINDING"
+                            a is not None
+                            and mode is not None
+                            and not mode.units
+                            and not cmd.roles
+                            and cmd.attempt == (prior.number if prior else 0)
+                            and cmd.unit_index == (prior.completed_units if prior else 0)
+                            and (prior is None or prior.mode_id == cmd.mode_id)
+                            and (
+                                (
+                                    e.kind == "READY"
+                                    and a.code == "READY"
+                                    and e.entity_id == a.product_id
+                                    and cmd.mode_id == a.modes[0].id
+                                )
+                                or (
+                                    e.kind == "COMPLETED"
+                                    and a.code != "READY"
+                                    and e.entity_id == a.id
+                                    and e.attempt == cmd.attempt
+                                )
+                            ),
+                            "INSTANT_BINDING",
                         )
         else:
             need(not d.plan.commands, "NON_DISPATCH_COMMANDS")
         action_events = [events[eid] for eid in turn.actual_event_ids if eid in events]
+        for e in action_events:
+            if e.kind in ("REST_START", "CLEANUP_START"):
+                need(
+                    turn.accepted is True
+                    and d.action == ("REST" if e.kind == "REST_START" else "CLEANUP")
+                    and e.time_h == d.time_h
+                    and turn.after_h == d.time_h
+                    and e.id not in used_services,
+                    "SERVICE_ACTION_BINDING",
+                )
+                used_services.add(e.id)
         if d.action == "REST" and turn.accepted:
             rest = [e for e in action_events if e.kind == "REST_START"]
             need(
-                len(rest) == 1
+                turn.receipt == "REST_COMMITTED"
+                and len(rest) == 1
                 and json.loads(rest[0].reason) == {"people": list(d.people), "until": d.until_h},
                 "REST_BINDING",
             )
         if d.action == "CLEANUP" and turn.accepted:
             cleanup = [e for e in action_events if e.kind == "CLEANUP_START"]
             need(
-                len(cleanup) == 1
+                turn.receipt == "ACCEPTED"
+                and len(cleanup) == 1
                 and cleanup[0].entity_id == d.product_id
                 and tuple(json.loads(cleanup[0].reason)["people"]) == d.people,
                 "CLEANUP_BINDING",
@@ -525,4 +591,7 @@ def audit_decisions(config, trace, turns):
     actual = {e.id for e in trace.events if e.kind in ("UNIT_START", "READY", "COMPLETED")}
     if actual != used_starts:
         findings.append("UNBOUND_ACTUAL_START")
+    services = {e.id for e in trace.events if e.kind in ("REST_START", "CLEANUP_START")}
+    if services != used_services:
+        findings.append("UNBOUND_ACTUAL_SERVICE")
     return tuple(findings)

@@ -138,6 +138,7 @@ def reproduce(output):
         dest = output / case["id"]
         dest.mkdir(parents=True, exist_ok=True)
         data = {
+            "decision_evidence_version": "S12-1.1",
             "status": r.status,
             "reason": r.reason,
             "trace": asdict(r.trace),
@@ -175,6 +176,8 @@ def reproduce(output):
                     "accepted": turn.accepted,
                     "receipt": turn.receipt,
                     "actual_event_ids": turn.actual_event_ids,
+                    "before_event_count": turn.before_event_count,
+                    "after_event_count": turn.after_event_count,
                     "after_revision": turn.after_revision,
                     "after_h": turn.after_h,
                 }

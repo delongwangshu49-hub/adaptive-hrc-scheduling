@@ -30,6 +30,10 @@ PR085随后明确批准上述三组问题的有限本地修复及必要回归、
 
 PR086补录S11 r2确切验收、发布批准与实际回执；PR087单独授权新对话S12在现有main直接开展本地闭环实现、验证及确切审阅包，不建分支/worktree。S13—S28及S12新快照发布仍未授权；以上旧记录保留各自历史时点。
 
+PR088补录S12 r1确切验收、批准与实际发布；PR089要求本步骤完成性与逻辑审阅。AI确认独立决策审计三组P2漏检，当前结论REOPEN_REQUIRED；不改变r1发布事实，不自动授权修复、新快照发布或S13—S28。旧记录保留历史时点。
+
+PR090随后明确批准上述三类问题的有限本地修复，含必要回归、说明、治理与新审阅包。r2另行验收/批准，r1许可不扩展至新快照，S13—S28未启动。
+
 ## 记录规则
 
 - 每条记录表达一个实质性指令或决策；普通交流和反复表达不逐句复制。
@@ -3151,6 +3155,112 @@ PR086补录S11 r2确切验收、发布批准与实际回执；PR087单独授权�
         "docs/steps/S12.md"
       ],
       "limit": "LOCAL_S12_ONLY_NO_STAGE_COMMIT_TAG_PUSH_PR_ATTACHMENT_OR_REMOTE_METADATA_CHANGE"
+    },
+    {
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "HUMAN_CONFIRMED",
+      "id": "PR088",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S12",
+        "parameters": {
+          "step_id": "S12",
+          "packet_id": "S12-20261002-r1",
+          "decision": "ACCEPT_AND_APPROVE",
+          "decision_id": "S12-R1-APPROVAL-001",
+          "packet_sha256": "7f0dee76cf8a7b714014fd93e751474dcb7bfbc2483aa29aec4d6d64d888f8de",
+          "branch": "main",
+          "tag": "step-S12-r1",
+          "permitted_remote_actions": [
+            "EXACT_STAGE",
+            "ONE_COMMIT",
+            "NEW_ANNOTATED_TAG",
+            "NONFORCE_PUSH_MAIN_AND_TAG",
+            "REMOTE_AND_CPU_CI_VERIFICATION"
+          ]
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_AND_APPROVED_EXACT_S12_R1_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "PUBLISHED_APPROVED_SNAPSHOT",
+        "VERIFIED_REMOTE_OBJECTS_AND_CI",
+        "PRESERVED_RECEIPT"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S12.md"
+      ],
+      "limit": "S12_R1_SNAPSHOT_ONLY_NO_NEW_SNAPSHOT_OR_S13_PERMISSION"
+    },
+    {
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "REVIEW_COMPLETED",
+      "id": "PR089",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "S12",
+        "parameters": {
+          "scope": [
+            "STEP_COMPLETENESS",
+            "LOGICAL_CORRECTNESS"
+          ],
+          "implementation_repair": false,
+          "new_publication": false
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_COMPLETENESS_AND_LOGIC_REVIEW"
+      ],
+      "assistant_support": [
+        "REVIEWED_IMPLEMENTATION_AND_ACCEPTANCE_REQUIREMENTS",
+        "RERAN_COMPLETE_CPU_AND_CASES",
+        "REPRODUCED_THREE_LEDGER_AUDIT_GAPS",
+        "UPDATED_LOCAL_GOVERNANCE"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S12.md"
+      ],
+      "limit": "REVIEW_AND_LOCAL_GOVERNANCE_ONLY_NO_IMPLEMENTATION_REPAIR_OR_S13_OR_GIT_PUBLICATION"
+    },
+    {
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "HUMAN_CONFIRMED",
+      "id": "PR090",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "S12",
+        "parameters": {
+          "scope": [
+            "AUD-S12-01",
+            "AUD-S12-02",
+            "AUD-S12-03",
+            "NECESSARY_REGRESSION_DOCUMENTATION_GOVERNANCE_AND_EXACT_REVIEW_PACKET"
+          ],
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "new_publication": false
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_LIMITED_REPAIR_OF_THREE_REVIEW_FINDINGS"
+      ],
+      "assistant_support": [
+        "IMPLEMENTED_LIMITED_LEDGER_REPAIRS",
+        "ADDED_TARGETED_NEGATIVE_AND_INDEPENDENCE_REGRESSION",
+        "PREPARED_NEW_REVIEW_CANDIDATE"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S12.md"
+      ],
+      "limit": "S12_THREE_LOCAL_REPAIRS_ONLY_R2_REQUIRES_SEPARATE_ACCEPTANCE_AND_PUBLICATION_APPROVAL_NO_S13"
     }
   ]
 }

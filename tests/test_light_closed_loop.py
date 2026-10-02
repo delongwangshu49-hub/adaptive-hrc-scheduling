@@ -411,6 +411,228 @@ class LightLoopTests(unittest.TestCase):
         self.assert_valid(good)
         self.assert_valid(bad)
 
+    def test_audit_rejects_erased_event_prefix_and_future_quality(self):
+        r = self.w1
+        stripped = tuple(
+            replace(
+                t,
+                feedback=replace(
+                    t.feedback,
+                    observation=replace(t.feedback.observation, event_ids=()),
+                    state=replace(t.feedback.state, events=()),
+                ),
+            )
+            for t in r.turns
+        )
+        self.assertTrue(audit_decisions(config(), r.trace, stripped))
+        first = r.turns[0]
+        future = replace(
+            first,
+            feedback=replace(
+                first.feedback, state=replace(first.feedback.state, quality=r.trace.quality)
+            ),
+        )
+        self.assertTrue(audit_decisions(config(), r.trace, (future,) + r.turns[1:]))
+
+    def test_audit_rejects_missing_running_locks_and_residencies(self):
+        r = self.w1
+        i = next(
+            i for i, t in enumerate(r.turns) if t.feedback.state.running and t.feedback.state.locks
+        )
+        for field in ("running", "locks", "residencies", "attempts", "materials"):
+            with self.subTest(field=field):
+                turns = list(r.turns)
+                t = turns[i]
+                turns[i] = replace(
+                    t, feedback=replace(t.feedback, state=replace(t.feedback.state, **{field: ()}))
+                )
+                self.assertTrue(audit_decisions(config(), r.trace, tuple(turns)))
+
+    def test_audit_binds_revisions_to_actual_prefix_not_ledger_consensus(self):
+        r = self.w1
+        shifted = tuple(
+            replace(
+                t,
+                after_revision=t.after_revision + 1000,
+                feedback=replace(
+                    t.feedback,
+                    observation=replace(
+                        t.feedback.observation,
+                        state_revision=t.feedback.observation.state_revision + 1000,
+                    ),
+                ),
+                decision=replace(
+                    t.decision,
+                    revision=t.decision.revision + 1000,
+                    plan=replace(
+                        t.decision.plan,
+                        commands=tuple(
+                            replace(c, expected_revision=c.expected_revision + 1000)
+                            for c in t.decision.plan.commands
+                        ),
+                    ),
+                ),
+            )
+            for t in r.turns
+        )
+        self.assertTrue(audit_decisions(config(), r.trace, shifted))
+        turns = r.turns[:-1] + (replace(r.turns[-1], after_revision=1335),)
+        self.assertTrue(audit_decisions(config(), r.trace, turns))
+        self.assertTrue(audit_decisions(config(), replace(r.trace, revision=1335), r.turns))
+
+    def test_audit_rejects_foreign_static_and_incomplete_released_orders(self):
+        c = config(products=2)
+        r = run(c, horizon=2)
+        t = r.turns[0]
+        invisible = replace(
+            t,
+            feedback=replace(
+                t.feedback,
+                configuration=replace(
+                    t.feedback.configuration, products=t.feedback.configuration.products[:1]
+                ),
+                observation=replace(
+                    t.feedback.observation, products=t.feedback.observation.products[:1]
+                ),
+            ),
+        )
+        self.assertTrue(audit_decisions(c, r.trace, (invisible,) + r.turns[1:]))
+        foreign = replace(
+            t,
+            feedback=replace(t.feedback, configuration=replace(t.feedback.configuration, cap=0.9)),
+        )
+        self.assertTrue(audit_decisions(c, r.trace, (foreign,) + r.turns[1:]))
+
+    def test_audit_binds_observed_people_and_unavailable_resources(self):
+        r = self.w1
+        i = next(i for i, t in enumerate(r.turns) if t.feedback.observation.unavailable_resources)
+        t = r.turns[i]
+        o = t.feedback.observation
+        for obs in (
+            replace(o, unavailable_resources=()),
+            replace(o, people=()),
+            replace(o, people=(replace(o.people[0], exposure=999),) + o.people[1:]),
+            replace(o, people=(replace(o.people[0], rest_until_h=999),) + o.people[1:]),
+        ):
+            turns = list(r.turns)
+            turns[i] = replace(t, feedback=replace(t.feedback, observation=obs))
+            self.assertTrue(audit_decisions(config(), r.trace, tuple(turns)))
+
+    def test_audit_requires_exact_actual_boundaries_including_old_ledgers(self):
+        r = run(horizon=2)
+        t = r.turns[0]
+        for bad in (
+            replace(t, before_event_count=None, after_event_count=None),
+            replace(t, before_event_count=True),
+            replace(t, after_event_count=t.after_event_count - 1),
+            replace(t, actual_event_ids=()),
+        ):
+            self.assertTrue(audit_decisions(config(), r.trace, (bad,) + r.turns[1:]))
+        self.assertIn("INCOMPLETE:FINAL_ACTUAL_BOUNDARY", audit_decisions(config(), r.trace, ()))
+
+    def test_instant_ready_attempt_is_bound_even_when_contract_valid(self):
+        from adaptive_hrc_scheduling.contracts.building import validate
+
+        r = self.w1
+        i = next(
+            i
+            for i, t in enumerate(r.turns)
+            if any(e.kind == "READY" and e.id in t.actual_event_ids for e in r.trace.events)
+        )
+        t = r.turns[i]
+        cmd = replace(t.decision.plan.commands[0], attempt=1)
+        validate(cmd, config=config())
+        turns = list(r.turns)
+        turns[i] = replace(
+            t, decision=replace(t.decision, plan=replace(t.decision.plan, commands=(cmd,)))
+        )
+        self.assertIn(
+            t.decision.id + ":INSTANT_BINDING", audit_decisions(config(), r.trace, tuple(turns))
+        )
+
+    def test_services_cannot_be_relabelled_rejected_wait_or_unbound(self):
+        cleanup = run(horizon=80, source=fixture.SyntheticFeedback(cancel_code="W-3D"))
+        self.assert_valid(cleanup)
+        for action, r in (("REST", self.w1), ("CLEANUP", cleanup)):
+            i = next(i for i, t in enumerate(r.turns) if t.decision.action == action)
+            t = r.turns[i]
+            bad_turns = (
+                replace(t, accepted=False),
+                replace(t, accepted=False, actual_event_ids=()),
+                replace(t, receipt="REJECTED"),
+                replace(
+                    t,
+                    decision=replace(
+                        t.decision,
+                        action="WAIT",
+                        until_h=t.decision.time_h + 1,
+                        people=(),
+                        product_id=None,
+                    ),
+                ),
+            )
+            for bad in bad_turns:
+                with self.subTest(action=action, bad=bad.decision.action):
+                    turns = list(r.turns)
+                    turns[i] = bad
+                    self.assertTrue(audit_decisions(config(), r.trace, tuple(turns)))
+
+    def test_audit_is_independent_of_controller_and_backend_admission(self):
+        from contextlib import ExitStack
+
+        r = self.w1
+        with ExitStack() as stack:
+            for name in ("dispatch", "observe", "advance", "rest", "cleanup"):
+                stack.enter_context(
+                    patch.object(
+                        BuildingBackend, name, side_effect=AssertionError("executor reused")
+                    )
+                )
+            for name in ("choose", "capture", "_view"):
+                stack.enter_context(
+                    patch(
+                        "adaptive_hrc_scheduling.control.light_loop." + name,
+                        side_effect=AssertionError("controller reused"),
+                    )
+                )
+            self.assertEqual(audit_decisions(config(), r.trace, r.turns), ())
+
+    def test_unreleased_material_history_is_recovered_only_after_release(self):
+        c = config(products=2)
+        c = replace(
+            c,
+            products=tuple(
+                replace(p, release_h=3) if p.id == "PRODUCT-2" else p for p in c.products
+            ),
+        )
+        mid = next(m.id for m in c.materials if m.product_id == "PRODUCT-2")
+        c = replace(
+            c,
+            materials=tuple(
+                replace(m, arrived=False, identified=False, released=False) if m.id == mid else m
+                for m in c.materials
+            ),
+        )
+        r = run(
+            c,
+            events=[
+                (0, "MATERIAL_ARRIVAL", mid),
+                (1, "MATERIAL_IDENTIFY", mid),
+                (2, "MATERIAL_RELEASE", mid),
+            ],
+            horizon=5,
+        )
+        self.assert_valid(r)
+        for t in r.turns:
+            if t.decision.time_h < 3:
+                self.assertNotIn(mid, json.dumps(asdict(t.feedback)))
+        self.assertTrue(
+            any(
+                t.decision.time_h == 3 and len(t.feedback.observation.products) == 2
+                for t in r.turns
+            )
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
