@@ -18,6 +18,78 @@ from typing import Annotated, Literal, Union, get_args, get_origin, get_type_hin
 from adaptive_hrc_scheduling.domain import building as b
 from adaptive_hrc_scheduling.metrics import delivery_metrics, integrate_segment
 
+# Independent minimum requirements from the frozen C03 activity/mode tables.
+# These are role slots, not a restriction on qualified replacement workers.
+_CREWS = {
+    "KIT": "P1",
+    "CUT": "P1",
+    "MV-IN-B": "P1 Lrig Lsig",
+    "MV-IN-T": "P1 Lrig Lsig",
+    "MV-B": "P1 Lrig Lsig",
+    "MV-T": "P1 Lrig Lsig",
+    "W-B": "W1",
+    "W-T": "W1",
+    "JOIN-IN": "Lop Lrig Lsig",
+    "MOVE-F": "Lop Lrig Lsig",
+    "MOVE-OUT": "Lop Lrig Lsig",
+    "W-3D": "W1 W2",
+    "Q-STR": "QA1 W2",
+    "COAT": "C1",
+    "WAIT-COAT": "QA1",
+    "FLOOR": "AF1 AF2",
+    "MEP-E": "E1",
+    "MEP-P": "PL1",
+    "Q-MEP": "QA1 E1 PL1",
+    "LINING": "AF1 AF2",
+    "Q-LIN": "QA1",
+    "WPROOF": "T1",
+    "TEST-SET": "T1",
+    "Q-POND": "QA1 T1",
+    "TILE": "T1 T2",
+    "EXT": "AF1 AF2",
+    "Q-EXT": "QA1 AF1",
+    "PAINT": "C1",
+    "FIT": "AF1 E1 PL1",
+    "Q-FIN": "QA1 E1 PL1",
+    "PACK": "P1 AF1",
+    "Q-PACK": "QA1",
+}
+_QUALIFICATIONS = {
+    "P1": "PREP",
+    "W1": "WELD",
+    "W2": "WELD",
+    "OP1": "ROBOT",
+    "AF1": "ASSEMBLE",
+    "AF2": "ASSEMBLE",
+    "E1": "ELECTRIC",
+    "PL1": "PLUMB",
+    "T1": "WET",
+    "T2": "WET",
+    "C1": "COAT",
+    "QA1": "QA",
+    "Lop": "CRANE",
+    "Lrig": "RIG",
+    "Lsig": "SIGNAL",
+}
+_EQUIPMENT = {
+    "CUT": {"CUT1"},
+    "W-B": {"WELD1", "FIX-J2"},
+    "W-T": {"WELD1", "FIX-J2"},
+    "W-3D": {"WELD1", "FIX-J3"},
+    "MV-IN-B": {"HST1"},
+    "MV-IN-T": {"HST1"},
+    "MV-B": {"HST1"},
+    "MV-T": {"HST1"},
+    "JOIN-IN": {"CR1"},
+    "MOVE-F": {"CR1"},
+    "MOVE-OUT": {"CR1"},
+    "Q-MEP": {"TEST1"},
+    "TEST-SET": {"TEST1"},
+    "Q-POND": {"TEST1"},
+    "Q-EXT": {"TEST1"},
+    "Q-FIN": {"TEST1"},
+}
+
 
 @dataclass
 class Finding:
@@ -36,7 +108,7 @@ class Report:
     metrics: dict
     reconstructed: dict
     rule_scope: dict
-    report_version: str = "S10-1.0"
+    report_version: str = "S10-1.1"
 
     def to_dict(self):
         return asdict(self)
@@ -125,6 +197,8 @@ class _Attempt:
     waiting: float | None = None
     released: bool = False
     roles: dict = field(default_factory=dict)
+    state: str = "NOT_READY"
+    prepared: bool = False
 
 
 class _Audit:
@@ -150,6 +224,8 @@ class _Audit:
         self.residencies = set()
         self.locks = {}
         self.attempts = {}
+        self.attempt_history = {}
+        self.product_states = {p.id: "RELEASED" for p in config.products}
         self.running = {}
         self.services = {}
         self.spans = []
@@ -165,6 +241,7 @@ class _Audit:
         self.handovers = set()
         self.repaired = set()
         self.external_ids = set()
+        self.external_facts = {}
         self.occupancy = {r.id: 0.0 for r in config.resources if r.kind in ("BAY", "BUFFER")}
         self.wip = 0.0
         self.wait_hours = 0.0
@@ -173,6 +250,16 @@ class _Audit:
         self.repair_hours = 0.0
         self.pending_waits = []
         self.idle_residency = 0.0
+
+    def remember_attempt(self, aid, attempt):
+        self.attempts[aid] = attempt
+        self.attempt_history[aid, attempt.number] = attempt
+        return attempt
+
+    def current_attempt(self, aid, mode):
+        if aid not in self.attempts:
+            return self.remember_attempt(aid, _Attempt(0, mode))
+        return self.attempts[aid]
 
     def issue(self, rule, obj, code, incomplete=False, time=None):
         item = Finding(
@@ -315,6 +402,16 @@ class _Audit:
                 p.id,
                 "VARIANT_BOM",
             )
+            self.need(
+                len(p.bom) == len({i.id for i in p.bom})
+                and all(
+                    (i.quantity, i.unit) == ((18, "m2") if i.id == "B-FL" else (1, "set"))
+                    for i in p.bom
+                ),
+                "R12",
+                p.id,
+                "FROZEN_BOM_QUANTITY_UNIT",
+            )
             comps = [x for x in c.components if x.product_id == p.id]
             self.need(
                 sorted((x.kind, x.quantity) for x in comps)
@@ -333,7 +430,28 @@ class _Audit:
                     )
         for a in c.activities:
             self.need(a.product_id in self.p, "R01", a.id, "PRODUCT_REFERENCE")
+            move_codes = {"MV-IN-B", "MV-IN-T", "MV-B", "MV-T", "JOIN-IN", "MOVE-F", "MOVE-OUT"}
+            expected_kinds = (
+                {"H", "HR-seq"}
+                if a.code in ("W-B", "W-T")
+                else {
+                    "MOVE"
+                    if a.code in move_codes
+                    else "WAIT"
+                    if a.code in required_wait
+                    else "GATE"
+                    if a.code == "READY"
+                    else "H-team"
+                }
+            )
+            self.need(
+                {m.kind for m in a.modes} == expected_kinds and len(a.modes) == len(expected_kinds),
+                "R18",
+                a.id,
+                "FROZEN_MODE_SET",
+            )
             for m in a.modes:
+                self.need(bool(m.units) == (a.code in _CREWS), "R18", a.id, "FROZEN_LABOR_UNITS")
                 self.need(
                     "G5" in m.qualification_ids and bool(m.qualification_revisions),
                     "R18",
@@ -367,6 +485,33 @@ class _Audit:
                     "MISSING_LABOR_UNITS",
                 )
                 for u in m.units:
+                    role_ids = set(_CREWS.get(a.code, "").split())
+                    if m.kind == "HR-seq":
+                        self.need(u.phase in ("SETUP", "ROBOT", "UNLOAD"), "R03", a.id, "HR_PHASE")
+                        role_ids = set() if u.phase == "ROBOT" else {"OP1"}
+                    required_roles = {
+                        rid: "HOIST"
+                        if rid == "P1" and a.code.startswith("MV-")
+                        else _QUALIFICATIONS[rid]
+                        for rid in role_ids
+                    }
+                    self.need(
+                        {r.id: r.qualification for r in u.roles} == required_roles
+                        and len(u.roles) == len(required_roles),
+                        "R04",
+                        a.id,
+                        "FROZEN_ROLE_REQUIREMENTS",
+                    )
+                    equipment = (
+                        {"R1", "FIX-J2"} if m.kind == "HR-seq" else _EQUIPMENT.get(a.code, set())
+                    )
+                    self.need(
+                        equipment <= set(u.equipment) <= set(self.resources)
+                        and len(u.equipment) == len(set(u.equipment)),
+                        "R05",
+                        a.id,
+                        "FROZEN_EQUIPMENT_REQUIREMENTS",
+                    )
                     self.need(
                         u.base_h > 0 and (u.phase == "ROBOT" or bool(u.roles)),
                         "R04",
@@ -475,11 +620,14 @@ class _Audit:
         waiting = {
             self.a[aid].product_id
             for aid, att in self.attempts.items()
-            if att.waiting is not None and not att.complete and not att.invalid
+            if att.waiting is not None
+            and not att.complete
+            and not att.invalid
+            and att.state != "CANCELLED"
         }
         self.idle_residency += dt * len(physical - active - waiting - set(self.ready))
         self.wait_hours += dt * sum(
-            a.waiting is not None and not a.complete and not a.invalid
+            a.waiting is not None and not a.complete and not a.invalid and a.state != "CANCELLED"
             for a in self.attempts.values()
         )
         self.t = t
@@ -526,7 +674,7 @@ class _Audit:
         )
         self.need(a.product_id not in self.held, "R11", a.id, "QUALITY_HOLD")
         self.prerequisites(a.id)
-        att = self.attempts.setdefault(a.id, _Attempt(0, m.id))
+        att = self.current_attempt(a.id, m.id)
         self.need(
             att.number == e.attempt == d["attempt"]
             and att.units == idx
@@ -586,6 +734,8 @@ class _Audit:
                         "UNCHARGED_HANDOVER",
                     )
         att.roles = roles
+        att.state, att.prepared = "RUNNING", True
+        self.product_states[a.product_id] = "IN_PROCESS"
         self.need(tuple(d["equipment"]) == u.equipment, "R05", a.id, "EQUIPMENT_SET")
         self.need(a.location not in self.failed, "R13", a.id, "FAILED_LOCATION")
         self.faces(a)
@@ -711,6 +861,7 @@ class _Audit:
         m = next(m for m in a.modes if m.id == run["mode_id"])
         att = self.attempts[a.id]
         att.units += 1
+        att.state = "COMPLETED" if att.units == len(m.units) else "PAUSED_AT_CHECKPOINT"
         self.spans.append(
             (run["start_h"], self.t, tuple(r["person_id"] for r in run["roles"]), "WORK", a.id)
         )
@@ -743,6 +894,7 @@ class _Audit:
             "FALSE_ACTIVITY_COMPLETION",
         )
         att.complete = True
+        att.state = "COMPLETED"
         if a.code == "CUT":
             self.residencies = {r for r in self.residencies if r[0] != a.product_id + ".RAW"}
             for comp in self.components.values():
@@ -764,9 +916,12 @@ class _Audit:
             {aid} if include_self else set()
         )
         for x in affected:
-            if x in self.attempts:
-                self.attempts[x].invalid = True
-                self.attempts[x].released = False
+            for (aid, _), attempt in self.attempt_history.items():
+                if aid == x:
+                    attempt.invalid = True
+                    attempt.released = False
+                    if x not in self.running or not self.a[x].move:
+                        attempt.state, attempt.prepared = "FAILED", False
             for key, q in self.quality.items():
                 if key[0] == x:
                     q["valid"] = False
@@ -778,12 +933,14 @@ class _Audit:
                 self.unlock(x)
         pid = self.a[aid].product_id
         self.held.add(pid)
+        self.product_states[pid] = "QUALITY_HOLD"
         self.ready.pop(pid, None)
 
     def external(self, e, d):
         eid, kind, obj = d["id"], d["kind"], d["entity_id"]
         self.need(eid not in self.external_ids, "R16", obj, "DUPLICATE_EXTERNAL")
         self.external_ids.add(eid)
+        self.external_facts[eid] = d
         self.need(d["time_h"] == self.t and e.entity_id == eid, "R16", obj, "FACT_TIME_ID")
         if kind.startswith("MATERIAL_"):
             state = self.material_state[obj]
@@ -803,6 +960,7 @@ class _Audit:
                 att.released = True
                 if not a.modes[0].units:
                     att.complete = True
+                    att.state = "COMPLETED"
         elif kind == "QUALITY_RESULT":
             a, att = self.a[obj], self.attempts.get(obj)
             key = (obj, d["attempt"])
@@ -827,6 +985,14 @@ class _Audit:
         elif kind == "CANCEL":
             self.cancelled[obj] = self.t
             self.ready.pop(obj, None)
+            self.product_states[obj] = "CANCEL_PENDING"
+            for (aid, _), att in self.attempt_history.items():
+                if self.a[aid].product_id == obj and att.state in (
+                    "NOT_READY",
+                    "PAUSED_AT_CHECKPOINT",
+                    "WAITING_RELEASE",
+                ):
+                    att.state = "CANCELLED"
         elif kind == "RECEIVED":
             self.need(
                 obj in self.ready and obj not in self.cancelled and self.locations[obj] == "OUT1",
@@ -836,6 +1002,7 @@ class _Audit:
             )
             self.received[obj] = self.t
             self.locations[obj] = "EXTERNAL"
+            self.product_states[obj] = "RECEIVED"
             self.residencies = {r for r in self.residencies if r[2] != obj}
         elif kind == "ORDER_ARRIVAL":
             self.need(self.t >= self.p[obj].release_h, "R13", obj, "EARLY_RELEASE")
@@ -866,6 +1033,8 @@ class _Audit:
             self.issue("R18", obj, "UNKNOWN_FACT", True)
 
     def check_ready(self, pid):
+        if not self.need(pid not in self.ready, "R16", pid, "DUPLICATE_READY"):
+            return
         self.need(
             pid not in self.cancelled
             and pid not in self.held
@@ -895,8 +1064,11 @@ class _Audit:
                 )
         self.need({i.id for i in self.p[pid].bom} <= self.installed[pid], "R15", pid, "READY_BOM")
         self.ready[pid] = self.t
+        self.product_states[pid] = "READY"
         aid = next(a.id for a in self.a.values() if a.product_id == pid and a.code == "READY")
-        self.attempts[aid] = _Attempt(0, self.a[aid].modes[0].id, complete=True)
+        self.remember_attempt(
+            aid, _Attempt(0, self.a[aid].modes[0].id, complete=True, state="COMPLETED")
+        )
 
     def event_record(self, e):
         kind = e.kind
@@ -951,7 +1123,7 @@ class _Audit:
             ):
                 self.pending_waits.append(e)
                 return
-            att = self.attempts.setdefault(a.id, _Attempt(0, a.modes[0].id))
+            att = self.current_attempt(a.id, a.modes[0].id)
             self.need(
                 a.wait_h > 0 and d["until"] == self.t + a.wait_h and att.number == e.attempt,
                 "R02",
@@ -963,6 +1135,7 @@ class _Audit:
                     prev = self.attempts.get(edge.source)
                     self.need(prev is not None and prev.complete, "R02", a.id, "WAIT_PREDECESSOR")
             att.waiting = d["until"]
+            att.state = "WAITING_RELEASE"
         elif kind == "EXTERNAL":
             self.external(e, d)
         elif kind == "READY":
@@ -1188,13 +1361,19 @@ class _Audit:
                         for a in self.a.values()
                         if a.code == code and a.product_id == s["product_id"]
                     )
-                    self.attempts[a.id] = _Attempt(
-                        1,
-                        a.modes[0].id,
-                        len(a.modes[0].units) if code == "WPROOF" else 0,
-                        complete=code == "WPROOF",
+                    self.remember_attempt(
+                        a.id,
+                        _Attempt(
+                            1,
+                            a.modes[0].id,
+                            len(a.modes[0].units) if code == "WPROOF" else 0,
+                            complete=code == "WPROOF",
+                            state="COMPLETED" if code == "WPROOF" else "NOT_READY",
+                            prepared=code == "WPROOF",
+                        ),
                     )
                 self.held.discard(s["product_id"])
+                self.product_states[s["product_id"]] = "IN_PROCESS"
                 waiting = [
                     x
                     for x in self.pending_waits
@@ -1211,6 +1390,8 @@ class _Audit:
             self.residencies = {r for r in self.residencies if r[2] != pid}
             self.reserve(pid, "Q1", pid)
             self.locations[pid] = "Q1"
+            self.product_states[pid] = "QUARANTINED"
+            self.ready.pop(pid, None)
             self.move_count += 1
             self.move_hours += self.t - s["start_h"]
 
@@ -1309,6 +1490,9 @@ class _Audit:
             self.need(self.locations.get(eid) == item.location, "R01", eid, "POSITION_DISAGREEMENT")
             if isinstance(item, b.ProductState):
                 self.need(
+                    item.state == self.product_states[eid], "R13", eid, "PRODUCT_STATE_DISAGREEMENT"
+                )
+                self.need(
                     item.ready_h == self.ready.get(eid)
                     and (item.state in ("READY", "RECEIVED")) == (eid in self.ready),
                     "R15",
@@ -1335,7 +1519,8 @@ class _Audit:
             "FINAL_RESIDENCY_LEDGER",
         )
         self.need(
-            {(x.resource_id, x.owner) for x in self.s.locks} == set(self.locks.items()),
+            {(x.resource_id, x.owner) for x in self.s.locks} == set(self.locks.items())
+            and len(self.s.locks) == len(self.locks),
             "R05",
             self.c.id,
             "FINAL_LOCK_LEDGER",
@@ -1362,14 +1547,28 @@ class _Audit:
         self.need(
             len(observed_attempts) == len(self.s.attempts), "R09", self.c.id, "DUPLICATE_ATTEMPT"
         )
-        for aid, att in self.attempts.items():
-            item = observed_attempts.get((aid, att.number))
+        self.need(
+            set(observed_attempts) <= set(self.attempt_history),
+            "R09",
+            self.c.id,
+            "UNRECORDED_ATTEMPT",
+        )
+        for (aid, number), att in self.attempt_history.items():
+            item = observed_attempts.get((aid, number))
             if self.need(item is not None, "R09", aid, "MISSING_ATTEMPT_SUMMARY", True):
                 self.need(
                     item.completed_units == att.units and item.mode_id == att.mode,
                     "R09",
                     aid,
                     "ATTEMPT_SUMMARY_PROGRESS",
+                )
+                self.need(
+                    item.state == att.state
+                    and item.wait_until_h == att.waiting
+                    and item.prepared == att.prepared,
+                    "R09",
+                    aid,
+                    "ATTEMPT_STATE_DISAGREEMENT",
                 )
                 if self.a[aid].product_id not in self.cancelled and not att.invalid:
                     self.need(
@@ -1380,14 +1579,24 @@ class _Audit:
                     )
         self.need(set(self.s.failed_resources) == self.failed, "R13", self.c.id, "FAILURE_LEDGER")
         self.need(
-            {s.id for s in self.s.services} == set(self.services),
+            {s.id for s in self.s.services} == set(self.services)
+            and len(self.s.services) == len(self.services),
             "R13",
             self.c.id,
             "SERVICE_COVERAGE",
             True,
         )
+        for service in self.s.services:
+            if service.id in self.services:
+                self.need(
+                    json.loads(json.dumps(asdict(service))) == self.services[service.id],
+                    "R13",
+                    service.id,
+                    "SERVICE_STATE_DISAGREEMENT",
+                )
         self.need(
-            {x.material_id for x in self.s.materials} == set(self.materials),
+            {x.material_id for x in self.s.materials} == set(self.materials)
+            and len(self.s.materials) == len(self.materials),
             "R12",
             self.c.id,
             "MATERIAL_COVERAGE",
@@ -1409,12 +1618,19 @@ class _Audit:
             "QUALITY_HISTORY",
             True,
         )
+        self.need(
+            len({q.id for q in self.s.quality}) == len(self.s.quality),
+            "R11",
+            self.c.id,
+            "DUPLICATE_QUALITY_ID",
+        )
         for key, q in self.quality.items():
             if key not in observed:
                 continue
             item, a = observed[key], self.a[key[0]]
             self.need(
                 item.result == q["result"]
+                and item.product_id == a.product_id
                 and item.valid == q["valid"]
                 and item.time_h == q["time_h"]
                 and item.inspector_id == q["inspector"]
@@ -1425,7 +1641,20 @@ class _Audit:
                 "QUALITY_RECORD_DISAGREEMENT",
             )
         # Scenario is execution-only evidence, never a planning input.
+        self.need(
+            len({f.id for f in self.s.scenario.events}) == len(self.s.scenario.events),
+            "R13",
+            self.c.id,
+            "DUPLICATE_SCENARIO_FACT",
+        )
         for fact in self.s.scenario.events:
+            if fact.id in self.external_facts:
+                self.need(
+                    asdict(fact) == self.external_facts[fact.id],
+                    "R13",
+                    fact.entity_id,
+                    "SCENARIO_FACT_DISAGREEMENT",
+                )
             if fact.time_h <= self.window:
                 self.need(
                     fact.id in self.external_ids,
@@ -1819,6 +2048,12 @@ def check_run(
             "cancelled_h": audit.cancelled,
             "received_h": audit.received,
             "attempts": {aid: asdict(att) for aid, att in audit.attempts.items()},
+            "attempt_history": [
+                {"activity_id": aid, **asdict(att)}
+                for (aid, _), att in audit.attempt_history.items()
+            ],
+            "product_states": dict(audit.product_states),
+            "services": list(audit.services.values()),
             "locks": dict(audit.locks),
             "quality": [
                 {"activity_id": k[0], "attempt": k[1], **v} for k, v in audit.quality.items()

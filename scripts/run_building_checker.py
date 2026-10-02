@@ -32,7 +32,7 @@ def run(output):
     spec.loader.exec_module(witness)
     output.mkdir(parents=True, exist_ok=True)
     summary = {
-        "report_version": "S10-1.0",
+        "report_version": "S10-1.1",
         "scope": "SYNTHETIC_TEST_ONLY",
         "industrial_qualification": "NOT_ESTABLISHED",
         "normal": [],

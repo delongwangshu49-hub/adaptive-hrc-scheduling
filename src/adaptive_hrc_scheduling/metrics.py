@@ -22,12 +22,16 @@ def delivery_metrics(products, ready, cancelled, received, window_h, order_weigh
 
     C04 has no order weights: default to unit-weight order tardiness, grouping by
     order_id and using max product due_h as the explicitly declared order due.
-    A partially cancelled order is reported as cancelled, with products retained.
+    An order enters evaluation when its first member is released, retaining all
+    configured required members and their due dates, including future releases.
+    Product counters still cover only released products. A partially cancelled
+    order is reported as cancelled, with its entire membership retained.
     """
     rows = []
     orders = {}
+    released_orders = {p.order_id for p in products if p.release_h <= window_h}
     for p in products:
-        if p.release_h > window_h:
+        if p.order_id not in released_orders:
             continue
         c = ready.get(p.id)
         is_cancelled = p.id in cancelled
@@ -44,7 +48,8 @@ def delivery_metrics(products, ready, cancelled, received, window_h, order_weigh
             if not is_cancelled
             else None,
         }
-        rows.append(row)
+        if p.release_h <= window_h:
+            rows.append(row)
         orders.setdefault(p.order_id, []).append(row)
     order_rows = []
     weights = {oid: 1.0 for oid in orders} if order_weights is None else order_weights

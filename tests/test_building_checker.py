@@ -1,6 +1,7 @@
 """Independent single-defect mutations of raw evidence, never dispatched again."""
 
 import ast
+import hashlib
 import importlib.util
 import json
 import math
@@ -11,6 +12,7 @@ from pathlib import Path
 
 from adaptive_hrc_scheduling import checker, metrics
 from adaptive_hrc_scheduling.building_backend import BuildingBackend
+from adaptive_hrc_scheduling.contracts.codec import as_data, decode
 from adaptive_hrc_scheduling.domain import building as b
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -474,6 +476,401 @@ class BuildingCheckerTests(unittest.TestCase):
         r = self.assert_pass(w)
         self.assertEqual(r.metrics["repair_attempts"], 1)
         self.assertGreater(r.metrics["repair_service_h"], 1.5)
+
+    def matching_digest(self, config, snapshot=None):
+        # Test-only canonicalization, independent of the checker implementation.
+        normalized = as_data(decode(b.Configuration, as_data(config)))
+        raw = json.dumps(normalized, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
+        return replace(snapshot or self.s, config_sha256=hashlib.sha256(raw.encode()).hexdigest())
+
+    def assert_code(self, code, config, snapshot):
+        result = checker.check_run(config, snapshot)
+        self.assertNotEqual(result.status, "PASS")
+        self.assertIn(code, {f.code for f in result.findings})
+        self.assertNotIn("CONFIGURATION_DIGEST", {f.code for f in result.findings})
+        return result
+
+    def test_scenario_payload_substitution_cannot_erase_cancel(self):
+        event = b.WorldEvent("SCENARIO-CANCEL", 1, "CANCEL", "PRODUCT-1", None, None)
+        scenario = b.HiddenScenario("C04-1.0", self.c.id, 0, (event,))
+        w = BuildingBackend(self.c, scenario)
+        w.advance(2)
+        self.assert_pass(w)
+        s = mutate_event(
+            w.s, lambda e: e.kind == "EXTERNAL", lambda e: detail(e, kind="ORDER_ARRIVAL")
+        )
+        s = replace(s, products=(replace(s.products[0], state="RELEASED", cancelled=False),))
+        self.assert_code("SCENARIO_FACT_DISAGREEMENT", self.c, s)
+
+    def test_scenario_every_consumed_field_must_match(self):
+        event = b.WorldEvent("FACT", 1, "FAILURE", "CUT1", None, None)
+        w = BuildingBackend(self.c, b.HiddenScenario("C04-1.0", self.c.id, 0, (event,)))
+        w.advance(2)
+        self.assert_pass(w)
+        for change in (
+            {"kind": "REPAIR"},
+            {"entity_id": "WELD1"},
+            {"time_h": 3},
+            {"value": "PASS"},
+            {"attempt": 1},
+        ):
+            with self.subTest(change=change):
+                s = replace(w.s, scenario=replace(w.s.scenario, events=(replace(event, **change),)))
+                self.assert_code("SCENARIO_FACT_DISAGREEMENT", self.c, s)
+
+    def test_scenario_missing_duplicate_and_future_events(self):
+        event = b.WorldEvent("FACT", 3, "FAILURE", "CUT1", None, None)
+        w = BuildingBackend(self.c, b.HiddenScenario("C04-1.0", self.c.id, 0, (event,)))
+        w.advance(2)
+        self.assert_pass(w)
+        missing = replace(w.s, scenario=replace(w.s.scenario, events=(replace(event, time_h=1),)))
+        r = self.assert_code("MISSING_EXOGENOUS_FACT", self.c, missing)
+        self.assertEqual(r.status, "INCOMPLETE")
+        duplicate = replace(w.s, scenario=replace(w.s.scenario, events=(event, event)))
+        self.assert_code("DUPLICATE_SCENARIO_FACT", self.c, duplicate)
+
+    def test_manual_external_facts_need_not_be_predeclared(self):
+        w = BuildingBackend(self.c)
+        w.advance(1)
+        witness.fact(w, "FAILURE", "CUT1")
+        self.assert_pass(w)
+
+    def test_all_frozen_equipment_cannot_be_removed_with_matching_logs(self):
+        for code in (
+            "CUT",
+            "W-B",
+            "W-T",
+            "W-3D",
+            "MV-IN-B",
+            "MV-IN-T",
+            "MV-B",
+            "MV-T",
+            "JOIN-IN",
+            "MOVE-F",
+            "MOVE-OUT",
+            "Q-MEP",
+            "TEST-SET",
+            "Q-POND",
+            "Q-EXT",
+            "Q-FIN",
+        ):
+            with self.subTest(code=code):
+                c = replace(
+                    self.c,
+                    activities=tuple(
+                        replace(
+                            a,
+                            modes=tuple(
+                                replace(m, units=tuple(replace(u, equipment=()) for u in m.units))
+                                for m in a.modes
+                            ),
+                        )
+                        if a.code == code
+                        else a
+                        for a in self.c.activities
+                    ),
+                )
+                s = self.matching_digest(c)
+                s = replace(
+                    s,
+                    events=tuple(
+                        detail(e, equipment=[])
+                        if e.entity_id == "PRODUCT-1." + code
+                        and e.kind in ("UNIT_START", "UNIT_COMPLETE")
+                        else e
+                        for e in s.events
+                    ),
+                )
+                self.assert_code("FROZEN_EQUIPMENT_REQUIREMENTS", c, s)
+
+    def test_frozen_roles_and_qualifications_independent_of_configuration(self):
+        for a in self.c.activities:
+            for m in a.modes:
+                for index, u in enumerate(m.units):
+                    if not u.roles:
+                        continue
+                    with self.subTest(code=a.code, mode=m.kind, unit=index):
+                        bad = replace(
+                            u,
+                            roles=(
+                                replace(
+                                    u.roles[0],
+                                    qualification="QA"
+                                    if u.roles[0].qualification != "QA"
+                                    else "PREP",
+                                ),
+                            )
+                            + u.roles[1:],
+                        )
+                        changed = replace(m, units=m.units[:index] + (bad,) + m.units[index + 1 :])
+                        c = replace(
+                            self.c,
+                            activities=tuple(
+                                replace(
+                                    x,
+                                    modes=tuple(changed if mode == m else mode for mode in x.modes),
+                                )
+                                if x.id == a.id
+                                else x
+                                for x in self.c.activities
+                            ),
+                        )
+                        self.assert_code("FROZEN_ROLE_REQUIREMENTS", c, self.matching_digest(c))
+                        break
+
+    def test_frozen_bom_quantity_and_unit_with_matching_digest(self):
+        for change in ({"quantity": 100}, {"unit": "kg"}):
+            p = self.c.products[0]
+            c = replace(
+                self.c, products=(replace(p, bom=(replace(p.bom[0], **change),) + p.bom[1:]),)
+            )
+            self.assert_code("FROZEN_BOM_QUANTITY_UNIT", c, self.matching_digest(c))
+
+    def test_frozen_work_cannot_be_relabelled_as_passive(self):
+        a = next(a for a in self.c.activities if a.code == "CUT")
+        bad = replace(a, wait_h=1, modes=(replace(a.modes[0], kind="WAIT", units=()),))
+        c = replace(self.c, activities=tuple(bad if x.id == a.id else x for x in self.c.activities))
+        self.assert_code("FROZEN_LABOR_UNITS", c, self.matching_digest(c))
+
+    def test_snapshot_cannot_invent_completed_attempt(self):
+        s = replace(
+            self.s,
+            attempts=self.s.attempts + (replace(self.s.attempts[0], number=77, state="COMPLETED"),),
+        )
+        self.assert_code("UNRECORDED_ATTEMPT", self.c, s)
+
+    def test_snapshot_quality_owner_and_exact_received_state(self):
+        s = replace(
+            self.s, quality=(replace(self.s.quality[0], product_id="OTHER"),) + self.s.quality[1:]
+        )
+        self.assert_code("QUALITY_RECORD_DISAGREEMENT", self.c, s)
+        duplicate = replace(self.s.quality[1], id=self.s.quality[0].id)
+        self.assert_code(
+            "DUPLICATE_QUALITY_ID",
+            self.c,
+            replace(self.s, quality=(self.s.quality[0], duplicate) + self.s.quality[2:]),
+        )
+        s = replace(self.s, products=(replace(self.s.products[0], state="READY"),))
+        self.assert_code("PRODUCT_STATE_DISAGREEMENT", self.c, s)
+
+    def handover_prefix(self):
+        w = self.before("W-B")
+        run = self.start(w, "PRODUCT-1.W-B")
+        w.advance(run.end_h)
+        w.advance(24)
+        self.assertTrue(w.handover("PRODUCT-1.W-B", "W1", "W2").accepted)
+        self.assert_pass(w)
+        return w
+
+    def test_service_snapshot_fields_and_duplicates(self):
+        w = self.handover_prefix()
+        for change in (
+            {"people": ("P1",)},
+            {"end_h": 999},
+            {"state": "EMERGENCY_HOLD"},
+            {"product_id": "OTHER"},
+            {"outgoing_person": "P1"},
+        ):
+            with self.subTest(change=change):
+                s = replace(w.s, services=(replace(w.s.services[0], **change),))
+                self.assert_code("SERVICE_STATE_DISAGREEMENT", w.config, s)
+        self.assert_code("SERVICE_COVERAGE", w.config, replace(w.s, services=w.s.services * 2))
+
+    def test_attempt_preparation_and_wait_deadline_are_reconstructed(self):
+        for w, code, change in (
+            (self.handover_prefix(), "W-B", {"prepared": False}),
+            (self.before("WAIT-COAT"), "WAIT-COAT", {"wait_until_h": 999}),
+            (self.before("WAIT-COAT"), "WAIT-COAT", {"state": "PAUSED_AT_CHECKPOINT"}),
+        ):
+            s = replace(
+                w.s,
+                attempts=tuple(
+                    replace(a, **change) if a.activity_id == "PRODUCT-1." + code else a
+                    for a in w.s.attempts
+                ),
+            )
+            self.assert_code("ATTEMPT_STATE_DISAGREEMENT", w.config, s)
+
+    def repaired_prefix(self):
+        w = self.before("Q-POND")
+        run = self.start(w, "PRODUCT-1.Q-POND")
+        w.advance(run.end_h)
+        witness.fact(w, "QUALITY_RESULT", "PRODUCT-1.Q-POND", "FAIL", 0)
+        for _ in range(500):
+            receipt = w.repair_quality("PRODUCT-1.Q-POND")
+            if receipt.accepted:
+                break
+            if receipt.reason == "FATIGUE_PROTECTION":
+                w.rest(("QA1", "T1"), 0.25)
+            w.advance(w.time + 0.25)
+        self.assertTrue(receipt.accepted)
+        w.advance(w.s.services[0].end_h)
+        self.assert_pass(w)
+        return w
+
+    def test_repair_retains_old_attempts_and_verifies_them(self):
+        w = self.repaired_prefix()
+        old = next(a for a in w.s.attempts if a.activity_id == "PRODUCT-1.WPROOF" and a.number == 0)
+        s = replace(w.s, attempts=tuple(a for a in w.s.attempts if a != old))
+        self.assertEqual(
+            self.assert_code("MISSING_ATTEMPT_SUMMARY", w.config, s).status, "INCOMPLETE"
+        )
+        s = replace(
+            w.s, attempts=tuple(replace(a, prepared=False) if a == old else a for a in w.s.attempts)
+        )
+        self.assert_code("ATTEMPT_STATE_DISAGREEMENT", w.config, s)
+
+    def test_invalidated_attempt_and_product_cannot_claim_healthy_state(self):
+        w = self.before("MOVE-F")
+        witness.fact(w, "INVALIDATE", "PRODUCT-1.Q-STR")
+        self.assert_pass(w)
+        s = replace(w.s, products=(replace(w.s.products[0], state="IN_PROCESS"),))
+        self.assert_code("PRODUCT_STATE_DISAGREEMENT", w.config, s)
+        s = replace(
+            w.s,
+            attempts=tuple(
+                replace(a, state="COMPLETED") if a.activity_id == "PRODUCT-1.Q-STR" else a
+                for a in w.s.attempts
+            ),
+        )
+        self.assert_code("ATTEMPT_STATE_DISAGREEMENT", w.config, s)
+
+    def test_safe_move_after_invalidation_preserves_exact_state(self):
+        w = self.before("MOVE-F")
+        run = self.start(w, "PRODUCT-1.MOVE-F")
+        w.advance(run.start_h + 0.5)
+        witness.fact(w, "INVALIDATE", "PRODUCT-1.Q-STR")
+        self.assert_pass(w)
+        w.advance(run.end_h)
+        self.assert_pass(w)
+
+    def test_nonmove_failure_retains_failed_attempt(self):
+        w = self.before("W-B")
+        run = self.start(w, "PRODUCT-1.W-B")
+        w.advance(run.start_h + 0.1)
+        witness.fact(w, "FAILURE", "WELD1")
+        self.assert_pass(w)
+
+    def test_duplicate_ready_with_fresh_id_preserves_first_time(self):
+        w = witness.run_chain()
+        first = w.time
+        e = next(e for e in w.s.events if e.kind == "READY")
+        for time in (first, first + 0.5):
+            w.advance(time)
+            self.assert_pass(w)
+            duplicate = replace(e, id=f"EV-{len(w.s.events) + 1}", time_h=time)
+            s = replace(
+                w.s,
+                events=w.s.events + (duplicate,),
+                products=(replace(w.s.products[0], ready_h=time),),
+            )
+            r = self.assert_code("DUPLICATE_READY", w.config, s)
+            self.assertEqual(r.metrics["products"][0]["ready_h"], first)
+
+    def test_ready_after_invalidation_is_not_a_new_valid_completion(self):
+        w = witness.run_chain()
+        w.advance(w.time + 0.5)
+        e = next(e for e in w.s.events if e.kind == "READY")
+        witness.fact(w, "INVALIDATE", "PRODUCT-1.Q-STR")
+        self.assert_pass(w)
+        s = replace(
+            w.s, events=w.s.events + (replace(e, id=f"EV-{len(w.s.events) + 1}", time_h=w.time),)
+        )
+        self.assert_code("READY_STATE", w.config, s)
+
+    def test_cancelled_wait_stops_but_physical_costs_continue(self):
+        w = self.before("WAIT-COAT")
+        w.advance(w.time + 0.25)
+        witness.fact(w, "CANCEL", "PRODUCT-1")
+        before = self.assert_pass(w)
+        w.advance(w.time + 1)
+        after = self.assert_pass(w)
+        self.assertAlmostEqual(before.metrics["process_wait_activity_h"], 0.25)
+        self.assertEqual(
+            after.metrics["process_wait_activity_h"], before.metrics["process_wait_activity_h"]
+        )
+        self.assertAlmostEqual(after.metrics["wip_product_h"] - before.metrics["wip_product_h"], 1)
+        self.assertAlmostEqual(
+            after.metrics["idle_residency_product_h"] - before.metrics["idle_residency_product_h"],
+            1,
+        )
+        self.assertEqual(after.metrics["cancelled_products"], 1)
+
+    def test_cancelled_running_unit_keeps_safe_tail_labor(self):
+        w = BuildingBackend(self.c)
+        run = self.start(w, "PRODUCT-1.KIT")
+        w.advance(run.start_h + 0.1)
+        witness.fact(w, "CANCEL", "PRODUCT-1")
+        w.advance(run.end_h)
+        r = self.assert_pass(w)
+        self.assertAlmostEqual(r.metrics["labor_person_h"], run.end_h - run.start_h)
+
+    def test_cancelled_attempt_state_is_not_ignored(self):
+        w = self.before("WAIT-COAT")
+        witness.fact(w, "CANCEL", "PRODUCT-1")
+        self.assert_pass(w)
+        s = replace(
+            w.s,
+            attempts=tuple(
+                replace(a, state="WAITING_RELEASE") if a.activity_id == "PRODUCT-1.WAIT-COAT" else a
+                for a in w.s.attempts
+            ),
+        )
+        self.assert_code("ATTEMPT_STATE_DISAGREEMENT", w.config, s)
+
+    def test_order_keeps_unreleased_required_member(self):
+        p = replace(self.c.products[0], due_h=10)
+        future = replace(p, id="PRODUCT-2", release_h=30, due_h=40)
+        r = metrics.delivery_metrics((p, future), {p.id: 12}, {}, {}, 20, {p.order_id: 3})
+        order = r["orders"][0]
+        self.assertEqual(r["released_products"], 1)
+        self.assertEqual(order["product_ids"], [p.id, future.id])
+        self.assertEqual(order["due_h"], 40)
+        self.assertTrue(order["incomplete"])
+        self.assertIsNone(r["order_tardiness_h"])
+        self.assertEqual(r["order_tardiness_lower_bound_h"], 0)
+        r = metrics.delivery_metrics(
+            (p, future), {p.id: 12, future.id: 45}, {}, {}, 50, {p.order_id: 3}
+        )
+        self.assertEqual(r["orders"][0]["ready_h"], 45)
+        self.assertEqual(r["order_tardiness_h"], 15)
+
+    def test_wholly_unreleased_order_not_evaluated_and_cancellation_members_retained(self):
+        p = self.c.products[0]
+        future = replace(p, id="PRODUCT-2", release_h=300, due_h=350)
+        other = replace(future, id="PRODUCT-3", order_id="ORDER-2")
+        r = metrics.delivery_metrics((p, future, other), {p.id: 150}, {future.id: 200}, {}, 240)
+        self.assertEqual(len(r["orders"]), 1)
+        self.assertTrue(r["orders"][0]["cancelled"])
+        self.assertEqual(r["orders"][0]["product_ids"], [p.id, future.id])
+        self.assertIsNone(r["orders"][0]["tardiness_h"])
+
+    def test_full_checker_order_membership_crosses_release_window(self):
+        c = witness.generator.synthetic_fixture(witness.generator.build_configuration(products=2))
+        c = replace(
+            c,
+            products=(
+                c.products[0],
+                replace(c.products[1], order_id=c.products[0].order_id, release_h=300, due_h=350),
+            ),
+        )
+        empty = BuildingBackend(c).s
+        s = replace(
+            self.s,
+            config_id=c.id,
+            products=self.s.products + empty.products[1:],
+            components=self.s.components
+            + tuple(x for x in empty.components if x.component_id.startswith("PRODUCT-2.")),
+            materials=self.s.materials
+            + tuple(x for x in empty.materials if x.material_id.startswith("PRODUCT-2.")),
+            events=tuple(replace(e, config_id=c.id) for e in self.s.events),
+            scenario=replace(self.s.scenario, config_id=c.id),
+        )
+        r = checker.check_run(c, self.matching_digest(c, s))
+        self.assertEqual(r.status, "PASS", r.findings)
+        self.assertEqual(r.metrics["orders"][0]["product_ids"], ["PRODUCT-1", "PRODUCT-2"])
+        self.assertTrue(r.metrics["orders"][0]["incomplete"])
+        self.assertIsNone(r.metrics["order_tardiness_h"])
 
 
 if __name__ == "__main__":
