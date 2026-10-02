@@ -1,0 +1,252 @@
+{
+  "version": "S12-1.0",
+  "scope": "SYNTHETIC_LIGHT_FEEDBACK_LOOP",
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "default_hr": "DISABLED",
+  "cases": [
+    {
+      "id": "w1-complete",
+      "status": "COMPLETED",
+      "reason": "HORIZON_REACHED",
+      "checker_status": "PASS",
+      "report_version": "S10-1.1",
+      "decision_findings": [],
+      "turns": 379,
+      "dispatches": 72,
+      "end_h": 240.0,
+      "products": [
+        {
+          "id": "PRODUCT-1",
+          "state": "READY",
+          "ready_h": 147.005
+        }
+      ],
+      "feedback_kinds": [
+        "PROCESS_RELEASE",
+        "QUALITY_RESULT"
+      ]
+    },
+    {
+      "id": "w2-complete",
+      "status": "COMPLETED",
+      "reason": "HORIZON_REACHED",
+      "checker_status": "PASS",
+      "report_version": "S10-1.1",
+      "decision_findings": [],
+      "turns": 383,
+      "dispatches": 74,
+      "end_h": 240.0,
+      "products": [
+        {
+          "id": "PRODUCT-1",
+          "state": "READY",
+          "ready_h": 147.5075
+        }
+      ],
+      "feedback_kinds": [
+        "PROCESS_RELEASE",
+        "QUALITY_RESULT"
+      ]
+    },
+    {
+      "id": "default-evidence-hold",
+      "status": "UNFINISHED",
+      "reason": "HORIZON_REACHED",
+      "checker_status": "PASS",
+      "report_version": "S10-1.1",
+      "decision_findings": [],
+      "turns": 10,
+      "dispatches": 0,
+      "end_h": 8.0,
+      "products": [
+        {
+          "id": "PRODUCT-1",
+          "state": "RELEASED",
+          "ready_h": null
+        }
+      ],
+      "feedback_kinds": []
+    },
+    {
+      "id": "future-order",
+      "status": "COMPLETED",
+      "reason": "HORIZON_REACHED",
+      "checker_status": "PASS",
+      "report_version": "S10-1.1",
+      "decision_findings": [],
+      "turns": 766,
+      "dispatches": 144,
+      "end_h": 480.0,
+      "products": [
+        {
+          "id": "PRODUCT-1",
+          "state": "RECEIVED",
+          "ready_h": 147.005
+        },
+        {
+          "id": "PRODUCT-2",
+          "state": "RECEIVED",
+          "ready_h": 245.5
+        }
+      ],
+      "feedback_kinds": [
+        "PROCESS_RELEASE",
+        "QUALITY_RESULT",
+        "RECEIVED"
+      ]
+    },
+    {
+      "id": "failure-repair",
+      "status": "COMPLETED",
+      "reason": "HORIZON_REACHED",
+      "checker_status": "PASS",
+      "report_version": "S10-1.1",
+      "decision_findings": [],
+      "turns": 376,
+      "dispatches": 72,
+      "end_h": 240.0,
+      "products": [
+        {
+          "id": "PRODUCT-1",
+          "state": "READY",
+          "ready_h": 149.5
+        }
+      ],
+      "feedback_kinds": [
+        "FAILURE",
+        "PROCESS_RELEASE",
+        "QUALITY_RESULT",
+        "REPAIR"
+      ]
+    },
+    {
+      "id": "material-feedback",
+      "status": "COMPLETED",
+      "reason": "HORIZON_REACHED",
+      "checker_status": "PASS",
+      "report_version": "S10-1.1",
+      "decision_findings": [],
+      "turns": 376,
+      "dispatches": 72,
+      "end_h": 240.0,
+      "products": [
+        {
+          "id": "PRODUCT-1",
+          "state": "READY",
+          "ready_h": 149.5
+        }
+      ],
+      "feedback_kinds": [
+        "MATERIAL_ARRIVAL",
+        "MATERIAL_IDENTIFY",
+        "MATERIAL_RELEASE",
+        "PROCESS_RELEASE",
+        "QUALITY_RESULT"
+      ]
+    },
+    {
+      "id": "quality-delay",
+      "status": "COMPLETED",
+      "reason": "HORIZON_REACHED",
+      "checker_status": "PASS",
+      "report_version": "S10-1.1",
+      "decision_findings": [],
+      "turns": 379,
+      "dispatches": 72,
+      "end_h": 240.0,
+      "products": [
+        {
+          "id": "PRODUCT-1",
+          "state": "READY",
+          "ready_h": 193.0
+        }
+      ],
+      "feedback_kinds": [
+        "PROCESS_RELEASE",
+        "QUALITY_RESULT"
+      ]
+    },
+    {
+      "id": "quality-fail",
+      "status": "UNFINISHED",
+      "reason": "HORIZON_REACHED",
+      "checker_status": "PASS",
+      "report_version": "S10-1.1",
+      "decision_findings": [],
+      "turns": 305,
+      "dispatches": 26,
+      "end_h": 240.0,
+      "products": [
+        {
+          "id": "PRODUCT-1",
+          "state": "QUALITY_HOLD",
+          "ready_h": null
+        }
+      ],
+      "feedback_kinds": [
+        "QUALITY_RESULT"
+      ]
+    },
+    {
+      "id": "cancel-clearance",
+      "status": "CLOSED_WITH_CANCELLATION",
+      "reason": "HORIZON_REACHED",
+      "checker_status": "PASS",
+      "report_version": "S10-1.1",
+      "decision_findings": [],
+      "turns": 304,
+      "dispatches": 24,
+      "end_h": 240.0,
+      "products": [
+        {
+          "id": "PRODUCT-1",
+          "state": "QUARANTINED",
+          "ready_h": null
+        }
+      ],
+      "feedback_kinds": [
+        "CANCEL"
+      ]
+    },
+    {
+      "id": "cancel-raw-hold",
+      "status": "UNFINISHED",
+      "reason": "HORIZON_REACHED",
+      "checker_status": "PASS",
+      "report_version": "S10-1.1",
+      "decision_findings": [],
+      "turns": 21,
+      "dispatches": 1,
+      "end_h": 16.0,
+      "products": [
+        {
+          "id": "PRODUCT-1",
+          "state": "CANCEL_PENDING",
+          "ready_h": null
+        }
+      ],
+      "feedback_kinds": [
+        "CANCEL"
+      ]
+    },
+    {
+      "id": "short-window",
+      "status": "UNFINISHED",
+      "reason": "HORIZON_REACHED",
+      "checker_status": "PASS",
+      "report_version": "S10-1.1",
+      "decision_findings": [],
+      "turns": 5,
+      "dispatches": 2,
+      "end_h": 1.0,
+      "products": [
+        {
+          "id": "PRODUCT-1",
+          "state": "IN_PROCESS",
+          "ready_h": null
+        }
+      ],
+      "feedback_kinds": []
+    }
+  ]
+}

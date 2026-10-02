@@ -507,14 +507,20 @@ class BuildingBackend:
         )
         self._revision()
 
-    def advance(self, until):
+    def advance(self, until, *, stop_on_feedback=False):
+        """Advance normally, or return at the first new actual event for S12.
+
+        The optional wakeup does not expose future event times or change the
+        default C05/S11 run-to-deadline behavior.
+        """
+        require(type(stop_on_feedback) is bool, "FEEDBACK_WAKE_FLAG")
         require(
             type(until) in (int, float) and math.isfinite(until) and until >= self.time,
             "ADVANCE_TIME",
         )
         require(until == self.time or not self._emergency_hold(), "EMERGENCY_HOLD_NO_SAFE_PATH")
         candidate = copy.copy(self)
-        candidate._advance(float(until))
+        candidate._advance(float(until), stop_on_feedback=stop_on_feedback)
         self.s = candidate.s
         return Receipt(
             not self._emergency_hold(),
@@ -524,7 +530,7 @@ class BuildingBackend:
     def _emergency_hold(self):
         return any(r.state == "EMERGENCY_HOLD" for r in self.s.running + self.s.services)
 
-    def _advance(self, until):
+    def _advance(self, until, *, stop_on_feedback=False):
         while self.time < until:
             if self._emergency_hold():
                 # Commit the actual prefix up to the new emergency; never undo its event.
@@ -588,12 +594,15 @@ class BuildingBackend:
                     else:
                         boundaries.append(math.nextafter(self.time + to_cap, self.time))
             next_time = min(t for t in boundaries if t > self.time)
+            event_count = len(self.s.events)
             self._integrate_to(next_time)
             self._set(time_h=next_time)
             self._complete_tick()
             self._external_tick()
             self._start_waits()
             self._revision()
+            if stop_on_feedback and len(self.s.events) != event_count:
+                return
 
     def _integrate_to(self, end):
         humans = []

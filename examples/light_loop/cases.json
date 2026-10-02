@@ -1,0 +1,111 @@
+[
+  {
+    "id": "w1-complete",
+    "expected_status": "COMPLETED"
+  },
+  {
+    "id": "w2-complete",
+    "variant": "SR-W2",
+    "expected_status": "COMPLETED"
+  },
+  {
+    "id": "default-evidence-hold",
+    "synthetic": false,
+    "options": {
+      "horizon_h": 8
+    },
+    "expected_status": "UNFINISHED"
+  },
+  {
+    "id": "future-order",
+    "products": 2,
+    "future_release_h": 16,
+    "feedback": {
+      "receive_delay_h": 2
+    },
+    "options": {
+      "horizon_h": 480
+    },
+    "expected_status": "COMPLETED"
+  },
+  {
+    "id": "failure-repair",
+    "events": [
+      [
+        0,
+        "FAILURE",
+        "CUT1"
+      ],
+      [
+        4,
+        "REPAIR",
+        "CUT1"
+      ]
+    ],
+    "expected_status": "COMPLETED"
+  },
+  {
+    "id": "material-feedback",
+    "missing_material": "PRODUCT-1.KIT-CUT",
+    "events": [
+      [
+        2,
+        "MATERIAL_ARRIVAL",
+        "PRODUCT-1.KIT-CUT"
+      ],
+      [
+        3,
+        "MATERIAL_IDENTIFY",
+        "PRODUCT-1.KIT-CUT"
+      ],
+      [
+        4,
+        "MATERIAL_RELEASE",
+        "PRODUCT-1.KIT-CUT"
+      ]
+    ],
+    "expected_status": "COMPLETED"
+  },
+  {
+    "id": "quality-delay",
+    "feedback": {
+      "quality_delay_h": 2
+    },
+    "expected_status": "COMPLETED"
+  },
+  {
+    "id": "quality-fail",
+    "feedback": {
+      "fail_quality": "Q-STR"
+    },
+    "expected_status": "UNFINISHED"
+  },
+  {
+    "id": "cancel-clearance",
+    "feedback": {
+      "cancel_code": "W-3D"
+    },
+    "expected_status": "CLOSED_WITH_CANCELLATION"
+  },
+  {
+    "id": "cancel-raw-hold",
+    "events": [
+      [
+        0.2,
+        "CANCEL",
+        "PRODUCT-1"
+      ]
+    ],
+    "options": {
+      "horizon_h": 16
+    },
+    "expected_status": "UNFINISHED"
+  },
+  {
+    "id": "short-window",
+    "options": {
+      "horizon_h": 1
+    },
+    "expected_status": "UNFINISHED"
+  }
+]

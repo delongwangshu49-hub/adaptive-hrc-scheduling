@@ -28,6 +28,8 @@ PR083补录S11 r1确切验收、发布批准及实际回执；PR084要求本步�
 
 PR085随后明确批准上述三组问题的有限本地修复及必要回归、说明、治理和新审阅包。r1发布事实保持；r2另行验收/批准，S12—S28未启动。
 
+PR086补录S11 r2确切验收、发布批准与实际回执；PR087单独授权新对话S12在现有main直接开展本地闭环实现、验证及确切审阅包，不建分支/worktree。S13—S28及S12新快照发布仍未授权；以上旧记录保留各自历史时点。
+
 ## 记录规则
 
 - 每条记录表达一个实质性指令或决策；普通交流和反复表达不逐句复制。
@@ -3074,6 +3076,81 @@ PR085随后明确批准上述三组问题的有限本地修复及必要回归、
         "docs/steps/S11.md"
       ],
       "limit": "S11_THREE_LOCAL_REPAIRS_ONLY_R2_REQUIRES_SEPARATE_ACCEPTANCE_AND_PUBLICATION_APPROVAL_NO_S12"
+    },
+    {
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "HUMAN_CONFIRMED",
+      "id": "PR086",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S11",
+        "parameters": {
+          "step_id": "S11",
+          "packet_id": "S11-20261002-r2",
+          "decision": "ACCEPT_AND_APPROVE",
+          "decision_id": "S11-R2-APPROVAL-001",
+          "packet_sha256": "55663b2008cde89fab6162864ac52ba79602f6b0d1401784935a15053e600820",
+          "branch": "main",
+          "tag": "step-S11-r2",
+          "permitted_remote_actions": [
+            "EXACT_STAGE",
+            "ONE_COMMIT",
+            "NEW_ANNOTATED_TAG",
+            "NONFORCE_PUSH_MAIN_AND_TAG",
+            "REMOTE_AND_CPU_CI_VERIFICATION"
+          ]
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_AND_APPROVED_EXACT_S11_R2_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "PUBLISHED_APPROVED_SNAPSHOT",
+        "VERIFIED_REMOTE_OBJECTS_AND_CI",
+        "PRESERVED_RECEIPT"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S11.md"
+      ],
+      "limit": "S11_R2_SNAPSHOT_ONLY_NO_S12_PUBLICATION_PERMISSION"
+    },
+    {
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "HUMAN_CONFIRMED",
+      "id": "PR087",
+      "human_command": {
+        "operation": "START_STEP",
+        "target": "S12",
+        "parameters": {
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "scope": [
+            "CAUSAL_LIGHT_FEEDBACK_LOOP",
+            "OBSERVED_STATE_DYNAMIC_REDISPATCH",
+            "PRESERVE_EXECUTION_COMMITMENTS",
+            "NECESSARY_REGRESSION_DOCUMENTATION_GOVERNANCE_AND_EXACT_REVIEW_PACKET"
+          ],
+          "S13_S28": "NOT_AUTHORIZED",
+          "new_publication": false
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_NEW_S12_CHAT_AND_DIRECT_LOCAL_IMPLEMENTATION"
+      ],
+      "assistant_support": [
+        "VERIFIED_HANDOFF_AND_PROTECTED_HISTORY",
+        "IMPLEMENTED_AND_TESTED_LIGHT_FEEDBACK_LOOP",
+        "PREPARED_REVIEW_CANDIDATE"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S12.md"
+      ],
+      "limit": "LOCAL_S12_ONLY_NO_STAGE_COMMIT_TAG_PUSH_PR_ATTACHMENT_OR_REMOTE_METADATA_CHANGE"
     }
   ]
 }
