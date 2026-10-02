@@ -1,5 +1,9 @@
 # C00—C05 工作区与内部一致性收尾
 
+## r2实际发布补录与后续状态（PR076—PR077）
+
+2026-10-02：C04-C05-20261002-r2已VERIFIED / ACCEPTED / APPROVED / PUBLISHED；提交`58a01ddf8f31a2f7ba54b4fe4cfcdf1939ec786b`，标签`step-C05-r2`，远端149文件匹配。[Windows/Ubuntu CPU CI](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36980052639)均成功，各平台项目/独立wheel各249项。实际回执见LOG073；本次仅补录，未重跑远端CI。下文r2待审、未发布及S10未启动字段均为原封存时点，不改写原包。S10现已由PR077另行授权，本地实现与新快照审阅见当前S10步骤卡；旧发布批准不外推。
+
 ## r2有限修复收尾（当前）
 
 packet_id `C04-C05-20261002-r2`；PR074授权有限本地修复，PR075澄清J2同产品双框驻留、工装独占。r1原收尾与PR072发布事实保留；下文r1待审字段是历史时点。r2六项审阅问题的代码/文档修复与针对性回归已完成，逐项证据见[建筑执行验证](building_execution.md)。

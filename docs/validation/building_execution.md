@@ -1,6 +1,10 @@
 # C04—C05 建筑执行验证
 
-## r2有限修复的当前结果（PR074—PR075）
+## r2实际发布补录与后续状态（PR076—PR077）
+
+2026-10-02：C04-C05-20261002-r2已VERIFIED / ACCEPTED / APPROVED / PUBLISHED；提交`58a01ddf8f31a2f7ba54b4fe4cfcdf1939ec786b`，标签`step-C05-r2`，远端149文件匹配。[Windows/Ubuntu CPU CI](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/36980052639)均成功，各平台项目/独立wheel各249项。实际回执见LOG073；本次仅补录，未重跑远端CI。下文r2待审、未发布及S10未启动字段均为原封存时点，不改写原包。S10现已由PR077另行授权，本地实现与新快照审阅见当前S10步骤卡；旧发布批准不外推。
+
+## r2有限修复的封存结果（PR074—PR075）
 
 r1已按PR072验收并发布；下文原r1结果与失败记录保留其时点。r2只修复全审所列六项问题及必要集成边界，工作VERIFIED，人工PENDING_REVIEW，上传NOT_APPROVED，远端NOT_PUBLISHED；r2远端CI NOT_RUN。
 

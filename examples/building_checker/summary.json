@@ -1,0 +1,614 @@
+{
+  "report_version": "S10-1.0",
+  "scope": "SYNTHETIC_TEST_ONLY",
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "normal": [
+    {
+      "variant": "SR-W1",
+      "status": "PASS",
+      "metrics": {
+        "products": [
+          {
+            "product_id": "PRODUCT-1",
+            "order_id": "ORDER-1",
+            "due_h": 168,
+            "ready_h": 149.598500771668,
+            "received_h": 150.598500771668,
+            "cancelled": false,
+            "incomplete": false,
+            "tardiness_h": 0.0,
+            "tardiness_lower_bound_h": 0.0
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "ORDER-1",
+            "weight": 1.0,
+            "due_h": 168,
+            "product_ids": [
+              "PRODUCT-1"
+            ],
+            "ready_h": 149.598500771668,
+            "cancelled": false,
+            "incomplete": false,
+            "tardiness_h": 0.0,
+            "tardiness_lower_bound_h": 0.0
+          }
+        ],
+        "released_products": 1,
+        "ready_products": 1,
+        "incomplete_products": 0,
+        "cancelled_products": 0,
+        "received_products": 1,
+        "order_tardiness_h": 0.0,
+        "order_tardiness_lower_bound_h": 0.0,
+        "order_weight_basis": "UNIT_WEIGHT_C04_NO_WEIGHT_FIELD",
+        "window_h": 240.0,
+        "people": {
+          "P1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 6.601098688671082,
+            "peak": 0.40599320000000017,
+            "hours": {
+              "WORK": 3.234592529750978,
+              "WAIT": 76.76540747024902,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0
+            },
+            "covered_until_h": 240.0
+          },
+          "W1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 12.969157717571601,
+            "peak": 0.7796922829585587,
+            "hours": {
+              "WAIT": 70.53489672664146,
+              "WORK": 9.215103273358539,
+              "REST": 5.25,
+              "OFF_SHIFT": 155.0
+            },
+            "covered_until_h": 240.0
+          },
+          "W2": {
+            "fatigue": 0.0,
+            "exposure_F_h": 6.912400549530748,
+            "peak": 0.5295433457495541,
+            "hours": {
+              "WAIT": 76.54197426346497,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 3.4580257365350313
+            },
+            "covered_until_h": 240.0
+          },
+          "OP1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 5.292000000000005,
+            "peak": 0.28,
+            "hours": {
+              "WAIT": 80.0,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0
+            },
+            "covered_until_h": 240.0
+          },
+          "AF1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 10.401130981610367,
+            "peak": 0.3768379197806757,
+            "hours": {
+              "WAIT": 70.52546027259308,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 9.474539727406913
+            },
+            "covered_until_h": 240.0
+          },
+          "AF2": {
+            "fatigue": 0.0,
+            "exposure_F_h": 8.298896495695432,
+            "peak": 0.2913041824890253,
+            "hours": {
+              "WAIT": 73.69800518229778,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 6.301994817702216
+            },
+            "covered_until_h": 240.0
+          },
+          "E1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 8.019595163276415,
+            "peak": 0.2836380433324939,
+            "hours": {
+              "WAIT": 74.34923522908366,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 5.650764770916339
+            },
+            "covered_until_h": 240.0
+          },
+          "PL1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 8.206352690573745,
+            "peak": 0.2844489688193789,
+            "hours": {
+              "WAIT": 74.32321550980404,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 5.676784490195956
+            },
+            "covered_until_h": 240.0
+          },
+          "T1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 6.786543867437391,
+            "peak": 0.37886756112571673,
+            "hours": {
+              "WAIT": 75.76780952974592,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 4.232190470254082
+            },
+            "covered_until_h": 240.0
+          },
+          "T2": {
+            "fatigue": 0.0,
+            "exposure_F_h": 6.003061572126461,
+            "peak": 0.29881613083922814,
+            "hours": {
+              "WAIT": 77.81183869160772,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 2.1881613083922815
+            },
+            "covered_until_h": 240.0
+          },
+          "C1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 6.584797644499616,
+            "peak": 0.28,
+            "hours": {
+              "WAIT": 77.9417572005564,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 2.0582427994435974
+            },
+            "covered_until_h": 240.0
+          },
+          "QA1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 6.43432623455819,
+            "peak": 0.28,
+            "hours": {
+              "WAIT": 74.89999999999999,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 5.100000000000005
+            },
+            "covered_until_h": 240.0
+          },
+          "Lop": {
+            "fatigue": 0.0,
+            "exposure_F_h": 7.026778481800299,
+            "peak": 0.28,
+            "hours": {
+              "WAIT": 77.0,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 3.0
+            },
+            "covered_until_h": 240.0
+          },
+          "Lrig": {
+            "fatigue": 0.0,
+            "exposure_F_h": 7.733061378248355,
+            "peak": 0.35750000000000004,
+            "hours": {
+              "WAIT": 76.0,
+              "WORK": 4.0,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0
+            },
+            "covered_until_h": 240.0
+          },
+          "Lsig": {
+            "fatigue": 0.0,
+            "exposure_F_h": 7.733061378248355,
+            "peak": 0.35750000000000004,
+            "hours": {
+              "WAIT": 76.0,
+              "WORK": 4.0,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0
+            },
+            "covered_until_h": 240.0
+          }
+        },
+        "sum_exposure_F_h": 115.00226284384806,
+        "max_exposure_F_h": 12.969157717571601,
+        "wip_product_h": 149.598500771668,
+        "occupancy_entity_or_product_h": {
+          "PRE": 27.94029753682351,
+          "J2": 25.257077536823513,
+          "BUF": 21.536697019820725,
+          "J3": 26.574531217759624,
+          "F1": 97.08367201708487,
+          "Q1": 0.0,
+          "OUT1": 2.0
+        },
+        "process_wait_activity_h": 18.1,
+        "idle_residency_product_h": 93.75,
+        "labor_person_h": 67.59039992395594,
+        "labor_wait_person_h": 1132.159600076044,
+        "moves_completed": 9,
+        "move_equipment_h": 4.0,
+        "move_open_prefix_h": 0,
+        "repair_service_h": 0.0,
+        "repair_open_prefix_h": 0,
+        "repair_attempts": 0,
+        "computation": {
+          "count": 0,
+          "wall_ms": null,
+          "budget_violations": null,
+          "fallback_rate": null
+        },
+        "validity": "VERIFIED_SYNTHETIC"
+      },
+      "rule_scope": {
+        "R01": "ACTUAL_LOG",
+        "R02": "ACTUAL_LOG",
+        "R03": "ACTUAL_LOG",
+        "R04": "ACTUAL_LOG",
+        "R05": "ACTUAL_LOG",
+        "R06": "ACTUAL_LOG",
+        "R07": "ACTUAL_LOG",
+        "R08": "ACTUAL_LOG",
+        "R09": "ACTUAL_LOG",
+        "R10": "ACTUAL_LOG",
+        "R11": "ACTUAL_LOG",
+        "R12": "ACTUAL_LOG",
+        "R13": "ACTUAL_LOG",
+        "R14": "NO_PLAN_SUPPLIED; S12_POLICY_NONANTICIPATION_NOT_TESTED",
+        "R15": "ACTUAL_LOG",
+        "R16": "ACTUAL_LOG",
+        "R17": "ACTUAL_LOG",
+        "R18": "ACTUAL_LOG"
+      }
+    },
+    {
+      "variant": "SR-W2",
+      "status": "PASS",
+      "metrics": {
+        "products": [
+          {
+            "product_id": "PRODUCT-1",
+            "order_id": "ORDER-1",
+            "due_h": 192,
+            "ready_h": 171.61789240458066,
+            "received_h": 172.61789240458066,
+            "cancelled": false,
+            "incomplete": false,
+            "tardiness_h": 0.0,
+            "tardiness_lower_bound_h": 0.0
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "ORDER-1",
+            "weight": 1.0,
+            "due_h": 192,
+            "product_ids": [
+              "PRODUCT-1"
+            ],
+            "ready_h": 171.61789240458066,
+            "cancelled": false,
+            "incomplete": false,
+            "tardiness_h": 0.0,
+            "tardiness_lower_bound_h": 0.0
+          }
+        ],
+        "released_products": 1,
+        "ready_products": 1,
+        "incomplete_products": 0,
+        "cancelled_products": 0,
+        "received_products": 1,
+        "order_tardiness_h": 0.0,
+        "order_tardiness_lower_bound_h": 0.0,
+        "order_weight_basis": "UNIT_WEIGHT_C04_NO_WEIGHT_FIELD",
+        "window_h": 240.0,
+        "people": {
+          "P1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 6.61438004821021,
+            "peak": 0.40599320000000017,
+            "hours": {
+              "WORK": 3.191269215943174,
+              "WAIT": 76.80873078405682,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0
+            },
+            "covered_until_h": 240.0
+          },
+          "W1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 12.969157717571607,
+            "peak": 0.7796922829585587,
+            "hours": {
+              "WAIT": 70.53489672664146,
+              "WORK": 9.215103273358539,
+              "REST": 5.25,
+              "OFF_SHIFT": 155.0
+            },
+            "covered_until_h": 240.0
+          },
+          "W2": {
+            "fatigue": 0.0,
+            "exposure_F_h": 6.912400549530747,
+            "peak": 0.5295433457495541,
+            "hours": {
+              "WAIT": 76.54197426346497,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 3.4580257365350313
+            },
+            "covered_until_h": 240.0
+          },
+          "OP1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 5.2920000000000025,
+            "peak": 0.28,
+            "hours": {
+              "WAIT": 80.0,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0
+            },
+            "covered_until_h": 240.0
+          },
+          "AF1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 8.474519623528778,
+            "peak": 0.38106744478563764,
+            "hours": {
+              "WAIT": 70.48492966015203,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 9.515070339847973
+            },
+            "covered_until_h": 240.0
+          },
+          "AF2": {
+            "fatigue": 0.0,
+            "exposure_F_h": 7.214405009150017,
+            "peak": 0.2913041824890253,
+            "hours": {
+              "WAIT": 73.70303949179603,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 6.2969605082039735
+            },
+            "covered_until_h": 240.0
+          },
+          "E1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 7.619275164735005,
+            "peak": 0.28,
+            "hours": {
+              "WAIT": 73.76034699333655,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 6.2396530066634455
+            },
+            "covered_until_h": 240.0
+          },
+          "PL1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 8.10868897505428,
+            "peak": 0.3080231782280373,
+            "hours": {
+              "WAIT": 73.18964965644871,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 6.810350343551292
+            },
+            "covered_until_h": 240.0
+          },
+          "T1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 7.9483990257353305,
+            "peak": 0.34573816999695484,
+            "hours": {
+              "WAIT": 75.81829111833568,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 4.181708881664321
+            },
+            "covered_until_h": 240.0
+          },
+          "T2": {
+            "fatigue": 0.0,
+            "exposure_F_h": 6.849249478148212,
+            "peak": 0.2957381699969548,
+            "hours": {
+              "WAIT": 77.84261830003045,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 2.157381699969548
+            },
+            "covered_until_h": 240.0
+          },
+          "C1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 6.731208076900931,
+            "peak": 0.28,
+            "hours": {
+              "WAIT": 77.95709220910328,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 2.0429077908967272
+            },
+            "covered_until_h": 240.0
+          },
+          "QA1": {
+            "fatigue": 0.0,
+            "exposure_F_h": 6.813121340443684,
+            "peak": 0.28,
+            "hours": {
+              "WAIT": 74.39999999999999,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 5.600000000000005
+            },
+            "covered_until_h": 240.0
+          },
+          "Lop": {
+            "fatigue": 0.0,
+            "exposure_F_h": 7.183257569521652,
+            "peak": 0.28,
+            "hours": {
+              "WAIT": 77.0,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0,
+              "WORK": 3.0
+            },
+            "covered_until_h": 240.0
+          },
+          "Lrig": {
+            "fatigue": 0.0,
+            "exposure_F_h": 7.8895404659697075,
+            "peak": 0.35750000000000004,
+            "hours": {
+              "WAIT": 76.0,
+              "WORK": 4.0,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0
+            },
+            "covered_until_h": 240.0
+          },
+          "Lsig": {
+            "fatigue": 0.0,
+            "exposure_F_h": 7.8895404659697075,
+            "peak": 0.35750000000000004,
+            "hours": {
+              "WAIT": 76.0,
+              "WORK": 4.0,
+              "REST": 5.0,
+              "OFF_SHIFT": 155.0
+            },
+            "covered_until_h": 240.0
+          }
+        },
+        "sum_exposure_F_h": 114.50914351046987,
+        "max_exposure_F_h": 12.969157717571607,
+        "wip_product_h": 171.61789240458066,
+        "occupancy_entity_or_product_h": {
+          "PRE": 27.94029753682351,
+          "J2": 25.257077536823513,
+          "BUF": 21.536697019820725,
+          "J3": 26.574531217759624,
+          "F1": 119.10306364999752,
+          "Q1": 0.0,
+          "OUT1": 2.0
+        },
+        "process_wait_activity_h": 18.1,
+        "idle_residency_product_h": 114.75,
+        "labor_person_h": 69.70843079663403,
+        "labor_wait_person_h": 1130.041569203366,
+        "moves_completed": 9,
+        "move_equipment_h": 4.0,
+        "move_open_prefix_h": 0,
+        "repair_service_h": 0.0,
+        "repair_open_prefix_h": 0,
+        "repair_attempts": 0,
+        "computation": {
+          "count": 0,
+          "wall_ms": null,
+          "budget_violations": null,
+          "fallback_rate": null
+        },
+        "validity": "VERIFIED_SYNTHETIC"
+      },
+      "rule_scope": {
+        "R01": "ACTUAL_LOG",
+        "R02": "ACTUAL_LOG",
+        "R03": "ACTUAL_LOG",
+        "R04": "ACTUAL_LOG",
+        "R05": "ACTUAL_LOG",
+        "R06": "ACTUAL_LOG",
+        "R07": "ACTUAL_LOG",
+        "R08": "ACTUAL_LOG",
+        "R09": "ACTUAL_LOG",
+        "R10": "ACTUAL_LOG",
+        "R11": "ACTUAL_LOG",
+        "R12": "ACTUAL_LOG",
+        "R13": "ACTUAL_LOG",
+        "R14": "NO_PLAN_SUPPLIED; S12_POLICY_NONANTICIPATION_NOT_TESTED",
+        "R15": "ACTUAL_LOG",
+        "R16": "ACTUAL_LOG",
+        "R17": "ACTUAL_LOG",
+        "R18": "ACTUAL_LOG"
+      }
+    }
+  ],
+  "counterexamples": [
+    {
+      "name": "false_ready",
+      "mutation_fragment": {
+        "products[0].ready_h": 1
+      },
+      "status": "FAIL",
+      "first_findings": [
+        {
+          "rule": "R15",
+          "object_id": "PRODUCT-1",
+          "time_h": 240.0,
+          "code": "READY_SUMMARY_DISAGREEMENT",
+          "severity": "FAIL",
+          "event_id": null
+        }
+      ]
+    },
+    {
+      "name": "missing_first_event",
+      "mutation_fragment": {
+        "removed_event": {
+          "schema_version": "C04-1.0",
+          "config_id": "BW-SR-W1-1",
+          "id": "EV-1",
+          "time_h": 0,
+          "kind": "UNIT_START",
+          "entity_id": "PRODUCT-1.KIT",
+          "attempt": 0,
+          "reason": "{\"activity_id\": \"PRODUCT-1.KIT\", \"attempt\": 0, \"end_h\": 0.55, \"equipment\": [], \"landings_done\": 0, \"mode_id\": \"PRODUCT-1.H-team\", \"multiplier\": 1.1, \"roles\": [{\"person_id\": \"P1\", \"role_id\": \"P1\"}], \"sampled_max_f\": 0.2, \"start_h\": 0, \"state\": \"ACTIVE\", \"unit_index\": 0}"
+        }
+      },
+      "status": "INCOMPLETE",
+      "first_findings": [
+        {
+          "rule": "R16",
+          "object_id": "PRODUCT-1.KIT",
+          "time_h": 0.0,
+          "code": "EVENT_SEQUENCE_GAP",
+          "severity": "INCOMPLETE",
+          "event_id": "EV-2"
+        },
+        {
+          "rule": "R09",
+          "object_id": "PRODUCT-1.KIT",
+          "time_h": 0.55,
+          "code": "MISSING_UNIT_START",
+          "severity": "INCOMPLETE",
+          "event_id": "EV-2"
+        },
+        {
+          "rule": "R16",
+          "object_id": "PRODUCT-1.KIT",
+          "time_h": 0.55,
+          "code": "EVENT_SEQUENCE_GAP",
+          "severity": "INCOMPLETE",
+          "event_id": "EV-3"
+        }
+      ]
+    }
+  ]
+}

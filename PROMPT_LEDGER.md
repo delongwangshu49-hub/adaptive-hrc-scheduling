@@ -4,7 +4,7 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.13.5，整理日期为 2026-10-02。PR060 补录 S09 r2 实际批准与发布；PR061 授权生产领域适配审查；PR062 要求以证据重审结构选型、生产流程及 README/总纲职责，并优先满足目标。PR063 进一步要求所有总纲实质重写、配套更新及显式选型比较、工作量与先后说明。PR064 认可纠偏原则与比较方法并要求整合执行指导书，指导书审阅和新对话交接批准尚待进行。PR065 将 GitHub 仓库名称和简介修改纳入指导书；具体名称与简介尚未确定。PR066 随后明确批准新对话交接并立即按指导书启动本地修正，沿用原目录/main，不建分支或worktree；未批准材料选型或远端发布。S09 r2 已发布，历史记录保留各自时点语义。
+版本为 0.14.0，整理日期为 2026-10-02。PR060 补录 S09 r2 实际批准与发布；PR061 授权生产领域适配审查；PR062 要求以证据重审结构选型、生产流程及 README/总纲职责，并优先满足目标。PR063 进一步要求所有总纲实质重写、配套更新及显式选型比较、工作量与先后说明。PR064 认可纠偏原则与比较方法并要求整合执行指导书，指导书审阅和新对话交接批准尚待进行。PR065 将 GitHub 仓库名称和简介修改纳入指导书；具体名称与简介尚未确定。PR066 随后明确批准新对话交接并立即按指导书启动本地修正，沿用原目录/main，不建分支或worktree；未批准材料选型或远端发布。S09 r2 已发布，历史记录保留各自时点语义。
 
 C00—C02本地交付见LOG056—LOG058。PR067随后确认推荐钢体系及明确标注的合成时间/负荷研究方式，授权创建“紧急修正C03”并直接且仅开展C03；要求C04—C05归入后续修复栏目，将原C06—C08对应S10—S28内容重新逐步细分。该决定不冻结专属规格、不启动后续实现、不批准发布。
 
@@ -15,6 +15,8 @@ PR071随后授权创建“紧急修正C04-C05”，沿用原目录/main且不建
 PR072补录C04/C05 r1确切验收及发布批准，实际回执见LOG069；PR073要求全量审阅C00—C05完成性与逻辑，结果见LOG070及当前步骤卡。新发现问题不抹去r1历史发布，也不自动授权修复或S10。
 
 PR074随后授权六项问题的有限本地修复及必要回归、说明和新审阅包；PR075明确J2同产品双框可驻留、工装独占。r1批准不扩展至r2；本次没有新增发布或S10许可。
+
+PR076补录r2确切批准及实际发布；PR077随后授权新对话“S10”沿用原目录/main直接且仅开展S10本地工作，覆盖历史未启动状态，不继承r2的Git/远端发布许可。S11未启动。
 
 ## 记录规则
 
@@ -2685,6 +2687,84 @@ PR074随后授权六项问题的有限本地修复及必要回归、说明和新
         "tests/test_building_repairs.py"
       ],
       "limit": "RESEARCH_CAPACITY_INTERPRETATION_ONLY_G6_REMAINS_OPEN_NO_INDUSTRIAL_PARALLEL_WORK_APPROVAL"
+    },
+    {
+      "id": "PR076",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "C04-C05-20261002-r2",
+        "parameters": {
+          "step_id": "C04-C05",
+          "packet_id": "C04-C05-20261002-r2",
+          "decision": "ACCEPT_AND_APPROVE_EXACT_PUBLICATION",
+          "decision_id": "C04-C05-R2-APPROVAL-001",
+          "packet_sha256": "83dca6652605fbb201e890bbb1740f1878b7bfb806b9436d137fb9632424aa2e",
+          "permitted_local_actions": [
+            "STAGE_EXACT_19_PATHS",
+            "ONE_LIMITED_REPAIR_COMMIT",
+            "NEW_ANNOTATED_STEP_C05_R2"
+          ],
+          "permitted_remote_actions": [
+            "NON_FORCE_PUSH_MAIN_AND_STEP_C05_R2",
+            "VERIFY_REMOTE_OBJECTS_AND_CPU_CI"
+          ]
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_AND_APPROVED_EXACT_R2_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "EXECUTED_APPROVED_PUBLICATION_AND_VERIFIED_RECEIPT"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S10.md"
+      ],
+      "limit": "R2_SNAPSHOT_ONLY_NO_FUTURE_PUBLICATION_PERMISSION"
+    },
+    {
+      "id": "PR077",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "START_STEP",
+        "target": "S10",
+        "parameters": {
+          "step_id": "S10",
+          "chat_title": "S10",
+          "directory": "EXISTING",
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "start_on_receipt": true,
+          "scope": [
+            "LOCAL_IMPLEMENTATION",
+            "INDEPENDENT_VALIDATION",
+            "NECESSARY_GOVERNANCE",
+            "EXACT_REVIEW_PACKET"
+          ],
+          "permitted_remote_actions": [],
+          "S11_S28": "NOT_AUTHORIZED"
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_NAMED_NEW_CHAT_AND_IMMEDIATE_LOCAL_S10",
+        "REQUIRED_PRESERVATION_AND_INDEPENDENT_LOG_RECONSTRUCTION"
+      ],
+      "assistant_support": [
+        "VERIFIED_HANDOFF_AND_BASELINE",
+        "IMPLEMENTED_CHECKER_METRICS_AND_TESTS",
+        "PREPARED_EXACT_REVIEW_PACKET"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S10.md"
+      ],
+      "limit": "NO_STAGE_COMMIT_TAG_PUSH_PR_ATTACHMENT_OR_REMOTE_METADATA_CHANGE_NO_S11"
     }
   ]
 }
