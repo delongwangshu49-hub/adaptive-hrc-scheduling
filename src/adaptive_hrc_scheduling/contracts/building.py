@@ -152,6 +152,38 @@ def validate(record, *, config=None):
             )
             require(a.modes, path + ": no modes")
             indexed(a.modes, path + ".modes")
+            quality_codes = {
+                source for source, _, relation in b.STEEL_EDGES if relation == "quality"
+            }
+            wait_codes = {
+                source for source, _, relation in b.STEEL_EDGES if relation == "wait_release"
+            }
+            move_codes = {"MV-IN-B", "MV-IN-T", "MV-B", "MV-T", "JOIN-IN", "MOVE-F", "MOVE-OUT"}
+            require(
+                (a.quality_evidence is not None) == (a.code in quality_codes),
+                path + ": frozen quality gate",
+            )
+            require(
+                (a.release_evidence is not None) == (a.code in wait_codes),
+                path + ": frozen release gate",
+            )
+            require((a.wait_h > 0) == (a.code in wait_codes), path + ": frozen positive wait")
+            require((a.move is not None) == (a.code in move_codes), path + ": frozen move")
+            kinds = (
+                {"H", "HR-seq"}
+                if a.code in ("W-B", "W-T")
+                else {"MOVE"}
+                if a.move
+                else {"WAIT"}
+                if a.code in wait_codes
+                else {"GATE"}
+                if a.code == "READY"
+                else {"H-team"}
+            )
+            require(
+                {m.kind for m in a.modes} == kinds and len(a.modes) == len(kinds),
+                path + ": frozen mode kinds",
+            )
             for gate in (a.release_evidence, a.quality_evidence):
                 require(gate is None or gate in evidence, path + ": gate reference")
             for mid in a.material_ids:
@@ -201,6 +233,25 @@ def validate(record, *, config=None):
                         not mode.enabled or evidence_pass(c, mode.qualification_ids),
                         path + ": HR unqualified",
                     )
+                passive = {"WAIT-W", "WAIT-TEST", "WAIT-TILE", "WAIT-PAINT", "READY"}
+                require(bool(mode.units) == (a.code not in passive), path + ": frozen work units")
+                required_equipment = (
+                    {"R1", "FIX-J2"}
+                    if mode.kind == "HR-seq"
+                    else {"WELD1", "FIX-J2"}
+                    if a.code in ("W-B", "W-T")
+                    else {"WELD1", "FIX-J3"}
+                    if a.code == "W-3D"
+                    else {"CUT1"}
+                    if a.code == "CUT"
+                    else {"HST1"}
+                    if a.code.startswith("MV-")
+                    else {"CR1"}
+                    if a.code in ("JOIN-IN", "MOVE-F", "MOVE-OUT")
+                    else {"TEST1"}
+                    if a.code in ("Q-MEP", "TEST-SET", "Q-POND", "Q-EXT", "Q-FIN")
+                    else set()
+                )
                 indexed(mode.units, path + ".units")
                 for u in mode.units:
                     require(u.checkpoint_id in evidence, path + ": checkpoint reference")
@@ -227,6 +278,9 @@ def validate(record, *, config=None):
                             path + ": missing frozen role",
                         )
                     require(set(u.equipment) <= set(resources), path + ": equipment reference")
+                    require(
+                        required_equipment <= set(u.equipment), path + ": missing frozen equipment"
+                    )
                     for role in u.roles:
                         require(
                             any(role.qualification in p.qualifications for p in c.people),
@@ -261,6 +315,19 @@ def validate(record, *, config=None):
                     path + ": move qualification revision",
                 )
                 require(move.source != move.target and move.landing_h, path + ": move boundaries")
+                require(
+                    len(move.entity_ids) == len(set(move.entity_ids)) == len(move.landing_h),
+                    path + ": move entity/landing coverage",
+                )
+                require(
+                    all(
+                        len(m.units) == 1
+                        and m.units[0].base_h == move.landing_h[-1]
+                        and move.equipment in m.units[0].equipment
+                        for m in a.modes
+                    ),
+                    path + ": move work/equipment boundaries",
+                )
                 require(
                     list(move.landing_h) == sorted(set(move.landing_h)), path + ": landing order"
                 )
@@ -558,6 +625,7 @@ def validate(record, *, config=None):
             all(e.time_h > record.time_h for e in record.scenario.events[record.event_cursor :]),
             "snapshot.event_cursor: missed event",
         )
+        validate_residencies(record, config)
         for obs in record.observation_queue:
             validate(obs, config=config)
     elif isinstance(record, b.Plan):
@@ -579,6 +647,108 @@ def validate(record, *, config=None):
     elif isinstance(record, b.OfflineEvaluation):
         require({p.product_id for p in record.products} == set(pp), "evaluation.products: coverage")
         require({p.person_id for p in record.people} == set(hh), "evaluation.people: coverage")
+
+
+def validate_residencies(state, config):
+    """Check both directions of the physical location/reservation ledger on recovery."""
+    resources = {r.id: r for r in config.resources}
+    components = {c.id: c for c in config.components}
+    activities = {a.id: a for a in config.activities}
+    # entity -> (held source, reserved destination, current physical location)
+    transfers = {}
+    for run in state.running:
+        move = activities[run.activity_id].move
+        if move is None:
+            continue
+        require(state.time_h < run.end_h, "snapshot.physical: expired movement")
+        done = sum(run.start_h + t * run.multiplier <= state.time_h for t in move.landing_h)
+        require(done == run.landings_done, "snapshot.physical: landing progress")
+        for index, entity in enumerate(move.entity_ids):
+            if index < done:
+                continue
+            require(entity not in transfers, "snapshot.physical: duplicate movement")
+            source = (
+                "PRE"
+                if entity in components
+                and components[entity].kind == "COLUMNS"
+                and activities[run.activity_id].code == "JOIN-IN"
+                else move.source
+            )
+            previous = move.landing_h[index - 1] if index else 0
+            lift = (
+                run.start_h + (previous + (move.landing_h[index] - previous) * 0.4) * run.multiplier
+            )
+            transfers[entity] = (
+                source,
+                move.target,
+                "IN_TRANSIT" if state.time_h >= lift else source,
+            )
+    for service in state.services:
+        if service.kind != "CLEANUP":
+            continue
+        require(service.product_id not in transfers, "snapshot.physical: duplicate cleanup")
+        require(state.time_h < service.end_h, "snapshot.physical: expired cleanup")
+        transfers[service.product_id] = (
+            service.source,
+            service.target,
+            "IN_TRANSIT" if state.time_h >= service.start_h + 0.4 else service.source,
+        )
+    expected = set()
+
+    def add(entity, product, location, reserved):
+        require(
+            location in resources and resources[location].kind in ("BAY", "BUFFER"),
+            "snapshot.residencies: physical location",
+        )
+        # A product may hold both of its frames in J2; BUF counts individual frames.
+        owner = entity if location == "BUF" else product
+        expected.add((entity, location, owner, reserved))
+
+    physical = [(p.product_id, p.product_id, p.location) for p in state.products]
+    physical += [
+        (c.component_id, components[c.component_id].product_id, c.location)
+        for c in state.components
+    ]
+    entities = {entity for entity, _, _ in physical}
+    require(set(transfers) <= entities, "snapshot.physical: unknown moving entity")
+    for entity, product, location in physical:
+        if entity in transfers:
+            source, target, actual = transfers[entity]
+            require(location == actual, "snapshot.physical: movement location")
+            add(entity, product, source, False)
+            add(entity, product, target, True)
+        elif location not in ("UNASSEMBLED", "UNFABRICATED", "INCORPORATED", "EXTERNAL"):
+            add(entity, product, location, False)
+        else:
+            if entity in components:
+                component = next(c for c in state.components if c.component_id == entity)
+                require(
+                    location in ("UNFABRICATED", "INCORPORATED")
+                    and component.incorporated == (location == "INCORPORATED"),
+                    "snapshot.physical: component location",
+                )
+            else:
+                product_state = next(p for p in state.products if p.product_id == entity)
+                require(
+                    location in ("UNASSEMBLED", "EXTERNAL")
+                    and (location != "EXTERNAL" or product_state.state == "RECEIVED"),
+                    "snapshot.physical: product location",
+                )
+    for product in config.products:
+        kit_started = any(
+            activities[a.activity_id].product_id == product.id
+            and activities[a.activity_id].code == "KIT"
+            for a in state.attempts
+        )
+        unfabricated = all(
+            c.location == "UNFABRICATED"
+            for c in state.components
+            if components[c.component_id].product_id == product.id
+        )
+        if kit_started and unfabricated:
+            add(product.id + ".RAW", product.id, "PRE", False)
+    actual = {(r.entity_id, r.location, r.owner, r.reserved) for r in state.residencies}
+    require(actual == expected, "snapshot.residencies: physical ledger mismatch")
 
 
 def loads(kind, text, *, config=None):

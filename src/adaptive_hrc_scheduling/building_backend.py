@@ -205,29 +205,12 @@ class BuildingBackend:
             not p.cancelled and p.state not in ("QUARANTINED", "RECEIVED"),
             "CANCELLED_OR_QUARANTINED",
         )
+        require(p.state != "QUALITY_HOLD", "QUALITY_HOLD_UNRESOLVED")
         require(not any(x.activity_id == a.id for x in self.s.running), "ALREADY_RUNNING")
         require(not any(x.product_id == p.product_id for x in self.s.services), "SERVICE_COMMITTED")
         mode = next(m for m in a.modes if m.id == c.mode_id)
         self._require_evidence(mode.qualification_ids, "UNQUALIFIED_METHOD")
-        for edge in self.config.edges:
-            if edge.target != a.id:
-                continue
-            prior = self._attempt(edge.source)
-            require(prior is not None and prior.state == "COMPLETED", "PREDECESSOR:" + edge.source)
-            predecessor = self.activities[edge.source]
-            if predecessor.quality_evidence:
-                require(
-                    any(
-                        q.activity_id == edge.source
-                        and q.attempt == prior.number
-                        and q.valid
-                        and q.result == "PASS"
-                        for q in self.s.quality
-                    ),
-                    "QUALITY_HOLD:" + edge.source,
-                )
-            if predecessor.release_evidence:
-                require(edge.source in self.s.released_processes, "PROCESS_RELEASE_HOLD")
+        self._check_predecessors(a)
         prior = self._attempt(a.id)
         if prior:
             require(
@@ -353,6 +336,35 @@ class BuildingBackend:
         self._set(running=self.s.running + (run,))
         self._put_product(replace(p, state="IN_PROCESS"))
         self._log("UNIT_START", a.id, as_data(run), prior.number)
+
+    def _check_predecessors(self, a):
+        prerequisites = {a.id}
+        while True:
+            expanded = prerequisites | {
+                edge.source for edge in self.config.edges if edge.target in prerequisites
+            }
+            if expanded == prerequisites:
+                break
+            prerequisites = expanded
+        for edge in self.config.edges:
+            if edge.target not in prerequisites:
+                continue
+            prior = self._attempt(edge.source)
+            require(prior is not None and prior.state == "COMPLETED", "PREDECESSOR:" + edge.source)
+            predecessor = self.activities[edge.source]
+            if predecessor.quality_evidence:
+                require(
+                    any(
+                        q.activity_id == edge.source
+                        and q.attempt == prior.number
+                        and q.valid
+                        and q.result == "PASS"
+                        for q in self.s.quality
+                    ),
+                    "QUALITY_HOLD:" + edge.source,
+                )
+            if predecessor.release_evidence:
+                require(edge.source in self.s.released_processes, "PROCESS_RELEASE_HOLD")
 
     def _protect(self, people, end):
         for pid in people:
@@ -500,17 +512,23 @@ class BuildingBackend:
             type(until) in (int, float) and math.isfinite(until) and until >= self.time,
             "ADVANCE_TIME",
         )
+        require(until == self.time or not self._emergency_hold(), "EMERGENCY_HOLD_NO_SAFE_PATH")
         candidate = copy.copy(self)
         candidate._advance(float(until))
         self.s = candidate.s
+        return Receipt(
+            not self._emergency_hold(),
+            "EMERGENCY_HOLD_NO_SAFE_PATH" if self._emergency_hold() else "ADVANCED",
+        )
+
+    def _emergency_hold(self):
+        return any(r.state == "EMERGENCY_HOLD" for r in self.s.running + self.s.services)
 
     def _advance(self, until):
         while self.time < until:
-            require(
-                not any(r.state == "EMERGENCY_HOLD" for r in self.s.running)
-                and not any(r.state == "EMERGENCY_HOLD" for r in self.s.services),
-                "EMERGENCY_HOLD_NO_SAFE_PATH",
-            )
+            if self._emergency_hold():
+                # Commit the actual prefix up to the new emergency; never undo its event.
+                return
             boundaries = [until]
             boundaries += [r.end_h for r in self.s.running if r.end_h > self.time]
             boundaries += [
@@ -908,13 +926,19 @@ class BuildingBackend:
                     self._put_product(replace(self._product(a.product_id), state="QUALITY_HOLD"))
                     self._log("INTERRUPTED_REQUIRES_INSPECTION", a.id, as_data(run), run.attempt)
             for service in self.s.services:
-                if service.kind == "CLEANUP" and e.entity_id in ("CR1", "ROUTE-MODULE"):
+                if service.kind == "CLEANUP" and e.entity_id in (
+                    "CR1",
+                    "ROUTE-MODULE",
+                    service.source,
+                    service.target,
+                ):
                     self._set(
                         services=tuple(
                             replace(x, state="EMERGENCY_HOLD") if x == service else x
                             for x in self.s.services
                         )
                     )
+                    self._log("EMERGENCY_HOLD", service.activity_id, "CLEANUP_DEPENDENCY_FAILED")
         elif e.kind == "REPAIR":
             self._set(
                 failed_resources=tuple(x for x in self.s.failed_resources if x != e.entity_id)
@@ -995,6 +1019,20 @@ class BuildingBackend:
                 self._put_attempt(
                     replace(self._attempt(run.activity_id), state="FAILED", prepared=False)
                 )
+        moving = {
+            run.activity_id for run in self.s.running if self.activities[run.activity_id].move
+        }
+        self._set(
+            attempts=tuple(
+                replace(attempt, state="FAILED", prepared=False)
+                if attempt.activity_id in targets and attempt.activity_id not in moving
+                else attempt
+                for attempt in self.s.attempts
+            )
+        )
+        self._set(
+            released_processes=tuple(x for x in self.s.released_processes if x not in targets)
+        )
         pid = self.activities[aid].product_id
         self._put_product(replace(self._product(pid), state="QUALITY_HOLD", ready_h=None))
         self._log("INVALIDATED", aid, {"activities": sorted(targets)})
@@ -1138,6 +1176,7 @@ class BuildingBackend:
             and not self.s.services,
             "REPAIR_COMMITMENT",
         )
+        self._check_predecessors(a)
         self._require_evidence(("G7", "G4"), "UNKNOWN_REPAIR_METHOD_HOLD")
         kit = next(
             (x for x in self.s.materials if x.material_id == a.product_id + ".REPAIR-KIT"), None
@@ -1205,6 +1244,10 @@ class BuildingBackend:
         require(p.location in ("J3", "F1", "OUT1"), "UNKNOWN_COMPONENT_CLEARANCE_HOLD")
         require(not p.water_present, "TEST_NOT_DRAINED")
         require(
+            p.location not in self.s.failed_resources and "Q1" not in self.s.failed_resources,
+            "CLEANUP_LOCATION_FAILED",
+        )
+        require(
             not any(self.activities[r.activity_id].product_id == pid for r in self.s.running)
             and not any(x.product_id == pid for x in self.s.services),
             "CLEANUP_COMMITTED_TAIL",
@@ -1262,6 +1305,12 @@ class BuildingBackend:
         elif service.kind == "RESTORE":
             self._log("RESTORE_COMPLETE", service.activity_id)
         elif service.kind == "REPAIR":
+            try:
+                self._check_predecessors(self.activities[service.activity_id])
+                require(not self._product(service.product_id).cancelled, "CANCELLED")
+            except ContractError as error:
+                self._log("REPAIR_STOPPED", service.activity_id, str(error), 1)
+                return
             for code in ("WPROOF", "WAIT-W", "TEST-SET", "WAIT-TEST", "Q-POND"):
                 aid = service.product_id + "." + code
                 a = self.activities[aid]

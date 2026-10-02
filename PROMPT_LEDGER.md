@@ -4,13 +4,17 @@
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
 
-版本为 0.13.3，整理日期为 2026-10-02。PR060 补录 S09 r2 实际批准与发布；PR061 授权生产领域适配审查；PR062 要求以证据重审结构选型、生产流程及 README/总纲职责，并优先满足目标。PR063 进一步要求所有总纲实质重写、配套更新及显式选型比较、工作量与先后说明。PR064 认可纠偏原则与比较方法并要求整合执行指导书，指导书审阅和新对话交接批准尚待进行。PR065 将 GitHub 仓库名称和简介修改纳入指导书；具体名称与简介尚未确定。PR066 随后明确批准新对话交接并立即按指导书启动本地修正，沿用原目录/main，不建分支或worktree；未批准材料选型或远端发布。S09 r2 已发布，历史记录保留各自时点语义。
+版本为 0.13.5，整理日期为 2026-10-02。PR060 补录 S09 r2 实际批准与发布；PR061 授权生产领域适配审查；PR062 要求以证据重审结构选型、生产流程及 README/总纲职责，并优先满足目标。PR063 进一步要求所有总纲实质重写、配套更新及显式选型比较、工作量与先后说明。PR064 认可纠偏原则与比较方法并要求整合执行指导书，指导书审阅和新对话交接批准尚待进行。PR065 将 GitHub 仓库名称和简介修改纳入指导书；具体名称与简介尚未确定。PR066 随后明确批准新对话交接并立即按指导书启动本地修正，沿用原目录/main，不建分支或worktree；未批准材料选型或远端发布。S09 r2 已发布，历史记录保留各自时点语义。
 
 C00—C02本地交付见LOG056—LOG058。PR067随后确认推荐钢体系及明确标注的合成时间/负荷研究方式，授权创建“紧急修正C03”并直接且仅开展C03；要求C04—C05归入后续修复栏目，将原C06—C08对应S10—S28内容重新逐步细分。该决定不冻结专属规格、不启动后续实现、不批准发布。
 
 C03 r1执行追踪见LOG060；PR068随后要求补足总纲的逐步指导，修订追踪见LOG061及[步骤卡](docs/steps/C03.md)。该时点其余暂未提出意见不表示整体冻结；随后PR069实际验收r2并限定冻结，PR070补充C05后收尾规划及指定对话备份，均不授权后续实施或远端操作。
 
 PR071随后授权创建“紧急修正C04-C05”，沿用原目录/main且不建分支/worktree，在新对话直接且仅实施C04、C05，含已规划的C05收尾；不授权S10或远端操作。
+
+PR072补录C04/C05 r1确切验收及发布批准，实际回执见LOG069；PR073要求全量审阅C00—C05完成性与逻辑，结果见LOG070及当前步骤卡。新发现问题不抹去r1历史发布，也不自动授权修复或S10。
+
+PR074随后授权六项问题的有限本地修复及必要回归、说明和新审阅包；PR075明确J2同产品双框可驻留、工装独占。r1批准不扩展至r2；本次没有新增发布或S10许可。
 
 ## 记录规则
 
@@ -52,7 +56,7 @@ PR071随后授权创建“紧急修正C04-C05”，沿用原目录/main且不建
 ```json
 {
   "schema_version": "1.0",
-  "document_version": "0.13.3",
+  "document_version": "0.13.4",
   "date_precision": "DAY",
   "timezone": "UTC+08:00",
   "record_basis": "NORMALIZED_FROM_PROJECT_DISCUSSION",
@@ -2536,6 +2540,151 @@ PR071随后授权创建“紧急修正C04-C05”，沿用原目录/main且不建
         "docs/PROJECT_CHARTER.md"
       ],
       "limit": "LOCAL_C04_C05_ONLY_NO_S10_NO_REMOTE_OPERATIONS"
+    },
+    {
+      "id": "PR072",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "C04-C05-20261002-r1",
+        "parameters": {
+          "step_id": "C04-C05",
+          "packet_id": "C04-C05-20261002-r1",
+          "decision": "ACCEPT_AND_APPROVE_EXACT_PUBLICATION",
+          "packet_sha256": "2ef84939430d37c17d3b8d31e974bd4726ee440a11e4b76ae1b6ef47886c1e0e",
+          "permitted_remote_actions": [
+            "NON_FORCE_PUSH_MAIN_AND_NEW_ANNOTATED_STEP_C05_R1",
+            "VERIFY_REMOTE_OBJECTS_AND_CPU_CI"
+          ],
+          "permitted_local_actions": [
+            "STAGE_EXACT_78_PATHS",
+            "ONE_CUMULATIVE_C00_C05_COMMIT",
+            "NEW_ANNOTATED_STEP_C05_R1"
+          ],
+          "excluded": [
+            "RENAME_ABOUT",
+            "PR",
+            "ATTACHMENTS",
+            "S10_S28"
+          ]
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_EXACT_IMPLEMENTATION_AND_CLOSEOUT_SNAPSHOT_WITH_RETAINED_LIMITS",
+        "APPROVED_LISTED_PUBLICATION_ACTIONS"
+      ],
+      "assistant_support": [
+        "VERIFIED_SEALED_FILES_AND_SIGNATURE",
+        "EXECUTED_EXACT_COMMIT_TAG_PUSH",
+        "VERIFIED_REMOTE_TREE_AND_CPU_CI"
+      ],
+      "resolution": "HUMAN_CONFIRMED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/C04-C05.md"
+      ],
+      "limit": "EXACT_R1_SNAPSHOT_ONLY_NO_BLANKET_FUTURE_PUBLICATION_OR_IMPLEMENTATION"
+    },
+    {
+      "id": "PR073",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "C00_C05_COMPLETENESS_AND_LOGIC",
+        "parameters": {
+          "scope": [
+            "ALL_CORRECTION_STAGES",
+            "COMPLETENESS",
+            "LOGICAL_CONSISTENCY"
+          ],
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_FULL_C00_C05_COMPLETION_AND_LOGIC_REVIEW"
+      ],
+      "assistant_support": [
+        "RECONCILED_REQUIREMENTS_DELIVERABLES_DECISIONS_AND_PUBLICATION",
+        "RERAN_FULL_CPU_AND_C02_MACRO_CHECKS",
+        "REPRODUCED_ADDITIONAL_COUNTEREXAMPLES",
+        "RECORDED_CONFIRMED_DEFECTS_AND_SPECIFICATION_AMBIGUITY"
+      ],
+      "resolution": "REVIEW_COMPLETED",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/C04-C05.md"
+      ],
+      "limit": "REVIEW_AND_LOCAL_GOVERNANCE_RECORDS_ONLY_NO_IMPLEMENTATION_FIX_OR_NEW_PUBLICATION_NO_S10"
+    },
+    {
+      "id": "PR074",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "AUTHORIZE_LIMITED_LOCAL_REPAIR",
+        "target": "C04_C05_POST_PUBLICATION_REVIEW",
+        "parameters": {
+          "findings": [
+            "AUD-C05-01",
+            "AUD-C05-02",
+            "AUD-C05-03",
+            "AUD-C05-04",
+            "AUD-C05-05",
+            "AUD-C05-06"
+          ],
+          "scope": [
+            "NECESSARY_CODE_FIXES",
+            "REGRESSIONS",
+            "COHERENT_DOCUMENTATION",
+            "EXACT_REVIEW_PACKET"
+          ],
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_LIMITED_REPAIR"
+      ],
+      "assistant_support": [
+        "IMPLEMENTED_REPAIRS_AND_REGRESSION_TESTS",
+        "SYNCHRONIZED_CURRENT_DOCUMENTATION_AND_PREPARED_REVIEW"
+      ],
+      "resolution": "LOCAL_REPAIR_IMPLEMENTED_PENDING_SNAPSHOT_ACCEPTANCE",
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/C04-C05.md"
+      ],
+      "limit": "NO_S10_NO_NEW_COMMIT_TAG_PUSH_PR_ATTACHMENT_OR_REMOTE_METADATA_CHANGE"
+    },
+    {
+      "id": "PR075",
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "RESOLVE_CAPACITY_SPECIFICATION",
+        "target": "J2_RESIDENCY_AND_FIXTURE",
+        "parameters": {
+          "capacity_unit": "PRODUCT",
+          "same_product_dual_frame_residency": true,
+          "fixture_exclusive": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "SELECTED_SAME_PRODUCT_DUAL_FRAME_RESIDENCY_WITH_EXCLUSIVE_FIXTURE"
+      ],
+      "assistant_support": [
+        "CLARIFIED_PRODUCT_CAPACITY_VERSUS_FRAME_RESIDENCY_AND_FIXTURE_LOCK",
+        "ADDED_POSITIVE_AND_NEGATIVE_REGRESSIONS"
+      ],
+      "resolution": "SPECIFICATION_CONFIRMED",
+      "evidence_refs": [
+        "docs/model/selected_steel.md",
+        "docs/model/parameters.md",
+        "tests/test_building_repairs.py"
+      ],
+      "limit": "RESEARCH_CAPACITY_INTERPRETATION_ONLY_G6_REMAINS_OPEN_NO_INDUSTRIAL_PARALLEL_WORK_APPROVAL"
     }
   ]
 }
