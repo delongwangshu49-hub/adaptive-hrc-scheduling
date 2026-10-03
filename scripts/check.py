@@ -20,8 +20,8 @@ def main() -> None:
         raise SystemExit(f"Expected Python {expected}; got {platform.python_version()}")
 
     run("uv", "lock", "--check")
-    run(sys.executable, "-m", "ruff", "check", "src", "tests", "scripts")
-    run(sys.executable, "-m", "ruff", "format", "--check", "src", "tests", "scripts")
+    run(sys.executable, "-m", "ruff", "check", "src", "tests", "scripts", "sim")
+    run(sys.executable, "-m", "ruff", "format", "--check", "src", "tests", "scripts", "sim")
     run(sys.executable, "-I", "-m", "unittest", "discover", "-s", "tests", "-v")
     run("uv", "pip", "check", "--python", sys.executable)
 

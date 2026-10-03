@@ -1,0 +1,5055 @@
+{
+  "packet_id": "S13-20261003-r3",
+  "layout": "S13-TARGET-R5-1",
+  "status": "VERIFIED_WITH_LIMITS",
+  "acceptance": "PENDING",
+  "approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "scope": "SCENE_ONLY / TARGET_LAYOUT / NO_PRODUCTION_FEEDBACK",
+  "quality": "UNKNOWN",
+  "hr_enabled": false,
+  "cpu": {
+    "workspace": 456,
+    "isolated_wheel": 456,
+    "final_target": 24,
+    "instances": 11,
+    "schemas": 10
+  },
+  "source_sha256": {
+    "sim/isaac/scene/inspection.py": "7f795fd6b68aa413def3416d852cc806b0876f1a327908cbaa400bea7697d886",
+    "sim/isaac/scene/layout.py": "1e5543a4f5863532bc620f1d88388b461656870fb2dd2a7f544d5d89812dc42c",
+    "sim/isaac/scene/model.py": "9a3304942dc2d8ddad721b65949de9ca252995224b34670d1580a29f9400d36c",
+    "sim/isaac/scene/revision_checks.py": "c85089588a1de1faa5694e19874f306ea9da2ca9d91708edc345df02ead396f5",
+    "sim/isaac/scene/target_layout.py": "50b1d514a67b204784c959bc9a89fb3914d23f8d425d23ca61de32d56df7412a",
+    "sim/isaac/scene/target_scene.py": "d9c38e6612255f715af519583bd79be856abe91d38af102f89ae04b4070475b9",
+    "sim/isaac/scene/target_trials.py": "4b63142582b6c95d4ffdc44d4f4b2b9e233bc10637a7658802af2c6ba20fd30c",
+    "sim/isaac/scene/trials.py": "dfd80b79a59bf0c7df5ed7ad0d87f3b2c2a9798c989dc67b24523361ad586451",
+    "sim/isaac/scene/trial_scene.py": "af842a5876091816fce2d525d055f01e0b638dda47384d09b35b5ca715bf0240",
+    "sim/isaac/scene/usd_scene.py": "9e7a84caf010abbf2aea3cea4201325fb329a9a2affe73c43f5337b49cc2dec9",
+    "sim/isaac/scene/__init__.py": "e3a240987d86f87e019278e05cb69b723638ece144f7450865d89a1937fc2094",
+    "scripts/verify_building_target.py": "93952e7da70d07bcb366907dbd51863800fce4d587887e7c75e93bb195b2a30a"
+  },
+  "ui_source_sha256": {
+    "sim/isaac/scene/inspection.py": "7f795fd6b68aa413def3416d852cc806b0876f1a327908cbaa400bea7697d886",
+    "sim/isaac/scene/layout.py": "1e5543a4f5863532bc620f1d88388b461656870fb2dd2a7f544d5d89812dc42c",
+    "sim/isaac/scene/model.py": "9a3304942dc2d8ddad721b65949de9ca252995224b34670d1580a29f9400d36c",
+    "sim/isaac/scene/revision_checks.py": "c85089588a1de1faa5694e19874f306ea9da2ca9d91708edc345df02ead396f5",
+    "sim/isaac/scene/target_layout.py": "50b1d514a67b204784c959bc9a89fb3914d23f8d425d23ca61de32d56df7412a",
+    "sim/isaac/scene/target_scene.py": "d9c38e6612255f715af519583bd79be856abe91d38af102f89ae04b4070475b9",
+    "sim/isaac/scene/target_trials.py": "4b63142582b6c95d4ffdc44d4f4b2b9e233bc10637a7658802af2c6ba20fd30c",
+    "sim/isaac/scene/trials.py": "dfd80b79a59bf0c7df5ed7ad0d87f3b2c2a9798c989dc67b24523361ad586451",
+    "sim/isaac/scene/trial_scene.py": "af842a5876091816fce2d525d055f01e0b638dda47384d09b35b5ca715bf0240",
+    "sim/isaac/scene/usd_scene.py": "9e7a84caf010abbf2aea3cea4201325fb329a9a2affe73c43f5337b49cc2dec9",
+    "sim/isaac/scene/__init__.py": "e3a240987d86f87e019278e05cb69b723638ece144f7450865d89a1937fc2094",
+    "scripts/view_building_scene.py": "87cf6b753d01e35c6e7e2bd23acc6053f194ab4e3cbe50c19566df3ca57f19b4"
+  },
+  "target_trials": [
+    {
+      "trial": "T1",
+      "phases": 34,
+      "readbacks": 255,
+      "status": "COMPLETE_GEOMETRY_ONLY",
+      "ids": [
+        "AF1",
+        "AF2",
+        "C1",
+        "CR1-HOOK",
+        "CUT1",
+        "E1",
+        "FIX-J2",
+        "FIX-J3",
+        "Lop",
+        "Lrig",
+        "Lsig",
+        "OP1",
+        "P1",
+        "PL1",
+        "QA1",
+        "R1",
+        "SCN-CART-01",
+        "SCN-FORK-01",
+        "SCN-STEEL-001",
+        "SCN-WELD-J2",
+        "SCN-WELD-J3",
+        "T1",
+        "T2",
+        "TEST1",
+        "W1",
+        "W2"
+      ],
+      "walk_routes": 9,
+      "final_slots": {
+        "RECEIVE": null,
+        "STEEL": null,
+        "PRE-IN": null,
+        "PRE-OUT": null,
+        "J2": "SCN-STEEL-001",
+        "BUF": null,
+        "J3": null,
+        "F1": null,
+        "Q1": null,
+        "OUT1": null,
+        "FG1": null,
+        "FG2": null,
+        "DISPATCH": null,
+        "MEP-RECEIVE": null,
+        "MEP-STORE": null,
+        "KIT": null,
+        "F1-KIT": null,
+        "TEST-PARK": null,
+        "TEST-USE": null
+      }
+    },
+    {
+      "trial": "T2",
+      "phases": 62,
+      "readbacks": 466,
+      "status": "COMPLETE_GEOMETRY_ONLY",
+      "ids": [
+        "AF1",
+        "AF2",
+        "C1",
+        "CR1-HOOK",
+        "CUT1",
+        "E1",
+        "FIX-J2",
+        "FIX-J3",
+        "Lop",
+        "Lrig",
+        "Lsig",
+        "OP1",
+        "P1",
+        "PL1",
+        "QA1",
+        "R1",
+        "SCN-CART-01",
+        "SCN-FORK-01",
+        "SCN-FRAME-001",
+        "SCN-MODULE-001",
+        "SCN-WELD-J2",
+        "SCN-WELD-J3",
+        "T1",
+        "T2",
+        "TEST1",
+        "W1",
+        "W2"
+      ],
+      "walk_routes": 20,
+      "final_slots": {
+        "RECEIVE": null,
+        "STEEL": null,
+        "PRE-IN": null,
+        "PRE-OUT": null,
+        "J2": null,
+        "BUF": null,
+        "J3": "SCN-FRAME-001",
+        "F1": null,
+        "Q1": null,
+        "OUT1": "SCN-MODULE-001",
+        "FG1": null,
+        "FG2": null,
+        "DISPATCH": null,
+        "MEP-RECEIVE": null,
+        "MEP-STORE": null,
+        "KIT": null,
+        "F1-KIT": null,
+        "TEST-PARK": null,
+        "TEST-USE": null
+      }
+    },
+    {
+      "trial": "T3",
+      "phases": 35,
+      "readbacks": 264,
+      "status": "COMPLETE_GEOMETRY_ONLY",
+      "ids": [
+        "AF1",
+        "AF2",
+        "C1",
+        "CR1-HOOK",
+        "CUT1",
+        "E1",
+        "FIX-J2",
+        "FIX-J3",
+        "Lop",
+        "Lrig",
+        "Lsig",
+        "OP1",
+        "P1",
+        "PL1",
+        "QA1",
+        "R1",
+        "SCN-CART-01",
+        "SCN-FORK-01",
+        "SCN-MEP-001",
+        "SCN-WELD-J2",
+        "SCN-WELD-J3",
+        "T1",
+        "T2",
+        "TEST1",
+        "W1",
+        "W2"
+      ],
+      "walk_routes": 13,
+      "final_slots": {
+        "RECEIVE": null,
+        "STEEL": null,
+        "PRE-IN": null,
+        "PRE-OUT": null,
+        "J2": null,
+        "BUF": null,
+        "J3": null,
+        "F1": null,
+        "Q1": null,
+        "OUT1": null,
+        "FG1": null,
+        "FG2": null,
+        "DISPATCH": null,
+        "MEP-RECEIVE": null,
+        "MEP-STORE": null,
+        "KIT": null,
+        "F1-KIT": "SCN-MEP-001",
+        "TEST-PARK": null,
+        "TEST-USE": null
+      }
+    },
+    {
+      "trial": "T4",
+      "phases": 19,
+      "readbacks": 146,
+      "status": "COMPLETE_GEOMETRY_ONLY",
+      "ids": [
+        "AF1",
+        "AF2",
+        "C1",
+        "CR1-HOOK",
+        "CUT1",
+        "E1",
+        "FIX-J2",
+        "FIX-J3",
+        "Lop",
+        "Lrig",
+        "Lsig",
+        "OP1",
+        "P1",
+        "PL1",
+        "QA1",
+        "R1",
+        "SCN-CART-01",
+        "SCN-FG-P1",
+        "SCN-FG-P2",
+        "SCN-FG-P3",
+        "SCN-FORK-01",
+        "SCN-WELD-J2",
+        "SCN-WELD-J3",
+        "T1",
+        "T2",
+        "TEST1",
+        "W1",
+        "W2"
+      ],
+      "walk_routes": 6,
+      "final_slots": {
+        "RECEIVE": null,
+        "STEEL": null,
+        "PRE-IN": null,
+        "PRE-OUT": null,
+        "J2": null,
+        "BUF": null,
+        "J3": null,
+        "F1": null,
+        "Q1": null,
+        "OUT1": null,
+        "FG1": "SCN-FG-P3",
+        "FG2": "SCN-FG-P2",
+        "DISPATCH": "SCN-FG-P1",
+        "MEP-RECEIVE": null,
+        "MEP-STORE": null,
+        "KIT": null,
+        "F1-KIT": null,
+        "TEST-PARK": null,
+        "TEST-USE": null
+      }
+    }
+  ],
+  "negative_cases": [
+    {
+      "case": "operator_missing",
+      "reason": "OPERATOR_MISSING"
+    },
+    {
+      "case": "unreleased",
+      "reason": "BATCH_NOT_RELEASED"
+    },
+    {
+      "case": "source_missing",
+      "reason": "SOURCE_MISSING"
+    },
+    {
+      "case": "target_full",
+      "reason": "TARGET_FULL:STEEL"
+    },
+    {
+      "case": "obstacle",
+      "reason": "COLLISION:/World/Injected"
+    },
+    {
+      "case": "person",
+      "reason": "COLLISION:/World/Injected"
+    },
+    {
+      "case": "occupied",
+      "reason": "COLLISION:/World/Injected"
+    },
+    {
+      "case": "empty_hook_bogie_block",
+      "reason": "COLLISION:/World/BogieBlock"
+    },
+    {
+      "case": "usd_operator_displaced",
+      "reason": "TARGET_USD_READBACK:Lop"
+    }
+  ],
+  "coverage_rows": 53,
+  "coverage": [
+    {
+      "id": "S01",
+      "source_world": [
+        6,
+        7,
+        0.8
+      ],
+      "target_world": [
+        6,
+        14,
+        0.8
+      ],
+      "points_world": [
+        [
+          6,
+          7,
+          0.8
+        ],
+        [
+          6,
+          7,
+          1.05
+        ],
+        [
+          11,
+          7,
+          1.05
+        ],
+        [
+          11,
+          14,
+          1.05
+        ],
+        [
+          6,
+          14,
+          1.05
+        ],
+        [
+          6,
+          14,
+          0.8
+        ]
+      ],
+      "size_m": [
+        2.8,
+        0.8,
+        0.2
+      ],
+      "mass_t": 0.06,
+      "carrier": "SCN-FORK-01",
+      "operator": "P1",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.5,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "TWIN_FORKS"
+    },
+    {
+      "id": "S01-EMPTY_RETURN",
+      "source_world": [
+        6,
+        12.2,
+        0
+      ],
+      "target_world": [
+        6,
+        5.2,
+        0
+      ],
+      "points_world": [
+        [
+          6,
+          12.2,
+          0
+        ],
+        [
+          6,
+          12.2,
+          0
+        ],
+        [
+          11,
+          12.2,
+          0
+        ],
+        [
+          11,
+          5.2,
+          0
+        ],
+        [
+          6,
+          5.2,
+          0
+        ],
+        [
+          6,
+          5.2,
+          0
+        ]
+      ],
+      "size_m": [
+        1.5,
+        2.6,
+        2.5
+      ],
+      "mass_t": 0,
+      "carrier": "SCN-FORK-01",
+      "operator": "P1",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "SUPPORT_RETRACTED_BEFORE_RETURN"
+    },
+    {
+      "id": "S02",
+      "source_world": [
+        6,
+        14,
+        0.8
+      ],
+      "target_world": [
+        15,
+        7.5,
+        0.8
+      ],
+      "points_world": [
+        [
+          6,
+          14,
+          0.8
+        ],
+        [
+          6,
+          14,
+          1.05
+        ],
+        [
+          11,
+          14,
+          1.05
+        ],
+        [
+          11,
+          7.5,
+          1.05
+        ],
+        [
+          15,
+          7.5,
+          1.05
+        ],
+        [
+          15,
+          7.5,
+          0.8
+        ]
+      ],
+      "size_m": [
+        2.8,
+        0.8,
+        0.2
+      ],
+      "mass_t": 0.06,
+      "carrier": "SCN-FORK-01",
+      "operator": "P1",
+      "receiver": "W1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 16.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "TWIN_FORKS"
+    },
+    {
+      "id": "S02-EMPTY_RETURN",
+      "source_world": [
+        15,
+        5.7,
+        0
+      ],
+      "target_world": [
+        6,
+        12.2,
+        0
+      ],
+      "points_world": [
+        [
+          15,
+          5.7,
+          0
+        ],
+        [
+          15,
+          5.7,
+          0
+        ],
+        [
+          11,
+          5.7,
+          0
+        ],
+        [
+          11,
+          12.2,
+          0
+        ],
+        [
+          6,
+          12.2,
+          0
+        ],
+        [
+          6,
+          12.2,
+          0
+        ]
+      ],
+      "size_m": [
+        1.5,
+        2.6,
+        2.5
+      ],
+      "mass_t": 0,
+      "carrier": "SCN-FORK-01",
+      "operator": "P1",
+      "receiver": "W1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 15.5,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "SUPPORT_RETRACTED_BEFORE_RETURN"
+    },
+    {
+      "id": "S03",
+      "source_world": [
+        15,
+        7.5,
+        0.8
+      ],
+      "target_world": [
+        20,
+        12,
+        0.8
+      ],
+      "points_world": [
+        [
+          15,
+          7.5,
+          0.8
+        ],
+        [
+          15,
+          7.5,
+          1.05
+        ],
+        [
+          20,
+          7.5,
+          1.05
+        ],
+        [
+          20,
+          12,
+          1.05
+        ],
+        [
+          20,
+          12,
+          0.8
+        ]
+      ],
+      "size_m": [
+        2.8,
+        0.8,
+        0.2
+      ],
+      "mass_t": 0.06,
+      "carrier": "SCN-FORK-01",
+      "operator": "P1",
+      "receiver": "W1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 10.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "TWIN_FORKS"
+    },
+    {
+      "id": "S03-EMPTY_RETURN",
+      "source_world": [
+        20,
+        10.2,
+        0
+      ],
+      "target_world": [
+        15,
+        5.7,
+        0
+      ],
+      "points_world": [
+        [
+          20,
+          10.2,
+          0
+        ],
+        [
+          20,
+          10.2,
+          0
+        ],
+        [
+          20,
+          5.7,
+          0
+        ],
+        [
+          15,
+          5.7,
+          0
+        ],
+        [
+          15,
+          5.7,
+          0
+        ]
+      ],
+      "size_m": [
+        1.5,
+        2.6,
+        2.5
+      ],
+      "mass_t": 0,
+      "carrier": "SCN-FORK-01",
+      "operator": "P1",
+      "receiver": "W1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 9.5,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "SUPPORT_RETRACTED_BEFORE_RETURN"
+    },
+    {
+      "id": "S04",
+      "source_world": [
+        20,
+        12,
+        0.8
+      ],
+      "target_world": [
+        30,
+        12,
+        0.6
+      ],
+      "points_world": [
+        [
+          20,
+          12,
+          0.8
+        ],
+        [
+          20,
+          12,
+          4.1
+        ],
+        [
+          30,
+          12,
+          4.1
+        ],
+        [
+          30,
+          12,
+          4.1
+        ],
+        [
+          30,
+          12,
+          0.6
+        ]
+      ],
+      "size_m": [
+        2.8,
+        0.8,
+        0.2
+      ],
+      "mass_t": 0.06,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 16.8,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "S04-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        20,
+        12,
+        1.6
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          20,
+          18,
+          8
+        ],
+        [
+          20,
+          12,
+          8
+        ],
+        [
+          20,
+          12,
+          1.6
+        ]
+      ],
+      "size_m": [
+        2.8,
+        0.8,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 22.4,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "S04-EMPTY_RETURN",
+      "source_world": [
+        30,
+        12,
+        1.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          30,
+          12,
+          1.4
+        ],
+        [
+          30,
+          12,
+          8
+        ],
+        [
+          30,
+          12,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        2.8,
+        0.8,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 12.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "C01",
+      "source_world": [
+        20,
+        12,
+        0.8
+      ],
+      "target_world": [
+        30,
+        12,
+        0.6
+      ],
+      "points_world": [
+        [
+          20,
+          12,
+          0.8
+        ],
+        [
+          20,
+          12,
+          4.1
+        ],
+        [
+          30,
+          12,
+          4.1
+        ],
+        [
+          30,
+          12,
+          4.1
+        ],
+        [
+          30,
+          12,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.2
+      ],
+      "mass_t": 1.2,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 16.8,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "C01-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        20,
+        12,
+        1.6
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          20,
+          18,
+          8
+        ],
+        [
+          20,
+          12,
+          8
+        ],
+        [
+          20,
+          12,
+          1.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 22.4,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "C01-EMPTY_RETURN",
+      "source_world": [
+        30,
+        12,
+        1.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          30,
+          12,
+          1.4
+        ],
+        [
+          30,
+          12,
+          8
+        ],
+        [
+          30,
+          12,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 12.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "C02",
+      "source_world": [
+        30,
+        12,
+        0.6
+      ],
+      "target_world": [
+        40,
+        12,
+        0.6
+      ],
+      "points_world": [
+        [
+          30,
+          12,
+          0.6
+        ],
+        [
+          30,
+          12,
+          4.1
+        ],
+        [
+          40,
+          12,
+          4.1
+        ],
+        [
+          40,
+          12,
+          4.1
+        ],
+        [
+          40,
+          12,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.2
+      ],
+      "mass_t": 1.2,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W2",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "C02-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        30,
+        12,
+        1.4
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          30,
+          12,
+          8
+        ],
+        [
+          30,
+          12,
+          1.4
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W2",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 12.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "C02-EMPTY_RETURN",
+      "source_world": [
+        40,
+        12,
+        1.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          40,
+          12,
+          1.4
+        ],
+        [
+          40,
+          12,
+          8
+        ],
+        [
+          30,
+          12,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W2",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 22.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "C03",
+      "source_world": [
+        40,
+        12,
+        0.6
+      ],
+      "target_world": [
+        50,
+        12,
+        0.6
+      ],
+      "points_world": [
+        [
+          40,
+          12,
+          0.6
+        ],
+        [
+          40,
+          12,
+          4.1
+        ],
+        [
+          50,
+          12,
+          4.1
+        ],
+        [
+          50,
+          12,
+          4.1
+        ],
+        [
+          50,
+          12,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.2
+      ],
+      "mass_t": 1.2,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W2",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "C03-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        40,
+        12,
+        1.4
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          40,
+          18,
+          8
+        ],
+        [
+          40,
+          12,
+          8
+        ],
+        [
+          40,
+          12,
+          1.4
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W2",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 22.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "C03-EMPTY_RETURN",
+      "source_world": [
+        50,
+        12,
+        1.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          50,
+          12,
+          1.4
+        ],
+        [
+          50,
+          12,
+          8
+        ],
+        [
+          30,
+          12,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W2",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 32.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "C04",
+      "source_world": [
+        20,
+        12,
+        0.8
+      ],
+      "target_world": [
+        50,
+        12,
+        0.6
+      ],
+      "points_world": [
+        [
+          20,
+          12,
+          0.8
+        ],
+        [
+          20,
+          12,
+          4.1
+        ],
+        [
+          50,
+          12,
+          4.1
+        ],
+        [
+          50,
+          12,
+          4.1
+        ],
+        [
+          50,
+          12,
+          0.6
+        ]
+      ],
+      "size_m": [
+        1.6,
+        1.6,
+        2.8
+      ],
+      "mass_t": 0.8,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W2",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 36.8,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "C04-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        20,
+        12,
+        4.2
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          20,
+          18,
+          8
+        ],
+        [
+          20,
+          12,
+          8
+        ],
+        [
+          20,
+          12,
+          4.2
+        ]
+      ],
+      "size_m": [
+        1.6,
+        1.6,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W2",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 19.8,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "C04-EMPTY_RETURN",
+      "source_world": [
+        50,
+        12,
+        4.0
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          50,
+          12,
+          4.0
+        ],
+        [
+          50,
+          12,
+          8
+        ],
+        [
+          30,
+          12,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        1.6,
+        1.6,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "W2",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 30.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "M01",
+      "source_world": [
+        50,
+        12,
+        0.6
+      ],
+      "target_world": [
+        50,
+        24,
+        0.6
+      ],
+      "points_world": [
+        [
+          50,
+          12,
+          0.6
+        ],
+        [
+          50,
+          12,
+          4.1
+        ],
+        [
+          50,
+          12,
+          4.1
+        ],
+        [
+          50,
+          24,
+          4.1
+        ],
+        [
+          50,
+          24,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "AF1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 19.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "M01-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        50,
+        12,
+        4.4
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          50,
+          18,
+          8
+        ],
+        [
+          50,
+          12,
+          8
+        ],
+        [
+          50,
+          12,
+          4.4
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "AF1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 29.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "M01-EMPTY_RETURN",
+      "source_world": [
+        50,
+        24,
+        4.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          50,
+          24,
+          4.4
+        ],
+        [
+          50,
+          24,
+          8
+        ],
+        [
+          30,
+          24,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "AF1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 29.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "M02",
+      "source_world": [
+        50,
+        24,
+        0.6
+      ],
+      "target_world": [
+        40,
+        24,
+        0.6
+      ],
+      "points_world": [
+        [
+          50,
+          24,
+          0.6
+        ],
+        [
+          50,
+          24,
+          4.1
+        ],
+        [
+          40,
+          24,
+          4.1
+        ],
+        [
+          40,
+          24,
+          4.1
+        ],
+        [
+          40,
+          24,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "M02-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        50,
+        24,
+        4.4
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          50,
+          18,
+          8
+        ],
+        [
+          50,
+          24,
+          8
+        ],
+        [
+          50,
+          24,
+          4.4
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 29.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "M02-EMPTY_RETURN",
+      "source_world": [
+        40,
+        24,
+        4.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          40,
+          24,
+          4.4
+        ],
+        [
+          40,
+          24,
+          8
+        ],
+        [
+          30,
+          24,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 19.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "M03",
+      "source_world": [
+        40,
+        24,
+        0.6
+      ],
+      "target_world": [
+        50,
+        24,
+        0.6
+      ],
+      "points_world": [
+        [
+          40,
+          24,
+          0.6
+        ],
+        [
+          40,
+          24,
+          4.1
+        ],
+        [
+          50,
+          24,
+          4.1
+        ],
+        [
+          50,
+          24,
+          4.1
+        ],
+        [
+          50,
+          24,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "AF1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "M03-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        40,
+        24,
+        4.4
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          40,
+          18,
+          8
+        ],
+        [
+          40,
+          24,
+          8
+        ],
+        [
+          40,
+          24,
+          4.4
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "AF1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 19.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "M03-EMPTY_RETURN",
+      "source_world": [
+        50,
+        24,
+        4.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          50,
+          24,
+          4.4
+        ],
+        [
+          50,
+          24,
+          8
+        ],
+        [
+          30,
+          24,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "AF1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 29.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "M04",
+      "source_world": [
+        50,
+        24,
+        0.6
+      ],
+      "target_world": [
+        30,
+        24,
+        0.6
+      ],
+      "points_world": [
+        [
+          50,
+          24,
+          0.6
+        ],
+        [
+          50,
+          24,
+          4.1
+        ],
+        [
+          30,
+          24,
+          4.1
+        ],
+        [
+          30,
+          24,
+          4.1
+        ],
+        [
+          30,
+          24,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 27.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "M04-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        50,
+        24,
+        4.4
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          50,
+          18,
+          8
+        ],
+        [
+          50,
+          24,
+          8
+        ],
+        [
+          50,
+          24,
+          4.4
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 29.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "M04-EMPTY_RETURN",
+      "source_world": [
+        30,
+        24,
+        4.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          30,
+          24,
+          4.4
+        ],
+        [
+          30,
+          24,
+          8
+        ],
+        [
+          30,
+          24,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 9.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "F01",
+      "source_world": [
+        30,
+        24,
+        0.6
+      ],
+      "target_world": [
+        20,
+        24,
+        0.6
+      ],
+      "points_world": [
+        [
+          30,
+          24,
+          0.6
+        ],
+        [
+          30,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "F01-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        30,
+        24,
+        4.4
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          30,
+          24,
+          8
+        ],
+        [
+          30,
+          24,
+          4.4
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 9.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "F01-EMPTY_RETURN",
+      "source_world": [
+        20,
+        24,
+        4.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          20,
+          24,
+          4.4
+        ],
+        [
+          20,
+          24,
+          8
+        ],
+        [
+          30,
+          24,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 19.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "F02",
+      "source_world": [
+        30,
+        24,
+        0.6
+      ],
+      "target_world": [
+        20,
+        34,
+        0.6
+      ],
+      "points_world": [
+        [
+          30,
+          24,
+          0.6
+        ],
+        [
+          30,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          20,
+          34,
+          4.1
+        ],
+        [
+          20,
+          34,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 27.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "F02-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        30,
+        24,
+        4.4
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          30,
+          24,
+          8
+        ],
+        [
+          30,
+          24,
+          4.4
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 9.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "F02-EMPTY_RETURN",
+      "source_world": [
+        20,
+        34,
+        4.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          20,
+          34,
+          4.4
+        ],
+        [
+          20,
+          34,
+          8
+        ],
+        [
+          30,
+          34,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 29.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "F03",
+      "source_world": [
+        20,
+        24,
+        0.6
+      ],
+      "target_world": [
+        30,
+        34,
+        0.6
+      ],
+      "points_world": [
+        [
+          20,
+          24,
+          0.6
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          30,
+          24,
+          4.1
+        ],
+        [
+          30,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 27.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "F03-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        20,
+        24,
+        4.4
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          20,
+          18,
+          8
+        ],
+        [
+          20,
+          24,
+          8
+        ],
+        [
+          20,
+          24,
+          4.4
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 19.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "F03-EMPTY_RETURN",
+      "source_world": [
+        30,
+        34,
+        4.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          30,
+          34,
+          4.4
+        ],
+        [
+          30,
+          34,
+          8
+        ],
+        [
+          30,
+          34,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 19.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "F04",
+      "source_world": [
+        20,
+        34,
+        0.6
+      ],
+      "target_world": [
+        30,
+        34,
+        0.6
+      ],
+      "points_world": [
+        [
+          20,
+          34,
+          0.6
+        ],
+        [
+          20,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "ADJUSTABLE_SLINGS"
+    },
+    {
+      "id": "F04-EMPTY_APPROACH",
+      "source_world": [
+        30,
+        18,
+        8
+      ],
+      "target_world": [
+        20,
+        34,
+        4.4
+      ],
+      "points_world": [
+        [
+          30,
+          18,
+          8
+        ],
+        [
+          20,
+          18,
+          8
+        ],
+        [
+          20,
+          34,
+          8
+        ],
+        [
+          20,
+          34,
+          4.4
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 29.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_APPROACH",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "F04-EMPTY_RETURN",
+      "source_world": [
+        30,
+        34,
+        4.4
+      ],
+      "target_world": [
+        30,
+        18,
+        8
+      ],
+      "points_world": [
+        [
+          30,
+          34,
+          4.4
+        ],
+        [
+          30,
+          34,
+          8
+        ],
+        [
+          30,
+          34,
+          8
+        ],
+        [
+          30,
+          18,
+          8
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        0.8
+      ],
+      "mass_t": 1,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 19.6,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "EMPTY_RIG"
+    },
+    {
+      "id": "P01",
+      "source_world": [
+        6,
+        23,
+        0.8
+      ],
+      "target_world": [
+        6,
+        29,
+        0.8
+      ],
+      "points_world": [
+        [
+          6,
+          23,
+          0.8
+        ],
+        [
+          6,
+          23,
+          0.9
+        ],
+        [
+          10,
+          23,
+          0.9
+        ],
+        [
+          10,
+          29,
+          0.9
+        ],
+        [
+          6,
+          29,
+          0.9
+        ],
+        [
+          6,
+          29,
+          0.8
+        ]
+      ],
+      "size_m": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "mass_t": 0.08,
+      "carrier": "SCN-CART-01",
+      "operator": "E1",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 14.2,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "LIFT_TRANSFER_TRAY"
+    },
+    {
+      "id": "P01-EMPTY_RETURN",
+      "source_world": [
+        6,
+        27.9,
+        0
+      ],
+      "target_world": [
+        6,
+        21.9,
+        0
+      ],
+      "points_world": [
+        [
+          6,
+          27.9,
+          0
+        ],
+        [
+          6,
+          27.9,
+          0
+        ],
+        [
+          10,
+          27.9,
+          0
+        ],
+        [
+          10,
+          21.9,
+          0
+        ],
+        [
+          6,
+          21.9,
+          0
+        ],
+        [
+          6,
+          21.9,
+          0
+        ]
+      ],
+      "size_m": [
+        1.5,
+        1.1,
+        1.2
+      ],
+      "mass_t": 0,
+      "carrier": "SCN-CART-01",
+      "operator": "E1",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 14.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "SUPPORT_RETRACTED_BEFORE_RETURN"
+    },
+    {
+      "id": "P02",
+      "source_world": [
+        6,
+        29,
+        0.8
+      ],
+      "target_world": [
+        13,
+        29,
+        0.8
+      ],
+      "points_world": [
+        [
+          6,
+          29,
+          0.8
+        ],
+        [
+          6,
+          29,
+          0.9
+        ],
+        [
+          13,
+          29,
+          0.9
+        ],
+        [
+          13,
+          29,
+          0.9
+        ],
+        [
+          13,
+          29,
+          0.8
+        ]
+      ],
+      "size_m": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "mass_t": 0.08,
+      "carrier": "SCN-CART-01",
+      "operator": "E1",
+      "receiver": "AF1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 7.2,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "LIFT_TRANSFER_TRAY"
+    },
+    {
+      "id": "P02-EMPTY_RETURN",
+      "source_world": [
+        13,
+        27.9,
+        0
+      ],
+      "target_world": [
+        6,
+        27.9,
+        0
+      ],
+      "points_world": [
+        [
+          13,
+          27.9,
+          0
+        ],
+        [
+          13,
+          27.9,
+          0
+        ],
+        [
+          13,
+          27.9,
+          0
+        ],
+        [
+          6,
+          27.9,
+          0
+        ],
+        [
+          6,
+          27.9,
+          0
+        ]
+      ],
+      "size_m": [
+        1.5,
+        1.1,
+        1.2
+      ],
+      "mass_t": 0,
+      "carrier": "SCN-CART-01",
+      "operator": "E1",
+      "receiver": "AF1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 7.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "SUPPORT_RETRACTED_BEFORE_RETURN"
+    },
+    {
+      "id": "P03",
+      "source_world": [
+        13,
+        29,
+        0.8
+      ],
+      "target_world": [
+        55,
+        29,
+        0.8
+      ],
+      "points_world": [
+        [
+          13,
+          29,
+          0.8
+        ],
+        [
+          13,
+          29,
+          0.9
+        ],
+        [
+          55,
+          29,
+          0.9
+        ],
+        [
+          55,
+          29,
+          0.9
+        ],
+        [
+          55,
+          29,
+          0.8
+        ]
+      ],
+      "size_m": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "mass_t": 0.08,
+      "carrier": "SCN-CART-01",
+      "operator": "E1",
+      "receiver": "AF1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 42.2,
+      "production_qualification": "UNKNOWN",
+      "kind": "LOADED",
+      "support": "LIFT_TRANSFER_TRAY"
+    },
+    {
+      "id": "P03-EMPTY_RETURN",
+      "source_world": [
+        55,
+        27.9,
+        0
+      ],
+      "target_world": [
+        13,
+        27.9,
+        0
+      ],
+      "points_world": [
+        [
+          55,
+          27.9,
+          0
+        ],
+        [
+          55,
+          27.9,
+          0
+        ],
+        [
+          55,
+          27.9,
+          0
+        ],
+        [
+          13,
+          27.9,
+          0
+        ],
+        [
+          13,
+          27.9,
+          0
+        ]
+      ],
+      "size_m": [
+        1.5,
+        1.1,
+        1.2
+      ],
+      "mass_t": 0,
+      "carrier": "SCN-CART-01",
+      "operator": "E1",
+      "receiver": "AF1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 42.0,
+      "production_qualification": "UNKNOWN",
+      "kind": "EMPTY_RETURN",
+      "support": "SUPPORT_RETRACTED_BEFORE_RETURN"
+    },
+    {
+      "id": "TEST-DELIVER",
+      "kind": "DELIVER",
+      "source_world": [
+        55,
+        34,
+        0
+      ],
+      "target_world": [
+        55,
+        25,
+        0
+      ],
+      "points_world": [
+        [
+          55,
+          34,
+          0
+        ],
+        [
+          57,
+          34,
+          0
+        ],
+        [
+          57,
+          25,
+          0
+        ],
+        [
+          55,
+          25,
+          0
+        ]
+      ],
+      "size_m": [
+        0.8,
+        1.1,
+        1.2
+      ],
+      "mass_t": 0,
+      "carrier": "TEST1",
+      "operator": "QA1",
+      "receiver": "QA1",
+      "support": "WHEELED_TOOL_CART",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 13.0,
+      "production_qualification": "UNKNOWN"
+    },
+    {
+      "id": "TEST-RETRIEVE",
+      "kind": "RETRIEVE",
+      "source_world": [
+        55,
+        25,
+        0
+      ],
+      "target_world": [
+        55,
+        34,
+        0
+      ],
+      "points_world": [
+        [
+          55,
+          25,
+          0
+        ],
+        [
+          57,
+          25,
+          0
+        ],
+        [
+          57,
+          34,
+          0
+        ],
+        [
+          55,
+          34,
+          0
+        ]
+      ],
+      "size_m": [
+        0.8,
+        1.1,
+        1.2
+      ],
+      "mass_t": 0,
+      "carrier": "TEST1",
+      "operator": "QA1",
+      "receiver": "QA1",
+      "support": "WHEELED_TOOL_CART",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 13.0,
+      "production_qualification": "UNKNOWN"
+    }
+  ],
+  "adjacent_slots": [
+    {
+      "id": "F01",
+      "source_world": [
+        30,
+        24,
+        0.6
+      ],
+      "target_world": [
+        20,
+        24,
+        0.6
+      ],
+      "points_world": [
+        [
+          30,
+          24,
+          0.6
+        ],
+        [
+          30,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.0,
+      "production_qualification": "UNKNOWN"
+    },
+    {
+      "id": "F02",
+      "source_world": [
+        30,
+        24,
+        0.6
+      ],
+      "target_world": [
+        20,
+        34,
+        0.6
+      ],
+      "points_world": [
+        [
+          30,
+          24,
+          0.6
+        ],
+        [
+          30,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          20,
+          34,
+          4.1
+        ],
+        [
+          20,
+          34,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 27.0,
+      "production_qualification": "UNKNOWN"
+    },
+    {
+      "id": "F03",
+      "source_world": [
+        20,
+        24,
+        0.6
+      ],
+      "target_world": [
+        30,
+        34,
+        0.6
+      ],
+      "points_world": [
+        [
+          20,
+          24,
+          0.6
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          30,
+          24,
+          4.1
+        ],
+        [
+          30,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 27.0,
+      "production_qualification": "UNKNOWN"
+    },
+    {
+      "id": "F04",
+      "source_world": [
+        20,
+        34,
+        0.6
+      ],
+      "target_world": [
+        30,
+        34,
+        0.6
+      ],
+      "points_world": [
+        [
+          20,
+          34,
+          0.6
+        ],
+        [
+          20,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.0,
+      "production_qualification": "UNKNOWN"
+    }
+  ],
+  "walk_route_comparison": {
+    "T1": [
+      {
+        "person": "QA1",
+        "task": "RECEIVING_INSPECTION",
+        "start": [
+          5,
+          40,
+          0
+        ],
+        "target": [
+          9,
+          8,
+          0
+        ],
+        "walked_m": 38.0,
+        "same_graph_shortest_m": 38.0
+      },
+      {
+        "person": "P1",
+        "task": "S01 BOARD_OR_GRIP",
+        "start": [
+          3,
+          36,
+          0
+        ],
+        "target": [
+          4.7,
+          5.2,
+          0
+        ],
+        "walked_m": 32.5,
+        "same_graph_shortest_m": 32.5
+      },
+      {
+        "person": "QA1",
+        "task": "S01 RECEIVE",
+        "start": [
+          9,
+          8,
+          0
+        ],
+        "target": [
+          8.5,
+          16.5,
+          0
+        ],
+        "walked_m": 11.0,
+        "same_graph_shortest_m": 11.0
+      },
+      {
+        "person": "W1",
+        "task": "S02 RECEIVE",
+        "start": [
+          25,
+          18,
+          0
+        ],
+        "target": [
+          17.5,
+          10.0,
+          0
+        ],
+        "walked_m": 15.5,
+        "same_graph_shortest_m": 15.5
+      },
+      {
+        "person": "W1",
+        "task": "CUT_PREP",
+        "start": [
+          17.5,
+          10.0,
+          0
+        ],
+        "target": [
+          13,
+          9,
+          0
+        ],
+        "walked_m": 5.5,
+        "same_graph_shortest_m": 5.5
+      },
+      {
+        "person": "W1",
+        "task": "S03 RECEIVE",
+        "start": [
+          13,
+          9,
+          0
+        ],
+        "target": [
+          22.5,
+          14.5,
+          0
+        ],
+        "walked_m": 15.0,
+        "same_graph_shortest_m": 15.0
+      },
+      {
+        "person": "W1",
+        "task": "S04 RECEIVE",
+        "start": [
+          22.5,
+          14.5,
+          0
+        ],
+        "target": [
+          34.5,
+          14.5,
+          0
+        ],
+        "walked_m": 12.0,
+        "same_graph_shortest_m": 12.0
+      },
+      {
+        "person": "Lrig",
+        "task": "S04 RIG",
+        "start": [
+          45,
+          18,
+          0
+        ],
+        "target": [
+          22,
+          9.7,
+          0
+        ],
+        "walked_m": 31.3,
+        "same_graph_shortest_m": 31.3
+      },
+      {
+        "person": "Lrig",
+        "task": "S04 WITHDRAW",
+        "start": [
+          22,
+          9.7,
+          0
+        ],
+        "target": [
+          45,
+          18,
+          0
+        ],
+        "walked_m": 31.3,
+        "same_graph_shortest_m": 31.3
+      }
+    ],
+    "T2": [
+      {
+        "person": "AF1",
+        "task": "M01 RECEIVE",
+        "start": [
+          11,
+          36,
+          0
+        ],
+        "target": [
+          54.5,
+          26.5,
+          0
+        ],
+        "walked_m": 53.0,
+        "same_graph_shortest_m": 53.0
+      },
+      {
+        "person": "Lrig",
+        "task": "M01 RIG",
+        "start": [
+          45,
+          18,
+          0
+        ],
+        "target": [
+          52,
+          9.7,
+          0
+        ],
+        "walked_m": 15.3,
+        "same_graph_shortest_m": 15.3
+      },
+      {
+        "person": "Lrig",
+        "task": "M01 WITHDRAW",
+        "start": [
+          52,
+          9.7,
+          0
+        ],
+        "target": [
+          45,
+          18,
+          0
+        ],
+        "walked_m": 15.3,
+        "same_graph_shortest_m": 15.3
+      },
+      {
+        "person": "QA1",
+        "task": "M02 RECEIVE",
+        "start": [
+          5,
+          40,
+          0
+        ],
+        "target": [
+          44.5,
+          26.5,
+          0
+        ],
+        "walked_m": 53.0,
+        "same_graph_shortest_m": 53.0
+      },
+      {
+        "person": "Lrig",
+        "task": "M02 RIG",
+        "start": [
+          45,
+          18,
+          0
+        ],
+        "target": [
+          52,
+          21.7,
+          0
+        ],
+        "walked_m": 10.7,
+        "same_graph_shortest_m": 10.7
+      },
+      {
+        "person": "Lrig",
+        "task": "M02 WITHDRAW",
+        "start": [
+          52,
+          21.7,
+          0
+        ],
+        "target": [
+          45,
+          18,
+          0
+        ],
+        "walked_m": 10.7,
+        "same_graph_shortest_m": 10.7
+      },
+      {
+        "person": "Lrig",
+        "task": "M03 RIG",
+        "start": [
+          45,
+          18,
+          0
+        ],
+        "target": [
+          42,
+          21.7,
+          0
+        ],
+        "walked_m": 6.699999999999999,
+        "same_graph_shortest_m": 6.699999999999999
+      },
+      {
+        "person": "Lrig",
+        "task": "M03 WITHDRAW",
+        "start": [
+          42,
+          21.7,
+          0
+        ],
+        "target": [
+          45,
+          18,
+          0
+        ],
+        "walked_m": 6.699999999999999,
+        "same_graph_shortest_m": 6.699999999999999
+      },
+      {
+        "person": "QA1",
+        "task": "M04 RECEIVE",
+        "start": [
+          44.5,
+          26.5,
+          0
+        ],
+        "target": [
+          34.5,
+          26.5,
+          0
+        ],
+        "walked_m": 10.0,
+        "same_graph_shortest_m": 10.0
+      },
+      {
+        "person": "Lrig",
+        "task": "M04 RIG",
+        "start": [
+          45,
+          18,
+          0
+        ],
+        "target": [
+          52,
+          21.7,
+          0
+        ],
+        "walked_m": 10.7,
+        "same_graph_shortest_m": 10.7
+      },
+      {
+        "person": "Lrig",
+        "task": "M04 WITHDRAW",
+        "start": [
+          52,
+          21.7,
+          0
+        ],
+        "target": [
+          45,
+          18,
+          0
+        ],
+        "walked_m": 10.7,
+        "same_graph_shortest_m": 10.7
+      },
+      {
+        "person": "W1",
+        "task": "C01 RECEIVE",
+        "start": [
+          25,
+          18,
+          0
+        ],
+        "target": [
+          34.5,
+          14.5,
+          0
+        ],
+        "walked_m": 13.0,
+        "same_graph_shortest_m": 13.0
+      },
+      {
+        "person": "Lrig",
+        "task": "C01 RIG",
+        "start": [
+          45,
+          18,
+          0
+        ],
+        "target": [
+          22,
+          9.7,
+          0
+        ],
+        "walked_m": 31.3,
+        "same_graph_shortest_m": 31.3
+      },
+      {
+        "person": "Lrig",
+        "task": "C01 WITHDRAW",
+        "start": [
+          22,
+          9.7,
+          0
+        ],
+        "target": [
+          45,
+          18,
+          0
+        ],
+        "walked_m": 31.3,
+        "same_graph_shortest_m": 31.3
+      },
+      {
+        "person": "W2",
+        "task": "C02 RECEIVE",
+        "start": [
+          45,
+          7,
+          0
+        ],
+        "target": [
+          44.5,
+          14.5,
+          0
+        ],
+        "walked_m": 8.0,
+        "same_graph_shortest_m": 8.0
+      },
+      {
+        "person": "Lrig",
+        "task": "C02 RIG",
+        "start": [
+          45,
+          18,
+          0
+        ],
+        "target": [
+          32,
+          9.7,
+          0
+        ],
+        "walked_m": 35.3,
+        "same_graph_shortest_m": 35.3
+      },
+      {
+        "person": "Lrig",
+        "task": "C02 WITHDRAW",
+        "start": [
+          32,
+          9.7,
+          0
+        ],
+        "target": [
+          45,
+          18,
+          0
+        ],
+        "walked_m": 35.3,
+        "same_graph_shortest_m": 35.3
+      },
+      {
+        "person": "W2",
+        "task": "C03 RECEIVE",
+        "start": [
+          44.5,
+          14.5,
+          0
+        ],
+        "target": [
+          54.5,
+          14.5,
+          0
+        ],
+        "walked_m": 10.0,
+        "same_graph_shortest_m": 10.0
+      },
+      {
+        "person": "Lrig",
+        "task": "C03 RIG",
+        "start": [
+          45,
+          18,
+          0
+        ],
+        "target": [
+          42,
+          9.7,
+          0
+        ],
+        "walked_m": 11.3,
+        "same_graph_shortest_m": 11.3
+      },
+      {
+        "person": "Lrig",
+        "task": "C03 WITHDRAW",
+        "start": [
+          42,
+          9.7,
+          0
+        ],
+        "target": [
+          45,
+          18,
+          0
+        ],
+        "walked_m": 11.3,
+        "same_graph_shortest_m": 11.3
+      }
+    ],
+    "T3": [
+      {
+        "person": "Lop",
+        "task": "CLEAR_CROSSING",
+        "start": [
+          57,
+          18,
+          0
+        ],
+        "target": [
+          57,
+          38,
+          0
+        ],
+        "walked_m": 20.0,
+        "same_graph_shortest_m": 20.0
+      },
+      {
+        "person": "Lrig",
+        "task": "CLEAR_CROSSING",
+        "start": [
+          45,
+          18,
+          0
+        ],
+        "target": [
+          45,
+          36,
+          0
+        ],
+        "walked_m": 18.0,
+        "same_graph_shortest_m": 18.0
+      },
+      {
+        "person": "W1",
+        "task": "FIXED_WELD",
+        "start": [
+          57,
+          18,
+          0
+        ],
+        "target": [
+          32,
+          16,
+          0
+        ],
+        "walked_m": 27.0,
+        "same_graph_shortest_m": 27.0
+      },
+      {
+        "person": "W2",
+        "task": "FIXED_WELD",
+        "start": [
+          45,
+          29,
+          0
+        ],
+        "target": [
+          52,
+          16,
+          0
+        ],
+        "walked_m": 20.0,
+        "same_graph_shortest_m": 20.0
+      },
+      {
+        "person": "QA1",
+        "task": "INSPECT_MEP",
+        "start": [
+          5,
+          40,
+          0
+        ],
+        "target": [
+          8,
+          24,
+          0
+        ],
+        "walked_m": 23.0,
+        "same_graph_shortest_m": 23.0
+      },
+      {
+        "person": "E1",
+        "task": "P01 BOARD_OR_GRIP",
+        "start": [
+          5,
+          38,
+          0
+        ],
+        "target": [
+          6,
+          20.65,
+          0
+        ],
+        "walked_m": 22.35,
+        "same_graph_shortest_m": 22.35
+      },
+      {
+        "person": "QA1",
+        "task": "P01 RECEIVE",
+        "start": [
+          8,
+          24,
+          0
+        ],
+        "target": [
+          8.5,
+          31.5,
+          0
+        ],
+        "walked_m": 8.0,
+        "same_graph_shortest_m": 8.0
+      },
+      {
+        "person": "AF1",
+        "task": "P02 RECEIVE",
+        "start": [
+          11,
+          36,
+          0
+        ],
+        "target": [
+          15.5,
+          31.5,
+          0
+        ],
+        "walked_m": 9.0,
+        "same_graph_shortest_m": 9.0
+      },
+      {
+        "person": "AF1",
+        "task": "P03 RECEIVE",
+        "start": [
+          15.5,
+          31.5,
+          0
+        ],
+        "target": [
+          57.5,
+          31.5,
+          0
+        ],
+        "walked_m": 42.0,
+        "same_graph_shortest_m": 42.0
+      },
+      {
+        "person": "AF1",
+        "task": "HANDOFF_COMPLETE_CLEAR_TEST_ROUTE",
+        "start": [
+          57.5,
+          31.5,
+          0
+        ],
+        "target": [
+          52,
+          32,
+          0
+        ],
+        "walked_m": 6.0,
+        "same_graph_shortest_m": 6.0
+      },
+      {
+        "person": "QA1",
+        "task": "TEST_PUSH",
+        "start": [
+          8.5,
+          31.5,
+          0
+        ],
+        "target": [
+          55,
+          35.25,
+          0
+        ],
+        "walked_m": 57.75,
+        "same_graph_shortest_m": 57.75
+      },
+      {
+        "person": "QA1",
+        "task": "TEST_DEPLOYED_WITHDRAW",
+        "start": [
+          55,
+          26.25,
+          0
+        ],
+        "target": [
+          57,
+          32,
+          0
+        ],
+        "walked_m": 7.75,
+        "same_graph_shortest_m": 7.75
+      },
+      {
+        "person": "QA1",
+        "task": "TEST_RETRIEVE",
+        "start": [
+          57,
+          32,
+          0
+        ],
+        "target": [
+          55,
+          26.25,
+          0
+        ],
+        "walked_m": 7.75,
+        "same_graph_shortest_m": 7.75
+      }
+    ],
+    "T4": [
+      {
+        "person": "QA1",
+        "task": "F03 RECEIVE",
+        "start": [
+          5,
+          40,
+          0
+        ],
+        "target": [
+          34.5,
+          36.5,
+          0
+        ],
+        "walked_m": 33.0,
+        "same_graph_shortest_m": 33.0
+      },
+      {
+        "person": "Lrig",
+        "task": "F03 RIG",
+        "start": [
+          45,
+          18,
+          0
+        ],
+        "target": [
+          22,
+          21.7,
+          0
+        ],
+        "walked_m": 26.7,
+        "same_graph_shortest_m": 26.7
+      },
+      {
+        "person": "Lrig",
+        "task": "F03 WITHDRAW",
+        "start": [
+          22,
+          21.7,
+          0
+        ],
+        "target": [
+          45,
+          18,
+          0
+        ],
+        "walked_m": 26.7,
+        "same_graph_shortest_m": 26.7
+      },
+      {
+        "person": "QA1",
+        "task": "F01 RECEIVE",
+        "start": [
+          34.5,
+          36.5,
+          0
+        ],
+        "target": [
+          24.5,
+          26.5,
+          0
+        ],
+        "walked_m": 20.0,
+        "same_graph_shortest_m": 20.0
+      },
+      {
+        "person": "Lrig",
+        "task": "F01 RIG",
+        "start": [
+          45,
+          18,
+          0
+        ],
+        "target": [
+          32,
+          21.7,
+          0
+        ],
+        "walked_m": 16.7,
+        "same_graph_shortest_m": 16.7
+      },
+      {
+        "person": "Lrig",
+        "task": "F01 WITHDRAW",
+        "start": [
+          32,
+          21.7,
+          0
+        ],
+        "target": [
+          45,
+          18,
+          0
+        ],
+        "walked_m": 16.7,
+        "same_graph_shortest_m": 16.7
+      }
+    ]
+  },
+  "combined_three_products_and_crossing": "PASSED",
+  "bounds_cache_diagnostic": {
+    "rebuild_bounds_each_update": {
+      "median_ms": 9.287199995014817,
+      "p95_ms": 11.706399964168668,
+      "samples": 160
+    },
+    "phase_cache": {
+      "median_ms": 3.1946999952197075,
+      "p95_ms": 3.485900000669062,
+      "samples": 160
+    }
+  },
+  "diagnostic_limit": "Verification ran with CPU regression activity; this microbenchmark is not a formal exclusive performance comparison.",
+  "legacy": {
+    "cycles": 30,
+    "physics_callbacks": 7200,
+    "routes": 10,
+    "samples_each": 241,
+    "negative_cases": 35,
+    "robot_poses": 3,
+    "robot_continuous": {
+      "samples": 241,
+      "max_position_error_m": 1.0777057434022821e-07,
+      "obstacles_checked_per_sample": 113
+    },
+    "domain_ids": 36,
+    "status": "PASSED_CLOSED_EXIT0"
+  },
+  "ui": {
+    "status": "PASSED",
+    "method": "SAME_CALLBACK_QUEUE_NO_PHYSICAL_MOUSE_TEST",
+    "actions": [
+      [
+        "step",
+        null
+      ],
+      [
+        "speed",
+        null
+      ],
+      [
+        "pause",
+        null
+      ],
+      [
+        "pause",
+        null
+      ],
+      [
+        "inject",
+        "obstacle"
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "clear",
+        null
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "camera",
+        "Fork"
+      ],
+      [
+        "layer",
+        "routes"
+      ],
+      [
+        "layer",
+        "roles"
+      ],
+      [
+        "layer",
+        "envelopes"
+      ],
+      [
+        "reset",
+        null
+      ],
+      [
+        "trial",
+        "T2"
+      ],
+      [
+        "trial",
+        "T3"
+      ],
+      [
+        "trial",
+        "T4"
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "signal",
+        null
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "camera",
+        "Finished"
+      ],
+      [
+        "save",
+        "Automated UI callback smoke test"
+      ]
+    ]
+  },
+  "load": {
+    "L0": {
+      "explicit_timeline_restarts": 0,
+      "physics_callbacks": 15687,
+      "level": "L0",
+      "warmup_seconds": 30,
+      "measurement_seconds": 120.0050854999572,
+      "application_update": {
+        "median_ms": 9.123449999606237,
+        "p95_ms": 10.152500006370246,
+        "max_ms": 70.1587000512518,
+        "over_50_ms": 87,
+        "over_100_ms": 0,
+        "samples": 12554
+      },
+      "wall_intervals": {
+        "median_ms": 9.12735000019893,
+        "p95_ms": 10.165499988943338,
+        "max_ms": 119.05839998507872,
+        "over_50_ms": 98,
+        "over_100_ms": 11,
+        "samples": 12554
+      },
+      "resources": [
+        {
+          "seconds": 10.005309799977113,
+          "rss": 6960128000,
+          "private": 11435048960,
+          "whole_card_gpu_mib": [
+            4277
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 20.121272899967153,
+          "rss": 6960967680,
+          "private": 11436056576,
+          "whole_card_gpu_mib": [
+            4240
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 30.222198499948718,
+          "rss": 6961164288,
+          "private": 11436056576,
+          "whole_card_gpu_mib": [
+            4189
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 40.31988889997592,
+          "rss": 6959198208,
+          "private": 11436056576,
+          "whole_card_gpu_mib": [
+            4181
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 50.42533249995904,
+          "rss": 6960390144,
+          "private": 11437637632,
+          "whole_card_gpu_mib": [
+            4187
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 60.5267483999487,
+          "rss": 6960525312,
+          "private": 11437637632,
+          "whole_card_gpu_mib": [
+            4181
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 70.63034639996476,
+          "rss": 6960660480,
+          "private": 11437637632,
+          "whole_card_gpu_mib": [
+            4194
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 80.74146959994687,
+          "rss": 6960795648,
+          "private": 11437641728,
+          "whole_card_gpu_mib": [
+            4181
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 90.84523639996769,
+          "rss": 6952931328,
+          "private": 11430563840,
+          "whole_card_gpu_mib": [
+            4190
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 100.95716969994828,
+          "rss": 6953066496,
+          "private": 11430563840,
+          "whole_card_gpu_mib": [
+            4190
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 111.06819259998156,
+          "rss": 6962675712,
+          "private": 11440070656,
+          "whole_card_gpu_mib": [
+            4188
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "resets": [
+        {
+          "reset": 1,
+          "seconds": 1.2827805999550037,
+          "rss": 6929633280,
+          "private": 11588927488,
+          "whole_card_gpu_mib": [
+            4130
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 2,
+          "seconds": 1.1076119000208564,
+          "rss": 6933004288,
+          "private": 11591565312,
+          "whole_card_gpu_mib": [
+            4163
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 3,
+          "seconds": 1.0956211000448093,
+          "rss": 6934384640,
+          "private": 11594268672,
+          "whole_card_gpu_mib": [
+            4162
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 4,
+          "seconds": 1.045347400009632,
+          "rss": 6935764992,
+          "private": 11473330176,
+          "whole_card_gpu_mib": [
+            4161
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 5,
+          "seconds": 1.0685871999594383,
+          "rss": 6936555520,
+          "private": 11459153920,
+          "whole_card_gpu_mib": [
+            4161
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 6,
+          "seconds": 1.0378955999622121,
+          "rss": 6938427392,
+          "private": 11465039872,
+          "whole_card_gpu_mib": [
+            4136
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 7,
+          "seconds": 1.0891985999769531,
+          "rss": 6939860992,
+          "private": 11465506816,
+          "whole_card_gpu_mib": [
+            4161
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 8,
+          "seconds": 1.1132799999904819,
+          "rss": 6940762112,
+          "private": 11465674752,
+          "whole_card_gpu_mib": [
+            4161
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 9,
+          "seconds": 1.1084422999992967,
+          "rss": 6941913088,
+          "private": 11478794240,
+          "whole_card_gpu_mib": [
+            4117
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 10,
+          "seconds": 1.0483475000364706,
+          "rss": 6942380032,
+          "private": 11476905984,
+          "whole_card_gpu_mib": [
+            4122
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "actual_render_frame_time": "UNAVAILABLE_UNVERIFIED",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "counts": {
+        "prims": 636,
+        "colliders": 70
+      },
+      "scope": "STATIC"
+    },
+    "L1": {
+      "explicit_timeline_restarts": 4,
+      "physics_callbacks": 10351,
+      "level": "L1",
+      "warmup_seconds": 30,
+      "measurement_seconds": 120.00538909999887,
+      "application_update": {
+        "median_ms": 13.51509999949485,
+        "p95_ms": 15.60879999306053,
+        "max_ms": 1131.852499966044,
+        "over_50_ms": 92,
+        "over_100_ms": 4,
+        "samples": 8242
+      },
+      "wall_intervals": {
+        "median_ms": 13.519050000468269,
+        "p95_ms": 15.650400018785149,
+        "max_ms": 1131.8550999858417,
+        "over_50_ms": 103,
+        "over_100_ms": 15,
+        "samples": 8242
+      },
+      "resources": [
+        {
+          "seconds": 10.008855899970513,
+          "rss": 7048204288,
+          "private": 11532976128,
+          "whole_card_gpu_mib": [
+            4228
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 20.10620859998744,
+          "rss": 6965444608,
+          "private": 11451060224,
+          "whole_card_gpu_mib": [
+            4186
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 30.214114199974574,
+          "rss": 6965600256,
+          "private": 11450077184,
+          "whole_card_gpu_mib": [
+            4220
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 40.3364758999669,
+          "rss": 7050768384,
+          "private": 11534360576,
+          "whole_card_gpu_mib": [
+            4282
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 50.4634724999778,
+          "rss": 6967218176,
+          "private": 11451568128,
+          "whole_card_gpu_mib": [
+            4255
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 60.57405260001542,
+          "rss": 6967250944,
+          "private": 11450585088,
+          "whole_card_gpu_mib": [
+            4263
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 70.68106179998722,
+          "rss": 7052488704,
+          "private": 11543867392,
+          "whole_card_gpu_mib": [
+            4257
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 80.79082349996315,
+          "rss": 6968999936,
+          "private": 11460616192,
+          "whole_card_gpu_mib": [
+            4238
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 90.9136972000124,
+          "rss": 6959566848,
+          "private": 11410333696,
+          "whole_card_gpu_mib": [
+            4147
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 101.02538930001901,
+          "rss": 7045070848,
+          "private": 11497750528,
+          "whole_card_gpu_mib": [
+            4146
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 111.135311799997,
+          "rss": 6970814464,
+          "private": 11420311552,
+          "whole_card_gpu_mib": [
+            4116
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "resets": [
+        {
+          "reset": 1,
+          "seconds": 1.0596743999631144,
+          "rss": 6933757952,
+          "private": 11558801408,
+          "whole_card_gpu_mib": [
+            4135
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 2,
+          "seconds": 1.0558955000014976,
+          "rss": 6934777856,
+          "private": 11562401792,
+          "whole_card_gpu_mib": [
+            4127
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 3,
+          "seconds": 1.0767229000339285,
+          "rss": 6937022464,
+          "private": 11562569728,
+          "whole_card_gpu_mib": [
+            4097
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 4,
+          "seconds": 1.1751832999871112,
+          "rss": 6937513984,
+          "private": 11424751616,
+          "whole_card_gpu_mib": [
+            4136
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 5,
+          "seconds": 1.154150500020478,
+          "rss": 6938038272,
+          "private": 11428245504,
+          "whole_card_gpu_mib": [
+            4136
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 6,
+          "seconds": 1.0570386000326835,
+          "rss": 6938775552,
+          "private": 11428540416,
+          "whole_card_gpu_mib": [
+            4094
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 7,
+          "seconds": 1.0517516999971122,
+          "rss": 6940401664,
+          "private": 11430969344,
+          "whole_card_gpu_mib": [
+            4135
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 8,
+          "seconds": 1.0712030000286177,
+          "rss": 6941372416,
+          "private": 11434418176,
+          "whole_card_gpu_mib": [
+            4132
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 9,
+          "seconds": 1.090682000038214,
+          "rss": 6942167040,
+          "private": 11434627072,
+          "whole_card_gpu_mib": [
+            4131
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 10,
+          "seconds": 1.0714051999966614,
+          "rss": 6942883840,
+          "private": 11434770432,
+          "whole_card_gpu_mib": [
+            4133
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "actual_render_frame_time": "UNAVAILABLE_UNVERIFIED",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "counts": {
+        "prims": 636,
+        "colliders": 70
+      },
+      "scope": "SINGLE_CHAIN"
+    },
+    "L2": {
+      "explicit_timeline_restarts": 4,
+      "physics_callbacks": 10162,
+      "level": "L2",
+      "warmup_seconds": 30,
+      "measurement_seconds": 120.01407759997528,
+      "application_update": {
+        "median_ms": 13.480299967341125,
+        "p95_ms": 15.262299973983318,
+        "max_ms": 1496.5975999948569,
+        "over_50_ms": 104,
+        "over_100_ms": 4,
+        "samples": 8029
+      },
+      "wall_intervals": {
+        "median_ms": 13.48419999703765,
+        "p95_ms": 15.280199993867427,
+        "max_ms": 1496.5996000100859,
+        "over_50_ms": 115,
+        "over_100_ms": 15,
+        "samples": 8029
+      },
+      "resources": [
+        {
+          "seconds": 10.000717399991117,
+          "rss": 7017676800,
+          "private": 11782963200,
+          "whole_card_gpu_mib": [
+            4406
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 20.132253799994942,
+          "rss": 6934872064,
+          "private": 11700068352,
+          "whole_card_gpu_mib": [
+            4449
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 30.240938199975062,
+          "rss": 6935109632,
+          "private": 11700068352,
+          "whole_card_gpu_mib": [
+            4449
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 40.34061119996477,
+          "rss": 6936412160,
+          "private": 11702624256,
+          "whole_card_gpu_mib": [
+            4450
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 50.445567600021604,
+          "rss": 7023144960,
+          "private": 11790249984,
+          "whole_card_gpu_mib": [
+            4448
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 60.54758439998841,
+          "rss": 6939766784,
+          "private": 11706466304,
+          "whole_card_gpu_mib": [
+            4448
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 70.64606230001664,
+          "rss": 6939906048,
+          "private": 11707449344,
+          "whole_card_gpu_mib": [
+            4458
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 81.76452419999987,
+          "rss": 7028436992,
+          "private": 11802431488,
+          "whole_card_gpu_mib": [
+            4450
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 91.86822699999902,
+          "rss": 6935179264,
+          "private": 11705970688,
+          "whole_card_gpu_mib": [
+            4450
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 101.9770405999734,
+          "rss": 6935212032,
+          "private": 11705970688,
+          "whole_card_gpu_mib": [
+            4409
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 112.07992629997898,
+          "rss": 6945116160,
+          "private": 11715485696,
+          "whole_card_gpu_mib": [
+            4458
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "resets": [
+        {
+          "reset": 1,
+          "seconds": 1.3493542000069283,
+          "rss": 6913921024,
+          "private": 11830026240,
+          "whole_card_gpu_mib": [
+            4391
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 2,
+          "seconds": 1.3664797999663278,
+          "rss": 6915432448,
+          "private": 11829411840,
+          "whole_card_gpu_mib": [
+            4399
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 3,
+          "seconds": 1.3481626999564469,
+          "rss": 6917644288,
+          "private": 11780771840,
+          "whole_card_gpu_mib": [
+            4399
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 4,
+          "seconds": 1.3361988000106066,
+          "rss": 6919901184,
+          "private": 11697045504,
+          "whole_card_gpu_mib": [
+            4357
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 5,
+          "seconds": 1.3989347000024281,
+          "rss": 6922686464,
+          "private": 11698282496,
+          "whole_card_gpu_mib": [
+            4398
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 6,
+          "seconds": 1.3206816000165418,
+          "rss": 6924488704,
+          "private": 11698393088,
+          "whole_card_gpu_mib": [
+            4391
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 7,
+          "seconds": 1.3260347999748774,
+          "rss": 6926118912,
+          "private": 11698552832,
+          "whole_card_gpu_mib": [
+            4357
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 8,
+          "seconds": 1.3258486000122502,
+          "rss": 6927253504,
+          "private": 11697668096,
+          "whole_card_gpu_mib": [
+            4399
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 9,
+          "seconds": 1.3314438000088558,
+          "rss": 6927269888,
+          "private": 11697872896,
+          "whole_card_gpu_mib": [
+            4391
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 10,
+          "seconds": 1.3688052000361495,
+          "rss": 6928502784,
+          "private": 11699068928,
+          "whole_card_gpu_mib": [
+            4399
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "actual_render_frame_time": "UNAVAILABLE_UNVERIFIED",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "counts": {
+        "prims": 873,
+        "colliders": 72
+      },
+      "scope": "B_PLUS_ONE_AND_CONCURRENT_CROSSING"
+    }
+  },
+  "whole_run_sampled_peaks_mib": {
+    "verify-06": {
+      "rss": 6709.9296875,
+      "peak_rss": 6711.81640625,
+      "private": 12296.2109375,
+      "whole_card_gpu_mib": 5608
+    },
+    "ui-03": {
+      "rss": 7452.44140625,
+      "peak_rss": 7460.9765625,
+      "private": 11332.390625,
+      "whole_card_gpu_mib": 3889
+    },
+    "legacy-01": {
+      "rss": 6678.3125,
+      "peak_rss": 6745.24609375,
+      "private": 11531.55859375,
+      "whole_card_gpu_mib": 4869
+    },
+    "load-L0-02": {
+      "rss": 6756.21875,
+      "peak_rss": 6756.24609375,
+      "private": 11070.2421875,
+      "whole_card_gpu_mib": 4431
+    },
+    "load-L1-02": {
+      "rss": 6762.18359375,
+      "peak_rss": 6766.6796875,
+      "private": 11044.94140625,
+      "whole_card_gpu_mib": 4318
+    },
+    "load-L2-02": {
+      "rss": 6728.0625,
+      "peak_rss": 6745.84375,
+      "private": 11282.0,
+      "whole_card_gpu_mib": 4579
+    }
+  },
+  "screenshots": [
+    {
+      "name": "target_overview",
+      "camera": "Overview",
+      "sha256": "4289d8ec695c09c3d46b23dd1cbdf376fbb71bee0becf93e4243345f0faa0162",
+      "view_error": 2.842170943040401e-14
+    },
+    {
+      "name": "target_top",
+      "camera": "Top",
+      "sha256": "56a312046a9fef317629f2ef9aaa272cc18ae90b734f0aac243151f72a580c29",
+      "view_error": 0.0
+    },
+    {
+      "name": "target_fork",
+      "camera": "Fork",
+      "sha256": "57e779f874c4cce530f01abb1db8fc01fafc4d0438d11629549e115b0f22df5f",
+      "view_error": 3.552713678800501e-15
+    },
+    {
+      "name": "target_equipment",
+      "camera": "Equipment",
+      "sha256": "00df4ae1a06a66270633b46f10a9b081fc172dbc8e767ff91c3e829e0c652289",
+      "view_error": 7.105427357601002e-15
+    },
+    {
+      "name": "t1_initial",
+      "camera": "Supply",
+      "sha256": "eb35eaa2198686a541e3de732428703f4ca15e96bc0f6d9c9ebb20fd3e82fef1",
+      "view_error": 1.4210854715202004e-14
+    },
+    {
+      "name": "steel_carried",
+      "camera": "Supply",
+      "sha256": "b71dfa6c2ad4c5ee8f43855be8280818ab56165350f17d420658671fe5f52170",
+      "view_error": 1.4210854715202004e-14
+    },
+    {
+      "name": "t1_complete",
+      "camera": "Supply",
+      "sha256": "7b7c3880d1cfdf273db6f9894827b1efb52efd367506088f6f5d95411c0dc98b",
+      "view_error": 1.4210854715202004e-14
+    },
+    {
+      "name": "t2_initial",
+      "camera": "Overview",
+      "sha256": "ed6807a379bc573288575aaf2cfc0455648cf7127dbbb1605d3ded8fe5a12d8c",
+      "view_error": 2.842170943040401e-14
+    },
+    {
+      "name": "module_carried",
+      "camera": "Gantry",
+      "sha256": "0bcbbf05292cb9bf1764ffce4147ef586c439ccc49cf3ffcfde6f0ff9be5a9d2",
+      "view_error": 2.1316282072803006e-14
+    },
+    {
+      "name": "t2_complete",
+      "camera": "Overview",
+      "sha256": "8fa5bdd76cc37b93e8021620790d132ffa2d6f32ac2e2382eb08bcfdd8c22707",
+      "view_error": 2.842170943040401e-14
+    },
+    {
+      "name": "t3_initial",
+      "camera": "Overview",
+      "sha256": "702737db1ffba85ddfe14aa01146176d8fa7e951ea8e412f179e5ab901e92714",
+      "view_error": 2.842170943040401e-14
+    },
+    {
+      "name": "people_yield",
+      "camera": "Crossing",
+      "sha256": "7c0f703ecf099638246579db484f67b609ec2921217470c682a8a509834a5dfa",
+      "view_error": 2.842170943040401e-14
+    },
+    {
+      "name": "mep_handoff",
+      "camera": "F1",
+      "sha256": "bf08ba9506341c01b9726d2089ecf7bf38183486381e321a456c19dbc18da923",
+      "view_error": 2.1316282072803006e-14
+    },
+    {
+      "name": "test_pushed",
+      "camera": "Test",
+      "sha256": "10404c249ba49f64cfd628ad5f61d87222d7df7742b72fae922ccd30180ac8a7",
+      "view_error": 2.842170943040401e-14
+    },
+    {
+      "name": "t3_complete",
+      "camera": "Overview",
+      "sha256": "4edff38d5726bb4e424d3f33eb8f749381f32fbf3a34420e5a6e69f96af2e9f6",
+      "view_error": 2.842170943040401e-14
+    },
+    {
+      "name": "t4_initial",
+      "camera": "Finished",
+      "sha256": "59f9d45f51dbcf8c751594942439464266895474721b39494ad0d3902edb98b3",
+      "view_error": 3.552713678800501e-15
+    },
+    {
+      "name": "buffer_moving_out",
+      "camera": "Finished",
+      "sha256": "03bd670a623b44dc606bed066cf6071956a7c5fc6d9fd45a49720740be811c33",
+      "view_error": 3.552713678800501e-15
+    },
+    {
+      "name": "buffer_slot_freed",
+      "camera": "Finished",
+      "sha256": "6b5577f394fd241c266be527b00a6dc2f6fc5fb4ca41a81fa9f58fb6b7f394f2",
+      "view_error": 3.552713678800501e-15
+    },
+    {
+      "name": "t4_complete",
+      "camera": "Finished",
+      "sha256": "844ce711daff91fcdd07b29490c113b4eb5988399392fd2f26933a694ee8a69a",
+      "view_error": 3.552713678800501e-15
+    },
+    {
+      "name": "combined_complete",
+      "camera": "Finished",
+      "sha256": "a887dc2c4454313d5521577bd6facac83b9973983490728d24a4cc285feb03ea",
+      "view_error": 3.552713678800501e-15
+    }
+  ],
+  "limits": [
+    "True render frame timestamps unavailable; frame target UNVERIFIED.",
+    "Process GPU memory unavailable; whole-card includes other desktop processes.",
+    "Synthetic geometry, supports, loads and clearances; no industrial qualification or dynamic load certification.",
+    "Representative scene chains only; no full production workflow or resource-contract migration.",
+    "Finite route graph and deterministic corridor reservation; no unrestricted dynamic crowd navigation.",
+    "Stationary USD geometry cached per phase; fault injection invalidates; arbitrary live static edits unsupported.",
+    "Programmatic GUI callback check; no physical mouse test or owner acceptance.",
+    "Remote CI not run; no Git writes or publication."
+  ]
+}

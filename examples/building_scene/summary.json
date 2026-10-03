@@ -1,0 +1,3239 @@
+{
+  "packet_id": "S13-20261003-r2",
+  "status": "VERIFIED_WITH_LIMITS_ACCEPTANCE_PENDING",
+  "source_sha256": {
+    "scripts/build_building_scene.py": "97d2ed092fe02eab3e257c6e663bdd4387b8542bd00844ab52297dadfd88148b",
+    "scripts/view_building_scene.py": "894238a0cf7dfa2c04d333c3dc186e3a4c6922030a84c070380ef445ba5a07a3",
+    "sim/__init__.py": "74cf015db4285108c06c6c6b6edcf85e05a8802186e9af855aaa3c82a1a809f7",
+    "sim/isaac/__init__.py": "2fc8fe53994e6a1ba84be15c20b0b75f7d384b2e38ce1a9ac7a74f54dae953ea",
+    "sim/isaac/scene/__init__.py": "e3a240987d86f87e019278e05cb69b723638ece144f7450865d89a1937fc2094",
+    "sim/isaac/scene/inspection.py": "7f795fd6b68aa413def3416d852cc806b0876f1a327908cbaa400bea7697d886",
+    "sim/isaac/scene/layout.py": "1e5543a4f5863532bc620f1d88388b461656870fb2dd2a7f544d5d89812dc42c",
+    "sim/isaac/scene/model.py": "9a3304942dc2d8ddad721b65949de9ca252995224b34670d1580a29f9400d36c",
+    "sim/isaac/scene/revision_checks.py": "c85089588a1de1faa5694e19874f306ea9da2ca9d91708edc345df02ead396f5",
+    "sim/isaac/scene/trial_scene.py": "af842a5876091816fce2d525d055f01e0b638dda47384d09b35b5ca715bf0240",
+    "sim/isaac/scene/trials.py": "dfd80b79a59bf0c7df5ed7ad0d87f3b2c2a9798c989dc67b24523361ad586451",
+    "sim/isaac/scene/usd_scene.py": "9e7a84caf010abbf2aea3cea4201325fb329a9a2affe73c43f5337b49cc2dec9"
+  },
+  "camera_only_change_after_earlier_runs": {
+    "path": "sim/isaac/scene/revision_checks.py",
+    "before": "0451ca3922e63101dad6ddf4e5c808566dce0de2c0295010fa55114db6b8e011",
+    "after": "c85089588a1de1faa5694e19874f306ea9da2ca9d91708edc345df02ead396f5",
+    "change": "Only screenshot camera selections: T3 completion to J3, T2 blocked to J3, T4 blocked to F1; line endings normalized; motion and load methods unchanged. Final Ruff formatting normalizes line endings only; final trial source text is identical.",
+    "earlier_camera_variants_sha256": [
+      "0451ca3922e63101dad6ddf4e5c808566dce0de2c0295010fa55114db6b8e011",
+      "c0a68adddb3992a015a315b64a7e57f19ab10f0ea864945f4af92bb9087641e5",
+      "4036a2f670c6353ffe0f1ef5f8da658f76858f8e65c5a743c8bbb0851e17773e"
+    ]
+  },
+  "scope": "S13_GEOMETRY_KINEMATICS_SCENE_REHEARSALS_NO_PRODUCTION_EVENTS",
+  "quality": "UNKNOWN",
+  "hr_enabled": false,
+  "frozen_domain_unchanged": true,
+  "cpu": {
+    "workspace": 432,
+    "isolated_wheel": 432,
+    "final_scene_specific": 38,
+    "remote_ci": "NOT_RUN",
+    "scene_is_repository_asset_not_in_wheel": true
+  },
+  "legacy_protocol": {
+    "cycles": [
+      {
+        "fixture": "initial",
+        "cycle": 0,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "initial",
+        "cycle": 1,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "initial",
+        "cycle": 2,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "dual_frame",
+        "cycle": 0,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "dual_frame",
+        "cycle": 1,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "dual_frame",
+        "cycle": 2,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "joining",
+        "cycle": 0,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "joining",
+        "cycle": 1,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "joining",
+        "cycle": 2,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "structure",
+        "cycle": 0,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "structure",
+        "cycle": 1,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "structure",
+        "cycle": 2,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "mep_wait",
+        "cycle": 0,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "mep_wait",
+        "cycle": 1,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "mep_wait",
+        "cycle": 2,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "sr_w2",
+        "cycle": 0,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "sr_w2",
+        "cycle": 1,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "sr_w2",
+        "cycle": 2,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "quarantine",
+        "cycle": 0,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "quarantine",
+        "cycle": 1,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "quarantine",
+        "cycle": 2,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "outbound",
+        "cycle": 0,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "outbound",
+        "cycle": 1,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "outbound",
+        "cycle": 2,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "manual_weld",
+        "cycle": 0,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "manual_weld",
+        "cycle": 1,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "manual_weld",
+        "cycle": 2,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "robot_demo",
+        "cycle": 0,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "robot_demo",
+        "cycle": 1,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      },
+      {
+        "fixture": "robot_demo",
+        "cycle": 2,
+        "callbacks": 240,
+        "reset_error_m": 0.0,
+        "replay_error_m": 0.0,
+        "final_probe_z": 0.14999999105930328
+      }
+    ],
+    "robot": [
+      {
+        "angles_deg": [
+          0,
+          -35,
+          65,
+          0,
+          -20,
+          0
+        ],
+        "position_error_m": 2.220446049250313e-16,
+        "orientation_error_deg": 0.0
+      },
+      {
+        "angles_deg": [
+          20,
+          -45,
+          75,
+          15,
+          -25,
+          20
+        ],
+        "position_error_m": 2.220446049250313e-16,
+        "orientation_error_deg": 0.0
+      },
+      {
+        "angles_deg": [
+          -20,
+          -25,
+          50,
+          -15,
+          -15,
+          -20
+        ],
+        "position_error_m": 3.5596458096434965e-15,
+        "orientation_error_deg": 0.0
+      }
+    ],
+    "counts": {
+      "domain_ids": 36,
+      "prims": 799,
+      "colliders": 115
+    },
+    "routes": [
+      {
+        "name": "MV-IN-BOTTOM",
+        "equipment": "HST1",
+        "entity": "PRODUCT-1.BOTTOM",
+        "source": [
+          6.0,
+          7.5,
+          0.6
+        ],
+        "target": [
+          16,
+          7.5,
+          0.6
+        ],
+        "mass_t": 2,
+        "rigging_t": 0,
+        "sample_count": 241,
+        "readback_endpoint": [
+          16.0,
+          7.5,
+          0.6000000000000001
+        ],
+        "obstacles_checked": 110,
+        "roles": [
+          "P1",
+          "Lrig",
+          "Lsig"
+        ],
+        "reservation": [
+          16,
+          7.5,
+          0.6
+        ],
+        "duration_seconds": 120.0,
+        "peak_speed_m_s": [
+          0.78125,
+          0.2734375,
+          0.28125
+        ],
+        "speed_limits_m_s": [
+          2.5,
+          2.5,
+          0.5
+        ],
+        "state": "RELEASED"
+      },
+      {
+        "name": "MV-IN-TOP",
+        "equipment": "HST1",
+        "entity": "PRODUCT-1.TOP",
+        "source": [
+          6.0,
+          10.0,
+          0.6
+        ],
+        "target": [
+          16,
+          12.5,
+          0.6
+        ],
+        "mass_t": 2,
+        "rigging_t": 0,
+        "sample_count": 241,
+        "readback_endpoint": [
+          16.0,
+          12.5,
+          0.6000000000000001
+        ],
+        "obstacles_checked": 110,
+        "roles": [
+          "P1",
+          "Lrig",
+          "Lsig"
+        ],
+        "reservation": [
+          16,
+          12.5,
+          0.6
+        ],
+        "duration_seconds": 120.0,
+        "peak_speed_m_s": [
+          0.78125,
+          0.6640625,
+          0.28125
+        ],
+        "speed_limits_m_s": [
+          2.5,
+          2.5,
+          0.5
+        ],
+        "state": "RELEASED"
+      },
+      {
+        "name": "MV-BOTTOM",
+        "equipment": "HST1",
+        "entity": "PRODUCT-1.BOTTOM",
+        "source": [
+          16.0,
+          7.5,
+          0.6
+        ],
+        "target": [
+          26,
+          7.5,
+          0.6
+        ],
+        "mass_t": 2,
+        "rigging_t": 0,
+        "sample_count": 241,
+        "readback_endpoint": [
+          26.0,
+          7.5,
+          0.6000000000000001
+        ],
+        "obstacles_checked": 110,
+        "roles": [
+          "P1",
+          "Lrig",
+          "Lsig"
+        ],
+        "reservation": [
+          26,
+          7.5,
+          0.6
+        ],
+        "duration_seconds": 120.0,
+        "peak_speed_m_s": [
+          0.78125,
+          0.2734375,
+          0.28125
+        ],
+        "speed_limits_m_s": [
+          2.5,
+          2.5,
+          0.5
+        ],
+        "state": "RELEASED"
+      },
+      {
+        "name": "MV-TOP",
+        "equipment": "HST1",
+        "entity": "PRODUCT-1.TOP",
+        "source": [
+          16.0,
+          12.5,
+          0.6
+        ],
+        "target": [
+          26,
+          12.5,
+          0.6
+        ],
+        "mass_t": 2,
+        "rigging_t": 0,
+        "sample_count": 241,
+        "readback_endpoint": [
+          26.0,
+          12.5,
+          0.6000000000000001
+        ],
+        "obstacles_checked": 110,
+        "roles": [
+          "P1",
+          "Lrig",
+          "Lsig"
+        ],
+        "reservation": [
+          26,
+          12.5,
+          0.6
+        ],
+        "duration_seconds": 120.0,
+        "peak_speed_m_s": [
+          0.78125,
+          0.6640625,
+          0.28125
+        ],
+        "speed_limits_m_s": [
+          2.5,
+          2.5,
+          0.5
+        ],
+        "state": "RELEASED"
+      },
+      {
+        "name": "JOIN-IN-BOTTOM",
+        "equipment": "CR1",
+        "entity": "PRODUCT-1.BOTTOM",
+        "source": [
+          26.0,
+          7.5,
+          0.6
+        ],
+        "target": [
+          36,
+          7.5,
+          0.6
+        ],
+        "mass_t": 2,
+        "rigging_t": 0,
+        "sample_count": 241,
+        "readback_endpoint": [
+          36.0,
+          7.5,
+          0.6
+        ],
+        "obstacles_checked": 107,
+        "roles": [
+          "Lop",
+          "Lrig",
+          "Lsig"
+        ],
+        "reservation": [
+          36,
+          7.5,
+          0.6
+        ],
+        "duration_seconds": 120.0,
+        "peak_speed_m_s": [
+          0.78125,
+          0.7421875,
+          0.03125
+        ],
+        "speed_limits_m_s": [
+          2.5,
+          2.5,
+          0.5
+        ],
+        "state": "RELEASED"
+      },
+      {
+        "name": "JOIN-IN-TOP",
+        "equipment": "CR1",
+        "entity": "PRODUCT-1.TOP",
+        "source": [
+          26.0,
+          12.5,
+          0.6
+        ],
+        "target": [
+          36,
+          12.5,
+          0.6
+        ],
+        "mass_t": 2,
+        "rigging_t": 0,
+        "sample_count": 241,
+        "readback_endpoint": [
+          36.0,
+          12.5,
+          0.6
+        ],
+        "obstacles_checked": 107,
+        "roles": [
+          "Lop",
+          "Lrig",
+          "Lsig"
+        ],
+        "reservation": [
+          36,
+          12.5,
+          0.6
+        ],
+        "duration_seconds": 120.0,
+        "peak_speed_m_s": [
+          0.78125,
+          0.3515625,
+          0.03125
+        ],
+        "speed_limits_m_s": [
+          2.5,
+          2.5,
+          0.5
+        ],
+        "state": "RELEASED"
+      },
+      {
+        "name": "JOIN-IN-COLUMNS",
+        "equipment": "CR1",
+        "entity": "PRODUCT-1.COLUMNS",
+        "source": [
+          6.0,
+          12.5,
+          0.6
+        ],
+        "target": [
+          36,
+          10,
+          0.6
+        ],
+        "mass_t": 4,
+        "rigging_t": 0,
+        "sample_count": 241,
+        "readback_endpoint": [
+          36.0,
+          10.0,
+          0.6
+        ],
+        "obstacles_checked": 107,
+        "roles": [
+          "Lop",
+          "Lrig",
+          "Lsig"
+        ],
+        "reservation": [
+          36,
+          10,
+          0.6
+        ],
+        "duration_seconds": 120.0,
+        "peak_speed_m_s": [
+          2.34375,
+          0.546875,
+          0.03125
+        ],
+        "speed_limits_m_s": [
+          2.5,
+          2.5,
+          0.5
+        ],
+        "state": "RELEASED"
+      },
+      {
+        "name": "J3-F1",
+        "equipment": "CR1",
+        "entity": "PRODUCT-1",
+        "source": [
+          36.0,
+          10.0,
+          0.6
+        ],
+        "target": [
+          36,
+          24,
+          0.6
+        ],
+        "mass_t": 8,
+        "rigging_t": 1,
+        "sample_count": 241,
+        "readback_endpoint": [
+          36.0,
+          24.0,
+          0.6
+        ],
+        "obstacles_checked": 105,
+        "roles": [
+          "Lop",
+          "Lrig",
+          "Lsig"
+        ],
+        "reservation": [
+          36,
+          24,
+          0.6
+        ],
+        "duration_seconds": 120.0,
+        "peak_speed_m_s": [
+          0.0,
+          0.546875,
+          0.03125
+        ],
+        "speed_limits_m_s": [
+          2.5,
+          2.5,
+          0.5
+        ],
+        "state": "RELEASED"
+      },
+      {
+        "name": "F1-OUT1",
+        "equipment": "CR1",
+        "entity": "PRODUCT-1",
+        "source": [
+          36.0,
+          24.0,
+          0.6
+        ],
+        "target": [
+          16,
+          24,
+          0.6
+        ],
+        "mass_t": 8,
+        "rigging_t": 1,
+        "sample_count": 241,
+        "readback_endpoint": [
+          16.0,
+          24.0,
+          0.6
+        ],
+        "obstacles_checked": 105,
+        "roles": [
+          "Lop",
+          "Lrig",
+          "Lsig"
+        ],
+        "reservation": [
+          16,
+          24,
+          0.6
+        ],
+        "duration_seconds": 120.0,
+        "peak_speed_m_s": [
+          1.5625,
+          0.546875,
+          0.03125
+        ],
+        "speed_limits_m_s": [
+          2.5,
+          2.5,
+          0.5
+        ],
+        "state": "RELEASED"
+      },
+      {
+        "name": "F1-Q1_GEOMETRY_ONLY",
+        "equipment": "CR1",
+        "entity": "PRODUCT-1",
+        "source": [
+          36.0,
+          24.0,
+          0.6
+        ],
+        "target": [
+          26,
+          24,
+          0.6
+        ],
+        "mass_t": 8,
+        "rigging_t": 1,
+        "sample_count": 241,
+        "readback_endpoint": [
+          26.0,
+          24.0,
+          0.6
+        ],
+        "obstacles_checked": 105,
+        "roles": [
+          "Lop",
+          "Lrig",
+          "Lsig"
+        ],
+        "reservation": [
+          26,
+          24,
+          0.6
+        ],
+        "duration_seconds": 120.0,
+        "peak_speed_m_s": [
+          0.78125,
+          0.546875,
+          0.03125
+        ],
+        "speed_limits_m_s": [
+          2.5,
+          2.5,
+          0.5
+        ],
+        "state": "RELEASED"
+      }
+    ],
+    "negative_cases": [
+      {
+        "case": "MV-IN-BOTTOM_unattached",
+        "reason": "NOT_ATTACHED"
+      },
+      {
+        "case": "MV-IN-BOTTOM_early_unhook",
+        "reason": "NOT_LANDED"
+      },
+      {
+        "case": "MV-IN-BOTTOM_wrong_endpoint",
+        "reason": "ARRIVAL_MISMATCH"
+      },
+      {
+        "case": "MV-IN-TOP_unattached",
+        "reason": "NOT_ATTACHED"
+      },
+      {
+        "case": "MV-IN-TOP_early_unhook",
+        "reason": "NOT_LANDED"
+      },
+      {
+        "case": "MV-IN-TOP_wrong_endpoint",
+        "reason": "ARRIVAL_MISMATCH"
+      },
+      {
+        "case": "MV-BOTTOM_unattached",
+        "reason": "NOT_ATTACHED"
+      },
+      {
+        "case": "MV-BOTTOM_early_unhook",
+        "reason": "NOT_LANDED"
+      },
+      {
+        "case": "MV-BOTTOM_wrong_endpoint",
+        "reason": "ARRIVAL_MISMATCH"
+      },
+      {
+        "case": "MV-TOP_unattached",
+        "reason": "NOT_ATTACHED"
+      },
+      {
+        "case": "MV-TOP_early_unhook",
+        "reason": "NOT_LANDED"
+      },
+      {
+        "case": "MV-TOP_wrong_endpoint",
+        "reason": "ARRIVAL_MISMATCH"
+      },
+      {
+        "case": "JOIN-IN-BOTTOM_unattached",
+        "reason": "NOT_ATTACHED"
+      },
+      {
+        "case": "JOIN-IN-BOTTOM_early_unhook",
+        "reason": "NOT_LANDED"
+      },
+      {
+        "case": "JOIN-IN-BOTTOM_wrong_endpoint",
+        "reason": "ARRIVAL_MISMATCH"
+      },
+      {
+        "case": "JOIN-IN-TOP_unattached",
+        "reason": "NOT_ATTACHED"
+      },
+      {
+        "case": "JOIN-IN-TOP_early_unhook",
+        "reason": "NOT_LANDED"
+      },
+      {
+        "case": "JOIN-IN-TOP_wrong_endpoint",
+        "reason": "ARRIVAL_MISMATCH"
+      },
+      {
+        "case": "JOIN-IN-COLUMNS_unattached",
+        "reason": "NOT_ATTACHED"
+      },
+      {
+        "case": "JOIN-IN-COLUMNS_early_unhook",
+        "reason": "NOT_LANDED"
+      },
+      {
+        "case": "JOIN-IN-COLUMNS_wrong_endpoint",
+        "reason": "ARRIVAL_MISMATCH"
+      },
+      {
+        "case": "J3-F1_unattached",
+        "reason": "NOT_ATTACHED"
+      },
+      {
+        "case": "J3-F1_early_unhook",
+        "reason": "NOT_LANDED"
+      },
+      {
+        "case": "J3-F1_wrong_endpoint",
+        "reason": "ARRIVAL_MISMATCH"
+      },
+      {
+        "case": "F1-OUT1_unattached",
+        "reason": "NOT_ATTACHED"
+      },
+      {
+        "case": "F1-OUT1_early_unhook",
+        "reason": "NOT_LANDED"
+      },
+      {
+        "case": "F1-OUT1_wrong_endpoint",
+        "reason": "ARRIVAL_MISMATCH"
+      },
+      {
+        "case": "F1-Q1_GEOMETRY_ONLY_unattached",
+        "reason": "NOT_ATTACHED"
+      },
+      {
+        "case": "F1-Q1_GEOMETRY_ONLY_early_unhook",
+        "reason": "NOT_LANDED"
+      },
+      {
+        "case": "F1-Q1_GEOMETRY_ONLY_wrong_endpoint",
+        "reason": "ARRIVAL_MISMATCH"
+      },
+      {
+        "case": "track_obstacle",
+        "reason": "COLLISION:/World/InjectedRailObstacle"
+      },
+      {
+        "case": "load_obstacle",
+        "reason": "COLLISION:/World/InjectedLoadObstacle"
+      },
+      {
+        "case": "robot_workpiece_collision",
+        "reason": "ROBOT_COLLISION:workpiece"
+      },
+      {
+        "case": "duplicate_welder_USD",
+        "reason": "USD_MAPPING_NOT_BIJECTIVE"
+      },
+      {
+        "case": "manual_machine_robot_USD",
+        "reason": "USD_EQUIPMENT_CLASSIFICATION:WELD1"
+      }
+    ],
+    "robot_continuous": {
+      "samples": 241,
+      "max_position_error_m": 1.0777057434022821e-07,
+      "obstacles_checked_per_sample": 113
+    }
+  },
+  "layout": [
+    {
+      "candidate": "A-original-plus-supply",
+      "site_m": [
+        42,
+        34
+      ],
+      "outside_site": [
+        "SCN-RETURN"
+      ],
+      "pad_bay_conflicts": [
+        [
+          "PRE",
+          "SCN-RECEIVE"
+        ],
+        [
+          "PRE",
+          "SCN-STEEL"
+        ],
+        [
+          "Q1",
+          "SCN-KIT"
+        ],
+        [
+          "OUT1",
+          "SCN-KIT"
+        ]
+      ],
+      "core_origin": [
+        0,
+        0
+      ],
+      "required_endpoint_manhattan_m": {
+        "PRE-J2": 10,
+        "J2-BUF": 10,
+        "BUF-J3": 10,
+        "PRE-J3": 30,
+        "J3-F1": 14,
+        "F1-OUT1": 20,
+        "F1-Q1": 10
+      },
+      "supply_to_pre_m": 5,
+      "crane_endpoint_coverage": true,
+      "person_route_count": 15,
+      "shared_crossing_ids": [
+        "SCN-X-MODULE",
+        "SCN-X-SUPPLY"
+      ],
+      "station_reachability": "BLOCKED",
+      "selected": false
+    },
+    {
+      "candidate": "B-west-supply",
+      "site_m": [
+        60,
+        44
+      ],
+      "outside_site": [],
+      "pad_bay_conflicts": [],
+      "core_origin": [
+        14,
+        4
+      ],
+      "required_endpoint_manhattan_m": {
+        "PRE-J2": 10,
+        "J2-BUF": 10,
+        "BUF-J3": 10,
+        "PRE-J3": 30,
+        "J3-F1": 14,
+        "F1-OUT1": 20,
+        "F1-Q1": 10
+      },
+      "supply_to_pre_m": 13,
+      "crane_endpoint_coverage": true,
+      "person_route_count": 15,
+      "shared_crossing_ids": [
+        "SCN-X-MODULE",
+        "SCN-X-SUPPLY"
+      ],
+      "station_reachability": "REQUIRES_USD_SWEEP",
+      "selected": true
+    }
+  ],
+  "trials": [
+    {
+      "trial": "T1",
+      "final": {
+        "trial": "T1",
+        "index": 12,
+        "elapsed": 649.6495535714287,
+        "part_elapsed": 0,
+        "status": "COMPLETE_GEOMETRY_ONLY",
+        "positions": {
+          "P1": [
+            1,
+            11,
+            0
+          ],
+          "W1": [
+            3.5,
+            36,
+            0
+          ],
+          "W2": [
+            5.0,
+            36,
+            0
+          ],
+          "OP1": [
+            6.5,
+            36,
+            0
+          ],
+          "AF1": [
+            8.0,
+            36,
+            0
+          ],
+          "AF2": [
+            9.5,
+            36,
+            0
+          ],
+          "E1": [
+            11.0,
+            36,
+            0
+          ],
+          "PL1": [
+            12.5,
+            36,
+            0
+          ],
+          "T1": [
+            14.0,
+            36,
+            0
+          ],
+          "T2": [
+            15.5,
+            36,
+            0
+          ],
+          "C1": [
+            17.0,
+            36,
+            0
+          ],
+          "QA1": [
+            18.5,
+            36,
+            0
+          ],
+          "Lop": [
+            20.0,
+            36,
+            0
+          ],
+          "Lrig": [
+            9,
+            14.7,
+            0
+          ],
+          "Lsig": [
+            10,
+            14.7,
+            0
+          ],
+          "WELD1": [
+            12,
+            10,
+            0
+          ],
+          "TEST1": [
+            31,
+            26,
+            0
+          ],
+          "PRODUCT-1.BOTTOM": [
+            16,
+            7.5,
+            0.6
+          ],
+          "HST1": [
+            6,
+            4,
+            0
+          ]
+        },
+        "owners": {},
+        "quality": "UNKNOWN",
+        "production_receipt": false,
+        "blocked": null,
+        "paused": false
+      },
+      "samples": 1305,
+      "fault_resumed": true,
+      "reset_equal": true,
+      "control_checks": [
+        "pause",
+        "single_step",
+        "speed",
+        "reset",
+        "layers"
+      ]
+    },
+    {
+      "trial": "T2",
+      "final": {
+        "trial": "T2",
+        "index": 11,
+        "elapsed": 792.9178571428572,
+        "part_elapsed": 0,
+        "status": "COMPLETE_GEOMETRY_ONLY",
+        "positions": {
+          "P1": [
+            2.0,
+            36,
+            0
+          ],
+          "W1": [
+            3.5,
+            36,
+            0
+          ],
+          "W2": [
+            5.0,
+            36,
+            0
+          ],
+          "OP1": [
+            6.5,
+            36,
+            0
+          ],
+          "AF1": [
+            8.0,
+            36,
+            0
+          ],
+          "AF2": [
+            9.5,
+            36,
+            0
+          ],
+          "E1": [
+            11.0,
+            36,
+            0
+          ],
+          "PL1": [
+            12.5,
+            36,
+            0
+          ],
+          "T1": [
+            14.0,
+            36,
+            0
+          ],
+          "T2": [
+            15.5,
+            36,
+            0
+          ],
+          "C1": [
+            17.0,
+            36,
+            0
+          ],
+          "QA1": [
+            18.5,
+            36,
+            0
+          ],
+          "Lop": [
+            42,
+            15,
+            0
+          ],
+          "Lrig": [
+            30.5,
+            8,
+            0
+          ],
+          "Lsig": [
+            30.5,
+            13,
+            0
+          ],
+          "WELD1": [
+            12,
+            10,
+            0
+          ],
+          "TEST1": [
+            31,
+            26,
+            0
+          ],
+          "PRODUCT-1": [
+            36,
+            24,
+            0.6
+          ],
+          "SCN-EMPTY-HOOK": [
+            36,
+            10,
+            5.2
+          ]
+        },
+        "owners": {},
+        "quality": "UNKNOWN",
+        "production_receipt": false,
+        "blocked": null,
+        "paused": false
+      },
+      "samples": 1591,
+      "fault_resumed": true,
+      "reset_equal": true,
+      "control_checks": [
+        "pause",
+        "single_step",
+        "speed",
+        "reset",
+        "layers"
+      ]
+    },
+    {
+      "trial": "T3",
+      "final": {
+        "trial": "T3",
+        "index": 7,
+        "elapsed": 629.75,
+        "part_elapsed": 0,
+        "status": "COMPLETE_GEOMETRY_ONLY",
+        "positions": {
+          "P1": [
+            2.0,
+            36,
+            0
+          ],
+          "W1": [
+            3.5,
+            36,
+            0
+          ],
+          "W2": [
+            5.0,
+            36,
+            0
+          ],
+          "OP1": [
+            6.5,
+            36,
+            0
+          ],
+          "AF1": [
+            8.0,
+            36,
+            0
+          ],
+          "AF2": [
+            9.5,
+            36,
+            0
+          ],
+          "E1": [
+            11.0,
+            36,
+            0
+          ],
+          "PL1": [
+            12.5,
+            36,
+            0
+          ],
+          "T1": [
+            14.0,
+            36,
+            0
+          ],
+          "T2": [
+            15.5,
+            36,
+            0
+          ],
+          "C1": [
+            17.0,
+            36,
+            0
+          ],
+          "QA1": [
+            18.5,
+            36,
+            0
+          ],
+          "Lop": [
+            20.0,
+            36,
+            0
+          ],
+          "Lrig": [
+            21.5,
+            36,
+            0
+          ],
+          "Lsig": [
+            23.0,
+            36,
+            0
+          ],
+          "WELD1": [
+            32,
+            11,
+            0
+          ],
+          "TEST1": [
+            31,
+            26,
+            0
+          ],
+          "SCN-MEP-BATCH": [
+            32,
+            27.5,
+            0.6
+          ]
+        },
+        "owners": {},
+        "quality": "UNKNOWN",
+        "production_receipt": false,
+        "blocked": null,
+        "paused": false
+      },
+      "samples": 1264,
+      "fault_resumed": true,
+      "reset_equal": true,
+      "control_checks": [
+        "pause",
+        "single_step",
+        "speed",
+        "reset",
+        "layers"
+      ]
+    },
+    {
+      "trial": "T4",
+      "final": {
+        "trial": "T4",
+        "index": 7,
+        "elapsed": 112.80000000000001,
+        "part_elapsed": 0,
+        "status": "COMPLETE_GEOMETRY_ONLY",
+        "positions": {
+          "P1": [
+            2.0,
+            36,
+            0
+          ],
+          "W1": [
+            3.5,
+            36,
+            0
+          ],
+          "W2": [
+            5.0,
+            36,
+            0
+          ],
+          "OP1": [
+            6.5,
+            36,
+            0
+          ],
+          "AF1": [
+            8.0,
+            36,
+            0
+          ],
+          "AF2": [
+            9.5,
+            36,
+            0
+          ],
+          "E1": [
+            11.0,
+            36,
+            0
+          ],
+          "PL1": [
+            12.5,
+            36,
+            0
+          ],
+          "T1": [
+            14.0,
+            36,
+            0
+          ],
+          "T2": [
+            15.5,
+            36,
+            0
+          ],
+          "C1": [
+            17.0,
+            36,
+            0
+          ],
+          "QA1": [
+            18.5,
+            36,
+            0
+          ],
+          "Lop": [
+            20.0,
+            36,
+            0
+          ],
+          "Lrig": [
+            21.5,
+            36,
+            0
+          ],
+          "Lsig": [
+            23.0,
+            36,
+            0
+          ],
+          "WELD1": [
+            12,
+            10,
+            0
+          ],
+          "TEST1": [
+            31,
+            26,
+            0
+          ],
+          "PRODUCT-1": [
+            36,
+            24,
+            0.6
+          ],
+          "SCN-PRODUCT-2": [
+            16,
+            24,
+            0.6
+          ],
+          "SCN-EMPTY-HOOK": [
+            26,
+            24,
+            3.8
+          ]
+        },
+        "owners": {},
+        "quality": "UNKNOWN",
+        "production_receipt": false,
+        "blocked": null,
+        "paused": false
+      },
+      "samples": 231,
+      "fault_resumed": true,
+      "reset_equal": true,
+      "control_checks": [
+        "pause",
+        "single_step",
+        "speed",
+        "reset",
+        "layers"
+      ]
+    }
+  ],
+  "trial_negatives": [
+    {
+      "case": "T1_handoff_occupied",
+      "reason": "COLLISION:/World/Trial/Injected"
+    },
+    {
+      "case": "T1_duplicate_CUT1",
+      "reason": "RESOURCE_BUSY:CUT1"
+    },
+    {
+      "case": "T1_duplicate_HST1",
+      "reason": "RESOURCE_BUSY:HST1"
+    },
+    {
+      "case": "T2_duplicate_CR1",
+      "reason": "RESOURCE_BUSY:CR1"
+    },
+    {
+      "case": "T2_person",
+      "reason": "COLLISION:/World/Trial/Injected"
+    },
+    {
+      "case": "T3_duplicate_WELD1",
+      "reason": "RESOURCE_BUSY:WELD1"
+    },
+    {
+      "case": "T3_tool",
+      "reason": "COLLISION:/World/Trial/Injected"
+    },
+    {
+      "case": "T4_duplicate_CR1",
+      "reason": "RESOURCE_BUSY:CR1"
+    },
+    {
+      "case": "T4_target_occupied",
+      "reason": "COLLISION:/World/Trial/Injected"
+    },
+    {
+      "case": "capacity_J2",
+      "reason": "CAPACITY:J2"
+    },
+    {
+      "case": "capacity_BUF",
+      "reason": "CAPACITY:BUF"
+    },
+    {
+      "case": "capacity_Q1",
+      "reason": "CAPACITY:Q1"
+    },
+    {
+      "case": "capacity_OUT1",
+      "reason": "CAPACITY:OUT1"
+    },
+    {
+      "case": "cross_product_component",
+      "reason": "CROSS_PRODUCT_COMPONENT:P1.BOTTOM"
+    }
+  ],
+  "person_routes": [
+    {
+      "person": "P1",
+      "points_local": [
+        [
+          2.0,
+          36,
+          0
+        ],
+        [
+          2.0,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          1,
+          15.8,
+          0
+        ],
+        [
+          1,
+          11,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "W1",
+      "points_local": [
+        [
+          3.5,
+          36,
+          0
+        ],
+        [
+          3.5,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          11,
+          15.8,
+          0
+        ],
+        [
+          11,
+          9,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "W2",
+      "points_local": [
+        [
+          5.0,
+          36,
+          0
+        ],
+        [
+          5.0,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          11,
+          15.8,
+          0
+        ],
+        [
+          11,
+          11.5,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "OP1",
+      "points_local": [
+        [
+          6.5,
+          36,
+          0
+        ],
+        [
+          6.5,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          20.8,
+          15.8,
+          0
+        ],
+        [
+          20.8,
+          15,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "AF1",
+      "points_local": [
+        [
+          8.0,
+          36,
+          0
+        ],
+        [
+          8.0,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          22,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "AF2",
+      "points_local": [
+        [
+          9.5,
+          36,
+          0
+        ],
+        [
+          9.5,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          23,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "E1",
+      "points_local": [
+        [
+          11.0,
+          36,
+          0
+        ],
+        [
+          11.0,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          24,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "PL1",
+      "points_local": [
+        [
+          12.5,
+          36,
+          0
+        ],
+        [
+          12.5,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          25,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "T1",
+      "points_local": [
+        [
+          14.0,
+          36,
+          0
+        ],
+        [
+          14.0,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          26,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "T2",
+      "points_local": [
+        [
+          15.5,
+          36,
+          0
+        ],
+        [
+          15.5,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          15.8,
+          0
+        ],
+        [
+          40.5,
+          27,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "C1",
+      "points_local": [
+        [
+          17.0,
+          36,
+          0
+        ],
+        [
+          17.0,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          31,
+          15.8,
+          0
+        ],
+        [
+          31,
+          14.8,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "QA1",
+      "points_local": [
+        [
+          18.5,
+          36,
+          0
+        ],
+        [
+          18.5,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          41.5,
+          15.8,
+          0
+        ],
+        [
+          41.5,
+          26,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "Lop",
+      "points_local": [
+        [
+          20.0,
+          36,
+          0
+        ],
+        [
+          20.0,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          42,
+          15.8,
+          0
+        ],
+        [
+          42,
+          15,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "Lrig",
+      "points_local": [
+        [
+          21.5,
+          36,
+          0
+        ],
+        [
+          21.5,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          41,
+          15.8,
+          0
+        ],
+        [
+          41,
+          12,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    },
+    {
+      "person": "Lsig",
+      "points_local": [
+        [
+          23.0,
+          36,
+          0
+        ],
+        [
+          23.0,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          37.5,
+          0
+        ],
+        [
+          -1,
+          15.8,
+          0
+        ],
+        [
+          42,
+          15.8,
+          0
+        ],
+        [
+          42,
+          10,
+          0
+        ]
+      ],
+      "obstacles": 112,
+      "crossing": "CR1_IDLE_ONLY",
+      "actual_samples": 125
+    }
+  ],
+  "ui": {
+    "status": "PASSED",
+    "method": "SAME_CALLBACK_QUEUE_NO_PHYSICAL_MOUSE_TEST",
+    "actions": [
+      [
+        "step",
+        null
+      ],
+      [
+        "speed",
+        null
+      ],
+      [
+        "pause",
+        null
+      ],
+      [
+        "pause",
+        null
+      ],
+      [
+        "inject",
+        "obstacle"
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "clear",
+        null
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "camera",
+        "PRE"
+      ],
+      [
+        "layer",
+        "routes"
+      ],
+      [
+        "layer",
+        "roles"
+      ],
+      [
+        "layer",
+        "envelopes"
+      ],
+      [
+        "reset",
+        null
+      ],
+      [
+        "trial",
+        "T2"
+      ],
+      [
+        "trial",
+        "T3"
+      ],
+      [
+        "trial",
+        "T4"
+      ],
+      [
+        "fixture",
+        "mep_wait"
+      ],
+      [
+        "trial",
+        "T1"
+      ],
+      [
+        "save",
+        "Automated UI callback smoke test"
+      ]
+    ]
+  },
+  "loads": [
+    {
+      "level": "L0",
+      "warmup_seconds": 30,
+      "measurement_seconds": 120.00144999998156,
+      "updates": {
+        "count": 18701,
+        "median_ms": 5.979400011710823,
+        "p95_ms": 7.0180000038817525,
+        "max_ms": 68.71580000733957,
+        "over_50ms": 100,
+        "over_100ms": 0
+      },
+      "observed_counter_change_intervals": {
+        "count": 18352,
+        "median_ms": 6.005349976476282,
+        "p95_ms": 7.340100011788309,
+        "max_ms": 135.13190002413467,
+        "over_50ms": 112,
+        "over_100ms": 12
+      },
+      "render_frame_counter_delta": 37402,
+      "physics_callbacks": 18701,
+      "actual_render_timestamps_available": false,
+      "actual_frame_target": "UNVERIFIED",
+      "process_gpu_mib": "UNAVAILABLE_WDDM",
+      "memory_samples": [
+        {
+          "elapsed": 0.00577079999493435,
+          "rss": 6807232512,
+          "private": 10693963776,
+          "whole_card_gpu_mib": [
+            3636
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 10.008301399997436,
+          "rss": 6805159936,
+          "private": 10693836800,
+          "whole_card_gpu_mib": [
+            3603
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 20.01021189999301,
+          "rss": 6805131264,
+          "private": 10693726208,
+          "whole_card_gpu_mib": [
+            3583
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 30.015341599995736,
+          "rss": 6805180416,
+          "private": 10694057984,
+          "whole_card_gpu_mib": [
+            3622
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 40.01852759998292,
+          "rss": 6805417984,
+          "private": 10694062080,
+          "whole_card_gpu_mib": [
+            3605
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 50.022994500002824,
+          "rss": 6744961024,
+          "private": 10694062080,
+          "whole_card_gpu_mib": [
+            3592
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 60.0264068999677,
+          "rss": 6744911872,
+          "private": 10694062080,
+          "whole_card_gpu_mib": [
+            3622
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 70.03259419999085,
+          "rss": 6744928256,
+          "private": 10694062080,
+          "whole_card_gpu_mib": [
+            3580
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 80.03653330000816,
+          "rss": 6744940544,
+          "private": 10694062080,
+          "whole_card_gpu_mib": [
+            3622
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 90.03761090000626,
+          "rss": 6735642624,
+          "private": 10684551168,
+          "whole_card_gpu_mib": [
+            3626
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 100.03937419998692,
+          "rss": 6735650816,
+          "private": 10684555264,
+          "whole_card_gpu_mib": [
+            3632
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 110.04210109997075,
+          "rss": 6736736256,
+          "private": 10686038016,
+          "whole_card_gpu_mib": [
+            3632
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "counts": {
+        "domain_ids": 36,
+        "prims": 618,
+        "colliders": 86
+      },
+      "meshes": 63,
+      "imageables": 571,
+      "moving_actor_set": [],
+      "cycle_reset": "NONE",
+      "movement_schedule": "STATIC_BASELINE_PHYSICS_PROBE",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "renderer": "RayTracedLighting",
+      "physics": "CPU PhysX",
+      "resets": [
+        {
+          "reset": 0,
+          "seconds": 3.0033040000125766,
+          "rss": 6821376000,
+          "private": 11011739648,
+          "whole_card_gpu_mib": [
+            3792
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 1,
+          "seconds": 3.005318899988197,
+          "rss": 6839681024,
+          "private": 10993672192,
+          "whole_card_gpu_mib": [
+            3793
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 2,
+          "seconds": 3.000382600002922,
+          "rss": 6837035008,
+          "private": 10993590272,
+          "whole_card_gpu_mib": [
+            3793
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 3,
+          "seconds": 3.00225690001389,
+          "rss": 6844325888,
+          "private": 10999894016,
+          "whole_card_gpu_mib": [
+            3752
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 4,
+          "seconds": 3.000422500015702,
+          "rss": 6861651968,
+          "private": 11020283904,
+          "whole_card_gpu_mib": [
+            3759
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 5,
+          "seconds": 3.0045527999754995,
+          "rss": 6871453696,
+          "private": 11012628480,
+          "whole_card_gpu_mib": [
+            3737
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 6,
+          "seconds": 3.004723099991679,
+          "rss": 6864560128,
+          "private": 10981273600,
+          "whole_card_gpu_mib": [
+            3736
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 7,
+          "seconds": 3.00357579998672,
+          "rss": 6860607488,
+          "private": 10976837632,
+          "whole_card_gpu_mib": [
+            3707
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 8,
+          "seconds": 3.003971400030423,
+          "rss": 6870183936,
+          "private": 10988736512,
+          "whole_card_gpu_mib": [
+            3707
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 9,
+          "seconds": 3.001887499995064,
+          "rss": 6871212032,
+          "private": 10989023232,
+          "whole_card_gpu_mib": [
+            3716
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "rss_reset_diagnostic_trigger": false,
+      "private_reset_diagnostic_trigger": false
+    },
+    {
+      "level": "L1",
+      "warmup_seconds": 30,
+      "measurement_seconds": 120.00782709999476,
+      "updates": {
+        "count": 12731,
+        "median_ms": 8.447500003967434,
+        "p95_ms": 12.000799993984401,
+        "max_ms": 75.54389996221289,
+        "over_50ms": 113,
+        "over_100ms": 0
+      },
+      "observed_counter_change_intervals": {
+        "count": 11382,
+        "median_ms": 8.696750010130927,
+        "p95_ms": 17.19240000238642,
+        "max_ms": 126.4755999436602,
+        "over_50ms": 125,
+        "over_100ms": 12
+      },
+      "render_frame_counter_delta": 25464,
+      "physics_callbacks": 12731,
+      "actual_render_timestamps_available": false,
+      "actual_frame_target": "UNVERIFIED",
+      "process_gpu_mib": "UNAVAILABLE_WDDM",
+      "memory_samples": [
+        {
+          "elapsed": 0.009312700014561415,
+          "rss": 6833676288,
+          "private": 10982129664,
+          "whole_card_gpu_mib": [
+            3873
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 10.01418030000059,
+          "rss": 6837133312,
+          "private": 10987249664,
+          "whole_card_gpu_mib": [
+            3844
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 20.022247900022194,
+          "rss": 6842757120,
+          "private": 10993430528,
+          "whole_card_gpu_mib": [
+            3871
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 30.06357359996764,
+          "rss": 6848159744,
+          "private": 10998685696,
+          "whole_card_gpu_mib": [
+            3851
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 40.064922099991236,
+          "rss": 6853509120,
+          "private": 11003936768,
+          "whole_card_gpu_mib": [
+            3874
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 50.07212329999311,
+          "rss": 6857891840,
+          "private": 11008139264,
+          "whole_card_gpu_mib": [
+            3833
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 60.07835429999977,
+          "rss": 6813986816,
+          "private": 11012341760,
+          "whole_card_gpu_mib": [
+            3866
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 70.08830760000274,
+          "rss": 6808276992,
+          "private": 11007098880,
+          "whole_card_gpu_mib": [
+            3791
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 80.09047190001002,
+          "rss": 6806261760,
+          "private": 10951839744,
+          "whole_card_gpu_mib": [
+            3825
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 90.09612709999783,
+          "rss": 6796787712,
+          "private": 10942332928,
+          "whole_card_gpu_mib": [
+            3791
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 100.1011487999931,
+          "rss": 6796791808,
+          "private": 10942332928,
+          "whole_card_gpu_mib": [
+            3819
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 110.10677509999368,
+          "rss": 6796791808,
+          "private": 10942332928,
+          "whole_card_gpu_mib": [
+            3789
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "counts": {
+        "domain_ids": 36,
+        "prims": 734,
+        "colliders": 117
+      },
+      "meshes": 92,
+      "imageables": 692,
+      "moving_actor_set": [
+        "PRODUCT-1.BOTTOM",
+        "P1",
+        "Lrig",
+        "Lsig",
+        "HST1"
+      ],
+      "cycle_reset": "IN_PLACE_SAME_SCENE",
+      "movement_schedule": "SEQUENTIAL_T1",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "renderer": "RayTracedLighting",
+      "physics": "CPU PhysX",
+      "resets": [
+        {
+          "reset": 0,
+          "seconds": 3.001169499999378,
+          "rss": 6875475968,
+          "private": 11260702720,
+          "whole_card_gpu_mib": [
+            3969
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 1,
+          "seconds": 3.0025512000429444,
+          "rss": 6910459904,
+          "private": 11259502592,
+          "whole_card_gpu_mib": [
+            3972
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 2,
+          "seconds": 3.0013586999848485,
+          "rss": 6914134016,
+          "private": 11274977280,
+          "whole_card_gpu_mib": [
+            3972
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 3,
+          "seconds": 3.003897299990058,
+          "rss": 6905634816,
+          "private": 11265548288,
+          "whole_card_gpu_mib": [
+            3971
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 4,
+          "seconds": 3.0029444999527186,
+          "rss": 6904942592,
+          "private": 11263737856,
+          "whole_card_gpu_mib": [
+            3964
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 5,
+          "seconds": 3.0022317999973893,
+          "rss": 6908997632,
+          "private": 11267055616,
+          "whole_card_gpu_mib": [
+            3974
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 6,
+          "seconds": 3.0014745999942534,
+          "rss": 6927343616,
+          "private": 11284918272,
+          "whole_card_gpu_mib": [
+            3973
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 7,
+          "seconds": 3.002511400030926,
+          "rss": 6924054528,
+          "private": 11280834560,
+          "whole_card_gpu_mib": [
+            3973
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 8,
+          "seconds": 3.062244599976111,
+          "rss": 6935064576,
+          "private": 11291049984,
+          "whole_card_gpu_mib": [
+            3977
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 9,
+          "seconds": 3.0023824999807402,
+          "rss": 6935986176,
+          "private": 11291127808,
+          "whole_card_gpu_mib": [
+            3983
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "rss_reset_diagnostic_trigger": false,
+      "private_reset_diagnostic_trigger": false
+    },
+    {
+      "level": "L2",
+      "warmup_seconds": 30,
+      "measurement_seconds": 120.0080825999612,
+      "updates": {
+        "count": 7132,
+        "median_ms": 15.41545000509359,
+        "p95_ms": 18.028399965260178,
+        "max_ms": 79.41870001377538,
+        "over_50ms": 136,
+        "over_100ms": 0
+      },
+      "observed_counter_change_intervals": {
+        "count": 6932,
+        "median_ms": 15.458200010471046,
+        "p95_ms": 24.349199957214296,
+        "max_ms": 146.50029997574165,
+        "over_50ms": 148,
+        "over_100ms": 12
+      },
+      "render_frame_counter_delta": 14264,
+      "physics_callbacks": 7132,
+      "actual_render_timestamps_available": false,
+      "actual_frame_target": "UNVERIFIED",
+      "process_gpu_mib": "UNAVAILABLE_WDDM",
+      "memory_samples": [
+        {
+          "elapsed": 0.015489600016735494,
+          "rss": 6776180736,
+          "private": 10927038464,
+          "whole_card_gpu_mib": [
+            3770
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 10.029087600007188,
+          "rss": 6777221120,
+          "private": 10927828992,
+          "whole_card_gpu_mib": [
+            3770
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 20.04443909996189,
+          "rss": 6777974784,
+          "private": 10927718400,
+          "whole_card_gpu_mib": [
+            3771
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 30.054245400009677,
+          "rss": 6778880000,
+          "private": 10929881088,
+          "whole_card_gpu_mib": [
+            3791
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 40.06690009997692,
+          "rss": 6779031552,
+          "private": 10929881088,
+          "whole_card_gpu_mib": [
+            3776
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 50.07560649997322,
+          "rss": 6728978432,
+          "private": 10929881088,
+          "whole_card_gpu_mib": [
+            3778
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 60.09000979998382,
+          "rss": 6730334208,
+          "private": 10931458048,
+          "whole_card_gpu_mib": [
+            3757
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 70.10599640000146,
+          "rss": 6730575872,
+          "private": 10931458048,
+          "whole_card_gpu_mib": [
+            3764
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 80.11413830000674,
+          "rss": 6730973184,
+          "private": 10931392512,
+          "whole_card_gpu_mib": [
+            3763
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 90.11479099997086,
+          "rss": 6668664832,
+          "private": 10865659904,
+          "whole_card_gpu_mib": [
+            3724
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 100.1203630999662,
+          "rss": 6669197312,
+          "private": 10825736192,
+          "whole_card_gpu_mib": [
+            3736
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "elapsed": 110.12046910001663,
+          "rss": 6669258752,
+          "private": 10825670656,
+          "whole_card_gpu_mib": [
+            3731
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "counts": {
+        "domain_ids": 36,
+        "prims": 830,
+        "colliders": 117
+      },
+      "meshes": 94,
+      "imageables": 779,
+      "moving_actor_set": [
+        "PRODUCT-1",
+        "SCN-PRODUCT-2",
+        "CR1",
+        "R1",
+        "SCN-LOAD-SUPPLY",
+        "P1",
+        "W1",
+        "W2",
+        "OP1",
+        "AF1",
+        "AF2",
+        "E1",
+        "PL1",
+        "T1",
+        "T2",
+        "C1",
+        "QA1",
+        "Lop",
+        "Lrig",
+        "Lsig"
+      ],
+      "cycle_reset": "IN_PLACE_SAME_SCENE",
+      "movement_schedule": "T4_PLUS_15_PEOPLE_R1_SUPPLY",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "renderer": "RayTracedLighting",
+      "physics": "CPU PhysX",
+      "resets": [
+        {
+          "reset": 0,
+          "seconds": 3.002907200017944,
+          "rss": 6754545664,
+          "private": 11224436736,
+          "whole_card_gpu_mib": [
+            3922
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 1,
+          "seconds": 3.047841299965512,
+          "rss": 6793404416,
+          "private": 11160920064,
+          "whole_card_gpu_mib": [
+            3922
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 2,
+          "seconds": 3.0034244999988005,
+          "rss": 6812250112,
+          "private": 11180756992,
+          "whole_card_gpu_mib": [
+            3915
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 3,
+          "seconds": 3.0009284999687225,
+          "rss": 6805000192,
+          "private": 11172687872,
+          "whole_card_gpu_mib": [
+            3924
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 4,
+          "seconds": 3.0051975999958813,
+          "rss": 6800437248,
+          "private": 11169509376,
+          "whole_card_gpu_mib": [
+            3923
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 5,
+          "seconds": 3.0024554999545217,
+          "rss": 6803763200,
+          "private": 11172524032,
+          "whole_card_gpu_mib": [
+            3920
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 6,
+          "seconds": 3.000341799983289,
+          "rss": 6806007808,
+          "private": 11172532224,
+          "whole_card_gpu_mib": [
+            3907
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 7,
+          "seconds": 3.00241289997939,
+          "rss": 6825451520,
+          "private": 11195531264,
+          "whole_card_gpu_mib": [
+            3926
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 8,
+          "seconds": 3.002074900025036,
+          "rss": 6826799104,
+          "private": 11196796928,
+          "whole_card_gpu_mib": [
+            3916
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 9,
+          "seconds": 3.002334200020414,
+          "rss": 6829830144,
+          "private": 11200331776,
+          "whole_card_gpu_mib": [
+            3929
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "rss_reset_diagnostic_trigger": false,
+      "private_reset_diagnostic_trigger": false
+    }
+  ],
+  "full_run_resource_peaks": {
+    "trials-19": {
+      "sampling_seconds_approximately": 1,
+      "includes_startup_and_screenshots": true,
+      "rss_sample_max_bytes": 6970368000,
+      "os_peak_rss_bytes": 7038996480,
+      "private_sample_max_bytes": 12627505152,
+      "whole_card_gpu_sample_max_mib": 5318.0,
+      "process_gpu": "UNAVAILABLE_NVIDIA_SMI"
+    },
+    "ui-14": {
+      "sampling_seconds_approximately": 1,
+      "includes_startup_and_screenshots": true,
+      "rss_sample_max_bytes": 7788912640,
+      "os_peak_rss_bytes": 7798915072,
+      "private_sample_max_bytes": 11624042496,
+      "whole_card_gpu_sample_max_mib": 3765.0,
+      "process_gpu": "UNAVAILABLE_NVIDIA_SMI"
+    },
+    "final-L0-16": {
+      "sampling_seconds_approximately": 1,
+      "includes_startup_and_screenshots": true,
+      "rss_sample_max_bytes": 6902915072,
+      "os_peak_rss_bytes": 6940852224,
+      "private_sample_max_bytes": 11030802432,
+      "whole_card_gpu_sample_max_mib": 3823.0,
+      "process_gpu": "UNAVAILABLE_NVIDIA_SMI"
+    },
+    "final-L1-17": {
+      "sampling_seconds_approximately": 1,
+      "includes_startup_and_screenshots": true,
+      "rss_sample_max_bytes": 6936915968,
+      "os_peak_rss_bytes": 6954967040,
+      "private_sample_max_bytes": 11295367168,
+      "whole_card_gpu_sample_max_mib": 4017.0,
+      "process_gpu": "UNAVAILABLE_NVIDIA_SMI"
+    },
+    "final-L2-18": {
+      "sampling_seconds_approximately": 1,
+      "includes_startup_and_screenshots": true,
+      "rss_sample_max_bytes": 6872854528,
+      "os_peak_rss_bytes": 6909796352,
+      "private_sample_max_bytes": 11226517504,
+      "whole_card_gpu_sample_max_mib": 3959.0,
+      "process_gpu": "UNAVAILABLE_NVIDIA_SMI"
+    }
+  },
+  "screenshots": [
+    {
+      "name": "cr1_source",
+      "sha256": "a89d02f001aeac5a40e164d98c4f5f7bbb54454e9b65f2319de23097626707bd",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "cr1_target",
+      "sha256": "a1b49e9d8fd2ac694202cfae10220abb2feddeaea7cc18c7f36370d6a1127dc5",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "dual_frame",
+      "sha256": "029ecaf329d218d25ec4ee022aeb42fd35cd1931977cf12659cb864cdb44841b",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "gantry",
+      "sha256": "36afbe146088988abcd7014187628a9b328a4be8ffe71b581b940e750333fd51",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "join_bottom",
+      "sha256": "57045818453ffe3a6621e861af2accd347d62bd6f97f8b10ecf9828fe086f33c",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "join_columns",
+      "sha256": "a1ac426e3d30a9b1059cfcf83c52e5c4d799093957e1f6269132b67f87aa67a5",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "join_top",
+      "sha256": "bf1ab4a1b94bf45f5918a28552530636b7ecaf56f23e5556a17faf683d69ef69",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "joining",
+      "sha256": "d17584d46a82ec4e264e7c144160be49be4082f5e48ed408dd2ae194729f88b6",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "manual_weld",
+      "sha256": "c2e7a9153f567bb91f09bc0cdc54c00eee8c2c18b70ab370094a54894eee489a",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "mep_wait",
+      "sha256": "c5fd932d0e9933a6dacde66103297bc6b0a74a63bded7645ef7c6aa5b8ff0111",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "outbound",
+      "sha256": "126222c22bf75e56796dd8007fcde2f6cee37404b8352ce7f00508b5ce715b80",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "quarantine",
+      "sha256": "9c544bf21be94336de3e70b41b4cf985c319e511dcf11b83e2909c96cff00d28",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "rigging",
+      "sha256": "d848fefa5942bfd20bcc1c85fe9049c7af7f4cb0d4417a79b54f91f54f3b2334",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "robot_demo",
+      "sha256": "0b743f3c7ffa6bfb1945e1f9008034863748bf538b9a89ff6f53cc00492db393",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "sr_w2",
+      "sha256": "5eeb9c8aa531bbcd859bcca07322abf5f9442ac6aa9e7d4410f9af161c97de8a",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "structure",
+      "sha256": "aaaa4ebad4d21350f2c5ced3751b21204feabe3bb9ea28911f128310a1b13a0f",
+      "evidence": "R2-LEGACY-PROTOCOL"
+    },
+    {
+      "name": "overview",
+      "sha256": "f0a8e1624a17fb00615c8fd700ddcc35531d5585521a3bed778c826fbf33f672",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "top",
+      "sha256": "705cdc6e63824902b18532ee1bf8b485a61f6dd626c31d898943cc45addcfbb0",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "supply",
+      "sha256": "4957f202c7e57910557fdff9a9c4d88bcec1ee77c4a1ffd7801094c252bb3212",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "pre_input_output",
+      "sha256": "f118d1a7170dbc6df400b534bef6627b5a02675c61ba7fd4bc3254ef4f4b7e98",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "person_crossing",
+      "sha256": "90f674989979d990ae41cae0aa3346bab94a9d92c7c6bfde8e4cb85351d8d438",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "f1_delivery",
+      "sha256": "f2be81ddc92a8b7701068ac15eed3482772a3c8489ae081025d58c0a3c3935c6",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "t1_complete",
+      "sha256": "de0c79d4ae1d98ec055a19d9124f73d49aa43825ad91c9de9c508e735393d4c3",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "t1_blocked",
+      "sha256": "31813edb760936e9d4a428c71877ddce7af115193bebcc0fd092d57934aaf7c0",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "t2_rigging",
+      "sha256": "3f5636ebca4e19d3a5da3562dea2101f468c00a2928683af7262d6bef15abf4b",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "t2_people_clear",
+      "sha256": "8417c755497a4a711901161f4e1495c4dfb336a7da28a1eb64e7d93206619f0b",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "t2_blocked",
+      "sha256": "bf88b5cf8132a878ddf4b289d724a3b61cc29715952f289819385290a01d8a3e",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "t2_complete",
+      "sha256": "49c8bee4591f360dd67904da7d1f0870edc3cc68a81886ba8e4fef03b1b406b6",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "t3_phase_01",
+      "sha256": "4dc0d439e6c166e8631a1320fa07d984b5ce26b0f67e1c954fff95c24846fc8b",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "t3_phase_05",
+      "sha256": "99c2b1556377362b3a6a92537972404ae1376b855ca502b0b3ce08ce7b2edf50",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "t3_complete",
+      "sha256": "dfa7803d42a9281435b068b073d47c6e4145b394c6d66b017a86e77e13289764",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "t4_complete",
+      "sha256": "544e20641667e64e6d8ccae49aaf27749ccbf81f845e0f7bb944e0f513ccd3c2",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    },
+    {
+      "name": "t4_blocked",
+      "sha256": "8acfbabab1c60096496ad9cf8568ae37de23933e200e940937397dc0311dee1d",
+      "evidence": "R2-CONTINUOUS-TRIALS"
+    }
+  ],
+  "limits": [
+    "No reliable per-render timestamp; actual frame interval targets unverified.",
+    "Process GPU allocation unavailable from NVIDIA SMI on this runtime.",
+    "Scripted checks are not production feedback, industrial qualification or human acceptance.",
+    "15 full person routes checked separately; concurrent agents in L2 move only in separated north-lane ranges.",
+    "Finite resets do not prove absence of leaks."
+  ]
+}

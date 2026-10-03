@@ -1,5 +1,21 @@
 # 规范化提示词记录
 
+2026-10-03现行批准与交接授权（PR102 / LOG110）：负责人已同意S13-PLAN-20261003-r5及FACTORY-OPERATIONS-20261003-r2提案，要求创建“S13-4”新对话，沿用当前目录/main、不创建分支或worktree，并直接开始S13步骤整改。方案查阅与实施放行条件已满足，不再等待r5方案批准；下列待审/仅文档文字保留原时点。授权包含本步整改、必要验证、品质完善、治理及确切审阅包。未来总纲补丁的规划认可不等于启动S14—S28或解冻D01—D06。第三方资产下载、环境升级与Git暂存/提交/标签/推送/PR/附件仍未授权；整改成果验收与确切快照发布另审。
+
+2026-10-03现行决定（PR100—PR101 / LOG108—LOG109）：负责人要求基于设备、人员、入料物流、成品缓冲及龙门吊覆盖问题，编写S13第五版整改规划和后续总纲补丁，交付治理文件检阅；本轮仅文档。S13-PLAN-20261003-r5尚待明确放行，不能沿用PR099的r4批准启动新增整改。r2原有验证证据及封包保持，人工验收、确切发布批准均未发生。不修改场景源码或冻结契约，不启动S14—S28，不创建新对话/分支/worktree，不执行Git或远端写入。下列旧授权与状态保留其历史时点，以本条为当前边界。
+
+2026-10-03现行批准与交接授权（PR099 / LOG105）：负责人已批准S13-PLAN-20261003-r4现行规划及总纲未来步骤补丁，明确要求创建“S13-3”新对话，沿用当前目录/main、不创建新分支或worktree，直接完成S13步骤内剩余增改、完善、验证、必要治理及确切审阅包。方案查阅与实施启动条件已满足，不再等待方案批准；下列待审/仅文档文字保留历史时点。未来步骤补丁获规划认可不等于启动S14—S28或解冻D01—D06。第三方资产下载、环境升级以及Git暂存/提交/标签/推送/PR/附件仍未授权；修订成果验收和确切快照发布另审。
+
+2026-10-03当前决定（PR098 / LOG104）：负责人仅授权编写S13修改方案及后续步骤总纲补丁，交接与最后一次S13集中修改待稍后明确批准，修改成果验收及确切快照上传另行批准。不得将未来批准意向写为已获授权。本轮不修改场景源码或冻结契约，不创建新对话、分支或worktree，不执行Git/远端写入。PR095的原r3实施已形成本地r1候选，新增r4修改范围待审；下列旧状态保留历史时点。
+
+2026-10-03现行授权（PR095 / LOG099）：负责人已批准S13-PLAN-20261003-r3，要求创建“S13-2”新对话，沿用现有目录/main，不建分支或worktree，直接完成S13剩余本地实现、验证、品质打磨、必要治理及确切审阅包。方案查阅条件已满足，不再等待方案批准；以下待审/仅调研文字保留历史时点。S14—S28、第三方资产下载、环境升级与新Git/远端发布不在本次授权内。
+
+PR094现行补充：负责人指出机器人与普通机器概念混淆，要求覆盖所有生产机器重新定义并修订计划。当前为S13第三版待查阅确认，覆盖r2待审版本；优异品质和实测优化要求保持，尚未实施。
+
+PR093现行补充：负责人要求补齐龙门吊、以实际负载优化性能、各方面品质以优异化为导向，更新S13第二版计划书，查阅确认本版后再开始实施。本轮仅方案修订，不记为已阅或已开工。
+
+2026-10-03补录：PR091记录S12 r2实际验收和发布批准；PR092记录S13新对话仅前期调研与方案治理授权。正式搭建须先获方案明确批准，最终发布另审；旧文字保留历史时点。
+
 本文件用结构化语言记录项目负责人提出的目标、约束、审查要求和确认决定，以及相应的辅助工作。它服务于研究过程追溯，突出实际的人类决策链，同时如实说明 AI 辅助。
 
 **这些记录是依据项目讨论重构的语义记录，不是逐字提示词，不是原始对话导出，也不是历史执行器实际接收的 JSON。**日期只精确到已知日期；不补造签名、原始消息编号或人工编码行为。
@@ -3261,6 +3277,477 @@ PR090随后明确批准上述三类问题的有限本地修复，含必要回归
         "docs/steps/S12.md"
       ],
       "limit": "S12_THREE_LOCAL_REPAIRS_ONLY_R2_REQUIRES_SEPARATE_ACCEPTANCE_AND_PUBLICATION_APPROVAL_NO_S13"
+    },
+    {
+      "date": "2026-10-02",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "HUMAN_CONFIRMED",
+      "id": "PR091",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S12",
+        "parameters": {
+          "step_id": "S12",
+          "packet_id": "S12-20261002-r2",
+          "decision": "ACCEPT_AND_APPROVE",
+          "decision_id": "S12-R2-APPROVAL-001",
+          "packet_sha256": "99a744334e635d583d731a44c545f66edef1d2db50d8b138823d0898da876af0",
+          "branch": "main",
+          "tag": "step-S12-r2",
+          "permitted_remote_actions": [
+            "EXACT_STAGE",
+            "ONE_COMMIT",
+            "NEW_ANNOTATED_TAG",
+            "NONFORCE_PUSH_MAIN_AND_TAG",
+            "REMOTE_AND_CPU_CI_VERIFICATION"
+          ]
+        }
+      },
+      "human_contribution": [
+        "ACCEPTED_AND_APPROVED_EXACT_S12_R2_SNAPSHOT"
+      ],
+      "assistant_support": [
+        "READ_EXISTING_APPROVAL_AND_PUBLICATION_RECEIPT",
+        "BACKFILLED_ACTUAL_RESULT"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S12.md"
+      ],
+      "limit": "HISTORICAL_S12_R2_APPROVAL_ONLY_NO_NEW_GIT_WRITE_OR_S13_IMPLEMENTATION_PERMISSION"
+    },
+    {
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "INCORPORATED",
+      "id": "PR092",
+      "human_command": {
+        "operation": "AUTHOR_GOVERNANCE_DOCUMENTS",
+        "target": "S13_PRE_IMPLEMENTATION_PROPOSAL",
+        "parameters": {
+          "step_id": "S13",
+          "chat_title": "S13",
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "read_only_research": true,
+          "official_asset_and_license_review": true,
+          "local_proposal_governance": true,
+          "explicit_plan_approval_before_implementation": true,
+          "implementation_authorized": false,
+          "asset_download_or_import": false,
+          "installation_or_upgrade": false,
+          "new_terms_or_purchase": false,
+          "formal_simulation": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_S13_CHAT_AND_PRELIMINARY_WORK",
+        "REQUIRED_REVIEWABLE_SCENE_AND_ASSET_PLAN_BEFORE_IMPLEMENTATION",
+        "RESERVED_EXPLICIT_PLAN_APPROVAL_AND_SEPARATE_FINAL_PUBLICATION_APPROVAL"
+      ],
+      "assistant_support": [
+        "CHECKED_HANDOFF_AND_EXISTING_CONTRACTS",
+        "READ_INSTALLATION_AND_ASSET_METADATA",
+        "REVIEWED_OFFICIAL_SOURCES_AND_LICENSE_LIMITS",
+        "DRAFTED_CONCRETE_LAYOUT_ASSET_AND_ACCEPTANCE_PROPOSAL"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S13.md",
+        "docs/sim/S13_scene_proposal.md"
+      ],
+      "limit": "PRELIMINARY_RESEARCH_AND_PROPOSAL_ONLY_WAIT_FOR_EXPLICIT_PLAN_APPROVAL_NO_IMPLEMENTATION_OR_PUBLICATION"
+    },
+    {
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "INCORPORATED",
+      "id": "PR093",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "S13_PLAN_R2",
+        "parameters": {
+          "step_id": "S13",
+          "plan_id": "S13-PLAN-20261003-r2",
+          "direction": "BASICALLY_AGREED",
+          "scope": [
+            "GANTRY_CRANE_PLAN",
+            "MEASURED_PERFORMANCE_OPTIMIZATION",
+            "EXCELLENT_QUALITY_ACROSS_DIMENSIONS",
+            "SECOND_VERSION_REVIEW"
+          ],
+          "start_condition": "LEAD_HAS_REVIEWED_AND_CONFIRMED_SECOND_VERSION",
+          "condition_satisfied": false,
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "IDENTIFIED_MISSING_GANTRY_CRANE_EXPLANATION",
+        "CHALLENGED_PREEMPTIVE_VRAM_LIMITS",
+        "REQUIRED_EXCELLENT_QUALITY_AND_PLAN_R2_BEFORE_WORK"
+      ],
+      "assistant_support": [
+        "REVISED_GANTRY_LAYOUT_AND_MOTION_PLAN",
+        "REPLACED_PRESET_SCALE_LIMITS_WITH_MEASUREMENT",
+        "DEFINED_QUALITY_AND_ACCEPTANCE_TARGETS"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S13.md",
+        "docs/sim/S13_scene_proposal.md"
+      ],
+      "limit": "PLAN_REVISION_ONLY_UNTIL_SECOND_VERSION_REVIEW_CONFIRMED_NO_ASSET_DOWNLOAD_ENVIRONMENT_CHANGE_OR_PUBLICATION"
+    },
+    {
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "INCORPORATED",
+      "id": "PR094",
+      "human_command": {
+        "operation": "REQUEST_STEP_REVISION",
+        "target": "S13_PLAN_R3",
+        "parameters": {
+          "step_id": "S13",
+          "plan_id": "S13-PLAN-20261003-r3",
+          "scope": [
+            "DISTINGUISH_ROBOTS_AND_ALL_PRODUCTION_MACHINES",
+            "DEFINE_CONTROL_ROLES_CAPABILITIES_AND_MODES",
+            "REVISE_MODELLING_AND_ACCEPTANCE",
+            "PRESERVE_EXCELLENT_QUALITY_AND_MEASURED_OPTIMIZATION"
+          ],
+          "start_condition": "LEAD_HAS_REVIEWED_AND_CONFIRMED_CURRENT_VERSION",
+          "condition_satisfied": false,
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "IDENTIFIED_ROBOT_MACHINE_CONCEPT_CONFLATION",
+        "REQUIRED_ALL_PRODUCTION_MACHINES_TO_BE_REDEFINED_AND_PLAN_RETHOUGHT"
+      ],
+      "assistant_support": [
+        "CHECKED_CURRENT_RESOURCES_AND_WORK_UNIT_ROLES",
+        "DEFINED_SIX_EQUIPMENT_ITEMS_FIXTURES_AND_TOOLS",
+        "REVISED_ROBOT_KINEMATICS_AND_MACHINE_RESPONSIBILITY_PLAN",
+        "ADDED_IDENTITY_ROLE_HOLDING_AND_KINEMATIC_ACCEPTANCE_CASES"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S13.md",
+        "docs/sim/S13_scene_proposal.md"
+      ],
+      "limit": "PLAN_REVISION_ONLY_NO_SCENE_IMPLEMENTATION_CONTRACT_CHANGE_ASSET_DOWNLOAD_ENVIRONMENT_CHANGE_OR_PUBLICATION"
+    },
+    {
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "INCORPORATED",
+      "id": "PR095",
+      "human_command": {
+        "operation": "APPROVE_PLAN_AND_START_STEP_IN_NEW_THREAD",
+        "target": "S13",
+        "parameters": {
+          "plan_id": "S13-PLAN-20261003-r3",
+          "plan_sha256": "248d945aab7af85880b1af67589fc72b415bb7a06b2eab7b793f3afbeedd0311",
+          "plan_review_confirmed": true,
+          "thread_title": "S13-2",
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "scope": [
+            "S13_REMAINING_LOCAL_IMPLEMENTATION",
+            "CPU_AND_REAL_ISAAC_VALIDATION",
+            "EXCELLENT_QUALITY_AND_MEASURED_OPTIMIZATION",
+            "NECESSARY_GOVERNANCE",
+            "EXACT_REVIEW_PACKET"
+          ],
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "APPROVED_CURRENT_PLAN",
+        "AUTHORIZED_NEW_THREAD_AND_IMMEDIATE_REMAINING_S13_WORK_WITHOUT_NEW_BRANCH"
+      ],
+      "assistant_support": [
+        "RECORDED_APPROVAL_AND_PREPARED_HANDOFF"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S13.md",
+        "docs/sim/S13_scene_proposal.md"
+      ],
+      "limit": "S13_ONLY_PLAN_APPROVAL_IS_NOT_FINAL_ACCEPTANCE_OR_GIT_REMOTE_PUBLICATION_APPROVAL"
+    },
+    {
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "INCORPORATED",
+      "id": "PR096",
+      "human_command": {
+        "operation": "REQUEST_VISIBLE_INTERACTIVE_TRIAL",
+        "target": "S13",
+        "parameters": {
+          "step_id": "S13",
+          "purpose": "LEAD_TRIAL_TO_DISCOVER_LATENT_ISSUES",
+          "visible_running_scene": true,
+          "local_only": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUIRED_ACTUAL_VISIBLE_TRIAL_BEFORE_ACCEPTANCE"
+      ],
+      "assistant_support": [
+        "PREPARED_LOCAL_INTERACTIVE_HARNESS_USING_UNCHANGED_S13_SOURCE",
+        "OPENED_EXISTING_ISAAC_WINDOW_AND_RECORDED_TRIAL_EVENTS"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S13.md"
+      ],
+      "limit": "TRIAL_REQUEST_IS_NOT_ACCEPTANCE_OR_PUBLICATION_APPROVAL_NO_S14"
+    },
+    {
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "INCORPORATED",
+      "id": "PR097",
+      "human_command": {
+        "operation": "REQUEST_PROCESS_COMPLETENESS_AND_LAYOUT_ANALYSIS",
+        "target": "S13_AND_FUTURE_PROCESS_SCOPE",
+        "parameters": {
+          "assess_complexity_against_measured_capacity": true,
+          "review_material_preparation_storage_and_transport": true,
+          "review_people_routes_and_equipment_coordination": true,
+          "implementation_expansion_approved": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "IDENTIFIED_UPSTREAM_MATERIAL_FLOW_AND_SPATIAL_ORGANIZATION_GAPS_DURING_TRIAL",
+        "REQUESTED_REASONED_REASSESSMENT_OF_FUTURE_DETAIL_AND_COMPLETENESS"
+      ],
+      "assistant_support": [
+        "CHECKED_EXISTING_SCENE_MATERIAL_CONTRACTS_AND_S14_S15_SCOPE",
+        "DISTINGUISHED_GEOMETRIC_VERIFICATION_FROM_CONTINUOUS_PRODUCTION_ORGANIZATION",
+        "PROPOSED_PROCESS_LOGISTICS_LAYOUT_AND_LOAD_VALIDATION_REVISION"
+      ],
+      "evidence_refs": [
+        "PROGRESS_LOG.md",
+        "docs/steps/S13.md",
+        "docs/sim/scene_mapping.md",
+        "docs/PROJECT_CHARTER.md"
+      ],
+      "limit": "ANALYSIS_AND_FEEDBACK_RECORD_ONLY_NOT_REVISED_PLAN_ACCEPTANCE_DOMAIN_UNFREEZE_OR_S14_IMPLEMENTATION_AUTHORIZATION"
+    },
+    {
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "DRAFTED_PENDING_REVIEW",
+      "id": "PR098",
+      "human_command": {
+        "operation": "AUTHOR_S13_REVISION_PLAN_AND_FUTURE_CHARTER_PATCH",
+        "target": "S13_AND_PROJECT_CHARTER",
+        "parameters": {
+          "step_id": "S13",
+          "plan_id": "S13-PLAN-20261003-r4",
+          "document_revision_only": true,
+          "future_steps_patch_in_charter": true,
+          "handoff_approval": "PENDING",
+          "revision_implementation_approval": "PENDING",
+          "final_acceptance": "PENDING",
+          "publication_approval": "PENDING",
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "DIRECTED_ONE_CONSOLIDATED_S13_REVISION_PLAN_FOR_REVIEW",
+        "REQUIRED_FUTURE_PROCESS_PATCHES_IN_CHARTER",
+        "RESERVED_LATER_HANDOFF_IMPLEMENTATION_AND_PUBLICATION_APPROVAL"
+      ],
+      "assistant_support": [
+        "AUTHORED_S13_LAYOUT_PREPARATION_LOGISTICS_AND_TRIAL_REVISION_PLAN",
+        "ADDED_FUTURE_STEP_DEPENDENCIES_CONTRACT_GATE_AND_ACCEPTANCE_CRITERIA",
+        "PREPARED_DOCUMENT_REVIEW_SNAPSHOT_WITHOUT_IMPLEMENTATION"
+      ],
+      "evidence_refs": [
+        "docs/sim/S13_revision_proposal_r4.md",
+        "docs/PROJECT_CHARTER.md",
+        "docs/steps/S13.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "DOCUMENT_AUTHORING_ONLY_FUTURE_APPROVAL_INTENT_IS_NOT_HANDOFF_IMPLEMENTATION_ACCEPTANCE_OR_PUBLICATION_AUTHORIZATION"
+    },
+    {
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "resolution": "HUMAN_CONFIRMED",
+      "id": "PR099",
+      "human_command": {
+        "operation": "APPROVE_PLAN_AND_AUTHORIZE_S13_HANDOFF_IMPLEMENTATION",
+        "target": "S13",
+        "parameters": {
+          "step_id": "S13",
+          "plan_id": "S13-PLAN-20261003-r4",
+          "packet_id": "S13-PLAN-20261003-r4",
+          "approved_archive_sha256": "325db60b3afe6f380052216f06de11e6645784bb08c2b958e9e21e4d14cf0597",
+          "decision": "APPROVE_PLAN_AND_LOCAL_IMPLEMENTATION",
+          "future_charter_patch": "FLOW-LAYOUT-20261003-r1",
+          "future_steps_implementation": false,
+          "new_thread_title": "S13-3",
+          "reuse_current_directory": true,
+          "branch": "main",
+          "create_branch": false,
+          "create_worktree": false,
+          "remaining_s13_work_authorized": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "APPROVED_CURRENT_S13_REVISION_PLAN_AND_FUTURE_PLANNING_PATCH",
+        "AUTHORIZED_NAMED_NEW_THREAD_TO_DIRECTLY_COMPLETE_REMAINING_S13_WORK"
+      ],
+      "assistant_support": [
+        "VERIFIED_APPROVED_REVIEW_SNAPSHOT",
+        "RECORDED_ACTUAL_APPROVAL_AND_PREPARED_HANDOFF"
+      ],
+      "evidence_refs": [
+        "docs/sim/S13_revision_proposal_r4.md",
+        "docs/PROJECT_CHARTER.md",
+        "docs/steps/S13.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "S13_LOCAL_REVISION_ONLY_PLAN_APPROVAL_IS_NOT_FINAL_ACCEPTANCE_OR_GIT_REMOTE_PUBLICATION_APPROVAL"
+    },
+    {
+      "id": "PR100",
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CRITICAL_REVIEW",
+        "target": "S13_FACTORY_ORGANIZATION",
+        "parameters": {
+          "step_id": "S13",
+          "analysis_only": true,
+          "issues": [
+            "HST1_IDENTITY_AND_NECESSITY",
+            "MACHINE_MOVEMENT_AND_HUMAN_CONTROL",
+            "PERSON_BEHAVIOR",
+            "INBOUND_TRANSFER",
+            "FINITE_FINISHED_GOODS_BUFFER",
+            "GANTRY_TASK_COVERAGE"
+          ],
+          "clarify_current_vs_future_step": true,
+          "implementation_authorized": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "IDENTIFIED_PHYSICAL_AND_BEHAVIORAL_GAPS_IN_TRIAL",
+        "REQUIRED_CONTINUOUS_ORDER_AND_BUFFER_CONSIDERATION",
+        "LIMITED_RESPONSE_TO_ANALYSIS"
+      ],
+      "assistant_support": [
+        "READ_ONLY_SCENE_AND_DOMAIN_REVIEW",
+        "DISTINGUISHED_SCENE_DESIGN_FROM_EXECUTION_AND_SCHEDULING",
+        "EXPLAINED_EXISTING_OUT1_RULE_AND_LIMITED_COVERAGE_CHECK"
+      ],
+      "resolution": "ANALYSIS_DELIVERED_NO_IMPLEMENTATION",
+      "evidence_refs": [
+        "docs/sim/S13_revision_proposal_r5.md",
+        "sim/isaac/scene/layout.py",
+        "sim/isaac/scene/usd_scene.py",
+        "docs/model/selected_steel.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "ANALYSIS_DOES_NOT_AUTHORIZE_REPAIR_OR_RECORD_ACCEPTANCE"
+    },
+    {
+      "id": "PR101",
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "AUTHOR_S13_REVISION_PLAN_AND_FUTURE_CHARTER_PATCH",
+        "target": "S13_AND_PROJECT_CHARTER",
+        "parameters": {
+          "step_id": "S13",
+          "plan_id": "S13-PLAN-20261003-r5",
+          "patch_id": "FACTORY-OPERATIONS-20261003-r2",
+          "document_revision_only": true,
+          "governance_review_required": true,
+          "last_consolidated_revision_intent": true,
+          "implementation_approval": "PENDING_EXPLICIT_RELEASE",
+          "final_acceptance": "PENDING",
+          "publication_approval": "NOT_GRANTED",
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUIRED_REVIEWABLE_S13_INTERNAL_REVISION_PLAN",
+        "REQUIRED_FUTURE_STEP_PATCH_IN_CHARTER",
+        "RESERVED_IMPLEMENTATION_RELEASE_UNTIL_REVIEW"
+      ],
+      "assistant_support": [
+        "AUTHORED_RECOMMENDED_EQUIPMENT_AND_LOGISTICS_PLAN_WITH_ALTERNATIVES",
+        "DEFINED_SCENE_ACCEPTANCE_AND_FUTURE_CONTRACT_GATES",
+        "UPDATED_GOVERNANCE_AND_PREPARED_DOCUMENT_REVIEW_SET"
+      ],
+      "resolution": "DRAFTED_PENDING_REVIEW",
+      "evidence_refs": [
+        "docs/sim/S13_revision_proposal_r5.md",
+        "docs/PROJECT_CHARTER.md",
+        "docs/steps/S13.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "DOCUMENT_AUTHORING_ONLY_NO_NEW_IMPLEMENTATION_FROZEN_CONTRACT_OR_PUBLICATION_AUTHORIZATION"
+    },
+    {
+      "id": "PR102",
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_PLAN_AND_AUTHORIZE_HANDOFF_IMPLEMENTATION",
+        "target": "S13",
+        "parameters": {
+          "step_id": "S13",
+          "plan_id": "S13-PLAN-20261003-r5",
+          "patch_id": "FACTORY-OPERATIONS-20261003-r2",
+          "decision": "APPROVED_FOR_S13_LOCAL_REVISION",
+          "new_thread_title": "S13-4",
+          "same_directory": true,
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "start_immediately_in_new_thread": true,
+          "future_steps_implementation_authorized": false,
+          "frozen_contract_changes_authorized": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "APPROVED_CURRENT_REVISION_PROPOSAL",
+        "DIRECTED_NAMED_NEW_CHAT_HANDOFF_AND_IMMEDIATE_S13_RECTIFICATION",
+        "REQUIRED_EXISTING_DIRECTORY_AND_BRANCH"
+      ],
+      "assistant_support": [
+        "VERIFIED_APPROVED_DOCUMENT_SNAPSHOT",
+        "RECORDED_ACTUAL_APPROVAL_AND_PREPARED_HANDOFF"
+      ],
+      "resolution": "PLAN_APPROVED_LOCAL_REVISION_AUTHORIZED",
+      "evidence_refs": [
+        "docs/sim/S13_revision_proposal_r5.md",
+        "docs/PROJECT_CHARTER.md",
+        "docs/steps/S13.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "S13_LOCAL_REVISION_ONLY_NOT_FINAL_ACCEPTANCE_FROZEN_CONTRACT_CHANGE_OR_GIT_REMOTE_PUBLICATION_APPROVAL"
     }
   ]
 }
