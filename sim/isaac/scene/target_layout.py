@@ -11,7 +11,7 @@ from dataclasses import dataclass
 
 from .model import Box, require, sweep
 
-VERSION = "S13-TARGET-R5-1"
+VERSION = "S13-TARGET-R5-2"
 SITE = (60, 44)
 PEOPLE = (
     "P1",
@@ -176,6 +176,16 @@ TASKS = tuple(
 TASK_BY_ID = {t.id: t for t in TASKS}
 
 
+def parked_crane_boxes(hook):
+    """Stationary structure remains an obstacle to other actors."""
+    x, y, _ = hook
+    return [
+        *(Box(f"crane-support-{i}", (x, v, 4.35), (4, 1.4, 8.7)) for i, v in enumerate((4, 40))),
+        Box("crane-girder", (x, 22, 8.8), (0.7, 37, 0.6)),
+        Box("crane-trolley", (x, y, 9.25), (1, 1.2, 0.3)),
+    ]
+
+
 def check_crane_structure(points, obstacles):
     """Whole moving structure, also for empty approach/return and live actors."""
     obs = [o for o in obstacles if not o.name.startswith("rail-")]
@@ -187,6 +197,8 @@ def check_crane_structure(points, obstacles):
 
 def verify_task(task, obstacles=None, hook_limit=8.2):
     obs = static_boxes() if obstacles is None else obstacles
+    if task.carrier != "CR1":
+        obs = [*obs, *parked_crane_boxes((30, 18, 8))]
     check_route(task.points, task.size, obs)
     if task.carrier == "CR1":
         require(LOADS[task.load][1] + 1 <= 12, "CRANE_MASS")
@@ -274,7 +286,8 @@ def transfer_matrix(obstacles=None):
             size = FORK_SIZE if t.carrier == "SCN-FORK-01" else CART_SIZE
         for kind, points in routes.items():
             checked = tuple((x, y, z - 0.6) for x, y, z in points) if t.carrier == "CR1" else points
-            check_route(checked, size, obs)
+            route_obs = obs if t.carrier == "CR1" else [*obs, *parked_crane_boxes((30, 18, 8))]
+            check_route(checked, size, route_obs)
             if t.carrier == "CR1":
                 check_crane_structure(points, obs)
             rows.append(
@@ -298,7 +311,7 @@ def transfer_matrix(obstacles=None):
         ("RETRIEVE", PADS["TEST-USE"], PADS["TEST-PARK"]),
     ):
         points = (a, (57, a[1], 0), (57, b[1], 0), b)
-        check_route(points, (0.8, 1.1, 1.2), obs)
+        check_route(points, (0.8, 1.1, 1.2), [*obs, *parked_crane_boxes((30, 18, 8))])
         rows.append(
             {
                 "id": "TEST-" + kind,

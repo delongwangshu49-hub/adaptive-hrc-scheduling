@@ -1,5 +1,8 @@
 # 完整建筑模块的多资源自适应生产调度
 
+2026-10-03现行本地成果（PR105 / LOG115）：S13四项审阅问题已完成有限修复，候选 `S13-20261003-r4` / `S13-TARGET-R5-2`，**VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED**。静止吊机避障、操作全区间占用、载具/载荷同步与独立支承读回、旧入口命令已复核；463项源码及隔离wheel各通过，真实Isaac/目标与旧版GUI及L1/L2负载验证完成。原r3已按PR103发布，旧证据和冻结域保持；本版尚未提交上传，S14未启动。下方状态为历史时点；本版入口见S13步骤卡和验证报告顶部。
+
+
 2026-10-03现行本地成果（LOG111，PR102授权）：S13第五版整改已形成候选 `S13-20261003-r3`，**VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED**。目标主场景采用固定生产设备、两独立焊接站、人工叉运/推车与主CR1，具名人员任务关联、入料代表链、B=2成品槽和B+1实际搬出见证已验证；冻结旧配置及旧证据保持。工作区/隔离wheel各456项，最终目标24项专项、53行运输矩阵及真实Isaac/GUI/旧协议回归通过；三档30秒暖机、至少120秒测量、各10次重建完成。可靠真实帧时间仍不可得，工业能力及人工体验验收未获证明。未创建分支/worktree，未下载第三方资产、升级环境或执行Git写入，未启动S14—S28。下列旧状态保留其历史时点。
 
 现行入口：[目标试运行](docs/sim/S13_trial_guide.md)、[设备/物流裁定](docs/sim/S13_equipment_decisions.md)、[任务矩阵](docs/sim/S13_transfer_coverage.tsv)、[验证报告及20张新原图](docs/validation/building_scene.md)。旧六设备入口使用 `--legacy`，原33张图与封包保持。

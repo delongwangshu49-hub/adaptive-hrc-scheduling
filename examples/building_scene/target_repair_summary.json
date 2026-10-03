@@ -1,0 +1,1303 @@
+{
+  "packet_id": "S13-20261003-r4",
+  "base_commit": "ba85bbf452105f3fc6458b3185890ab51d920740",
+  "layout": "S13-TARGET-R5-2",
+  "authorization": "PR105",
+  "status": "VERIFIED_WITH_LIMITS",
+  "findings": "FOUR_FINDINGS_CLOSED_LOCAL",
+  "acceptance": "PENDING",
+  "approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "scope": "FOUR_REVIEW_FINDINGS_ONLY_SCENE_GEOMETRY_NO_PRODUCTION_RECEIPT",
+  "quality": "UNKNOWN",
+  "hr_enabled": false,
+  "cpu": {
+    "workspace": 463,
+    "isolated_wheel": 463,
+    "target_specific": 31,
+    "new_regression_tests": 7
+  },
+  "source_sha256": {
+    "sim/isaac/scene/inspection.py": "7f795fd6b68aa413def3416d852cc806b0876f1a327908cbaa400bea7697d886",
+    "sim/isaac/scene/layout.py": "1e5543a4f5863532bc620f1d88388b461656870fb2dd2a7f544d5d89812dc42c",
+    "sim/isaac/scene/model.py": "9a3304942dc2d8ddad721b65949de9ca252995224b34670d1580a29f9400d36c",
+    "sim/isaac/scene/revision_checks.py": "c85089588a1de1faa5694e19874f306ea9da2ca9d91708edc345df02ead396f5",
+    "sim/isaac/scene/target_layout.py": "ed0c80b3111362325f38ce97500b1a9f87279cf800fd53967414df4681efb447",
+    "sim/isaac/scene/target_repair_checks.py": "0243f4d71741d585931a8c5a0c7b4cf53fcb99c86d68f8cd4077ebc5651c92b7",
+    "sim/isaac/scene/target_scene.py": "005b79fed8e9596f4136aaf087b650957b2c808eb7b5b4c447f54a601ac044b2",
+    "sim/isaac/scene/target_trials.py": "f13eee7c26ef4059d3464cacafd5384b4b0dd279be86bfb79529760edc6df70e",
+    "sim/isaac/scene/trials.py": "dfd80b79a59bf0c7df5ed7ad0d87f3b2c2a9798c989dc67b24523361ad586451",
+    "sim/isaac/scene/trial_scene.py": "af842a5876091816fce2d525d055f01e0b638dda47384d09b35b5ca715bf0240",
+    "sim/isaac/scene/usd_scene.py": "9e7a84caf010abbf2aea3cea4201325fb329a9a2affe73c43f5337b49cc2dec9",
+    "sim/isaac/scene/__init__.py": "e3a240987d86f87e019278e05cb69b723638ece144f7450865d89a1937fc2094",
+    "scripts/verify_building_target.py": "c86d8e2127f3a5f64acd6cbe60534ce962e30a5439941623b4144cb53c2e1f48"
+  },
+  "ui_source_sha256": {
+    "sim/isaac/scene/inspection.py": "7f795fd6b68aa413def3416d852cc806b0876f1a327908cbaa400bea7697d886",
+    "sim/isaac/scene/layout.py": "1e5543a4f5863532bc620f1d88388b461656870fb2dd2a7f544d5d89812dc42c",
+    "sim/isaac/scene/model.py": "9a3304942dc2d8ddad721b65949de9ca252995224b34670d1580a29f9400d36c",
+    "sim/isaac/scene/revision_checks.py": "c85089588a1de1faa5694e19874f306ea9da2ca9d91708edc345df02ead396f5",
+    "sim/isaac/scene/target_layout.py": "ed0c80b3111362325f38ce97500b1a9f87279cf800fd53967414df4681efb447",
+    "sim/isaac/scene/target_repair_checks.py": "0243f4d71741d585931a8c5a0c7b4cf53fcb99c86d68f8cd4077ebc5651c92b7",
+    "sim/isaac/scene/target_scene.py": "005b79fed8e9596f4136aaf087b650957b2c808eb7b5b4c447f54a601ac044b2",
+    "sim/isaac/scene/target_trials.py": "f13eee7c26ef4059d3464cacafd5384b4b0dd279be86bfb79529760edc6df70e",
+    "sim/isaac/scene/trials.py": "dfd80b79a59bf0c7df5ed7ad0d87f3b2c2a9798c989dc67b24523361ad586451",
+    "sim/isaac/scene/trial_scene.py": "af842a5876091816fce2d525d055f01e0b638dda47384d09b35b5ca715bf0240",
+    "sim/isaac/scene/usd_scene.py": "9e7a84caf010abbf2aea3cea4201325fb329a9a2affe73c43f5337b49cc2dec9",
+    "sim/isaac/scene/__init__.py": "e3a240987d86f87e019278e05cb69b723638ece144f7450865d89a1937fc2094",
+    "scripts/view_building_scene.py": "250f87bba5dbe3d1dc8143b59e8677c463153631f235bbdba0f8d2614b6d1e28"
+  },
+  "target_trials": [
+    {
+      "trial": "T1",
+      "phases": 34,
+      "readbacks": 255,
+      "status": "COMPLETE_GEOMETRY_ONLY",
+      "ids": [
+        "AF1",
+        "AF2",
+        "C1",
+        "CR1-HOOK",
+        "CUT1",
+        "E1",
+        "FIX-J2",
+        "FIX-J3",
+        "Lop",
+        "Lrig",
+        "Lsig",
+        "OP1",
+        "P1",
+        "PL1",
+        "QA1",
+        "R1",
+        "SCN-CART-01",
+        "SCN-FORK-01",
+        "SCN-STEEL-001",
+        "SCN-WELD-J2",
+        "SCN-WELD-J3",
+        "T1",
+        "T2",
+        "TEST1",
+        "W1",
+        "W2"
+      ],
+      "walk_routes": 9,
+      "final_slots": {
+        "RECEIVE": null,
+        "STEEL": null,
+        "PRE-IN": null,
+        "PRE-OUT": null,
+        "J2": "SCN-STEEL-001",
+        "BUF": null,
+        "J3": null,
+        "F1": null,
+        "Q1": null,
+        "OUT1": null,
+        "FG1": null,
+        "FG2": null,
+        "DISPATCH": null,
+        "MEP-RECEIVE": null,
+        "MEP-STORE": null,
+        "KIT": null,
+        "F1-KIT": null,
+        "TEST-PARK": null,
+        "TEST-USE": null
+      }
+    },
+    {
+      "trial": "T2",
+      "phases": 62,
+      "readbacks": 466,
+      "status": "COMPLETE_GEOMETRY_ONLY",
+      "ids": [
+        "AF1",
+        "AF2",
+        "C1",
+        "CR1-HOOK",
+        "CUT1",
+        "E1",
+        "FIX-J2",
+        "FIX-J3",
+        "Lop",
+        "Lrig",
+        "Lsig",
+        "OP1",
+        "P1",
+        "PL1",
+        "QA1",
+        "R1",
+        "SCN-CART-01",
+        "SCN-FORK-01",
+        "SCN-FRAME-001",
+        "SCN-MODULE-001",
+        "SCN-WELD-J2",
+        "SCN-WELD-J3",
+        "T1",
+        "T2",
+        "TEST1",
+        "W1",
+        "W2"
+      ],
+      "walk_routes": 20,
+      "final_slots": {
+        "RECEIVE": null,
+        "STEEL": null,
+        "PRE-IN": null,
+        "PRE-OUT": null,
+        "J2": null,
+        "BUF": null,
+        "J3": "SCN-FRAME-001",
+        "F1": null,
+        "Q1": null,
+        "OUT1": "SCN-MODULE-001",
+        "FG1": null,
+        "FG2": null,
+        "DISPATCH": null,
+        "MEP-RECEIVE": null,
+        "MEP-STORE": null,
+        "KIT": null,
+        "F1-KIT": null,
+        "TEST-PARK": null,
+        "TEST-USE": null
+      }
+    },
+    {
+      "trial": "T3",
+      "phases": 35,
+      "readbacks": 264,
+      "status": "COMPLETE_GEOMETRY_ONLY",
+      "ids": [
+        "AF1",
+        "AF2",
+        "C1",
+        "CR1-HOOK",
+        "CUT1",
+        "E1",
+        "FIX-J2",
+        "FIX-J3",
+        "Lop",
+        "Lrig",
+        "Lsig",
+        "OP1",
+        "P1",
+        "PL1",
+        "QA1",
+        "R1",
+        "SCN-CART-01",
+        "SCN-FORK-01",
+        "SCN-MEP-001",
+        "SCN-WELD-J2",
+        "SCN-WELD-J3",
+        "T1",
+        "T2",
+        "TEST1",
+        "W1",
+        "W2"
+      ],
+      "walk_routes": 13,
+      "final_slots": {
+        "RECEIVE": null,
+        "STEEL": null,
+        "PRE-IN": null,
+        "PRE-OUT": null,
+        "J2": null,
+        "BUF": null,
+        "J3": null,
+        "F1": null,
+        "Q1": null,
+        "OUT1": null,
+        "FG1": null,
+        "FG2": null,
+        "DISPATCH": null,
+        "MEP-RECEIVE": null,
+        "MEP-STORE": null,
+        "KIT": null,
+        "F1-KIT": "SCN-MEP-001",
+        "TEST-PARK": null,
+        "TEST-USE": null
+      }
+    },
+    {
+      "trial": "T4",
+      "phases": 19,
+      "readbacks": 146,
+      "status": "COMPLETE_GEOMETRY_ONLY",
+      "ids": [
+        "AF1",
+        "AF2",
+        "C1",
+        "CR1-HOOK",
+        "CUT1",
+        "E1",
+        "FIX-J2",
+        "FIX-J3",
+        "Lop",
+        "Lrig",
+        "Lsig",
+        "OP1",
+        "P1",
+        "PL1",
+        "QA1",
+        "R1",
+        "SCN-CART-01",
+        "SCN-FG-P1",
+        "SCN-FG-P2",
+        "SCN-FG-P3",
+        "SCN-FORK-01",
+        "SCN-WELD-J2",
+        "SCN-WELD-J3",
+        "T1",
+        "T2",
+        "TEST1",
+        "W1",
+        "W2"
+      ],
+      "walk_routes": 6,
+      "final_slots": {
+        "RECEIVE": null,
+        "STEEL": null,
+        "PRE-IN": null,
+        "PRE-OUT": null,
+        "J2": null,
+        "BUF": null,
+        "J3": null,
+        "F1": null,
+        "Q1": null,
+        "OUT1": null,
+        "FG1": "SCN-FG-P3",
+        "FG2": "SCN-FG-P2",
+        "DISPATCH": "SCN-FG-P1",
+        "MEP-RECEIVE": null,
+        "MEP-STORE": null,
+        "KIT": null,
+        "F1-KIT": null,
+        "TEST-PARK": null,
+        "TEST-USE": null
+      }
+    }
+  ],
+  "negative_cases": [
+    {
+      "case": "operator_missing",
+      "reason": "OPERATOR_MISSING"
+    },
+    {
+      "case": "unreleased",
+      "reason": "BATCH_NOT_RELEASED"
+    },
+    {
+      "case": "source_missing",
+      "reason": "SOURCE_MISSING"
+    },
+    {
+      "case": "target_full",
+      "reason": "TARGET_FULL:STEEL"
+    },
+    {
+      "case": "obstacle",
+      "reason": "COLLISION:/World/Injected"
+    },
+    {
+      "case": "person",
+      "reason": "COLLISION:/World/Injected"
+    },
+    {
+      "case": "occupied",
+      "reason": "COLLISION:/World/Injected"
+    },
+    {
+      "case": "empty_hook_bogie_block",
+      "reason": "COLLISION:/World/BogieBlock"
+    },
+    {
+      "case": "usd_operator_displaced",
+      "reason": "TARGET_USD_READBACK:Lop"
+    }
+  ],
+  "repair_checks": [
+    {
+      "case": "parked_crane_old_route",
+      "reason": "COLLISION:/World/Crane/Bogie1",
+      "legal_route": [
+        [
+          8.5,
+          31.5,
+          0
+        ],
+        [
+          10,
+          31.5,
+          0
+        ],
+        [
+          13,
+          31.5,
+          0
+        ],
+        [
+          13,
+          35.25,
+          0
+        ],
+        [
+          25,
+          35.25,
+          0
+        ],
+        [
+          35,
+          35.25,
+          0
+        ],
+        [
+          35,
+          39,
+          0
+        ],
+        [
+          45,
+          39,
+          0
+        ],
+        [
+          55,
+          39,
+          0
+        ],
+        [
+          55,
+          35.25,
+          0
+        ]
+      ]
+    },
+    {
+      "case": "TEST HELD",
+      "reason": "RESOURCE_BUSY:TEST1"
+    },
+    {
+      "case": "TWO INDEPENDENT",
+      "reason": "RESOURCE_BUSY:SCN-WELD-J2"
+    },
+    {
+      "case": "EMPTY HOOK APPROACH",
+      "reason": "RESOURCE_BUSY:CR1"
+    },
+    {
+      "case": "EMPTY RETURN",
+      "reason": "RESOURCE_BUSY:SCN-FORK-01"
+    },
+    {
+      "case": "EMPTY RETURN",
+      "reason": "RESOURCE_BUSY:SCN-CART-01"
+    },
+    {
+      "case": "CARRY S01",
+      "max_relative_error_m": 1.7763568394002505e-15,
+      "reason": "FORK_LOAD_ALIGNMENT"
+    },
+    {
+      "case": "CARRY P01",
+      "max_relative_error_m": 0,
+      "reason": "TRAY_LOAD_ALIGNMENT"
+    }
+  ],
+  "coverage_rows": 53,
+  "adjacent_slots": [
+    {
+      "id": "F01",
+      "source_world": [
+        30,
+        24,
+        0.6
+      ],
+      "target_world": [
+        20,
+        24,
+        0.6
+      ],
+      "points_world": [
+        [
+          30,
+          24,
+          0.6
+        ],
+        [
+          30,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.0,
+      "production_qualification": "UNKNOWN"
+    },
+    {
+      "id": "F02",
+      "source_world": [
+        30,
+        24,
+        0.6
+      ],
+      "target_world": [
+        20,
+        34,
+        0.6
+      ],
+      "points_world": [
+        [
+          30,
+          24,
+          0.6
+        ],
+        [
+          30,
+          24,
+          4.1
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          20,
+          34,
+          4.1
+        ],
+        [
+          20,
+          34,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 27.0,
+      "production_qualification": "UNKNOWN"
+    },
+    {
+      "id": "F03",
+      "source_world": [
+        20,
+        24,
+        0.6
+      ],
+      "target_world": [
+        30,
+        34,
+        0.6
+      ],
+      "points_world": [
+        [
+          20,
+          24,
+          0.6
+        ],
+        [
+          20,
+          24,
+          4.1
+        ],
+        [
+          30,
+          24,
+          4.1
+        ],
+        [
+          30,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 27.0,
+      "production_qualification": "UNKNOWN"
+    },
+    {
+      "id": "F04",
+      "source_world": [
+        20,
+        34,
+        0.6
+      ],
+      "target_world": [
+        30,
+        34,
+        0.6
+      ],
+      "points_world": [
+        [
+          20,
+          34,
+          0.6
+        ],
+        [
+          20,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          4.1
+        ],
+        [
+          30,
+          34,
+          0.6
+        ]
+      ],
+      "size_m": [
+        6,
+        3,
+        3.2
+      ],
+      "mass_t": 8.0,
+      "carrier": "CR1",
+      "operator": "Lop",
+      "receiver": "QA1",
+      "status": "PASS_GEOMETRY_ONLY",
+      "distance_m": 17.0,
+      "production_qualification": "UNKNOWN"
+    }
+  ],
+  "combined_three_products_and_crossing": "PASSED",
+  "counts": {
+    "prims": 638,
+    "colliders": 72
+  },
+  "ui": {
+    "status": "PASSED",
+    "method": "SAME_CALLBACK_QUEUE_NO_PHYSICAL_MOUSE_TEST",
+    "actions": [
+      [
+        "step",
+        null
+      ],
+      [
+        "speed",
+        null
+      ],
+      [
+        "pause",
+        null
+      ],
+      [
+        "pause",
+        null
+      ],
+      [
+        "inject",
+        "obstacle"
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "clear",
+        null
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "camera",
+        "Fork"
+      ],
+      [
+        "layer",
+        "routes"
+      ],
+      [
+        "layer",
+        "roles"
+      ],
+      [
+        "layer",
+        "envelopes"
+      ],
+      [
+        "reset",
+        null
+      ],
+      [
+        "trial",
+        "T2"
+      ],
+      [
+        "trial",
+        "T3"
+      ],
+      [
+        "trial",
+        "T4"
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "signal",
+        null
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "camera",
+        "Finished"
+      ],
+      [
+        "save",
+        "Automated UI callback smoke test"
+      ]
+    ]
+  },
+  "legacy_ui": {
+    "status": "PASSED",
+    "method": "SAME_CALLBACK_QUEUE_NO_PHYSICAL_MOUSE_TEST",
+    "actions": [
+      [
+        "step",
+        null
+      ],
+      [
+        "speed",
+        null
+      ],
+      [
+        "pause",
+        null
+      ],
+      [
+        "pause",
+        null
+      ],
+      [
+        "inject",
+        "obstacle"
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "clear",
+        null
+      ],
+      [
+        "step",
+        null
+      ],
+      [
+        "camera",
+        "PRE"
+      ],
+      [
+        "layer",
+        "routes"
+      ],
+      [
+        "layer",
+        "roles"
+      ],
+      [
+        "layer",
+        "envelopes"
+      ],
+      [
+        "reset",
+        null
+      ],
+      [
+        "trial",
+        "T2"
+      ],
+      [
+        "trial",
+        "T3"
+      ],
+      [
+        "trial",
+        "T4"
+      ],
+      [
+        "fixture",
+        "mep_wait"
+      ],
+      [
+        "trial",
+        "T1"
+      ],
+      [
+        "save",
+        "Automated UI callback smoke test"
+      ]
+    ]
+  },
+  "legacy_ui_layout": "S13-LAYOUT-r2",
+  "load": {
+    "L1": {
+      "explicit_timeline_restarts": 4,
+      "physics_callbacks": 10373,
+      "level": "L1",
+      "warmup_seconds": 30,
+      "measurement_seconds": 120.00522280001314,
+      "application_update": {
+        "median_ms": 13.531899952795357,
+        "p95_ms": 15.838699997402728,
+        "max_ms": 1136.7514000157826,
+        "over_50_ms": 82,
+        "over_100_ms": 4,
+        "samples": 8233
+      },
+      "wall_intervals": {
+        "median_ms": 13.536700047552586,
+        "p95_ms": 15.871700015850365,
+        "max_ms": 1136.7539000348188,
+        "over_50_ms": 93,
+        "over_100_ms": 15,
+        "samples": 8233
+      },
+      "resources": [
+        {
+          "seconds": 10.005804200016428,
+          "rss": 7039692800,
+          "private": 11798839296,
+          "whole_card_gpu_mib": [
+            4525
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 20.140663199999835,
+          "rss": 6957113344,
+          "private": 11716911104,
+          "whole_card_gpu_mib": [
+            4526
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 30.25034869997762,
+          "rss": 6957264896,
+          "private": 11715923968,
+          "whole_card_gpu_mib": [
+            4541
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 40.34637179999845,
+          "rss": 7043657728,
+          "private": 11801804800,
+          "whole_card_gpu_mib": [
+            4533
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 50.44695060001686,
+          "rss": 6958104576,
+          "private": 11718021120,
+          "whole_card_gpu_mib": [
+            4525
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 60.56751239998266,
+          "rss": 6958342144,
+          "private": 11718021120,
+          "whole_card_gpu_mib": [
+            4533
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 70.66779839998344,
+          "rss": 7043772416,
+          "private": 11805569024,
+          "whole_card_gpu_mib": [
+            4525
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 80.79309310001554,
+          "rss": 6960197632,
+          "private": 11724746752,
+          "whole_card_gpu_mib": [
+            4525
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 90.89428489998681,
+          "rss": 6896254976,
+          "private": 11653681152,
+          "whole_card_gpu_mib": [
+            4525
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 100.9966724999831,
+          "rss": 6935908352,
+          "private": 11707518976,
+          "whole_card_gpu_mib": [
+            4558
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 111.11183309997432,
+          "rss": 6861844480,
+          "private": 11632721920,
+          "whole_card_gpu_mib": [
+            4543
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "resets": [
+        {
+          "reset": 1,
+          "seconds": 1.0838636999833398,
+          "rss": 6824607744,
+          "private": 11774455808,
+          "whole_card_gpu_mib": [
+            4509
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 2,
+          "seconds": 1.1470981999882497,
+          "rss": 6825021440,
+          "private": 11774681088,
+          "whole_card_gpu_mib": [
+            4509
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 3,
+          "seconds": 1.0671765000442974,
+          "rss": 6827765760,
+          "private": 11780378624,
+          "whole_card_gpu_mib": [
+            4507
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 4,
+          "seconds": 1.04440719995182,
+          "rss": 6828552192,
+          "private": 11642724352,
+          "whole_card_gpu_mib": [
+            4509
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 5,
+          "seconds": 1.0749082999536768,
+          "rss": 6829203456,
+          "private": 11642900480,
+          "whole_card_gpu_mib": [
+            4508
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 6,
+          "seconds": 1.0612402000115253,
+          "rss": 6830075904,
+          "private": 11643052032,
+          "whole_card_gpu_mib": [
+            4505
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 7,
+          "seconds": 1.073716000013519,
+          "rss": 6830772224,
+          "private": 11645308928,
+          "whole_card_gpu_mib": [
+            4494
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 8,
+          "seconds": 1.0708703999989666,
+          "rss": 6831558656,
+          "private": 11644555264,
+          "whole_card_gpu_mib": [
+            4508
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 9,
+          "seconds": 1.096984900010284,
+          "rss": 6831673344,
+          "private": 11645825024,
+          "whole_card_gpu_mib": [
+            4506
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 10,
+          "seconds": 1.0596545999869704,
+          "rss": 6832713728,
+          "private": 11647008768,
+          "whole_card_gpu_mib": [
+            4494
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "actual_render_frame_time": "UNAVAILABLE_UNVERIFIED",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "counts": {
+        "prims": 638,
+        "colliders": 72
+      },
+      "scope": "SINGLE_CHAIN"
+    },
+    "L2": {
+      "explicit_timeline_restarts": 4,
+      "physics_callbacks": 10121,
+      "level": "L2",
+      "warmup_seconds": 30,
+      "measurement_seconds": 120.60226119996514,
+      "application_update": {
+        "median_ms": 13.566100038588047,
+        "p95_ms": 15.609199996106327,
+        "max_ms": 1451.4947999850847,
+        "over_50_ms": 103,
+        "over_100_ms": 4,
+        "samples": 8025
+      },
+      "wall_intervals": {
+        "median_ms": 13.570300012361258,
+        "p95_ms": 15.642799960915,
+        "max_ms": 1451.497100002598,
+        "over_50_ms": 114,
+        "over_100_ms": 15,
+        "samples": 8025
+      },
+      "resources": [
+        {
+          "seconds": 10.002300899999682,
+          "rss": 7022845952,
+          "private": 11801116672,
+          "whole_card_gpu_mib": [
+            4563
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 20.158343699993566,
+          "rss": 6939299840,
+          "private": 11717095424,
+          "whole_card_gpu_mib": [
+            4577
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 30.280401700001676,
+          "rss": 6939328512,
+          "private": 11717095424,
+          "whole_card_gpu_mib": [
+            4550
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 40.39221620000899,
+          "rss": 6939357184,
+          "private": 11717423104,
+          "whole_card_gpu_mib": [
+            4574
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 50.500661099969875,
+          "rss": 7025438720,
+          "private": 11761278976,
+          "whole_card_gpu_mib": [
+            4523
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 60.620957399951294,
+          "rss": 6881595392,
+          "private": 11677499392,
+          "whole_card_gpu_mib": [
+            4528
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 70.74845469999127,
+          "rss": 6881759232,
+          "private": 11677499392,
+          "whole_card_gpu_mib": [
+            4536
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 80.86531429999741,
+          "rss": 6881787904,
+          "private": 11677499392,
+          "whole_card_gpu_mib": [
+            4513
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 90.96745070000179,
+          "rss": 6959652864,
+          "private": 11762405376,
+          "whole_card_gpu_mib": [
+            4538
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 101.0664253999712,
+          "rss": 6876049408,
+          "private": 11678625792,
+          "whole_card_gpu_mib": [
+            4512
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "seconds": 111.17795409995597,
+          "rss": 6885552128,
+          "private": 11688132608,
+          "whole_card_gpu_mib": [
+            4530
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "resets": [
+        {
+          "reset": 1,
+          "seconds": 1.3894313999917358,
+          "rss": 6850138112,
+          "private": 11828273152,
+          "whole_card_gpu_mib": [
+            4518
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 2,
+          "seconds": 1.384963400021661,
+          "rss": 6850785280,
+          "private": 11829665792,
+          "whole_card_gpu_mib": [
+            4501
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 3,
+          "seconds": 1.373321599967312,
+          "rss": 6853185536,
+          "private": 11694952448,
+          "whole_card_gpu_mib": [
+            4507
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 4,
+          "seconds": 1.3581259999773465,
+          "rss": 6856523776,
+          "private": 11699396608,
+          "whole_card_gpu_mib": [
+            4520
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 5,
+          "seconds": 1.3451244999887422,
+          "rss": 6858080256,
+          "private": 11699986432,
+          "whole_card_gpu_mib": [
+            4502
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 6,
+          "seconds": 1.348643000004813,
+          "rss": 6859636736,
+          "private": 11700334592,
+          "whole_card_gpu_mib": [
+            4519
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 7,
+          "seconds": 1.3408187999739312,
+          "rss": 6860722176,
+          "private": 11702591488,
+          "whole_card_gpu_mib": [
+            4519
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 8,
+          "seconds": 1.3562705999938771,
+          "rss": 6861975552,
+          "private": 11702657024,
+          "whole_card_gpu_mib": [
+            4501
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 9,
+          "seconds": 1.4186650000046939,
+          "rss": 6861672448,
+          "private": 11703930880,
+          "whole_card_gpu_mib": [
+            4518
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        },
+        {
+          "reset": 10,
+          "seconds": 1.3813165000174195,
+          "rss": 6863888384,
+          "private": 11708325888,
+          "whole_card_gpu_mib": [
+            4507
+          ],
+          "process_gpu_mib": "UNAVAILABLE_NVIDIA_SMI"
+        }
+      ],
+      "actual_render_frame_time": "UNAVAILABLE_UNVERIFIED",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "counts": {
+        "prims": 875,
+        "colliders": 74
+      },
+      "scope": "B_PLUS_ONE_AND_CONCURRENT_CROSSING"
+    }
+  },
+  "screenshots": [
+    {
+      "name": "steel_carried",
+      "camera": "Supply",
+      "sha256": "fcfabb8a328ee379046f9eb086faa5a4f013871f724df7c530b10564ef15c8b7",
+      "view_error": 1.4210854715202004e-14
+    },
+    {
+      "name": "mep_handoff",
+      "camera": "F1",
+      "sha256": "60077c09a55364fc064ccfc391e00347d7286829e7c66523fdadee896729eb6a",
+      "view_error": 2.1316282072803006e-14
+    },
+    {
+      "name": "test_pushed",
+      "camera": "Test",
+      "sha256": "65ba14d1a91b38991efd9dbadca664c9755f2c8af4763f417d010168a0cae1ed",
+      "view_error": 2.842170943040401e-14
+    },
+    {
+      "name": "t3_complete",
+      "camera": "Overview",
+      "sha256": "5c31084952c0db7670b25acb1dad630ea41881f0f494660be442fa705e1fb100",
+      "view_error": 2.842170943040401e-14
+    }
+  ],
+  "visual_review": "FOUR_UNEDITED_ORIGINALS_REVIEWED_BY_AI",
+  "limits": [
+    "True frame target UNVERIFIED; update timing is not FPS.",
+    "L1 and L2 remeasured; prior L0 and legacy physics protocol are historical, not rerun in this limited repair.",
+    "Target verification and UI overlapped CPU regression; their timings are not exclusive performance measurements. Load runs are exclusive.",
+    "GUI uses shared callbacks, not physical mouse or owner acceptance.",
+    "Synthetic geometry only; no industrial qualification, process dynamics or production-contract migration.",
+    "First full CPU attempt failed after concurrent uv reinstall removed a module; serial rerun passed. Initial targeted uv cache access failure retained."
+  ]
+}

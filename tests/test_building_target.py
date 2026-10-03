@@ -18,6 +18,7 @@ from sim.isaac.scene.target_layout import (
     TASKS,
     WalkGraph,
     length,
+    parked_crane_boxes,
     static_boxes,
     transfer_matrix,
     verify_task,
@@ -31,6 +32,8 @@ def obstacles(run):
     if a and a.task == "BOARD":
         moving.add("SCN-FORK-01")
     result = static_boxes()
+    if "CR1-HOOK" not in moving:
+        result.extend(parked_crane_boxes(run.positions["CR1-HOOK"]))
     for n, p in run.positions.items():
         if n in moving or n in FIXED or n == "CR1-HOOK":
             continue
@@ -50,6 +53,113 @@ def reach(run, label):
 
 
 class TargetTests(unittest.TestCase):
+    def test_parked_crane_blocks_old_north_route_and_planner_avoids_it(self):
+        from sim.isaac.scene.target_layout import PERSON_SIZE, check_route
+
+        bogie = Box("independent-bogie", (30, 40, 0.4), (4, 1.4, 0.6))
+        with self.assertRaisesRegex(ValueError, "COLLISION:independent-bogie"):
+            check_route(((25, 39, 0), (35, 39, 0)), PERSON_SIZE, [bogie])
+        r = TargetRun("T3")
+        reach(r, "WALK QA1 / TEST_PUSH")
+        check_route(r.action.paths["QA1"], PERSON_SIZE, [bogie])
+        r.advance(r.action.seconds, obstacles(r))
+        self.assertIsNone(r.blocked)
+
+    def test_busy_devices_reject_before_any_motion_or_partial_claim(self):
+        for trial, prefix, device in (
+            ("T2", "EMPTY HOOK APPROACH", "CR1"),
+            ("T3", "TWO INDEPENDENT", "SCN-WELD-J2"),
+            ("T3", "TEST DELIVER", "TEST1"),
+            ("T1", "CUT ABSTRACT", "CUT1"),
+            ("T1", "RETRACT SUPPORT", "SCN-FORK-01"),
+        ):
+            with self.subTest(device=device):
+                r = TargetRun(trial)
+                reach(r, prefix)
+                r.claim(device, "SECOND_REQUEST")
+                before = r.snapshot()
+                r.advance(0.1, obstacles(r))
+                self.assertEqual(r.positions, before["positions"])
+                self.assertEqual(r.owners, before["owners"])
+                self.assertEqual(r.elapsed, before["elapsed"])
+                self.assertIn("RESOURCE_BUSY", r.blocked)
+
+    def test_active_devices_and_empty_returns_remain_exclusive(self):
+        for trial, prefix, device in (
+            ("T2", "EMPTY HOOK APPROACH", "CR1"),
+            ("T2", "RIG / HOOK", "CR1-HOOK"),
+            ("T2", "EMPTY HOOK RETURN", "CR1"),
+            ("T3", "TWO INDEPENDENT", "SCN-WELD-J3"),
+            ("T3", "TEST HELD", "TEST1"),
+            ("T3", "TEST RETRIEVE", "TEST1"),
+            ("T1", "EMPTY RETURN", "SCN-FORK-01"),
+            ("T3", "EMPTY RETURN", "SCN-CART-01"),
+        ):
+            with self.subTest(prefix=prefix, device=device):
+                r = TargetRun(trial)
+                reach(r, prefix)
+                r.advance(0.1, obstacles(r))
+                with self.assertRaisesRegex(ValueError, "RESOURCE_BUSY"):
+                    r.claim(device, "SECOND_REQUEST")
+                r.paused = True
+                r.advance(2)
+                with self.assertRaisesRegex(ValueError, "RESOURCE_BUSY"):
+                    r.claim(device, "SECOND_REQUEST")
+
+    def test_test_cart_held_through_person_withdrawal_until_retrieved(self):
+        r = TargetRun("T3")
+        reach(r, "TEST DELIVER")
+        while r.action:
+            r.advance(0.5, obstacles(r))
+            self.assertIsNone(r.blocked)
+            if r.action:
+                self.assertEqual(r.owners["TEST1"], "TEST1")
+            if r.action and r.action.label.startswith("TEST HELD"):
+                self.assertNotIn("QA1", r.owners)
+        self.assertEqual(r.owners, {})
+        r.claim("TEST1", "NEXT")
+
+    def test_crane_collaborators_stay_reserved_during_rigging(self):
+        r = TargetRun("T2")
+        reach(r, "RIG / HOOK")
+        for person in CONTROL:
+            with self.assertRaisesRegex(ValueError, "RESOURCE_BUSY"):
+                r.claim(person, "OTHER_TASK")
+
+    def test_lost_active_lock_stops_without_advancing(self):
+        r = TargetRun("T2")
+        reach(r, "EMPTY HOOK APPROACH")
+        r.advance(0.1, obstacles(r))
+        del r.owners["CR1"]
+        before = r.snapshot()
+        r.advance(0.1, obstacles(r))
+        self.assertIn("RESOURCE_BUSY:CR1", r.blocked)
+        self.assertEqual(r.positions, before["positions"])
+        self.assertEqual(r.elapsed, before["elapsed"])
+
+    def test_load_keeps_horizontal_attachment_during_lift_turn_and_landing(self):
+        for trial in ("T1", "T3"):
+            r = TargetRun(trial)
+            while r.action:
+                a = r.action
+                if a.label.startswith("CARRY") and TASK_BY_ID[a.task].carrier != "CR1":
+                    t = TASK_BY_ID[a.task]
+                    for _ in range(101):
+                        r.advance(a.seconds / 100, obstacles(r))
+                        self.assertIsNone(r.blocked)
+                        load, carrier = r.positions[a.load], r.positions[t.carrier]
+                        self.assertAlmostEqual(load[0], carrier[0], places=9)
+                        self.assertAlmostEqual(
+                            load[1] - carrier[1],
+                            1.8 if t.carrier == "SCN-FORK-01" else 1.1,
+                            places=9,
+                        )
+                        if r.action is not a:
+                            break
+                else:
+                    r.advance(a.seconds, obstacles(r))
+                    self.assertIsNone(r.blocked)
+
     def test_empty_hook_cannot_bypass_bogie_obstacle(self):
         blocked = Box("bogie-block", (40, 4, 1), (0.7, 0.7, 1.9))
         verify_task(TASK_BY_ID["M01"], [*static_boxes(), blocked])

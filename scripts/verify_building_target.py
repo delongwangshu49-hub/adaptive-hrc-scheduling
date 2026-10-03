@@ -94,7 +94,9 @@ def run(app, args, out):
         return measure(scene, trial, app, vp, args.level, out, capture, counts)
 
     # Actual USD bounds, not the scene controller's pass bit.
-    excluded = tuple(PEOPLE) + tuple(trial.run.kinds) + ("SCN-FORK-01", "SCN-CART-01", "TEST1")
+    excluded = (
+        tuple(PEOPLE) + tuple(trial.run.kinds) + ("SCN-FORK-01", "SCN-CART-01", "TEST1", "CR1")
+    )
     coverage = transfer_matrix(scene.actual_obstacles(excluded))
     save(out / "coverage.json", coverage)
     adjacent = []
@@ -108,7 +110,7 @@ def run(app, args, out):
         ignore = (
             tuple(PEOPLE)
             + tuple(n for n in trial.run.kinds if n != neighbor)
-            + ("SCN-FORK-01", "SCN-CART-01", "TEST1")
+            + ("SCN-FORK-01", "SCN-CART-01", "TEST1", "CR1")
         )
         adjacent.append(verify_task(TASK_BY_ID[task_id], scene.actual_obstacles(ignore)))
     save(out / "adjacent-slots.json", adjacent)
@@ -254,6 +256,10 @@ def run(app, args, out):
         require(trial.run.blocked is None, "COMBINED:" + str(trial.run.blocked))
     save(out / "combined-trace.json", trial.trace)
     capture("combined_complete", "Finished")
+    from sim.isaac.scene.target_repair_checks import verify_repairs
+
+    repairs = verify_repairs(trial, app.update)
+    save(out / "repair-checks.json", repairs)
     # Unique scene IDs; no target object impersonates a frozen domain resource.
     ids = [
         p.GetAttribute("s13:sceneId").Get()
@@ -269,6 +275,7 @@ def run(app, args, out):
         "trials": trials,
         "negative_cases": negatives,
         "coverage_rows": len(coverage),
+        "repair_checks": repairs,
         "screenshots": shots,
         "counts": counts,
         "status": "PASSED",

@@ -159,7 +159,10 @@ def main():
                 trial.clear_fault()
                 message = "Obstruction removed. Resume retains current positions and ownership."
             elif action == "duplicate":
-                resource = next(iter(trial.run.owners), "WELD1")
+                resource = next(
+                    (r for r in trial.run.owners if r not in PEOPLE and not r.startswith("SLOT:")),
+                    "WELD1",
+                )
                 if resource not in trial.run.owners:
                     message = "Run to a held-resource phase first."
                 else:

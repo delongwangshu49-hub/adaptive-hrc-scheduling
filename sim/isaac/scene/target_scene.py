@@ -248,6 +248,10 @@ class TargetScene(BuildingScene):
         self.ident("CR1", p, (30, 0, 0))
         for i, y in enumerate((4, 40)):
             self.shape(p + f"/Bogie{i}", (0, y, 0.4), (4, 1.4, 0.6), "orange", collision=True)
+            envelope = self.shape(
+                p + f"/SupportEnvelope{i}", (0, y, 4.35), (4, 1.4, 8.7), "orange", collision=True
+            )
+            envelope.CreateVisibilityAttr("invisible")
             for j, x in enumerate((-1.5, 1.5)):
                 self.beam(p + f"/Leg{i}{j}", (x, y, 0.7), (0, y, 8.5), 0.25, "orange")
                 self.shape(p + f"/Wheel{i}{j}", (x, y, 0.25), (0.5, 0.6, 0.5), "dark", "sphere")
@@ -351,9 +355,19 @@ class TargetScene(BuildingScene):
                 require(math.dist(actual["CR1-HOOK"], expected) < 0.001, "HOOK_LOAD_ATTACHMENT")
                 require(self.hook_footprint == self.run.size(n)[:2], "SPREADER_FOOTPRINT")
             elif support == "CARRIER:SCN-FORK-01":
+                vehicle = actual["SCN-FORK-01"]
+                require(
+                    math.dist(pos[:2], (vehicle[0], vehicle[1] + 1.8)) < 0.001,
+                    "FORK_LOAD_ALIGNMENT",
+                )
                 top = self.world_position(self.mapping["SCN-FORK-01"] + "/Forks")
                 require(abs(top[2] - pos[2]) < 0.001, "FORK_LOAD_SUPPORT")
             elif support == "CARRIER:SCN-CART-01":
+                vehicle = actual["SCN-CART-01"]
+                require(
+                    math.dist(pos[:2], (vehicle[0], vehicle[1] + 1.1)) < 0.001,
+                    "TRAY_LOAD_ALIGNMENT",
+                )
                 tray = self.world_position(self.mapping["SCN-CART-01"] + "/TransferTray")
                 require(abs(tray[2] + 0.05 - pos[2]) < 0.001, "TRAY_LOAD_SUPPORT")
                 require(
@@ -369,8 +383,11 @@ class TargetScene(BuildingScene):
         Other current actors remain obstacles. No cached pre-movement positions.
         """
         ignored = [self.mapping[n] for n in moving if n in self.mapping]
-        # Crane is checked by the full task matrix; its drive rails are physical.
-        ignored += ["/World/Crane", "/World/Hook", "/World/Factory/Ground"]
+        # Only an active crane motion may exclude its own structure. It is swept
+        # separately against all other actors; a parked crane stays an obstacle.
+        ignored += ["/World/Factory/Ground"]
+        if "CR1-HOOK" in moving or "CR1" in moving:
+            ignored += ["/World/Crane", "/World/Hook"]
         cache = UsdGeom.BBoxCache(
             0, [UsdGeom.Tokens.default_], useExtentsHint=False, ignoreVisibility=True
         )

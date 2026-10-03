@@ -24,6 +24,7 @@ from .target_layout import (
     check_crane_structure,
     check_route,
     length,
+    parked_crane_boxes,
     static_boxes,
 )
 
@@ -34,8 +35,10 @@ def shift(p, offset):
     return tuple(a + b for a, b in zip(p, offset))
 
 
-def sample(points, fraction):
-    distances = [math.dist(a, b) for a, b in zip(points, points[1:])]
+def sample(points, fraction, reference=None):
+    clock = points if reference is None else reference
+    require(len(points) == len(clock), "MOTION_CLOCK_SIZE")
+    distances = [math.dist(a, b) for a, b in zip(clock, clock[1:])]
     left = fraction * sum(distances)
     for a, b, d in zip(points, points[1:], distances):
         if left <= d and d > 0:
@@ -58,6 +61,11 @@ class Phase:
     load: str = ""
     state: str = "PREPARE"
     concurrent: bool = False
+    holds: dict = field(default_factory=dict)
+    clock: tuple = ()
+
+    def position(self, name, fraction):
+        return sample(self.paths[name], fraction, self.clock or None)
 
 
 class TargetRun:
@@ -108,6 +116,10 @@ class TargetRun:
         self._planned = copy.deepcopy(self.positions)
         self._planned_locations = dict(self.locations)
         self._compile()
+        for i, phase in enumerate(self.phases):
+            for person in (*phase.roles, *phase.paths):
+                if person in PEOPLE:
+                    phase.holds.setdefault(person, phase.task or f"PHASE:{i}")
         self.initial = copy.deepcopy(self.positions)
 
     def add_load(self, name, kind, pad):
@@ -123,6 +135,7 @@ class TargetRun:
         return self.phases[self.index] if self.index < len(self.phases) else None
 
     def claim(self, resource, owner):
+        resource = "CR1" if resource == "CR1-HOOK" else resource
         require(resource not in self.owners, "RESOURCE_BUSY:" + resource)
         self.owners[resource] = owner
 
@@ -136,6 +149,8 @@ class TargetRun:
 
     def planned_obstacles(self, exclude=()):
         obs = static_boxes()
+        if "CR1-HOOK" not in exclude:
+            obs.extend(parked_crane_boxes(self._planned["CR1-HOOK"]))
         for n, p in self._planned.items():
             if n in exclude or n in FIXED or n == "CR1-HOOK":
                 continue
@@ -219,6 +234,7 @@ class TargetRun:
                 target_hook,
             )
             roles = {**CONTROL, t.receiver: receiver}
+            lock_start = len(self.phases)
             self.add(
                 Phase(
                     "EMPTY HOOK APPROACH " + task_id,
@@ -276,6 +292,9 @@ class TargetRun:
                 t.operator: tuple(shift(p, relative) for p in carrier_points),
             }
             sizes = {load: size, carrier: self.size(carrier), t.operator: PERSON_SIZE}
+        if t.carrier != "CR1":
+            lock_start = len(self.phases)
+        reserve_start = len(self.phases)
         self.add(
             Phase(
                 "LOAD / CHECK SUPPORT " + task_id,
@@ -296,6 +315,7 @@ class TargetRun:
                 task=task_id,
                 load=load,
                 state="OPERATE",
+                clock=t.points,
             )
         )
         self.add(
@@ -329,8 +349,15 @@ class TargetRun:
                     "RELEASE TRANSPORT " + task_id, finish=("release", task_id, load), task=task_id
                 )
             )
+        for phase in self.phases[lock_start:]:
+            phase.holds.update({k: task_id for k in (t.carrier, t.operator, t.receiver)})
+            if t.carrier == "CR1":
+                phase.holds.update({k: task_id for k in CONTROL})
+        for phase in self.phases[reserve_start:]:
+            phase.holds["SLOT:" + t.target] = task_id
 
     def empty_return(self, task_ids, carrier, operator):
+        lock_start = len(self.phases)
         self.add(
             Phase(
                 "RETRACT SUPPORT BEFORE EMPTY RETURN",
@@ -361,6 +388,8 @@ class TargetRun:
                     state="OPERATE",
                 )
             )
+        for phase in self.phases[lock_start:]:
+            phase.holds.update({carrier: "EMPTY_RETURN", operator: "EMPTY_RETURN"})
 
     def _compile(self):
         if self.combined:
@@ -382,6 +411,7 @@ class TargetRun:
             self.add(
                 Phase(
                     "CUT ABSTRACT / FIXED MACHINE / NO PROCESS RECEIPT",
+                    holds={"CUT1": "CUT"},
                     roles={"W1": (13, 9, 0)},
                     seconds=4,
                     task="CUT1",
@@ -403,6 +433,7 @@ class TargetRun:
             self.add(
                 Phase(
                     "TWO INDEPENDENT FIXED WELD STATIONS",
+                    holds={"SCN-WELD-J2": "WELD", "SCN-WELD-J3": "WELD"},
                     roles={"W1": (32, 16, 0), "W2": (52, 16, 0)},
                     seconds=4,
                     task="SCN-WELD-J2+SCN-WELD-J3",
@@ -422,6 +453,7 @@ class TargetRun:
             self.empty_return(("P01", "P02", "P03"), "SCN-CART-01", "E1")
             self.walk("AF1", (52, 32, 0), "HANDOFF_COMPLETE_CLEAR_TEST_ROUTE")
             self.walk("QA1", (55, 35.25, 0), "TEST_PUSH")
+            test_start = len(self.phases)
             for reverse in (False, True):
                 a, b = (
                     (PADS["TEST-USE"], PADS["TEST-PARK"])
@@ -452,6 +484,8 @@ class TargetRun:
                             state="WAIT",
                         )
                     )
+            for phase in self.phases[test_start:]:
+                phase.holds["TEST1"] = "TEST1"
         else:
             self.add(
                 Phase(
@@ -518,9 +552,7 @@ class TargetRun:
             keys = (t.carrier, t.operator, t.receiver, "SLOT:" + t.target)
             require(len(set(keys)) == len(keys), "DUPLICATE_ROLE")
             for k in keys:
-                require(k not in self.owners, "RESOURCE_BUSY:" + k)
-            for k in keys:
-                self.claim(k, task_id)
+                require(self.owners.get(k) in (None, task_id), "RESOURCE_BUSY:" + k)
         elif op == "attach":
             require(self.owners.get(t.carrier) == task_id, "NO_CARRIER_LOCK")
             require(self.support[load] == "PAD:" + t.source, "NO_SOURCE_SUPPORT")
@@ -537,7 +569,6 @@ class TargetRun:
             self.support[load] = "PAD:" + t.target
         elif op == "release":
             require(self.support[load] == "PAD:" + t.target, "EARLY_RELEASE")
-            self.owners = {k: v for k, v in self.owners.items() if v != task_id}
         else:
             raise ValueError("UNKNOWN_EFFECT")
 
@@ -570,6 +601,10 @@ class TargetRun:
             return self.snapshot()
         a = self.action
         try:
+            for resource, owner in a.holds.items():
+                allowed = (owner,) if self._entered else (None, owner)
+                reason = "PERSON_DOUBLE_TASK:" if resource in PEOPLE else "RESOURCE_BUSY:"
+                require(self.owners.get(resource) in allowed, reason + resource)
             for n, p in FIXED.items():
                 require(
                     self.positions[n] == (p.center[0], p.center[1], 0), "FIXED_MACHINE_MOVED:" + n
@@ -586,12 +621,18 @@ class TargetRun:
                     p in self.positions and math.dist(self.positions[p], at) < 0.02,
                     "ROLE_NOT_AT_STATION:" + p,
                 )
-                require(self.owners.get(p) in (None, a.task), "PERSON_DOUBLE_TASK:" + p)
+                require(
+                    self.owners.get(p) in (None, a.holds.get(p, a.task)), "PERSON_DOUBLE_TASK:" + p
+                )
             for n, path in a.paths.items():
-                require(self.owners.get(n) in (None, a.task), "PERSON_DOUBLE_TASK:" + n)
+                resource = "CR1" if n == "CR1-HOOK" else n
+                require(
+                    self.owners.get(resource) in (None, a.holds.get(resource, a.task)),
+                    "RESOURCE_BUSY:" + resource,
+                )
                 if self._entered and not a.concurrent:
                     require(
-                        math.dist(self.positions[n], sample(path, self.part / a.seconds)) < 0.02,
+                        math.dist(self.positions[n], a.position(n, self.part / a.seconds)) < 0.02,
                         "ACTOR_LEFT_MOTION:" + n,
                     )
                 checked = tuple(shift(p, (0, 0, -0.6)) for p in path) if n == "CR1-HOOK" else path
@@ -617,6 +658,7 @@ class TargetRun:
                         math.dist(self.positions[n], path[0]) < 1e-6, "DISCONTINUOUS_START:" + n
                     )
                 self._effect(a.start)
+                self.owners.update(a.holds)
                 self._entered = True
                 self.events.append(
                     {
@@ -653,7 +695,7 @@ class TargetRun:
                     }
             else:
                 for n, path in a.paths.items():
-                    self.positions[n] = sample(path, self.part / a.seconds)
+                    self.positions[n] = a.position(n, self.part / a.seconds)
             self.status, self.blocked = "RUNNING", None
             if self.part >= a.seconds:
                 for n, path in a.paths.items():
@@ -668,6 +710,10 @@ class TargetRun:
                     }
                 )
                 self.index += 1
+                following = self.action.holds if self.action else {}
+                for resource, owner in a.holds.items():
+                    if following.get(resource) != owner:
+                        del self.owners[resource]
                 self.part, self._entered = 0, False
                 if not self.action:
                     self.status = "COMPLETE_GEOMETRY_ONLY"

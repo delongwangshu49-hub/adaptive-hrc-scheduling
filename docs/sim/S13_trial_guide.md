@@ -1,5 +1,8 @@
 # S13 r3 目标工厂亲自试运行
 
+现行入口为r4修复版 `S13-TARGET-R5-2`。T1—T4操作方式保持；静止吊机避障、载具同步及设备占用已修复，重复设备按钮仅选择设备而不误选人员或槽位。T3检测保持期间可核对RESOURCE_BUSY；T4仍先等待接收准备信号。旧版GUI自动复核命令已补齐 `--legacy`。实际结果见[修复报告](../validation/building_scene.md)和[本版机器摘要](../../examples/building_scene/target_repair_summary.json)；下面r3/r2描述保留历史背景。
+
+
 依据 PR102 的 r5 授权实现，版本 `S13-TARGET-R5-1`。默认打开目标场景并暂停，标题和状态标明 `SCENE_ONLY / TARGET_LAYOUT`。15 名具名人员、两个独立固定焊接站、站驾叉运、配送车、可推检测车及 CR1 对应明确动作。质量 UNKNOWN、HR 禁用；四组之间显式 RESET，各组内部连续，不能拼接成完整生产历史。
 
 ## 启动与检查
@@ -102,7 +105,7 @@ uv run --locked python scripts/build_target_coverage.py --check
 
 ```powershell
 & (Join-Path $env:ISAAC_SIM_ROOT 'python.bat') scripts/build_building_scene.py --mode trials --output .local/s13-trials-check
-& (Join-Path $env:ISAAC_SIM_ROOT 'python.bat') scripts/view_building_scene.py --self-test --output .local/s13-ui-check
+& (Join-Path $env:ISAAC_SIM_ROOT 'python.bat') scripts/view_building_scene.py --legacy --self-test --output .local/s13-ui-check
 ```
 
 `--self-test`创建实际面板，调用按钮共用的回调队列并实际保存问题文件；这是程序化GUI回调检查，不能冒称人工鼠标点击或负责人体验验收。测试结果和未覆盖项以[验证报告](../validation/building_scene.md)为准。脚本结果PASSED、closed=true、进程退出正常须分别核对；关闭前结果不能单独证明正常退出。
