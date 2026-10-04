@@ -1,0 +1,698 @@
+{
+  "budget_ms": 100,
+  "config_id": "ML-V01-SR-W1",
+  "observation": {
+    "config_id": "ML-V01-SR-W1",
+    "config_sha256": "47af0df5de25df3a47d2f8fdf61a15bf3f508a239740f4701ac4a72503cc916f",
+    "epoch": 0,
+    "event_ids": [],
+    "id": "OBS-0",
+    "received_h": 0,
+    "run_id": "RUN-S14",
+    "sampled_h": 0,
+    "schema_version": "S14-ML-1.0",
+    "state": {
+      "completed": [],
+      "failed_resources": [],
+      "gates": [],
+      "humans": [
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "P1",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "W1",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "W2",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "OP1",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "AF1",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "AF2",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "E1",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "PL1",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "T1",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "T2",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "C1",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "QA1",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "Lop",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "Lrig",
+          "rest_until_h": 0
+        },
+        {
+          "exposure": 0,
+          "fatigue": 0.2,
+          "peak": 0.2,
+          "person_id": "Lsig",
+          "rest_until_h": 0
+        }
+      ],
+      "intervals": [],
+      "lots": [
+        {
+          "arrived": false,
+          "available": 0,
+          "consumed": 0,
+          "converted": 0,
+          "id": "RAW",
+          "identified": false,
+          "location": "SUPPLIER",
+          "released": false,
+          "returned": 0,
+          "scrapped": 0
+        },
+        {
+          "arrived": false,
+          "available": 0,
+          "consumed": 0,
+          "converted": 0,
+          "id": "PREPARED",
+          "identified": false,
+          "location": "UNPRODUCED",
+          "released": false,
+          "returned": 0,
+          "scrapped": 0
+        }
+      ],
+      "motions": [],
+      "owners": [],
+      "positions": [
+        {
+          "id": "RAW",
+          "location": "SUPPLIER",
+          "support": "SUPPLIER"
+        },
+        {
+          "id": "PREPARED",
+          "location": "UNPRODUCED",
+          "support": "UNPRODUCED"
+        },
+        {
+          "id": "STEEL-COMP",
+          "location": "UNFABRICATED",
+          "support": "UNFABRICATED"
+        },
+        {
+          "id": "CUT1",
+          "location": "PRE-IN",
+          "support": "PRE-IN"
+        },
+        {
+          "id": "WELD-J2",
+          "location": "J2",
+          "support": "J2"
+        },
+        {
+          "id": "WELD-J3",
+          "location": "J3",
+          "support": "J3"
+        },
+        {
+          "id": "R1",
+          "location": "J2",
+          "support": "J2"
+        },
+        {
+          "id": "CR1",
+          "location": "CRANE-PARK",
+          "support": "CRANE-PARK"
+        },
+        {
+          "id": "TEST1",
+          "location": "TEST-PARK",
+          "support": "TEST-PARK"
+        },
+        {
+          "id": "FORK-01",
+          "location": "RECEIVE",
+          "support": "RECEIVE"
+        },
+        {
+          "id": "CART-01",
+          "location": "MEP-RECEIVE",
+          "support": "MEP-RECEIVE"
+        },
+        {
+          "id": "FIX-J2",
+          "location": "J2",
+          "support": "J2"
+        },
+        {
+          "id": "FIX-J3",
+          "location": "J3",
+          "support": "J3"
+        },
+        {
+          "id": "P1",
+          "location": "RECEIVE",
+          "support": "RECEIVE"
+        },
+        {
+          "id": "W1",
+          "location": "PRE-IN",
+          "support": "PRE-IN"
+        },
+        {
+          "id": "W2",
+          "location": "CONTROL-W2",
+          "support": "CONTROL-W2"
+        },
+        {
+          "id": "OP1",
+          "location": "CONTROL-OP1",
+          "support": "CONTROL-OP1"
+        },
+        {
+          "id": "AF1",
+          "location": "CONTROL-AF1",
+          "support": "CONTROL-AF1"
+        },
+        {
+          "id": "AF2",
+          "location": "CONTROL-AF2",
+          "support": "CONTROL-AF2"
+        },
+        {
+          "id": "E1",
+          "location": "CONTROL-E1",
+          "support": "CONTROL-E1"
+        },
+        {
+          "id": "PL1",
+          "location": "CONTROL-PL1",
+          "support": "CONTROL-PL1"
+        },
+        {
+          "id": "T1",
+          "location": "CONTROL-T1",
+          "support": "CONTROL-T1"
+        },
+        {
+          "id": "T2",
+          "location": "CONTROL-T2",
+          "support": "CONTROL-T2"
+        },
+        {
+          "id": "C1",
+          "location": "CONTROL-C1",
+          "support": "CONTROL-C1"
+        },
+        {
+          "id": "QA1",
+          "location": "STEEL",
+          "support": "STEEL"
+        },
+        {
+          "id": "Lop",
+          "location": "CONTROL-Lop",
+          "support": "CONTROL-Lop"
+        },
+        {
+          "id": "Lrig",
+          "location": "CONTROL-Lrig",
+          "support": "CONTROL-Lrig"
+        },
+        {
+          "id": "Lsig",
+          "location": "CONTROL-Lsig",
+          "support": "CONTROL-Lsig"
+        }
+      ],
+      "products": [
+        {
+          "cancelled": false,
+          "product_id": "PRODUCT-1",
+          "ready_h": null,
+          "received_h": null,
+          "released": true
+        }
+      ],
+      "receive_permits": [],
+      "reservations": [],
+      "revision": 0,
+      "running": [],
+      "time_h": 0
+    }
+  },
+  "operations": [
+    {
+      "action": "TRANSFER",
+      "activity_id": "TAKE-IN",
+      "attempt_index": 0,
+      "base_h": 0,
+      "component_inputs": [],
+      "component_outputs": [],
+      "entity_id": "RAW",
+      "equipment": [
+        "FORK-01"
+      ],
+      "hold_device": null,
+      "id": "TAKE-IN",
+      "kappa": 0,
+      "location": "RECEIVE",
+      "material_inputs": [],
+      "material_outputs": [],
+      "phase": "DRIVE",
+      "prerequisites": [],
+      "product_id": "PRODUCT-1",
+      "qualification_ids": [
+        "ML-METHOD"
+      ],
+      "quality_gates": [],
+      "release_device": null,
+      "role_locations": [
+        {
+          "location": "RECEIVE",
+          "person_id": "P1"
+        },
+        {
+          "location": "STEEL",
+          "person_id": "QA1"
+        }
+      ],
+      "roles": [
+        {
+          "id": "P1",
+          "qualification": "FORK"
+        },
+        {
+          "id": "QA1",
+          "qualification": "QA"
+        }
+      ],
+      "route_id": "S01",
+      "scrap_quantity": 0,
+      "target": "STEEL",
+      "unit_index": 0,
+      "wait_gate": null
+    },
+    {
+      "action": "TRANSFER",
+      "activity_id": "TO-PRE",
+      "attempt_index": 0,
+      "base_h": 0,
+      "component_inputs": [],
+      "component_outputs": [],
+      "entity_id": "RAW",
+      "equipment": [
+        "FORK-01"
+      ],
+      "hold_device": null,
+      "id": "TO-PRE",
+      "kappa": 0,
+      "location": "STEEL",
+      "material_inputs": [],
+      "material_outputs": [],
+      "phase": "DRIVE",
+      "prerequisites": [
+        "TAKE-IN"
+      ],
+      "product_id": "PRODUCT-1",
+      "qualification_ids": [
+        "ML-METHOD"
+      ],
+      "quality_gates": [],
+      "release_device": null,
+      "role_locations": [
+        {
+          "location": "STEEL",
+          "person_id": "P1"
+        },
+        {
+          "location": "PRE-IN",
+          "person_id": "W1"
+        }
+      ],
+      "roles": [
+        {
+          "id": "P1",
+          "qualification": "FORK"
+        },
+        {
+          "id": "W1",
+          "qualification": "CUT"
+        }
+      ],
+      "route_id": "S02",
+      "scrap_quantity": 0,
+      "target": "PRE-IN",
+      "unit_index": 0,
+      "wait_gate": null
+    },
+    {
+      "action": "RESERVE",
+      "activity_id": "CUT",
+      "attempt_index": 0,
+      "base_h": 0,
+      "component_inputs": [],
+      "component_outputs": [],
+      "entity_id": null,
+      "equipment": [],
+      "hold_device": null,
+      "id": "RESERVE-CUT",
+      "kappa": 0,
+      "location": "PRE-IN",
+      "material_inputs": [
+        {
+          "lot_id": "RAW",
+          "quantity": 6
+        }
+      ],
+      "material_outputs": [],
+      "phase": "WORK",
+      "prerequisites": [
+        "TO-PRE"
+      ],
+      "product_id": "PRODUCT-1",
+      "qualification_ids": [
+        "ML-METHOD"
+      ],
+      "quality_gates": [],
+      "release_device": null,
+      "role_locations": [],
+      "roles": [],
+      "route_id": null,
+      "scrap_quantity": 0,
+      "target": null,
+      "unit_index": 0,
+      "wait_gate": null
+    },
+    {
+      "action": "CONVERT",
+      "activity_id": "CUT",
+      "attempt_index": 0,
+      "base_h": 1,
+      "component_inputs": [],
+      "component_outputs": [],
+      "entity_id": null,
+      "equipment": [
+        "CUT1"
+      ],
+      "hold_device": null,
+      "id": "CUT",
+      "kappa": 0,
+      "location": "PRE-IN",
+      "material_inputs": [
+        {
+          "lot_id": "RAW",
+          "quantity": 6
+        }
+      ],
+      "material_outputs": [
+        {
+          "lot_id": "PREPARED",
+          "quantity": 5
+        }
+      ],
+      "phase": "WORK",
+      "prerequisites": [
+        "RESERVE-CUT"
+      ],
+      "product_id": "PRODUCT-1",
+      "qualification_ids": [
+        "ML-METHOD"
+      ],
+      "quality_gates": [],
+      "release_device": null,
+      "role_locations": [
+        {
+          "location": "PRE-IN",
+          "person_id": "W1"
+        }
+      ],
+      "roles": [
+        {
+          "id": "W1",
+          "qualification": "CUT"
+        }
+      ],
+      "route_id": null,
+      "scrap_quantity": 1,
+      "target": null,
+      "unit_index": 0,
+      "wait_gate": null
+    },
+    {
+      "action": "TRANSFER",
+      "activity_id": "DELIVER",
+      "attempt_index": 0,
+      "base_h": 0,
+      "component_inputs": [],
+      "component_outputs": [],
+      "entity_id": "PREPARED",
+      "equipment": [
+        "FORK-01"
+      ],
+      "hold_device": null,
+      "id": "DELIVER",
+      "kappa": 0,
+      "location": "PRE-IN",
+      "material_inputs": [],
+      "material_outputs": [],
+      "phase": "DRIVE",
+      "prerequisites": [
+        "CUT",
+        "WALK-0"
+      ],
+      "product_id": "PRODUCT-1",
+      "qualification_ids": [
+        "ML-METHOD"
+      ],
+      "quality_gates": [],
+      "release_device": null,
+      "role_locations": [
+        {
+          "location": "PRE-IN",
+          "person_id": "P1"
+        },
+        {
+          "location": "PRE-OUT",
+          "person_id": "W1"
+        }
+      ],
+      "roles": [
+        {
+          "id": "P1",
+          "qualification": "FORK"
+        },
+        {
+          "id": "W1",
+          "qualification": "CUT"
+        }
+      ],
+      "route_id": "S03",
+      "scrap_quantity": 0,
+      "target": "PRE-OUT",
+      "unit_index": 0,
+      "wait_gate": null
+    },
+    {
+      "action": "RESERVE",
+      "activity_id": "OPEN-WORK",
+      "attempt_index": 0,
+      "base_h": 0,
+      "component_inputs": [],
+      "component_outputs": [],
+      "entity_id": null,
+      "equipment": [],
+      "hold_device": null,
+      "id": "RESERVE-WORK",
+      "kappa": 0,
+      "location": "PRE-OUT",
+      "material_inputs": [
+        {
+          "lot_id": "PREPARED",
+          "quantity": 5
+        }
+      ],
+      "material_outputs": [],
+      "phase": "WORK",
+      "prerequisites": [
+        "DELIVER"
+      ],
+      "product_id": "PRODUCT-1",
+      "qualification_ids": [
+        "ML-METHOD"
+      ],
+      "quality_gates": [],
+      "release_device": null,
+      "role_locations": [],
+      "roles": [],
+      "route_id": null,
+      "scrap_quantity": 0,
+      "target": null,
+      "unit_index": 0,
+      "wait_gate": null
+    },
+    {
+      "action": "WORK",
+      "activity_id": "OPEN-WORK",
+      "attempt_index": 0,
+      "base_h": 0.1,
+      "component_inputs": [],
+      "component_outputs": [
+        "STEEL-COMP"
+      ],
+      "entity_id": null,
+      "equipment": [],
+      "hold_device": null,
+      "id": "OPEN-WORK",
+      "kappa": 0,
+      "location": "PRE-OUT",
+      "material_inputs": [
+        {
+          "lot_id": "PREPARED",
+          "quantity": 5
+        }
+      ],
+      "material_outputs": [],
+      "phase": "WORK",
+      "prerequisites": [
+        "RESERVE-WORK",
+        "WALK-0"
+      ],
+      "product_id": "PRODUCT-1",
+      "qualification_ids": [
+        "ML-METHOD"
+      ],
+      "quality_gates": [],
+      "release_device": null,
+      "role_locations": [
+        {
+          "location": "PRE-OUT",
+          "person_id": "W1"
+        }
+      ],
+      "roles": [
+        {
+          "id": "W1",
+          "qualification": "CUT"
+        }
+      ],
+      "route_id": null,
+      "scrap_quantity": 0,
+      "target": null,
+      "unit_index": 0,
+      "wait_gate": null
+    },
+    {
+      "action": "WALK",
+      "activity_id": "WALK-0",
+      "attempt_index": 0,
+      "base_h": 0,
+      "component_inputs": [],
+      "component_outputs": [],
+      "entity_id": "W1",
+      "equipment": [],
+      "hold_device": null,
+      "id": "WALK-0",
+      "kappa": 0,
+      "location": "PRE-IN",
+      "material_inputs": [],
+      "material_outputs": [],
+      "phase": "WALK",
+      "prerequisites": [
+        "CUT"
+      ],
+      "product_id": "PRODUCT-1",
+      "qualification_ids": [
+        "ML-METHOD"
+      ],
+      "quality_gates": [],
+      "release_device": null,
+      "role_locations": [
+        {
+          "location": "PRE-IN",
+          "person_id": "W1"
+        }
+      ],
+      "roles": [
+        {
+          "id": "W1",
+          "qualification": "WELD"
+        }
+      ],
+      "route_id": "WALK-ROUTE-0",
+      "scrap_quantity": 0,
+      "target": "PRE-OUT",
+      "unit_index": 0,
+      "wait_gate": null
+    }
+  ],
+  "schema_version": "S14-ML-1.0"
+}

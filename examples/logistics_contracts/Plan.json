@@ -1,0 +1,8 @@
+{
+  "commands": [],
+  "config_id": "ML-V01-SR-W1",
+  "observation_id": "OBS-0",
+  "reason": "QUALIFICATION_HOLD",
+  "schema_version": "S14-ML-1.0",
+  "status": "WAIT"
+}

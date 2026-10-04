@@ -142,3 +142,11 @@ uv run --locked --no-editable python scripts/check.py
 ```
 
 首次修改源码后显式重装本地非 editable 包，避免使用 uv 的旧构建缓存。生成器无 `--check` 时只写 S06 示例与 Schema；不会修改 S05 输入。核验范围及限制见 [检查摘要](validation/contracts.md)。
+
+## S14独立物流契约族
+
+S14-ML-1.0 / S14-ML-SPEC-1.0另建于 `domain/logistics.py`、`contracts/logistics.py`、`schemas/logistics/` 和 `examples/logistics_contracts/`；旧版保持原语义。十类顶层消息为Configuration、DispatchCommand、ExecutionEvent、ExecutionSnapshot、PlanningObservation、PlanningInput、Plan、HiddenScenario、OfflineEvaluation、RunManifest。完整配置摘要绑定布局、角色、数量、路线及参数，不从旧快照反推新版初始事实。
+
+严格字段解析与语义校验拒绝错版本、错关联、跨产品用料、未定义单位转换、非法休息相位、错误路由端点和固定设备移动。片段实例明确声明WITNESS_FRAGMENT；合成资格仅在SYNTHETIC_TEST_ONLY生效。命令和事件关联包含run/epoch/product/activity/attempt/unit，事件附payload摘要、序号、仿真发生/到达时间和墙钟诊断。中途PROGRESS保留实际位置、载具支承、源位承诺和目标预留；故障EXCEPTION不释放持有。
+
+规格批准与验证证据分别见[限定修订](model/material_logistics_extension.md)、[最终报告](validation/S14_adapter.md)；工作验证、人工验收、发布批准和远端发布分别记录。

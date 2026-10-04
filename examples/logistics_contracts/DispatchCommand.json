@@ -1,0 +1,27 @@
+{
+  "activity_id": "TAKE-IN",
+  "attempt": 0,
+  "config_id": "ML-V01-SR-W1",
+  "config_sha256": "47af0df5de25df3a47d2f8fdf61a15bf3f508a239740f4701ac4a72503cc916f",
+  "epoch": 0,
+  "expected_revision": 0,
+  "id": "CMD-TAKE-IN",
+  "issued_sim_h": 0,
+  "mode_id": "MOVE",
+  "operation_id": "TAKE-IN",
+  "product_id": "PRODUCT-1",
+  "resume_of": null,
+  "roles": [
+    {
+      "person_id": "P1",
+      "role_id": "P1"
+    },
+    {
+      "person_id": "QA1",
+      "role_id": "QA1"
+    }
+  ],
+  "run_id": "RUN-S14",
+  "schema_version": "S14-ML-1.0",
+  "unit_index": 0
+}

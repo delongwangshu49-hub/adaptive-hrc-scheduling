@@ -1,0 +1,13 @@
+{
+  "cancelled_count": 0,
+  "config_id": "ML-V01-SR-W1",
+  "incomplete_count": 1,
+  "internal_finished_count": 0,
+  "max_exposure": 0,
+  "ready_count": 0,
+  "received_count": 0,
+  "schema_version": "S14-ML-1.0",
+  "scope": "INDEPENDENT_EVENT_RECONSTRUCTION",
+  "total_exposure": 0,
+  "window_h": 0
+}

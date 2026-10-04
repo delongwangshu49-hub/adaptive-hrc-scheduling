@@ -1,0 +1,79 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "RunManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "backend": {
+          "enum": [
+            "logistics-event",
+            "isaac-usd"
+          ]
+        },
+        "code_revision": {
+          "type": "string"
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "epoch": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "industrial_qualification": {
+          "enum": [
+            "NOT_ESTABLISHED"
+          ]
+        },
+        "layout_version": {
+          "enum": [
+            "S13-TARGET-R5-2"
+          ]
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S14-ML-1.0"
+          ]
+        },
+        "specification": {
+          "enum": [
+            "S14-ML-SPEC-1.0"
+          ]
+        },
+        "status": {
+          "enum": [
+            "PLANNED",
+            "HOLD",
+            "SYNTHETIC_TEST_COMPLETE"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "config_sha256",
+        "specification",
+        "layout_version",
+        "backend",
+        "run_id",
+        "epoch",
+        "code_revision",
+        "status",
+        "industrial_qualification"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/RunManifest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunManifest"
+}

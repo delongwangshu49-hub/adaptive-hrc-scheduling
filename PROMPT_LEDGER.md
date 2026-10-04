@@ -1,5 +1,9 @@
 # 规范化提示词记录
 
+2026-10-04现行决定（PR108 / LOG118）：负责人已批准S14-CONTRACT-20261004-r1的ML01—ML12限定修订，决策S14-ML-APPROVAL-001。允许按表修改D01/D03/D04所列项并继续S14共用契约、验证及适配；通过前置出口后进入适配主体，不再等待本表批准。D02/G2与HR禁用、D05顺序、D06元数据及其余冻结边界保持。S15—S28及新快照Git/远端写入仍未授权。以下待决定文字保留其历史时点。
+
+2026-10-04现行状态（PR106—PR107 / LOG116—LOG117）：S13 r4已实际APPROVED / PUBLISHED，提交`c538a9a3b11ee345200f34c61fd92084ca7bb0e5`、标签`step-S13-r4`；负责人GUI体验验收未单独记录。S14已获明确本地启动授权，沿用当前main，不建分支/worktree。先完成前置契约具体修订表，ML01—ML12待对应冻结项决定，不能推定D01—D06全面解冻；通过共用契约出口后再实施适配主体。S15—S28及新快照Git/远端写入未授权。下方旧未发布/未启动文字保留历史时点。 [S14当前步骤](docs/steps/S14.md)。
+
 2026-10-03现行批准与交接授权（PR102 / LOG110）：负责人已同意S13-PLAN-20261003-r5及FACTORY-OPERATIONS-20261003-r2提案，要求创建“S13-4”新对话，沿用当前目录/main、不创建分支或worktree，并直接开始S13步骤整改。方案查阅与实施放行条件已满足，不再等待r5方案批准；下列待审/仅文档文字保留原时点。授权包含本步整改、必要验证、品质完善、治理及确切审阅包。未来总纲补丁的规划认可不等于启动S14—S28或解冻D01—D06。第三方资产下载、环境升级与Git暂存/提交/标签/推送/PR/附件仍未授权；整改成果验收与确切快照发布另审。
 
 2026-10-03现行决定（PR100—PR101 / LOG108—LOG109）：负责人要求基于设备、人员、入料物流、成品缓冲及龙门吊覆盖问题，编写S13第五版整改规划和后续总纲补丁，交付治理文件检阅；本轮仅文档。S13-PLAN-20261003-r5尚待明确放行，不能沿用PR099的r4批准启动新增整改。r2原有验证证据及封包保持，人工验收、确切发布批准均未发生。不修改场景源码或冻结契约，不启动S14—S28，不创建新对话/分支/worktree，不执行Git或远端写入。下列旧授权与状态保留其历史时点，以本条为当前边界。
@@ -3828,6 +3832,123 @@ PR090随后明确批准上述三类问题的有限本地修复，含必要回归
         "PROGRESS_LOG.md"
       ],
       "limit": "NO_NEW_SNAPSHOT_PUBLICATION_FROZEN_CONTRACT_CHANGE_OR_S14_START"
+    },
+    {
+      "id": "PR106",
+      "date": "2026-10-03",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S13",
+        "parameters": {
+          "step_id": "S13",
+          "packet_id": "S13-20261003-r4",
+          "decision": "APPROVED",
+          "branch": "main",
+          "tag": "step-S13-r4",
+          "human_experience_acceptance": "NOT_SEPARATELY_RECORDED",
+          "permitted_remote_actions": [
+            "PUSH_EXACT_REVIEWED_COMMIT",
+            "CREATE_AND_PUSH_NEW_ANNOTATED_TAG",
+            "VERIFY_REMOTE_AND_CI"
+          ]
+        }
+      },
+      "human_contribution": [
+        "APPROVED_EXACT_S13_R4_PUBLICATION"
+      ],
+      "assistant_support": [
+        "VERIFIED_LOCAL_APPROVAL_COMMIT_REMOTE_AND_CI_RECEIPTS",
+        "BACKFILLED_ACTUAL_PUBLICATION"
+      ],
+      "resolution": "APPROVED_AND_PUBLISHED_RECEIPT_BACKFILLED",
+      "evidence_refs": [
+        "docs/steps/S13.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "EXACT_S13_R4_ONLY_NO_NEW_SNAPSHOT_PUBLICATION"
+    },
+    {
+      "id": "PR107",
+      "date": "2026-10-04",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "HANDOFF_AND_START_STEP",
+        "target": "S14",
+        "parameters": {
+          "step_id": "S14",
+          "chat_name": "S14",
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "scope": "LOCAL_S14_PRECONTRACT_WORK_ADAPTER_VALIDATION_GOVERNANCE_AND_EXACT_REVIEW_PACKET",
+          "frozen_rule_changes": "SPECIFIC_DECISION_REQUIRED_AFTER_REVIEWABLE_CHANGE_TABLE",
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_S14_START_IN_NEW_CHAT_ON_EXISTING_MAIN",
+        "REQUIRED_PRECONTRACT_EXIT_AND_ACTUAL_FEEDBACK"
+      ],
+      "assistant_support": [
+        "AUDITED_HANDOFF_AND_CONSUMERS",
+        "PREPARED_SPECIFIC_RULE_PROPOSAL_AND_VALIDATION_DESIGN",
+        "RAN_EXISTING_BASELINE_CHECKS"
+      ],
+      "resolution": "S14_STARTED_SPECIFIC_CONTRACT_DECISION_PENDING",
+      "evidence_refs": [
+        "docs/steps/S14.md",
+        "docs/model/material_logistics_extension.md",
+        "docs/validation/material_logistics_contracts.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_BLANKET_UNFREEZE_NO_S15_TO_S28_NO_NEW_SNAPSHOT_GIT_OR_REMOTE_WRITE_NO_DOWNLOAD_OR_UPGRADE"
+    },
+    {
+      "id": "PR108",
+      "date": "2026-10-04",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_LIMITED_CONTRACT_REVISION",
+        "target": "S14",
+        "parameters": {
+          "proposal_id": "S14-CONTRACT-20261004-r1",
+          "decision_id": "S14-ML-APPROVAL-001",
+          "approved_items": [
+            "ML01",
+            "ML02",
+            "ML03",
+            "ML04",
+            "ML05",
+            "ML06",
+            "ML07",
+            "ML08",
+            "ML09",
+            "ML10",
+            "ML11",
+            "ML12"
+          ],
+          "frozen_items": [
+            "D01_LIMITED",
+            "D03_LIMITED",
+            "D04_LIMITED"
+          ],
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "APPROVED_SPECIFIC_ML01_TO_ML12_RULE_REVISIONS"
+      ],
+      "assistant_support": [
+        "RECORDED_APPROVAL_AND_CONTINUED_AUTHORIZED_IMPLEMENTATION"
+      ],
+      "resolution": "APPROVED_LOCAL_IMPLEMENTATION",
+      "evidence_refs": [
+        "docs/steps/S14.md",
+        "docs/model/material_logistics_extension.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_BLANKET_UNFREEZE_NO_S15_START_NO_PUBLICATION_PERMISSION"
     }
   ]
 }

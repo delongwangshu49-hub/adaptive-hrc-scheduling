@@ -1,0 +1,172 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "DispatchCommand": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "epoch": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "expected_revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "issued_sim_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "mode_id": {
+          "enum": [
+            "H",
+            "H-team",
+            "MOVE",
+            "WAIT",
+            "GATE"
+          ]
+        },
+        "operation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "resume_of": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/RoleBinding"
+          },
+          "type": "array"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S14-ML-1.0"
+          ]
+        },
+        "unit_index": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "config_sha256",
+        "run_id",
+        "epoch",
+        "id",
+        "product_id",
+        "activity_id",
+        "operation_id",
+        "attempt",
+        "unit_index",
+        "mode_id",
+        "issued_sim_h",
+        "expected_revision",
+        "roles",
+        "resume_of"
+      ],
+      "type": "object"
+    },
+    "Plan": {
+      "additionalProperties": false,
+      "properties": {
+        "commands": {
+          "items": {
+            "$ref": "#/$defs/DispatchCommand"
+          },
+          "type": "array"
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "observation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S14-ML-1.0"
+          ]
+        },
+        "status": {
+          "enum": [
+            "CANDIDATE",
+            "WAIT",
+            "NO_PLAN_FOUND"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "observation_id",
+        "commands",
+        "status",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "RoleBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "role_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role_id",
+        "person_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/Plan",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Plan"
+}

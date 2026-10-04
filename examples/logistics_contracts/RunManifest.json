@@ -1,0 +1,13 @@
+{
+  "backend": "logistics-event",
+  "code_revision": "WORKING_TREE",
+  "config_id": "ML-V01-SR-W1",
+  "config_sha256": "47af0df5de25df3a47d2f8fdf61a15bf3f508a239740f4701ac4a72503cc916f",
+  "epoch": 0,
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "layout_version": "S13-TARGET-R5-2",
+  "run_id": "RUN-S14",
+  "schema_version": "S14-ML-1.0",
+  "specification": "S14-ML-SPEC-1.0",
+  "status": "HOLD"
+}
