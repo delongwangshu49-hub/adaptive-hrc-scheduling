@@ -51,6 +51,7 @@ class USDLogisticsPort:
         self.samples = []
         self.receiver_receipts = {}
         self.material_done = set()
+        self.input_samples = {}
         self.quantities = {x.id: x.quantity if x.arrived else 0 for x in config.lots}
         for x in self.loads.values():
             path = "/World/S14/Loads/" + key(x.id)
@@ -60,6 +61,8 @@ class USDLogisticsPort:
             )
             if x.initial_location in self.places:
                 self.put(x.id, self.places[x.initial_location])
+            if x.id in self.quantities:
+                self.scene.attr(self.prim(x.id), "s14Quantity", self.quantities[x.id])
         for d in config.devices:
             if d.kind in ("FIXED", "FIXTURE"):
                 self.expected[d.id] = self.position(d.id)
@@ -175,8 +178,67 @@ class USDLogisticsPort:
                 self.prim(ident).GetAttribute("s13:s14Available").Get() is True,
                 "ACTUAL_DEVICE_FAILED:" + ident,
             )
+        if command.id not in self.material_done:
+            self.check_inputs(op)
         if op.route_id:
             self.check_path(command)
+
+    def check_inputs(self, op):
+        """Read every consumed object before any material effect is applied."""
+        inputs = {a.lot_id: a.quantity for a in op.material_inputs}
+        inputs.update({i: None for i in op.component_inputs})
+        if not inputs:
+            return ()
+        samples = []
+        cache = UsdGeom.BBoxCache(
+            0, [UsdGeom.Tokens.default_], useExtentsHint=False, ignoreVisibility=True
+        )
+        supports = [
+            p
+            for p in self.scene.stage.Traverse()
+            if str(p.GetPath()).startswith("/World/Static/")
+            and p.HasAPI(UsdPhysics.CollisionAPI)
+            and p.GetAttribute("s13:obstacleId")
+            and str(p.GetAttribute("s13:obstacleId").Get()).startswith(op.location + "-support-")
+        ]
+        for ident, quantity in inputs.items():
+            prim = self.prim(ident)
+            require(prim.GetAttribute("s13:sceneId").Get() == ident, "ACTUAL_INPUT_IDENTITY")
+            self.check_actual(ident)
+            point = self.position(ident)
+            require(close(point, self.places[op.location]), "ACTUAL_INPUT_NOT_AT_STATION:" + ident)
+            require(
+                UsdGeom.Imageable(prim).ComputeVisibility() != UsdGeom.Tokens.invisible,
+                "ACTUAL_INPUT_INVISIBLE:" + ident,
+            )
+            size = self.loads[ident].size_m
+            bounds = [cache.ComputeWorldBound(p).ComputeAlignedRange() for p in supports]
+            require(
+                any(
+                    abs(b.GetMax()[2] - point[2]) < 0.002
+                    and all(
+                        b.GetMin()[axis] < point[axis] + size[axis] / 2
+                        and b.GetMax()[axis] > point[axis] - size[axis] / 2
+                        for axis in (0, 1)
+                    )
+                    for b in bounds
+                ),
+                "ACTUAL_INPUT_UNSUPPORTED:" + ident,
+            )
+            if quantity is not None:
+                actual = prim.GetAttribute("s13:s14Quantity").Get()
+                require(
+                    isinstance(actual, (int, float))
+                    and actual >= quantity - 1e-9
+                    and abs(actual - self.quantities[ident]) < 1e-9,
+                    "ACTUAL_INPUT_QUANTITY:" + ident,
+                )
+            samples.append(
+                m.InputReadback(
+                    ident, tuple(point), actual if quantity is not None else None, True, True
+                )
+            )
+        return tuple(samples)
 
     def check_path(self, command):
         op = self.ops[command.operation_id]
@@ -257,6 +319,9 @@ class USDLogisticsPort:
         if event.kind == "ARRIVAL":
             self.put(event.entity_id, self.places[event.evidence_id])
             self.quantities[event.entity_id] = self.loads[event.entity_id].quantity
+            self.scene.attr(
+                self.prim(event.entity_id), "s14Quantity", self.quantities[event.entity_id]
+            )
         if event.kind in ("FAILURE", "REPAIR") and event.entity_id in self.devices:
             self.scene.attr(self.prim(event.entity_id), "s14Available", event.kind == "REPAIR")
 
@@ -364,6 +429,7 @@ class USDLogisticsPort:
             if not done:
                 return None
             if command_id not in self.material_done:
+                self.input_samples[command_id] = self.check_inputs(op)
                 self.material_effect(op)
                 self.material_done.add(command_id)
             actual = self.places[op.target or op.location]
@@ -436,6 +502,7 @@ class USDLogisticsPort:
             False,
             "USD-" + c.id + "-" + str(len(self.samples)),
             fraction if done else min(fraction, 1 - 1e-12),
+            inputs=self.input_samples.get(command_id, ()),
         )
         self.samples.append(proof)
         return proof
@@ -443,8 +510,10 @@ class USDLogisticsPort:
     def material_effect(self, op):
         if op.action not in ("WORK", "CONVERT", "SCRAP", "RETURN"):
             return
+        self.check_inputs(op)
         for amount in op.material_inputs:
             self.quantities[amount.lot_id] -= amount.quantity
+            self.scene.attr(self.prim(amount.lot_id), "s14Quantity", self.quantities[amount.lot_id])
             if self.quantities[amount.lot_id] <= 1e-9:
                 UsdGeom.Imageable(self.prim(amount.lot_id)).MakeInvisible()
                 self.scene.stage.GetPrimAtPath(self.mapping[amount.lot_id] + "/Envelope").RemoveAPI(
@@ -453,6 +522,7 @@ class USDLogisticsPort:
         for amount in op.material_outputs:
             self.put(amount.lot_id, self.places[op.location])
             self.quantities[amount.lot_id] = amount.quantity
+            self.scene.attr(self.prim(amount.lot_id), "s14Quantity", amount.quantity)
             UsdGeom.Imageable(self.prim(amount.lot_id)).MakeVisible()
         for component in op.component_outputs:
             self.put(component, self.places[op.location])

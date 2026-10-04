@@ -1,5 +1,11 @@
 # S14 Isaac派工与反馈接口设计
 
+2026-10-04 r2有限修复接口：批次加工、转换、搬运共用ENTITY实物锁；WORLD仅首次领域接受才送执行端，端口副作用失败后须reset，不能继续派工或盲目重放。规划可为EXCEPTION承诺生成新ID的resume_of命令，原角色/尝试/单元及剩余时长保持。
+
+`Readback.inputs`新增逐输入实体、实际坐标、实物数量（组件为null）、可见与支承读回，绑定外层run/epoch/command及采样时刻。轻量端标记LIGHT_EXECUTOR；USD端从实物读取。用料开工、执行采样及提交前检查位置/身份/可见性/数量/支承；缺证不能完成，K缺输入证据为INCOMPLETE、错误输入证据为INVALID。旧r1历史缺少该证据时不自动补造或升级。
+
+当前只支持WITNESS_FRAGMENT机制配置。保留37活动图不构成生产模式/单元/时间/质量/等待映射；PRODUCTION在完整映射实现并验证前明确拒绝PRODUCTION_MAPPING_NOT_IMPLEMENTED，K亦独立拒绝。该保护没有实现或授权S15全链。
+
 2026-10-04实施结果：接口主体已实现，源码/wheel各509项与真实Kit 12组见证通过；见[最终报告](../validation/S14_adapter.md)。下方“尚未实现”保留设计时点。
 
 实际入口为 `backends/isaac_adapter.py`，Kit侧为 `sim/isaac/scene/logistics_port.py`。配置与域消息来自独立S14族。`dispatch`先事务准入及实际场景前检，STARTED不等于完成；`advance(seconds, playing=...)`由驱动提供仿真秒数，暂停不推进；`feedback`只消费执行端关联读回；`deliver`按观察到达时间送达。故障保持锁/在途实际样本，恢复命令携带resume_of和累计已执行时长，准备/装卸不重复计时。

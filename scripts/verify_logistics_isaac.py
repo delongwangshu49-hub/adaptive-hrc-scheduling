@@ -28,6 +28,7 @@ def run(app, out):
     from adaptive_hrc_scheduling.contracts.codec import as_data
     from adaptive_hrc_scheduling.domain import logistics as m
     from adaptive_hrc_scheduling.logistics_checker import check_run
+    from adaptive_hrc_scheduling.planning.logistics import choose, planning_input
     from sim.isaac.scene.logistics_port import USDLogisticsPort
     from sim.isaac.scene.model import load_config, sweep
     from sim.isaac.scene.target_scene import TargetScene
@@ -101,16 +102,22 @@ def run(app, out):
         report = check_run(w.config, w.snapshot())
         save(out / (name + "-events.json"), as_data(w.snapshot()))
         save(out / (name + "-audit.json"), as_data(report))
-        save(out / (name + "-actual.json"), {i: port.position(i) for i in port.expected})
+        save(
+            out / (name + "-actual.json"),
+            {
+                i: port.position(i) if scene.stage.GetPrimAtPath(port.mapping[i]) else None
+                for i in port.expected
+            },
+        )
         assert report.status == "PASS", (name, report.findings[:5])
         results.append({"case": name, "audit": report.status, "events": len(w.events)})
         save(out / "cases.json", results)
         if name in ("v02-crane-weld", "tool-deploy-hold-retrieve", "v03-receiver-b-plus-one"):
             capture(name)
 
-    def finish(a, op, ident=None, resume=None):
+    def finish(a, op, ident=None, resume=None, planned=None):
         w = a.world
-        c = replace(command(w, op, ident), resume_of=resume)
+        c = planned or replace(command(w, op, ident), resume_of=resume)
         receipt = a.dispatch(c)
         assert receipt.kind == "STARTED", (op, receipt.reason)
         run = next(r for r in w.s.running if r.command.id == c.id)
@@ -140,6 +147,90 @@ def run(app, out):
     ):
         finish(a, op)
     audit(a, "v01-chain")
+    # Duplicate world messages must not replay placement, quantity or failure effects.
+    original_arrival = next(
+        e.world for e in a.world.events if e.world and e.world.kind == "ARRIVAL"
+    )
+    original_state = a.world.s
+    original_position = port.position("RAW")
+    original_quantity = port.prim("RAW").GetAttribute("s13:s14Quantity").Get()
+    a.apply_world(original_arrival)
+    assert a.world.s == original_state and port.position("RAW") == original_position
+    assert port.prim("RAW").GetAttribute("s13:s14Quantity").Get() == original_quantity == 0
+    fact(a, "FAILURE", entity="FORK-01")
+    failure = a.world.events[-1].world
+    fact(a, "REPAIR", entity="FORK-01")
+    a.apply_world(failure)
+    assert port.prim("FORK-01").GetAttribute("s13:s14Available").Get() is True
+    audit(a, "duplicate-world-effects")
+
+    from pxr import UsdGeom
+
+    for kind in ("position", "quantity", "visibility", "support", "identity", "deleted", "running"):
+        a = new()
+        arrived(a)
+        for op in ("TAKE-IN", "TO-PRE", "RESERVE-CUT"):
+            finish(a, op)
+        w = a.world
+        c = command(w, "CUT")
+        if kind == "running":
+            assert a.dispatch(c).kind == "STARTED"
+        before = w.s
+        if kind in ("position", "running"):
+            scene.set_position(port.mapping["RAW"], (45, 40, 1))
+        elif kind == "quantity":
+            scene.attr(port.prim("RAW"), "s14Quantity", 0.0)
+        elif kind == "visibility":
+            UsdGeom.Imageable(port.prim("RAW")).MakeInvisible()
+        elif kind == "identity":
+            scene.attr(port.prim("RAW"), "sceneId", "WRONG-LOT")
+        elif kind == "deleted":
+            scene.stage.RemovePrim(port.mapping["RAW"])
+        else:
+            for prim in tuple(scene.stage.Traverse()):
+                attr = prim.GetAttribute("s13:obstacleId")
+                if attr and str(attr.Get()).startswith("PRE-IN-support-"):
+                    scene.set_position(str(prim.GetPath()), (45, 40, 1))
+        if kind == "running":
+            a.advance((w.s.running[0].earliest_end_h - w.s.time_h) * 3600)
+            assert w.s.running[0].status == "EXCEPTION" and w.s.owners == before.owners
+        else:
+            assert a.dispatch(c).kind == "REJECTED"
+            assert w.s.owners == before.owners and w.s.running == before.running
+        assert w.s.lots == before.lots and "CUT" not in w.s.completed
+        assert port.quantities["PREPARED"] == 0
+        audit(a, "actual-input-" + kind)
+
+    for displaced in (False, True):
+        config = configuration(synthetic=True, witness="V02")
+        assembly = replace(
+            next(o for o in config.operations if o.id == "W-3D"),
+            prerequisites=(),
+            component_inputs=("BOTTOM",),
+            entity_id="PRODUCT-1",
+            target="J3",
+        )
+        config = replace(
+            config,
+            operations=(assembly,),
+            entities=(
+                replace(config.entities[0], initial_location="J3"),
+                m.Entity("PRODUCT-1", "PRODUCT-1", "PRODUCT", "UNASSEMBLED", 8, (6, 3, 3.2)),
+            ),
+            person_positions=tuple(
+                replace(p, location="J3") if p.person_id == "W1" else p
+                for p in config.person_positions
+            ),
+        )
+        a = new(config=config)
+        if displaced:
+            scene.set_position(port.mapping["BOTTOM"], (45, 40, 1))
+            assert a.dispatch(command(a.world, "W-3D")).kind == "REJECTED"
+            assert a.world._position("PRODUCT-1").location == "UNASSEMBLED"
+        else:
+            finish(a, "W-3D")
+            assert a.world._position("BOTTOM").location == "INCORPORATED"
+        audit(a, "actual-component-" + ("missing" if displaced else "assembly"))
     a = new("V02")
     for op in ("MV-IN-B", "W-B", "WALK-0", "W-3D"):
         finish(a, op)
@@ -198,7 +289,9 @@ def run(app, out):
     a.advance(1)
     assert w.s.running[0].status == "EXCEPTION"
     scene.attr(port.prim("FORK-01"), "s14Available", True)
-    finish(a, "TAKE-IN", "RESUMED", c.id)
+    plan = choose(w.config, planning_input(w.config, w.observe(), 10000))
+    assert plan.commands and plan.commands[0].resume_of == c.id
+    finish(a, "TAKE-IN", planned=plan.commands[0])
     old = w.events[-1].readback
     assert a.feedback(old).kind == "COMPLETED"
     audit(a, "fault-resume-duplicate")

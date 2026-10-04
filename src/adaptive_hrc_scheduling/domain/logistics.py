@@ -309,6 +309,15 @@ class State:
 
 
 @dataclass(frozen=True)
+class InputReadback:
+    entity_id: ID
+    position_m: tuple[float, ...]
+    quantity: Nonnegative | None
+    visible: bool
+    supported: bool
+
+
+@dataclass(frozen=True)
 class Readback:
     """Execution evidence, never accepted as part of a planner command."""
 
@@ -330,6 +339,7 @@ class Readback:
     departed_boundary: bool
     evidence_id: ID
     progress: Nonnegative = 0
+    inputs: tuple[InputReadback, ...] = ()
 
 
 @dataclass(frozen=True)

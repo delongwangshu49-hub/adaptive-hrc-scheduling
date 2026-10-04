@@ -269,6 +269,46 @@
       ],
       "type": "object"
     },
+    "InputReadback": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "position_m": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "quantity": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "supported": {
+          "type": "boolean"
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "entity_id",
+        "position_m",
+        "quantity",
+        "visible",
+        "supported"
+      ],
+      "type": "object"
+    },
     "LotState": {
       "additionalProperties": false,
       "properties": {
@@ -794,6 +834,12 @@
           "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
           "type": "string"
         },
+        "inputs": {
+          "items": {
+            "$ref": "#/$defs/InputReadback"
+          },
+          "type": "array"
+        },
         "landed": {
           "type": "boolean"
         },
@@ -857,7 +903,8 @@
         "detached",
         "departed_boundary",
         "evidence_id",
-        "progress"
+        "progress",
+        "inputs"
       ],
       "type": "object"
     },

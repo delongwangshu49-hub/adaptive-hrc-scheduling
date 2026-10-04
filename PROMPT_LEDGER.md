@@ -1,5 +1,7 @@
 # 规范化提示词记录
 
+2026-10-04现行授权（PR109—PR111 / LOG120—LOG122）：S14 r1已按确切批准发布，提交`d91d13e5aaf964b79aeb36fd0b035cfd566ce36f`、标签`step-S14-r1`，两平台CI成功。发布后审阅确认五项逻辑问题；负责人已批准这些问题及必要回归、说明、治理和新审阅包的有限本地修复。沿用main/现有目录，不建分支或worktree；r2另行验收和批准发布，不启动S15—S28。以下旧状态保留各自历史时点。
+
 2026-10-04现行决定（PR108 / LOG118）：负责人已批准S14-CONTRACT-20261004-r1的ML01—ML12限定修订，决策S14-ML-APPROVAL-001。允许按表修改D01/D03/D04所列项并继续S14共用契约、验证及适配；通过前置出口后进入适配主体，不再等待本表批准。D02/G2与HR禁用、D05顺序、D06元数据及其余冻结边界保持。S15—S28及新快照Git/远端写入仍未授权。以下待决定文字保留其历史时点。
 
 2026-10-04现行状态（PR106—PR107 / LOG116—LOG117）：S13 r4已实际APPROVED / PUBLISHED，提交`c538a9a3b11ee345200f34c61fd92084ca7bb0e5`、标签`step-S13-r4`；负责人GUI体验验收未单独记录。S14已获明确本地启动授权，沿用当前main，不建分支/worktree。先完成前置契约具体修订表，ML01—ML12待对应冻结项决定，不能推定D01—D06全面解冻；通过共用契约出口后再实施适配主体。S15—S28及新快照Git/远端写入未授权。下方旧未发布/未启动文字保留历史时点。 [S14当前步骤](docs/steps/S14.md)。
@@ -3949,6 +3951,105 @@ PR090随后明确批准上述三类问题的有限本地修复，含必要回归
         "PROGRESS_LOG.md"
       ],
       "limit": "NO_BLANKET_UNFREEZE_NO_S15_START_NO_PUBLICATION_PERMISSION"
+    },
+    {
+      "id": "PR109",
+      "date": "2026-10-04",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S14",
+        "parameters": {
+          "step_id": "S14",
+          "packet_id": "S14-20261004-r1",
+          "decision": "APPROVE_STEP_PUBLICATION",
+          "file_count": 53,
+          "branch": "main",
+          "tag": "step-S14-r1",
+          "permitted_remote_actions": [
+            "COMMIT_EXACT_FILES",
+            "CREATE_TAG",
+            "PUSH_MAIN_AND_TAG",
+            "VERIFY_REMOTE_AND_CI"
+          ]
+        }
+      },
+      "human_contribution": [
+        "APPROVED_EXACT_SNAPSHOT_PUBLICATION"
+      ],
+      "assistant_support": [
+        "PUBLISHED_AND_VERIFIED_APPROVED_SNAPSHOT"
+      ],
+      "resolution": "APPROVED_AND_PUBLISHED",
+      "evidence_refs": [
+        "docs/steps/S14.md",
+        "docs/validation/S14_adapter.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "R1_ONLY_NO_S15_OR_FUTURE_SNAPSHOT_PERMISSION"
+    },
+    {
+      "id": "PR110",
+      "date": "2026-10-04",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REVIEW_STEP_COMPLETENESS_AND_LOGIC",
+        "target": "S14",
+        "parameters": {
+          "step_id": "S14",
+          "packet_id": "S14-20261004-r1",
+          "decision": "REQUEST_REVIEW",
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_COMPLETENESS_AND_LOGIC_REVIEW"
+      ],
+      "assistant_support": [
+        "REPRODUCED_FIVE_LOGIC_FINDINGS"
+      ],
+      "resolution": "REVIEWED_WITH_FINDINGS",
+      "evidence_refs": [
+        "docs/steps/S14.md",
+        "docs/validation/S14_adapter.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "DOES_NOT_REVOKE_HISTORICAL_PUBLICATION_OR_AUTHORIZE_REPAIR"
+    },
+    {
+      "id": "PR111",
+      "date": "2026-10-04",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_LIMITED_LOCAL_REPAIR",
+        "target": "S14",
+        "parameters": {
+          "step_id": "S14",
+          "packet_id": "S14-20261004-r2",
+          "decision": "APPROVE_LIMITED_LOCAL_REPAIR",
+          "findings": [
+            "MATERIAL_OWNERSHIP",
+            "WORLD_IDEMPOTENCY",
+            "ACTUAL_INPUT_READBACK",
+            "PRODUCTION_MAPPING_BOUNDARY",
+            "AUTOMATIC_RESUME"
+          ],
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "APPROVED_FIVE_FINDING_LIMITED_REPAIR"
+      ],
+      "assistant_support": [
+        "IMPLEMENTED_LOCAL_REPAIR_AND_PREPARED_VERIFICATION"
+      ],
+      "resolution": "LOCAL_REPAIR_AUTHORIZED",
+      "evidence_refs": [
+        "docs/steps/S14.md",
+        "docs/validation/S14_adapter.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_S15_NO_NEW_BRANCH_OR_WORKTREE_NO_NEW_PUBLICATION_PERMISSION"
     }
   ]
 }

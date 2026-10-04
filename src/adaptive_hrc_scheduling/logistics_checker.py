@@ -43,6 +43,12 @@ def _check_run(config, snapshot):
         decode(m.ExecutionSnapshot, as_data(snapshot))
     except (ContractError, TypeError, ValueError) as exc:
         return Report("INCOMPLETE", (Finding("R18", "SNAPSHOT", str(exc)),), None)
+    if config.scope == "PRODUCTION":
+        return Report(
+            "INVALID",
+            (Finding("R18", "SNAPSHOT", "PRODUCTION_MAPPING_NOT_IMPLEMENTED"),),
+            None,
+        )
     need(snapshot.config_sha256 == digest(config), "R18", "CONFIG_DIGEST", None)
     ops = {o.id: o for o in config.operations}
     people = {p.id: p for p in config.people}
@@ -419,7 +425,7 @@ def _check_run(config, snapshot):
             keys = set(op.equipment) | {r.person_id for r in c.roles}
             if op.entity_id:
                 keys.add("ENTITY:" + op.entity_id)
-            keys |= {"LOT:" + a.lot_id for a in op.material_inputs}
+            keys |= {"ENTITY:" + a.lot_id for a in (*op.material_inputs, *op.material_outputs)}
             keys |= {"ENTITY:" + i for i in op.component_inputs}
             keys |= {"ENTITY:" + i for i in op.component_outputs}
             if op.route_id:
@@ -642,6 +648,40 @@ def _check_run(config, snapshot):
             proof = e.readback
             need(proof is not None, "R18", "MISSING_READBACK", e)
             if proof:
+                input_samples = {x.entity_id: x for x in proof.inputs}
+                required_inputs = {a.lot_id: a.quantity for a in op.material_inputs}
+                need(
+                    len(input_samples) == len(proof.inputs)
+                    and set(input_samples) == set(required_inputs) | set(op.component_inputs),
+                    "R18",
+                    "MISSING_INPUT_READBACK",
+                    e,
+                )
+                for ident, sample in input_samples.items():
+                    need(
+                        len(sample.position_m) == 3
+                        and math.dist(sample.position_m, places[op.location].position) <= 0.001
+                        and sample.visible
+                        and sample.supported,
+                        "R08",
+                        "INVALID_INPUT_READBACK:" + ident,
+                        e,
+                    )
+                    need(
+                        sample.quantity is not None
+                        and sample.quantity >= required_inputs[ident] - 1e-9
+                        and abs(
+                            sample.quantity
+                            - stock[ident]["available"]
+                            - sum(qty for key, qty in reserved.items() if key[0] == ident)
+                        )
+                        < 1e-9
+                        if ident in required_inputs
+                        else sample.quantity is None,
+                        "R01",
+                        "INPUT_QUANTITY:" + ident,
+                        e,
+                    )
                 need(
                     (
                         proof.run_id,
@@ -883,6 +923,15 @@ def _check_run(config, snapshot):
         )
         need({p.command_id: p for p in state.motions} == motions, "R09", "MOTION_LEDGER", e)
         need(list(state.completed) == done, "R02", "COMPLETION_LEDGER", e)
+        for active in running.values():
+            active_op = ops[active.command.operation_id]
+            for amount in active_op.material_inputs:
+                need(
+                    positions[amount.lot_id][0] == active_op.location,
+                    "R04",
+                    "ACTIVE_MATERIAL_MOVED:" + amount.lot_id,
+                    e,
+                )
         need(
             list(state.gates) == gates
             and set(state.failed_resources) == failed
@@ -1004,6 +1053,7 @@ def _check_run(config, snapshot):
             "MISSING_HISTORY",
             "MISSING_CLOCK_INTERVAL",
             "MISSING_READBACK",
+            "MISSING_INPUT_READBACK",
         )
         for f in findings
     )

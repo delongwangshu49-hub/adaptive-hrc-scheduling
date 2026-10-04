@@ -45,9 +45,8 @@ def choose(config, value, *, rule="EDD", sequence=0):
     for op in candidates:
         if (time.perf_counter() - start) * 1000 > value.budget_ms:
             return m.Plan("S14-ML-1.0", config.id, obs.id, (), "NO_PLAN_FOUND", "DECISION_BUDGET")
-        if op.id in obs.state.completed or any(
-            r.command.operation_id == op.id for r in obs.state.running
-        ):
+        held = next((r for r in obs.state.running if r.command.operation_id == op.id), None)
+        if op.id in obs.state.completed or held and held.status != "EXCEPTION":
             continue
         world = LogisticsBackend(config, run_id=obs.run_id, epoch=obs.epoch)
         world.s = obs.state
@@ -57,7 +56,7 @@ def choose(config, value, *, rule="EDD", sequence=0):
             obs.config_sha256,
             obs.run_id,
             obs.epoch,
-            f"PLAN-{sequence}-{op.id}",
+            f"PLAN-{obs.state.revision}-{sequence}-{op.id}",
             op.product_id,
             op.activity_id,
             op.id,
@@ -66,7 +65,8 @@ def choose(config, value, *, rule="EDD", sequence=0):
             mode_for(op),
             obs.sampled_h,
             obs.state.revision,
-            tuple(m.RoleBinding(r.id, r.id) for r in op.roles),
+            held.command.roles if held else tuple(m.RoleBinding(r.id, r.id) for r in op.roles),
+            resume_of=held.command.id if held else None,
         )
         receipt = world.dispatch(cmd)
         if receipt.kind == "STARTED":

@@ -22,9 +22,11 @@ class IsaacAdapter:
         self.stale_callbacks = []
         self.published = 0
         self.delivery_queue = []
+        self.world_port_error = None
         self.port.reset(config, run_id, epoch)
 
     def dispatch(self, command):
+        require(self.world_port_error is None, "WORLD_PORT_FAILURE_RESET_REQUIRED")
         duplicate = command.id in self.world.commands
 
         def preflight(command):
@@ -43,6 +45,7 @@ class IsaacAdapter:
         return receipt
 
     def advance(self, seconds, *, playing=True):
+        require(self.world_port_error is None, "WORLD_PORT_FAILURE_RESET_REQUIRED")
         require(math.isfinite(seconds) and seconds >= 0, "INVALID_SIMULATION_DELTA")
         if not playing:
             return ()
@@ -79,8 +82,16 @@ class IsaacAdapter:
         return self.world.complete(proof.command_id, proof)
 
     def apply_world(self, event):
-        self.world.apply_world(event)
-        self.port.world_event(event)
+        require(self.world_port_error is None, "WORLD_PORT_FAILURE_RESET_REQUIRED")
+        receipt = self.world.apply_world(event)
+        if receipt is not None:
+            try:
+                self.port.world_event(event)
+            except Exception as exc:
+                # A partially applied external effect cannot safely be replayed.
+                self.world_port_error = str(exc)
+                raise ContractError("WORLD_PORT_FAILURE_RESET_REQUIRED") from exc
+        return receipt
 
     def deliver(self, *, delay_h=0):
         require(math.isfinite(delay_h) and delay_h >= 0, "OBSERVATION_DELAY")

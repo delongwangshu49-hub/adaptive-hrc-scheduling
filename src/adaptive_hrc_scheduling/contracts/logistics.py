@@ -72,6 +72,9 @@ def validate(record, *, config=None):
     decode(type(record), as_data(record))
     if isinstance(record, m.Configuration):
         c = record
+        # The 37-node graph is preserved reference data, not an executable mapping.
+        # Do not promote abbreviated witness operations to production semantics.
+        require(c.scope == "WITNESS_FRAGMENT", "PRODUCTION_MAPPING_NOT_IMPLEMENTED")
         people, places, devices, lots, entities, operations, products, evidence = (
             index(x)
             for x in (

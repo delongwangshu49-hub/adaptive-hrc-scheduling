@@ -412,8 +412,8 @@ class LogisticsBackend:
         keys += ["ENTITY:" + op.entity_id] if op.entity_id else []
         keys += ["ENTITY:" + i for i in op.component_inputs]
         keys += ["ENTITY:" + i for i in op.component_outputs]
-        if op.material_inputs:
-            keys += ["LOT:" + a.lot_id for a in op.material_inputs]
+        keys += ["ENTITY:" + a.lot_id for a in (*op.material_inputs, *op.material_outputs)]
+        keys = list(dict.fromkeys(keys))
         if op.target in self.places and op.entity_id not in (*self.people, *self.devices):
             keys += ["SLOT:" + op.target]
         owners = {x.resource_id: x.command_id for x in self.s.owners}
@@ -738,6 +738,19 @@ class LogisticsBackend:
             True,
             op.action == "RECEIVE_EXTERNAL",
             "LIGHT-" + command.id,
+            inputs=tuple(
+                m.InputReadback(
+                    i,
+                    self.places[self._position(i).location].position,
+                    self._lot(i).available
+                    + sum(r.quantity for r in self.s.reservations if r.lot_id == i)
+                    if i in self.lots
+                    else None,
+                    True,
+                    True,
+                )
+                for i in (*[a.lot_id for a in op.material_inputs], *op.component_inputs)
+            ),
         )
 
     def _proof(self, run, proof):
@@ -756,6 +769,34 @@ class LogisticsBackend:
             "EARLY_OR_STALE_READBACK",
         )
         require(proof.device_ok and proof.path_clear, "EXECUTION_FAULT")
+        inputs = {x.entity_id: x for x in proof.inputs}
+        amounts = {a.lot_id: a.quantity for a in op.material_inputs}
+        require(
+            len(inputs) == len(proof.inputs)
+            and set(inputs) == set(amounts) | set(op.component_inputs),
+            "INPUT_READBACK_COVERAGE",
+        )
+        for ident, sample in inputs.items():
+            require(
+                len(sample.position_m) == 3
+                and math.dist(sample.position_m, self.places[op.location].position) <= 0.001
+                and sample.visible
+                and sample.supported,
+                "INPUT_READBACK_INVALID:" + ident,
+            )
+            require(
+                sample.quantity is not None
+                and sample.quantity >= amounts[ident] - 1e-9
+                and abs(
+                    sample.quantity
+                    - self._lot(ident).available
+                    - sum(r.quantity for r in self.s.reservations if r.lot_id == ident)
+                )
+                < 1e-9
+                if ident in amounts
+                else sample.quantity is None,
+                "INPUT_READBACK_QUANTITY:" + ident,
+            )
         require(
             proof.entity_id == op.entity_id and proof.location == (op.target or op.location),
             "ARRIVAL_FAILED",
@@ -803,6 +844,11 @@ class LogisticsBackend:
     def _finish(self, run, proof):
         c = run.command
         op = self.operations[c.operation_id]
+        require(
+            all(self._lot(a.lot_id).location == op.location for a in op.material_inputs)
+            and all(self._position(i).location == op.location for i in op.component_inputs),
+            "INPUT_MOVED_BEFORE_COMPLETION",
+        )
         for component in op.component_inputs:
             self._put(
                 positions=changed(
