@@ -1,0 +1,84 @@
+{
+  "candidate": "S15-20261005-r2",
+  "base_commit": "8d0b283deccba1631bc2c1d8f35e5abc8e9788a9",
+  "work": "VERIFIED_WITH_LIMITS",
+  "acceptance": "PENDING",
+  "approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "r1": {
+    "packet_id": "S15-20261005-r1",
+    "commit": "8d0b283deccba1631bc2c1d8f35e5abc8e9788a9",
+    "tag": "step-S15-r1",
+    "approval": "APPROVED",
+    "publication": "PUSHED_CI_FAILED",
+    "remote_blobs_verified": 409,
+    "ci_run": 37322598556,
+    "ci_url": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37322598556",
+    "jobs": {
+      "ubuntu-24.04": "FAILURE_APPROVED_RECIPE_DRIFT",
+      "windows-2025": "FAILURE_APPROVED_RECIPE_DRIFT"
+    },
+    "tests_before_setup_error": 518
+  },
+  "root_cause": "Approved digest hashes CRLF bytes; Git checkout and published package contain LF. Local prior validation captured CRLF and missed checkout normalization.",
+  "repair": "Normalize only line endings to the original approved CRLF representation before hashing. Preserve recipe bytes, values, RECIPE_DIGEST and configuration identities.",
+  "approved_recipe_sha256": "cc7753f0d43ce0a45a5e521d0b283db337922de86ea81734a2605842ea9909b2",
+  "git_lf_recipe_sha256": "2a284ad8c936c97a41dc1cbccd4288cc963325e6182d9646299ed9c701997341",
+  "changed_code_lf_sha256": {
+    "src/adaptive_hrc_scheduling/production_mapping.py": "654c1f1b89d25c4969a475c49919b6cb7c1cf8fb927c3220e6ad5f44e540128d",
+    "tests/test_production.py": "a6086826455f0a3e5f80cbf1f9ea66a9858ec3878194340b9f1443a5b4d508ad"
+  },
+  "regression": {
+    "source": {
+      "count": 564,
+      "status": "PASS",
+      "origin_audit": "PASS",
+      "log_sha256": "84c8294c027738c04197144002ebaa3ca318647c5110e908240d82e42b6e067e"
+    },
+    "wheel": {
+      "count": 564,
+      "status": "PASS",
+      "origin_audit": "PASS",
+      "log_sha256": "a6d00f1a7650379d5a75cfbdfe711407b561bf80a18acf027baee5e7bec250ce"
+    }
+  },
+  "checks": [
+    {
+      "label": "build",
+      "exit_code": 0,
+      "duration_s": 0.0779999999795109
+    },
+    {
+      "label": "venv",
+      "exit_code": 0,
+      "duration_s": 0.030999999959021807
+    },
+    {
+      "label": "install",
+      "exit_code": 0,
+      "duration_s": 0.28200000000651926
+    },
+    {
+      "label": "source-tests",
+      "exit_code": 0,
+      "duration_s": 220.4220000000205
+    },
+    {
+      "label": "wheel-tests",
+      "exit_code": 0,
+      "duration_s": 220.9529999999795
+    },
+    {
+      "label": "dependency-check",
+      "exit_code": 0,
+      "duration_s": 0.01600000006146729
+    }
+  ],
+  "validation_source": "All tracked text captured as LF, offline wheel built from that source; source and wheel imports independently checked.",
+  "limitations": [
+    "No new remote CI has run for r2.",
+    "No Kit rerun for r2; original 16 source-bound pairs remain historical evidence.",
+    "Original 720 h censoring, synthetic quality and receiver, industrial UNKNOWN, HR disabled and unresolved historical Kit shutdown cause remain.",
+    "Owner GUI experience not separately recorded; S16-S28 not started."
+  ]
+}

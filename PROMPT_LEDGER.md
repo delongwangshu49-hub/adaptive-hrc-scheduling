@@ -4410,3 +4410,41 @@ PR052 只补录 S08 r1 的实际验收与确切上传批准；PR053 为发布后
 
 
 PR055 补录 S08 r2 实际批准；PR056 单独授权 S09 本地实施。PR057 仅补录 S09 r1 确切批准，PR058 为发布后审阅，PR059 仅授权两项问题及必要回归、治理记录和新审阅包的有限本地修复，不授权 r2 上传，不启动 S10。
+
+
+## PR120：S15 r1确切批准及执行结果
+
+以下为规范化语义摘要，不是原始会话逐字转录。负责人批准r1不意味着已批准随后发现的CI修复新快照。
+
+```json
+{
+  "id": "PR120",
+  "date": "2026-10-05",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "APPROVE_EXACT_S15_R1_SNAPSHOT",
+    "target": "S15",
+    "parameters": {
+      "packet_id": "S15-20261005-r1",
+      "packet_sha256": "3d6825631c5e516906ff574a164855db3afb1957f590768099c4dbab254c8552",
+      "acceptance": "ACCEPTED_WITH_DOCUMENTED_LIMITS",
+      "publication_approval": "APPROVED",
+      "branch": "main",
+      "tag": "step-S15-r1"
+    }
+  },
+  "human_contribution": [
+    "APPROVED_REVIEWED_LIMITED_RESULT_AND_EXACT_SNAPSHOT"
+  ],
+  "assistant_support": [
+    "VERIFIED_STAGED_COMMITTED_TAGGED_PUSHED_EXACT_SNAPSHOT",
+    "IDENTIFIED_LF_RECIPE_DIGEST_CI_FAILURE_AND_PREPARED_LOCAL_REPAIR"
+  ],
+  "resolution": "R1_PUSHED_CI_FAILED_R2_SEPARATE_REVIEW_REQUIRED",
+  "evidence_refs": [
+    "docs/validation/S15_ci_repair_r2.md",
+    "docs/validation/S15_ci_repair_r2.json"
+  ],
+  "limit": "NO_R2_PUBLICATION_APPROVAL_NO_GUI_EXPERIENCE_CLAIM_NO_S16_S28"
+}
+```

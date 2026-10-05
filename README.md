@@ -1,5 +1,7 @@
 # 完整建筑模块的多资源自适应生产调度
 
+2026-10-05现行发布与修复（PR120 / LOG155）：负责人已批准S15 r1限定成果及确切快照；提交`8d0b283deccba1631bc2c1d8f35e5abc8e9788a9`和`step-S15-r1`已推送，但两平台CI因配方CRLF/LF摘要不一致失败，状态PUSHED_CI_FAILED。仅换行兼容的本地r2修复已通过LF源码/隔离wheel各564项，候选S15-20261005-r2为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。见docs/validation/S15_ci_repair_r2.md；原配方数值、证据和限制保持，新快照发布及S16—S28另审。
+
 2026-10-05现行本地成果（LOG154）：S15限定矩阵16条严格同源码轻量/真实Kit比较与独立审计通过，Kit均正常退出；WV01实际满缓冲区第三件READY背压及三件接收通过，源码与隔离wheel各562项通过。候选S15-20261005-r1，VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。各例分批捕获源码及全部失败/原720 h截尾保持，详见docs/validation/S15_final_review_r1.md。验收、确切发布及S16—S28另审。
 
 2026-10-05现行补充（PR119 / LOG143）：负责人已批准WV01（S15-WV-APPROVAL-001），仅新增B2_SUPPLEMENTAL_960三产品同时释放、960 h上限/840 h接收许可用例；其余RP/SC/SH参数和原720/240 h结果保持。须实际见证B=2占满时第三件在OUT1已READY受容量阻断及后续全部接收。S15仍IMPLEMENTATION_IN_PROGRESS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；验收、确切发布及S16—S28另审。

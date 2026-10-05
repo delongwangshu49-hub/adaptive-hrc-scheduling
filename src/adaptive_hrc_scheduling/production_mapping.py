@@ -12,7 +12,9 @@ RECIPE_DIGEST = "cc7753f0d43ce0a45a5e521d0b283db337922de86ea81734a2605842ea9909b
 
 def recipe():
     raw = files("adaptive_hrc_scheduling").joinpath("production_recipe.json").read_bytes()
-    require(hashlib.sha256(raw).hexdigest() == RECIPE_DIGEST, "APPROVED_RECIPE_DRIFT")
+    # The approved digest identifies CRLF bytes; Git checks out the same text as LF.
+    approved_bytes = raw.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
+    require(hashlib.sha256(approved_bytes).hexdigest() == RECIPE_DIGEST, "APPROVED_RECIPE_DRIFT")
     return json.loads(raw)
 
 

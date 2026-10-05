@@ -1341,3 +1341,11 @@ next_action: null
 - WV01补充链1326/1326、三次READY/接收，770.5143476666668—840 h明确满FG1/FG2且第三件OUT1已READY受容量阻断；原720 h截尾和更早INVALID保持。实际通道占位与无干预对照分别成对通过，恢复增加0.25 h；两产品正时长并发和跨产品P1/通道/CR1等竞争单独列证。
 - 最终固定源码/wheel各562项、来源审计、离线构建安装、依赖检查及生成表一致检查通过。各长期用例绑定各自捕获源码，后续变化逐例公开，不将旧运行转记新快照。合成质量/接收、有限几何、工业UNKNOWN、HR禁用及未记录GUI验收限制保持。
 - 本地形成S15-20261005-r1审阅候选，工作VERIFIED_WITH_LIMITS；ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。确切文件集合、完整差异和摘要由本地封包清单记录，基准a5105410b248fa95655c521a4bb07ab3142e93a1，目标既有仓库main，拟step-S15-r1；本轮远端操作为空。无Git写入，不启动S16—S28。
+
+
+## 2026年10月5日 S15确切批准、远端CI失败与换行修复
+
+- LOG155；PR120记录负责人对S15-20261005-r1的批准。101文件逐字节核对、精确暂存、单提交、新注释标签和非强制原子推送完成；远端409文件、提交和历史标签已核验。提交`8d0b283deccba1631bc2c1d8f35e5abc8e9788a9`、标签`step-S15-r1`。
+- 双平台CI均发生APPROVED_RECIPE_DRIFT：原批准摘要绑定CRLF，本地验证保留该形式，而Git按规则生成LF。518项运行后S15类准备失败，不能记录PUBLISHED；本次如实保留PUSHED_CI_FAILED及原日志。
+- 已准备仅将换行还原为原批准摘要表示的修复，原配方数值、标识和配置保持；新增换行兼容及内容篡改拒绝测试。统一LF副本源码/隔离wheel各564项、来源审计、离线构建及依赖检查通过；没有重跑Kit，原轨迹来源和全部限制保持。
+- r2为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；新快照含确切差异、摘要与检查证据，拟main/step-S15-r2另审。没有移动r1标签、强推、发布修订或启动S16—S28。详见docs/validation/S15_ci_repair_r2.md。

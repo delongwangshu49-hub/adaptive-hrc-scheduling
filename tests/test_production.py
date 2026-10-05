@@ -4,6 +4,7 @@ import sys
 import unittest
 from dataclasses import replace
 from pathlib import Path
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from build_production_contracts import Builder
@@ -14,6 +15,36 @@ from adaptive_hrc_scheduling.domain import production as m
 from adaptive_hrc_scheduling.planning.production import choose, planning_input
 from adaptive_hrc_scheduling.production_backend import ProductionBackend
 from adaptive_hrc_scheduling.production_checker import check_run
+
+
+class ProductionRecipeEncodingTests(unittest.TestCase):
+    def test_approved_recipe_accepts_git_lf_and_original_crlf(self):
+        from adaptive_hrc_scheduling import production_mapping as mapping
+
+        raw = (
+            mapping.files("adaptive_hrc_scheduling").joinpath("production_recipe.json").read_bytes()
+        )
+        expected = mapping.recipe()
+        lf = raw.replace(b"\r\n", b"\n")
+        for encoded in (lf, lf.replace(b"\n", b"\r\n")):
+            with self.subTest(crlf=b"\r\n" in encoded), patch.object(mapping, "files") as resource:
+                resource.return_value.joinpath.return_value.read_bytes.return_value = encoded
+                self.assertEqual(mapping.recipe(), expected)
+
+    def test_recipe_content_drift_still_rejected_with_either_line_ending(self):
+        from adaptive_hrc_scheduling import production_mapping as mapping
+
+        raw = (
+            mapping.files("adaptive_hrc_scheduling").joinpath("production_recipe.json").read_bytes()
+        )
+        lf = raw.replace(b"\r\n", b"\n")
+        changed = lf.replace(b'"SR-W1": 8,', b'"SR-W1": 9,', 1)
+        self.assertNotEqual(changed, lf)
+        for encoded in (changed, changed.replace(b"\n", b"\r\n"), lf + b" "):
+            with self.subTest(encoded=encoded[:20]), patch.object(mapping, "files") as resource:
+                resource.return_value.joinpath.return_value.read_bytes.return_value = encoded
+                with self.assertRaisesRegex(ContractError, "APPROVED_RECIPE_DRIFT"):
+                    mapping.recipe()
 
 
 class ProductionContractTests(unittest.TestCase):
