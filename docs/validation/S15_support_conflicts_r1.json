@@ -1,0 +1,4295 @@
+{
+  "id": "S15-SUPPORT-AUDIT-20261004-r1",
+  "purpose": "DIAGNOSTIC_ONLY",
+  "runtime": "NATIVE_USD_LIBRARY_NOT_KIT_APP",
+  "usd_version": [
+    0,
+    25,
+    11
+  ],
+  "config_sha256": "94eb1fd7de218936d85980a0bd814b3a50cc7eaab78a435aac0b5945efb61835",
+  "scope": "SR-W1 primary non-steel packs at MEP-RECEIVE; actual initialized USD collision geometry; no transport or production completion claim",
+  "tested_packages": 60,
+  "blocked_packages": 52,
+  "source_files": [
+    {
+      "path": "scripts/build_production_contracts.py",
+      "sha256": "d6f618ed64888a6510f2c827630359b521ef159d7cddb5ab0885014649956dae"
+    },
+    {
+      "path": "sim/isaac/scene/production_port.py",
+      "sha256": "b89a3e3b08de59bc527d7ef99f18d38971c9909c0265f52ccf7883419630cabd"
+    },
+    {
+      "path": "sim/isaac/scene/target_scene.py",
+      "sha256": "005b79fed8e9596f4136aaf087b650957b2c808eb7b5b4c447f54a601ac044b2"
+    },
+    {
+      "path": "sim/isaac/scene/target_layout.py",
+      "sha256": "ed0c80b3111362325f38ce97500b1a9f87279cf800fd53967414df4681efb447"
+    },
+    {
+      "path": "sim/isaac/scene/model.py",
+      "sha256": "9a3304942dc2d8ddad721b65949de9ca252995224b34670d1580a29f9400d36c"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/production_geometry.py",
+      "sha256": "935cf0e3477d15527e9b15c3e249a62cf7cca5466f02f0917663d0cb21ea9ded"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/domain/production.py",
+      "sha256": "16fd6178b74d615b8145ca9af3300e22866240e2c1a4d729da4747bcf1164854"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/production_recipe.json",
+      "sha256": "cc7753f0d43ce0a45a5e521d0b283db337922de86ea81734a2605842ea9909b2"
+    },
+    {
+      "path": "examples/building_contracts/configuration.json",
+      "sha256": "f7d0e5b0104ccc8f6f28a5ac30eef6c0eda5de77fad8f85e5ed3cb9a3b9fef56"
+    }
+  ],
+  "cases": [
+    {
+      "lot": "PRODUCT-1.ST-COAT.01",
+      "group": "PRODUCT-1.GROUP-COAT",
+      "position": [
+        5.4,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-0",
+          "center": [
+            5.35,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FL.01",
+      "group": "PRODUCT-1.GROUP-FLOOR",
+      "position": [
+        6.0,
+        23.575,
+        0.8
+      ],
+      "size": [
+        2.4,
+        1.25,
+        0.15
+      ],
+      "conflicts": []
+    },
+    {
+      "lot": "PRODUCT-1.FL.02",
+      "group": "PRODUCT-1.GROUP-FLOOR",
+      "position": [
+        6.0,
+        23.575,
+        1.07
+      ],
+      "size": [
+        2.4,
+        1.25,
+        0.15
+      ],
+      "conflicts": []
+    },
+    {
+      "lot": "PRODUCT-1.FL.03",
+      "group": "PRODUCT-1.GROUP-FLOOR",
+      "position": [
+        6.0,
+        23.575,
+        1.34
+      ],
+      "size": [
+        2.4,
+        1.25,
+        0.15
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.03-support-0",
+          "center": [
+            4.95,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.03-support-1",
+          "center": [
+            5.8500000000000005,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.04-support-0",
+          "center": [
+            6.1499999999999995,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.04-support-1",
+          "center": [
+            7.05,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-0",
+          "center": [
+            4.95,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-1",
+          "center": [
+            5.8500000000000005,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.10-support-0",
+          "center": [
+            6.1499999999999995,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.10-support-1",
+          "center": [
+            7.05,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.01-support-0",
+          "center": [
+            6.1499999999999995,
+            22.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.01-support-1",
+          "center": [
+            7.05,
+            22.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FL.04",
+      "group": "PRODUCT-1.GROUP-FLOOR",
+      "position": [
+        6.0,
+        23.575,
+        1.61
+      ],
+      "size": [
+        2.4,
+        1.25,
+        0.15
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.03-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.72
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.03-support-1",
+          "center": [
+            6.45,
+            23.6,
+            1.72
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FL.05",
+      "group": "PRODUCT-1.GROUP-FLOOR",
+      "position": [
+        6.0,
+        23.575,
+        1.8800000000000001
+      ],
+      "size": [
+        2.4,
+        1.25,
+        0.15
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.02-support-0",
+          "center": [
+            5.35,
+            23.7,
+            2.02
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.02-support-1",
+          "center": [
+            6.25,
+            23.7,
+            2.02
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FL.06",
+      "group": "PRODUCT-1.GROUP-FLOOR",
+      "position": [
+        6.0,
+        23.575,
+        2.1500000000000004
+      ],
+      "size": [
+        2.4,
+        1.25,
+        0.15
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.04-support-0",
+          "center": [
+            5.55,
+            23.6,
+            2.19
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.04-support-1",
+          "center": [
+            6.45,
+            23.6,
+            2.19
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.05-support-0",
+          "center": [
+            4.95,
+            23.8,
+            2.18
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.05-support-1",
+          "center": [
+            5.8500000000000005,
+            23.8,
+            2.18
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.06-support-0",
+          "center": [
+            6.1499999999999995,
+            23.8,
+            2.18
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.06-support-1",
+          "center": [
+            7.05,
+            23.8,
+            2.18
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-F.01",
+      "group": "PRODUCT-1.GROUP-FLOOR",
+      "position": [
+        5.4,
+        22.55,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.01-support-0",
+          "center": [
+            5.55,
+            22.4,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.01-support-0",
+          "center": [
+            5.3999999999999995,
+            22.55,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-F.02",
+      "group": "PRODUCT-1.GROUP-FLOOR",
+      "position": [
+        6.6,
+        22.55,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.01-support-1",
+          "center": [
+            6.45,
+            22.4,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.01-support-1",
+          "center": [
+            6.3,
+            22.55,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-F.03",
+      "group": "PRODUCT-1.GROUP-FLOOR",
+      "position": [
+        5.4,
+        22.55,
+        1.5
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.02-support-0",
+          "center": [
+            5.55,
+            22.4,
+            1.62
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.03-support-0",
+          "center": [
+            5.55,
+            22.4,
+            1.9899999999999998
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.02-support-0",
+          "center": [
+            5.3999999999999995,
+            22.55,
+            1.52
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-W.01-support-0",
+          "center": [
+            5.1,
+            22.4,
+            1.79
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-W.01-support-1",
+          "center": [
+            6.0,
+            22.4,
+            1.79
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.02-support-0",
+          "center": [
+            4.95,
+            22.8,
+            2.08
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.02-support-1",
+          "center": [
+            5.8500000000000005,
+            22.8,
+            2.08
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-F.04",
+      "group": "PRODUCT-1.GROUP-FLOOR",
+      "position": [
+        6.6,
+        22.55,
+        1.5
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.02-support-1",
+          "center": [
+            6.45,
+            22.4,
+            1.62
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.03-support-1",
+          "center": [
+            6.45,
+            22.4,
+            1.9899999999999998
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.02-support-1",
+          "center": [
+            6.3,
+            22.55,
+            1.52
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-W.01-support-1",
+          "center": [
+            6.0,
+            22.4,
+            1.79
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-F.05",
+      "group": "PRODUCT-1.GROUP-FLOOR",
+      "position": [
+        5.4,
+        22.55,
+        2.2
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.04-support-0",
+          "center": [
+            5.55,
+            22.4,
+            2.36
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.EN-L.01",
+      "group": "PRODUCT-1.GROUP-LINING",
+      "position": [
+        6.0,
+        23.6,
+        0.8
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.35
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.EN-L.02",
+      "group": "PRODUCT-1.GROUP-LINING",
+      "position": [
+        6.0,
+        23.6,
+        1.27
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.35
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.03-support-0",
+          "center": [
+            4.95,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.03-support-1",
+          "center": [
+            5.8500000000000005,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.04-support-0",
+          "center": [
+            6.1499999999999995,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.04-support-1",
+          "center": [
+            7.05,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-0",
+          "center": [
+            4.95,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-1",
+          "center": [
+            5.8500000000000005,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.10-support-0",
+          "center": [
+            6.1499999999999995,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.10-support-1",
+          "center": [
+            7.05,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.01-support-0",
+          "center": [
+            6.1499999999999995,
+            22.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.01-support-1",
+          "center": [
+            7.05,
+            22.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-0",
+          "center": [
+            5.35,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-1",
+          "center": [
+            6.25,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.EN-L.03",
+      "group": "PRODUCT-1.GROUP-LINING",
+      "position": [
+        6.0,
+        23.6,
+        1.74
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.35
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.02-support-0",
+          "center": [
+            4.95,
+            22.8,
+            2.08
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.02-support-1",
+          "center": [
+            5.8500000000000005,
+            22.8,
+            2.08
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.02-support-0",
+          "center": [
+            5.35,
+            23.7,
+            2.02
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.02-support-1",
+          "center": [
+            6.25,
+            23.7,
+            2.02
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.EN-L.04",
+      "group": "PRODUCT-1.GROUP-LINING",
+      "position": [
+        6.0,
+        23.6,
+        2.21
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.35
+      ],
+      "conflicts": []
+    },
+    {
+      "lot": "PRODUCT-1.EN-L.05",
+      "group": "PRODUCT-1.GROUP-LINING",
+      "position": [
+        6.0,
+        22.4,
+        0.8
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.35
+      ],
+      "conflicts": []
+    },
+    {
+      "lot": "PRODUCT-1.FI-C.01",
+      "group": "PRODUCT-1.GROUP-LINING",
+      "position": [
+        6.0,
+        22.4,
+        1.27
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.25
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-F.03-support-0",
+          "center": [
+            4.95,
+            22.55,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-F.03-support-1",
+          "center": [
+            5.8500000000000005,
+            22.55,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-F.04-support-0",
+          "center": [
+            6.1499999999999995,
+            22.55,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-F.04-support-1",
+          "center": [
+            7.05,
+            22.55,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.02-support-0",
+          "center": [
+            5.3999999999999995,
+            22.55,
+            1.52
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.02-support-1",
+          "center": [
+            6.3,
+            22.55,
+            1.52
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-0",
+          "center": [
+            4.95,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-1",
+          "center": [
+            5.8500000000000005,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.10-support-0",
+          "center": [
+            6.1499999999999995,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.10-support-1",
+          "center": [
+            7.05,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.01-support-0",
+          "center": [
+            6.1499999999999995,
+            22.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.01-support-1",
+          "center": [
+            7.05,
+            22.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FI-C.02",
+      "group": "PRODUCT-1.GROUP-LINING",
+      "position": [
+        6.0,
+        22.4,
+        1.6400000000000001
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.25
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-W.01-support-0",
+          "center": [
+            5.1,
+            22.4,
+            1.79
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-W.01-support-1",
+          "center": [
+            6.0,
+            22.4,
+            1.79
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FI-C.03",
+      "group": "PRODUCT-1.GROUP-LINING",
+      "position": [
+        6.0,
+        22.4,
+        2.01
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.25
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-F.05-support-0",
+          "center": [
+            4.95,
+            22.55,
+            2.18
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-F.05-support-1",
+          "center": [
+            5.8500000000000005,
+            22.55,
+            2.18
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.02-support-0",
+          "center": [
+            4.95,
+            22.8,
+            2.08
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.02-support-1",
+          "center": [
+            5.8500000000000005,
+            22.8,
+            2.08
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FI-C.04",
+      "group": "PRODUCT-1.GROUP-LINING",
+      "position": [
+        6.0,
+        22.4,
+        2.38
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.25
+      ],
+      "conflicts": []
+    },
+    {
+      "lot": "PRODUCT-1.EN-X.01",
+      "group": "PRODUCT-1.GROUP-EXT",
+      "position": [
+        6.0,
+        23.6,
+        0.8
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.35
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.EN-X.02",
+      "group": "PRODUCT-1.GROUP-EXT",
+      "position": [
+        6.0,
+        23.6,
+        1.27
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.35
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.03-support-0",
+          "center": [
+            4.95,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.03-support-1",
+          "center": [
+            5.8500000000000005,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.04-support-0",
+          "center": [
+            6.1499999999999995,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.04-support-1",
+          "center": [
+            7.05,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-0",
+          "center": [
+            4.95,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-1",
+          "center": [
+            5.8500000000000005,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.10-support-0",
+          "center": [
+            6.1499999999999995,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.10-support-1",
+          "center": [
+            7.05,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.01-support-0",
+          "center": [
+            6.1499999999999995,
+            22.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.01-support-1",
+          "center": [
+            7.05,
+            22.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-0",
+          "center": [
+            5.35,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-1",
+          "center": [
+            6.25,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.EN-X.03",
+      "group": "PRODUCT-1.GROUP-EXT",
+      "position": [
+        6.0,
+        23.6,
+        1.74
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.35
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.02-support-0",
+          "center": [
+            4.95,
+            22.8,
+            2.08
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.02-support-1",
+          "center": [
+            5.8500000000000005,
+            22.8,
+            2.08
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.02-support-0",
+          "center": [
+            5.35,
+            23.7,
+            2.02
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.02-support-1",
+          "center": [
+            6.25,
+            23.7,
+            2.02
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.EN-X.04",
+      "group": "PRODUCT-1.GROUP-EXT",
+      "position": [
+        6.0,
+        23.6,
+        2.21
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.35
+      ],
+      "conflicts": []
+    },
+    {
+      "lot": "PRODUCT-1.EN-X.05",
+      "group": "PRODUCT-1.GROUP-EXT",
+      "position": [
+        6.0,
+        22.4,
+        0.8
+      ],
+      "size": [
+        2.4,
+        1.2,
+        0.35
+      ],
+      "conflicts": []
+    },
+    {
+      "lot": "PRODUCT-1.FI-D.01",
+      "group": "PRODUCT-1.GROUP-EXT",
+      "position": [
+        5.85,
+        22.55,
+        1.27
+      ],
+      "size": [
+        2.1,
+        0.9,
+        0.15
+      ],
+      "conflicts": []
+    },
+    {
+      "lot": "PRODUCT-1.FI-D.02",
+      "group": "PRODUCT-1.GROUP-EXT",
+      "position": [
+        5.85,
+        22.55,
+        1.54
+      ],
+      "size": [
+        2.1,
+        0.9,
+        0.15
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.02-support-0",
+          "center": [
+            5.55,
+            22.4,
+            1.62
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.02-support-1",
+          "center": [
+            6.45,
+            22.4,
+            1.62
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FI-W.01",
+      "group": "PRODUCT-1.GROUP-EXT",
+      "position": [
+        5.55,
+        22.4,
+        1.81
+      ],
+      "size": [
+        1.5,
+        1.2,
+        0.2
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.03-support-0",
+          "center": [
+            5.55,
+            22.4,
+            1.9899999999999998
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.EN-P.01",
+      "group": "PRODUCT-1.GROUP-PAINT",
+      "position": [
+        5.4,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-0",
+          "center": [
+            5.35,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.EN-P.02",
+      "group": "PRODUCT-1.GROUP-PAINT",
+      "position": [
+        6.6,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-1",
+          "center": [
+            6.45,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-1",
+          "center": [
+            6.25,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-W.01",
+      "group": "PRODUCT-1.GROUP-WPROOF",
+      "position": [
+        5.4,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-0",
+          "center": [
+            5.35,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-T.01",
+      "group": "PRODUCT-1.GROUP-TILE",
+      "position": [
+        5.4,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-0",
+          "center": [
+            5.35,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-T.02",
+      "group": "PRODUCT-1.GROUP-TILE",
+      "position": [
+        6.6,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-1",
+          "center": [
+            6.45,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-1",
+          "center": [
+            6.25,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-T.03",
+      "group": "PRODUCT-1.GROUP-TILE",
+      "position": [
+        5.4,
+        23.8,
+        1.5
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.03-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.72
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.02-support-0",
+          "center": [
+            5.35,
+            23.7,
+            2.02
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-T.04",
+      "group": "PRODUCT-1.GROUP-TILE",
+      "position": [
+        6.6,
+        23.8,
+        1.5
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.03-support-1",
+          "center": [
+            6.45,
+            23.6,
+            1.72
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.02-support-1",
+          "center": [
+            6.25,
+            23.7,
+            2.02
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-T.05",
+      "group": "PRODUCT-1.GROUP-TILE",
+      "position": [
+        5.4,
+        23.8,
+        2.2
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.04-support-0",
+          "center": [
+            5.55,
+            23.6,
+            2.19
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-T.06",
+      "group": "PRODUCT-1.GROUP-TILE",
+      "position": [
+        6.6,
+        23.8,
+        2.2
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.04-support-1",
+          "center": [
+            6.45,
+            23.6,
+            2.19
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-T.07",
+      "group": "PRODUCT-1.GROUP-TILE",
+      "position": [
+        5.4,
+        23.0,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.01-support-0",
+          "center": [
+            5.55,
+            22.4,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.01-support-0",
+          "center": [
+            5.3999999999999995,
+            22.55,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-T.08",
+      "group": "PRODUCT-1.GROUP-TILE",
+      "position": [
+        6.6,
+        23.0,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-1",
+          "center": [
+            6.45,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.01-support-1",
+          "center": [
+            6.45,
+            22.4,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.01-support-1",
+          "center": [
+            6.3,
+            22.55,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-T.09",
+      "group": "PRODUCT-1.GROUP-TILE",
+      "position": [
+        5.4,
+        23.0,
+        1.5
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.03-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.72
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.02-support-0",
+          "center": [
+            5.55,
+            22.4,
+            1.62
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.03-support-0",
+          "center": [
+            5.55,
+            22.4,
+            1.9899999999999998
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.02-support-0",
+          "center": [
+            5.3999999999999995,
+            22.55,
+            1.52
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-W.01-support-0",
+          "center": [
+            5.1,
+            22.4,
+            1.79
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-W.01-support-1",
+          "center": [
+            6.0,
+            22.4,
+            1.79
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.02-support-0",
+          "center": [
+            4.95,
+            22.8,
+            2.08
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.ME-V.02-support-1",
+          "center": [
+            5.8500000000000005,
+            22.8,
+            2.08
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WT-T.10",
+      "group": "PRODUCT-1.GROUP-TILE",
+      "position": [
+        6.6,
+        23.0,
+        1.5
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.03-support-1",
+          "center": [
+            6.45,
+            23.6,
+            1.72
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.02-support-1",
+          "center": [
+            6.45,
+            22.4,
+            1.62
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.03-support-1",
+          "center": [
+            6.45,
+            22.4,
+            1.9899999999999998
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.02-support-1",
+          "center": [
+            6.3,
+            22.55,
+            1.52
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-W.01-support-1",
+          "center": [
+            6.0,
+            22.4,
+            1.79
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.ME-E.01",
+      "group": "PRODUCT-1.GROUP-MEP-E",
+      "position": [
+        5.4,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-0",
+          "center": [
+            5.35,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.ME-E.02",
+      "group": "PRODUCT-1.GROUP-MEP-E",
+      "position": [
+        6.6,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-1",
+          "center": [
+            6.45,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-1",
+          "center": [
+            6.25,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.ME-E.03",
+      "group": "PRODUCT-1.GROUP-MEP-E",
+      "position": [
+        5.4,
+        23.8,
+        1.5
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.03-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.72
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.02-support-0",
+          "center": [
+            5.35,
+            23.7,
+            2.02
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.ME-P.01",
+      "group": "PRODUCT-1.GROUP-MEP-P",
+      "position": [
+        5.4,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-0",
+          "center": [
+            5.35,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.ME-P.02",
+      "group": "PRODUCT-1.GROUP-MEP-P",
+      "position": [
+        6.6,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-1",
+          "center": [
+            6.45,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-1",
+          "center": [
+            6.25,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.ME-P.03",
+      "group": "PRODUCT-1.GROUP-MEP-P",
+      "position": [
+        5.4,
+        23.8,
+        1.5
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.03-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.72
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.02-support-0",
+          "center": [
+            5.35,
+            23.7,
+            2.02
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.ME-V.01",
+      "group": "PRODUCT-1.GROUP-FIT",
+      "position": [
+        6.6,
+        22.8,
+        1.5
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.02-support-1",
+          "center": [
+            6.45,
+            22.4,
+            1.62
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.03-support-1",
+          "center": [
+            6.45,
+            22.4,
+            1.9899999999999998
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.02-support-1",
+          "center": [
+            6.3,
+            22.55,
+            1.52
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-W.01-support-1",
+          "center": [
+            6.0,
+            22.4,
+            1.79
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.ME-V.02",
+      "group": "PRODUCT-1.GROUP-FIT",
+      "position": [
+        5.4,
+        22.8,
+        2.1
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-F.05-support-0",
+          "center": [
+            4.95,
+            22.55,
+            2.18
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-F.05-support-1",
+          "center": [
+            5.8500000000000005,
+            22.55,
+            2.18
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.04-support-0",
+          "center": [
+            5.55,
+            22.4,
+            2.36
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FI-K.01",
+      "group": "PRODUCT-1.GROUP-FIT",
+      "position": [
+        5.8,
+        23.7,
+        1.32
+      ],
+      "size": [
+        2,
+        1,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.03-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.72
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.03-support-1",
+          "center": [
+            6.45,
+            23.6,
+            1.72
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.03-support-0",
+          "center": [
+            4.95,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.03-support-1",
+          "center": [
+            5.8500000000000005,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.04-support-0",
+          "center": [
+            6.1499999999999995,
+            23.8,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-0",
+          "center": [
+            4.95,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-1",
+          "center": [
+            5.8500000000000005,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.10-support-0",
+          "center": [
+            6.1499999999999995,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FI-K.02",
+      "group": "PRODUCT-1.GROUP-FIT",
+      "position": [
+        5.8,
+        23.7,
+        2.04
+      ],
+      "size": [
+        2,
+        1,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.06-support-0",
+          "center": [
+            5.55,
+            23.575,
+            2.1300000000000003
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.06-support-1",
+          "center": [
+            6.45,
+            23.575,
+            2.1300000000000003
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.04-support-0",
+          "center": [
+            5.55,
+            23.6,
+            2.19
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.04-support-1",
+          "center": [
+            6.45,
+            23.6,
+            2.19
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.05-support-0",
+          "center": [
+            4.95,
+            23.8,
+            2.18
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.05-support-1",
+          "center": [
+            5.8500000000000005,
+            23.8,
+            2.18
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.06-support-0",
+          "center": [
+            6.1499999999999995,
+            23.8,
+            2.18
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FI-WC.01",
+      "group": "PRODUCT-1.GROUP-FIT",
+      "position": [
+        5.4,
+        22.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        1.2
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-F.03-support-0",
+          "center": [
+            4.95,
+            22.55,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-F.03-support-1",
+          "center": [
+            5.8500000000000005,
+            22.55,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.01-support-0",
+          "center": [
+            5.55,
+            22.4,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.02-support-0",
+          "center": [
+            5.55,
+            22.4,
+            1.62
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.03-support-0",
+          "center": [
+            5.55,
+            22.4,
+            1.9899999999999998
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.01-support-0",
+          "center": [
+            5.3999999999999995,
+            22.55,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.02-support-0",
+          "center": [
+            5.3999999999999995,
+            22.55,
+            1.52
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-W.01-support-0",
+          "center": [
+            5.1,
+            22.4,
+            1.79
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-W.01-support-1",
+          "center": [
+            6.0,
+            22.4,
+            1.79
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-0",
+          "center": [
+            4.95,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.WT-T.09-support-1",
+          "center": [
+            5.8500000000000005,
+            23.0,
+            1.48
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FI-B.01",
+      "group": "PRODUCT-1.GROUP-FIT",
+      "position": [
+        6.6,
+        22.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-C.01-support-1",
+          "center": [
+            6.45,
+            22.4,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-D.01-support-1",
+          "center": [
+            6.3,
+            22.55,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.FI-S.01",
+      "group": "PRODUCT-1.GROUP-FIT",
+      "position": [
+        5.85,
+        23.7,
+        0.8
+      ],
+      "size": [
+        2.1,
+        1,
+        0.4
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.PR-I.01",
+      "group": "PRODUCT-1.GROUP-PACK",
+      "position": [
+        6.6,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-1",
+          "center": [
+            6.45,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-1",
+          "center": [
+            6.25,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.PR-C.01",
+      "group": "PRODUCT-1.GROUP-PACK",
+      "position": [
+        5.4,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-0",
+          "center": [
+            5.35,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.PR-L.01",
+      "group": "PRODUCT-1.GROUP-PACK",
+      "position": [
+        5.4,
+        23.8,
+        1.5
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.04-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.59
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.05-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.86
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.03-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.72
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.02-support-0",
+          "center": [
+            5.35,
+            23.7,
+            2.02
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WATER.01",
+      "group": "PRODUCT-1.GROUP-TEST-SET",
+      "position": [
+        5.4,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-0",
+          "center": [
+            5.55,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-0",
+          "center": [
+            5.55,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-0",
+          "center": [
+            5.35,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    },
+    {
+      "lot": "PRODUCT-1.WATER.02",
+      "group": "PRODUCT-1.GROUP-TEST-SET",
+      "position": [
+        6.6,
+        23.8,
+        0.8
+      ],
+      "size": [
+        1.2,
+        0.8,
+        0.6
+      ],
+      "conflicts": [
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.02-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.05
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FL.03-support-1",
+          "center": [
+            6.45,
+            23.575,
+            1.32
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.EN-L.02-support-1",
+          "center": [
+            6.45,
+            23.6,
+            1.25
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        },
+        {
+          "id": "MEP-RECEIVE.PRODUCT-1.FI-K.01-support-1",
+          "center": [
+            6.25,
+            23.7,
+            1.3
+          ],
+          "size": [
+            0.05999999865889549,
+            0.5,
+            0.03999999910593033
+          ]
+        }
+      ]
+    }
+  ]
+}

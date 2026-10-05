@@ -1,0 +1,53 @@
+{
+  "id": "S15-WINDOW-20261005-r1",
+  "decision_item": "WV01",
+  "status": "DECISION_PENDING",
+  "approved": false,
+  "implemented": false,
+  "scenario": {
+    "id": "B2_SUPPLEMENTAL_960",
+    "variant": "SR-W1",
+    "products": 3,
+    "release_times_h": [
+      0,
+      0,
+      0
+    ],
+    "rework_enabled": true,
+    "until_h": 960,
+    "receive_after_h": 840,
+    "quality_fail": null,
+    "rework_fail": false,
+    "actual_device_failure": false,
+    "loaded_failure": false,
+    "cancel_product": null,
+    "cancel_stage": null,
+    "delayed_lot": null
+  },
+  "preserve": {
+    "default_window_h": 720,
+    "original_windows_h": [
+      240,
+      720
+    ],
+    "finished_capacity": 2,
+    "original_failures": true,
+    "RP_SC_SH_values": true,
+    "HR_disabled": true,
+    "industrial_qualification": "UNKNOWN"
+  },
+  "required_witness": {
+    "fresh_initializations_per_backend": 1,
+    "positive_duration_FG1_FG2_full_third_READY_at_OUT1_BUFFER_blocked": true,
+    "received_products": 3,
+    "independent_audits": "PASS",
+    "strict_source_bound_parity": "PASS",
+    "normal_Kit_exit": true
+  },
+  "evidence": "docs/validation/S15_three_window_r2.json",
+  "limitations": [
+    "Does not prove no feasible 720 h schedule exists.",
+    "Does not authorize S15 acceptance, publication or S16-S28.",
+    "No automatic window extension beyond 960 h."
+  ]
+}

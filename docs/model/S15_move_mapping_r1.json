@@ -1,0 +1,808 @@
+{
+  "id": "S15-MOVE-MAPPING-r1",
+  "scope": "SYNTHETIC_TEST_ONLY",
+  "S15_complete": false,
+  "variants": {
+    "SR-W1": {
+      "config_sha256": "920ed234de1371f48667d7963a66f5b16bced7c18d7a32204188431d0ab3d322",
+      "rows": [
+        {
+          "activity": "MV-IN-B",
+          "old_h": 0.25,
+          "new_h": 0.07194444444444444,
+          "delta_h": -0.17805555555555558,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MV-IN-B.MOVE-0",
+              "source": "PRE-OUT.PRODUCT-1.BOTTOM",
+              "target": "J2",
+              "entity": "PRODUCT-1.BOTTOM",
+              "horizontal_m": 10,
+              "vertical_m": 4.6,
+              "travel_h": 0.011944444444444443,
+              "handling_h": 0.06,
+              "total_h": 0.07194444444444444,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            },
+            "Lrig": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            },
+            "Lsig": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            }
+          }
+        },
+        {
+          "activity": "MV-B",
+          "old_h": 0.25,
+          "new_h": 0.0761111111111111,
+          "delta_h": -0.1738888888888889,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MV-B.MOVE-0",
+              "source": "J2",
+              "target": "BUF.PRODUCT-1.BOTTOM",
+              "entity": "PRODUCT-1.BOTTOM",
+              "horizontal_m": 11.5,
+              "vertical_m": 6.999999999999999,
+              "travel_h": 0.01611111111111111,
+              "handling_h": 0.06,
+              "total_h": 0.0761111111111111,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            },
+            "Lrig": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            },
+            "Lsig": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            }
+          }
+        },
+        {
+          "activity": "MV-IN-T",
+          "old_h": 0.25,
+          "new_h": 0.07194444444444444,
+          "delta_h": -0.17805555555555558,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MV-IN-T.MOVE-0",
+              "source": "PRE-OUT.PRODUCT-1.TOP",
+              "target": "J2",
+              "entity": "PRODUCT-1.TOP",
+              "horizontal_m": 10,
+              "vertical_m": 4.6,
+              "travel_h": 0.011944444444444443,
+              "handling_h": 0.06,
+              "total_h": 0.07194444444444444,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            },
+            "Lrig": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            },
+            "Lsig": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            }
+          }
+        },
+        {
+          "activity": "MV-T",
+          "old_h": 0.25,
+          "new_h": 0.0761111111111111,
+          "delta_h": -0.1738888888888889,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MV-T.MOVE-0",
+              "source": "J2",
+              "target": "BUF.PRODUCT-1.TOP",
+              "entity": "PRODUCT-1.TOP",
+              "horizontal_m": 11.5,
+              "vertical_m": 6.999999999999999,
+              "travel_h": 0.01611111111111111,
+              "handling_h": 0.06,
+              "total_h": 0.0761111111111111,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            },
+            "Lrig": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            },
+            "Lsig": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            }
+          }
+        },
+        {
+          "activity": "JOIN-IN",
+          "old_h": 1.0,
+          "new_h": 0.23538888888888887,
+          "delta_h": -0.7646111111111111,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.JOIN-IN.MOVE-0",
+              "source": "BUF.PRODUCT-1.BOTTOM",
+              "target": "J3.PRODUCT-1.BOTTOM",
+              "entity": "PRODUCT-1.BOTTOM",
+              "horizontal_m": 11.5,
+              "vertical_m": 6.999999999999999,
+              "travel_h": 0.01611111111111111,
+              "handling_h": 0.06,
+              "total_h": 0.0761111111111111,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            },
+            {
+              "operation": "PRODUCT-1.JOIN-IN.MOVE-1",
+              "source": "PRE-OUT.PRODUCT-1.COLUMNS",
+              "target": "J3.PRODUCT-1.COLUMNS",
+              "entity": "PRODUCT-1.COLUMNS",
+              "horizontal_m": 32.7,
+              "vertical_m": 6.6,
+              "travel_h": 0.027333333333333334,
+              "handling_h": 0.06,
+              "total_h": 0.08733333333333333,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            },
+            {
+              "operation": "PRODUCT-1.JOIN-IN.MOVE-2",
+              "source": "BUF.PRODUCT-1.TOP",
+              "target": "J3.PRODUCT-1.TOP",
+              "entity": "PRODUCT-1.TOP",
+              "horizontal_m": 11.5,
+              "vertical_m": 3.999999999999999,
+              "travel_h": 0.011944444444444442,
+              "handling_h": 0.06,
+              "total_h": 0.07194444444444444,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 1.0,
+              "new_h": 0.23538888888888887,
+              "delta_h": -0.7646111111111111
+            },
+            "Lrig": {
+              "old_h": 1.0,
+              "new_h": 0.23538888888888887,
+              "delta_h": -0.7646111111111111
+            },
+            "Lsig": {
+              "old_h": 1.0,
+              "new_h": 0.23538888888888887,
+              "delta_h": -0.7646111111111111
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 1.0,
+              "new_h": 0.23538888888888887,
+              "delta_h": -0.7646111111111111
+            }
+          }
+        },
+        {
+          "activity": "MOVE-F",
+          "old_h": 1.0,
+          "new_h": 0.07638888888888888,
+          "delta_h": -0.9236111111111112,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MOVE-F.MOVE-0",
+              "source": "J3",
+              "target": "F1",
+              "entity": "PRODUCT-1",
+              "horizontal_m": 12,
+              "vertical_m": 6.999999999999999,
+              "travel_h": 0.016388888888888887,
+              "handling_h": 0.06,
+              "total_h": 0.07638888888888888,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 1.0,
+              "new_h": 0.07638888888888888,
+              "delta_h": -0.9236111111111112
+            },
+            "Lrig": {
+              "old_h": 1.0,
+              "new_h": 0.07638888888888888,
+              "delta_h": -0.9236111111111112
+            },
+            "Lsig": {
+              "old_h": 1.0,
+              "new_h": 0.07638888888888888,
+              "delta_h": -0.9236111111111112
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 1.0,
+              "new_h": 0.07638888888888888,
+              "delta_h": -0.9236111111111112
+            }
+          }
+        },
+        {
+          "activity": "MOVE-OUT",
+          "old_h": 1.0,
+          "new_h": 0.08083333333333333,
+          "delta_h": -0.9191666666666667,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MOVE-OUT.MOVE-0",
+              "source": "F1",
+              "target": "OUT1",
+              "entity": "PRODUCT-1",
+              "horizontal_m": 20,
+              "vertical_m": 6.999999999999999,
+              "travel_h": 0.020833333333333332,
+              "handling_h": 0.06,
+              "total_h": 0.08083333333333333,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 1.0,
+              "new_h": 0.08083333333333333,
+              "delta_h": -0.9191666666666667
+            },
+            "Lrig": {
+              "old_h": 1.0,
+              "new_h": 0.08083333333333333,
+              "delta_h": -0.9191666666666667
+            },
+            "Lsig": {
+              "old_h": 1.0,
+              "new_h": 0.08083333333333333,
+              "delta_h": -0.9191666666666667
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 1.0,
+              "new_h": 0.08083333333333333,
+              "delta_h": -0.9191666666666667
+            }
+          }
+        }
+      ]
+    },
+    "SR-W2": {
+      "config_sha256": "63c372bfaa28248667bc9eb45d71828ed6d28ee3b8322ef4de32bf1508cbe00f",
+      "rows": [
+        {
+          "activity": "MV-IN-B",
+          "old_h": 0.25,
+          "new_h": 0.07194444444444444,
+          "delta_h": -0.17805555555555558,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MV-IN-B.MOVE-0",
+              "source": "PRE-OUT.PRODUCT-1.BOTTOM",
+              "target": "J2",
+              "entity": "PRODUCT-1.BOTTOM",
+              "horizontal_m": 10,
+              "vertical_m": 4.6,
+              "travel_h": 0.011944444444444443,
+              "handling_h": 0.06,
+              "total_h": 0.07194444444444444,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            },
+            "Lrig": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            },
+            "Lsig": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            }
+          }
+        },
+        {
+          "activity": "MV-B",
+          "old_h": 0.25,
+          "new_h": 0.0761111111111111,
+          "delta_h": -0.1738888888888889,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MV-B.MOVE-0",
+              "source": "J2",
+              "target": "BUF.PRODUCT-1.BOTTOM",
+              "entity": "PRODUCT-1.BOTTOM",
+              "horizontal_m": 11.5,
+              "vertical_m": 6.999999999999999,
+              "travel_h": 0.01611111111111111,
+              "handling_h": 0.06,
+              "total_h": 0.0761111111111111,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            },
+            "Lrig": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            },
+            "Lsig": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            }
+          }
+        },
+        {
+          "activity": "MV-IN-T",
+          "old_h": 0.25,
+          "new_h": 0.07194444444444444,
+          "delta_h": -0.17805555555555558,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MV-IN-T.MOVE-0",
+              "source": "PRE-OUT.PRODUCT-1.TOP",
+              "target": "J2",
+              "entity": "PRODUCT-1.TOP",
+              "horizontal_m": 10,
+              "vertical_m": 4.6,
+              "travel_h": 0.011944444444444443,
+              "handling_h": 0.06,
+              "total_h": 0.07194444444444444,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            },
+            "Lrig": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            },
+            "Lsig": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 0.25,
+              "new_h": 0.07194444444444444,
+              "delta_h": -0.17805555555555558
+            }
+          }
+        },
+        {
+          "activity": "MV-T",
+          "old_h": 0.25,
+          "new_h": 0.0761111111111111,
+          "delta_h": -0.1738888888888889,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MV-T.MOVE-0",
+              "source": "J2",
+              "target": "BUF.PRODUCT-1.TOP",
+              "entity": "PRODUCT-1.TOP",
+              "horizontal_m": 11.5,
+              "vertical_m": 6.999999999999999,
+              "travel_h": 0.01611111111111111,
+              "handling_h": 0.06,
+              "total_h": 0.0761111111111111,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            },
+            "Lrig": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            },
+            "Lsig": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 0.25,
+              "new_h": 0.0761111111111111,
+              "delta_h": -0.1738888888888889
+            }
+          }
+        },
+        {
+          "activity": "JOIN-IN",
+          "old_h": 1.0,
+          "new_h": 0.23538888888888887,
+          "delta_h": -0.7646111111111111,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.JOIN-IN.MOVE-0",
+              "source": "BUF.PRODUCT-1.BOTTOM",
+              "target": "J3.PRODUCT-1.BOTTOM",
+              "entity": "PRODUCT-1.BOTTOM",
+              "horizontal_m": 11.5,
+              "vertical_m": 6.999999999999999,
+              "travel_h": 0.01611111111111111,
+              "handling_h": 0.06,
+              "total_h": 0.0761111111111111,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            },
+            {
+              "operation": "PRODUCT-1.JOIN-IN.MOVE-1",
+              "source": "PRE-OUT.PRODUCT-1.COLUMNS",
+              "target": "J3.PRODUCT-1.COLUMNS",
+              "entity": "PRODUCT-1.COLUMNS",
+              "horizontal_m": 32.7,
+              "vertical_m": 6.6,
+              "travel_h": 0.027333333333333334,
+              "handling_h": 0.06,
+              "total_h": 0.08733333333333333,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            },
+            {
+              "operation": "PRODUCT-1.JOIN-IN.MOVE-2",
+              "source": "BUF.PRODUCT-1.TOP",
+              "target": "J3.PRODUCT-1.TOP",
+              "entity": "PRODUCT-1.TOP",
+              "horizontal_m": 11.5,
+              "vertical_m": 3.999999999999999,
+              "travel_h": 0.011944444444444442,
+              "handling_h": 0.06,
+              "total_h": 0.07194444444444444,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 1.0,
+              "new_h": 0.23538888888888887,
+              "delta_h": -0.7646111111111111
+            },
+            "Lrig": {
+              "old_h": 1.0,
+              "new_h": 0.23538888888888887,
+              "delta_h": -0.7646111111111111
+            },
+            "Lsig": {
+              "old_h": 1.0,
+              "new_h": 0.23538888888888887,
+              "delta_h": -0.7646111111111111
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 1.0,
+              "new_h": 0.23538888888888887,
+              "delta_h": -0.7646111111111111
+            }
+          }
+        },
+        {
+          "activity": "MOVE-F",
+          "old_h": 1.0,
+          "new_h": 0.07638888888888888,
+          "delta_h": -0.9236111111111112,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MOVE-F.MOVE-0",
+              "source": "J3",
+              "target": "F1",
+              "entity": "PRODUCT-1",
+              "horizontal_m": 12,
+              "vertical_m": 6.999999999999999,
+              "travel_h": 0.016388888888888887,
+              "handling_h": 0.06,
+              "total_h": 0.07638888888888888,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 1.0,
+              "new_h": 0.07638888888888888,
+              "delta_h": -0.9236111111111112
+            },
+            "Lrig": {
+              "old_h": 1.0,
+              "new_h": 0.07638888888888888,
+              "delta_h": -0.9236111111111112
+            },
+            "Lsig": {
+              "old_h": 1.0,
+              "new_h": 0.07638888888888888,
+              "delta_h": -0.9236111111111112
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 1.0,
+              "new_h": 0.07638888888888888,
+              "delta_h": -0.9236111111111112
+            }
+          }
+        },
+        {
+          "activity": "MOVE-OUT",
+          "old_h": 1.0,
+          "new_h": 0.08083333333333333,
+          "delta_h": -0.9191666666666667,
+          "legs": [
+            {
+              "operation": "PRODUCT-1.MOVE-OUT.MOVE-0",
+              "source": "F1",
+              "target": "OUT1",
+              "entity": "PRODUCT-1",
+              "horizontal_m": 20,
+              "vertical_m": 6.999999999999999,
+              "travel_h": 0.020833333333333332,
+              "handling_h": 0.06,
+              "total_h": 0.08083333333333333,
+              "people": [
+                "Lop",
+                "Lrig",
+                "Lsig"
+              ],
+              "equipment": [
+                "CR1"
+              ]
+            }
+          ],
+          "people": {
+            "Lop": {
+              "old_h": 1.0,
+              "new_h": 0.08083333333333333,
+              "delta_h": -0.9191666666666667
+            },
+            "Lrig": {
+              "old_h": 1.0,
+              "new_h": 0.08083333333333333,
+              "delta_h": -0.9191666666666667
+            },
+            "Lsig": {
+              "old_h": 1.0,
+              "new_h": 0.08083333333333333,
+              "delta_h": -0.9191666666666667
+            }
+          },
+          "equipment": {
+            "CR1": {
+              "old_h": 1.0,
+              "new_h": 0.08083333333333333,
+              "delta_h": -0.9191666666666667
+            }
+          }
+        }
+      ]
+    }
+  },
+  "generator_sha256": "f5fc22b5e8ff46a4313e3c4862ec3231da2b12649523cabe8f4cc7c492eaa970"
+}

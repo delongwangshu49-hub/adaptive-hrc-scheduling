@@ -1,0 +1,8 @@
+{
+  "commands": [],
+  "config_id": "S15-1-SR-W1",
+  "observation_id": "OBS-1",
+  "reason": "QUALIFICATION_HOLD",
+  "schema_version": "S15-PROD-1.0",
+  "status": "WAIT"
+}

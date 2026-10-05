@@ -1,0 +1,24 @@
+{
+  "activity_id": "PRODUCT-1.KIT",
+  "attempt": 0,
+  "config_id": "S15-1-SR-W1",
+  "config_sha256": "c14cf683b699d12ddd0816d647bef60dc792e3d26cab6f2f70eb01e060829a0d",
+  "epoch": 0,
+  "expected_revision": 0,
+  "id": "EXAMPLE-HOLD",
+  "issued_sim_h": 0,
+  "mode_id": "H-team",
+  "operation_id": "PRODUCT-1.KIT.U1",
+  "product_id": "PRODUCT-1",
+  "resume_of": null,
+  "roles": [
+    {
+      "person_id": "P1",
+      "role_id": "P1"
+    }
+  ],
+  "run_id": "RUN-S15",
+  "schema_version": "S15-PROD-1.0",
+  "service": null,
+  "unit_index": 0
+}

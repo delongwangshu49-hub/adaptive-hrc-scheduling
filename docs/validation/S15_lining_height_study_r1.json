@@ -1,0 +1,17 @@
+{
+  "purpose": "STATIC_PROPOSAL_GEOMETRY_ONLY_NO_EXECUTOR",
+  "current_height_limit_m": 2.4,
+  "candidate_height_limit_m": 2.45,
+  "groups": [
+    {
+      "group": "PRODUCT-1.GROUP-LINING",
+      "routes_checked": 36,
+      "errors": [],
+      "max_contact_height_m": 2.444,
+      "material_top_m": 2.794
+    }
+  ],
+  "current_contract_rejection": "SUPPORT_MOTION_BOUND",
+  "proposal_id": "S15-SUPPORT-HEIGHT-20261005-r1",
+  "status": "PROPOSAL_ONLY_NOT_EXECUTION_VERIFIED"
+}

@@ -1,0 +1,942 @@
+{
+  "record_id": "S15-SH-WITNESS-20261005-r1",
+  "decision_id": "S15-SH-APPROVAL-001",
+  "proposal_id": "S15-SUPPORT-HEIGHT-20261005-r1",
+  "proposal_sha256": "587404cce4bc3f8a65fb9770b7f9af1d8be61e090809429e06d788154891a93c",
+  "scope": "separate empty-rack SH01 mechanism fixtures; no production-chain verdict",
+  "S15_complete": false,
+  "industrial_qualification": "UNKNOWN",
+  "human_reach": "NOT_VALIDATED",
+  "cases": [
+    {
+      "variant": "SR-W1",
+      "root": "MEP-RECEIVE",
+      "config_sha256": "4e32c35ed0ce7f8860d36d908064000da34d04c7a9443e2915bf26ec8ab74cd6",
+      "changes": [
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-COAT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-TEST-SET-WASTEWATER",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-WPROOF-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-PAINT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-TEST-SET-AUXILIARY",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-MEP-E-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-MEP-P-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-PACK-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-FIT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-EXT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-LINING-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-TILE-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-FLOOR-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 2.305,
+      "status": "PASS",
+      "lining_max_contact_height_m": 2.444
+    },
+    {
+      "variant": "SR-W1",
+      "root": "MEP-STORE",
+      "config_sha256": "6bc646073bcc03caa6152a419423d69ec48c41c3c921906705919bb6e9c56207",
+      "changes": [
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-COAT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-TEST-SET-WASTEWATER",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-WPROOF-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-PAINT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-TEST-SET-AUXILIARY",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-MEP-E-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-MEP-P-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-PACK-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-FIT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-EXT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-LINING-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-TILE-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-FLOOR-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 2.305,
+      "status": "PASS",
+      "lining_max_contact_height_m": 2.444
+    },
+    {
+      "variant": "SR-W1",
+      "root": "KIT",
+      "config_sha256": "d842c31a84c88c14be6a8e202240c8b689ef0dacbe769399dc9cdeff8a051401",
+      "changes": [
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-COAT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-TEST-SET-WASTEWATER",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-WPROOF-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-PAINT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-TEST-SET-AUXILIARY",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-MEP-E-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-MEP-P-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-PACK-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-FIT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-EXT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-LINING-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-TILE-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-FLOOR-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 2.305,
+      "status": "PASS",
+      "lining_max_contact_height_m": 2.444
+    },
+    {
+      "variant": "SR-W1",
+      "root": "F1-KIT",
+      "config_sha256": "c2407f01334a93f0e318bcf11fad57e1f12b22657e834514f5c8a305c7618fd8",
+      "changes": [
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-COAT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-TEST-SET-WASTEWATER",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-WPROOF-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-PAINT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-TEST-SET-AUXILIARY",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-MEP-E-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-MEP-P-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-PACK-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-FIT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-EXT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-LINING-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-TILE-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-FLOOR-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 2.305,
+      "status": "PASS",
+      "lining_max_contact_height_m": 2.444
+    },
+    {
+      "variant": "SR-W1",
+      "root": "J3",
+      "config_sha256": "0b141c5504fbae6db1a89cbba88f6fba576117e8b77194a82814230d16c9a7ac",
+      "changes": [
+        {
+          "layout": "SUPPORT-J3-PRODUCT-1.GROUP-COAT-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 0.06499999999999999,
+      "status": "PASS",
+      "lining_max_contact_height_m": null
+    },
+    {
+      "variant": "SR-W1",
+      "root": "F1",
+      "config_sha256": "48b1f368b739b9cb9e7ffa3de4a8c920d5954852388f206db079d8f9a9b42891",
+      "changes": [
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-TEST-SET-WASTEWATER",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-WPROOF-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-PAINT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-TEST-SET-AUXILIARY",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-MEP-E-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-MEP-P-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-PACK-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-FIT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-EXT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-LINING-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-TILE-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-FLOOR-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 2.225,
+      "status": "PASS",
+      "lining_max_contact_height_m": 2.444
+    },
+    {
+      "variant": "SR-W2",
+      "root": "MEP-RECEIVE",
+      "config_sha256": "3d5ddd36b1d228eec8537a1cc9758446ca9f8d735f7be56afd19a8816a65563f",
+      "changes": [
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-COAT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-TEST-SET-WASTEWATER",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-WPROOF-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-PAINT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-TEST-SET-AUXILIARY",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-PACK-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-MEP-E-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-MEP-P-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-EXT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-FIT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-LINING-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-TILE-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-RECEIVE-PRODUCT-1.GROUP-FLOOR-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 2.545,
+      "status": "PASS",
+      "lining_max_contact_height_m": 2.444
+    },
+    {
+      "variant": "SR-W2",
+      "root": "MEP-STORE",
+      "config_sha256": "2063be1ee33c3d3b0b8d3cbb0810d613f1f263dc1390512918a1df255ea2562d",
+      "changes": [
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-COAT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-TEST-SET-WASTEWATER",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-WPROOF-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-PAINT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-TEST-SET-AUXILIARY",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-PACK-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-MEP-E-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-MEP-P-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-EXT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-FIT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-LINING-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-TILE-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-MEP-STORE-PRODUCT-1.GROUP-FLOOR-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 2.545,
+      "status": "PASS",
+      "lining_max_contact_height_m": 2.444
+    },
+    {
+      "variant": "SR-W2",
+      "root": "KIT",
+      "config_sha256": "cff9bd57024789eeed80ba95bf6238af5126eabb3953ebfc89b830b34d4f4097",
+      "changes": [
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-COAT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-TEST-SET-WASTEWATER",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-WPROOF-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-PAINT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-TEST-SET-AUXILIARY",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-PACK-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-MEP-E-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-MEP-P-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-EXT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-FIT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-LINING-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-TILE-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-KIT-PRODUCT-1.GROUP-FLOOR-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 2.545,
+      "status": "PASS",
+      "lining_max_contact_height_m": 2.444
+    },
+    {
+      "variant": "SR-W2",
+      "root": "F1-KIT",
+      "config_sha256": "82619a671726bf6c4fa1a07b7d3b7f1147080cdfab613803a933ba1716458e8c",
+      "changes": [
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-COAT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-TEST-SET-WASTEWATER",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-WPROOF-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-PAINT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-TEST-SET-AUXILIARY",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-PACK-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-MEP-E-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-MEP-P-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-EXT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-FIT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-LINING-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-TILE-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-KIT-PRODUCT-1.GROUP-FLOOR-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 2.545,
+      "status": "PASS",
+      "lining_max_contact_height_m": 2.444
+    },
+    {
+      "variant": "SR-W2",
+      "root": "J3",
+      "config_sha256": "f4df6ecd089c9715bb2829038914f9b539213b3bb84d1414f4c0c16186cb3a71",
+      "changes": [
+        {
+          "layout": "SUPPORT-J3-PRODUCT-1.GROUP-COAT-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 0.06499999999999999,
+      "status": "PASS",
+      "lining_max_contact_height_m": null
+    },
+    {
+      "variant": "SR-W2",
+      "root": "F1",
+      "config_sha256": "90498caf8fd874a749f5307578671ac534ea42e3270101d516bfd80e222fee43",
+      "changes": [
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-TEST-SET-WASTEWATER",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-WPROOF-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-PAINT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-TEST-SET-AUXILIARY",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-PACK-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-MEP-E-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-MEP-P-PRODUCT",
+          "status": "REUSED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-EXT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-FIT-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-LINING-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-TILE-PRODUCT",
+          "status": "COMPLETED"
+        },
+        {
+          "layout": "SUPPORT-F1-PRODUCT-1.GROUP-FLOOR-PRODUCT",
+          "status": "COMPLETED"
+        }
+      ],
+      "verified_sample_resume": true,
+      "last_verified_h": 0.0205,
+      "audit": "PASS",
+      "findings": [],
+      "time_h": 2.465,
+      "status": "PASS",
+      "lining_max_contact_height_m": 2.444
+    }
+  ],
+  "source_sha256": {
+    "src/adaptive_hrc_scheduling/production_backend.py": "86e047b60f9fdd215a3bb9d25f8575e7061ba68f6f0fe1d86a490dd5ac78f210",
+    "src/adaptive_hrc_scheduling/production_checker.py": "7bbd101f9a6eb86aa6a1455e2d34b65f677bba3dc5b2f6186cc6680bab29160a",
+    "src/adaptive_hrc_scheduling/production_external.py": "6b6fb334533c4eb3731e6310f412a3d1ecc9585a9fa3f5844a919ee605d81e77",
+    "src/adaptive_hrc_scheduling/production_geometry.py": "9b725eec04d9eba214ab2e14192bcae33140eb3589957867457541ca0f73aa80",
+    "src/adaptive_hrc_scheduling/production_mapping.py": "064c1f66e83f646e97563cf15c8c1b4d0d3a4c448d348754057f1b922130ef41",
+    "src/adaptive_hrc_scheduling/production_navigation.py": "e787bed241e57f649dad0d2b0b7287be8eca28b39e723564af3a3637b41205f5",
+    "src/adaptive_hrc_scheduling/production_supports.py": "21b1ee8ae66d026512b9ca12768b17f818750b0e56d9a56cbe9c33be89a2cb32",
+    "src/adaptive_hrc_scheduling/backends/production_isaac_adapter.py": "bb0ad3617f7fb2f33d2e2284c8a33e87ba5db52c8e19cb50bb9a11d88e51cd66",
+    "src/adaptive_hrc_scheduling/contracts/production.py": "f0b0de210f4f0e5cb9b13778d2dc9295e5d3c187aa45151773aeed0da1967798",
+    "src/adaptive_hrc_scheduling/control/production_ledger.py": "91fe3c92cedc604166ea23bd3c3dccb675be707ab0996327301d6f8b1e01d377",
+    "src/adaptive_hrc_scheduling/control/production_loop.py": "116763c2cf0c3e4bac5901dd4b5c4c3eb23d914498e7ea49ef2b7bd458c33e99",
+    "src/adaptive_hrc_scheduling/domain/production.py": "0923678949f20c815ef762d7fbe5e9bb4b17de2d4b97400ab10b48a41438339c",
+    "src/adaptive_hrc_scheduling/planning/production.py": "da11097d17893220e439c3188c72b9367dc9012b047ec009e1cad25b0f3fec89",
+    "sim/isaac/scene/production_port.py": "9256abbd163067173fefd476ebcbc2d0a6238eb50d0d00b1e8baed50f818feb5",
+    "sim/isaac/scene/production_receiver.py": "4dd5b146c2edfff86e975c032fb9b80265d1bbb85350b6e615f0915c79e4c13b",
+    "sim/isaac/scene/production_support_port.py": "319aed476969e4df108d36c5f743003c9b83a078200f330a33d98e3f06d098a9",
+    "scripts/build_production_contracts.py": "106f01cf167dde267f4623ef1c046481a2fc42010cf4b8fb89afac6847a75499",
+    "scripts/verify_production_supports.py": "b386920e86080f21747ad2f66c35b727ff935bcf65a8bcca3c9c61f6d824a5a5"
+  },
+  "parity": {
+    "status": "PASS",
+    "comparator_sha256": "278ee46a29e92fb5a2185aa4ba2233e6528360b744b2f375dc8a4d46355d5648",
+    "cases": [
+      {
+        "case": "SR-W1-F1",
+        "events_light": 244,
+        "events_isaac": 244,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      },
+      {
+        "case": "SR-W1-F1-KIT",
+        "events_light": 254,
+        "events_isaac": 254,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      },
+      {
+        "case": "SR-W1-J3",
+        "events_light": 12,
+        "events_isaac": 12,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      },
+      {
+        "case": "SR-W1-KIT",
+        "events_light": 254,
+        "events_isaac": 254,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      },
+      {
+        "case": "SR-W1-MEP-RECEIVE",
+        "events_light": 254,
+        "events_isaac": 254,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      },
+      {
+        "case": "SR-W1-MEP-STORE",
+        "events_light": 254,
+        "events_isaac": 254,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      },
+      {
+        "case": "SR-W2-F1",
+        "events_light": 270,
+        "events_isaac": 270,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      },
+      {
+        "case": "SR-W2-F1-KIT",
+        "events_light": 280,
+        "events_isaac": 280,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      },
+      {
+        "case": "SR-W2-J3",
+        "events_light": 12,
+        "events_isaac": 12,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      },
+      {
+        "case": "SR-W2-KIT",
+        "events_light": 280,
+        "events_isaac": 280,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      },
+      {
+        "case": "SR-W2-MEP-RECEIVE",
+        "events_light": 280,
+        "events_isaac": 280,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      },
+      {
+        "case": "SR-W2-MEP-STORE",
+        "events_light": 280,
+        "events_isaac": 280,
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "status": "PASS"
+      }
+    ],
+    "findings": [],
+    "finding_count": 0,
+    "maximum_differences": {
+      "time_h": 8.881784197001252e-16,
+      "geometry_m": 9.947598300641403e-14,
+      "other_numeric": 1.2212453270876722e-15
+    },
+    "scope": "SC empty-rack mechanism fixtures only",
+    "exclusions": [
+      "run prefix",
+      "readback producer/evidence identifier",
+      "wall clock",
+      "byte digest of independently audited commands; command fields compared"
+    ],
+    "production_chain_verified": false,
+    "rendered_frame_validation": false
+  },
+  "process_exit": {
+    "supervisor_status": "PASSED",
+    "fatal_exception": false,
+    "report_status": "PASS",
+    "closed": true,
+    "forced_cleanup": false,
+    "normal_process_exit": true,
+    "status": "PASSED"
+  },
+  "report_sha256": "771863c53178fee82e522ae12f1c16330e9115d8c8dd5ffbf65ad82dcac290d9",
+  "limits": {
+    "LINING_handoff_m": 2.45,
+    "other_groups_handoff_m": 2.4,
+    "lining_max_contact_m": 2.444,
+    "lining_max_material_top_m": 2.794,
+    "material_group_m": [
+      2.4,
+      2.4,
+      2.0
+    ],
+    "attachment_envelope_m": [
+      3.0,
+      2.4,
+      2.8
+    ],
+    "people": [
+      "P1",
+      "E1"
+    ],
+    "speed_max_m_s": 0.1,
+    "per_pair_h": 0.02,
+    "prepare_h": 0.02,
+    "verify_h": 0.02
+  },
+  "cpu_checkpoint": {
+    "scope": "fixed SH01 and row-precedence snapshot before later FIT layout edits",
+    "source_test_count": 549,
+    "wheel_test_count": 549,
+    "source_elapsed_s": 178.491,
+    "wheel_elapsed_s": 170.544,
+    "module_origin_audit": "PASS",
+    "results": [
+      {
+        "label": "source-tests",
+        "exit_code": 0,
+        "duration_s": 179.48499999998603
+      },
+      {
+        "label": "build",
+        "exit_code": 0,
+        "duration_s": 0.3279999999795109
+      },
+      {
+        "label": "venv",
+        "exit_code": 0,
+        "duration_s": 0.0470000000204891
+      },
+      {
+        "label": "install",
+        "exit_code": 0,
+        "duration_s": 0.3440000000409782
+      },
+      {
+        "label": "wheel-tests",
+        "exit_code": 0,
+        "duration_s": 171.31299999996554
+      },
+      {
+        "label": "dependency-check",
+        "exit_code": 0,
+        "duration_s": 0.030999999959021807
+      }
+    ],
+    "source_manifest_sha256": "76e9839b66dffccb5bdef8887758820fb441098834e54926e9d06631f7a5ca4f",
+    "distributions_sha256": {
+      ".gitignore": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+      "adaptive_hrc_scheduling-0.1.0-py3-none-any.whl": "9028810df2af4d7c91a5e040e22a2a23f4bd820c23c96c255f8010e28d42e171",
+      "adaptive_hrc_scheduling-0.1.0.tar.gz": "1d19648fdf4bad228de464e6816571d215ae9b7580851dd0ba27c88e287538f6"
+    }
+  }
+}

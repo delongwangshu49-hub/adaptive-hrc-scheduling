@@ -1,5 +1,11 @@
 # 规范化提示词记录
 
+2026-10-04现行补充（PR116 / LOG130）：负责人已批准 S15-SUPPORT-20261004-r1 的 SC01—SC04，决策 S15-SC-APPROVAL-001，要求实施并验证支承重配。按提案限定附件范围、P1/E1人员和新增工时推进；RP01—RP08批准继续有效，不再等待本项裁定。S15仍IMPLEMENTATION_IN_PROGRESS；成果验收、Git发布及S16启动未获授权。原提案及旧待审文字保留历史时点。
+
+2026-10-04现行决定（PR115 / LOG127）：负责人已批准S15-RECIPE-20261004-r1的RP01—RP08及配套JSON确切数值，决策S15-RP-APPROVAL-001。允许按表限定扩展D01/D03并继续S15本地实现与验证，不再等待配方批准。D02/G2、D05/D06、HR禁用及其余冻结边界保持；成果验收与确切发布另审，S16—S28未启动。以下旧待决定文字保留历史时点。
+
+2026-10-04现行状态（PR112—PR114 / LOG124—LOG126）：S14 r2已实际APPROVED / PUBLISHED，提交`a5105410b248fa95655c521a4bb07ab3142e93a1`、标签`step-S14-r2`，两平台CI成功；人工GUI体验验收未单独记录。S15本地实施已获授权；负责人现要求先提交具体A/E研究配方裁定。S15当前SPECIFICATION_DECISION_PENDING，配方未获批准，完整PRODUCTION保持阻断；成果验收、确切发布另审，S16—S28未启动。旧状态保留历史时点。
+
 2026-10-04现行授权（PR109—PR111 / LOG120—LOG122）：S14 r1已按确切批准发布，提交`d91d13e5aaf964b79aeb36fd0b035cfd566ce36f`、标签`step-S14-r1`，两平台CI成功。发布后审阅确认五项逻辑问题；负责人已批准这些问题及必要回归、说明、治理和新审阅包的有限本地修复。沿用main/现有目录，不建分支或worktree；r2另行验收和批准发布，不启动S15—S28。以下旧状态保留各自历史时点。
 
 2026-10-04现行决定（PR108 / LOG118）：负责人已批准S14-CONTRACT-20261004-r1的ML01—ML12限定修订，决策S14-ML-APPROVAL-001。允许按表修改D01/D03/D04所列项并继续S14共用契约、验证及适配；通过前置出口后进入适配主体，不再等待本表批准。D02/G2与HR禁用、D05顺序、D06元数据及其余冻结边界保持。S15—S28及新快照Git/远端写入仍未授权。以下待决定文字保留其历史时点。
@@ -3769,13 +3775,26 @@ PR090随后明确批准上述三类问题的有限本地修复，含必要回归
           "branch": "main",
           "tag": "step-S13-r3",
           "human_experience_acceptance": "NOT_SEPARATELY_RECORDED",
-          "permitted_remote_actions": ["PUSH_EXACT_REVIEWED_COMMIT", "CREATE_AND_PUSH_NEW_ANNOTATED_TAG", "VERIFY_REMOTE_AND_CI"]
+          "permitted_remote_actions": [
+            "PUSH_EXACT_REVIEWED_COMMIT",
+            "CREATE_AND_PUSH_NEW_ANNOTATED_TAG",
+            "VERIFY_REMOTE_AND_CI"
+          ]
         }
       },
-      "human_contribution": ["APPROVED_EXACT_S13_R3_COMMIT_AND_UPLOAD"],
-      "assistant_support": ["VERIFIED_EXACT_PACKET_AND_PUBLIC_BOUNDARY", "COMMITTED_AND_PUSHED_APPROVED_SNAPSHOT", "VERIFIED_REMOTE_OBJECTS_AND_SUCCESSFUL_CI"],
+      "human_contribution": [
+        "APPROVED_EXACT_S13_R3_COMMIT_AND_UPLOAD"
+      ],
+      "assistant_support": [
+        "VERIFIED_EXACT_PACKET_AND_PUBLIC_BOUNDARY",
+        "COMMITTED_AND_PUSHED_APPROVED_SNAPSHOT",
+        "VERIFIED_REMOTE_OBJECTS_AND_SUCCESSFUL_CI"
+      ],
       "resolution": "APPROVED_AND_PUBLISHED_RECEIPT_BACKFILLED",
-      "evidence_refs": ["docs/steps/S13.md", "PROGRESS_LOG.md"],
+      "evidence_refs": [
+        "docs/steps/S13.md",
+        "PROGRESS_LOG.md"
+      ],
       "limit": "EXACT_S13_R3_ONLY_NO_NEW_SNAPSHOT_PUBLICATION_OR_S14_START"
     },
     {
@@ -3787,16 +3806,32 @@ PR090随后明确批准上述三类问题的有限本地修复，含必要回归
         "target": "S13",
         "parameters": {
           "step_id": "S13",
-          "covered_stages": ["S13-1", "S13-2", "S13-3", "S13-4"],
+          "covered_stages": [
+            "S13-1",
+            "S13-2",
+            "S13-3",
+            "S13-4"
+          ],
           "review_all_delivered_scope": true,
           "check_logical_defects": true,
           "permitted_remote_actions": []
         }
       },
-      "human_contribution": ["REQUIRED_FULL_S13_COMPLETION_AND_LOGIC_AUDIT"],
-      "assistant_support": ["CROSS_CHECKED_AUTHORIZATIONS_DELIVERABLES_IMPLEMENTATION_AND_EVIDENCE", "RAN_BUILDING_REGRESSION_AND_TARGETED_COUNTEREXAMPLES", "RECORDED_OPEN_FINDINGS_WITH_REPRODUCTION_AND_REPAIR_ACCEPTANCE_CRITERIA"],
+      "human_contribution": [
+        "REQUIRED_FULL_S13_COMPLETION_AND_LOGIC_AUDIT"
+      ],
+      "assistant_support": [
+        "CROSS_CHECKED_AUTHORIZATIONS_DELIVERABLES_IMPLEMENTATION_AND_EVIDENCE",
+        "RAN_BUILDING_REGRESSION_AND_TARGETED_COUNTEREXAMPLES",
+        "RECORDED_OPEN_FINDINGS_WITH_REPRODUCTION_AND_REPAIR_ACCEPTANCE_CRITERIA"
+      ],
       "resolution": "REVIEW_COMPLETED_WITH_OPEN_FINDINGS",
-      "evidence_refs": ["docs/steps/S13.md", "PROGRESS_LOG.md", "sim/isaac/scene/target_scene.py", "sim/isaac/scene/target_trials.py"],
+      "evidence_refs": [
+        "docs/steps/S13.md",
+        "PROGRESS_LOG.md",
+        "sim/isaac/scene/target_scene.py",
+        "sim/isaac/scene/target_trials.py"
+      ],
       "limit": "REVIEW_AND_NECESSARY_LOCAL_GOVERNANCE_ONLY_NO_IMPLEMENTATION_REPAIR_GIT_WRITE_OR_S14_START"
     },
     {
@@ -4050,6 +4085,280 @@ PR090随后明确批准上述三类问题的有限本地修复，含必要回归
         "PROGRESS_LOG.md"
       ],
       "limit": "NO_S15_NO_NEW_BRANCH_OR_WORKTREE_NO_NEW_PUBLICATION_PERMISSION"
+    },
+    {
+      "id": "PR112",
+      "date": "2026-10-04",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_STEP_PUBLICATION",
+        "target": "S14",
+        "parameters": {
+          "step_id": "S14",
+          "packet_id": "S14-20261004-r2",
+          "decision": "APPROVE_STEP_PUBLICATION",
+          "file_count": 22,
+          "branch": "main",
+          "tag": "step-S14-r2",
+          "permitted_remote_actions": [
+            "COMMIT_EXACT_FILES",
+            "CREATE_TAG",
+            "PUSH_MAIN_AND_TAG",
+            "VERIFY_REMOTE_AND_CI"
+          ]
+        }
+      },
+      "human_contribution": [
+        "APPROVED_EXACT_SNAPSHOT_PUBLICATION"
+      ],
+      "assistant_support": [
+        "VERIFIED_AND_PUBLISHED_APPROVED_SNAPSHOT"
+      ],
+      "resolution": "APPROVED_AND_PUBLISHED",
+      "evidence_refs": [
+        "docs/steps/S14.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "R2_ONLY_NO_GUI_ACCEPTANCE_INFERENCE"
+    },
+    {
+      "id": "PR113",
+      "date": "2026-10-04",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "START_LOCAL_STEP",
+        "target": "S15",
+        "parameters": {
+          "step_id": "S15",
+          "decision": "IMPLEMENT_VERIFY_AND_PREPARE_REVIEW",
+          "chat": "S15",
+          "branch": "main",
+          "new_branch": false,
+          "new_worktree": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "AUTHORIZED_S15_LOCAL_IMPLEMENTATION"
+      ],
+      "assistant_support": [
+        "CHECKED_HANDOFF_AND_STARTED_S15"
+      ],
+      "resolution": "LOCAL_IMPLEMENTATION_AUTHORIZED",
+      "evidence_refs": [
+        "docs/steps/S15.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_S16_NO_BLANKET_UNFREEZE_NO_NEW_PUBLICATION_PERMISSION"
+    },
+    {
+      "id": "PR114",
+      "date": "2026-10-04",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "REQUEST_CONCRETE_RESEARCH_RECIPE_FOR_DECISION",
+        "target": "S15",
+        "parameters": {
+          "step_id": "S15",
+          "proposal_id": "S15-RECIPE-20261004-r1",
+          "decision": "PREPARE_A_E_RECIPE_BEFORE_DEPENDENT_IMPLEMENTATION",
+          "recipe_approved": false,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "SELECTED_CONCRETE_RECIPE_REVIEW_BEFORE_IMPLEMENTATION"
+      ],
+      "assistant_support": [
+        "IDENTIFIED_UNDEFINED_BOM_LOGISTICS_AND_PREPARED_EXPLICIT_PROPOSAL"
+      ],
+      "resolution": "PROPOSAL_PREPARED_DECISION_PENDING",
+      "evidence_refs": [
+        "docs/model/S15_recipe_proposal_r1.md",
+        "docs/model/S15_recipe_proposal_r1.json",
+        "docs/steps/S15.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_RECIPE_APPROVAL_NO_PRODUCTION_PROMOTION_NO_PUBLICATION"
+    },
+    {
+      "id": "PR115",
+      "date": "2026-10-04",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_LIMITED_RESEARCH_SPECIFICATION",
+        "target": "S15",
+        "parameters": {
+          "step_id": "S15",
+          "proposal_id": "S15-RECIPE-20261004-r1",
+          "decision_id": "S15-RP-APPROVAL-001",
+          "approved_items": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04",
+            "RP05",
+            "RP06",
+            "RP07",
+            "RP08"
+          ],
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "APPROVED_RP01_RP08_EXACT_RESEARCH_RECIPE"
+      ],
+      "assistant_support": [
+        "BOUND_APPROVAL_TO_REVIEWED_BYTES_AND_CONTINUED_IMPLEMENTATION"
+      ],
+      "resolution": "RECIPE_APPROVED_LOCAL_IMPLEMENTATION_CONTINUES",
+      "evidence_refs": [
+        "docs/model/S15_recipe_proposal_r1.md",
+        "docs/model/S15_recipe_proposal_r1.json",
+        "docs/steps/S15.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_BLANKET_UNFREEZE_NO_HR_NO_S16_NO_PUBLICATION_PERMISSION"
+    },
+    {
+      "id": "PR116",
+      "date": "2026-10-04",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_LIMITED_SUPPORT_RECONFIGURATION",
+        "target": "S15",
+        "parameters": {
+          "proposal_id": "S15-SUPPORT-20261004-r1",
+          "decision_id": "S15-SC-APPROVAL-001",
+          "approved_items": [
+            "SC01",
+            "SC02",
+            "SC03",
+            "SC04"
+          ],
+          "proposal_sha256": "ffab6862a5d4000103b3bef091081b7d7e732050d4304075782b719670301f43",
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "APPROVED_SC01_SC04_AND_REQUESTED_IMPLEMENTATION_VALIDATION"
+      ],
+      "assistant_support": [
+        "PREPARED_ACTUAL_STATIC_USD_CONFLICT_AUDIT_AND_BOUNDED_AE_PROPOSAL"
+      ],
+      "resolution": "SUPPORT_CHANGE_APPROVED_LOCAL_IMPLEMENTATION_CONTINUES",
+      "evidence_refs": [
+        "docs\\model\\S15_support_change_proposal_r1.md",
+        "docs/validation/S15_support_conflicts_r1.json",
+        "docs/steps/S15.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_INDUSTRIAL_QUALIFICATION_NO_S15_ACCEPTANCE_NO_S16_NO_PUBLICATION"
+    },
+    {
+      "id": "PR117",
+      "date": "2026-10-05",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "CREATE_LOCAL_CHAT_AND_CONTINUE_AUTHORIZED_STEP",
+        "target": "S15",
+        "parameters": {
+          "chat_title": "S15-2",
+          "reuse_current_directory": true,
+          "branch": "main",
+          "create_branch": false,
+          "create_worktree": false,
+          "complete_remaining_local_work": true,
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "REQUESTED_NEW_CHAT_HANDOFF_AND_COMPLETION_OF_REMAINING_S15_WORK"
+      ],
+      "assistant_support": [
+        "PREPARED_SOURCE_BOUND_STATUS_BLOCKERS_EVIDENCE_AND_CONTINUATION_HANDOFF"
+      ],
+      "resolution": "AUTHORIZED_HANDOFF_AND_CONTINUATION",
+      "evidence_refs": [
+        "docs/steps/S15.md",
+        "docs/validation/S15_support_reconfiguration_r2.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_S15_ACCEPTANCE_NO_PUBLICATION_NO_S16_NO_BRANCH_OR_WORKTREE"
+    },
+    {
+      "id": "PR118",
+      "date": "2026-10-05",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_LIMITED_SUPPORT_HEIGHT_REVISION",
+        "target": "S15",
+        "parameters": {
+          "proposal_id": "S15-SUPPORT-HEIGHT-20261005-r1",
+          "decision_id": "S15-SH-APPROVAL-001",
+          "date": "2026-10-05",
+          "approved_items": [
+            "SH01"
+          ],
+          "decision": "APPROVED_LOCAL_IMPLEMENTATION",
+          "proposal_sha256": "587404cce4bc3f8a65fb9770b7f9af1d8be61e090809429e06d788154891a93c",
+          "scope": "LINING support handoff height <=2.45m only; all other approved boundaries unchanged",
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "APPROVED_SH01_LINING_HEIGHT_LIMIT"
+      ],
+      "assistant_support": [
+        "PREPARED_BOUNDED_GEOMETRY_PROPOSAL_AND_CONTINUED_LOCAL_IMPLEMENTATION"
+      ],
+      "resolution": "SH01_APPROVED_LOCAL_IMPLEMENTATION_CONTINUES",
+      "evidence_refs": [
+        "docs/model/S15_support_height_proposal_r1.md",
+        "docs/steps/S15.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_OTHER_UNFREEZE_NO_ACCEPTANCE_NO_PUBLICATION_NO_S16"
+    },
+    {
+      "id": "PR119",
+      "date": "2026-10-05",
+      "record_type": "CURRENT_NORMALIZED",
+      "human_command": {
+        "operation": "APPROVE_LIMITED_SUPPLEMENTAL_WINDOW",
+        "target": "S15",
+        "parameters": {
+          "decision_id": "S15-WV-APPROVAL-001",
+          "date": "2026-10-05",
+          "approved_items": [
+            "WV01"
+          ],
+          "proposal_id": "S15-WINDOW-20261005-r1",
+          "decision": "APPROVED_LOCAL_IMPLEMENTATION",
+          "files_sha256": {
+            "docs/model/S15_window_proposal_r1.md": "a34f1b6c674a9cd5b0e57e5fa73510eac191c8650dec45c3d29d33fbe2ce0ca8",
+            "docs/model/S15_window_proposal_r1.json": "c65d4c3434824cd88f4a495a15c36003f51e8a70f5f9f8944cd79aa76a00c085",
+            "docs/validation/S15_three_window_r2.json": "5b4878c3b968f67fc469d94b9b758e4401a68c056caab64abf140040eadb3e30"
+          },
+          "permitted_remote_actions": []
+        }
+      },
+      "human_contribution": [
+        "APPROVED_WV01_EXACT_960_840_CASE"
+      ],
+      "assistant_support": [
+        "PREPARED_SOURCE_BOUND_CENSORED_EVIDENCE_AND_EXACT_PROPOSAL",
+        "IMPLEMENTED_GUARDED_WINDOW_AND_BACKPRESSURE_COVERAGE_CHECK"
+      ],
+      "resolution": "WV01_APPROVED_LOCAL_IMPLEMENTATION_CONTINUES",
+      "evidence_refs": [
+        "docs/model/S15_window_proposal_r1.md",
+        "docs/model/S15_window_proposal_r1.json",
+        "docs/validation/S15_three_window_r2.json",
+        "docs/steps/S15.md",
+        "PROGRESS_LOG.md"
+      ],
+      "limit": "NO_OTHER_UNFREEZE_NO_ACCEPTANCE_NO_PUBLICATION_NO_S16"
     }
   ]
 }

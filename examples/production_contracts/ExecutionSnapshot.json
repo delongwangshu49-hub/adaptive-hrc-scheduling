@@ -1,0 +1,6928 @@
+{
+  "config_id": "S15-1-SR-W1",
+  "config_sha256": "c14cf683b699d12ddd0816d647bef60dc792e3d26cab6f2f70eb01e060829a0d",
+  "epoch": 0,
+  "events": [
+    {
+      "activity_id": "PRODUCT-1.KIT",
+      "attempt": 0,
+      "command": {
+        "activity_id": "PRODUCT-1.KIT",
+        "attempt": 0,
+        "config_id": "S15-1-SR-W1",
+        "config_sha256": "c14cf683b699d12ddd0816d647bef60dc792e3d26cab6f2f70eb01e060829a0d",
+        "epoch": 0,
+        "expected_revision": 0,
+        "id": "EXAMPLE-HOLD",
+        "issued_sim_h": 0,
+        "mode_id": "H-team",
+        "operation_id": "PRODUCT-1.KIT.U1",
+        "product_id": "PRODUCT-1",
+        "resume_of": null,
+        "roles": [
+          {
+            "person_id": "P1",
+            "role_id": "P1"
+          }
+        ],
+        "run_id": "RUN-S15",
+        "schema_version": "S15-PROD-1.0",
+        "service": null,
+        "unit_index": 0
+      },
+      "command_id": "EXAMPLE-HOLD",
+      "command_sha256": "da894b2228e9baf8f7e5b1324de059110b3e97ffd92d5cfaba9000c9dc3bd168",
+      "config_id": "S15-1-SR-W1",
+      "config_sha256": "c14cf683b699d12ddd0816d647bef60dc792e3d26cab6f2f70eb01e060829a0d",
+      "epoch": 0,
+      "id": "EV-1",
+      "kind": "REJECTED",
+      "occurred_sim_h": 0,
+      "product_id": "PRODUCT-1",
+      "readback": null,
+      "reason": "KIT_INPUT_NOT_RELEASED",
+      "received_sim_h": 0,
+      "run_id": "RUN-S15",
+      "schema_version": "S15-PROD-1.0",
+      "sequence": 1,
+      "state": {
+        "completed": [],
+        "completion_times": [],
+        "failed_resources": [],
+        "gates": [],
+        "humans": [
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "P1",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "W1",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "W2",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "OP1",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "AF1",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "AF2",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "E1",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "PL1",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "T1",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "T2",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "C1",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "QA1",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "Lop",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "Lrig",
+            "rest_until_h": 0
+          },
+          {
+            "exposure": 0,
+            "fatigue": 0.2,
+            "peak": 0.2,
+            "person_id": "Lsig",
+            "rest_until_h": 0
+          }
+        ],
+        "intervals": [],
+        "lots": [
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.01.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.02.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.03",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.03.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.04",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.04.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.05",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.05.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.06",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.06.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.07",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.07.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.08",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.08.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.09",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.09.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.10",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.10.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.11",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.11.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.12",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.12.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.01.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.02.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.03",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.03.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.04",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.04.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.05",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.05.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.06",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.06.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.07",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.07.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.08",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.08.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.09",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.09.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.10",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.10.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.11",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.11.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.12",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-T.12.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-C.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-C.01.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-C.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-C.02.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-C.03",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-C.03.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-C.04",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-C.04.NET",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-COAT.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FL.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FL.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FL.03",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FL.04",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FL.05",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FL.06",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-F.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-F.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-F.03",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-F.04",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-F.05",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-L.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-L.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-L.03",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-L.04",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-L.05",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-C.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-C.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-C.03",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-C.04",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-X.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-X.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-X.03",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-X.04",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-X.05",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-D.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-D.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-W.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-P.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.EN-P.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-W.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-T.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-T.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-T.03",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-T.04",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-T.05",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-T.06",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-T.07",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-T.08",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-T.09",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WT-T.10",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ME-E.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ME-E.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ME-E.03",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ME-P.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ME-P.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ME-P.03",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ME-V.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ME-V.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-K.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-K.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-WC.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-B.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.FI-S.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.PR-I.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.PR-C.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.PR-L.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WATER.01",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WATER.02",
+            "identified": false,
+            "location": "SUPPLIER",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.SCRAP-0",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.SCRAP-1",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.WASTE-WATER",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          },
+          {
+            "arrived": false,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.SCRAP-TOTAL",
+            "identified": false,
+            "location": "UNPRODUCED",
+            "released": false,
+            "returned": 0,
+            "scrapped": 0
+          }
+        ],
+        "masses": [
+          {
+            "entity_id": "PRODUCT-1.BOTTOM",
+            "installed_t": 0
+          },
+          {
+            "entity_id": "PRODUCT-1.TOP",
+            "installed_t": 0
+          },
+          {
+            "entity_id": "PRODUCT-1.COLUMNS",
+            "installed_t": 0
+          },
+          {
+            "entity_id": "PRODUCT-1",
+            "installed_t": 0
+          }
+        ],
+        "motions": [],
+        "owners": [],
+        "positions": [
+          {
+            "id": "PRODUCT-1.ST-B.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.01.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.02.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.03",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.03.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.04",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.04.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.05",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.05.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.06",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.06.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.07",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.07.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.08",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.08.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.09",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.09.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.10",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.10.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.11",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.11.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.12",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-B.12.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.01.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.02.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.03",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.03.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.04",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.04.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.05",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.05.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.06",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.06.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.07",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.07.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.08",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.08.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.09",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.09.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.10",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.10.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.11",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.11.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.12",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-T.12.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-C.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-C.01.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-C.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-C.02.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-C.03",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-C.03.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-C.04",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ST-C.04.NET",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.ST-COAT.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FL.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FL.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FL.03",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FL.04",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FL.05",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FL.06",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-F.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-F.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-F.03",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-F.04",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-F.05",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-L.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-L.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-L.03",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-L.04",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-L.05",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-C.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-C.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-C.03",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-C.04",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-X.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-X.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-X.03",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-X.04",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-X.05",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-D.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-D.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-W.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-P.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.EN-P.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-W.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-T.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-T.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-T.03",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-T.04",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-T.05",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-T.06",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-T.07",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-T.08",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-T.09",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WT-T.10",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ME-E.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ME-E.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ME-E.03",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ME-P.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ME-P.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ME-P.03",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ME-V.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.ME-V.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-K.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-K.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-WC.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-B.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.FI-S.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.PR-I.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.PR-C.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.PR-L.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WATER.01",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.WATER.02",
+            "location": "SUPPLIER",
+            "support": "SUPPLIER"
+          },
+          {
+            "id": "PRODUCT-1.SCRAP-0",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.SCRAP-1",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.WASTE-WATER",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.SCRAP-TOTAL",
+            "location": "UNPRODUCED",
+            "support": "UNPRODUCED"
+          },
+          {
+            "id": "PRODUCT-1.BOTTOM",
+            "location": "UNFABRICATED",
+            "support": "UNFABRICATED"
+          },
+          {
+            "id": "PRODUCT-1.TOP",
+            "location": "UNFABRICATED",
+            "support": "UNFABRICATED"
+          },
+          {
+            "id": "PRODUCT-1.COLUMNS",
+            "location": "UNFABRICATED",
+            "support": "UNFABRICATED"
+          },
+          {
+            "id": "PRODUCT-1",
+            "location": "UNASSEMBLED",
+            "support": "UNASSEMBLED"
+          },
+          {
+            "id": "CUT1",
+            "location": "PRE-IN",
+            "support": "PRE-IN"
+          },
+          {
+            "id": "WELD-J2",
+            "location": "J2",
+            "support": "J2"
+          },
+          {
+            "id": "WELD-J3",
+            "location": "J3",
+            "support": "J3"
+          },
+          {
+            "id": "R1",
+            "location": "J2",
+            "support": "J2"
+          },
+          {
+            "id": "CR1",
+            "location": "CRANE-PARK",
+            "support": "CRANE-PARK"
+          },
+          {
+            "id": "TEST1",
+            "location": "TEST-PARK",
+            "support": "TEST-PARK"
+          },
+          {
+            "id": "FORK-01",
+            "location": "RECEIVE",
+            "support": "RECEIVE"
+          },
+          {
+            "id": "CART-01",
+            "location": "MEP-RECEIVE",
+            "support": "MEP-RECEIVE"
+          },
+          {
+            "id": "FIX-J2",
+            "location": "J2",
+            "support": "J2"
+          },
+          {
+            "id": "FIX-J3",
+            "location": "J3",
+            "support": "J3"
+          },
+          {
+            "id": "P1",
+            "location": "CONTROL-P1",
+            "support": "CONTROL-P1"
+          },
+          {
+            "id": "W1",
+            "location": "CONTROL-W1",
+            "support": "CONTROL-W1"
+          },
+          {
+            "id": "W2",
+            "location": "CONTROL-W2",
+            "support": "CONTROL-W2"
+          },
+          {
+            "id": "OP1",
+            "location": "CONTROL-OP1",
+            "support": "CONTROL-OP1"
+          },
+          {
+            "id": "AF1",
+            "location": "CONTROL-AF1",
+            "support": "CONTROL-AF1"
+          },
+          {
+            "id": "AF2",
+            "location": "CONTROL-AF2",
+            "support": "CONTROL-AF2"
+          },
+          {
+            "id": "E1",
+            "location": "CONTROL-E1",
+            "support": "CONTROL-E1"
+          },
+          {
+            "id": "PL1",
+            "location": "CONTROL-PL1",
+            "support": "CONTROL-PL1"
+          },
+          {
+            "id": "T1",
+            "location": "CONTROL-T1",
+            "support": "CONTROL-T1"
+          },
+          {
+            "id": "T2",
+            "location": "CONTROL-T2",
+            "support": "CONTROL-T2"
+          },
+          {
+            "id": "C1",
+            "location": "CONTROL-C1",
+            "support": "CONTROL-C1"
+          },
+          {
+            "id": "QA1",
+            "location": "CONTROL-QA1",
+            "support": "CONTROL-QA1"
+          },
+          {
+            "id": "Lop",
+            "location": "CONTROL-Lop",
+            "support": "CONTROL-Lop"
+          },
+          {
+            "id": "Lrig",
+            "location": "CONTROL-Lrig",
+            "support": "CONTROL-Lrig"
+          },
+          {
+            "id": "Lsig",
+            "location": "CONTROL-Lsig",
+            "support": "CONTROL-Lsig"
+          }
+        ],
+        "products": [
+          {
+            "cancelled": false,
+            "product_id": "PRODUCT-1",
+            "ready_h": null,
+            "received_h": null,
+            "released": true
+          }
+        ],
+        "receive_permits": [],
+        "reservations": [],
+        "revision": 1,
+        "running": [],
+        "supports": [
+          {
+            "beams": [
+              {
+                "index": 0,
+                "position": [
+                  4.95,
+                  23.9,
+                  0.06
+                ]
+              },
+              {
+                "index": 1,
+                "position": [
+                  7.05,
+                  23.9,
+                  0.06
+                ]
+              },
+              {
+                "index": 2,
+                "position": [
+                  4.95,
+                  23.9,
+                  0.11
+                ]
+              },
+              {
+                "index": 3,
+                "position": [
+                  7.05,
+                  23.9,
+                  0.11
+                ]
+              },
+              {
+                "index": 4,
+                "position": [
+                  4.95,
+                  23.9,
+                  0.16
+                ]
+              },
+              {
+                "index": 5,
+                "position": [
+                  7.05,
+                  23.9,
+                  0.16
+                ]
+              },
+              {
+                "index": 6,
+                "position": [
+                  4.95,
+                  23.9,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 7,
+                "position": [
+                  7.05,
+                  23.9,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 8,
+                "position": [
+                  4.95,
+                  23.9,
+                  0.26
+                ]
+              },
+              {
+                "index": 9,
+                "position": [
+                  7.05,
+                  23.9,
+                  0.26
+                ]
+              },
+              {
+                "index": 10,
+                "position": [
+                  4.95,
+                  23.9,
+                  0.31
+                ]
+              },
+              {
+                "index": 11,
+                "position": [
+                  7.05,
+                  23.9,
+                  0.31
+                ]
+              },
+              {
+                "index": 12,
+                "position": [
+                  4.95,
+                  23.9,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 13,
+                "position": [
+                  7.05,
+                  23.9,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 14,
+                "position": [
+                  4.95,
+                  23.9,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 15,
+                "position": [
+                  7.05,
+                  23.9,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 16,
+                "position": [
+                  4.95,
+                  23.9,
+                  0.46
+                ]
+              },
+              {
+                "index": 17,
+                "position": [
+                  7.05,
+                  23.9,
+                  0.46
+                ]
+              },
+              {
+                "index": 18,
+                "position": [
+                  4.95,
+                  23.9,
+                  0.51
+                ]
+              },
+              {
+                "index": 19,
+                "position": [
+                  7.05,
+                  23.9,
+                  0.51
+                ]
+              },
+              {
+                "index": 20,
+                "position": [
+                  4.95,
+                  23.9,
+                  0.56
+                ]
+              },
+              {
+                "index": 21,
+                "position": [
+                  7.05,
+                  23.9,
+                  0.56
+                ]
+              }
+            ],
+            "clearance_people": [],
+            "layout_id": null,
+            "root": "MEP-RECEIVE"
+          },
+          {
+            "beams": [
+              {
+                "index": 0,
+                "position": [
+                  4.95,
+                  29.9,
+                  0.06
+                ]
+              },
+              {
+                "index": 1,
+                "position": [
+                  7.05,
+                  29.9,
+                  0.06
+                ]
+              },
+              {
+                "index": 2,
+                "position": [
+                  4.95,
+                  29.9,
+                  0.11
+                ]
+              },
+              {
+                "index": 3,
+                "position": [
+                  7.05,
+                  29.9,
+                  0.11
+                ]
+              },
+              {
+                "index": 4,
+                "position": [
+                  4.95,
+                  29.9,
+                  0.16
+                ]
+              },
+              {
+                "index": 5,
+                "position": [
+                  7.05,
+                  29.9,
+                  0.16
+                ]
+              },
+              {
+                "index": 6,
+                "position": [
+                  4.95,
+                  29.9,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 7,
+                "position": [
+                  7.05,
+                  29.9,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 8,
+                "position": [
+                  4.95,
+                  29.9,
+                  0.26
+                ]
+              },
+              {
+                "index": 9,
+                "position": [
+                  7.05,
+                  29.9,
+                  0.26
+                ]
+              },
+              {
+                "index": 10,
+                "position": [
+                  4.95,
+                  29.9,
+                  0.31
+                ]
+              },
+              {
+                "index": 11,
+                "position": [
+                  7.05,
+                  29.9,
+                  0.31
+                ]
+              },
+              {
+                "index": 12,
+                "position": [
+                  4.95,
+                  29.9,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 13,
+                "position": [
+                  7.05,
+                  29.9,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 14,
+                "position": [
+                  4.95,
+                  29.9,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 15,
+                "position": [
+                  7.05,
+                  29.9,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 16,
+                "position": [
+                  4.95,
+                  29.9,
+                  0.46
+                ]
+              },
+              {
+                "index": 17,
+                "position": [
+                  7.05,
+                  29.9,
+                  0.46
+                ]
+              },
+              {
+                "index": 18,
+                "position": [
+                  4.95,
+                  29.9,
+                  0.51
+                ]
+              },
+              {
+                "index": 19,
+                "position": [
+                  7.05,
+                  29.9,
+                  0.51
+                ]
+              },
+              {
+                "index": 20,
+                "position": [
+                  4.95,
+                  29.9,
+                  0.56
+                ]
+              },
+              {
+                "index": 21,
+                "position": [
+                  7.05,
+                  29.9,
+                  0.56
+                ]
+              }
+            ],
+            "clearance_people": [],
+            "layout_id": null,
+            "root": "MEP-STORE"
+          },
+          {
+            "beams": [
+              {
+                "index": 0,
+                "position": [
+                  11.95,
+                  29.9,
+                  0.06
+                ]
+              },
+              {
+                "index": 1,
+                "position": [
+                  14.05,
+                  29.9,
+                  0.06
+                ]
+              },
+              {
+                "index": 2,
+                "position": [
+                  11.95,
+                  29.9,
+                  0.11
+                ]
+              },
+              {
+                "index": 3,
+                "position": [
+                  14.05,
+                  29.9,
+                  0.11
+                ]
+              },
+              {
+                "index": 4,
+                "position": [
+                  11.95,
+                  29.9,
+                  0.16
+                ]
+              },
+              {
+                "index": 5,
+                "position": [
+                  14.05,
+                  29.9,
+                  0.16
+                ]
+              },
+              {
+                "index": 6,
+                "position": [
+                  11.95,
+                  29.9,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 7,
+                "position": [
+                  14.05,
+                  29.9,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 8,
+                "position": [
+                  11.95,
+                  29.9,
+                  0.26
+                ]
+              },
+              {
+                "index": 9,
+                "position": [
+                  14.05,
+                  29.9,
+                  0.26
+                ]
+              },
+              {
+                "index": 10,
+                "position": [
+                  11.95,
+                  29.9,
+                  0.31
+                ]
+              },
+              {
+                "index": 11,
+                "position": [
+                  14.05,
+                  29.9,
+                  0.31
+                ]
+              },
+              {
+                "index": 12,
+                "position": [
+                  11.95,
+                  29.9,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 13,
+                "position": [
+                  14.05,
+                  29.9,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 14,
+                "position": [
+                  11.95,
+                  29.9,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 15,
+                "position": [
+                  14.05,
+                  29.9,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 16,
+                "position": [
+                  11.95,
+                  29.9,
+                  0.46
+                ]
+              },
+              {
+                "index": 17,
+                "position": [
+                  14.05,
+                  29.9,
+                  0.46
+                ]
+              },
+              {
+                "index": 18,
+                "position": [
+                  11.95,
+                  29.9,
+                  0.51
+                ]
+              },
+              {
+                "index": 19,
+                "position": [
+                  14.05,
+                  29.9,
+                  0.51
+                ]
+              },
+              {
+                "index": 20,
+                "position": [
+                  11.95,
+                  29.9,
+                  0.56
+                ]
+              },
+              {
+                "index": 21,
+                "position": [
+                  14.05,
+                  29.9,
+                  0.56
+                ]
+              }
+            ],
+            "clearance_people": [],
+            "layout_id": null,
+            "root": "KIT"
+          },
+          {
+            "beams": [
+              {
+                "index": 0,
+                "position": [
+                  53.95,
+                  29.9,
+                  0.06
+                ]
+              },
+              {
+                "index": 1,
+                "position": [
+                  56.05,
+                  29.9,
+                  0.06
+                ]
+              },
+              {
+                "index": 2,
+                "position": [
+                  53.95,
+                  29.9,
+                  0.11
+                ]
+              },
+              {
+                "index": 3,
+                "position": [
+                  56.05,
+                  29.9,
+                  0.11
+                ]
+              },
+              {
+                "index": 4,
+                "position": [
+                  53.95,
+                  29.9,
+                  0.16
+                ]
+              },
+              {
+                "index": 5,
+                "position": [
+                  56.05,
+                  29.9,
+                  0.16
+                ]
+              },
+              {
+                "index": 6,
+                "position": [
+                  53.95,
+                  29.9,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 7,
+                "position": [
+                  56.05,
+                  29.9,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 8,
+                "position": [
+                  53.95,
+                  29.9,
+                  0.26
+                ]
+              },
+              {
+                "index": 9,
+                "position": [
+                  56.05,
+                  29.9,
+                  0.26
+                ]
+              },
+              {
+                "index": 10,
+                "position": [
+                  53.95,
+                  29.9,
+                  0.31
+                ]
+              },
+              {
+                "index": 11,
+                "position": [
+                  56.05,
+                  29.9,
+                  0.31
+                ]
+              },
+              {
+                "index": 12,
+                "position": [
+                  53.95,
+                  29.9,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 13,
+                "position": [
+                  56.05,
+                  29.9,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 14,
+                "position": [
+                  53.95,
+                  29.9,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 15,
+                "position": [
+                  56.05,
+                  29.9,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 16,
+                "position": [
+                  53.95,
+                  29.9,
+                  0.46
+                ]
+              },
+              {
+                "index": 17,
+                "position": [
+                  56.05,
+                  29.9,
+                  0.46
+                ]
+              },
+              {
+                "index": 18,
+                "position": [
+                  53.95,
+                  29.9,
+                  0.51
+                ]
+              },
+              {
+                "index": 19,
+                "position": [
+                  56.05,
+                  29.9,
+                  0.51
+                ]
+              },
+              {
+                "index": 20,
+                "position": [
+                  53.95,
+                  29.9,
+                  0.56
+                ]
+              },
+              {
+                "index": 21,
+                "position": [
+                  56.05,
+                  29.9,
+                  0.56
+                ]
+              }
+            ],
+            "clearance_people": [],
+            "layout_id": null,
+            "root": "F1-KIT"
+          },
+          {
+            "beams": [
+              {
+                "index": 0,
+                "position": [
+                  53.15,
+                  12,
+                  0.06
+                ]
+              },
+              {
+                "index": 1,
+                "position": [
+                  55.85,
+                  12,
+                  0.06
+                ]
+              },
+              {
+                "index": 2,
+                "position": [
+                  53.15,
+                  12,
+                  0.11
+                ]
+              },
+              {
+                "index": 3,
+                "position": [
+                  55.85,
+                  12,
+                  0.11
+                ]
+              },
+              {
+                "index": 4,
+                "position": [
+                  53.15,
+                  12,
+                  0.16
+                ]
+              },
+              {
+                "index": 5,
+                "position": [
+                  55.85,
+                  12,
+                  0.16
+                ]
+              },
+              {
+                "index": 6,
+                "position": [
+                  53.15,
+                  12,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 7,
+                "position": [
+                  55.85,
+                  12,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 8,
+                "position": [
+                  53.15,
+                  12,
+                  0.26
+                ]
+              },
+              {
+                "index": 9,
+                "position": [
+                  55.85,
+                  12,
+                  0.26
+                ]
+              },
+              {
+                "index": 10,
+                "position": [
+                  53.15,
+                  12,
+                  0.31
+                ]
+              },
+              {
+                "index": 11,
+                "position": [
+                  55.85,
+                  12,
+                  0.31
+                ]
+              },
+              {
+                "index": 12,
+                "position": [
+                  53.15,
+                  12,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 13,
+                "position": [
+                  55.85,
+                  12,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 14,
+                "position": [
+                  53.15,
+                  12,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 15,
+                "position": [
+                  55.85,
+                  12,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 16,
+                "position": [
+                  53.15,
+                  12,
+                  0.46
+                ]
+              },
+              {
+                "index": 17,
+                "position": [
+                  55.85,
+                  12,
+                  0.46
+                ]
+              },
+              {
+                "index": 18,
+                "position": [
+                  53.15,
+                  12,
+                  0.51
+                ]
+              },
+              {
+                "index": 19,
+                "position": [
+                  55.85,
+                  12,
+                  0.51
+                ]
+              },
+              {
+                "index": 20,
+                "position": [
+                  53.15,
+                  12,
+                  0.56
+                ]
+              },
+              {
+                "index": 21,
+                "position": [
+                  55.85,
+                  12,
+                  0.56
+                ]
+              }
+            ],
+            "clearance_people": [],
+            "layout_id": null,
+            "root": "J3"
+          },
+          {
+            "beams": [
+              {
+                "index": 0,
+                "position": [
+                  44.45,
+                  24.9,
+                  0.06
+                ]
+              },
+              {
+                "index": 1,
+                "position": [
+                  46.55,
+                  24.9,
+                  0.06
+                ]
+              },
+              {
+                "index": 2,
+                "position": [
+                  44.45,
+                  24.9,
+                  0.11
+                ]
+              },
+              {
+                "index": 3,
+                "position": [
+                  46.55,
+                  24.9,
+                  0.11
+                ]
+              },
+              {
+                "index": 4,
+                "position": [
+                  44.45,
+                  24.9,
+                  0.16
+                ]
+              },
+              {
+                "index": 5,
+                "position": [
+                  46.55,
+                  24.9,
+                  0.16
+                ]
+              },
+              {
+                "index": 6,
+                "position": [
+                  44.45,
+                  24.9,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 7,
+                "position": [
+                  46.55,
+                  24.9,
+                  0.21000000000000002
+                ]
+              },
+              {
+                "index": 8,
+                "position": [
+                  44.45,
+                  24.9,
+                  0.26
+                ]
+              },
+              {
+                "index": 9,
+                "position": [
+                  46.55,
+                  24.9,
+                  0.26
+                ]
+              },
+              {
+                "index": 10,
+                "position": [
+                  44.45,
+                  24.9,
+                  0.31
+                ]
+              },
+              {
+                "index": 11,
+                "position": [
+                  46.55,
+                  24.9,
+                  0.31
+                ]
+              },
+              {
+                "index": 12,
+                "position": [
+                  44.45,
+                  24.9,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 13,
+                "position": [
+                  46.55,
+                  24.9,
+                  0.36000000000000004
+                ]
+              },
+              {
+                "index": 14,
+                "position": [
+                  44.45,
+                  24.9,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 15,
+                "position": [
+                  46.55,
+                  24.9,
+                  0.41000000000000003
+                ]
+              },
+              {
+                "index": 16,
+                "position": [
+                  44.45,
+                  24.9,
+                  0.46
+                ]
+              },
+              {
+                "index": 17,
+                "position": [
+                  46.55,
+                  24.9,
+                  0.46
+                ]
+              },
+              {
+                "index": 18,
+                "position": [
+                  44.45,
+                  24.9,
+                  0.51
+                ]
+              },
+              {
+                "index": 19,
+                "position": [
+                  46.55,
+                  24.9,
+                  0.51
+                ]
+              },
+              {
+                "index": 20,
+                "position": [
+                  44.45,
+                  24.9,
+                  0.56
+                ]
+              },
+              {
+                "index": 21,
+                "position": [
+                  46.55,
+                  24.9,
+                  0.56
+                ]
+              }
+            ],
+            "clearance_people": [],
+            "layout_id": null,
+            "root": "F1"
+          }
+        ],
+        "time_h": 0
+      },
+      "wall_elapsed_s": 0,
+      "world": null
+    }
+  ],
+  "run_id": "RUN-S15",
+  "schema_version": "S15-PROD-1.0",
+  "state": {
+    "completed": [],
+    "completion_times": [],
+    "failed_resources": [],
+    "gates": [],
+    "humans": [
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "P1",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "W1",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "W2",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "OP1",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "AF1",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "AF2",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "E1",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "PL1",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "T1",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "T2",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "C1",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "QA1",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "Lop",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "Lrig",
+        "rest_until_h": 0
+      },
+      {
+        "exposure": 0,
+        "fatigue": 0.2,
+        "peak": 0.2,
+        "person_id": "Lsig",
+        "rest_until_h": 0
+      }
+    ],
+    "intervals": [],
+    "lots": [
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.01.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.02.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.03",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.03.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.04",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.04.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.05",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.05.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.06",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.06.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.07",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.07.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.08",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.08.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.09",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.09.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.10",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.10.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.11",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.11.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.12",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-B.12.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.01.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.02.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.03",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.03.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.04",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.04.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.05",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.05.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.06",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.06.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.07",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.07.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.08",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.08.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.09",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.09.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.10",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.10.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.11",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.11.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.12",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-T.12.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-C.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-C.01.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-C.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-C.02.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-C.03",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-C.03.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-C.04",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-C.04.NET",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ST-COAT.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FL.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FL.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FL.03",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FL.04",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FL.05",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FL.06",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-F.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-F.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-F.03",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-F.04",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-F.05",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-L.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-L.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-L.03",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-L.04",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-L.05",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-C.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-C.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-C.03",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-C.04",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-X.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-X.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-X.03",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-X.04",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-X.05",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-D.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-D.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-W.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-P.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.EN-P.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-W.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-T.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-T.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-T.03",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-T.04",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-T.05",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-T.06",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-T.07",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-T.08",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-T.09",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WT-T.10",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ME-E.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ME-E.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ME-E.03",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ME-P.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ME-P.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ME-P.03",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ME-V.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.ME-V.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-K.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-K.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-WC.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-B.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.FI-S.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.PR-I.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.PR-C.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.PR-L.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WATER.01",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WATER.02",
+        "identified": false,
+        "location": "SUPPLIER",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.SCRAP-0",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.SCRAP-1",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.WASTE-WATER",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      },
+      {
+        "arrived": false,
+        "available": 0,
+        "consumed": 0,
+        "converted": 0,
+        "id": "PRODUCT-1.SCRAP-TOTAL",
+        "identified": false,
+        "location": "UNPRODUCED",
+        "released": false,
+        "returned": 0,
+        "scrapped": 0
+      }
+    ],
+    "masses": [
+      {
+        "entity_id": "PRODUCT-1.BOTTOM",
+        "installed_t": 0
+      },
+      {
+        "entity_id": "PRODUCT-1.TOP",
+        "installed_t": 0
+      },
+      {
+        "entity_id": "PRODUCT-1.COLUMNS",
+        "installed_t": 0
+      },
+      {
+        "entity_id": "PRODUCT-1",
+        "installed_t": 0
+      }
+    ],
+    "motions": [],
+    "owners": [],
+    "positions": [
+      {
+        "id": "PRODUCT-1.ST-B.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.01.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.02.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.03",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.03.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.04",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.04.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.05",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.05.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.06",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.06.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.07",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.07.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.08",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.08.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.09",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.09.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.10",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.10.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.11",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.11.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.12",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-B.12.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.01.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.02.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.03",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.03.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.04",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.04.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.05",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.05.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.06",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.06.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.07",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.07.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.08",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.08.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.09",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.09.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.10",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.10.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.11",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.11.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.12",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-T.12.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-C.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-C.01.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-C.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-C.02.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-C.03",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-C.03.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-C.04",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ST-C.04.NET",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.ST-COAT.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FL.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FL.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FL.03",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FL.04",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FL.05",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FL.06",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-F.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-F.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-F.03",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-F.04",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-F.05",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-L.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-L.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-L.03",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-L.04",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-L.05",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-C.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-C.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-C.03",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-C.04",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-X.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-X.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-X.03",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-X.04",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-X.05",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-D.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-D.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-W.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-P.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.EN-P.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-W.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-T.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-T.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-T.03",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-T.04",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-T.05",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-T.06",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-T.07",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-T.08",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-T.09",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WT-T.10",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ME-E.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ME-E.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ME-E.03",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ME-P.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ME-P.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ME-P.03",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ME-V.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.ME-V.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-K.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-K.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-WC.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-B.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.FI-S.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.PR-I.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.PR-C.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.PR-L.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WATER.01",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.WATER.02",
+        "location": "SUPPLIER",
+        "support": "SUPPLIER"
+      },
+      {
+        "id": "PRODUCT-1.SCRAP-0",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.SCRAP-1",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.WASTE-WATER",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.SCRAP-TOTAL",
+        "location": "UNPRODUCED",
+        "support": "UNPRODUCED"
+      },
+      {
+        "id": "PRODUCT-1.BOTTOM",
+        "location": "UNFABRICATED",
+        "support": "UNFABRICATED"
+      },
+      {
+        "id": "PRODUCT-1.TOP",
+        "location": "UNFABRICATED",
+        "support": "UNFABRICATED"
+      },
+      {
+        "id": "PRODUCT-1.COLUMNS",
+        "location": "UNFABRICATED",
+        "support": "UNFABRICATED"
+      },
+      {
+        "id": "PRODUCT-1",
+        "location": "UNASSEMBLED",
+        "support": "UNASSEMBLED"
+      },
+      {
+        "id": "CUT1",
+        "location": "PRE-IN",
+        "support": "PRE-IN"
+      },
+      {
+        "id": "WELD-J2",
+        "location": "J2",
+        "support": "J2"
+      },
+      {
+        "id": "WELD-J3",
+        "location": "J3",
+        "support": "J3"
+      },
+      {
+        "id": "R1",
+        "location": "J2",
+        "support": "J2"
+      },
+      {
+        "id": "CR1",
+        "location": "CRANE-PARK",
+        "support": "CRANE-PARK"
+      },
+      {
+        "id": "TEST1",
+        "location": "TEST-PARK",
+        "support": "TEST-PARK"
+      },
+      {
+        "id": "FORK-01",
+        "location": "RECEIVE",
+        "support": "RECEIVE"
+      },
+      {
+        "id": "CART-01",
+        "location": "MEP-RECEIVE",
+        "support": "MEP-RECEIVE"
+      },
+      {
+        "id": "FIX-J2",
+        "location": "J2",
+        "support": "J2"
+      },
+      {
+        "id": "FIX-J3",
+        "location": "J3",
+        "support": "J3"
+      },
+      {
+        "id": "P1",
+        "location": "CONTROL-P1",
+        "support": "CONTROL-P1"
+      },
+      {
+        "id": "W1",
+        "location": "CONTROL-W1",
+        "support": "CONTROL-W1"
+      },
+      {
+        "id": "W2",
+        "location": "CONTROL-W2",
+        "support": "CONTROL-W2"
+      },
+      {
+        "id": "OP1",
+        "location": "CONTROL-OP1",
+        "support": "CONTROL-OP1"
+      },
+      {
+        "id": "AF1",
+        "location": "CONTROL-AF1",
+        "support": "CONTROL-AF1"
+      },
+      {
+        "id": "AF2",
+        "location": "CONTROL-AF2",
+        "support": "CONTROL-AF2"
+      },
+      {
+        "id": "E1",
+        "location": "CONTROL-E1",
+        "support": "CONTROL-E1"
+      },
+      {
+        "id": "PL1",
+        "location": "CONTROL-PL1",
+        "support": "CONTROL-PL1"
+      },
+      {
+        "id": "T1",
+        "location": "CONTROL-T1",
+        "support": "CONTROL-T1"
+      },
+      {
+        "id": "T2",
+        "location": "CONTROL-T2",
+        "support": "CONTROL-T2"
+      },
+      {
+        "id": "C1",
+        "location": "CONTROL-C1",
+        "support": "CONTROL-C1"
+      },
+      {
+        "id": "QA1",
+        "location": "CONTROL-QA1",
+        "support": "CONTROL-QA1"
+      },
+      {
+        "id": "Lop",
+        "location": "CONTROL-Lop",
+        "support": "CONTROL-Lop"
+      },
+      {
+        "id": "Lrig",
+        "location": "CONTROL-Lrig",
+        "support": "CONTROL-Lrig"
+      },
+      {
+        "id": "Lsig",
+        "location": "CONTROL-Lsig",
+        "support": "CONTROL-Lsig"
+      }
+    ],
+    "products": [
+      {
+        "cancelled": false,
+        "product_id": "PRODUCT-1",
+        "ready_h": null,
+        "received_h": null,
+        "released": true
+      }
+    ],
+    "receive_permits": [],
+    "reservations": [],
+    "revision": 1,
+    "running": [],
+    "supports": [
+      {
+        "beams": [
+          {
+            "index": 0,
+            "position": [
+              4.95,
+              23.9,
+              0.06
+            ]
+          },
+          {
+            "index": 1,
+            "position": [
+              7.05,
+              23.9,
+              0.06
+            ]
+          },
+          {
+            "index": 2,
+            "position": [
+              4.95,
+              23.9,
+              0.11
+            ]
+          },
+          {
+            "index": 3,
+            "position": [
+              7.05,
+              23.9,
+              0.11
+            ]
+          },
+          {
+            "index": 4,
+            "position": [
+              4.95,
+              23.9,
+              0.16
+            ]
+          },
+          {
+            "index": 5,
+            "position": [
+              7.05,
+              23.9,
+              0.16
+            ]
+          },
+          {
+            "index": 6,
+            "position": [
+              4.95,
+              23.9,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 7,
+            "position": [
+              7.05,
+              23.9,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 8,
+            "position": [
+              4.95,
+              23.9,
+              0.26
+            ]
+          },
+          {
+            "index": 9,
+            "position": [
+              7.05,
+              23.9,
+              0.26
+            ]
+          },
+          {
+            "index": 10,
+            "position": [
+              4.95,
+              23.9,
+              0.31
+            ]
+          },
+          {
+            "index": 11,
+            "position": [
+              7.05,
+              23.9,
+              0.31
+            ]
+          },
+          {
+            "index": 12,
+            "position": [
+              4.95,
+              23.9,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 13,
+            "position": [
+              7.05,
+              23.9,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 14,
+            "position": [
+              4.95,
+              23.9,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 15,
+            "position": [
+              7.05,
+              23.9,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 16,
+            "position": [
+              4.95,
+              23.9,
+              0.46
+            ]
+          },
+          {
+            "index": 17,
+            "position": [
+              7.05,
+              23.9,
+              0.46
+            ]
+          },
+          {
+            "index": 18,
+            "position": [
+              4.95,
+              23.9,
+              0.51
+            ]
+          },
+          {
+            "index": 19,
+            "position": [
+              7.05,
+              23.9,
+              0.51
+            ]
+          },
+          {
+            "index": 20,
+            "position": [
+              4.95,
+              23.9,
+              0.56
+            ]
+          },
+          {
+            "index": 21,
+            "position": [
+              7.05,
+              23.9,
+              0.56
+            ]
+          }
+        ],
+        "clearance_people": [],
+        "layout_id": null,
+        "root": "MEP-RECEIVE"
+      },
+      {
+        "beams": [
+          {
+            "index": 0,
+            "position": [
+              4.95,
+              29.9,
+              0.06
+            ]
+          },
+          {
+            "index": 1,
+            "position": [
+              7.05,
+              29.9,
+              0.06
+            ]
+          },
+          {
+            "index": 2,
+            "position": [
+              4.95,
+              29.9,
+              0.11
+            ]
+          },
+          {
+            "index": 3,
+            "position": [
+              7.05,
+              29.9,
+              0.11
+            ]
+          },
+          {
+            "index": 4,
+            "position": [
+              4.95,
+              29.9,
+              0.16
+            ]
+          },
+          {
+            "index": 5,
+            "position": [
+              7.05,
+              29.9,
+              0.16
+            ]
+          },
+          {
+            "index": 6,
+            "position": [
+              4.95,
+              29.9,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 7,
+            "position": [
+              7.05,
+              29.9,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 8,
+            "position": [
+              4.95,
+              29.9,
+              0.26
+            ]
+          },
+          {
+            "index": 9,
+            "position": [
+              7.05,
+              29.9,
+              0.26
+            ]
+          },
+          {
+            "index": 10,
+            "position": [
+              4.95,
+              29.9,
+              0.31
+            ]
+          },
+          {
+            "index": 11,
+            "position": [
+              7.05,
+              29.9,
+              0.31
+            ]
+          },
+          {
+            "index": 12,
+            "position": [
+              4.95,
+              29.9,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 13,
+            "position": [
+              7.05,
+              29.9,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 14,
+            "position": [
+              4.95,
+              29.9,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 15,
+            "position": [
+              7.05,
+              29.9,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 16,
+            "position": [
+              4.95,
+              29.9,
+              0.46
+            ]
+          },
+          {
+            "index": 17,
+            "position": [
+              7.05,
+              29.9,
+              0.46
+            ]
+          },
+          {
+            "index": 18,
+            "position": [
+              4.95,
+              29.9,
+              0.51
+            ]
+          },
+          {
+            "index": 19,
+            "position": [
+              7.05,
+              29.9,
+              0.51
+            ]
+          },
+          {
+            "index": 20,
+            "position": [
+              4.95,
+              29.9,
+              0.56
+            ]
+          },
+          {
+            "index": 21,
+            "position": [
+              7.05,
+              29.9,
+              0.56
+            ]
+          }
+        ],
+        "clearance_people": [],
+        "layout_id": null,
+        "root": "MEP-STORE"
+      },
+      {
+        "beams": [
+          {
+            "index": 0,
+            "position": [
+              11.95,
+              29.9,
+              0.06
+            ]
+          },
+          {
+            "index": 1,
+            "position": [
+              14.05,
+              29.9,
+              0.06
+            ]
+          },
+          {
+            "index": 2,
+            "position": [
+              11.95,
+              29.9,
+              0.11
+            ]
+          },
+          {
+            "index": 3,
+            "position": [
+              14.05,
+              29.9,
+              0.11
+            ]
+          },
+          {
+            "index": 4,
+            "position": [
+              11.95,
+              29.9,
+              0.16
+            ]
+          },
+          {
+            "index": 5,
+            "position": [
+              14.05,
+              29.9,
+              0.16
+            ]
+          },
+          {
+            "index": 6,
+            "position": [
+              11.95,
+              29.9,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 7,
+            "position": [
+              14.05,
+              29.9,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 8,
+            "position": [
+              11.95,
+              29.9,
+              0.26
+            ]
+          },
+          {
+            "index": 9,
+            "position": [
+              14.05,
+              29.9,
+              0.26
+            ]
+          },
+          {
+            "index": 10,
+            "position": [
+              11.95,
+              29.9,
+              0.31
+            ]
+          },
+          {
+            "index": 11,
+            "position": [
+              14.05,
+              29.9,
+              0.31
+            ]
+          },
+          {
+            "index": 12,
+            "position": [
+              11.95,
+              29.9,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 13,
+            "position": [
+              14.05,
+              29.9,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 14,
+            "position": [
+              11.95,
+              29.9,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 15,
+            "position": [
+              14.05,
+              29.9,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 16,
+            "position": [
+              11.95,
+              29.9,
+              0.46
+            ]
+          },
+          {
+            "index": 17,
+            "position": [
+              14.05,
+              29.9,
+              0.46
+            ]
+          },
+          {
+            "index": 18,
+            "position": [
+              11.95,
+              29.9,
+              0.51
+            ]
+          },
+          {
+            "index": 19,
+            "position": [
+              14.05,
+              29.9,
+              0.51
+            ]
+          },
+          {
+            "index": 20,
+            "position": [
+              11.95,
+              29.9,
+              0.56
+            ]
+          },
+          {
+            "index": 21,
+            "position": [
+              14.05,
+              29.9,
+              0.56
+            ]
+          }
+        ],
+        "clearance_people": [],
+        "layout_id": null,
+        "root": "KIT"
+      },
+      {
+        "beams": [
+          {
+            "index": 0,
+            "position": [
+              53.95,
+              29.9,
+              0.06
+            ]
+          },
+          {
+            "index": 1,
+            "position": [
+              56.05,
+              29.9,
+              0.06
+            ]
+          },
+          {
+            "index": 2,
+            "position": [
+              53.95,
+              29.9,
+              0.11
+            ]
+          },
+          {
+            "index": 3,
+            "position": [
+              56.05,
+              29.9,
+              0.11
+            ]
+          },
+          {
+            "index": 4,
+            "position": [
+              53.95,
+              29.9,
+              0.16
+            ]
+          },
+          {
+            "index": 5,
+            "position": [
+              56.05,
+              29.9,
+              0.16
+            ]
+          },
+          {
+            "index": 6,
+            "position": [
+              53.95,
+              29.9,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 7,
+            "position": [
+              56.05,
+              29.9,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 8,
+            "position": [
+              53.95,
+              29.9,
+              0.26
+            ]
+          },
+          {
+            "index": 9,
+            "position": [
+              56.05,
+              29.9,
+              0.26
+            ]
+          },
+          {
+            "index": 10,
+            "position": [
+              53.95,
+              29.9,
+              0.31
+            ]
+          },
+          {
+            "index": 11,
+            "position": [
+              56.05,
+              29.9,
+              0.31
+            ]
+          },
+          {
+            "index": 12,
+            "position": [
+              53.95,
+              29.9,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 13,
+            "position": [
+              56.05,
+              29.9,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 14,
+            "position": [
+              53.95,
+              29.9,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 15,
+            "position": [
+              56.05,
+              29.9,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 16,
+            "position": [
+              53.95,
+              29.9,
+              0.46
+            ]
+          },
+          {
+            "index": 17,
+            "position": [
+              56.05,
+              29.9,
+              0.46
+            ]
+          },
+          {
+            "index": 18,
+            "position": [
+              53.95,
+              29.9,
+              0.51
+            ]
+          },
+          {
+            "index": 19,
+            "position": [
+              56.05,
+              29.9,
+              0.51
+            ]
+          },
+          {
+            "index": 20,
+            "position": [
+              53.95,
+              29.9,
+              0.56
+            ]
+          },
+          {
+            "index": 21,
+            "position": [
+              56.05,
+              29.9,
+              0.56
+            ]
+          }
+        ],
+        "clearance_people": [],
+        "layout_id": null,
+        "root": "F1-KIT"
+      },
+      {
+        "beams": [
+          {
+            "index": 0,
+            "position": [
+              53.15,
+              12,
+              0.06
+            ]
+          },
+          {
+            "index": 1,
+            "position": [
+              55.85,
+              12,
+              0.06
+            ]
+          },
+          {
+            "index": 2,
+            "position": [
+              53.15,
+              12,
+              0.11
+            ]
+          },
+          {
+            "index": 3,
+            "position": [
+              55.85,
+              12,
+              0.11
+            ]
+          },
+          {
+            "index": 4,
+            "position": [
+              53.15,
+              12,
+              0.16
+            ]
+          },
+          {
+            "index": 5,
+            "position": [
+              55.85,
+              12,
+              0.16
+            ]
+          },
+          {
+            "index": 6,
+            "position": [
+              53.15,
+              12,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 7,
+            "position": [
+              55.85,
+              12,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 8,
+            "position": [
+              53.15,
+              12,
+              0.26
+            ]
+          },
+          {
+            "index": 9,
+            "position": [
+              55.85,
+              12,
+              0.26
+            ]
+          },
+          {
+            "index": 10,
+            "position": [
+              53.15,
+              12,
+              0.31
+            ]
+          },
+          {
+            "index": 11,
+            "position": [
+              55.85,
+              12,
+              0.31
+            ]
+          },
+          {
+            "index": 12,
+            "position": [
+              53.15,
+              12,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 13,
+            "position": [
+              55.85,
+              12,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 14,
+            "position": [
+              53.15,
+              12,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 15,
+            "position": [
+              55.85,
+              12,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 16,
+            "position": [
+              53.15,
+              12,
+              0.46
+            ]
+          },
+          {
+            "index": 17,
+            "position": [
+              55.85,
+              12,
+              0.46
+            ]
+          },
+          {
+            "index": 18,
+            "position": [
+              53.15,
+              12,
+              0.51
+            ]
+          },
+          {
+            "index": 19,
+            "position": [
+              55.85,
+              12,
+              0.51
+            ]
+          },
+          {
+            "index": 20,
+            "position": [
+              53.15,
+              12,
+              0.56
+            ]
+          },
+          {
+            "index": 21,
+            "position": [
+              55.85,
+              12,
+              0.56
+            ]
+          }
+        ],
+        "clearance_people": [],
+        "layout_id": null,
+        "root": "J3"
+      },
+      {
+        "beams": [
+          {
+            "index": 0,
+            "position": [
+              44.45,
+              24.9,
+              0.06
+            ]
+          },
+          {
+            "index": 1,
+            "position": [
+              46.55,
+              24.9,
+              0.06
+            ]
+          },
+          {
+            "index": 2,
+            "position": [
+              44.45,
+              24.9,
+              0.11
+            ]
+          },
+          {
+            "index": 3,
+            "position": [
+              46.55,
+              24.9,
+              0.11
+            ]
+          },
+          {
+            "index": 4,
+            "position": [
+              44.45,
+              24.9,
+              0.16
+            ]
+          },
+          {
+            "index": 5,
+            "position": [
+              46.55,
+              24.9,
+              0.16
+            ]
+          },
+          {
+            "index": 6,
+            "position": [
+              44.45,
+              24.9,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 7,
+            "position": [
+              46.55,
+              24.9,
+              0.21000000000000002
+            ]
+          },
+          {
+            "index": 8,
+            "position": [
+              44.45,
+              24.9,
+              0.26
+            ]
+          },
+          {
+            "index": 9,
+            "position": [
+              46.55,
+              24.9,
+              0.26
+            ]
+          },
+          {
+            "index": 10,
+            "position": [
+              44.45,
+              24.9,
+              0.31
+            ]
+          },
+          {
+            "index": 11,
+            "position": [
+              46.55,
+              24.9,
+              0.31
+            ]
+          },
+          {
+            "index": 12,
+            "position": [
+              44.45,
+              24.9,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 13,
+            "position": [
+              46.55,
+              24.9,
+              0.36000000000000004
+            ]
+          },
+          {
+            "index": 14,
+            "position": [
+              44.45,
+              24.9,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 15,
+            "position": [
+              46.55,
+              24.9,
+              0.41000000000000003
+            ]
+          },
+          {
+            "index": 16,
+            "position": [
+              44.45,
+              24.9,
+              0.46
+            ]
+          },
+          {
+            "index": 17,
+            "position": [
+              46.55,
+              24.9,
+              0.46
+            ]
+          },
+          {
+            "index": 18,
+            "position": [
+              44.45,
+              24.9,
+              0.51
+            ]
+          },
+          {
+            "index": 19,
+            "position": [
+              46.55,
+              24.9,
+              0.51
+            ]
+          },
+          {
+            "index": 20,
+            "position": [
+              44.45,
+              24.9,
+              0.56
+            ]
+          },
+          {
+            "index": 21,
+            "position": [
+              46.55,
+              24.9,
+              0.56
+            ]
+          }
+        ],
+        "clearance_people": [],
+        "layout_id": null,
+        "root": "F1"
+      }
+    ],
+    "time_h": 0
+  }
+}

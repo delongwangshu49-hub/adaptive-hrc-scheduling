@@ -1,0 +1,13 @@
+{
+  "backend": "logistics-event",
+  "code_revision": "WORKING_TREE",
+  "config_id": "S15-1-SR-W1",
+  "config_sha256": "c14cf683b699d12ddd0816d647bef60dc792e3d26cab6f2f70eb01e060829a0d",
+  "epoch": 0,
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "layout_version": "S15-RECIPE-LAYOUT-r2",
+  "run_id": "RUN-S15",
+  "schema_version": "S15-PROD-1.0",
+  "specification": "S15-PROD-SPEC-1.0",
+  "status": "HOLD"
+}

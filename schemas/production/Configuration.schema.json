@@ -1,0 +1,1591 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "Activity": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "face": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "material_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "modes": {
+          "items": {
+            "$ref": "#/$defs/Mode"
+          },
+          "type": "array"
+        },
+        "move": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Move"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quality_evidence": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "release_evidence": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wait_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "code",
+        "location",
+        "face",
+        "modes",
+        "material_ids",
+        "wait_h",
+        "release_evidence",
+        "quality_evidence",
+        "move"
+      ],
+      "type": "object"
+    },
+    "Amount": {
+      "additionalProperties": false,
+      "properties": {
+        "lot_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quantity": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "lot_id",
+        "quantity"
+      ],
+      "type": "object"
+    },
+    "BOMItem": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quantity": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "quantity",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "Calendar": {
+      "additionalProperties": false,
+      "properties": {
+        "period_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "windows": {
+          "items": {
+            "$ref": "#/$defs/Window"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "period_h",
+        "windows"
+      ],
+      "type": "object"
+    },
+    "ComponentPort": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "place_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entity_id",
+        "place_id"
+      ],
+      "type": "object"
+    },
+    "Configuration": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_id": {
+          "enum": [
+            "S15-RP-APPROVAL-001"
+          ]
+        },
+        "bindings": {
+          "items": {
+            "$ref": "#/$defs/CoreBinding"
+          },
+          "type": "array"
+        },
+        "cap": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "core_activities": {
+          "items": {
+            "$ref": "#/$defs/Activity"
+          },
+          "type": "array"
+        },
+        "core_edges": {
+          "items": {
+            "$ref": "#/$defs/Edge"
+          },
+          "type": "array"
+        },
+        "devices": {
+          "items": {
+            "$ref": "#/$defs/Device"
+          },
+          "type": "array"
+        },
+        "entities": {
+          "items": {
+            "$ref": "#/$defs/Entity"
+          },
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          },
+          "type": "array"
+        },
+        "groups": {
+          "items": {
+            "$ref": "#/$defs/Group"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "initial_ready_evidence": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "initial_ready_products": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "layout_version": {
+          "enum": [
+            "S15-RECIPE-LAYOUT-r1",
+            "S15-RECIPE-LAYOUT-r2"
+          ]
+        },
+        "load_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "lots": {
+          "items": {
+            "$ref": "#/$defs/Lot"
+          },
+          "type": "array"
+        },
+        "min_rest_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "operations": {
+          "items": {
+            "$ref": "#/$defs/Operation"
+          },
+          "type": "array"
+        },
+        "people": {
+          "items": {
+            "$ref": "#/$defs/Person"
+          },
+          "type": "array"
+        },
+        "person_positions": {
+          "items": {
+            "$ref": "#/$defs/PersonPosition"
+          },
+          "type": "array"
+        },
+        "places": {
+          "items": {
+            "$ref": "#/$defs/Place"
+          },
+          "type": "array"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/$defs/Product"
+          },
+          "type": "array"
+        },
+        "purpose": {
+          "enum": [
+            "RESEARCH_BLOCKED",
+            "SYNTHETIC_TEST_ONLY"
+          ]
+        },
+        "recipe_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "rework_enabled": {
+          "type": "boolean"
+        },
+        "rigging_t": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "routes": {
+          "items": {
+            "$ref": "#/$defs/Route"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "S15-PROD-1.0"
+          ]
+        },
+        "scope": {
+          "enum": [
+            "PRODUCTION",
+            "WITNESS_FRAGMENT"
+          ]
+        },
+        "setup_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "specification": {
+          "enum": [
+            "S15-PROD-SPEC-1.0"
+          ]
+        },
+        "support_approval_id": {
+          "anyOf": [
+            {
+              "enum": [
+                "S15-SC-APPROVAL-001"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "support_height_approval_id": {
+          "anyOf": [
+            {
+              "enum": [
+                "S15-SH-APPROVAL-001"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "support_layouts": {
+          "items": {
+            "$ref": "#/$defs/SupportLayout"
+          },
+          "type": "array"
+        },
+        "support_proposal_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unload_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "specification",
+        "layout_version",
+        "id",
+        "purpose",
+        "scope",
+        "products",
+        "core_activities",
+        "core_edges",
+        "people",
+        "person_positions",
+        "places",
+        "devices",
+        "routes",
+        "lots",
+        "entities",
+        "operations",
+        "evidence",
+        "cap",
+        "min_rest_h",
+        "setup_h",
+        "load_h",
+        "unload_h",
+        "rigging_t",
+        "initial_ready_products",
+        "initial_ready_evidence",
+        "recipe_sha256",
+        "approval_id",
+        "groups",
+        "bindings",
+        "support_layouts",
+        "support_approval_id",
+        "support_proposal_sha256",
+        "support_height_approval_id",
+        "rework_enabled"
+      ],
+      "type": "object"
+    },
+    "CoreBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "mode_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "operation_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "unit_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "activity_id",
+        "mode_id",
+        "unit_id",
+        "operation_ids"
+      ],
+      "type": "object"
+    },
+    "Device": {
+      "additionalProperties": false,
+      "properties": {
+        "capacity_t": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "initial_location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "FIXED",
+            "CRANE",
+            "VEHICLE",
+            "TOOL",
+            "FIXTURE"
+          ]
+        },
+        "qualification": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "initial_location",
+        "capacity_t",
+        "qualification"
+      ],
+      "type": "object"
+    },
+    "Edge": {
+      "additionalProperties": false,
+      "properties": {
+        "relation": {
+          "enum": [
+            "material",
+            "precedence",
+            "quality",
+            "wait_release"
+          ]
+        },
+        "source": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "relation"
+      ],
+      "type": "object"
+    },
+    "Entity": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "initial_location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "COMPONENT",
+            "PRODUCT"
+          ]
+        },
+        "mass_t": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "size_m": {
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "kind",
+        "initial_location",
+        "mass_t",
+        "size_m"
+      ],
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "enum": [
+            "INDUSTRIAL",
+            "SYNTHETIC_TEST",
+            "UNRESOLVED"
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "status",
+        "basis",
+        "reference",
+        "revision"
+      ],
+      "type": "object"
+    },
+    "Group": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_code": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "max_mass_t": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "max_packages": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "size_m": {
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "activity_code",
+        "max_packages",
+        "max_mass_t",
+        "size_m"
+      ],
+      "type": "object"
+    },
+    "Lot": {
+      "additionalProperties": false,
+      "properties": {
+        "arrived": {
+          "type": "boolean"
+        },
+        "bom_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "disposition": {
+          "enum": [
+            "PRODUCT",
+            "SCRAP",
+            "WASTEWATER",
+            "AUXILIARY"
+          ]
+        },
+        "group_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "identified": {
+          "type": "boolean"
+        },
+        "initial_location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "mass_t": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "material": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "parent_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quantity": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "released": {
+          "type": "boolean"
+        },
+        "size_m": {
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "unit": {
+          "enum": [
+            "piece",
+            "set",
+            "m2",
+            "t"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "material",
+        "unit",
+        "quantity",
+        "mass_t",
+        "size_m",
+        "initial_location",
+        "parent_ids",
+        "arrived",
+        "identified",
+        "released",
+        "group_id",
+        "bom_id",
+        "disposition"
+      ],
+      "type": "object"
+    },
+    "MaterialPort": {
+      "additionalProperties": false,
+      "properties": {
+        "lot_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "place_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "lot_id",
+        "place_id"
+      ],
+      "type": "object"
+    },
+    "Mode": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "H",
+            "H-team",
+            "HR-seq",
+            "MOVE",
+            "WAIT",
+            "GATE"
+          ]
+        },
+        "output_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "qualification_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "qualification_revisions": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "units": {
+          "items": {
+            "$ref": "#/$defs/WorkUnit"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "output_revision",
+        "qualification_ids",
+        "qualification_revisions",
+        "units",
+        "enabled"
+      ],
+      "type": "object"
+    },
+    "Move": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "equipment": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "landing_h": {
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "qualification_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "qualification_revisions": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "route": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "source": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "route",
+        "equipment",
+        "entity_ids",
+        "landing_h",
+        "qualification_ids",
+        "qualification_revisions"
+      ],
+      "type": "object"
+    },
+    "Operation": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "enum": [
+            "WALK",
+            "TRANSFER",
+            "EMPTY_RETURN",
+            "RESERVE",
+            "RELEASE_RESERVATION",
+            "CONVERT",
+            "WORK",
+            "READY",
+            "RECEIVE_EXTERNAL",
+            "RETURN",
+            "SCRAP",
+            "REST",
+            "DEPLOY_TOOL",
+            "RETRIEVE_TOOL",
+            "SUPPORT_CHANGE"
+          ]
+        },
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "attempt_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "base_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "component_input_places": {
+          "items": {
+            "$ref": "#/$defs/ComponentPort"
+          },
+          "type": "array"
+        },
+        "component_inputs": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "component_outputs": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entity_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "equipment": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hold_device": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "input_places": {
+          "items": {
+            "$ref": "#/$defs/MaterialPort"
+          },
+          "type": "array"
+        },
+        "kappa": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "mass_remove_t": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "material_inputs": {
+          "items": {
+            "$ref": "#/$defs/Amount"
+          },
+          "type": "array"
+        },
+        "material_outputs": {
+          "items": {
+            "$ref": "#/$defs/Amount"
+          },
+          "type": "array"
+        },
+        "output_places": {
+          "items": {
+            "$ref": "#/$defs/MaterialPort"
+          },
+          "type": "array"
+        },
+        "phase": {
+          "enum": [
+            "WALK",
+            "DRIVE",
+            "PUSH",
+            "SETUP",
+            "WORK",
+            "SUPERVISE",
+            "REST"
+          ]
+        },
+        "prerequisites": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "production_mode": {
+          "anyOf": [
+            {
+              "enum": [
+                "H",
+                "H-team",
+                "MOVE",
+                "WAIT",
+                "GATE"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualification_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "quality_gates": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "release_device": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "role_locations": {
+          "items": {
+            "$ref": "#/$defs/PersonPosition"
+          },
+          "type": "array"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/Role"
+          },
+          "type": "array"
+        },
+        "route_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scrap_quantity": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "support_layout_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "wait_after": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wait_gate": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wait_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "activity_id",
+        "action",
+        "phase",
+        "prerequisites",
+        "roles",
+        "role_locations",
+        "equipment",
+        "location",
+        "target",
+        "route_id",
+        "entity_id",
+        "material_inputs",
+        "material_outputs",
+        "scrap_quantity",
+        "base_h",
+        "kappa",
+        "qualification_ids",
+        "quality_gates",
+        "wait_gate",
+        "hold_device",
+        "release_device",
+        "component_inputs",
+        "component_outputs",
+        "attempt_index",
+        "unit_index",
+        "input_places",
+        "output_places",
+        "production_mode",
+        "wait_after",
+        "wait_h",
+        "mass_remove_t",
+        "component_input_places",
+        "support_layout_id"
+      ],
+      "type": "object"
+    },
+    "Person": {
+      "additionalProperties": false,
+      "properties": {
+        "calendar": {
+          "$ref": "#/$defs/Calendar"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "initial_f": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "qualifications": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "recovery_rate": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "valid_until_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "wait_rate": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "work_rate": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "qualifications",
+        "valid_until_h",
+        "initial_f",
+        "work_rate",
+        "wait_rate",
+        "recovery_rate",
+        "calendar"
+      ],
+      "type": "object"
+    },
+    "PersonPosition": {
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "person_id",
+        "location"
+      ],
+      "type": "object"
+    },
+    "Place": {
+      "additionalProperties": false,
+      "properties": {
+        "capacity": {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "BAY",
+            "MATERIAL",
+            "COMPONENT",
+            "FINISHED",
+            "INTERFACE",
+            "CONTROL"
+          ]
+        },
+        "parent": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "position": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "capacity",
+        "position",
+        "parent"
+      ],
+      "type": "object"
+    },
+    "Point": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "type": "object"
+    },
+    "Product": {
+      "additionalProperties": false,
+      "properties": {
+        "bom": {
+          "items": {
+            "$ref": "#/$defs/BOMItem"
+          },
+          "type": "array"
+        },
+        "due_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "mass_t": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "order_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "release_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "rigging_t": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "variant": {
+          "enum": [
+            "SR-W1",
+            "SR-W2"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "order_id",
+        "variant",
+        "revision",
+        "bom",
+        "mass_t",
+        "rigging_t",
+        "release_h",
+        "due_h"
+      ],
+      "type": "object"
+    },
+    "Role": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "qualification": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "qualification"
+      ],
+      "type": "object"
+    },
+    "Route": {
+      "additionalProperties": false,
+      "properties": {
+        "device_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "max_size_m": {
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "points": {
+          "items": {
+            "$ref": "#/$defs/Point"
+          },
+          "type": "array"
+        },
+        "qualification": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "segments": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "speed_m_s": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "target": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "vertical_speed_m_s": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "target",
+        "device_id",
+        "segments",
+        "points",
+        "speed_m_s",
+        "vertical_speed_m_s",
+        "qualification",
+        "max_size_m"
+      ],
+      "type": "object"
+    },
+    "SupportContact": {
+      "additionalProperties": false,
+      "properties": {
+        "pair_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "place_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "position": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "place_id",
+        "pair_index",
+        "position"
+      ],
+      "type": "object"
+    },
+    "SupportLayout": {
+      "additionalProperties": false,
+      "properties": {
+        "contacts": {
+          "items": {
+            "$ref": "#/$defs/SupportContact"
+          },
+          "type": "array"
+        },
+        "group_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "root": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "root",
+        "group_id",
+        "contacts"
+      ],
+      "type": "object"
+    },
+    "Window": {
+      "additionalProperties": false,
+      "properties": {
+        "end_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "start_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "start_h",
+        "end_h"
+      ],
+      "type": "object"
+    },
+    "WorkUnit": {
+      "additionalProperties": false,
+      "properties": {
+        "base_h": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "checkpoint_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "equipment": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kappa": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "phase": {
+          "enum": [
+            "SETUP",
+            "WORK",
+            "ROBOT",
+            "UNLOAD",
+            "CHECK",
+            "MOVE"
+          ]
+        },
+        "resumable": {
+          "type": "boolean"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/Role"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "base_h",
+        "checkpoint_id",
+        "phase",
+        "roles",
+        "equipment",
+        "kappa",
+        "resumable"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/Configuration",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuration"
+}

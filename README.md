@@ -1,5 +1,29 @@
 # 完整建筑模块的多资源自适应生产调度
 
+2026-10-05现行本地成果（LOG154）：S15限定矩阵16条严格同源码轻量/真实Kit比较与独立审计通过，Kit均正常退出；WV01实际满缓冲区第三件READY背压及三件接收通过，源码与隔离wheel各562项通过。候选S15-20261005-r1，VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。各例分批捕获源码及全部失败/原720 h截尾保持，详见docs/validation/S15_final_review_r1.md。验收、确切发布及S16—S28另审。
+
+2026-10-05现行补充（PR119 / LOG143）：负责人已批准WV01（S15-WV-APPROVAL-001），仅新增B2_SUPPLEMENTAL_960三产品同时释放、960 h上限/840 h接收许可用例；其余RP/SC/SH参数和原720/240 h结果保持。须实际见证B=2占满时第三件在OUT1已READY受容量阻断及后续全部接收。S15仍IMPLEMENTATION_IN_PROGRESS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；验收、确切发布及S16—S28另审。
+
+2026-10-05现行实施续接（LOG140—LOG141）：正常单产品真实Kit全链及有限故障/缺料用例严格同源码比较通过；三产品在720 h截尾且发现待命疲劳越限，保留INVALID。显式REST修复41项专项通过，完整重跑和其他矩阵继续。S15仍 **IMPLEMENTATION_IN_PROGRESS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED**，不把局部通过或截尾当作S15完成；RP/SC/SH授权保持。见 docs/steps/S15.md。
+
+2026-10-05实施续接（LOG137）：单产品真实Kit已完成442/442及一次READY/接收，独立审计和正常退出通过；严格同源比较、多产品/B+1、返修取消及干预矩阵继续。S15仍 **IMPLEMENTATION_IN_PROGRESS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED**。详见[连续全链检查点](docs/validation/S15_chain_checkpoint_r1.md)，下方旧状态保留历史时点。
+
+2026-10-05现行补充（PR118 / LOG135）：负责人已批准 SH01（S15-SH-APPROVAL-001），仅 LINING 支承人工交接高度上限为2.45 m，其余RP/SC边界保持。继续S15本地实现与验证，成果验收、确切发布另审；完整链尚未通过。
+
+2026-10-05现行交接授权（PR117 / LOG134）：负责人要求创建“S15-2”新对话，沿用当前目录/main，不创建分支或worktree，在新对话直接继续完成S15剩余本地实现、验证、必要治理和确切审阅包。RP01—RP08及SC01—SC04授权继续有效，不重复等待批准，不把机制检查点当作S15完成。验收、确切发布仍另审，S16—S28未启动。
+
+2026-10-05现行实施检查点（LOG133）：支承机制 r2 的真实Kit 12组、同源码双端比较及实际障碍续接通过，正常退出；源码与隔离wheel各545项通过，包来源审计通过。本步27项含24条带载/60条空返有限通行检查。完整USD链仍167/436停滞、无READY/接收，S15保持 **IMPLEMENTATION_IN_PROGRESS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED**；详见 docs/validation/S15_support_reconfiguration_r2.md。既有RP/SC授权继续有效。
+
+2026-10-05现行实施检查点（LOG132）：SC01—SC04已实现并取得有限机制验证：真实Kit正常矩阵12组、105次重配及25次复用；同源码双端逐事件比较与独立审计通过，实际障碍续接见证通过，成功运行进程正常退出。最新源码543项、专项25项通过。完整S15仍 **IMPLEMENTATION_IN_PROGRESS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED**，全链/干预/隔离wheel及确切成果包继续推进。原RP/SC批准有效，不重复等待裁定；详见支承有限验证记录。
+
+2026-10-04现行补充（PR116 / LOG130）：负责人已批准 S15-SUPPORT-20261004-r1 的 SC01—SC04，决策 S15-SC-APPROVAL-001，要求实施并验证支承重配。按提案限定附件范围、P1/E1人员和新增工时推进；RP01—RP08批准继续有效，不再等待本项裁定。S15仍IMPLEMENTATION_IN_PROGRESS；成果验收、Git发布及S16启动未获授权。原提案及旧待审文字保留历史时点。
+
+2026-10-04现行决定（PR115 / LOG127）：负责人已批准S15-RECIPE-20261004-r1的RP01—RP08及配套JSON确切数值，决策S15-RP-APPROVAL-001。允许按表限定扩展D01/D03并继续S15本地实现与验证，不再等待配方批准。D02/G2、D05/D06、HR禁用及其余冻结边界保持；成果验收与确切发布另审，S16—S28未启动。以下旧待决定文字保留历史时点。
+
+当前入口：[S15步骤卡](docs/steps/S15.md)、[A/E研究配方待裁定稿](docs/model/S15_recipe_proposal_r1.md)。
+
+2026-10-04现行状态（PR112—PR114 / LOG124—LOG126）：S14 r2已实际APPROVED / PUBLISHED，提交`a5105410b248fa95655c521a4bb07ab3142e93a1`、标签`step-S14-r2`，两平台CI成功；人工GUI体验验收未单独记录。S15本地实施已获授权；负责人现要求先提交具体A/E研究配方裁定。S15当前SPECIFICATION_DECISION_PENDING，配方未获批准，完整PRODUCTION保持阻断；成果验收、确切发布另审，S16—S28未启动。旧状态保留历史时点。
+
 2026-10-04现行本地成果（PR111 / LOG123）：S14五项审阅问题已完成有限修复，候选 `S14-20261004-r2`，**VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED**。源码及隔离wheel各518项通过，真实Kit 22组见证与独立事件审计通过并正常退出。材料实物互斥、WORLD去重、逐输入实际证据、修复后自动恢复已验证；完整PRODUCTION映射仍未实现并明确拒绝，不能用37活动参照图冒充生产实现。原r1已发布，旧证据/冻结域保持；S15未启动，本轮无Git写入。
 
 2026-10-04现行授权（PR109—PR111 / LOG120—LOG122）：S14 r1已按确切批准发布，提交`d91d13e5aaf964b79aeb36fd0b035cfd566ce36f`、标签`step-S14-r1`，两平台CI成功。发布后审阅确认五项逻辑问题；负责人已批准这些问题及必要回归、说明、治理和新审阅包的有限本地修复。沿用main/现有目录，不建分支或worktree；r2另行验收和批准发布，不启动S15—S28。以下旧状态保留各自历史时点。
