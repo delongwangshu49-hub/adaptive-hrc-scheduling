@@ -1349,3 +1349,11 @@ next_action: null
 - 双平台CI均发生APPROVED_RECIPE_DRIFT：原批准摘要绑定CRLF，本地验证保留该形式，而Git按规则生成LF。518项运行后S15类准备失败，不能记录PUBLISHED；本次如实保留PUSHED_CI_FAILED及原日志。
 - 已准备仅将换行还原为原批准摘要表示的修复，原配方数值、标识和配置保持；新增换行兼容及内容篡改拒绝测试。统一LF副本源码/隔离wheel各564项、来源审计、离线构建及依赖检查通过；没有重跑Kit，原轨迹来源和全部限制保持。
 - r2为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；新快照含确切差异、摘要与检查证据，拟main/step-S15-r2另审。没有移动r1标签、强推、发布修订或启动S16—S28。详见docs/validation/S15_ci_repair_r2.md。
+
+
+## 2026年10月5日 S15 r2批准执行与Windows CI时间预算
+
+- LOG156；PR121批准S15-20261005-r2确切9文件。单提交`9d82b292a0a1c585b71bc7676b08f2bd417c9387`、新标签`step-S15-r2`与远端411文件核验通过，r1及历史标签不变。
+- Ubuntu两轮各564项通过；Windows首次与同提交重试的第一轮564项分别434.774 s、430.842 s通过，第二轮均被15分钟作业上限取消。两次失败和完整日志保留，r2为PUSHED_CI_TIMEOUT，不能记为PUBLISHED。
+- r3本地修订仅调整Windows CI预算为25分钟，Ubuntu保持15分钟。其余工作流与源码、配方、测试不变；静态逐字节差异检查通过，原r2本地回归及Ubuntu远端结果按原来源保留。没有重跑Kit，没有预写r3远端成功。
+- 候选S15-20261005-r3为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；确切快照拟main/step-S15-r3另审，不移动旧标签、不启动S16—S28。见docs/validation/S15_ci_budget_r3.md。

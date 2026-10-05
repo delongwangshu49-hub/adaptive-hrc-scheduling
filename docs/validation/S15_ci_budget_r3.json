@@ -1,0 +1,63 @@
+{
+  "candidate": "S15-20261005-r3",
+  "base_commit": "9d82b292a0a1c585b71bc7676b08f2bd417c9387",
+  "work": "VERIFIED_WITH_LIMITS",
+  "acceptance": "PENDING",
+  "approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "r2": {
+    "approval": "APPROVED",
+    "publication": "PUSHED_CI_TIMEOUT",
+    "commit": "9d82b292a0a1c585b71bc7676b08f2bd417c9387",
+    "tag": "step-S15-r2",
+    "remote_blobs_verified": 411,
+    "ci_run": 37324618681,
+    "ci_url": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37324618681",
+    "ubuntu": {
+      "status": "PASS",
+      "tests_per_suite": 564,
+      "suite_seconds": [
+        240.776,
+        235.763
+      ]
+    },
+    "windows_attempts": {
+      "1": {
+        "windows_first_suite_tests": 564,
+        "windows_first_suite_seconds": 434.774,
+        "windows_second_suite": "INCOMPLETE_TIMEOUT",
+        "assertion_failure_observed": false,
+        "log_sha256": "d82f5e8e48d5d6a315bb536266598bb986a505102f4fc30e95c6930aa8a7fedd"
+      },
+      "2": {
+        "windows_first_suite_tests": 564,
+        "windows_first_suite_seconds": 430.842,
+        "windows_second_suite": "INCOMPLETE_TIMEOUT",
+        "assertion_failure_observed": false,
+        "log_sha256": "578084434a8d1e7a25eff4dfd32fad6557375bd1a9574faabd98ba7da6a09e5c"
+      }
+    }
+  },
+  "change": {
+    "path": ".github/workflows/ci.yml",
+    "windows_minutes_before": 15,
+    "windows_minutes_after": 25,
+    "ubuntu_minutes_unchanged": 15,
+    "test_commands_unchanged": true,
+    "test_count_unchanged": true,
+    "code_and_recipe_unchanged": true,
+    "step_timeout_not_simulation_window": true
+  },
+  "checks": {
+    "workflow_exact_single_line_diff": "PASS",
+    "application_source_and_tests_equal_r2": "PASS",
+    "r2_local_LF_source_and_wheel_564_tests_each": "PRIOR_EVIDENCE_UNCHANGED_CODE",
+    "r3_remote_ci": "NOT_RUN"
+  },
+  "limits": [
+    "Windows full CI remains unverified until the revised workflow actually completes.",
+    "The two timeout runs remain incomplete and are not relabeled as successful.",
+    "No new Kit run; original per-case source bindings, 720 h censoring and all industrial/GUI limitations remain.",
+    "S16-S28 not started."
+  ]
+}

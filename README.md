@@ -1,5 +1,7 @@
 # 完整建筑模块的多资源自适应生产调度
 
+2026-10-05现行发布与CI预算修订（PR121 / LOG156）：负责人已批准S15 r2并推送提交`9d82b292a0a1c585b71bc7676b08f2bd417c9387`及`step-S15-r2`。Ubuntu两轮各564项通过；Windows两次第一轮564项通过、第二轮均因15分钟作业上限截断，r2为PUSHED_CI_TIMEOUT。仅将Windows CI上限改为25分钟、Ubuntu保持15分钟的r3本地候选已形成；源码/配方/测试与r2相同，尚未运行r3远端CI或获发布批准。见docs/validation/S15_ci_budget_r3.md；原限制及S16—S28边界保持。
+
 2026-10-05现行发布与修复（PR120 / LOG155）：负责人已批准S15 r1限定成果及确切快照；提交`8d0b283deccba1631bc2c1d8f35e5abc8e9788a9`和`step-S15-r1`已推送，但两平台CI因配方CRLF/LF摘要不一致失败，状态PUSHED_CI_FAILED。仅换行兼容的本地r2修复已通过LF源码/隔离wheel各564项，候选S15-20261005-r2为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。见docs/validation/S15_ci_repair_r2.md；原配方数值、证据和限制保持，新快照发布及S16—S28另审。
 
 2026-10-05现行本地成果（LOG154）：S15限定矩阵16条严格同源码轻量/真实Kit比较与独立审计通过，Kit均正常退出；WV01实际满缓冲区第三件READY背压及三件接收通过，源码与隔离wheel各562项通过。候选S15-20261005-r1，VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。各例分批捕获源码及全部失败/原720 h截尾保持，详见docs/validation/S15_final_review_r1.md。验收、确切发布及S16—S28另审。

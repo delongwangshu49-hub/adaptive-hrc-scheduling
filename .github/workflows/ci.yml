@@ -18,7 +18,7 @@ jobs:
   check:
     name: CPU checks (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    timeout-minutes: ${{ matrix.os == 'windows-2025' && 25 || 15 }}
     strategy:
       fail-fast: false
       matrix:

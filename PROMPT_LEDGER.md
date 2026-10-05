@@ -4448,3 +4448,40 @@ PR055 补录 S08 r2 实际批准；PR056 单独授权 S09 本地实施。PR057 �
   "limit": "NO_R2_PUBLICATION_APPROVAL_NO_GUI_EXPERIENCE_CLAIM_NO_S16_S28"
 }
 ```
+
+
+## PR121：S15 r2确切发布批准
+
+以下为规范化语义摘要，不是逐字原始会话。批准只对应r2；新CI时间预算快照另审。
+
+```json
+{
+  "id": "PR121",
+  "date": "2026-10-05",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "APPROVE_EXACT_S15_R2_PUBLICATION",
+    "target": "S15",
+    "parameters": {
+      "packet_id": "S15-20261005-r2",
+      "packet_sha256": "809085a9b495fab37026b6d7b13f90999f3fdd90b6698d934e174fd2581bdc08",
+      "branch": "main",
+      "tag": "step-S15-r2"
+    }
+  },
+  "human_contribution": [
+    "APPROVED_EXACT_R2_FIX_AND_PUBLICATION"
+  ],
+  "assistant_support": [
+    "COMMITTED_TAGGED_PUSHED_AND_VERIFIED_REMOTE_TREE",
+    "RETAINED_WINDOWS_TIMEOUT_AND_RETRIED_IDENTICAL_COMMIT",
+    "PREPARED_WINDOWS_CI_TIME_BUDGET_REVIEW"
+  ],
+  "resolution": "R2_PUSHED_CI_TIMEOUT_R3_REQUIRES_SEPARATE_SNAPSHOT_APPROVAL",
+  "evidence_refs": [
+    "docs/validation/S15_ci_budget_r3.md",
+    "docs/validation/S15_ci_budget_r3.json"
+  ],
+  "limit": "NO_R3_PUBLICATION_APPROVAL_NO_S16_S28"
+}
+```
