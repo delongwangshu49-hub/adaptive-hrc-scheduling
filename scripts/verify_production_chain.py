@@ -28,6 +28,7 @@ def witness(args):
 
     from adaptive_hrc_scheduling.contracts.codec import as_data
     from adaptive_hrc_scheduling.contracts.production import validate
+    from adaptive_hrc_scheduling.control.production_decisions import record
     from adaptive_hrc_scheduling.control.production_loop import Scenario, run
     from adaptive_hrc_scheduling.production_backend import ProductionBackend
 
@@ -148,18 +149,12 @@ def witness(args):
             stream.write(json.dumps(as_data(event), separators=(",", ":")) + "\n")
     save(args.output / "state.json", as_data(result.snapshot.state))
     save(args.output / "audit.json", as_data(result.audit))
+    save(args.output / "decision-audit.json", as_data(result.decision_audit))
     with gzip.open(args.output / "decisions.jsonl.gz", "wt", encoding="utf-8") as stream:
         for decision in result.decisions:
             stream.write(
                 json.dumps(
-                    {
-                        "observation_id": decision.observation.id,
-                        "state_revision": decision.observation.state.revision,
-                        "sampled_h": decision.observation.sampled_h,
-                        "plan": as_data(decision.plan),
-                        "rejected_parents": decision.rejected_parents,
-                        "receipt_id": decision.receipt_id,
-                    },
+                    record(decision),
                     separators=(",", ":"),
                 )
                 + "\n"
@@ -174,7 +169,11 @@ def witness(args):
         if args.expect_window
         else "OPERATIONS_COMPLETE"
     )
-    passed = manifest["audit"] == "PASS" and manifest["termination"] == expected
+    passed = (
+        manifest["audit"] == "PASS"
+        and manifest["decision_audit"] == "PASS"
+        and manifest["termination"] == expected
+    )
     if args.loaded_failure or args.actual_device_failure:
         passed = passed and manifest["loaded_failure_injected"] and not world.s.failed_resources
     if args.actual_path_obstruction:

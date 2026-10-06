@@ -6,6 +6,7 @@ import math
 from adaptive_hrc_scheduling import production_supports as supports
 from adaptive_hrc_scheduling.contracts.codec import require
 from adaptive_hrc_scheduling.production_geometry import standing_point, transport_sweeps
+from adaptive_hrc_scheduling.production_pedestrians import fork_access, fork_walk_phases, walk_yaw
 
 
 def ingress_groups(config, state):
@@ -37,6 +38,7 @@ def boxes(config, state, excluded=()):
     places = {p.id: p for p in config.places}
     positions = {p.id: p.location for p in state.positions}
     transit = {}
+    pedestrian_yaws = {}
     operations = {o.id: o for o in config.operations}
     routes = {r.id: r for r in config.routes}
     for run in state.running:
@@ -58,6 +60,17 @@ def boxes(config, state, excluded=()):
         )
         point = proof.position_m if proof else (rt.points[0].x, rt.points[0].y, rt.points[0].z)
         transit[op.entity_id] = point
+        if op.action == "WALK" and op.entity_id == "P1":
+            points = tuple((p.x, p.y, p.z) for p in rt.points)
+            fork_location = positions["FORK-01"]
+            if fork_location in places:
+                phases, _ = fork_walk_phases(
+                    points,
+                    places[fork_location].position,
+                    leaving=op.location == fork_location,
+                    entering=op.target == fork_location,
+                )
+                pedestrian_yaws[op.entity_id] = walk_yaw(points, point, phases)
         if rt.device_id:
             transit[rt.device_id] = point
             for role in op.roles:
@@ -71,7 +84,7 @@ def boxes(config, state, excluded=()):
     variable_ports = {p.place_id for layout in config.support_layouts for p in layout.contacts}
 
     def box(owner, center, size):
-        if owner not in excluded:
+        if owner not in excluded and owner.split("/", 1)[0] not in excluded:
             signature = (tuple(center), tuple(size))
             if owner in places and signature in seen_geometry:
                 return
@@ -188,7 +201,11 @@ def boxes(config, state, excluded=()):
                 if loc == "IN_TRANSIT"
                 else standing_point(config, person.id, loc)
             )
-            box(person.id, (*p[:2], p[2] + 0.95), (0.6, 1.2, 1.9))
+            box(
+                person.id,
+                (*p[:2], p[2] + 0.95),
+                (1.2, 0.6, 1.9) if pedestrian_yaws.get(person.id) == 90 else (0.6, 1.2, 1.9),
+            )
     for d in config.devices:
         loc = positions[d.id]
         if (loc not in places and d.id not in transit) or d.kind in ("FIXED", "FIXTURE"):
@@ -232,15 +249,16 @@ def boxes(config, state, excluded=()):
         else:
             offset = 1.8 if d.id == "FORK-01" else 1.1 if d.id == "CART-01" else 0
             box(
-                d.id,
+                d.id + "/Deck" if d.id == "FORK-01" else d.id,
                 (x, y - offset, 0.14),
                 (1.5, 2.6, 0.18) if d.id == "FORK-01" else (0.8, 0.6, 0.18),
             )
             if d.id == "FORK-01":
-                box(d.id, (x, y - 2.7, 1), (1.3, 0.1, 1.6))
-                for dx in (-0.65, 0.65):
-                    box(d.id, (x + dx, y - 0.75, 1.25), (0.1, 0.12, 2.5))
-                    box(d.id, (x + dx, y - 1.45, z - 0.06), (0.12, 1.3, 0.12))
+                box(d.id + "/Guard", (x, y - 2.7, 1), (1.3, 0.1, 1.6))
+                box(d.id + "/Controls", (x, y - 1.7, 1.2), (0.6, 0.3, 0.3))
+                for i, dx in enumerate((-0.65, 0.65)):
+                    box(d.id + f"/Mast{i}", (x + dx, y - 0.75, 1.25), (0.1, 0.12, 2.5))
+                    box(d.id + f"/Forks/Tine{i}", (x + dx, y - 1.45, z - 0.06), (0.12, 1.3, 0.12))
     return result
 
 
@@ -344,9 +362,6 @@ def support_paths_clear(config, state, old, layout, elapsed=0):
 
 def walk_obstacles(config, state, person, source, target):
     excluded = [person]
-    # Same designated standing-operator contact group as the existing target model.
-    if person == "P1":
-        excluded.append("FORK-01")
     cart_place = next(p.location for p in state.positions if p.id == "CART-01")
     if person == "E1" and cart_place in (source, target):
         excluded.extend(("CART-01/Handle", "CART-01/HandlePost"))
@@ -356,18 +371,71 @@ def walk_obstacles(config, state, person, source, target):
     return boxes(config, state, excluded)
 
 
+def walk_blocker(config, state, person, source, target, points):
+    obstacles = walk_obstacles(config, state, person, source, target)
+    fork_location = next(p.location for p in state.positions if p.id == "FORK-01")
+    fork = next((p.position for p in config.places if p.id == fork_location), None)
+    phases, turns = (
+        fork_walk_phases(
+            points, fork, leaving=source == fork_location, entering=target == fork_location
+        )
+        if person == "P1" and fork is not None
+        else ({}, {})
+    )
+    for index, (a, b) in enumerate(zip(points, points[1:])):
+        contacts, yaw = phases.get(index, ((), 0))
+        for obstacle in obstacles:
+            if obstacle[0] not in {"FORK-01/" + part for part in contacts}:
+                if not clear_segment(
+                    a, b, (obstacle,), (1.2, 0.6, 1.9) if yaw else (0.6, 1.2, 1.9)
+                ):
+                    return obstacle[0]
+    for index, contacts in turns.items():
+        p = points[index]
+        for name, low, high in obstacles:
+            if name in {"FORK-01/" + part for part in contacts}:
+                continue
+            dx, dy = (max(low[i] - p[i], 0, p[i] - high[i]) for i in (0, 1))
+            if (
+                low[2] < p[2] + 1.92
+                and high[2] > p[2] - 0.02
+                and math.hypot(dx, dy) < math.hypot(0.3, 0.6) + 0.02 - 1e-9
+            ):
+                return name
+    return None
+
+
 def walk(config, state, person, source, target):
     start, end = (standing_point(config, person, loc) for loc in (source, target))
     obstacle = walk_obstacles(config, state, person, source, target)
     obstacle = [
         o for o in obstacle if o[1][2] < (2.12 if person == "P1" else 1.92) and o[2][2] > -0.02
     ]
-    a, b = (*start[:2], 0), (*end[:2], 0)
-    xs = {1, 3, 10, 13, 25, 35, 45, 57, 59, a[0], b[0]}
-    ys = {2, 7, 18, 29, 39, 42, a[1], b[1]}
+    fork_location = next(p.location for p in state.positions if p.id == "FORK-01")
+    fork = next((p.position for p in config.places if p.id == fork_location), None)
+
+    def access(location, point, entering=False):
+        paths = ((point, (*point[:2], 0)),)
+        if person == "P1" and fork is not None and location == fork_location:
+            options = fork_access(fork)
+            if point == options[0][0]:
+                paths = options
+        if entering:
+            paths = tuple(tuple(reversed(path)) for path in paths)
+        return tuple(
+            path
+            for path in paths
+            if walk_blocker(config, state, person, source, target, path) is None
+        )
+
+    starts, finishes = access(source, start), access(target, end, True)
+    require(starts and finishes, "NO_LEGAL_PERSON_ACCESS")
+    endpoints = [p[-1] for p in starts] + [p[0] for p in finishes]
+    xs = {1, 3, 10, 13, 25, 35, 45, 57, 59, *(p[0] for p in endpoints)}
+    ys = {2, 7, 18, 29, 39, 42, *(p[1] for p in endpoints)}
     for _, lo, hi in obstacle:
         if lo[2] >= 1.92 or not any(
-            all(lo[i] - 3 <= p[i] <= hi[i] + 3 for i in (0, 1)) for p in (a, b)
+            all(lo[i] - 3 <= p[i] <= hi[i] + 3 for i in (0, 1)) for p in endpoints
         ):
             continue
         xs.update(x for x in (lo[0] - 0.34, hi[0] + 0.34) if 0.31 <= x <= 59.69)
@@ -385,11 +453,20 @@ def walk(config, state, person, source, target):
                 if clear_segment(p, q, obstacle):
                     edges[p].append(q)
                     edges[q].append(p)
-    heap, best = [(0, a, (a,))], {a: 0}
+    heap, best = [], {}
+    for path in starts:
+        cost = sum(math.dist(a, b) for a, b in zip(path, path[1:]))
+        best[path[-1]] = cost
+        heapq.heappush(heap, (cost, path[-1], path))
+    goals = {path[0]: path for path in finishes}
     while heap:
         cost, p, path = heapq.heappop(heap)
-        if p == b:
-            points = tuple(dict.fromkeys((start, *path, end)))
+        if p in goals:
+            points = tuple(dict.fromkeys((*path, *goals[p][1:])))
+            require(
+                walk_blocker(config, state, person, source, target, points) is None,
+                "NO_LEGAL_PERSON_ROUTE",
+            )
             return points if len(points) > 1 else (start, end)
         if cost > best[p]:
             continue

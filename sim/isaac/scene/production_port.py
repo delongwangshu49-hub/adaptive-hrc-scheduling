@@ -20,6 +20,7 @@ from adaptive_hrc_scheduling.production_geometry import (
     standing_point,
     validate_service,
 )
+from adaptive_hrc_scheduling.production_pedestrians import fork_walk_phases, walk_yaw
 from adaptive_hrc_scheduling.production_supports import RACK_POST_X
 
 from .model import key
@@ -395,8 +396,6 @@ class USDProductionPort:
                 else []
             ),
         ]
-        if op.action == "WALK" and op.entity_id == "P1":
-            moving.append("FORK-01")
         obstacles = self.scene.actual_obstacles(moving)
         points = tuple((p.x, p.y, p.z) for p in route.points)
         if op.action == "WALK" and op.entity_id in ("E1", "QA1"):
@@ -419,7 +418,44 @@ class USDProductionPort:
             if op.entity_id in self.people
             else (0.8, 1.1, 1.2)
         )
-        if op.action == "EMPTY_RETURN" and op.entity_id == "CR1":
+        if op.action == "WALK" and op.entity_id == "P1":
+            import math
+
+            fork = self.position("FORK-01")
+            fork = (fork[0], fork[1] + 1.8, fork[2])
+            operator = (fork[0], fork[1] + FORK_OPERATOR_DY, 0.2)
+            phases, turns = fork_walk_phases(
+                points,
+                fork,
+                leaving=close(points[0], operator),
+                entering=close(points[-1], operator),
+                tolerance=0.002,
+            )
+            for index in range(len(points) - 1):
+                parts, yaw = phases.get(index, ((), 0))
+                contacts = {self.mapping["FORK-01"] + "/" + part for part in parts}
+                check_route(
+                    points[index : index + 2],
+                    (1.2, 0.6, 1.9) if yaw else size,
+                    [b for b in obstacles if b.name not in contacts],
+                )
+            for index, parts in turns.items():
+                p = points[index]
+                for box in obstacles:
+                    if box.name in {self.mapping["FORK-01"] + "/" + part for part in parts}:
+                        continue
+                    low = tuple(a - s / 2 for a, s in zip(box.center, box.size))
+                    high = tuple(a + s / 2 for a, s in zip(box.center, box.size))
+                    dx, dy = (max(low[i] - p[i], 0, p[i] - high[i]) for i in (0, 1))
+                    require(
+                        not (
+                            low[2] < p[2] + 1.9
+                            and high[2] > p[2]
+                            and math.hypot(dx, dy) < math.hypot(0.3, 0.6) - 1e-6
+                        ),
+                        "ACTUAL_WALK_TURN_COLLISION:" + box.name,
+                    )
+        elif op.action == "EMPTY_RETURN" and op.entity_id == "CR1":
             check_route(tuple((x, y, z - 0.6) for x, y, z in points), (6, 3, 0.8), obstacles)
         elif (
             not (op.action == "EMPTY_RETURN" and route.device_id in ("FORK-01", "CART-01", "TEST1"))
@@ -690,6 +726,23 @@ class USDProductionPort:
             point = interpolate(points, fraction, route.speed_m_s, route.vertical_speed_m_s)
             size = self.loads[op.entity_id].size_m if op.entity_id in self.loads else (0, 0, 0)
             self.put(op.entity_id, point)
+            if op.action == "WALK":
+                yaw = 0
+                if op.entity_id == "P1":
+                    fork = self.position("FORK-01")
+                    fork = (fork[0], fork[1] + 1.8, fork[2])
+                    operator = (fork[0], fork[1] + FORK_OPERATOR_DY, 0.2)
+                    phases, _ = fork_walk_phases(
+                        points,
+                        fork,
+                        leaving=close(points[0], operator),
+                        entering=close(points[-1], operator),
+                        tolerance=0.002,
+                    )
+                    yaw = walk_yaw(points, point, phases)
+                rotation = UsdGeom.Xformable(self.prim(op.entity_id)).GetOrderedXformOps()[-1]
+                rotation.Set(yaw)
+                require(abs(float(rotation.Get()) - yaw) < 1e-6, "ACTUAL_WALK_YAW")
             if op.action == "EMPTY_RETURN" and op.entity_id == "CR1":
                 self.put("CR1-HOOK", point)
                 self.put("CR1", (point[0], 0, 0))

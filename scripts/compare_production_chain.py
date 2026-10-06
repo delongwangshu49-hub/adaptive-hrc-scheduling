@@ -17,6 +17,7 @@ def compare(light, isaac, audit_source_root=ROOT):
     sys.path.insert(0, str(audit_source_root / "src"))
     from adaptive_hrc_scheduling.contracts.codec import decode
     from adaptive_hrc_scheduling.contracts.production import digest
+    from adaptive_hrc_scheduling.control.production_decisions import check_decisions
     from adaptive_hrc_scheduling.domain import production as m
     from adaptive_hrc_scheduling.production_checker import check_run
 
@@ -66,7 +67,9 @@ def compare(light, isaac, audit_source_root=ROOT):
                 # Each run's independent audit verifies its own command digest.
                 # Compare correlated command fields below with the fixed clock
                 # tolerance instead of requiring equal floating-point JSON bytes.
-                if key in ("wall_elapsed_s", "command_sha256"):
+                # Observation state digests bind each run to its own audited
+                # prefix, including backend-specific readback identities.
+                if key in ("wall_elapsed_s", "command_sha256", "state_sha256", "event_ids_sha256"):
                     continue
                 if key in ("source", "evidence_id") and (
                     ".readback" in path or ".motions[" in path
@@ -142,6 +145,7 @@ def compare(light, isaac, audit_source_root=ROOT):
             return self.last
 
     audits = []
+    decision_audits = []
     backpressure_witnesses = []
     for folder, report, config, state in zip((light, isaac), reports, configurations, states):
         config = decode(m.Configuration, config)
@@ -163,6 +167,19 @@ def compare(light, isaac, audit_source_root=ROOT):
         audits.append(audit.status)
         if audit.status != "PASS":
             error("independent_audit", str(audit.findings[:5]))
+        with gzip.open(folder / "decisions.jsonl.gz", "rt", encoding="utf-8") as stream:
+            decision_audit = check_decisions(
+                config, snapshot, (json.loads(line) for line in stream)
+            )
+        decision_audits.append(decision_audit.status)
+        if decision_audit.status != "PASS":
+            error("independent_decision_audit", str(decision_audit.findings[:5]))
+        if (
+            report["manifest"].get("decision_protocol") != "S15-DECISION-1"
+            or report["manifest"].get("observation_delivery") != "CURRENT_EVENT_PREFIX_ZERO_DELAY"
+            or report["manifest"].get("decision_audit") != "PASS"
+        ):
+            error("decision_manifest", "missing or invalid delivered-prefix decision audit")
         if report["manifest"]["scenario"]["id"] == "B2_SUPPLEMENTAL_960":
             from adaptive_hrc_scheduling.control.production_loop import Scenario, validate_scenario
             from adaptive_hrc_scheduling.production_witness import buffer_backpressure
@@ -189,6 +206,7 @@ def compare(light, isaac, audit_source_root=ROOT):
         status="PASS" if not error_count else "FAILED",
         comparator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         independent_audits=audits,
+        independent_decision_audits=decision_audits,
         buffer_backpressure_witnesses=backpressure_witnesses,
         audit_source_sha256=audit_sources,
         compared_records=counts,
@@ -204,6 +222,7 @@ def compare(light, isaac, audit_source_root=ROOT):
             "readback producer/evidence identifier",
             "wall clock",
             "byte digest of independently audited commands; command fields compared",
+            "observation state/event-ID digests independently checked against each run's prefix",
         ],
     )
 

@@ -1,5 +1,15 @@
 # 规范化提示词记录
 
+2026-10-06有限修复成果（PR127 / LOG163）：S15发布后F1—F4已完成限定修复；源码及隔离wheel各575项通过，原16场景及1条补充正常链均以统一捕获源码完成轻量/真实Kit比较、独立执行及决策因果审计，Kit正常退出。候选S15-20261006-r4为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；原r3发布与所有限制保持，未启动后续步骤。当前入口：docs/validation/S15_limited_repair_r4.md。
+
+2026-10-06有限修复授权（PR127 / LOG162）：负责人已批准S15发布后审阅F1—F4及必要回归、说明、治理和新确切审阅包的有限本地修复。沿用当前main/目录，不建分支或worktree；修复成果验收及新快照发布另审，S16—S28及S19A/S19B未启动。r3既有发布事实和全部历史证据保持。
+
+2026-10-06发布后全审（PR126 / LOG161）：负责人要求全量核查S15-1至S15-3的完成性及逻辑。审阅发现四项可复现问题，保持r3历史限定验收/批准/发布，当前POST_RELEASE_REVIEW_FINDINGS_OPEN。见docs/validation/S15_post_release_audit_r1.md；未实施修复或启动后续步骤。
+
+2026-10-05治理成果认可（PR125 / LOG160）：负责人已认可本次五文件治理成果，GOVERNANCE_ACCEPTED；S19A/S19B实施仍NOT_STARTED，本次新治理快照未获确切发布批准、未发布。该决定不改变S15 r3既有发布事实或原有技术限制。
+
+2026-10-05现行治理（PR124 / LOG159）：负责人要求立即落实已审阅批准的 S19AB-VISUAL-REVIEW-20261005-r2，仅更新总纲、路线、架构和两份记录。规划依赖S19→S19A→S19B→S20，S20—S28编号保持；新增步骤未启动，本次治理快照未获发布批准。S15 r3发布回执按PR122 / LOG157补录，S15-3只读接手另记PR123 / LOG158；下列旧状态保留原时点。
+
 2026-10-04现行补充（PR116 / LOG130）：负责人已批准 S15-SUPPORT-20261004-r1 的 SC01—SC04，决策 S15-SC-APPROVAL-001，要求实施并验证支承重配。按提案限定附件范围、P1/E1人员和新增工时推进；RP01—RP08批准继续有效，不再等待本项裁定。S15仍IMPLEMENTATION_IN_PROGRESS；成果验收、Git发布及S16启动未获授权。原提案及旧待审文字保留历史时点。
 
 2026-10-04现行决定（PR115 / LOG127）：负责人已批准S15-RECIPE-20261004-r1的RP01—RP08及配套JSON确切数值，决策S15-RP-APPROVAL-001。允许按表限定扩展D01/D03并继续S15本地实现与验证，不再等待配方批准。D02/G2、D05/D06、HR禁用及其余冻结边界保持；成果验收与确切发布另审，S16—S28未启动。以下旧待决定文字保留历史时点。
@@ -4483,5 +4493,170 @@ PR055 补录 S08 r2 实际批准；PR056 单独授权 S09 本地实施。PR057 �
     "docs/validation/S15_ci_budget_r3.json"
   ],
   "limit": "NO_R3_PUBLICATION_APPROVAL_NO_S16_S28"
+}
+```
+
+## PR122：S15 r3确切批准与发布回执补录
+
+以下为既有实际决定的规范化语义摘要，不是逐字原始会话。本次治理授权后补录，不把历史r3发布批准扩展到当前治理快照。
+
+```json
+{
+  "id": "PR122",
+  "date": "2026-10-05",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "APPROVE_EXACT_S15_R3_SNAPSHOT_ACCEPTANCE_AND_PUBLICATION",
+    "target": "S15",
+    "parameters": {
+      "packet_id": "S15-20261005-r3",
+      "packet_sha256": "cdfa30a264538ccf9419fd092654b24f3aff612bf08b53df673cdbfac22427f0",
+      "acceptance": "ACCEPTED_WITH_DOCUMENTED_LIMITS",
+      "branch": "main",
+      "tag": "step-S15-r3"
+    }
+  },
+  "human_contribution": ["APPROVED_EXACT_R3_LIMITED_RESULT_AND_PUBLICATION"],
+  "assistant_support": ["PREVIOUSLY_PUBLISHED_APPROVED_SNAPSHOT_AND_VERIFIED_REMOTE_AND_CI", "BACKFILLED_EXISTING_RECEIPT_UNDER_CURRENT_GOVERNANCE_AUTHORIZATION"],
+  "resolution": "R3_VERIFIED_WITH_LIMITS_ACCEPTED_WITH_DOCUMENTED_LIMITS_APPROVED_PUBLISHED",
+  "evidence_refs": ["docs/validation/S15_ci_budget_r3.md", "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37329622401"],
+  "limit": "ORIGINAL_LIMITS_RETAINED_NO_NEW_KIT_RUN_NO_SEPARATE_GUI_ACCEPTANCE_NO_LATER_STEP_OR_NEW_SNAPSHOT_PUBLICATION_AUTHORIZATION"
+}
+```
+
+## PR123：S15-3只读交接
+
+以下为规范化语义摘要，不是逐字原始会话；与r3批准及后来的治理落实要求分别记录。
+
+```json
+{
+  "id": "PR123",
+  "date": "2026-10-05",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "CREATE_S15_3_CHAT_AND_PREPARE_READ_ONLY_HANDOFF",
+    "target": "S15",
+    "parameters": {"same_workspace": true, "branch": "main", "new_branch": false, "new_worktree": false, "wait_for_specific_instruction_after_read_only_preparation": true}
+  },
+  "human_contribution": ["REQUESTED_SEPARATE_HANDOFF_FOR_S15_CLOSEOUT_AND_PROJECT_GOVERNANCE"],
+  "assistant_support": ["READ_PROJECT_GUIDANCE_AND_LOCAL_PUBLICATION_RECEIPTS", "VERIFIED_CLEAN_MAIN_HEAD_TAG_AND_PACKET_DIGEST", "ACKNOWLEDGED_HANDOFF_WITHOUT_MUTATION"],
+  "resolution": "READ_ONLY_HANDOFF_COMPLETED_LATER_GOVERNANCE_AUTHORIZATION_RECORDED_SEPARATELY",
+  "evidence_refs": ["docs/steps/S15.md", "PROGRESS_LOG.md"],
+  "limit": "HANDOFF_ITSELF_DID_NOT_AUTHORIZE_GOVERNANCE_EDITS_LATER_STEPS_OR_PUBLICATION"
+}
+```
+
+## PR124：恢复并立即落实S19A/S19B治理规划
+
+以下为规范化语义摘要，不是逐字原始会话。负责人明确恢复此前延期，要求在S15-3按当前文件整合已审阅批准的r2提案；历史待审措辞由本次治理执行授权覆盖，不扩大为开发或发布授权。
+
+```json
+{
+  "id": "PR124",
+  "date": "2026-10-05",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "RESUME_AND_APPLY_APPROVED_GOVERNANCE_PROPOSAL_NOW",
+    "target": "S19AB-VISUAL-REVIEW-20261005-r2",
+    "parameters": {
+      "files": ["docs/PROJECT_CHARTER.md", "docs/roadmap.md", "docs/architecture.md", "PROGRESS_LOG.md", "PROMPT_LEDGER.md"],
+      "sequence": ["S19", "S19A", "S19B", "S20"],
+      "preserve_S20_S28_numbering": true,
+      "scope": "GOVERNANCE_PLANNING_AND_TEXT_CONSISTENCY_VALIDATION_ONLY",
+      "preserve_current_S15_implementation_CI_and_constraints": true,
+      "refresh_record_identifiers": true,
+      "stop_and_report_if_permission_denied": true
+    }
+  },
+  "human_contribution": ["APPROVED_R2_GOVERNANCE_DIRECTION_AND_EXPLICITLY_RESUMED_IMMEDIATE_LOCAL_APPLICATION"],
+  "assistant_support": ["REFRESHED_WORKSPACE_AND_RECORD_IDS", "INTEGRATED_SCENE_FRONTEND_FIGURE_AND_REVALIDATION_REQUIREMENTS_IN_FIVE_DOCUMENTS", "KEPT_PUBLICATION_HISTORY_AND_HANDOFF_AS_SEPARATE_RECORDS"],
+  "resolution": "GOVERNANCE_PLANNING_APPLIED_LOCALLY_IMPLEMENTATION_NOT_STARTED_PUBLICATION_NOT_APPROVED",
+  "evidence_refs": ["docs/PROJECT_CHARTER.md#s19a", "docs/PROJECT_CHARTER.md#s19b", "docs/PROJECT_CHARTER.md#visual-evidence-rules", "docs/roadmap.md", "docs/architecture.md", "PROGRESS_LOG.md"],
+  "limit": "NO_S19A_S19B_CODE_NO_OTHER_STEP_START_NO_RULE_UNFREEZE_NO_GIT_STAGE_COMMIT_TAG_PUSH_OR_PUBLICATION"
+}
+```
+
+## PR125：认可五文件治理成果
+
+以下为规范化语义摘要，不是逐字原始会话。负责人在五文件修改及验证结果交付后认可本次治理成果；依既有逐步审阅边界，文档认可不扩展为后续代码开发或未呈交确切发布包的远端写入许可。
+
+```json
+{
+  "id": "PR125",
+  "date": "2026-10-05",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "ACCEPT_DELIVERED_GOVERNANCE_RESULT",
+    "target": "S19AB-VISUAL-REVIEW-20261005-r2",
+    "parameters": {
+      "files": ["docs/PROJECT_CHARTER.md", "docs/roadmap.md", "docs/architecture.md", "PROGRESS_LOG.md", "PROMPT_LEDGER.md"],
+      "decision_id": "S19AB-GOVERNANCE-ACCEPTANCE-20261005-001"
+    }
+  },
+  "human_contribution": ["ACCEPTED_DELIVERED_FIVE_FILE_GOVERNANCE_RESULT"],
+  "assistant_support": ["RECORDED_ACCEPTANCE_WITH_REVIEWED_FILE_DIGESTS", "PRESERVED_IMPLEMENTATION_AND_PUBLICATION_BOUNDARIES"],
+  "resolution": "GOVERNANCE_ACCEPTED_IMPLEMENTATION_NOT_STARTED_PUBLICATION_NOT_APPROVED_NOT_PUBLISHED",
+  "evidence_refs": ["docs/PROJECT_CHARTER.md#s19a", "docs/PROJECT_CHARTER.md#s19b", "PROGRESS_LOG.md"],
+  "limit": "NO_S19A_S19B_OR_OTHER_STEP_START_NO_NEW_GIT_OR_REMOTE_PUBLICATION_AUTHORIZATION"
+}
+```
+
+## PR126：S15-1至S15-3完成性与逻辑全审
+
+以下为规范化语义摘要，不是逐字原始会话。负责人要求全量审阅S15三个对话承接的全部内容，核查是否完全完成及是否存在逻辑问题；本记录于跨日审阅期间形成。
+
+```json
+{
+  "id": "PR126",
+  "date": "2026-10-06",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "AUDIT_S15_COMPLETENESS_AND_LOGIC",
+    "target": "S15-1_THROUGH_S15-3",
+    "parameters": {"coverage": "AUTHORIZATION_IMPLEMENTATION_VALIDATION_FAILURES_PUBLICATION_AND_GOVERNANCE"}
+  },
+  "human_contribution": ["REQUESTED_FULL_COMPLETENESS_AND_LOGIC_REVIEW"],
+  "assistant_support": ["RECONCILED_AUTHORIZATION_AND_RELEASE_HISTORY", "REVIEWED_IMPLEMENTATION_AND_EVIDENCE", "RERAN_CPU_REGRESSION_AND_CONSTRUCTED_REPRODUCIBLE_NEGATIVE_PROBES", "RECORDED_FOUR_OPEN_FINDINGS_WITHOUT_IMPLEMENTATION_CHANGES"],
+  "resolution": "POST_RELEASE_REVIEW_FINDINGS_OPEN_HISTORICAL_LIMITED_ACCEPTANCE_AND_PUBLICATION_PRESERVED",
+  "evidence_refs": ["docs/validation/S15_post_release_audit_r1.md", "docs/steps/S15.md", "PROGRESS_LOG.md"],
+  "limit": "REVIEW_AND_NECESSARY_GOVERNANCE_ONLY_NO_IMPLEMENTATION_FIX_NO_OTHER_STEP_START_NO_NEW_GIT_OR_REMOTE_PUBLICATION"
+}
+```
+
+## PR127：批准S15四项问题的有限修复
+
+以下为规范化语义摘要，不是逐字原始会话。负责人批准已审阅四项问题的有限本地修复；不推定新成果已经验收或获确切发布许可。
+
+```json
+{
+  "id": "PR127",
+  "date": "2026-10-06",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "AUTHORIZE_LIMITED_S15_POST_RELEASE_FIXES",
+    "target": "S15_F1_F4",
+    "parameters": {
+      "scope": [
+        "FORK_PEDESTRIAN_CONTACT_EXCEPTIONS",
+        "INDEPENDENT_WALK_COLLISION_AUDIT",
+        "DECISION_CAUSAL_ASSOCIATION_AUDIT",
+        "WORLD_FAILURE_REPAIR_PRECONDITIONS",
+        "NECESSARY_REGRESSION_DOCUMENTATION_GOVERNANCE_AND_REVIEW_PACKET"
+      ]
+    }
+  },
+  "human_contribution": [
+    "APPROVED_LIMITED_LOCAL_REPAIR"
+  ],
+  "assistant_support": [
+    "RECORDED_AUTHORIZATION_AND_PRESERVED_PRE_REPAIR_DIGESTS"
+  ],
+  "resolution": "LIMITED_REPAIR_AUTHORIZED_IN_PROGRESS",
+  "evidence_refs": [
+    "docs/validation/S15_post_release_audit_r1.md",
+    "docs/steps/S15.md",
+    "PROGRESS_LOG.md"
+  ],
+  "limit": "NO_UNRELATED_IMPLEMENTATION_NO_NEW_BRANCH_OR_WORKTREE_NO_NEW_GIT_PUBLICATION_NO_FUTURE_STEP_START_ACCEPTANCE_AND_EXACT_RELEASE_SEPARATE"
 }
 ```

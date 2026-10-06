@@ -6,6 +6,7 @@ from adaptive_hrc_scheduling import production_rework as rework
 from adaptive_hrc_scheduling.building_human import calendar_state
 from adaptive_hrc_scheduling.contracts.codec import ContractError, require
 from adaptive_hrc_scheduling.contracts.production import digest
+from adaptive_hrc_scheduling.control.production_decisions import check_decisions, record
 from adaptive_hrc_scheduling.domain import production as m
 from adaptive_hrc_scheduling.planning.production import choose, planning_input
 from adaptive_hrc_scheduling.production_checker import check_run
@@ -41,6 +42,7 @@ class Result:
     decisions: tuple[Decision, ...]
     manifest: dict
     audit: object
+    decision_audit: object
 
 
 def validate_scenario(config, scenario):
@@ -327,7 +329,14 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
                 termination = "DECISION_CYCLE"
                 break
         observation = world.observe()
-        world.deliver()
+        require(observation in world.deliver(), "OBSERVATION_NOT_DELIVERED")
+        if isaac:
+            require(
+                backend.ledger.status == "CONTIGUOUS"
+                and tuple(e.id for e in backend.ledger.events) == observation.event_ids
+                and (not observation.event_ids or backend.ledger.state == observation.state),
+                "OBSERVATION_NOT_DELIVERED_EXECUTION_PREFIX",
+            )
         value = planning_input(c, observation, 10000)
         value = replace(
             value, operations=tuple(o for o in value.operations if o.id not in rejected)
@@ -466,6 +475,7 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
     if execution_hook:
         execution_hook(backend, "before_audit")
     audit = check_run(c, snapshot)
+    decision_audit = check_decisions(c, snapshot, (record(d) for d in decisions))
     manifest = {
         "protocol": "S15-PARITY-1",
         "scenario": scenario.__dict__,
@@ -479,10 +489,13 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
         "ready": sum(p.ready_h is not None for p in world.s.products),
         "received": sum(p.received_h is not None for p in world.s.products),
         "audit": audit.status,
+        "decision_audit": decision_audit.status,
+        "decision_protocol": "S15-DECISION-1",
+        "observation_delivery": "CURRENT_EVENT_PREFIX_ZERO_DELAY",
         "S15_complete": False,
         "industrial_qualification": "UNKNOWN",
         "loaded_failure_injected": failure_done and not scenario.actual_path_obstruction,
         "actual_path_obstruction_injected": failure_done and scenario.actual_path_obstruction,
         "preparation_steps_since_progress": preparation_steps,
     }
-    return Result(snapshot, tuple(decisions), manifest, audit)
+    return Result(snapshot, tuple(decisions), manifest, audit, decision_audit)

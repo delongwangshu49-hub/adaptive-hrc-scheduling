@@ -10,6 +10,7 @@ from adaptive_hrc_scheduling import production_supports as supports
 from adaptive_hrc_scheduling.contracts.codec import ContractError, as_data, decode
 from adaptive_hrc_scheduling.contracts.production import digest, validate
 from adaptive_hrc_scheduling.domain import production as m
+from adaptive_hrc_scheduling.production_audit_geometry import walk_collision
 from adaptive_hrc_scheduling.production_external import blocker as external_blocker
 from adaptive_hrc_scheduling.production_external import is_external
 from adaptive_hrc_scheduling.production_geometry import standing_point, validate_service
@@ -598,6 +599,9 @@ def _check_run(config, snapshot):
             if op.route_id and routes[op.route_id].device_id:
                 blocker = transport_blocker(config, geometry_state, op, routes[op.route_id])
                 need(blocker is None, "R08", "TRANSPORT_COLLISION:" + str(blocker), e)
+            if op.action == "WALK":
+                blocker = walk_collision(config, geometry_state, op, routes[op.route_id])
+                need(blocker is None, "R08", "WALK_COLLISION:" + str(blocker), e)
             if is_external(op):
                 blocker = external_blocker(config, geometry_state, op)
                 need(blocker is None, "R08", "EXTERNAL_ROUTE_COLLISION:" + str(blocker), e)
@@ -1333,6 +1337,13 @@ def _check_run(config, snapshot):
                         m.Gate(w.entity_id, w.product_id, w.attempt, w.result, clock, w.evidence_id)
                     )
                 elif w.kind == "FAILURE":
+                    need(
+                        w.entity_id
+                        in set(devices) | {s for r in config.routes for s in r.segments},
+                        "R16",
+                        "UNKNOWN_FAILURE_RESOURCE",
+                        e,
+                    )
                     failed.add(w.entity_id)
                     for key, run in list(running.items()):
                         rop = ops[run.command.operation_id]
@@ -1343,6 +1354,7 @@ def _check_run(config, snapshot):
                             if run.status != "EXCEPTION":
                                 running[key] = replace(run, status="EXCEPTION", held_at_h=clock)
                 elif w.kind == "REPAIR":
+                    need(w.entity_id in failed, "R16", "REPAIR_WITHOUT_FAILURE", e)
                     failed.discard(w.entity_id)
                 elif w.kind == "CANCEL":
                     products[w.product_id]["cancelled"] = True

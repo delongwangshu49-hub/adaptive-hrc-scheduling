@@ -346,13 +346,13 @@ class ProductionBackend:
 
     def _admit(self, c):
         op = self.operations[c.operation_id]
-        if c.service and op.action == "WALK" and not c.resume_of:
-            from adaptive_hrc_scheduling.production_navigation import clear_segment, walk_obstacles
+        if c.service and op.action == "WALK":
+            from adaptive_hrc_scheduling.production_navigation import walk_blocker
 
-            obstacles = walk_obstacles(self.config, self.s, op.entity_id, op.location, op.target)
             points = [(p.x, p.y, p.z) for p in self.routes[op.route_id].points]
             require(
-                all(clear_segment(a, b, obstacles) for a, b in zip(points, points[1:])),
+                walk_blocker(self.config, self.s, op.entity_id, op.location, op.target, points)
+                is None,
                 "DECLARED_WALK_COLLISION",
             )
         resumed = next((r for r in self.s.running if r.command.id == c.resume_of), None)
