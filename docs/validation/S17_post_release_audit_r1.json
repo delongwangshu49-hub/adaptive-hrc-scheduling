@@ -1,0 +1,107 @@
+{
+  "review_id": "S17-POST-RELEASE-AUDIT-20261007-r1",
+  "reviewed_packet": "S17-20261007-r1",
+  "reviewed_commit": "c72912b653bda6801da5c4dd2fce01cffb3f3ba3",
+  "reviewed_tag": "step-S17-r1",
+  "status": "POST_RELEASE_REVIEW_FINDINGS_OPEN",
+  "authorization_record": "PR136",
+  "result_log": "LOG175",
+  "publication_backfill": {
+    "record": "PR135",
+    "log": "LOG174",
+    "acceptance": "ACCEPTED_WITH_DOCUMENTED_LIMITS",
+    "approval": "APPROVED",
+    "publication": "PUBLISHED",
+    "ci_run": 37597226643,
+    "remote_tree_entries": 454,
+    "verified_changed_files": 23,
+    "remote_test_runs_per_platform": [
+      641,
+      641
+    ]
+  },
+  "completeness": "APPROVED_LIMITED_DELIVERABLES_ACCEPTANCE_AND_PUBLICATION_COMPLETE_WITH_TWO_UNREPAIRED_LOGIC_FINDINGS",
+  "full_future_factory_schedule": false,
+  "whole_run_production_lns": false,
+  "new_kit": false,
+  "new_remote_ci": false,
+  "source_regression": {
+    "count": 641,
+    "seconds": 255.595,
+    "result": "PASS",
+    "log_sha256": "c5bc1ba84d9d2f37a9e539d65847652d590c94f5dc4d53bcc33dba873e8e9c83"
+  },
+  "original_seven_static_cases_and_replay": "PASS_UNCHANGED",
+  "extra_static_complete_set_audit": {
+    "cases": 64,
+    "returned_legal_schedules": 61,
+    "checked_candidates": 244,
+    "no_solution_cases": 3,
+    "improvement_iterations": 48,
+    "known_legal_initial_and_one_commit_supplied_for_feasible_cases": true,
+    "all_returned_and_candidate_schedules_in_complete_sets": true,
+    "commitments_unchanged": true,
+    "formal_effect_claim": false
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "priority": 2,
+      "file": "src/adaptive_hrc_scheduling/algorithms/static_lns.py",
+      "start": 43,
+      "end": 45,
+      "title": "AUTOMATIC_INITIAL_IGNORES_COMMITTED_ENTRIES",
+      "trigger": "No supplied complete initial; A committed H at [1,3), B H [0,1) is independently legal.",
+      "actual": "WAIT/NO_LEGAL_INITIAL with FEASIBLE and COMMITMENT_CHANGED; best=None.",
+      "control": "The same commitment and supplied legal complete initial returns FEASIBLE with score 3.",
+      "effect": "Availability and interface completion defect; independent gate prevents rewriting commitment.",
+      "repair_status": "NOT_AUTHORIZED_NOT_IMPLEMENTED"
+    },
+    {
+      "id": "F2",
+      "priority": 2,
+      "file": "src/adaptive_hrc_scheduling/algorithms/production_lns.py",
+      "start": 106,
+      "end": 111,
+      "title": "AUTOMATIC_INITIAL_DOES_NOT_FILTER_OBSERVED_REJECTED_PARENTS",
+      "trigger": "Actual public dispatch preflight rejects first PRODUCT-1.KIT.U1 preparation; fresh full planning_input plus observed rejected tuple.",
+      "actual": "Initial repeats the rejected parent; verifier rejects it, search returns WAIT/NO_LEGAL_INITIAL/best=None.",
+      "control": "Filtering value.operations admits PRODUCT-2 preparation; actual lightweight STARTED and independent execution/decision prefix audits PASS.",
+      "single_product_control": "Filtered input returns an independently legal WAIT.",
+      "scope": "Synthetic command-level rejection, no admission/checker monkeypatch, no real Kit geometry claim.",
+      "effect": "The original loop prefilters inputs, so saved normal cases avoid this defect; the exposed adapter is inconsistent with its repair filter.",
+      "repair_status": "NOT_AUTHORIZED_NOT_IMPLEMENTED"
+    }
+  ],
+  "advisories": [
+    {
+      "id": "C1",
+      "priority": 3,
+      "file": "src/adaptive_hrc_scheduling/algorithms/lns.py",
+      "start": 169,
+      "end": 170,
+      "title": "EXPLICIT_OBJECTIVE_DIMENSION_CONTRACT_OR_CANDIDATE_FALLBACK",
+      "probe_result": "Custom adapter with legal initial score (2,) and candidate score (1,1) throws ValueError, no fallback result.",
+      "normal_adapter_reachability": "NOT_OBSERVED; static and production adapter score dimensions are fixed.",
+      "classification": "CONTRACT_HARDENING_ADVISORY_NOT_AN_ILLEGAL_RETURNED_PLAN"
+    }
+  ],
+  "source_and_test_script_sha256_unchanged": {
+    "scripts/run_lns_production.py": "32d971a524931a0370024ec20b558d95f16423102b007f22bebf8162a25da7f6",
+    "scripts/run_lns_reference.py": "40024010bdcceb9202075f2bcf56ff4495eed1ce0fd5a2a55a60c8cef959559a",
+    "src/adaptive_hrc_scheduling/algorithms/__init__.py": "ae7977fe3ce9f096903e1ced799dcf14b1d4b33ebbd57237dcd583b99ee05159",
+    "src/adaptive_hrc_scheduling/algorithms/lns.py": "4a136c854f54092e57b62f2da9683e487a117706d881846a7cadb5a415b23ec9",
+    "src/adaptive_hrc_scheduling/algorithms/production_lns.py": "f6262a77d740f89f598df58197f0bbbd029b2768b1766510a78f984b05e20118",
+    "src/adaptive_hrc_scheduling/algorithms/static_lns.py": "e90eb5ca2a1b7a55e09749558a830b0f4e3413e03c3402b9893d878193440135",
+    "tests/test_lns_core.py": "3c07c5d7d4ee18f50391e22b1f8852197dcae51f6c5df7789c549304d0f14673"
+  },
+  "implementation_modified": false,
+  "git_or_remote_writes": false,
+  "later_steps_started": false,
+  "limits": [
+    "Approved current-window production interface and 12-window-then-EDD witnesses only.",
+    "No full future-production optimum, full-run LNS validation, formal A/D effect, or S19 real-time guarantee.",
+    "HR disabled; industrial qualification/quality UNKNOWN and synthetic/finite-geometry/GUI/history limits preserved.",
+    "F1/F2 repair and new result acceptance/publication require separate authorization."
+  ]
+}

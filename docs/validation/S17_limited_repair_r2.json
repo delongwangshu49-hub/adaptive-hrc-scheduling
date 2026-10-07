@@ -1,0 +1,230 @@
+{
+  "packet_id": "S17-20261007-r2",
+  "base_commit": "c72912b653bda6801da5c4dd2fce01cffb3f3ba3",
+  "authorization": "PR137",
+  "result_log": "LOG177",
+  "work": "VERIFIED_WITH_LIMITS",
+  "acceptance": "ACCEPTANCE_PENDING",
+  "approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "closed_findings": [
+    "F1",
+    "F2",
+    "C1"
+  ],
+  "pre_repair_regression": {
+    "methods": 18,
+    "failure_subcases": 11,
+    "errors": 6,
+    "retained": true
+  },
+  "specialty_tests": 47,
+  "source_tests": {
+    "count": 659,
+    "seconds": 196.011,
+    "result": "PASS"
+  },
+  "isolated_wheel_tests": {
+    "count": 659,
+    "seconds": 197.857,
+    "result": "PASS"
+  },
+  "engineering_checks": [
+    "RUFF_PASS",
+    "FORMAT_142_FILES_PASS",
+    "LOCK_PASS",
+    "DEPENDENCY_PASS",
+    "SDIST_TO_WHEEL_PASS",
+    "LOCKED_REFERENCE_HASH_INSTALL_PASS"
+  ],
+  "tested_input_files_unchanged": 142,
+  "frozen_files_unchanged": 213,
+  "original_seven_case_values_fixed_domains_and_replay_unchanged": true,
+  "static_repair_witness": {
+    "counterexample_completion": 3,
+    "extra_complete_set_cases": 64,
+    "feasible_locked_domains_returned": 61,
+    "empty_domains_waiting": 3,
+    "no_supplied_complete_initial": true,
+    "all_checked": "PASS"
+  },
+  "rejection_prefixes": [
+    {
+      "products": 1,
+      "plan_status": "WAIT",
+      "receipt": null,
+      "selected_product": null,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "original_prefix_unchanged_by_search": true
+    },
+    {
+      "products": 2,
+      "plan_status": "CANDIDATE",
+      "receipt": "STARTED",
+      "selected_product": "PRODUCT-2",
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "original_prefix_unchanged_by_search": true
+    }
+  ],
+  "short_continuation": {
+    "until_h": 1,
+    "termination": "WINDOW_CENSORED",
+    "lns_calls": 30,
+    "completed_static_operations": 6,
+    "ready": 0,
+    "received": 0,
+    "execution_audit": "PASS",
+    "decision_audit": "PASS",
+    "scope": "SHORT_CENSORED_PREFIX_NOT_FULL_CHAIN"
+  },
+  "dimension_change_fallback": "PASS",
+  "loaded_protection": {
+    "termination": "WINDOW_CENSORED",
+    "execution_audit": "PASS",
+    "decision_audit": "PASS",
+    "windows": [
+      {
+        "time_h": 0.6393758333333334,
+        "running_statuses": [
+          "EXCEPTION"
+        ],
+        "motion_count": 1,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      },
+      {
+        "time_h": 0.8893758333333334,
+        "running_statuses": [
+          "EXCEPTION"
+        ],
+        "motion_count": 1,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      },
+      {
+        "time_h": 0.8893758333333334,
+        "running_statuses": [
+          "STARTED"
+        ],
+        "motion_count": 1,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      },
+      {
+        "time_h": 0.9142091666666666,
+        "running_statuses": [
+          "STARTED"
+        ],
+        "motion_count": 0,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      },
+      {
+        "time_h": 0.9929091666666666,
+        "running_statuses": [
+          "STARTED"
+        ],
+        "motion_count": 0,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      },
+      {
+        "time_h": 1,
+        "running_statuses": [
+          "STARTED"
+        ],
+        "motion_count": 0,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      }
+    ]
+  },
+  "reserved_prefix": {
+    "scope": "RECONSTRUCTED_ACTUAL_RESERVED_PREFIX_NOT_NEW_FULL_RUN",
+    "event_count": 446,
+    "time_h": 5.436826666666667,
+    "reservation_count": 28,
+    "owner_count": 0,
+    "running_count": 0,
+    "returned_plan_status": "CANDIDATE",
+    "baseline_score": [
+      1,
+      5.448048888888889
+    ],
+    "best_score": [
+      1,
+      5.448048888888889
+    ],
+    "prefix_unchanged": true,
+    "independent_initial_candidate_final_checks": "PASS",
+    "future_events_removed": true,
+    "same_seed_iteration_trial_budget_replay": "PASS"
+  },
+  "first_short_witness_setting_failure": "REJECTION_FILTER_ASSUMPTION_FAILED_RETAINED; FINAL_WITNESS_CARRIES_ACTUALLY_RECEIVED_REJECTION",
+  "preliminary_full_checks_retained": true,
+  "r1_acceptance_and_publication_preserved": true,
+  "r1_commit": "c72912b653bda6801da5c4dd2fce01cffb3f3ba3",
+  "r1_tag": "step-S17-r1",
+  "r1_remote_ci_run": 37597226643,
+  "prior_unpublished_audit_and_actual_publication_governance_included": true,
+  "source_sha256": {
+    "src/adaptive_hrc_scheduling/algorithms/lns.py": "6d95fc25ab4fa4f51ad7d1b179c954e4ffcbdb981a9bf9a19fdb932fc955de6e",
+    "src/adaptive_hrc_scheduling/algorithms/production_lns.py": "e806898a9cd02073af867e4228408305458d3d9e049a14a06de41ec0872402f4",
+    "src/adaptive_hrc_scheduling/algorithms/static_lns.py": "477dfc3dfcabafe626bc8ac977648eead16c760565a6f967c7e3c4487b16bfb5",
+    "tests/test_lns_repair.py": "e7cd6db4a3b3f84f44e39e41cf0845bda9d68717fbf3603b8c5c60ee81b315f7",
+    "scripts/run_lns_repair.py": "e5ad1bb83935edbc70f991d4c7609dfaf336f1fa9703b154e9ffaf7986cf1348"
+  },
+  "raw_final_cpu_log_sha256": "96fdae1b89156d8d7cd68dc281dba78e7e2d71ae87fa3b19386de93adad39fcc",
+  "raw_witness_log_sha256": "a5f8889b6cea067936a2418b174e83a99aa2d380dce7988d86abb53766dc3603",
+  "exact_public_files": [
+    "AGENTS.md",
+    "PROGRESS_LOG.md",
+    "PROMPT_LEDGER.md",
+    "README.md",
+    "docs/PROJECT_CHARTER.md",
+    "docs/algorithms/lns.md",
+    "docs/architecture.md",
+    "docs/roadmap.md",
+    "docs/steps/S17.md",
+    "docs/validation/S17_limited_repair_r2.json",
+    "docs/validation/S17_limited_repair_r2.md",
+    "docs/validation/S17_post_release_audit_r1.json",
+    "docs/validation/S17_post_release_audit_r1.md",
+    "examples/lns/repair_summary.json",
+    "examples/lns/repair_traces.json",
+    "scripts/run_lns_repair.py",
+    "src/adaptive_hrc_scheduling/algorithms/lns.py",
+    "src/adaptive_hrc_scheduling/algorithms/production_lns.py",
+    "src/adaptive_hrc_scheduling/algorithms/static_lns.py",
+    "tests/test_lns_repair.py"
+  ],
+  "limitations": [
+    "Fixed legal modes only; HR disabled and industrial qualification/quality UNKNOWN; no S18 joint-mode claim.",
+    "Static completion remains bounded and may return NO_PLAN_FOUND or budget exhaustion; not a mathematical infeasibility or optimality proof.",
+    "Optimistic incomplete-prefix pruning is never a returned feasible plan; complete candidates retain original independent checks.",
+    "Production returns current-window actions/waits; no full future-factory schedule or new whole-run production LNS/Kit proof.",
+    "One-hour repair continuation and loaded-failure probe remain WINDOW_CENSORED; no READY/receipt or full-chain success claim.",
+    "Cooperative search budgets may be exceeded by safe bootstrap, prefix/final checks or noninterruptible work; no S19 real-time claim.",
+    "Original r1 full runs, failures, frozen boundaries and synthetic/finite-geometry/GUI limitations retain their identities.",
+    "New result acceptance and exact publication require separate approval; S18-S28 and S19A/S19B remain unstarted."
+  ],
+  "actual_git_writes": [],
+  "new_kit": false,
+  "new_remote_ci": false,
+  "target": {
+    "repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling",
+    "branch": "main",
+    "proposed_tag": "step-S17-r2",
+    "approval_required": true
+  },
+  "final_wheel_module_bytes_and_current_metadata": "PASS",
+  "base_wheel_import_and_committed_search_without_ortools": "PASS"
+}

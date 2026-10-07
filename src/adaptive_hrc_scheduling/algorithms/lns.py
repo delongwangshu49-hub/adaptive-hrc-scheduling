@@ -107,7 +107,7 @@ class Result:
     wall_seconds: float
 
 
-def _gate(problem, candidate):
+def _gate(problem, candidate, *, dimensions=None):
     report = problem.verify(candidate)
     if report.valid and (
         not isinstance(report.score, tuple)
@@ -115,6 +115,8 @@ def _gate(problem, candidate):
         or any(type(x) not in (int, float) or not math.isfinite(x) for x in report.score)
     ):
         return Verification(False, None, ("INVALID_OBJECTIVE",))
+    if report.valid and dimensions is not None and len(report.score) != dimensions:
+        return Verification(False, None, ("OBJECTIVE_DIMENSION_CHANGED",))
     if report.valid:
         try:
             fingerprint(candidate)
@@ -162,12 +164,12 @@ def search(problem: Problem, options=Options()):
         tick = perf_counter()
         repaired = problem.repair(current, removed, rng, options.repair_trials, deadline)
         candidate = repaired.candidate
-        checked = _gate(problem, candidate) if candidate is not None else None
+        checked = (
+            _gate(problem, candidate, dimensions=len(best_score)) if candidate is not None else None
+        )
         reasons = repaired.reasons
         accepted = improved = False
         if checked is not None and checked.valid:
-            if len(checked.score) != len(best_score):
-                raise ValueError("objective dimension changed")
             if perf_counter() >= deadline:
                 reasons += ("WALL_BUDGET_CANDIDATE_DISCARDED",)
             else:
@@ -215,7 +217,7 @@ def search(problem: Problem, options=Options()):
             break
     # Required final audit may exceed the cooperative wall budget. Never silently
     # skip verification to meet a hard real-time claim that this step does not make.
-    final = _gate(problem, best)
+    final = _gate(problem, best, dimensions=len(best_score))
     if not final.valid or final.score != best_score:
         raise RuntimeError("best feasible cache failed final independent verification")
     return Result(

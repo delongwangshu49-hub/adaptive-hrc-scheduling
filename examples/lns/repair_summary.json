@@ -1,0 +1,139 @@
+{
+  "schema_version": "S17-REPAIR-EVIDENCE-1",
+  "closed_findings": [
+    "F1",
+    "F2",
+    "C1"
+  ],
+  "static": {
+    "counterexample_completion": 3,
+    "extra_complete_set_cases": 64,
+    "feasible_locked_domains_returned": 61,
+    "empty_domains_waiting": 3,
+    "no_supplied_complete_initial": true,
+    "all_checked": "PASS"
+  },
+  "observed_rejection_prefixes": [
+    {
+      "products": 1,
+      "plan_status": "WAIT",
+      "receipt": null,
+      "selected_product": null,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "original_prefix_unchanged_by_search": true
+    },
+    {
+      "products": 2,
+      "plan_status": "CANDIDATE",
+      "receipt": "STARTED",
+      "selected_product": "PRODUCT-2",
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "original_prefix_unchanged_by_search": true
+    }
+  ],
+  "short_continuation": {
+    "until_h": 1,
+    "termination": "WINDOW_CENSORED",
+    "lns_calls": 30,
+    "completed_static_operations": 6,
+    "ready": 0,
+    "received": 0,
+    "execution_audit": "PASS",
+    "decision_audit": "PASS",
+    "scope": "SHORT_CENSORED_PREFIX_NOT_FULL_CHAIN"
+  },
+  "dimension_change_fallback": "PASS",
+  "executor_and_checker_unmodified": true,
+  "new_full_production_or_kit_run": false,
+  "wall_seconds": 234.7213375000283,
+  "loaded_protection": {
+    "termination": "WINDOW_CENSORED",
+    "execution_audit": "PASS",
+    "decision_audit": "PASS",
+    "windows": [
+      {
+        "time_h": 0.6393758333333334,
+        "running_statuses": [
+          "EXCEPTION"
+        ],
+        "motion_count": 1,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      },
+      {
+        "time_h": 0.8893758333333334,
+        "running_statuses": [
+          "EXCEPTION"
+        ],
+        "motion_count": 1,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      },
+      {
+        "time_h": 0.8893758333333334,
+        "running_statuses": [
+          "STARTED"
+        ],
+        "motion_count": 1,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      },
+      {
+        "time_h": 0.9142091666666666,
+        "running_statuses": [
+          "STARTED"
+        ],
+        "motion_count": 0,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      },
+      {
+        "time_h": 0.9929091666666666,
+        "running_statuses": [
+          "STARTED"
+        ],
+        "motion_count": 0,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      },
+      {
+        "time_h": 1,
+        "running_statuses": [
+          "STARTED"
+        ],
+        "motion_count": 0,
+        "reservation_count": 0,
+        "owner_count": 5,
+        "prefix_unchanged": true
+      }
+    ]
+  },
+  "reserved_prefix": {
+    "scope": "RECONSTRUCTED_ACTUAL_RESERVED_PREFIX_NOT_NEW_FULL_RUN",
+    "event_count": 446,
+    "time_h": 5.436826666666667,
+    "reservation_count": 28,
+    "owner_count": 0,
+    "running_count": 0,
+    "returned_plan_status": "CANDIDATE",
+    "baseline_score": [
+      1,
+      5.448048888888889
+    ],
+    "best_score": [
+      1,
+      5.448048888888889
+    ],
+    "prefix_unchanged": true,
+    "independent_initial_candidate_final_checks": "PASS",
+    "future_events_removed": true,
+    "same_seed_iteration_trial_budget_replay": "PASS"
+  }
+}

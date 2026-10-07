@@ -4925,3 +4925,101 @@ PR055 补录 S08 r2 实际批准；PR056 单独授权 S09 本地实施。PR057 �
   "limit": "S17_NEW_RESULT_ACCEPTANCE_AND_EXACT_PUBLICATION_SEPARATE_NO_S18_S28_OR_S19AB_START_NO_SUBAGENTS"
 }
 ```
+
+## PR135：S17 r1限定验收和实际发布补录
+
+以下为规范化语义摘要，不是逐字原始会话。
+
+```json
+{
+  "id": "PR135",
+  "date": "2026-10-07",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "ACCEPT_AND_APPROVE_EXACT_S17_R1",
+    "target": "S17-20261007-r1"
+  },
+  "human_contribution": [
+    "LIMITED_ACCEPTANCE_AND_EXACT_PUBLICATION_APPROVAL"
+  ],
+  "assistant_support": [
+    "RECONCILED_ACTUAL_RECEIPT_AND_CI"
+  ],
+  "resolution": "ACCEPTED_WITH_DOCUMENTED_LIMITS_APPROVED_PUBLISHED",
+  "evidence_refs": [
+    "docs/validation/S17_post_release_audit_r1.md",
+    "docs/steps/S17.md",
+    "PROGRESS_LOG.md"
+  ],
+  "limit": "REVIEW_AND_NECESSARY_GOVERNANCE_ONLY_NO_IMPLEMENTATION_REPAIR_NO_NEW_GIT_OR_REMOTE_PUBLICATION_NO_LATER_STEP_START",
+  "commit": "c72912b653bda6801da5c4dd2fce01cffb3f3ba3",
+  "tag": "step-S17-r1",
+  "ci_run": 37597226643,
+  "files": 23
+}
+```
+
+## PR136：S17全量完成性与逻辑审阅
+
+以下为规范化语义摘要，不是逐字原始会话。
+
+```json
+{
+  "id": "PR136",
+  "date": "2026-10-07",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "AUDIT_S17_FULL_COMPLETENESS_AND_LOGIC",
+    "target": "S17-20261007-r1"
+  },
+  "human_contribution": [
+    "REQUESTED_FULL_STEP_COMPLETENESS_AND_LOGIC_REVIEW"
+  ],
+  "assistant_support": [
+    "REVIEWED_ALL_DELIVERABLES_SCOPE_AND_BOUNDARIES_RERAN_641_SOURCE_TESTS_CHECKED_64_COMPLETE_DOMAINS_AND_REPRODUCED_TWO_FINDINGS"
+  ],
+  "resolution": "POST_RELEASE_REVIEW_FINDINGS_OPEN",
+  "evidence_refs": [
+    "docs/validation/S17_post_release_audit_r1.md",
+    "docs/steps/S17.md",
+    "PROGRESS_LOG.md"
+  ],
+  "limit": "REVIEW_AND_NECESSARY_GOVERNANCE_ONLY_NO_IMPLEMENTATION_REPAIR_NO_NEW_GIT_OR_REMOTE_PUBLICATION_NO_LATER_STEP_START"
+}
+```
+
+## PR137：批准S17发布后问题有限修复
+
+以下为规范化语义摘要，不是逐字原始会话。
+
+```json
+{
+  "id": "PR137",
+  "date": "2026-10-07",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "AUTHORIZE_LIMITED_S17_POST_RELEASE_REPAIR",
+    "target": "F1_F2_AND_NECESSARY_C1_CONTRACT_REGRESSION_GOVERNANCE_REVIEW_PACKET",
+    "parameters": {
+      "same_workspace": true,
+      "branch": "main",
+      "new_branch": false,
+      "new_worktree": false
+    }
+  },
+  "human_contribution": [
+    "APPROVED_LIMITED_LOCAL_REPAIR"
+  ],
+  "assistant_support": [
+    "PRESERVED_PRE_REPAIR_IMPLEMENTATION_AND_AUDIT_GOVERNANCE",
+    "STARTED_BOUNDED_REPAIR_WITHOUT_NEW_PUBLICATION"
+  ],
+  "resolution": "LIMITED_REPAIR_AUTHORIZED_IN_PROGRESS",
+  "evidence_refs": [
+    "docs/validation/S17_post_release_audit_r1.md",
+    "docs/steps/S17.md",
+    "PROGRESS_LOG.md"
+  ],
+  "limit": "NO_FROZEN_RULE_RECIPE_GEOMETRY_DEPENDENCY_OR_CI_CHANGE_NO_LATER_STEP_START_NEW_RESULT_ACCEPTANCE_AND_EXACT_PUBLICATION_SEPARATE_NO_SUBAGENTS"
+}
+```

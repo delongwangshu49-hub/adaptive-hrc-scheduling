@@ -1,5 +1,11 @@
 # 仓库协作规则
 
+2026-10-07有限修复成果（PR137 / LOG177）：S17 F1/F2及C1已完成限定本地修复，候选S17-20261007-r2为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。47专项、源码/隔离wheel各659项通过，原七例及213冻结文件保持；拒绝后30次LNS的1h续接双审计通过但保持WINDOW_CENSORED，非新全链/Kit。原r1发布及全部历史证据不变，成果验收与确切发布另审，后续未启动。入口：[S17 r2审阅](docs/validation/S17_limited_repair_r2.md)。
+
+2026-10-07现行有限修复授权（PR137 / LOG176）：负责人已批准S17发布后F1/F2及C1必要契约处理、回归、说明、治理和新确切审阅包的有限本地修复。沿用现有main/目录，不建分支/worktree，保留r1发布及全部历史证据和冻结边界；当前LIMITED_REPAIR_IN_PROGRESS。新成果验收与确切发布另审，后续未启动。入口：[S17步骤卡](docs/steps/S17.md)。
+
+2026-10-07现行发布后审阅（PR135—PR136 / LOG174—LOG175）：S17 r1已实际限定验收、批准并发布，提交 `c72912b653bda6801da5c4dd2fce01cffb3f3ba3`、标签 `step-S17-r1`，双平台各源码/隔离wheel641项成功。全审复现F1静态承诺初解、F2生产已观察拒绝过滤两项P2缺口，另有C1通用分数维度契约建议；当前POST_RELEASE_REVIEW_FINDINGS_OPEN。本轮仅审阅/必要治理，未实施修复或新发布，后续未启动。入口：[S17发布后审阅](docs/validation/S17_post_release_audit_r1.md)。
+
 2026-10-07本地成果（PR134 / LOG173）：S17固定合法模式LNS及两个有限适配器已完成本地实现/验证，候选S17-20261007-r1为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。29专项、源码/隔离wheel各641项通过；六个同固定模式静态例无进一步收益，两条生产全链为前12窗口LNS后原EDD续接、独立执行/决策审计通过。213冻结文件保持，S16 r2实际发布补录PR133/LOG171。成果验收与确切发布另审，S18—S28及S19A/S19B未启动。入口：[S17审阅](docs/validation/S17_lns_r1.md)。
 
 2026-10-07现行交接（PR133—PR134 / LOG171—LOG172）：S16 r2已实际限定验收、批准并发布，提交 `a3088770c2aec19143f0693d60be3a2013ce69cc`、标签 `step-S16-r2`，双平台各源码/隔离wheel612项成功。负责人已授权在现有main/目录直接实施S17固定合法模式LNS；当前IMPLEMENTATION_IN_PROGRESS，新成果验收与确切发布另审。不建分支/worktree，S18—S28及S19A/S19B未启动，原冻结域及所有历史限制/失败保持。入口：[S17步骤卡](docs/steps/S17.md)。

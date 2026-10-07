@@ -11,8 +11,19 @@ from adaptive_hrc_scheduling.reference.domain import Entry, validate
 
 
 class StaticProblem:
-    def __init__(self, instance, fixed_modes, *, initial=None, committed=(), rule="EDD"):
+    def __init__(
+        self,
+        instance,
+        fixed_modes,
+        *,
+        initial=None,
+        committed=(),
+        rule="EDD",
+        initial_trials=100_000,
+    ):
         validate(instance)
+        if type(initial_trials) is not int or initial_trials < 1:
+            raise ValueError("initial_trials")
         if set(fixed_modes) != {t.id for t in instance.tasks}:
             raise ValueError("explicit fixed mode required for every task")
         for task in instance.tasks:
@@ -36,17 +47,133 @@ class StaticProblem:
         if any(e.task_id not in self.fixed_modes for e in self.committed):
             raise ValueError("unknown commitment")
         self.rule = rule
+        self.initial_trials = initial_trials
 
     def initial(self, deadline):
         if self.initial_schedule is not None:
             return Repair(tuple(self.initial_schedule))
+        if self.committed:
+            return self._committed_initial(deadline)
         result = rule_schedule(
-            self.fixed_instance, self.rule, wall_seconds=max(0, deadline - perf_counter())
+            self.fixed_instance,
+            self.rule,
+            max_trials=self.initial_trials,
+            wall_seconds=max(0, deadline - perf_counter()),
         )
         return Repair(
             result.schedule if result.status == "FEASIBLE" else None,
             result.trials,
             (result.status,),
+        )
+
+    def _partial_findings(self, entries):
+        """Safe pruning of a partial assignment with all locked slots present.
+
+        Missing ancestors and unfinished residency suffixes may still be filled.
+        Ignore only those optimistic partial findings; no partial assignment is
+        returned or ranked as a feasible plan. Complete output uses verify().
+        """
+        report = check(self.fixed_instance, entries, partial=True)
+        assigned = {e.task_id: e for e in entries}
+        tasks = {t.id: t for t in self.fixed_instance.tasks}
+        open_resources = set()
+        for p in self.fixed_instance.products:
+            if p.ready in assigned and p.store not in assigned:
+                open_resources.add(p.output)
+            if p.store in assigned and p.receive not in assigned:
+                open_resources.add(p.buffer)
+        findings = []
+        for finding in report.findings:
+            if finding.startswith("PRECEDENCE:"):
+                ident = finding.split(":", 1)[1]
+                predecessors = tasks[ident].predecessors
+                if any(p not in assigned for p in predecessors) and all(
+                    p not in assigned or assigned[p].end <= assigned[ident].start
+                    for p in predecessors
+                ):
+                    continue
+            if finding.startswith("CAPACITY:") and finding.split(":", 2)[1] in open_resources:
+                continue
+            findings.append(finding)
+        return tuple(findings)
+
+    def _committed_initial(self, deadline):
+        if self.rule not in ("EDD", "SPT", "FASTEST_MODE"):
+            raise ValueError("rule")
+        tasks = {t.id: t for t in self.fixed_instance.tasks}
+        assigned = {e.task_id: e for e in self.committed}
+        failures = self._partial_findings(tuple(assigned.values()))
+        if failures:
+            return Repair(None, 0, ("INVALID_COMMITMENT",) + failures, "INVALID_COMMITMENT")
+        due = {p.receive: p.due for p in self.fixed_instance.products}
+        for _ in tasks:
+            for task in tasks.values():
+                for predecessor in task.predecessors:
+                    if task.id in due:
+                        due[predecessor] = min(due.get(predecessor, float("inf")), due[task.id])
+        tried = 0
+        stopped = None
+
+        answer = None
+        frames = []
+        while True:
+            if len(assigned) == len(tasks):
+                proposed = tuple(assigned[t.id] for t in self.fixed_instance.tasks)
+                if self.verify(proposed).valid:
+                    answer = proposed
+                    break
+            if perf_counter() >= deadline:
+                stopped = "WALL_BUDGET"
+                break
+            eligible = [
+                t
+                for t in tasks.values()
+                if t.id not in assigned and set(t.predecessors) <= assigned.keys()
+            ]
+            if eligible:
+                task = min(
+                    eligible,
+                    key=lambda t: (
+                        t.alternatives[0].duration
+                        if self.rule == "SPT"
+                        else due.get(t.id, float("inf")),
+                        t.id,
+                    ),
+                )
+                alt = task.alternatives[0]
+                lower = max([task.release] + [assigned[p].end for p in task.predecessors])
+                upper = (
+                    min(
+                        self.instance.horizon,
+                        task.latest_end if task.latest_end is not None else self.instance.horizon,
+                    )
+                    - alt.duration
+                )
+                frames.append((task, alt, iter(range(lower, upper + 1))))
+            # An explicit stack keeps the trial/wall limits independent of
+            # Python's recursion depth, without allocating a Cartesian product.
+            while frames:
+                task, alt, starts = frames[-1]
+                assigned.pop(task.id, None)
+                start = next(starts, None)
+                if start is None:
+                    frames.pop()
+                    continue
+                if perf_counter() >= deadline:
+                    stopped = "WALL_BUDGET"
+                    break
+                if tried >= self.initial_trials:
+                    stopped = "INITIAL_TRIAL_BUDGET"
+                    break
+                tried += 1
+                assigned[task.id] = Entry(task.id, alt.id, start, start + alt.duration)
+                if not self._partial_findings(tuple(assigned.values())):
+                    break
+            if stopped or not frames:
+                break
+        reason = stopped or ("FEASIBLE" if answer is not None else "NO_PLAN_FOUND")
+        return Repair(
+            answer, tried, (reason,), "COMMITTED_INITIAL" if answer is not None else reason
         )
 
     def mutable(self, candidate):

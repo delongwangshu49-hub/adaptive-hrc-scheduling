@@ -105,7 +105,10 @@ class ProductionProblem:
         # Even a zero search budget retains a normally budgeted, audited baseline.
         plan = choose(
             self.config,
-            self.value,
+            replace(
+                self.value,
+                operations=tuple(o for o in self.value.operations if o.id not in self.rejected),
+            ),
             rule=self.rule,
             sequence=self.sequence,
             excluded_operations=self.rejected,
