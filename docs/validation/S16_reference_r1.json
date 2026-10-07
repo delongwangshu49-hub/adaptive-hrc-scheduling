@@ -1,0 +1,179 @@
+{
+  "packet_id": "S16-20261007-r1",
+  "base_commit": "0bba728116797ecece3f6fcbee7109c8bf1624b1",
+  "work": "VERIFIED_WITH_LIMITS",
+  "acceptance": "ACCEPTANCE_PENDING",
+  "approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "schema_version": "S16-STATIC-1.0",
+  "solver_version": "9.15.6755",
+  "specialty_tests": 22,
+  "source_tests": {
+    "count": 597,
+    "seconds": 238.799,
+    "result": "PASS"
+  },
+  "isolated_wheel_tests": {
+    "count": 597,
+    "seconds": 226.41,
+    "result": "PASS"
+  },
+  "cpu_total_wall_seconds": 472.2152783,
+  "cpu_raw_log_sha256": "48c46a3de4f26f96f1bea80a2c2ef1b53f3618f824f03198a47e2fad8acf37ce",
+  "checks": {
+    "ruff": "PASS",
+    "format": "PASS",
+    "lock": "PASS",
+    "dependency_check": "PASS",
+    "sdist_wheel_build": "PASS",
+    "reference_group_hash_install": "PASS",
+    "base_wheel_no_runtime_dependency": "PASS",
+    "exact_hours_inverse": "PASS",
+    "public_summary_matches_final_witness": true
+  },
+  "captured_source_files_unchanged": 242,
+  "source_sha256": {
+    "examples/contracts/run_manifest.json": "d96484d22349c701ce2ece0a14a3e593252183b211408888711816a1f0e9d060",
+    "examples/cpsat/cases.json": "51103b1f03572ed1de4f2b1ddc21b043344b793ab7b4fa988b672192adc8040e",
+    "examples/cpsat/summary.json": "b44e34228b7b03ef93959aa918277c2baace93aa612b3fad503ec3b5c52e402c",
+    "pyproject.toml": "ec377a890fd515a1a8f5857526c2aa76de10b3cc2e3717ba86dafc741e5ddec8",
+    "scripts/check.py": "810affd825dd73bbe8934501e3c90600606f72d3094da01004067332a24a523f",
+    "scripts/run_cpsat_reference.py": "ceca4c6b5cd70d3403881bfe97ba2065e8cd74d93651c505157ae8976786e615",
+    "src/adaptive_hrc_scheduling/reference/__init__.py": "b346dd23e8ccde2cf325d779459884585cd3b206e3368b40c7efbf3d3619d84e",
+    "src/adaptive_hrc_scheduling/reference/baselines.py": "b4928af8bd37768dafe64074d85a0068a809da05a3e269503d97a9a00a2f45f7",
+    "src/adaptive_hrc_scheduling/reference/cases.py": "822a48d1cab52fc3840e53e4ca6813ee9dcd497be488ed7bd4bceef0461a60ed",
+    "src/adaptive_hrc_scheduling/reference/checker.py": "b36ceeff83596f99bb8e1dc6368b25b9e2bfc690292e49658691faa305963fb3",
+    "src/adaptive_hrc_scheduling/reference/cpsat.py": "3e66e6447547a76724bd9fd5715bf0a9f1c8eff56d8de6198f922de86f57d221",
+    "src/adaptive_hrc_scheduling/reference/domain.py": "99f4f0964f3bbf1c8b319d1114ff112c1d11a76d045c6ac530cb44faf2c8a7b8",
+    "tests/test_cpsat_reference.py": "a440e2cfb1193257f6669f4f1abc9b1e0aa6b15dd18ec93ffe6f8d9a2d42a89f",
+    "uv.lock": "a19fb24ddb901ce274299e6fa37d490ad6341b8d5b94a9386aab1142de7dd749"
+  },
+  "complete_tiny_feasible_sets": [
+    {
+      "id": "TINY_UNARY",
+      "count": 6,
+      "equal": true,
+      "hand_optimum": 3
+    },
+    {
+      "id": "TINY_PRECEDENCE",
+      "count": 3,
+      "equal": true,
+      "hand_optimum": 3
+    },
+    {
+      "id": "TINY_BINDINGS",
+      "count": 11,
+      "equal": true,
+      "hand_optimum": 3
+    },
+    {
+      "id": "TINY_RECEIPT",
+      "count": 9,
+      "equal": true,
+      "hand_optimum": 8
+    }
+  ],
+  "buffer_backpressure": {
+    "B": 2,
+    "products": 3,
+    "READY_ticks": [
+      1,
+      3,
+      5
+    ],
+    "receiver_permission_tick": 8,
+    "actual_first_slot_release_tick": 9,
+    "third_store_earliest_tick": 9,
+    "last_receive_tick": 11,
+    "objective": 17,
+    "B3_development_comparison_objective": 15
+  },
+  "status_probes": {
+    "zero_budget": {
+      "status": "UNKNOWN",
+      "termination": "BUDGET_OR_SOLVER_STOP",
+      "objective": null,
+      "best_bound": null,
+      "relative_gap": null,
+      "budget_seconds": 0,
+      "seed": 0,
+      "workers": 1,
+      "solver_version": "9.15.6755",
+      "instance_sha256": "35d6cac53e28a81ded82931c0aa23e26389300c04fe65fc9e0df672f70e34285",
+      "checker": "NO_INCUMBENT"
+    },
+    "callback_stop": {
+      "status": "FEASIBLE",
+      "termination": "SOLUTION_LIMIT",
+      "objective": 3,
+      "best_bound": 1.0,
+      "relative_gap": 0.6666666666666666,
+      "budget_seconds": 10.0,
+      "seed": 0,
+      "workers": 1,
+      "solver_version": "9.15.6755",
+      "instance_sha256": "35d6cac53e28a81ded82931c0aa23e26389300c04fe65fc9e0df672f70e34285",
+      "checker": "PASS_S16_STATIC"
+    }
+  },
+  "retained_failures": [
+    {
+      "scope": "initial_specialty",
+      "tests": 20,
+      "failures": 1,
+      "cause": "hand expectation ignored shared WELD_B; expected 2 corrected to 3; full independent sets had already agreed"
+    },
+    {
+      "scope": "initial_full_source",
+      "tests": 597,
+      "seconds": 241.923,
+      "failures": 1,
+      "cause": "illustrative run_manifest dependency lock digest stale; regenerated only that field; no frozen recipe changed"
+    }
+  ],
+  "exact_public_files": [
+    "AGENTS.md",
+    "PROGRESS_LOG.md",
+    "PROMPT_LEDGER.md",
+    "README.md",
+    "docs/PROJECT_CHARTER.md",
+    "docs/algorithms/cpsat_mapping.md",
+    "docs/architecture.md",
+    "docs/development.md",
+    "docs/roadmap.md",
+    "docs/setup.md",
+    "docs/steps/S15.md",
+    "docs/steps/S16.md",
+    "docs/validation/S16_reference_r1.json",
+    "docs/validation/S16_reference_r1.md",
+    "examples/contracts/run_manifest.json",
+    "examples/cpsat/cases.json",
+    "examples/cpsat/summary.json",
+    "pyproject.toml",
+    "scripts/check.py",
+    "scripts/run_cpsat_reference.py",
+    "src/adaptive_hrc_scheduling/reference/__init__.py",
+    "src/adaptive_hrc_scheduling/reference/baselines.py",
+    "src/adaptive_hrc_scheduling/reference/cases.py",
+    "src/adaptive_hrc_scheduling/reference/checker.py",
+    "src/adaptive_hrc_scheduling/reference/cpsat.py",
+    "src/adaptive_hrc_scheduling/reference/domain.py",
+    "tests/test_cpsat_reference.py",
+    "uv.lock"
+  ],
+  "limitations": [
+    "Only the explicit synthetic static integer domain; not a full nonlinear dynamic factory optimum.",
+    "HR disabled; industrial qualification and quality UNKNOWN; original S15 synthetic/finite-geometry/GUI limits retained.",
+    "No new Kit or remote CI; Linux runtime not newly executed locally.",
+    "Greedy rules may be conservative or fail; NO_PLAN_FOUND is not an infeasibility proof.",
+    "Solver budget excludes encoding/checking; no end-to-end real-time guarantee.",
+    "Original failures and S15 censored/invalid/timeout evidence retained; S17-S28 and S19A/S19B not started."
+  ],
+  "target": {
+    "repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling",
+    "branch": "main",
+    "proposed_tag": "step-S16-r1",
+    "approval_required": true
+  }
+}

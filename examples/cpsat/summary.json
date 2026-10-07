@@ -1,0 +1,290 @@
+{
+  "schema_version": "S16-EVIDENCE-1.0",
+  "scope": "SYNTHETIC_STATIC_REFERENCE",
+  "cases": [
+    {
+      "id": "TINY_UNARY",
+      "instance_sha256": "560e4ff1de5bec7e297433a3b2bef3a73695eae76ee754cb3e3ba6d332ae8edd",
+      "status": "OPTIMAL",
+      "objective": 3,
+      "best_bound": 3.0,
+      "relative_gap": 0.0,
+      "checker": "PASS_S16_STATIC",
+      "solver_version": "9.15.6755",
+      "budget_seconds": 10.0,
+      "seed": 0,
+      "workers": 1,
+      "termination": "PROVEN_OPTIMAL",
+      "complete_feasible_set": {
+        "count": 6,
+        "equal": true,
+        "hand_optimum": 3
+      },
+      "rules": [
+        {
+          "rule": "EDD",
+          "status": "FEASIBLE",
+          "objective": 3,
+          "instance_sha256": "560e4ff1de5bec7e297433a3b2bef3a73695eae76ee754cb3e3ba6d332ae8edd"
+        },
+        {
+          "rule": "SPT",
+          "status": "FEASIBLE",
+          "objective": 3,
+          "instance_sha256": "560e4ff1de5bec7e297433a3b2bef3a73695eae76ee754cb3e3ba6d332ae8edd"
+        },
+        {
+          "rule": "FASTEST_MODE",
+          "status": "FEASIBLE",
+          "objective": 3,
+          "instance_sha256": "560e4ff1de5bec7e297433a3b2bef3a73695eae76ee754cb3e3ba6d332ae8edd"
+        }
+      ]
+    },
+    {
+      "id": "TINY_PRECEDENCE",
+      "instance_sha256": "7d1b3c038fa2574d5245d9fb2d1537e94d1d82ba795b04c133b5ec51ebcaa9b3",
+      "status": "OPTIMAL",
+      "objective": 3,
+      "best_bound": 3.0,
+      "relative_gap": 0.0,
+      "checker": "PASS_S16_STATIC",
+      "solver_version": "9.15.6755",
+      "budget_seconds": 10.0,
+      "seed": 0,
+      "workers": 1,
+      "termination": "PROVEN_OPTIMAL",
+      "complete_feasible_set": {
+        "count": 3,
+        "equal": true,
+        "hand_optimum": 3
+      },
+      "rules": [
+        {
+          "rule": "EDD",
+          "status": "FEASIBLE",
+          "objective": 3,
+          "instance_sha256": "7d1b3c038fa2574d5245d9fb2d1537e94d1d82ba795b04c133b5ec51ebcaa9b3"
+        },
+        {
+          "rule": "SPT",
+          "status": "FEASIBLE",
+          "objective": 3,
+          "instance_sha256": "7d1b3c038fa2574d5245d9fb2d1537e94d1d82ba795b04c133b5ec51ebcaa9b3"
+        },
+        {
+          "rule": "FASTEST_MODE",
+          "status": "FEASIBLE",
+          "objective": 3,
+          "instance_sha256": "7d1b3c038fa2574d5245d9fb2d1537e94d1d82ba795b04c133b5ec51ebcaa9b3"
+        }
+      ]
+    },
+    {
+      "id": "TINY_BINDINGS",
+      "instance_sha256": "35d6cac53e28a81ded82931c0aa23e26389300c04fe65fc9e0df672f70e34285",
+      "status": "OPTIMAL",
+      "objective": 3,
+      "best_bound": 3.0,
+      "relative_gap": 0.0,
+      "checker": "PASS_S16_STATIC",
+      "solver_version": "9.15.6755",
+      "budget_seconds": 10.0,
+      "seed": 0,
+      "workers": 1,
+      "termination": "PROVEN_OPTIMAL",
+      "complete_feasible_set": {
+        "count": 11,
+        "equal": true,
+        "hand_optimum": 3
+      },
+      "rules": [
+        {
+          "rule": "EDD",
+          "status": "FEASIBLE",
+          "objective": 5,
+          "instance_sha256": "35d6cac53e28a81ded82931c0aa23e26389300c04fe65fc9e0df672f70e34285"
+        },
+        {
+          "rule": "SPT",
+          "status": "FEASIBLE",
+          "objective": 5,
+          "instance_sha256": "35d6cac53e28a81ded82931c0aa23e26389300c04fe65fc9e0df672f70e34285"
+        },
+        {
+          "rule": "FASTEST_MODE",
+          "status": "FEASIBLE",
+          "objective": 5,
+          "instance_sha256": "35d6cac53e28a81ded82931c0aa23e26389300c04fe65fc9e0df672f70e34285"
+        }
+      ]
+    },
+    {
+      "id": "TINY_RECEIPT",
+      "instance_sha256": "00b57de3053bf4dc801ee0da12704ad4f603759107a458e9e9856f45e9f4de7e",
+      "status": "OPTIMAL",
+      "objective": 8,
+      "best_bound": 8.0,
+      "relative_gap": 0.0,
+      "checker": "PASS_S16_STATIC",
+      "solver_version": "9.15.6755",
+      "budget_seconds": 10.0,
+      "seed": 0,
+      "workers": 1,
+      "termination": "PROVEN_OPTIMAL",
+      "complete_feasible_set": {
+        "count": 9,
+        "equal": true,
+        "hand_optimum": 8
+      },
+      "rules": [
+        {
+          "rule": "EDD",
+          "status": "FEASIBLE",
+          "objective": 8,
+          "instance_sha256": "00b57de3053bf4dc801ee0da12704ad4f603759107a458e9e9856f45e9f4de7e"
+        },
+        {
+          "rule": "SPT",
+          "status": "FEASIBLE",
+          "objective": 8,
+          "instance_sha256": "00b57de3053bf4dc801ee0da12704ad4f603759107a458e9e9856f45e9f4de7e"
+        },
+        {
+          "rule": "FASTEST_MODE",
+          "status": "FEASIBLE",
+          "objective": 8,
+          "instance_sha256": "00b57de3053bf4dc801ee0da12704ad4f603759107a458e9e9856f45e9f4de7e"
+        }
+      ]
+    },
+    {
+      "id": "BUFFER_B2",
+      "instance_sha256": "67e76a5bc0ff09b76e19ed848faebd513b1970e0cd6ae10c78a40ca955c581bc",
+      "status": "OPTIMAL",
+      "objective": 17,
+      "best_bound": 17.0,
+      "relative_gap": 0.0,
+      "checker": "PASS_S16_STATIC",
+      "solver_version": "9.15.6755",
+      "budget_seconds": 10.0,
+      "seed": 0,
+      "workers": 1,
+      "termination": "PROVEN_OPTIMAL",
+      "rules": [
+        {
+          "rule": "EDD",
+          "status": "FEASIBLE",
+          "objective": 17,
+          "instance_sha256": "67e76a5bc0ff09b76e19ed848faebd513b1970e0cd6ae10c78a40ca955c581bc"
+        },
+        {
+          "rule": "SPT",
+          "status": "FEASIBLE",
+          "objective": 17,
+          "instance_sha256": "67e76a5bc0ff09b76e19ed848faebd513b1970e0cd6ae10c78a40ca955c581bc"
+        },
+        {
+          "rule": "FASTEST_MODE",
+          "status": "FEASIBLE",
+          "objective": 17,
+          "instance_sha256": "67e76a5bc0ff09b76e19ed848faebd513b1970e0cd6ae10c78a40ca955c581bc"
+        }
+      ]
+    },
+    {
+      "id": "BUFFER_B3",
+      "instance_sha256": "3fe392795e2c539131bb24f54e19884785f097c5908719b381504e22c399d785",
+      "status": "OPTIMAL",
+      "objective": 15,
+      "best_bound": 15.0,
+      "relative_gap": 0.0,
+      "checker": "PASS_S16_STATIC",
+      "solver_version": "9.15.6755",
+      "budget_seconds": 10.0,
+      "seed": 0,
+      "workers": 1,
+      "termination": "PROVEN_OPTIMAL",
+      "rules": [
+        {
+          "rule": "EDD",
+          "status": "FEASIBLE",
+          "objective": 15,
+          "instance_sha256": "3fe392795e2c539131bb24f54e19884785f097c5908719b381504e22c399d785"
+        },
+        {
+          "rule": "SPT",
+          "status": "FEASIBLE",
+          "objective": 15,
+          "instance_sha256": "3fe392795e2c539131bb24f54e19884785f097c5908719b381504e22c399d785"
+        },
+        {
+          "rule": "FASTEST_MODE",
+          "status": "FEASIBLE",
+          "objective": 15,
+          "instance_sha256": "3fe392795e2c539131bb24f54e19884785f097c5908719b381504e22c399d785"
+        }
+      ]
+    },
+    {
+      "id": "INFEASIBLE_CAPACITY",
+      "instance_sha256": "2399e2dd35be9b6d90bee40651dc19fcfc60bc261a5ee75102c977a6eff5852c",
+      "status": "INFEASIBLE",
+      "objective": null,
+      "best_bound": null,
+      "relative_gap": null,
+      "checker": "NO_INCUMBENT",
+      "solver_version": "9.15.6755",
+      "budget_seconds": 10.0,
+      "seed": 0,
+      "workers": 1,
+      "termination": "PROVEN_INFEASIBLE",
+      "rules": [
+        {
+          "rule": "EDD",
+          "status": "NO_PLAN_FOUND",
+          "objective": null,
+          "instance_sha256": "2399e2dd35be9b6d90bee40651dc19fcfc60bc261a5ee75102c977a6eff5852c"
+        },
+        {
+          "rule": "SPT",
+          "status": "NO_PLAN_FOUND",
+          "objective": null,
+          "instance_sha256": "2399e2dd35be9b6d90bee40651dc19fcfc60bc261a5ee75102c977a6eff5852c"
+        },
+        {
+          "rule": "FASTEST_MODE",
+          "status": "NO_PLAN_FOUND",
+          "objective": null,
+          "instance_sha256": "2399e2dd35be9b6d90bee40651dc19fcfc60bc261a5ee75102c977a6eff5852c"
+        }
+      ]
+    }
+  ],
+  "ZERO_BUDGET": {
+    "status": "UNKNOWN",
+    "termination": "BUDGET_OR_SOLVER_STOP",
+    "objective": null,
+    "best_bound": null,
+    "relative_gap": null,
+    "budget_seconds": 0,
+    "seed": 0,
+    "workers": 1,
+    "solver_version": "9.15.6755",
+    "instance_sha256": "35d6cac53e28a81ded82931c0aa23e26389300c04fe65fc9e0df672f70e34285",
+    "checker": "NO_INCUMBENT"
+  },
+  "CALLBACK_STOP": {
+    "status": "FEASIBLE",
+    "termination": "SOLUTION_LIMIT",
+    "objective": 3,
+    "best_bound": 1.0,
+    "relative_gap": 0.6666666666666666,
+    "budget_seconds": 10.0,
+    "seed": 0,
+    "workers": 1,
+    "solver_version": "9.15.6755",
+    "instance_sha256": "35d6cac53e28a81ded82931c0aa23e26389300c04fe65fc9e0df672f70e34285",
+    "checker": "PASS_S16_STATIC"
+  }
+}

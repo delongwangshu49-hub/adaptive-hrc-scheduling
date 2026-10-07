@@ -1,0 +1,977 @@
+[
+  {
+    "id": "TINY_UNARY",
+    "horizon": 4,
+    "tasks": [
+      {
+        "id": "A",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 2,
+            "resources": [
+              [
+                "CUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "B",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "CUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": null
+      }
+    ],
+    "resources": [
+      {
+        "id": "CUT1",
+        "capacity": 1
+      }
+    ],
+    "people": [],
+    "products": [],
+    "tick_h": "1",
+    "tardiness_weight": 1,
+    "makespan_weight": 1,
+    "cost_weight": 1,
+    "schema_version": "S16-STATIC-1.0",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+  },
+  {
+    "id": "TINY_PRECEDENCE",
+    "horizon": 4,
+    "tasks": [
+      {
+        "id": "A",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 2,
+            "resources": [
+              [
+                "CUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "B",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "CUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [
+          "A"
+        ],
+        "release": 0,
+        "latest_end": null
+      }
+    ],
+    "resources": [
+      {
+        "id": "CUT1",
+        "capacity": 1
+      }
+    ],
+    "people": [],
+    "products": [],
+    "tick_h": "1",
+    "tardiness_weight": 1,
+    "makespan_weight": 1,
+    "cost_weight": 1,
+    "schema_version": "S16-STATIC-1.0",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+  },
+  {
+    "id": "TINY_BINDINGS",
+    "horizon": 4,
+    "tasks": [
+      {
+        "id": "A",
+        "alternatives": [
+          {
+            "id": "FAST",
+            "duration": 1,
+            "resources": [
+              [
+                "WELD_A",
+                1
+              ]
+            ],
+            "roles": [
+              [
+                "WELD",
+                "P1"
+              ]
+            ],
+            "cost": 3,
+            "kind": "H"
+          },
+          {
+            "id": "SLOW",
+            "duration": 2,
+            "resources": [
+              [
+                "WELD_B",
+                1
+              ]
+            ],
+            "roles": [
+              [
+                "WELD",
+                "P2"
+              ]
+            ],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "B",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "WELD_B",
+                1
+              ]
+            ],
+            "roles": [
+              [
+                "WELD",
+                "P1"
+              ]
+            ],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": null
+      }
+    ],
+    "resources": [
+      {
+        "id": "WELD_A",
+        "capacity": 1
+      },
+      {
+        "id": "WELD_B",
+        "capacity": 1
+      }
+    ],
+    "people": [
+      {
+        "id": "P1",
+        "qualifications": [
+          "WELD"
+        ],
+        "windows": [
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      {
+        "id": "P2",
+        "qualifications": [
+          "WELD"
+        ],
+        "windows": [
+          [
+            0,
+            4
+          ]
+        ]
+      }
+    ],
+    "products": [],
+    "tick_h": "1",
+    "tardiness_weight": 1,
+    "makespan_weight": 1,
+    "cost_weight": 1,
+    "schema_version": "S16-STATIC-1.0",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+  },
+  {
+    "id": "TINY_RECEIPT",
+    "horizon": 5,
+    "tasks": [
+      {
+        "id": "READY",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "OUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "STORE",
+        "alternatives": [
+          {
+            "id": "MOVE",
+            "duration": 1,
+            "resources": [
+              [
+                "CR1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 2,
+            "kind": "MOVE"
+          }
+        ],
+        "predecessors": [
+          "READY"
+        ],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "RECEIVE",
+        "alternatives": [
+          {
+            "id": "GATE",
+            "duration": 1,
+            "resources": [],
+            "roles": [],
+            "cost": 0,
+            "kind": "GATE"
+          }
+        ],
+        "predecessors": [
+          "STORE"
+        ],
+        "release": 3,
+        "latest_end": null
+      }
+    ],
+    "resources": [
+      {
+        "id": "OUT1",
+        "capacity": 1
+      },
+      {
+        "id": "FG",
+        "capacity": 1
+      },
+      {
+        "id": "CR1",
+        "capacity": 1
+      }
+    ],
+    "people": [],
+    "products": [
+      {
+        "id": "M1",
+        "ready": "READY",
+        "store": "STORE",
+        "receive": "RECEIVE",
+        "output": "OUT1",
+        "buffer": "FG",
+        "due": 3,
+        "weight": 2
+      }
+    ],
+    "tick_h": "1",
+    "tardiness_weight": 1,
+    "makespan_weight": 1,
+    "cost_weight": 1,
+    "schema_version": "S16-STATIC-1.0",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+  },
+  {
+    "id": "BUFFER_B2",
+    "horizon": 16,
+    "tasks": [
+      {
+        "id": "READY1",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "OUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": 1
+      },
+      {
+        "id": "STORE1",
+        "alternatives": [
+          {
+            "id": "MOVE",
+            "duration": 1,
+            "resources": [
+              [
+                "CR1",
+                1
+              ]
+            ],
+            "roles": [
+              [
+                "DRIVE",
+                "D1"
+              ]
+            ],
+            "cost": 2,
+            "kind": "MOVE"
+          }
+        ],
+        "predecessors": [
+          "READY1"
+        ],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "RECEIVE1",
+        "alternatives": [
+          {
+            "id": "GATE",
+            "duration": 1,
+            "resources": [
+              [
+                "RECEIVER",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "GATE"
+          }
+        ],
+        "predecessors": [
+          "STORE1"
+        ],
+        "release": 8,
+        "latest_end": null
+      },
+      {
+        "id": "READY2",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "OUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 2,
+        "latest_end": 3
+      },
+      {
+        "id": "STORE2",
+        "alternatives": [
+          {
+            "id": "MOVE",
+            "duration": 1,
+            "resources": [
+              [
+                "CR1",
+                1
+              ]
+            ],
+            "roles": [
+              [
+                "DRIVE",
+                "D1"
+              ]
+            ],
+            "cost": 2,
+            "kind": "MOVE"
+          }
+        ],
+        "predecessors": [
+          "READY2"
+        ],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "RECEIVE2",
+        "alternatives": [
+          {
+            "id": "GATE",
+            "duration": 1,
+            "resources": [
+              [
+                "RECEIVER",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "GATE"
+          }
+        ],
+        "predecessors": [
+          "STORE2"
+        ],
+        "release": 8,
+        "latest_end": null
+      },
+      {
+        "id": "READY3",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "OUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 4,
+        "latest_end": 5
+      },
+      {
+        "id": "STORE3",
+        "alternatives": [
+          {
+            "id": "MOVE",
+            "duration": 1,
+            "resources": [
+              [
+                "CR1",
+                1
+              ]
+            ],
+            "roles": [
+              [
+                "DRIVE",
+                "D1"
+              ]
+            ],
+            "cost": 2,
+            "kind": "MOVE"
+          }
+        ],
+        "predecessors": [
+          "READY3"
+        ],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "RECEIVE3",
+        "alternatives": [
+          {
+            "id": "GATE",
+            "duration": 1,
+            "resources": [
+              [
+                "RECEIVER",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "GATE"
+          }
+        ],
+        "predecessors": [
+          "STORE3"
+        ],
+        "release": 8,
+        "latest_end": null
+      }
+    ],
+    "resources": [
+      {
+        "id": "OUT1",
+        "capacity": 1
+      },
+      {
+        "id": "FG",
+        "capacity": 2
+      },
+      {
+        "id": "CR1",
+        "capacity": 1
+      },
+      {
+        "id": "RECEIVER",
+        "capacity": 3
+      }
+    ],
+    "people": [
+      {
+        "id": "D1",
+        "qualifications": [
+          "DRIVE"
+        ],
+        "windows": [
+          [
+            0,
+            16
+          ]
+        ]
+      }
+    ],
+    "products": [
+      {
+        "id": "M1",
+        "ready": "READY1",
+        "store": "STORE1",
+        "receive": "RECEIVE1",
+        "output": "OUT1",
+        "buffer": "FG",
+        "due": 16,
+        "weight": 1
+      },
+      {
+        "id": "M2",
+        "ready": "READY2",
+        "store": "STORE2",
+        "receive": "RECEIVE2",
+        "output": "OUT1",
+        "buffer": "FG",
+        "due": 16,
+        "weight": 1
+      },
+      {
+        "id": "M3",
+        "ready": "READY3",
+        "store": "STORE3",
+        "receive": "RECEIVE3",
+        "output": "OUT1",
+        "buffer": "FG",
+        "due": 16,
+        "weight": 1
+      }
+    ],
+    "tick_h": "1",
+    "tardiness_weight": 1,
+    "makespan_weight": 1,
+    "cost_weight": 1,
+    "schema_version": "S16-STATIC-1.0",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+  },
+  {
+    "id": "BUFFER_B3",
+    "horizon": 16,
+    "tasks": [
+      {
+        "id": "READY1",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "OUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": 1
+      },
+      {
+        "id": "STORE1",
+        "alternatives": [
+          {
+            "id": "MOVE",
+            "duration": 1,
+            "resources": [
+              [
+                "CR1",
+                1
+              ]
+            ],
+            "roles": [
+              [
+                "DRIVE",
+                "D1"
+              ]
+            ],
+            "cost": 2,
+            "kind": "MOVE"
+          }
+        ],
+        "predecessors": [
+          "READY1"
+        ],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "RECEIVE1",
+        "alternatives": [
+          {
+            "id": "GATE",
+            "duration": 1,
+            "resources": [
+              [
+                "RECEIVER",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "GATE"
+          }
+        ],
+        "predecessors": [
+          "STORE1"
+        ],
+        "release": 8,
+        "latest_end": null
+      },
+      {
+        "id": "READY2",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "OUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 2,
+        "latest_end": 3
+      },
+      {
+        "id": "STORE2",
+        "alternatives": [
+          {
+            "id": "MOVE",
+            "duration": 1,
+            "resources": [
+              [
+                "CR1",
+                1
+              ]
+            ],
+            "roles": [
+              [
+                "DRIVE",
+                "D1"
+              ]
+            ],
+            "cost": 2,
+            "kind": "MOVE"
+          }
+        ],
+        "predecessors": [
+          "READY2"
+        ],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "RECEIVE2",
+        "alternatives": [
+          {
+            "id": "GATE",
+            "duration": 1,
+            "resources": [
+              [
+                "RECEIVER",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "GATE"
+          }
+        ],
+        "predecessors": [
+          "STORE2"
+        ],
+        "release": 8,
+        "latest_end": null
+      },
+      {
+        "id": "READY3",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "OUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 4,
+        "latest_end": 5
+      },
+      {
+        "id": "STORE3",
+        "alternatives": [
+          {
+            "id": "MOVE",
+            "duration": 1,
+            "resources": [
+              [
+                "CR1",
+                1
+              ]
+            ],
+            "roles": [
+              [
+                "DRIVE",
+                "D1"
+              ]
+            ],
+            "cost": 2,
+            "kind": "MOVE"
+          }
+        ],
+        "predecessors": [
+          "READY3"
+        ],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "RECEIVE3",
+        "alternatives": [
+          {
+            "id": "GATE",
+            "duration": 1,
+            "resources": [
+              [
+                "RECEIVER",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "GATE"
+          }
+        ],
+        "predecessors": [
+          "STORE3"
+        ],
+        "release": 8,
+        "latest_end": null
+      }
+    ],
+    "resources": [
+      {
+        "id": "OUT1",
+        "capacity": 1
+      },
+      {
+        "id": "FG",
+        "capacity": 3
+      },
+      {
+        "id": "CR1",
+        "capacity": 1
+      },
+      {
+        "id": "RECEIVER",
+        "capacity": 3
+      }
+    ],
+    "people": [
+      {
+        "id": "D1",
+        "qualifications": [
+          "DRIVE"
+        ],
+        "windows": [
+          [
+            0,
+            16
+          ]
+        ]
+      }
+    ],
+    "products": [
+      {
+        "id": "M1",
+        "ready": "READY1",
+        "store": "STORE1",
+        "receive": "RECEIVE1",
+        "output": "OUT1",
+        "buffer": "FG",
+        "due": 16,
+        "weight": 1
+      },
+      {
+        "id": "M2",
+        "ready": "READY2",
+        "store": "STORE2",
+        "receive": "RECEIVE2",
+        "output": "OUT1",
+        "buffer": "FG",
+        "due": 16,
+        "weight": 1
+      },
+      {
+        "id": "M3",
+        "ready": "READY3",
+        "store": "STORE3",
+        "receive": "RECEIVE3",
+        "output": "OUT1",
+        "buffer": "FG",
+        "due": 16,
+        "weight": 1
+      }
+    ],
+    "tick_h": "1",
+    "tardiness_weight": 1,
+    "makespan_weight": 1,
+    "cost_weight": 1,
+    "schema_version": "S16-STATIC-1.0",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+  },
+  {
+    "id": "INFEASIBLE_CAPACITY",
+    "horizon": 4,
+    "tasks": [
+      {
+        "id": "A",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 2,
+            "resources": [
+              [
+                "CUT1",
+                2
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": null
+      }
+    ],
+    "resources": [
+      {
+        "id": "CUT1",
+        "capacity": 1
+      }
+    ],
+    "people": [],
+    "products": [],
+    "tick_h": "1",
+    "tardiness_weight": 1,
+    "makespan_weight": 1,
+    "cost_weight": 1,
+    "schema_version": "S16-STATIC-1.0",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+  }
+]

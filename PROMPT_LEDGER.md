@@ -4660,3 +4660,80 @@ PR055 补录 S08 r2 实际批准；PR056 单独授权 S09 本地实施。PR057 �
   "limit": "NO_UNRELATED_IMPLEMENTATION_NO_NEW_BRANCH_OR_WORKTREE_NO_NEW_GIT_PUBLICATION_NO_FUTURE_STEP_START_ACCEPTANCE_AND_EXACT_RELEASE_SEPARATE"
 }
 ```
+
+## PR128：S15 r4实际验收、确切发布及治理确认补录
+
+以下为规范化语义摘要，不是逐字原始会话。实际发生日期与本次补录日期分开，不将历史候选状态覆盖为预先批准。
+
+```json
+{
+  "id": "PR128",
+  "date": "2026-10-06",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "ACCEPT_S15_R4_APPROVE_EXACT_PUBLICATION_CONFIRM_PRIOR_GOVERNANCE",
+    "target": "S15-20261006-r4",
+    "parameters": {
+      "files": 23,
+      "branch": "main",
+      "tag": "step-S15-r4"
+    }
+  },
+  "human_contribution": [
+    "ACCEPTED_WITH_DOCUMENTED_LIMITS",
+    "APPROVED_EXACT_PUBLICATION",
+    "CONFIRMED_PRIOR_GOVERNANCE_ON_DISK"
+  ],
+  "assistant_support": [
+    "PUBLISHED_APPROVED_23_FILE_SNAPSHOT",
+    "VERIFIED_REMOTE_TREE_TAG_AND_REQUIRED_CI",
+    "BACKFILLED_RECEIPT_IN_NEXT_AUTHORIZED_LOCAL_GOVERNANCE"
+  ],
+  "resolution": "ACCEPTED_WITH_DOCUMENTED_LIMITS_APPROVED_PUBLISHED",
+  "evidence_refs": [
+    "docs/steps/S15.md",
+    "PROGRESS_LOG.md",
+    "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37417472280"
+  ],
+  "limit": "NO_REMOTE_TEST_COUNTS_FROM_HTTP403_LOGS_NO_SEPARATE_GUI_ACCEPTANCE_ALL_PRIOR_LIMITS_RETAINED_FUTURE_START_RECORDED_SEPARATELY"
+}
+```
+
+## PR129：S16新对话交接与直接本地启动
+
+以下为规范化语义摘要，不是逐字原始会话。实际发生日期与本次补录日期分开，不将历史候选状态覆盖为预先批准。
+
+```json
+{
+  "id": "PR129",
+  "date": "2026-10-07",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "CREATE_S16_CHAT_HANDOFF_AND_START_LOCAL_STEP_NOW",
+    "target": "S16",
+    "parameters": {
+      "same_workspace": true,
+      "branch": "main",
+      "new_branch": false,
+      "new_worktree": false,
+      "scope": "LOCAL_IMPLEMENTATION_VALIDATION_NECESSARY_GOVERNANCE_EXACT_REVIEW_PACKET"
+    }
+  },
+  "human_contribution": [
+    "EXPLICITLY_AUTHORIZED_S16_START_AND_SEPARATE_CHAT_HANDOFF"
+  ],
+  "assistant_support": [
+    "RESTORED_READ_ONLY_ACCESS_AFTER_SANDBOX_PROCESS_FAILURE",
+    "READ_S16_CHARTER_REQUIREMENTS_AND_CREATED_MISSING_STEP_CARD",
+    "PRESERVED_CLEAN_BASELINE_AND_PUBLICATION_HISTORY",
+    "STARTED_STATIC_REFERENCE_IMPLEMENTATION_AND_VERIFICATION"
+  ],
+  "resolution": "S16_LOCAL_IMPLEMENTATION_AUTHORIZED_IN_PROGRESS",
+  "evidence_refs": [
+    "docs/steps/S16.md",
+    "docs/PROJECT_CHARTER.md#s16",
+    "PROGRESS_LOG.md"
+  ],
+  "limit": "NO_NEW_BRANCH_OR_WORKTREE_NO_UNREQUESTED_SUBAGENTS_NO_S17_S28_OR_S19AB_START_NO_GIT_STAGE_COMMIT_TAG_PUSH_PR_OR_ATTACHMENTS_ACCEPTANCE_AND_EXACT_PUBLICATION_SEPARATE"
+}
+```

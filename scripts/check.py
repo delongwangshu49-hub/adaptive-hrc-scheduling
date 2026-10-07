@@ -36,6 +36,30 @@ def main() -> None:
         environment = directory / "wheel-env"
         run("uv", "venv", "--python", sys.executable, str(environment))
         python = environment / ("Scripts/python.exe" if sys.platform == "win32" else "bin/python")
+        requirements = directory / "reference-requirements.txt"
+        run(
+            "uv",
+            "export",
+            "--locked",
+            "--only-group",
+            "reference",
+            "--format",
+            "requirements-txt",
+            "--output-file",
+            str(requirements),
+        )
+        run(
+            "uv",
+            "pip",
+            "install",
+            "--python",
+            str(python),
+            "--require-hashes",
+            "--link-mode",
+            "copy",
+            "-r",
+            str(requirements),
+        )
         run(
             "uv",
             "pip",

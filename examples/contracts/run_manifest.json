@@ -6,7 +6,7 @@
   "configuration_sha256": "0d4fe94f284d783f2bd1619091bc49242e28f5d6d1f1c9a5f648cedbdfe5c7da",
   "decision_budget_ms": 1.0,
   "decision_seed": 0,
-  "dependency_lock_sha256": "3a328b78c1e737d91f8811c628ca6bfe9e0c9eca5a8a4f825f07eb7780579cd1",
+  "dependency_lock_sha256": "a19fb24ddb901ce274299e6fa37d490ad6341b8d5b94a9386aab1142de7dd749",
   "fatigue_cap": 0.8,
   "kind": "run_manifest",
   "observation_window_min": 40.0,

@@ -1,5 +1,11 @@
 # 仓库协作规则
 
+2026-10-07本地成果（LOG166）：S16静态匹配参照已完成限定实现与验证，候选S16-20261007-r1为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。源码及隔离wheel各597项、专项22项通过，四个极小完整可行集合吻合，B=2三件接收背压核验通过；S15 r4已发布事实与全部限制保持。验收/确切发布另审，后续步骤未启动。入口：[S16审阅](docs/validation/S16_reference_r1.md)。
+
+2026-10-07现行补录（PR128 / LOG164）：S15 r4已实际限定验收、批准并发布，提交 `0bba728116797ecece3f6fcbee7109c8bf1624b1`、标签 `step-S15-r4`，双平台CI成功。原批准前候选状态保留历史时点；远端详细日志HTTP403，未提取远端测试条数。先前五文件治理已随r4发布，S19A/S19B仍仅规划认可、实施NOT_STARTED。
+
+2026-10-07现行授权（PR129 / LOG165）：负责人明确创建本对话直接实施S16，沿用现有目录/main，不建分支或worktree。S16正在本地实现、验证及形成确切审阅包，验收和新快照发布另审，S17—S28及S19A/S19B未启动，原冻结规则与全部限制保持。入口：[S16步骤卡](docs/steps/S16.md)。
+
 2026-10-06有限修复成果（PR127 / LOG163）：S15发布后F1—F4已完成限定修复；源码及隔离wheel各575项通过，原16场景及1条补充正常链均以统一捕获源码完成轻量/真实Kit比较、独立执行及决策因果审计，Kit正常退出。候选S15-20261006-r4为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；原r3发布与所有限制保持，未启动后续步骤。当前入口：docs/validation/S15_limited_repair_r4.md。
 
 2026-10-06有限修复授权（PR127 / LOG162）：负责人已批准S15发布后审阅F1—F4及必要回归、说明、治理和新确切审阅包的有限本地修复。沿用当前main/目录，不建分支或worktree；修复成果验收及新快照发布另审，S16—S28及S19A/S19B未启动。r3既有发布事实和全部历史证据保持。
