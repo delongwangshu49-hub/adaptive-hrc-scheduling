@@ -1,5 +1,9 @@
 # 完整钢建筑模块生产调度研究总纲
 
+2026-10-07本地成果（PR134 / LOG173）：S17固定合法模式LNS及两个有限适配器已完成本地实现/验证，候选S17-20261007-r1为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。29专项、源码/隔离wheel各641项通过；六个同固定模式静态例无进一步收益，两条生产全链为前12窗口LNS后原EDD续接、独立执行/决策审计通过。213冻结文件保持，S16 r2实际发布补录PR133/LOG171。成果验收与确切发布另审，S18—S28及S19A/S19B未启动。入口：[S17审阅](validation/S17_lns_r1.md)。
+
+2026-10-07现行交接（PR133—PR134 / LOG171—LOG172）：S16 r2已实际限定验收、批准并发布，提交 `a3088770c2aec19143f0693d60be3a2013ce69cc`、标签 `step-S16-r2`，双平台各源码/隔离wheel612项成功。负责人已授权在现有main/目录直接实施S17固定合法模式LNS；当前IMPLEMENTATION_IN_PROGRESS，新成果验收与确切发布另审。不建分支/worktree，S18—S28及S19A/S19B未启动，原冻结域及所有历史限制/失败保持。入口：[S17步骤卡](steps/S17.md)。
+
 2026-10-07有限修复成果（PR132 / LOG170）：S16 F1—F3及C1已完成限定本地修复，候选S16-20261007-r2为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。源码及隔离wheel各612项、专项37项通过；原七例数值/结果及68组完整集合保持，213个冻结文件摘要不变。1.1参照只绑定独立抽象资源图，原r1发布与所有限制/失败证据保持。新成果验收及确切发布另审，后续步骤未启动。入口：[S16 r2审阅](validation/S16_limited_repair_r2.md)。
 
 2026-10-07现行有限修复授权（PR132 / LOG169）：负责人已批准S16发布后F1—F3及C1必要追溯、回归、治理和新确切审阅包的有限本地修复。沿用现有main/目录，不建分支/worktree，保留原r1发布及全部历史证据和冻结边界。当前LIMITED_REPAIR_IN_PROGRESS；新成果验收与确切发布另审，后续步骤未启动。入口：[S16步骤卡](steps/S16.md)。

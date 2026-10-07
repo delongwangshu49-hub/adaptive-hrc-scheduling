@@ -1,0 +1,3276 @@
+[
+  {
+    "id": "TINY_UNARY",
+    "fixed_instance_sha256": "4426e00def0c9d17e96bbb68035aa3a951f0a804c2a02ae24fe98a13795950ea",
+    "lns": {
+      "status": "FEASIBLE",
+      "termination": "NO_IMPROVEMENT",
+      "initial": [
+        {
+          "task_id": "A",
+          "alternative_id": "H",
+          "start": 0,
+          "end": 2
+        },
+        {
+          "task_id": "B",
+          "alternative_id": "H",
+          "start": 2,
+          "end": 3
+        }
+      ],
+      "initial_score": [
+        3
+      ],
+      "best": [
+        {
+          "task_id": "A",
+          "alternative_id": "H",
+          "start": 0,
+          "end": 2
+        },
+        {
+          "task_id": "B",
+          "alternative_id": "H",
+          "start": 2,
+          "end": 3
+        }
+      ],
+      "best_score": [
+        3
+      ],
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            }
+          ],
+          "candidate_sha256": "606fd72929a3db4c47c7a3302b85536332f922dba01c037b510e46866e96f806",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.00030910002533346415
+        },
+        {
+          "index": 1,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 1,
+              "end": 3
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            }
+          ],
+          "candidate_sha256": "79b92b31040888de4207db7a33f2adea0ff66a92616ce766b9891212cae8ebb4",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.0002791999140754342
+        },
+        {
+          "index": 2,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 1,
+              "end": 3
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            }
+          ],
+          "candidate_sha256": "79b92b31040888de4207db7a33f2adea0ff66a92616ce766b9891212cae8ebb4",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.00026999996043741703
+        },
+        {
+          "index": 3,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 1,
+              "end": 3
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            }
+          ],
+          "candidate_sha256": "79b92b31040888de4207db7a33f2adea0ff66a92616ce766b9891212cae8ebb4",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.00026530004106462
+        },
+        {
+          "index": 4,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 1,
+              "end": 3
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            }
+          ],
+          "candidate_sha256": "79b92b31040888de4207db7a33f2adea0ff66a92616ce766b9891212cae8ebb4",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.00027009996119886637
+        },
+        {
+          "index": 5,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            }
+          ],
+          "candidate_sha256": "606fd72929a3db4c47c7a3302b85536332f922dba01c037b510e46866e96f806",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.00027279998175799847
+        },
+        {
+          "index": 6,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            }
+          ],
+          "candidate_sha256": "606fd72929a3db4c47c7a3302b85536332f922dba01c037b510e46866e96f806",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.0002587999915704131
+        },
+        {
+          "index": 7,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 1,
+              "end": 3
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            }
+          ],
+          "candidate_sha256": "79b92b31040888de4207db7a33f2adea0ff66a92616ce766b9891212cae8ebb4",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.0002676999429240823
+        }
+      ],
+      "seed": 17,
+      "options": {
+        "seed": 17,
+        "iterations": 8,
+        "destroy_size": 2,
+        "repair_trials": 1000,
+        "wall_seconds": 60,
+        "stagnation": 8,
+        "accept_equal": true
+      },
+      "initial_reasons": [
+        "FEASIBLE"
+      ],
+      "wall_seconds": 0.002500099944882095
+    }
+  },
+  {
+    "id": "TINY_PRECEDENCE",
+    "fixed_instance_sha256": "c78e16a8a0078a3ecead2eeb5410a7d1ff9e23825259dcb1ba1348c8caecf2a2",
+    "lns": {
+      "status": "FEASIBLE",
+      "termination": "NO_IMPROVEMENT",
+      "initial": [
+        {
+          "task_id": "A",
+          "alternative_id": "H",
+          "start": 0,
+          "end": 2
+        },
+        {
+          "task_id": "B",
+          "alternative_id": "H",
+          "start": 2,
+          "end": 3
+        }
+      ],
+      "initial_score": [
+        3
+      ],
+      "best": [
+        {
+          "task_id": "A",
+          "alternative_id": "H",
+          "start": 0,
+          "end": 2
+        },
+        {
+          "task_id": "B",
+          "alternative_id": "H",
+          "start": 2,
+          "end": 3
+        }
+      ],
+      "best_score": [
+        3
+      ],
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            }
+          ],
+          "candidate_sha256": "606fd72929a3db4c47c7a3302b85536332f922dba01c037b510e46866e96f806",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3",
+            "PRECEDENCE:B"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.0002896999940276146
+        },
+        {
+          "index": 1,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            }
+          ],
+          "candidate_sha256": "606fd72929a3db4c47c7a3302b85536332f922dba01c037b510e46866e96f806",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3",
+            "PRECEDENCE:B"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.0002826000563800335
+        },
+        {
+          "index": 2,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            }
+          ],
+          "candidate_sha256": "606fd72929a3db4c47c7a3302b85536332f922dba01c037b510e46866e96f806",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3",
+            "PRECEDENCE:B"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.0002783999079838395
+        },
+        {
+          "index": 3,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            }
+          ],
+          "candidate_sha256": "606fd72929a3db4c47c7a3302b85536332f922dba01c037b510e46866e96f806",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3",
+            "PRECEDENCE:B"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.0002730999840423465
+        },
+        {
+          "index": 4,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            }
+          ],
+          "candidate_sha256": "606fd72929a3db4c47c7a3302b85536332f922dba01c037b510e46866e96f806",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3",
+            "PRECEDENCE:B"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.0002707999665290117
+        },
+        {
+          "index": 5,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            }
+          ],
+          "candidate_sha256": "606fd72929a3db4c47c7a3302b85536332f922dba01c037b510e46866e96f806",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3",
+            "PRECEDENCE:B"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.000265000038780272
+        },
+        {
+          "index": 6,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            }
+          ],
+          "candidate_sha256": "606fd72929a3db4c47c7a3302b85536332f922dba01c037b510e46866e96f806",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3",
+            "PRECEDENCE:B"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.0002761000068858266
+        },
+        {
+          "index": 7,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            }
+          ],
+          "candidate_sha256": "606fd72929a3db4c47c7a3302b85536332f922dba01c037b510e46866e96f806",
+          "score": [
+            3
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CUT1:0",
+            "CAPACITY:CUT1:1",
+            "CAPACITY:CUT1:2",
+            "CAPACITY:CUT1:3",
+            "PRECEDENCE:B"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 12,
+          "wall_seconds": 0.0005425999406725168
+        }
+      ],
+      "seed": 17,
+      "options": {
+        "seed": 17,
+        "iterations": 8,
+        "destroy_size": 2,
+        "repair_trials": 1000,
+        "wall_seconds": 60,
+        "stagnation": 8,
+        "accept_equal": true
+      },
+      "initial_reasons": [
+        "FEASIBLE"
+      ],
+      "wall_seconds": 0.0028051999397575855
+    }
+  },
+  {
+    "id": "TINY_BINDINGS",
+    "fixed_instance_sha256": "03fafa3638c07c8b38beb020549db5f89bfdf3b073ce0cc6f14c16c3a592990b",
+    "lns": {
+      "status": "FEASIBLE",
+      "termination": "NO_IMPROVEMENT",
+      "initial": [
+        {
+          "task_id": "A",
+          "alternative_id": "FAST",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "task_id": "B",
+          "alternative_id": "H",
+          "start": 1,
+          "end": 2
+        }
+      ],
+      "initial_score": [
+        5
+      ],
+      "best": [
+        {
+          "task_id": "A",
+          "alternative_id": "FAST",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "task_id": "B",
+          "alternative_id": "H",
+          "start": 1,
+          "end": 2
+        }
+      ],
+      "best_score": [
+        5
+      ],
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "FAST",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 1,
+              "end": 2
+            }
+          ],
+          "candidate_sha256": "be5ccc900bb409a4b04465abec473017a87b42a08264ded862f8e8e76d683d52",
+          "score": [
+            5
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CALENDAR:A:P1",
+            "CALENDAR:B:P1",
+            "CAPACITY:P1:0",
+            "CAPACITY:P1:1",
+            "CAPACITY:P1:2",
+            "CAPACITY:P1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.0004854999715462327
+        },
+        {
+          "index": 1,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "FAST",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 1,
+              "end": 2
+            }
+          ],
+          "candidate_sha256": "be5ccc900bb409a4b04465abec473017a87b42a08264ded862f8e8e76d683d52",
+          "score": [
+            5
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CALENDAR:A:P1",
+            "CALENDAR:B:P1",
+            "CAPACITY:P1:0",
+            "CAPACITY:P1:1",
+            "CAPACITY:P1:2",
+            "CAPACITY:P1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.00047809991519898176
+        },
+        {
+          "index": 2,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "FAST",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 1,
+              "end": 2
+            }
+          ],
+          "candidate_sha256": "be5ccc900bb409a4b04465abec473017a87b42a08264ded862f8e8e76d683d52",
+          "score": [
+            5
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CALENDAR:A:P1",
+            "CALENDAR:B:P1",
+            "CAPACITY:P1:0",
+            "CAPACITY:P1:1",
+            "CAPACITY:P1:2",
+            "CAPACITY:P1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.0007607999723404646
+        },
+        {
+          "index": 3,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "FAST",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            }
+          ],
+          "candidate_sha256": "ed8e0a385844d4d2bfa18b6204b0c584229981b2ff80f261cc9b7e7d844142fa",
+          "score": [
+            5
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CALENDAR:A:P1",
+            "CALENDAR:B:P1",
+            "CAPACITY:P1:0",
+            "CAPACITY:P1:1",
+            "CAPACITY:P1:2",
+            "CAPACITY:P1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.00046120001934468746
+        },
+        {
+          "index": 4,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "FAST",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 1,
+              "end": 2
+            }
+          ],
+          "candidate_sha256": "be5ccc900bb409a4b04465abec473017a87b42a08264ded862f8e8e76d683d52",
+          "score": [
+            5
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CALENDAR:A:P1",
+            "CALENDAR:B:P1",
+            "CAPACITY:P1:0",
+            "CAPACITY:P1:1",
+            "CAPACITY:P1:2",
+            "CAPACITY:P1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.0004711000947281718
+        },
+        {
+          "index": 5,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "FAST",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            }
+          ],
+          "candidate_sha256": "ed8e0a385844d4d2bfa18b6204b0c584229981b2ff80f261cc9b7e7d844142fa",
+          "score": [
+            5
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CALENDAR:A:P1",
+            "CALENDAR:B:P1",
+            "CAPACITY:P1:0",
+            "CAPACITY:P1:1",
+            "CAPACITY:P1:2",
+            "CAPACITY:P1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.0004637000383809209
+        },
+        {
+          "index": 6,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "FAST",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            }
+          ],
+          "candidate_sha256": "ed8e0a385844d4d2bfa18b6204b0c584229981b2ff80f261cc9b7e7d844142fa",
+          "score": [
+            5
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CALENDAR:A:P1",
+            "CALENDAR:B:P1",
+            "CAPACITY:P1:0",
+            "CAPACITY:P1:1",
+            "CAPACITY:P1:2",
+            "CAPACITY:P1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.00045499997213482857
+        },
+        {
+          "index": 7,
+          "removed": [
+            "A",
+            "B"
+          ],
+          "candidate": [
+            {
+              "task_id": "A",
+              "alternative_id": "FAST",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "B",
+              "alternative_id": "H",
+              "start": 1,
+              "end": 2
+            }
+          ],
+          "candidate_sha256": "be5ccc900bb409a4b04465abec473017a87b42a08264ded862f8e8e76d683d52",
+          "score": [
+            5
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CALENDAR:A:P1",
+            "CALENDAR:B:P1",
+            "CAPACITY:P1:0",
+            "CAPACITY:P1:1",
+            "CAPACITY:P1:2",
+            "CAPACITY:P1:3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.0004597000079229474
+        }
+      ],
+      "seed": 17,
+      "options": {
+        "seed": 17,
+        "iterations": 8,
+        "destroy_size": 2,
+        "repair_trials": 1000,
+        "wall_seconds": 60,
+        "stagnation": 8,
+        "accept_equal": true
+      },
+      "initial_reasons": [
+        "FEASIBLE"
+      ],
+      "wall_seconds": 0.004349400056526065
+    }
+  },
+  {
+    "id": "TINY_RECEIPT",
+    "fixed_instance_sha256": "81d9a16c87d69497d0a3791b4175435c4fbb7d7753d61b27bfc90d3b9cf55290",
+    "lns": {
+      "status": "FEASIBLE",
+      "termination": "NO_IMPROVEMENT",
+      "initial": [
+        {
+          "task_id": "READY",
+          "alternative_id": "H",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "task_id": "STORE",
+          "alternative_id": "MOVE",
+          "start": 1,
+          "end": 2
+        },
+        {
+          "task_id": "RECEIVE",
+          "alternative_id": "GATE",
+          "start": 3,
+          "end": 4
+        }
+      ],
+      "initial_score": [
+        8
+      ],
+      "best": [
+        {
+          "task_id": "READY",
+          "alternative_id": "H",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "task_id": "STORE",
+          "alternative_id": "MOVE",
+          "start": 1,
+          "end": 2
+        },
+        {
+          "task_id": "RECEIVE",
+          "alternative_id": "GATE",
+          "start": 3,
+          "end": 4
+        }
+      ],
+      "best_score": [
+        8
+      ],
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "RECEIVE",
+            "STORE"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE",
+              "alternative_id": "GATE",
+              "start": 3,
+              "end": 4
+            }
+          ],
+          "candidate_sha256": "6ccac9c6d04ba540de4daec7c4a60298108fa4a319a26cbeb14c2eb6d8c759d6",
+          "score": [
+            8
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "PRECEDENCE:RECEIVE",
+            "PRECEDENCE:STORE"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 10,
+          "wall_seconds": 0.00035009998828172684
+        },
+        {
+          "index": 1,
+          "removed": [
+            "READY",
+            "STORE"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE",
+              "alternative_id": "GATE",
+              "start": 3,
+              "end": 4
+            }
+          ],
+          "candidate_sha256": "6ccac9c6d04ba540de4daec7c4a60298108fa4a319a26cbeb14c2eb6d8c759d6",
+          "score": [
+            8
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "PRECEDENCE:RECEIVE",
+            "PRECEDENCE:STORE"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 25,
+          "wall_seconds": 0.0007376000285148621
+        },
+        {
+          "index": 2,
+          "removed": [
+            "READY",
+            "STORE"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE",
+              "alternative_id": "GATE",
+              "start": 3,
+              "end": 4
+            }
+          ],
+          "candidate_sha256": "6ccac9c6d04ba540de4daec7c4a60298108fa4a319a26cbeb14c2eb6d8c759d6",
+          "score": [
+            8
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "PRECEDENCE:RECEIVE",
+            "PRECEDENCE:STORE"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 25,
+          "wall_seconds": 0.0007291999645531178
+        },
+        {
+          "index": 3,
+          "removed": [
+            "RECEIVE",
+            "STORE"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE",
+              "alternative_id": "GATE",
+              "start": 3,
+              "end": 4
+            }
+          ],
+          "candidate_sha256": "6ccac9c6d04ba540de4daec7c4a60298108fa4a319a26cbeb14c2eb6d8c759d6",
+          "score": [
+            8
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "PRECEDENCE:RECEIVE",
+            "PRECEDENCE:STORE"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 10,
+          "wall_seconds": 0.0003342999843880534
+        },
+        {
+          "index": 4,
+          "removed": [
+            "RECEIVE",
+            "STORE"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE",
+              "alternative_id": "MOVE",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "RECEIVE",
+              "alternative_id": "GATE",
+              "start": 3,
+              "end": 4
+            }
+          ],
+          "candidate_sha256": "a2bfc935ee4e41171e99d1e0cc741b9466f899f81145698143b9c94598edf653",
+          "score": [
+            8
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "PRECEDENCE:RECEIVE",
+            "PRECEDENCE:STORE"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 10,
+          "wall_seconds": 0.000328000052832067
+        },
+        {
+          "index": 5,
+          "removed": [
+            "RECEIVE",
+            "STORE"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE",
+              "alternative_id": "GATE",
+              "start": 3,
+              "end": 4
+            }
+          ],
+          "candidate_sha256": "6ccac9c6d04ba540de4daec7c4a60298108fa4a319a26cbeb14c2eb6d8c759d6",
+          "score": [
+            8
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "PRECEDENCE:RECEIVE",
+            "PRECEDENCE:STORE"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 10,
+          "wall_seconds": 0.0003333999775350094
+        },
+        {
+          "index": 6,
+          "removed": [
+            "READY",
+            "RECEIVE"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE",
+              "alternative_id": "GATE",
+              "start": 3,
+              "end": 4
+            }
+          ],
+          "candidate_sha256": "6ccac9c6d04ba540de4daec7c4a60298108fa4a319a26cbeb14c2eb6d8c759d6",
+          "score": [
+            8
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "PRECEDENCE:STORE"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 10,
+          "wall_seconds": 0.0003307000733911991
+        },
+        {
+          "index": 7,
+          "removed": [
+            "READY",
+            "RECEIVE"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE",
+              "alternative_id": "GATE",
+              "start": 3,
+              "end": 4
+            }
+          ],
+          "candidate_sha256": "6ccac9c6d04ba540de4daec7c4a60298108fa4a319a26cbeb14c2eb6d8c759d6",
+          "score": [
+            8
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "PRECEDENCE:STORE"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 10,
+          "wall_seconds": 0.00032730004750192165
+        }
+      ],
+      "seed": 17,
+      "options": {
+        "seed": 17,
+        "iterations": 8,
+        "destroy_size": 2,
+        "repair_trials": 1000,
+        "wall_seconds": 60,
+        "stagnation": 8,
+        "accept_equal": true
+      },
+      "initial_reasons": [
+        "FEASIBLE"
+      ],
+      "wall_seconds": 0.0038085998967289925
+    }
+  },
+  {
+    "id": "BUFFER_B2",
+    "fixed_instance_sha256": "204fe40fc7dffe6225fe8d2df2c005870628328c2e6f4e46dbaffd9c13bcb87e",
+    "lns": {
+      "status": "FEASIBLE",
+      "termination": "NO_IMPROVEMENT",
+      "initial": [
+        {
+          "task_id": "READY1",
+          "alternative_id": "H",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "task_id": "STORE1",
+          "alternative_id": "MOVE",
+          "start": 1,
+          "end": 2
+        },
+        {
+          "task_id": "RECEIVE1",
+          "alternative_id": "GATE",
+          "start": 8,
+          "end": 9
+        },
+        {
+          "task_id": "READY2",
+          "alternative_id": "H",
+          "start": 2,
+          "end": 3
+        },
+        {
+          "task_id": "STORE2",
+          "alternative_id": "MOVE",
+          "start": 3,
+          "end": 4
+        },
+        {
+          "task_id": "RECEIVE2",
+          "alternative_id": "GATE",
+          "start": 8,
+          "end": 9
+        },
+        {
+          "task_id": "READY3",
+          "alternative_id": "H",
+          "start": 4,
+          "end": 5
+        },
+        {
+          "task_id": "STORE3",
+          "alternative_id": "MOVE",
+          "start": 9,
+          "end": 10
+        },
+        {
+          "task_id": "RECEIVE3",
+          "alternative_id": "GATE",
+          "start": 10,
+          "end": 11
+        }
+      ],
+      "initial_score": [
+        17
+      ],
+      "best": [
+        {
+          "task_id": "READY1",
+          "alternative_id": "H",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "task_id": "STORE1",
+          "alternative_id": "MOVE",
+          "start": 1,
+          "end": 2
+        },
+        {
+          "task_id": "RECEIVE1",
+          "alternative_id": "GATE",
+          "start": 8,
+          "end": 9
+        },
+        {
+          "task_id": "READY2",
+          "alternative_id": "H",
+          "start": 2,
+          "end": 3
+        },
+        {
+          "task_id": "STORE2",
+          "alternative_id": "MOVE",
+          "start": 3,
+          "end": 4
+        },
+        {
+          "task_id": "RECEIVE2",
+          "alternative_id": "GATE",
+          "start": 8,
+          "end": 9
+        },
+        {
+          "task_id": "READY3",
+          "alternative_id": "H",
+          "start": 4,
+          "end": 5
+        },
+        {
+          "task_id": "STORE3",
+          "alternative_id": "MOVE",
+          "start": 9,
+          "end": 10
+        },
+        {
+          "task_id": "RECEIVE3",
+          "alternative_id": "GATE",
+          "start": 10,
+          "end": 11
+        }
+      ],
+      "best_score": [
+        17
+      ],
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "STORE1",
+            "STORE3"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 9,
+              "end": 10
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 10,
+              "end": 11
+            }
+          ],
+          "candidate_sha256": "3f87fc85f009a079d2b1c23eef0eaf29eb033cc7b7877b3182015a4726366796",
+          "score": [
+            17
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:0",
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:10",
+            "CAPACITY:CR1:11",
+            "CAPACITY:CR1:12",
+            "CAPACITY:CR1:13",
+            "CAPACITY:CR1:14",
+            "CAPACITY:CR1:15",
+            "CAPACITY:CR1:2",
+            "CAPACITY:CR1:3",
+            "CAPACITY:CR1:4",
+            "CAPACITY:CR1:5",
+            "CAPACITY:CR1:6",
+            "CAPACITY:CR1:7",
+            "CAPACITY:CR1:8",
+            "CAPACITY:CR1:9",
+            "CAPACITY:D1:0",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:10",
+            "CAPACITY:D1:11",
+            "CAPACITY:D1:12",
+            "CAPACITY:D1:13",
+            "CAPACITY:D1:14",
+            "CAPACITY:D1:15",
+            "CAPACITY:D1:2",
+            "CAPACITY:D1:3",
+            "CAPACITY:D1:4",
+            "CAPACITY:D1:5",
+            "CAPACITY:D1:6",
+            "CAPACITY:D1:7",
+            "CAPACITY:D1:8",
+            "CAPACITY:D1:9",
+            "CAPACITY:FG:3",
+            "CAPACITY:FG:4",
+            "CAPACITY:FG:5",
+            "CAPACITY:FG:6",
+            "CAPACITY:FG:7",
+            "CAPACITY:FG:8",
+            "CAPACITY:OUT1:2",
+            "CAPACITY:OUT1:3",
+            "CAPACITY:OUT1:4",
+            "CAPACITY:OUT1:5",
+            "PRECEDENCE:RECEIVE1",
+            "PRECEDENCE:RECEIVE3",
+            "PRECEDENCE:STORE1",
+            "PRECEDENCE:STORE3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 256,
+          "wall_seconds": 0.015689500025473535
+        },
+        {
+          "index": 1,
+          "removed": [
+            "READY2",
+            "STORE2"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 9,
+              "end": 10
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 10,
+              "end": 11
+            }
+          ],
+          "candidate_sha256": "3f87fc85f009a079d2b1c23eef0eaf29eb033cc7b7877b3182015a4726366796",
+          "score": [
+            17
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:9",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:9",
+            "CAPACITY:OUT1:4",
+            "CAPACITY:OUT1:5",
+            "PRECEDENCE:RECEIVE2",
+            "PRECEDENCE:STORE2"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.0016695000231266022
+        },
+        {
+          "index": 2,
+          "removed": [
+            "READY1",
+            "STORE1"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 9,
+              "end": 10
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 10,
+              "end": 11
+            }
+          ],
+          "candidate_sha256": "3f87fc85f009a079d2b1c23eef0eaf29eb033cc7b7877b3182015a4726366796",
+          "score": [
+            17
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:3",
+            "CAPACITY:CR1:9",
+            "CAPACITY:D1:3",
+            "CAPACITY:D1:9",
+            "CAPACITY:OUT1:2",
+            "CAPACITY:OUT1:3",
+            "CAPACITY:OUT1:4",
+            "CAPACITY:OUT1:5",
+            "PRECEDENCE:RECEIVE1",
+            "PRECEDENCE:STORE1"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.0011063000420108438
+        },
+        {
+          "index": 3,
+          "removed": [
+            "RECEIVE3",
+            "STORE3"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 9,
+              "end": 10
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 10,
+              "end": 11
+            }
+          ],
+          "candidate_sha256": "3f87fc85f009a079d2b1c23eef0eaf29eb033cc7b7877b3182015a4726366796",
+          "score": [
+            17
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:3",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:3",
+            "CAPACITY:FG:3",
+            "CAPACITY:FG:4",
+            "CAPACITY:FG:5",
+            "CAPACITY:FG:6",
+            "CAPACITY:FG:7",
+            "CAPACITY:FG:8",
+            "PRECEDENCE:RECEIVE3",
+            "PRECEDENCE:STORE3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 128,
+          "wall_seconds": 0.007977599976584315
+        },
+        {
+          "index": 4,
+          "removed": [
+            "STORE1",
+            "STORE2"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 9,
+              "end": 10
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 10,
+              "end": 11
+            }
+          ],
+          "candidate_sha256": "3f87fc85f009a079d2b1c23eef0eaf29eb033cc7b7877b3182015a4726366796",
+          "score": [
+            17
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:0",
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:10",
+            "CAPACITY:CR1:11",
+            "CAPACITY:CR1:12",
+            "CAPACITY:CR1:13",
+            "CAPACITY:CR1:14",
+            "CAPACITY:CR1:15",
+            "CAPACITY:CR1:2",
+            "CAPACITY:CR1:3",
+            "CAPACITY:CR1:4",
+            "CAPACITY:CR1:5",
+            "CAPACITY:CR1:6",
+            "CAPACITY:CR1:7",
+            "CAPACITY:CR1:8",
+            "CAPACITY:CR1:9",
+            "CAPACITY:D1:0",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:10",
+            "CAPACITY:D1:11",
+            "CAPACITY:D1:12",
+            "CAPACITY:D1:13",
+            "CAPACITY:D1:14",
+            "CAPACITY:D1:15",
+            "CAPACITY:D1:2",
+            "CAPACITY:D1:3",
+            "CAPACITY:D1:4",
+            "CAPACITY:D1:5",
+            "CAPACITY:D1:6",
+            "CAPACITY:D1:7",
+            "CAPACITY:D1:8",
+            "CAPACITY:D1:9",
+            "CAPACITY:OUT1:10",
+            "CAPACITY:OUT1:2",
+            "CAPACITY:OUT1:3",
+            "CAPACITY:OUT1:4",
+            "CAPACITY:OUT1:5",
+            "CAPACITY:OUT1:6",
+            "CAPACITY:OUT1:7",
+            "CAPACITY:OUT1:8",
+            "CAPACITY:OUT1:9",
+            "PRECEDENCE:RECEIVE1",
+            "PRECEDENCE:RECEIVE2",
+            "PRECEDENCE:STORE1",
+            "PRECEDENCE:STORE2"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 256,
+          "wall_seconds": 0.016267600003629923
+        },
+        {
+          "index": 5,
+          "removed": [
+            "READY3",
+            "RECEIVE2"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 10,
+              "end": 11
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 9,
+              "end": 10
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 10,
+              "end": 11
+            }
+          ],
+          "candidate_sha256": "23e213569b41564a48c8e38273aab889384ee80531d18177f55cf5ea89077589",
+          "score": [
+            17
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 8,
+          "wall_seconds": 0.0006431000074371696
+        },
+        {
+          "index": 6,
+          "removed": [
+            "STORE1",
+            "STORE3"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 10,
+              "end": 11
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 9,
+              "end": 10
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 10,
+              "end": 11
+            }
+          ],
+          "candidate_sha256": "23e213569b41564a48c8e38273aab889384ee80531d18177f55cf5ea89077589",
+          "score": [
+            17
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:0",
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:10",
+            "CAPACITY:CR1:11",
+            "CAPACITY:CR1:12",
+            "CAPACITY:CR1:13",
+            "CAPACITY:CR1:14",
+            "CAPACITY:CR1:15",
+            "CAPACITY:CR1:2",
+            "CAPACITY:CR1:3",
+            "CAPACITY:CR1:4",
+            "CAPACITY:CR1:5",
+            "CAPACITY:CR1:6",
+            "CAPACITY:CR1:7",
+            "CAPACITY:CR1:8",
+            "CAPACITY:CR1:9",
+            "CAPACITY:D1:0",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:10",
+            "CAPACITY:D1:11",
+            "CAPACITY:D1:12",
+            "CAPACITY:D1:13",
+            "CAPACITY:D1:14",
+            "CAPACITY:D1:15",
+            "CAPACITY:D1:2",
+            "CAPACITY:D1:3",
+            "CAPACITY:D1:4",
+            "CAPACITY:D1:5",
+            "CAPACITY:D1:6",
+            "CAPACITY:D1:7",
+            "CAPACITY:D1:8",
+            "CAPACITY:D1:9",
+            "CAPACITY:FG:3",
+            "CAPACITY:FG:4",
+            "CAPACITY:FG:5",
+            "CAPACITY:FG:6",
+            "CAPACITY:FG:7",
+            "CAPACITY:FG:8",
+            "CAPACITY:OUT1:2",
+            "CAPACITY:OUT1:3",
+            "CAPACITY:OUT1:4",
+            "CAPACITY:OUT1:5",
+            "PRECEDENCE:RECEIVE1",
+            "PRECEDENCE:RECEIVE3",
+            "PRECEDENCE:STORE1",
+            "PRECEDENCE:STORE3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 256,
+          "wall_seconds": 0.015520100016146898
+        },
+        {
+          "index": 7,
+          "removed": [
+            "READY2",
+            "STORE3"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 10,
+              "end": 11
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 9,
+              "end": 10
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 10,
+              "end": 11
+            }
+          ],
+          "candidate_sha256": "23e213569b41564a48c8e38273aab889384ee80531d18177f55cf5ea89077589",
+          "score": [
+            17
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:3",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:3",
+            "CAPACITY:FG:3",
+            "CAPACITY:FG:4",
+            "CAPACITY:FG:5",
+            "CAPACITY:FG:6",
+            "CAPACITY:FG:7",
+            "CAPACITY:FG:8",
+            "PRECEDENCE:RECEIVE3",
+            "PRECEDENCE:STORE3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.0010769000509753823
+        }
+      ],
+      "seed": 17,
+      "options": {
+        "seed": 17,
+        "iterations": 8,
+        "destroy_size": 2,
+        "repair_trials": 1000,
+        "wall_seconds": 60,
+        "stagnation": 8,
+        "accept_equal": true
+      },
+      "initial_reasons": [
+        "FEASIBLE"
+      ],
+      "wall_seconds": 0.06350049993488938
+    }
+  },
+  {
+    "id": "BUFFER_B3",
+    "fixed_instance_sha256": "fa4a720988bf4ea01f816314de4f5bf23b3fdbd478019d771c5ef05e998958ee",
+    "lns": {
+      "status": "FEASIBLE",
+      "termination": "NO_IMPROVEMENT",
+      "initial": [
+        {
+          "task_id": "READY1",
+          "alternative_id": "H",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "task_id": "STORE1",
+          "alternative_id": "MOVE",
+          "start": 1,
+          "end": 2
+        },
+        {
+          "task_id": "RECEIVE1",
+          "alternative_id": "GATE",
+          "start": 8,
+          "end": 9
+        },
+        {
+          "task_id": "READY2",
+          "alternative_id": "H",
+          "start": 2,
+          "end": 3
+        },
+        {
+          "task_id": "STORE2",
+          "alternative_id": "MOVE",
+          "start": 3,
+          "end": 4
+        },
+        {
+          "task_id": "RECEIVE2",
+          "alternative_id": "GATE",
+          "start": 8,
+          "end": 9
+        },
+        {
+          "task_id": "READY3",
+          "alternative_id": "H",
+          "start": 4,
+          "end": 5
+        },
+        {
+          "task_id": "STORE3",
+          "alternative_id": "MOVE",
+          "start": 5,
+          "end": 6
+        },
+        {
+          "task_id": "RECEIVE3",
+          "alternative_id": "GATE",
+          "start": 8,
+          "end": 9
+        }
+      ],
+      "initial_score": [
+        15
+      ],
+      "best": [
+        {
+          "task_id": "READY1",
+          "alternative_id": "H",
+          "start": 0,
+          "end": 1
+        },
+        {
+          "task_id": "STORE1",
+          "alternative_id": "MOVE",
+          "start": 1,
+          "end": 2
+        },
+        {
+          "task_id": "RECEIVE1",
+          "alternative_id": "GATE",
+          "start": 8,
+          "end": 9
+        },
+        {
+          "task_id": "READY2",
+          "alternative_id": "H",
+          "start": 2,
+          "end": 3
+        },
+        {
+          "task_id": "STORE2",
+          "alternative_id": "MOVE",
+          "start": 3,
+          "end": 4
+        },
+        {
+          "task_id": "RECEIVE2",
+          "alternative_id": "GATE",
+          "start": 8,
+          "end": 9
+        },
+        {
+          "task_id": "READY3",
+          "alternative_id": "H",
+          "start": 4,
+          "end": 5
+        },
+        {
+          "task_id": "STORE3",
+          "alternative_id": "MOVE",
+          "start": 5,
+          "end": 6
+        },
+        {
+          "task_id": "RECEIVE3",
+          "alternative_id": "GATE",
+          "start": 8,
+          "end": 9
+        }
+      ],
+      "best_score": [
+        15
+      ],
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "STORE1",
+            "STORE3"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 7,
+              "end": 8
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            }
+          ],
+          "candidate_sha256": "1fba60944499c45cf5a2d24d02bce9e3cb36b42b586829648640ad43572a212e",
+          "score": [
+            15
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:0",
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:10",
+            "CAPACITY:CR1:11",
+            "CAPACITY:CR1:12",
+            "CAPACITY:CR1:13",
+            "CAPACITY:CR1:14",
+            "CAPACITY:CR1:15",
+            "CAPACITY:CR1:2",
+            "CAPACITY:CR1:3",
+            "CAPACITY:CR1:4",
+            "CAPACITY:CR1:5",
+            "CAPACITY:CR1:6",
+            "CAPACITY:CR1:7",
+            "CAPACITY:CR1:8",
+            "CAPACITY:CR1:9",
+            "CAPACITY:D1:0",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:10",
+            "CAPACITY:D1:11",
+            "CAPACITY:D1:12",
+            "CAPACITY:D1:13",
+            "CAPACITY:D1:14",
+            "CAPACITY:D1:15",
+            "CAPACITY:D1:2",
+            "CAPACITY:D1:3",
+            "CAPACITY:D1:4",
+            "CAPACITY:D1:5",
+            "CAPACITY:D1:6",
+            "CAPACITY:D1:7",
+            "CAPACITY:D1:8",
+            "CAPACITY:D1:9",
+            "CAPACITY:OUT1:2",
+            "CAPACITY:OUT1:3",
+            "CAPACITY:OUT1:4",
+            "CAPACITY:OUT1:5",
+            "PRECEDENCE:RECEIVE1",
+            "PRECEDENCE:RECEIVE3",
+            "PRECEDENCE:STORE1",
+            "PRECEDENCE:STORE3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 256,
+          "wall_seconds": 0.01703860005363822
+        },
+        {
+          "index": 1,
+          "removed": [
+            "READY2",
+            "STORE2"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 7,
+              "end": 8
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            }
+          ],
+          "candidate_sha256": "1fba60944499c45cf5a2d24d02bce9e3cb36b42b586829648640ad43572a212e",
+          "score": [
+            15
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:7",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:7",
+            "CAPACITY:OUT1:4",
+            "CAPACITY:OUT1:5",
+            "PRECEDENCE:RECEIVE2",
+            "PRECEDENCE:STORE2"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.0010858000023290515
+        },
+        {
+          "index": 2,
+          "removed": [
+            "READY1",
+            "STORE1"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 7,
+              "end": 8
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            }
+          ],
+          "candidate_sha256": "1fba60944499c45cf5a2d24d02bce9e3cb36b42b586829648640ad43572a212e",
+          "score": [
+            15
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:3",
+            "CAPACITY:CR1:7",
+            "CAPACITY:D1:3",
+            "CAPACITY:D1:7",
+            "CAPACITY:OUT1:2",
+            "CAPACITY:OUT1:3",
+            "CAPACITY:OUT1:4",
+            "CAPACITY:OUT1:5",
+            "PRECEDENCE:RECEIVE1",
+            "PRECEDENCE:STORE1"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.00106969999615103
+        },
+        {
+          "index": 3,
+          "removed": [
+            "RECEIVE3",
+            "STORE3"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 6,
+              "end": 7
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            }
+          ],
+          "candidate_sha256": "6846c10498855fef4961d10f4bc798fbe884c6ca654f2e6dc83bfa6071336b89",
+          "score": [
+            15
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:3",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:3",
+            "PRECEDENCE:RECEIVE3",
+            "PRECEDENCE:STORE3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 128,
+          "wall_seconds": 0.008457800024189055
+        },
+        {
+          "index": 4,
+          "removed": [
+            "STORE1",
+            "STORE2"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 6,
+              "end": 7
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            }
+          ],
+          "candidate_sha256": "6846c10498855fef4961d10f4bc798fbe884c6ca654f2e6dc83bfa6071336b89",
+          "score": [
+            15
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:0",
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:10",
+            "CAPACITY:CR1:11",
+            "CAPACITY:CR1:12",
+            "CAPACITY:CR1:13",
+            "CAPACITY:CR1:14",
+            "CAPACITY:CR1:15",
+            "CAPACITY:CR1:2",
+            "CAPACITY:CR1:3",
+            "CAPACITY:CR1:4",
+            "CAPACITY:CR1:5",
+            "CAPACITY:CR1:6",
+            "CAPACITY:CR1:7",
+            "CAPACITY:CR1:8",
+            "CAPACITY:CR1:9",
+            "CAPACITY:D1:0",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:10",
+            "CAPACITY:D1:11",
+            "CAPACITY:D1:12",
+            "CAPACITY:D1:13",
+            "CAPACITY:D1:14",
+            "CAPACITY:D1:15",
+            "CAPACITY:D1:2",
+            "CAPACITY:D1:3",
+            "CAPACITY:D1:4",
+            "CAPACITY:D1:5",
+            "CAPACITY:D1:6",
+            "CAPACITY:D1:7",
+            "CAPACITY:D1:8",
+            "CAPACITY:D1:9",
+            "CAPACITY:OUT1:2",
+            "CAPACITY:OUT1:3",
+            "CAPACITY:OUT1:4",
+            "CAPACITY:OUT1:5",
+            "CAPACITY:OUT1:6",
+            "CAPACITY:OUT1:7",
+            "PRECEDENCE:RECEIVE1",
+            "PRECEDENCE:RECEIVE2",
+            "PRECEDENCE:STORE1",
+            "PRECEDENCE:STORE2"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 256,
+          "wall_seconds": 0.01717620005365461
+        },
+        {
+          "index": 5,
+          "removed": [
+            "READY3",
+            "RECEIVE2"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 6,
+              "end": 7
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            }
+          ],
+          "candidate_sha256": "6846c10498855fef4961d10f4bc798fbe884c6ca654f2e6dc83bfa6071336b89",
+          "score": [
+            15
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 8,
+          "wall_seconds": 0.000901399995200336
+        },
+        {
+          "index": 6,
+          "removed": [
+            "STORE1",
+            "STORE3"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 6,
+              "end": 7
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            }
+          ],
+          "candidate_sha256": "6846c10498855fef4961d10f4bc798fbe884c6ca654f2e6dc83bfa6071336b89",
+          "score": [
+            15
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:0",
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:10",
+            "CAPACITY:CR1:11",
+            "CAPACITY:CR1:12",
+            "CAPACITY:CR1:13",
+            "CAPACITY:CR1:14",
+            "CAPACITY:CR1:15",
+            "CAPACITY:CR1:2",
+            "CAPACITY:CR1:3",
+            "CAPACITY:CR1:4",
+            "CAPACITY:CR1:5",
+            "CAPACITY:CR1:6",
+            "CAPACITY:CR1:7",
+            "CAPACITY:CR1:8",
+            "CAPACITY:CR1:9",
+            "CAPACITY:D1:0",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:10",
+            "CAPACITY:D1:11",
+            "CAPACITY:D1:12",
+            "CAPACITY:D1:13",
+            "CAPACITY:D1:14",
+            "CAPACITY:D1:15",
+            "CAPACITY:D1:2",
+            "CAPACITY:D1:3",
+            "CAPACITY:D1:4",
+            "CAPACITY:D1:5",
+            "CAPACITY:D1:6",
+            "CAPACITY:D1:7",
+            "CAPACITY:D1:8",
+            "CAPACITY:D1:9",
+            "CAPACITY:OUT1:2",
+            "CAPACITY:OUT1:3",
+            "CAPACITY:OUT1:4",
+            "CAPACITY:OUT1:5",
+            "PRECEDENCE:RECEIVE1",
+            "PRECEDENCE:RECEIVE3",
+            "PRECEDENCE:STORE1",
+            "PRECEDENCE:STORE3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 256,
+          "wall_seconds": 0.016269000014290214
+        },
+        {
+          "index": 7,
+          "removed": [
+            "READY2",
+            "STORE3"
+          ],
+          "candidate": [
+            {
+              "task_id": "READY1",
+              "alternative_id": "H",
+              "start": 0,
+              "end": 1
+            },
+            {
+              "task_id": "STORE1",
+              "alternative_id": "MOVE",
+              "start": 1,
+              "end": 2
+            },
+            {
+              "task_id": "RECEIVE1",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY2",
+              "alternative_id": "H",
+              "start": 2,
+              "end": 3
+            },
+            {
+              "task_id": "STORE2",
+              "alternative_id": "MOVE",
+              "start": 3,
+              "end": 4
+            },
+            {
+              "task_id": "RECEIVE2",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            },
+            {
+              "task_id": "READY3",
+              "alternative_id": "H",
+              "start": 4,
+              "end": 5
+            },
+            {
+              "task_id": "STORE3",
+              "alternative_id": "MOVE",
+              "start": 5,
+              "end": 6
+            },
+            {
+              "task_id": "RECEIVE3",
+              "alternative_id": "GATE",
+              "start": 8,
+              "end": 9
+            }
+          ],
+          "candidate_sha256": "8b39829b8f6e4b9ceddadb4b0572c2222881d6c675706dc8ddbe6fbf556cc865",
+          "score": [
+            15
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CAPACITY:CR1:1",
+            "CAPACITY:CR1:3",
+            "CAPACITY:D1:1",
+            "CAPACITY:D1:3",
+            "PRECEDENCE:RECEIVE3",
+            "PRECEDENCE:STORE3"
+          ],
+          "repair_termination": "NEIGHBORHOOD_EXHAUSTED",
+          "trials": 16,
+          "wall_seconds": 0.0012343000853434205
+        }
+      ],
+      "seed": 17,
+      "options": {
+        "seed": 17,
+        "iterations": 8,
+        "destroy_size": 2,
+        "repair_trials": 1000,
+        "wall_seconds": 60,
+        "stagnation": 8,
+        "accept_equal": true
+      },
+      "initial_reasons": [
+        "FEASIBLE"
+      ],
+      "wall_seconds": 0.06685900001320988
+    }
+  },
+  {
+    "id": "INFEASIBLE_CAPACITY",
+    "fixed_instance_sha256": "f2ee66ee07ae3cf812f4d572e2d8b7e178cb385cf0258f0c2029f868133f964c",
+    "lns": {
+      "status": "WAIT",
+      "termination": "NO_LEGAL_INITIAL",
+      "initial": null,
+      "initial_score": null,
+      "best": null,
+      "best_score": null,
+      "history": [],
+      "seed": 17,
+      "options": {
+        "seed": 17,
+        "iterations": 8,
+        "destroy_size": 2,
+        "repair_trials": 1000,
+        "wall_seconds": 60,
+        "stagnation": 8,
+        "accept_equal": true
+      },
+      "initial_reasons": [
+        "NO_PLAN_FOUND"
+      ],
+      "wall_seconds": 0.0001113000325858593
+    }
+  }
+]

@@ -4856,3 +4856,72 @@ PR055 补录 S08 r2 实际批准；PR056 单独授权 S09 本地实施。PR057 �
   "limit": "NO_FULL_DYNAMIC_OR_GEOMETRY_EXPANSION_NO_FROZEN_RULE_OR_RECIPE_CHANGE_NO_NEW_BRANCH_WORKTREE_SUBAGENT_OR_GIT_REMOTE_PUBLICATION_NO_LATER_STEP_START_NEW_RESULT_ACCEPTANCE_AND_EXACT_RELEASE_SEPARATE"
 }
 ```
+
+## PR133：S16 r2限定验收及实际发布补录
+
+以下为规范化语义摘要，不是逐字原始会话。
+
+```json
+{
+  "id": "PR133",
+  "date": "2026-10-07",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "ACCEPT_AND_APPROVE_EXACT_S16_R2",
+    "parameters": {
+      "same_workspace": true,
+      "branch": "main",
+      "new_branch": false,
+      "new_worktree": false
+    }
+  },
+  "human_contribution": [
+    "LIMITED_ACCEPTANCE_AND_EXACT_PUBLICATION_APPROVAL"
+  ],
+  "assistant_support": [
+    "RECONCILED_ACTUAL_RECEIPT"
+  ],
+  "resolution": "ACCEPTED_WITH_DOCUMENTED_LIMITS_APPROVED_PUBLISHED",
+  "evidence_refs": [
+    "docs/validation/S16_limited_repair_r2.md",
+    "PROGRESS_LOG.md"
+  ],
+  "limit": "S17_NEW_RESULT_ACCEPTANCE_AND_EXACT_PUBLICATION_SEPARATE_NO_S18_S28_OR_S19AB_START_NO_SUBAGENTS",
+  "commit": "a3088770c2aec19143f0693d60be3a2013ce69cc",
+  "tag": "step-S16-r2",
+  "ci_run": 37587529250
+}
+```
+
+## PR134：S17新对话直接启动
+
+以下为规范化语义摘要，不是逐字原始会话。
+
+```json
+{
+  "id": "PR134",
+  "date": "2026-10-07",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "CREATE_S17_CHAT_SAME_MAIN_AND_IMPLEMENT",
+    "parameters": {
+      "same_workspace": true,
+      "branch": "main",
+      "new_branch": false,
+      "new_worktree": false
+    }
+  },
+  "human_contribution": [
+    "AUTHORIZED_S17_LOCAL_IMPLEMENTATION_VALIDATION_GOVERNANCE_REVIEW_PACKET"
+  ],
+  "assistant_support": [
+    "CHECKED_PRECONDITIONS_AND_STARTED_FIXED_LEGAL_MODE_LNS"
+  ],
+  "resolution": "LOCAL_S17_IMPLEMENTATION_AUTHORIZED",
+  "evidence_refs": [
+    "docs/steps/S17.md",
+    "PROGRESS_LOG.md"
+  ],
+  "limit": "S17_NEW_RESULT_ACCEPTANCE_AND_EXACT_PUBLICATION_SEPARATE_NO_S18_S28_OR_S19AB_START_NO_SUBAGENTS"
+}
+```
