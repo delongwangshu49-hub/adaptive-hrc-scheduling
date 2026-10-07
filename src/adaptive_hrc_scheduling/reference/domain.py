@@ -6,7 +6,8 @@ import re
 from dataclasses import asdict, dataclass
 from fractions import Fraction
 
-VERSION = "S16-STATIC-1.0"
+VERSION = "S16-STATIC-1.1"
+LAYOUT_VERSION = "S16-ABSTRACT-GRAPH-1"
 LIMIT = 1_000_000
 
 
@@ -68,6 +69,7 @@ class Instance:
     cost_weight: int = 1
     schema_version: str = VERSION
     purpose: str = "SYNTHETIC_STATIC_REFERENCE"
+    layout_version: str = LAYOUT_VERSION
 
 
 @dataclass(frozen=True)
@@ -82,7 +84,61 @@ def _integer(value, *, minimum=0):
     return type(value) is int and minimum <= value <= LIMIT
 
 
+def grid_fraction(value):
+    """One exact grid policy for validation, integerization and inverse projection."""
+    if type(value) is not str:
+        raise ValueError("tick_h must be a positive rational string")
+    try:
+        result = Fraction(value)
+    except (ValueError, ZeroDivisionError) as error:
+        raise ValueError("tick_h must be a positive rational string") from error
+    if result <= 0:
+        raise ValueError("tick_h must be positive")
+    return result
+
+
+def _tuple(value, label):
+    if type(value) is not tuple:
+        raise ValueError(label + ": expected immutable tuple")
+    return value
+
+
+def _array(value, label):
+    if type(value) not in (list, tuple):
+        raise ValueError(label + ": expected array")
+    return tuple(value)
+
+
+def _strings(value, label, *, immutable=False):
+    sequence = _tuple(value, label) if immutable else _array(value, label)
+    if any(type(element) is not str or not element for element in sequence):
+        raise ValueError(label + ": expected atomic nonempty strings")
+    return sequence
+
+
+def _pairs(value, label, *, immutable=False):
+    sequence = _tuple(value, label) if immutable else _array(value, label)
+    result = []
+    for element in sequence:
+        pair = _tuple(element, label) if immutable else _array(element, label)
+        if len(pair) != 2:
+            raise ValueError(label + ": expected two-element arrays")
+        result.append(pair)
+    return tuple(result)
+
+
+def _object(value, label):
+    if type(value) is not dict:
+        raise ValueError(label + ": expected object")
+    return value
+
+
+def _objects(value, label):
+    return tuple(_object(element, label) for element in _array(value, label))
+
+
 def _ids(records, label):
+    _tuple(records, label)
     ids = [r.id for r in records]
     if len(set(ids)) != len(ids) or any(
         not isinstance(i, str) or not re.fullmatch(r"[A-Za-z][A-Za-z0-9_.-]{0,63}", i) for i in ids
@@ -94,11 +150,16 @@ def _ids(records, label):
 def validate(instance):
     if not isinstance(instance, Instance):
         raise ValueError("explicit S16 Instance required; no full-world conversion")
-    if instance.schema_version != VERSION or instance.purpose != "SYNTHETIC_STATIC_REFERENCE":
+    if (
+        instance.schema_version != VERSION
+        or instance.purpose != "SYNTHETIC_STATIC_REFERENCE"
+        or instance.layout_version != LAYOUT_VERSION
+    ):
         raise ValueError("version/purpose")
     _ids((instance,), "instance")
-    if not _integer(instance.horizon, minimum=1) or Fraction(instance.tick_h) <= 0:
+    if not _integer(instance.horizon, minimum=1):
         raise ValueError("horizon/tick")
+    grid_fraction(instance.tick_h)
     for w in (instance.tardiness_weight, instance.makespan_weight, instance.cost_weight):
         if not _integer(w):
             raise ValueError("objective weight")
@@ -112,6 +173,8 @@ def validate(instance):
         if not _integer(resource.capacity, minimum=1):
             raise ValueError("capacity")
     for person in people.values():
+        _strings(person.qualifications, "qualifications", immutable=True)
+        _pairs(person.windows, "windows", immutable=True)
         if len(set(person.qualifications)) != len(person.qualifications):
             raise ValueError("duplicate qualification")
         prior_end = -1
@@ -121,6 +184,8 @@ def validate(instance):
             prior_end = end
     visited = set()
     pending = set(tasks)
+    for task in tasks.values():
+        _strings(task.predecessors, "predecessors", immutable=True)
     while pending:
         eligible = {t for t in pending if set(tasks[t].predecessors) <= visited}
         if not eligible:
@@ -136,6 +201,8 @@ def validate(instance):
             raise ValueError("duplicate predecessor")
         _ids(task.alternatives, "alternatives")
         for alt in task.alternatives:
+            _pairs(alt.resources, "resources", immutable=True)
+            _pairs(alt.roles, "roles", immutable=True)
             if alt.kind not in ("H", "H-team", "MOVE", "WAIT", "GATE"):
                 raise ValueError("HR and unknown modes disabled")
             if not _integer(alt.duration, minimum=1) or not _integer(alt.cost):
@@ -148,6 +215,8 @@ def validate(instance):
                 if resource not in resources or not _integer(demand, minimum=1):
                     raise ValueError("unknown resource/demand")
             for qualification, person in alt.roles:
+                if type(qualification) is not str or type(person) is not str:
+                    raise ValueError("role IDs must be atomic strings")
                 if person not in people or qualification not in people[person].qualifications:
                     raise ValueError("role qualification")
     markers = []
@@ -195,38 +264,40 @@ def digest(instance):
 
 
 def from_dict(data):
-    data = dict(data)
+    data = dict(_object(data, "instance"))
+    if not {"schema_version", "purpose", "layout_version"} <= data.keys():
+        raise ValueError("explicit reference version, purpose and layout_version required")
     data["tasks"] = tuple(
         Task(
             **{
                 **t,
-                "predecessors": tuple(t.get("predecessors", ())),
+                "predecessors": _strings(t.get("predecessors", ()), "predecessors"),
                 "alternatives": tuple(
                     Alternative(
                         **{
                             **a,
-                            "resources": tuple(map(tuple, a.get("resources", ()))),
-                            "roles": tuple(map(tuple, a.get("roles", ()))),
+                            "resources": _pairs(a.get("resources", ()), "resources"),
+                            "roles": _pairs(a.get("roles", ()), "roles"),
                         }
                     )
-                    for a in t["alternatives"]
+                    for a in _objects(t["alternatives"], "alternatives")
                 ),
             }
         )
-        for t in data["tasks"]
+        for t in _objects(data["tasks"], "tasks")
     )
-    data["resources"] = tuple(Resource(**r) for r in data["resources"])
+    data["resources"] = tuple(Resource(**r) for r in _objects(data["resources"], "resources"))
     data["people"] = tuple(
         Person(
             **{
                 **p,
-                "qualifications": tuple(p["qualifications"]),
-                "windows": tuple(map(tuple, p["windows"])),
+                "qualifications": _strings(p["qualifications"], "qualifications"),
+                "windows": _pairs(p["windows"], "windows"),
             }
         )
-        for p in data.get("people", ())
+        for p in _objects(data.get("people", ()), "people")
     )
-    data["products"] = tuple(Product(**p) for p in data.get("products", ()))
+    data["products"] = tuple(Product(**p) for p in _objects(data.get("products", ()), "products"))
     return validate(Instance(**data))
 
 
@@ -234,7 +305,7 @@ def quantize(value_h, tick_h, direction="exact"):
     """Decimal strings avoid binary float rounding; conservative bounds are explicit."""
     if direction not in ("exact", "lower", "upper"):
         raise ValueError("rounding policy")
-    value, tick = Fraction(str(value_h)), Fraction(str(tick_h))
+    value, tick = Fraction(str(value_h)), grid_fraction(tick_h)
     if value < 0 or tick <= 0:
         raise ValueError("time/grid")
     ratio = value / tick

@@ -4737,3 +4737,122 @@ PR055 补录 S08 r2 实际批准；PR056 单独授权 S09 本地实施。PR057 �
   "limit": "NO_NEW_BRANCH_OR_WORKTREE_NO_UNREQUESTED_SUBAGENTS_NO_S17_S28_OR_S19AB_START_NO_GIT_STAGE_COMMIT_TAG_PUSH_PR_OR_ATTACHMENTS_ACCEPTANCE_AND_EXACT_PUBLICATION_SEPARATE"
 }
 ```
+
+## PR130：S16 r1限定验收与确切发布实际回执补录
+
+以下为规范化语义摘要，不是逐字原始会话。实际发布与本次审阅治理分别记录，原封存证据保持历史身份。
+
+```json
+{
+  "id": "PR130",
+  "date": "2026-10-07",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "ACCEPT_LIMITED_S16_RESULT_AND_APPROVE_EXACT_PUBLICATION",
+    "target": "S16-20261007-r1",
+    "parameters": {
+      "packet_revision": 2,
+      "files": 28,
+      "branch": "main",
+      "tag": "step-S16-r1"
+    }
+  },
+  "human_contribution": [
+    "APPROVED_DELIVERED_LIMITED_RESULT_AND_EXACT_PUBLICATION"
+  ],
+  "assistant_support": [
+    "RECORDED_APPROVAL_FOR_REVIEWED_DIGESTS",
+    "PUBLISHED_SINGLE_APPROVED_COMMIT_AND_IMMUTABLE_TAG",
+    "VERIFIED_REMOTE_TREE_FILE_HASHES_AND_REQUIRED_CI",
+    "BACKFILLED_ACTUAL_RECEIPT_IN_NEXT_AUTHORIZED_REVIEW_GOVERNANCE"
+  ],
+  "resolution": "ACCEPTED_WITH_DOCUMENTED_LIMITS_APPROVED_PUBLISHED",
+  "evidence_refs": [
+    "docs/steps/S16.md",
+    "PROGRESS_LOG.md",
+    "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37578350993"
+  ],
+  "limit": "STATIC_REFERENCE_ONLY_PRIOR_LIMITS_RETAINED_NO_LATER_STEP_START_NO_UNAPPROVED_ADDITIONAL_PUBLICATION"
+}
+```
+
+## PR131：S16全量完成性与逻辑审阅
+
+以下为规范化语义摘要，不是逐字原始会话。实际发布与本次审阅治理分别记录，原封存证据保持历史身份。
+
+```json
+{
+  "id": "PR131",
+  "date": "2026-10-07",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "AUDIT_S16_FULL_COMPLETENESS_AND_LOGIC",
+    "target": "S16_PUBLISHED_R1",
+    "parameters": {
+      "coverage": "CHARTER_SCOPE_IMPLEMENTATION_CHECKER_RULES_INPUT_INTEGERIZATION_STATUS_EVIDENCE_AND_PUBLICATION"
+    }
+  },
+  "human_contribution": [
+    "REQUESTED_FULL_STEP_COMPLETENESS_AND_LOGIC_REVIEW"
+  ],
+  "assistant_support": [
+    "RECONCILED_ACTUAL_APPROVAL_PUBLICATION_AND_CI",
+    "REVIEWED_ALL_S16_DELIVERABLES_AND_BOUNDARIES",
+    "RERAN_597_SOURCE_TESTS",
+    "COMPARED_68_ADDITIONAL_COMPLETE_TINY_FEASIBLE_SETS",
+    "CONSTRUCTED_THREE_REPRODUCIBLE_PROBLEM_GROUPS_AND_NOTED_LAYOUT_PROVENANCE_CLARIFICATION",
+    "PRESERVED_EXECUTABLE_SOURCE_AND_PRIOR_EVIDENCE"
+  ],
+  "resolution": "POST_RELEASE_REVIEW_FINDINGS_OPEN",
+  "evidence_refs": [
+    "docs/validation/S16_post_release_audit_r1.md",
+    "docs/steps/S16.md",
+    "PROGRESS_LOG.md"
+  ],
+  "limit": "REVIEW_AND_NECESSARY_GOVERNANCE_ONLY_NO_IMPLEMENTATION_FIX_NO_GIT_WRITE_OR_REMOTE_PUBLICATION_NO_S17_S28_OR_S19AB_START"
+}
+```
+
+## PR132：批准S16发布后问题有限修复
+
+以下为规范化语义摘要，不是逐字原始会话。负责人批准有限修复，不预记新成果已验收或获确切发布许可。
+
+```json
+{
+  "id": "PR132",
+  "date": "2026-10-07",
+  "record_type": "CURRENT_NORMALIZED",
+  "human_command": {
+    "operation": "AUTHORIZE_LIMITED_S16_POST_RELEASE_REPAIR",
+    "target": "S16_F1_F3_AND_NECESSARY_PROVENANCE_CLARIFICATION",
+    "parameters": {
+      "scope": [
+        "F1_EXACT_GRID_TYPE_AND_INVERSE_MAPPING",
+        "F2_NESTED_ARRAY_SHAPE_AND_ATOMIC_QUALIFICATIONS",
+        "F3_RECEIVER_DUE_PROPAGATION_AND_RULE_DISTINCTION",
+        "C1_EXPLICIT_ABSTRACT_RESOURCE_GRAPH_VERSION",
+        "NECESSARY_REGRESSION_DOCUMENTATION_GOVERNANCE_AND_EXACT_REVIEW_PACKET"
+      ],
+      "same_workspace": true,
+      "branch": "main",
+      "new_branch": false,
+      "new_worktree": false
+    }
+  },
+  "human_contribution": [
+    "APPROVED_LIMITED_LOCAL_REPAIR"
+  ],
+  "assistant_support": [
+    "PRESERVED_PRE_REPAIR_WORKING_FILES_AND_EXISTING_AUDIT_GOVERNANCE",
+    "FROZE_PRODUCTION_CONTRACTS_RECIPE_SCENE_SCHEMAS_DEPENDENCIES_AND_CI",
+    "STARTED_BOUNDED_REPAIR_WITHOUT_NEW_PUBLICATION"
+  ],
+  "resolution": "LIMITED_REPAIR_AUTHORIZED_IN_PROGRESS",
+  "evidence_refs": [
+    "docs/validation/S16_post_release_audit_r1.md",
+    "docs/steps/S16.md",
+    "PROGRESS_LOG.md"
+  ],
+  "limit": "NO_FULL_DYNAMIC_OR_GEOMETRY_EXPANSION_NO_FROZEN_RULE_OR_RECIPE_CHANGE_NO_NEW_BRANCH_WORKTREE_SUBAGENT_OR_GIT_REMOTE_PUBLICATION_NO_LATER_STEP_START_NEW_RESULT_ACCEPTANCE_AND_EXACT_RELEASE_SEPARATE"
+}
+```

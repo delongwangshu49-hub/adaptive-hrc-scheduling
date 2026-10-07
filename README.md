@@ -1,5 +1,13 @@
 # 完整建筑模块的多资源自适应生产调度
 
+2026-10-07有限修复成果（PR132 / LOG170）：S16 F1—F3及C1已完成限定本地修复，候选S16-20261007-r2为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。源码及隔离wheel各612项、专项37项通过；原七例数值/结果及68组完整集合保持，213个冻结文件摘要不变。1.1参照只绑定独立抽象资源图，原r1发布与所有限制/失败证据保持。新成果验收及确切发布另审，后续步骤未启动。入口：[S16 r2审阅](docs/validation/S16_limited_repair_r2.md)。
+
+2026-10-07现行有限修复授权（PR132 / LOG169）：负责人已批准S16发布后F1—F3及C1必要追溯、回归、治理和新确切审阅包的有限本地修复。沿用现有main/目录，不建分支/worktree，保留原r1发布及全部历史证据和冻结边界。当前LIMITED_REPAIR_IN_PROGRESS；新成果验收与确切发布另审，后续步骤未启动。入口：[S16步骤卡](docs/steps/S16.md)。
+
+2026-10-07现行发布后审阅（PR130—PR131 / LOG167—LOG168）：S16 r1已实际限定验收、批准并发布，提交 `f8ea47cbac96e9663f35dae5a6434693d34f648c`、标签 `step-S16-r1`，双平台各源码/隔离wheel597项成功。全量审阅确认F1时间网格类型/反映射、F2资格标量解码、F3接收EDD及策略区分三组问题，并有布局版本追溯说明待澄清；当前POST_RELEASE_REVIEW_FINDINGS_OPEN。本轮仅审阅及必要治理，未实施修复或新Git/远端发布，后续步骤未启动；原冻结域、限制与历史证据保持。入口：[S16发布后审阅](docs/validation/S16_post_release_audit_r1.md)。
+
+以下早期状态保留各自封存时点，现行发布及审阅结论以上文为准。
+
 2026-10-07本地成果（LOG166）：S16静态匹配参照已完成限定实现与验证，候选S16-20261007-r1为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。源码及隔离wheel各597项、专项22项通过，四个极小完整可行集合吻合，B=2三件接收背压核验通过；S15 r4已发布事实与全部限制保持。验收/确切发布另审，后续步骤未启动。入口：[S16审阅](docs/validation/S16_reference_r1.md)。
 
 2026-10-07现行补录（PR128 / LOG164）：S15 r4已实际限定验收、批准并发布，提交 `0bba728116797ecece3f6fcbee7109c8bf1624b1`、标签 `step-S15-r4`，双平台CI成功。原批准前候选状态保留历史时点；远端详细日志HTTP403，未提取远端测试条数。先前五文件治理已随r4发布，S19A/S19B仍仅规划认可、实施NOT_STARTED。

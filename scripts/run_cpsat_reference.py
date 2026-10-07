@@ -6,7 +6,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from adaptive_hrc_scheduling.reference.baselines import enumerate_independent, rule_schedule
-from adaptive_hrc_scheduling.reference.cases import all_cases
+from adaptive_hrc_scheduling.reference.cases import all_cases, repair_cases
 from adaptive_hrc_scheduling.reference.checker import check, check_hours, to_hours
 from adaptive_hrc_scheduling.reference.cpsat import Options, enumerate_cp, solve
 from adaptive_hrc_scheduling.reference.domain import digest
@@ -16,20 +16,24 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--include-repair-witnesses", action="store_true")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     summary = {
-        "schema_version": "S16-EVIDENCE-1.0",
+        "schema_version": "S16-EVIDENCE-1.1",
         "scope": "SYNTHETIC_STATIC_REFERENCE",
         "cases": [],
     }
-    for index, instance in enumerate(all_cases()):
+    instances = all_cases() + (repair_cases() if args.include_repair_witnesses else ())
+    for index, instance in enumerate(instances):
         result = solve(instance)
         if result.schedule:
             assert check_hours(instance, to_hours(instance, result.schedule)).valid
         row = {
             "id": instance.id,
             "instance_sha256": digest(instance),
+            "domain_version": instance.schema_version,
+            "layout_version": instance.layout_version,
             "status": result.status,
             "objective": result.objective,
             "best_bound": result.best_bound,

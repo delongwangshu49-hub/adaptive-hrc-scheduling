@@ -1,9 +1,8 @@
 """Independent S16 half-open interval sweep, with no CP-SAT imports."""
 
 from dataclasses import dataclass
-from fractions import Fraction
 
-from adaptive_hrc_scheduling.reference.domain import Entry, quantize, validate
+from adaptive_hrc_scheduling.reference.domain import Entry, grid_fraction, quantize, validate
 
 
 @dataclass(frozen=True)
@@ -18,7 +17,7 @@ class Report:
 def to_hours(instance, schedule):
     """Exact inverse projection; never fabricates a full production ExecutionSnapshot."""
     validate(instance)
-    tick = Fraction(instance.tick_h)
+    tick = grid_fraction(instance.tick_h)
     return tuple(
         (e.task_id, e.alternative_id, str(e.start * tick), str(e.end * tick)) for e in schedule
     )

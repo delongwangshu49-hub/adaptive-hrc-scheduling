@@ -105,3 +105,52 @@ def all_cases():
         tasks=(replace(tiny[0].tasks[0], alternatives=(Alternative("H", 2, (("CUT1", 2),)),)),),
     )
     return tiny + (buffer_case(2), buffer_case(3), unavailable)
+
+
+def repair_cases():
+    """Separate F3 definition witnesses; original seven development cases stay fixed."""
+    tasks, products = [], []
+    for prefix, due, output, device, person in (
+        ("A_LONG", 10, "OUT1", "CR1", "P1"),
+        ("Z_SHORT", 3, "OUT2", "CR2", "P2"),
+    ):
+        ready, store, receive = prefix + "_READY", prefix + "_STORE", prefix + "_RECEIVE"
+        tasks.extend(
+            (
+                Task(ready, (Alternative("H", 1, ((output, 1),)),)),
+                Task(
+                    store,
+                    (Alternative("MOVE", 1, ((device, 1),), (("MOVE", person),), kind="MOVE"),),
+                    (ready,),
+                ),
+                Task(
+                    receive,
+                    (Alternative("GATE", 1, (("RECEIVER", 1),), kind="GATE"),),
+                    (store,),
+                    release=2,
+                ),
+            )
+        )
+        products.append(Product(prefix, ready, store, receive, output, "FG", due))
+    receiver = Instance(
+        "RECEIVER_EDD",
+        6,
+        tuple(tasks),
+        (
+            Resource("OUT1"),
+            Resource("OUT2"),
+            Resource("FG", 2),
+            Resource("RECEIVER"),
+            Resource("CR1"),
+            Resource("CR2"),
+        ),
+        (Person("P1", ("MOVE",), ((0, 6),)), Person("P2", ("MOVE",), ((0, 6),))),
+        tuple(products),
+    )
+    modes = Instance(
+        "MODE_DISTINCTION",
+        3,
+        (Task("A", (Alternative("A_SLOW", 2), Alternative("Z_FAST", 1))),),
+        (),
+    )
+    return receiver, modes

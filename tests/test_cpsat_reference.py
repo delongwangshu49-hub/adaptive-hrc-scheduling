@@ -2,6 +2,8 @@
 
 import unittest
 from dataclasses import asdict, replace
+from decimal import Decimal
+from fractions import Fraction
 
 from adaptive_hrc_scheduling.reference.baselines import enumerate_independent, rule_schedule
 from adaptive_hrc_scheduling.reference.cases import all_cases, buffer_case, tiny_cases
@@ -282,6 +284,238 @@ class CPSATReferenceTests(unittest.TestCase):
         data["people"][0]["hidden_fatigue"] = 0
         with self.assertRaises(TypeError):
             from_dict(data)
+
+
+def receiver_due_instance():
+    tasks, products = [], []
+    from adaptive_hrc_scheduling.reference.domain import Product
+
+    for prefix, due, output, device, person in (
+        ("A_LONG", 10, "OUT1", "CR1", "P1"),
+        ("Z_SHORT", 3, "OUT2", "CR2", "P2"),
+    ):
+        ready, store, receive = prefix + "_READY", prefix + "_STORE", prefix + "_RECEIVE"
+        tasks.extend(
+            (
+                Task(ready, (Alternative("H", 1, ((output, 1),)),)),
+                Task(
+                    store,
+                    (Alternative("MOVE", 1, ((device, 1),), (("MOVE", person),), kind="MOVE"),),
+                    (ready,),
+                ),
+                Task(
+                    receive,
+                    (Alternative("GATE", 1, (("RECEIVER", 1),), kind="GATE"),),
+                    (store,),
+                    release=2,
+                ),
+            )
+        )
+        products.append(Product(prefix, ready, store, receive, output, "FG", due))
+    return Instance(
+        "RECEIVER_EDD",
+        6,
+        tuple(tasks),
+        (
+            Resource("OUT1"),
+            Resource("OUT2"),
+            Resource("FG", 2),
+            Resource("RECEIVER"),
+            Resource("CR1"),
+            Resource("CR2"),
+        ),
+        (Person("P1", ("MOVE",), ((0, 6),)), Person("P2", ("MOVE",), ((0, 6),))),
+        tuple(products),
+    )
+
+
+class S16LimitedRepairTests(unittest.TestCase):
+    def test_r2_exact_grid_type_rejected_at_domain_and_decoder(self):
+        for grid in (0.1, True, False, 1, Fraction(1, 10), Decimal("0.1"), None):
+            with self.subTest(grid=repr(grid)):
+                with self.assertRaises(ValueError):
+                    validate(replace(tiny_cases()[0], tick_h=grid))
+                data = asdict(tiny_cases()[0])
+                data["tick_h"] = grid
+                with self.assertRaises(ValueError):
+                    from_dict(data)
+
+    def test_r2_quantize_and_inverse_share_strict_grid_policy(self):
+        for grid in (0.1, True, 1, None):
+            with self.assertRaises(ValueError):
+                quantize("0.3", grid)
+        for grid in ("0.1", "1/10", "0.10"):
+            instance = replace(tiny_cases()[0], tick_h=grid)
+            result = solve(instance)
+            self.assertEqual(
+                check_hours(instance, to_hours(instance, result.schedule)),
+                check(instance, result.schedule),
+            )
+
+    def test_r2_direct_person_scalar_qualification_rejected(self):
+        instance = Instance(
+            "QUAL",
+            2,
+            (Task("A", (Alternative("H", 1, roles=(("WE", "P1"),)),)),),
+            (),
+            (Person("P1", "WELD", ((0, 2),)),),
+        )
+        with self.assertRaises(ValueError):
+            validate(instance)
+
+    def test_r2_qualification_scalar_never_creates_role(self):
+        instance = Instance(
+            "QUAL",
+            2,
+            (Task("A", (Alternative("H", 1, roles=(("W", "P1"),)),)),),
+            (),
+            (Person("P1", ("WELD",), ((0, 2),)),),
+        )
+        data = asdict(instance)
+        data["people"][0]["qualifications"] = "WELD"
+        with self.assertRaises(ValueError):
+            from_dict(data)
+        with self.assertRaises(ValueError):
+            validate(instance)
+
+    def test_r2_predecessors_scalar_is_not_split_into_ids(self):
+        instance = Instance(
+            "PRED", 4, tuple(Task(i, (Alternative("H", 1),)) for i in ("A", "B", "C")), ()
+        )
+        data = asdict(instance)
+        data["tasks"][2]["predecessors"] = "AB"
+        with self.assertRaises(ValueError):
+            from_dict(data)
+
+    def test_r2_role_row_scalar_is_not_split_into_pair(self):
+        instance = Instance(
+            "ROLE", 2, (Task("A", (Alternative("H", 1),)),), (), (Person("P", ("W",), ((0, 2),)),)
+        )
+        data = asdict(instance)
+        data["tasks"][0]["alternatives"][0]["roles"] = ["WP"]
+        with self.assertRaises(ValueError):
+            from_dict(data)
+
+    def test_r2_top_level_and_record_scalar_shapes_rejected(self):
+        base = asdict(tiny_cases()[0])
+        for value in ("tasks", [], None):
+            with self.assertRaises(ValueError):
+                from_dict(value)
+        for key in ("tasks", "resources", "people", "products"):
+            for value in ("AB", {}, None):
+                with self.subTest(key=key, value=value):
+                    with self.assertRaises(ValueError):
+                        from_dict({**base, key: value})
+        for key in ("tasks", "resources", "people", "products"):
+            with self.assertRaises(ValueError):
+                from_dict({**base, key: ["AB"]})
+
+    def test_r2_nested_windows_or_demand_rows_rejected(self):
+        for path, value in (
+            ("windows", "02"),
+            ("windows", ["02"]),
+            ("qualifications", {"W": True}),
+        ):
+            data = asdict(tiny_cases()[2])
+            data["people"][0][path] = value
+            with self.assertRaises(ValueError):
+                from_dict(data)
+        for key, value in (
+            ("resources", "CUT1"),
+            ("resources", [["CUT1"]]),
+            ("roles", {"W": "P1"}),
+            ("roles", [["W", "P1", "EXTRA"]]),
+        ):
+            data = asdict(tiny_cases()[0])
+            data["tasks"][0]["alternatives"][0][key] = value
+            with self.assertRaises(ValueError):
+                from_dict(data)
+
+    def test_r2_json_roundtrip_preserves_atomic_strings_and_empty_sequences(self):
+        import json
+
+        for instance in (tiny_cases()[0], receiver_due_instance()):
+            decoded = from_dict(json.loads(json.dumps(asdict(instance))))
+            self.assertEqual(decoded, instance)
+            self.assertEqual(digest(decoded), digest(instance))
+
+    def test_r2_edd_orders_receiver_by_product_due(self):
+        instance = receiver_due_instance()
+        result = rule_schedule(instance, "EDD")
+        self.assertEqual(result.status, "FEASIBLE")
+        self.assertEqual(result.objective, 4)
+        rows = {e.task_id: e for e in result.schedule}
+        self.assertEqual(rows["Z_SHORT_RECEIVE"].start, 2)
+        self.assertEqual(rows["A_LONG_RECEIVE"].start, 3)
+        self.assertEqual(solve(instance).objective, result.objective)
+
+    def test_r2_due_later_than_horizon_order_is_preserved(self):
+        instance = receiver_due_instance()
+        instance = replace(
+            instance,
+            products=tuple(
+                replace(p, due=20 if p.id == "A_LONG" else 10) for p in instance.products
+            ),
+        )
+        rows = {e.task_id: e for e in rule_schedule(instance, "EDD").schedule}
+        self.assertLess(rows["Z_SHORT_RECEIVE"].start, rows["A_LONG_RECEIVE"].start)
+
+    def test_r2_due_propagation_independent_of_task_input_order(self):
+        instance = receiver_due_instance()
+        first = rule_schedule(instance, "EDD")
+        second = rule_schedule(replace(instance, tasks=tuple(reversed(instance.tasks))), "EDD")
+        self.assertEqual(
+            {e.task_id: e for e in first.schedule}, {e.task_id: e for e in second.schedule}
+        )
+
+    def test_r2_edd_fastest_modes_are_distinct_and_feasible(self):
+        instance = Instance(
+            "MODES", 3, (Task("A", (Alternative("A_SLOW", 2), Alternative("Z_FAST", 1))),), ()
+        )
+        edd, fastest = rule_schedule(instance, "EDD"), rule_schedule(instance, "FASTEST_MODE")
+        self.assertEqual(edd.schedule[0].alternative_id, "A_SLOW")
+        self.assertEqual(fastest.schedule[0].alternative_id, "Z_FAST")
+        self.assertEqual((edd.objective, fastest.objective), (2, 1))
+        self.assertTrue(check(instance, edd.schedule).valid)
+        self.assertTrue(check(instance, fastest.schedule).valid)
+
+    def test_r2_named_abstract_version_bound_and_old_version_rejected(self):
+        instance = tiny_cases()[0]
+        self.assertEqual(getattr(instance, "layout_version", None), "S16-ABSTRACT-GRAPH-1")
+        self.assertEqual(instance.schema_version, "S16-STATIC-1.1")
+        for key in ("schema_version", "purpose", "layout_version"):
+            data = asdict(instance)
+            del data[key]
+            with self.assertRaises(ValueError):
+                from_dict(data)
+        data = asdict(instance)
+        data["layout_version"] = "S13-TARGET-R5-2"
+        with self.assertRaises(ValueError):
+            from_dict(data)
+        data = asdict(instance)
+        data["schema_version"] = "S16-STATIC-1.0"
+        with self.assertRaises(ValueError):
+            from_dict(data)
+
+    def test_r2_corrected_rules_keep_same_instance_and_cost_domain(self):
+        instance = receiver_due_instance()
+        instance = replace(
+            instance,
+            tasks=tuple(
+                replace(t, alternatives=tuple(replace(a, cost=2) for a in t.alternatives))
+                if t.id.endswith("STORE")
+                else t
+                for t in instance.tasks
+            ),
+        )
+        optimal = solve(instance)
+        self.assertEqual(optimal.objective, 8)
+        for rule in ("EDD", "SPT", "FASTEST_MODE"):
+            result = rule_schedule(instance, rule)
+            self.assertEqual(result.instance_sha256, optimal.instance_sha256)
+            self.assertEqual(result.status, "FEASIBLE")
+            self.assertTrue(check(instance, result.schedule).valid)
+            self.assertGreaterEqual(result.objective, optimal.objective)
 
 
 if __name__ == "__main__":

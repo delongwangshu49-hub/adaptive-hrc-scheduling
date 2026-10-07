@@ -1,0 +1,102 @@
+{
+  "schema_version": "S16-EVIDENCE-1.1",
+  "scope": "LIMITED_REPAIR_DEFINITION_WITNESSES",
+  "cases": [
+    {
+      "id": "RECEIVER_EDD",
+      "instance_sha256": "fe8bdc33493d772d3be326d6ab9b13b3c4b3ed0ebef5cde8686f472066682b4a",
+      "domain_version": "S16-STATIC-1.1",
+      "layout_version": "S16-ABSTRACT-GRAPH-1",
+      "status": "OPTIMAL",
+      "objective": 4,
+      "best_bound": 4.0,
+      "relative_gap": 0.0,
+      "checker": "PASS_S16_STATIC",
+      "solver_version": "9.15.6755",
+      "budget_seconds": 10.0,
+      "seed": 0,
+      "workers": 1,
+      "termination": "PROVEN_OPTIMAL",
+      "rules": [
+        {
+          "rule": "EDD",
+          "status": "FEASIBLE",
+          "objective": 4,
+          "instance_sha256": "fe8bdc33493d772d3be326d6ab9b13b3c4b3ed0ebef5cde8686f472066682b4a"
+        },
+        {
+          "rule": "SPT",
+          "status": "FEASIBLE",
+          "objective": 5,
+          "instance_sha256": "fe8bdc33493d772d3be326d6ab9b13b3c4b3ed0ebef5cde8686f472066682b4a"
+        },
+        {
+          "rule": "FASTEST_MODE",
+          "status": "FEASIBLE",
+          "objective": 4,
+          "instance_sha256": "fe8bdc33493d772d3be326d6ab9b13b3c4b3ed0ebef5cde8686f472066682b4a"
+        }
+      ]
+    },
+    {
+      "id": "MODE_DISTINCTION",
+      "instance_sha256": "9722a1fc70768f3010facf315bdb0ea7edda47b9e0bdcf8be2641355484fea2c",
+      "domain_version": "S16-STATIC-1.1",
+      "layout_version": "S16-ABSTRACT-GRAPH-1",
+      "status": "OPTIMAL",
+      "objective": 1,
+      "best_bound": 1.0,
+      "relative_gap": 0.0,
+      "checker": "PASS_S16_STATIC",
+      "solver_version": "9.15.6755",
+      "budget_seconds": 10.0,
+      "seed": 0,
+      "workers": 1,
+      "termination": "PROVEN_OPTIMAL",
+      "rules": [
+        {
+          "rule": "EDD",
+          "status": "FEASIBLE",
+          "objective": 2,
+          "instance_sha256": "9722a1fc70768f3010facf315bdb0ea7edda47b9e0bdcf8be2641355484fea2c"
+        },
+        {
+          "rule": "SPT",
+          "status": "FEASIBLE",
+          "objective": 1,
+          "instance_sha256": "9722a1fc70768f3010facf315bdb0ea7edda47b9e0bdcf8be2641355484fea2c"
+        },
+        {
+          "rule": "FASTEST_MODE",
+          "status": "FEASIBLE",
+          "objective": 1,
+          "instance_sha256": "9722a1fc70768f3010facf315bdb0ea7edda47b9e0bdcf8be2641355484fea2c"
+        }
+      ]
+    }
+  ],
+  "rejection_probes": [
+    {
+      "input": "tick_h=0.1",
+      "status": "REJECTED",
+      "reason": "tick_h must be a positive rational string"
+    },
+    {
+      "input": "tick_h=True",
+      "status": "REJECTED",
+      "reason": "tick_h must be a positive rational string"
+    },
+    {
+      "input": "tick_h=1",
+      "status": "REJECTED",
+      "reason": "tick_h must be a positive rational string"
+    },
+    {
+      "input": "qualifications scalar WELD",
+      "status": "REJECTED",
+      "reason": "qualifications: expected array"
+    }
+  ],
+  "string_grid_inverse_control": "PASS",
+  "mode_distinction_complete_set_count": 5
+}

@@ -1,0 +1,164 @@
+{
+  "packet_id": "S16-20261007-r2",
+  "base_commit": "f8ea47cbac96e9663f35dae5a6434693d34f648c",
+  "work": "VERIFIED_WITH_LIMITS",
+  "acceptance": "ACCEPTANCE_PENDING",
+  "approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "authorization": "PR132",
+  "result_log": "LOG170",
+  "domain_version": "S16-STATIC-1.1",
+  "layout_version": "S16-ABSTRACT-GRAPH-1",
+  "solver_version": "9.15.6755",
+  "closed_findings": [
+    "F1",
+    "F2",
+    "F3",
+    "C1"
+  ],
+  "pre_repair_regression": {
+    "methods": 15,
+    "failure_subcases": 14,
+    "errors": 2,
+    "retained": true
+  },
+  "specialty_tests": 37,
+  "source_tests": {
+    "count": 612,
+    "seconds": 177.464,
+    "result": "PASS"
+  },
+  "isolated_wheel_tests": {
+    "count": 612,
+    "seconds": 180.758,
+    "result": "PASS"
+  },
+  "engineering_checks": {
+    "ruff": "PASS",
+    "format": "PASS",
+    "lock": "PASS",
+    "dependency_check": "PASS",
+    "sdist_to_wheel": "PASS",
+    "locked_reference_hash_install": "PASS"
+  },
+  "cpu_total_wall_seconds": 364.5765462,
+  "raw_cpu_log_sha256": "9fb8494134d5aea9f34e9422a36aa153b5e6231adb4096007de083ba75634f1f",
+  "source_capture_unchanged": 244,
+  "frozen_production_model_scene_schema_ci_dependency_files_unchanged": 213,
+  "source_sha256": {
+    "examples/cpsat/cases.json": "6ece1020fcc68f9a30027795463d74522a063d17e891bfe1452a04cd7554f5ef",
+    "examples/cpsat/repair_cases.json": "83010048e65f5a74cfb0c85b3e104aced39bb6037cef7215371beba451408014",
+    "examples/cpsat/repair_summary.json": "58b2150c728aefb56419f8d553c98a17f212367b9de6b8aea4a27b9bdc73dd59",
+    "examples/cpsat/summary.json": "c84e5cf96a347f39b975fdd02f4dc7005b305317c0623f5cddb4022a7db1ec8d",
+    "scripts/run_cpsat_reference.py": "af22efce7291302200a4a81f63f37d910c434fb09768b7405e10c0f718b31ba5",
+    "src/adaptive_hrc_scheduling/reference/baselines.py": "3dfaaaded053791ef6b1e62370e718f2a5aeab8477c706008a02025caf2b7a03",
+    "src/adaptive_hrc_scheduling/reference/cases.py": "63612d573b9e7631a0509c90ea3403a4491aa7bdb1faa9d82ba56ae6e37eaa99",
+    "src/adaptive_hrc_scheduling/reference/checker.py": "7f1375b94ea8f9c1c1e6b7a736a6bd740d9813c6556bcca89abf5e1dd9de7957",
+    "src/adaptive_hrc_scheduling/reference/domain.py": "923243ad79041a98798e2926763a2dd0aae98e2754ac72d3e990c0e330443176",
+    "tests/test_cpsat_reference.py": "eaefffe6fecccfe9566036179b7326649b6683e4688a762228512dfae6ae99d8"
+  },
+  "original_seven_case_values_unchanged": true,
+  "original_seven_solver_and_rule_outcomes_unchanged": true,
+  "original_tiny_complete_set_counts": [
+    6,
+    3,
+    11,
+    9
+  ],
+  "original_case_objectives": [
+    3,
+    3,
+    3,
+    8,
+    17,
+    15,
+    null
+  ],
+  "extra_complete_set_comparisons": 68,
+  "extra_complete_set_outcomes_match_r1_audit": true,
+  "repair_witnesses": {
+    "receiver_edd": {
+      "old_edd": 5,
+      "repaired_edd": 4,
+      "repaired_fastest": 4,
+      "SPT": 5,
+      "CP_SAT": 4,
+      "two_named_independent_transport_devices_and_operators": true
+    },
+    "mode_policy": {
+      "EDD": 2,
+      "FASTEST_MODE": 1,
+      "CP_SAT": 1,
+      "all_plans_independently_valid": true,
+      "complete_set_count": 5
+    }
+  },
+  "rejection_probes": [
+    {
+      "input": "tick_h=0.1",
+      "status": "REJECTED",
+      "reason": "tick_h must be a positive rational string"
+    },
+    {
+      "input": "tick_h=True",
+      "status": "REJECTED",
+      "reason": "tick_h must be a positive rational string"
+    },
+    {
+      "input": "tick_h=1",
+      "status": "REJECTED",
+      "reason": "tick_h must be a positive rational string"
+    },
+    {
+      "input": "qualifications scalar WELD",
+      "status": "REJECTED",
+      "reason": "qualifications: expected array"
+    }
+  ],
+  "string_grid_inverse_control": "PASS",
+  "prior_audit_governance_included": true,
+  "r1_acceptance_publication_preserved": true,
+  "r1_commit": "f8ea47cbac96e9663f35dae5a6434693d34f648c",
+  "r1_tag": "step-S16-r1",
+  "new_git_write": false,
+  "new_kit": false,
+  "new_remote_ci": false,
+  "exact_public_files": [
+    "AGENTS.md",
+    "PROGRESS_LOG.md",
+    "PROMPT_LEDGER.md",
+    "README.md",
+    "docs/PROJECT_CHARTER.md",
+    "docs/algorithms/cpsat_mapping.md",
+    "docs/architecture.md",
+    "docs/roadmap.md",
+    "docs/steps/S16.md",
+    "docs/validation/S16_limited_repair_r2.json",
+    "docs/validation/S16_limited_repair_r2.md",
+    "docs/validation/S16_post_release_audit_r1.md",
+    "examples/cpsat/cases.json",
+    "examples/cpsat/repair_cases.json",
+    "examples/cpsat/repair_summary.json",
+    "examples/cpsat/summary.json",
+    "scripts/run_cpsat_reference.py",
+    "src/adaptive_hrc_scheduling/reference/baselines.py",
+    "src/adaptive_hrc_scheduling/reference/cases.py",
+    "src/adaptive_hrc_scheduling/reference/checker.py",
+    "src/adaptive_hrc_scheduling/reference/domain.py",
+    "tests/test_cpsat_reference.py"
+  ],
+  "limitations": [
+    "Explicit synthetic static integer reference only; no full nonlinear dynamic production optimum.",
+    "HR disabled; industrial qualification/quality UNKNOWN; S15 synthetic/finite-geometry/GUI and historical failure limits retained.",
+    "Named layout is an abstract resource graph, not a real S13 layout mapping or additional geometry capability.",
+    "Current JSON explicitly requires S16-STATIC-1.1/purpose/abstract-graph metadata; legacy explicit 1.0 input rejected, old code/data preserved.",
+    "Greedy rules can be conservative/nonoptimal or fail; solver and total-wall budgets differ; no end-to-end real-time guarantee.",
+    "No new Kit or remote CI; later steps not started; new result acceptance and exact publication require separate approval."
+  ],
+  "target": {
+    "repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling",
+    "branch": "main",
+    "proposed_tag": "step-S16-r2",
+    "approval_required": true
+  }
+}

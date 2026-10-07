@@ -58,8 +58,9 @@
     "tardiness_weight": 1,
     "makespan_weight": 1,
     "cost_weight": 1,
-    "schema_version": "S16-STATIC-1.0",
-    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+    "schema_version": "S16-STATIC-1.1",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE",
+    "layout_version": "S16-ABSTRACT-GRAPH-1"
   },
   {
     "id": "TINY_PRECEDENCE",
@@ -122,8 +123,9 @@
     "tardiness_weight": 1,
     "makespan_weight": 1,
     "cost_weight": 1,
-    "schema_version": "S16-STATIC-1.0",
-    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+    "schema_version": "S16-STATIC-1.1",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE",
+    "layout_version": "S16-ABSTRACT-GRAPH-1"
   },
   {
     "id": "TINY_BINDINGS",
@@ -245,8 +247,9 @@
     "tardiness_weight": 1,
     "makespan_weight": 1,
     "cost_weight": 1,
-    "schema_version": "S16-STATIC-1.0",
-    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+    "schema_version": "S16-STATIC-1.1",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE",
+    "layout_version": "S16-ABSTRACT-GRAPH-1"
   },
   {
     "id": "TINY_RECEIPT",
@@ -346,8 +349,9 @@
     "tardiness_weight": 1,
     "makespan_weight": 1,
     "cost_weight": 1,
-    "schema_version": "S16-STATIC-1.0",
-    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+    "schema_version": "S16-STATIC-1.1",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE",
+    "layout_version": "S16-ABSTRACT-GRAPH-1"
   },
   {
     "id": "BUFFER_B2",
@@ -638,8 +642,9 @@
     "tardiness_weight": 1,
     "makespan_weight": 1,
     "cost_weight": 1,
-    "schema_version": "S16-STATIC-1.0",
-    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+    "schema_version": "S16-STATIC-1.1",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE",
+    "layout_version": "S16-ABSTRACT-GRAPH-1"
   },
   {
     "id": "BUFFER_B3",
@@ -930,8 +935,9 @@
     "tardiness_weight": 1,
     "makespan_weight": 1,
     "cost_weight": 1,
-    "schema_version": "S16-STATIC-1.0",
-    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+    "schema_version": "S16-STATIC-1.1",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE",
+    "layout_version": "S16-ABSTRACT-GRAPH-1"
   },
   {
     "id": "INFEASIBLE_CAPACITY",
@@ -971,7 +977,8 @@
     "tardiness_weight": 1,
     "makespan_weight": 1,
     "cost_weight": 1,
-    "schema_version": "S16-STATIC-1.0",
-    "purpose": "SYNTHETIC_STATIC_REFERENCE"
+    "schema_version": "S16-STATIC-1.1",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE",
+    "layout_version": "S16-ABSTRACT-GRAPH-1"
   }
 ]

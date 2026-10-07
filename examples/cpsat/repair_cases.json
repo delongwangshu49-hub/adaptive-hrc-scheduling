@@ -1,0 +1,273 @@
+[
+  {
+    "id": "RECEIVER_EDD",
+    "horizon": 6,
+    "tasks": [
+      {
+        "id": "A_LONG_READY",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "OUT1",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "A_LONG_STORE",
+        "alternatives": [
+          {
+            "id": "MOVE",
+            "duration": 1,
+            "resources": [
+              [
+                "CR1",
+                1
+              ]
+            ],
+            "roles": [
+              [
+                "MOVE",
+                "P1"
+              ]
+            ],
+            "cost": 0,
+            "kind": "MOVE"
+          }
+        ],
+        "predecessors": [
+          "A_LONG_READY"
+        ],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "A_LONG_RECEIVE",
+        "alternatives": [
+          {
+            "id": "GATE",
+            "duration": 1,
+            "resources": [
+              [
+                "RECEIVER",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "GATE"
+          }
+        ],
+        "predecessors": [
+          "A_LONG_STORE"
+        ],
+        "release": 2,
+        "latest_end": null
+      },
+      {
+        "id": "Z_SHORT_READY",
+        "alternatives": [
+          {
+            "id": "H",
+            "duration": 1,
+            "resources": [
+              [
+                "OUT2",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "Z_SHORT_STORE",
+        "alternatives": [
+          {
+            "id": "MOVE",
+            "duration": 1,
+            "resources": [
+              [
+                "CR2",
+                1
+              ]
+            ],
+            "roles": [
+              [
+                "MOVE",
+                "P2"
+              ]
+            ],
+            "cost": 0,
+            "kind": "MOVE"
+          }
+        ],
+        "predecessors": [
+          "Z_SHORT_READY"
+        ],
+        "release": 0,
+        "latest_end": null
+      },
+      {
+        "id": "Z_SHORT_RECEIVE",
+        "alternatives": [
+          {
+            "id": "GATE",
+            "duration": 1,
+            "resources": [
+              [
+                "RECEIVER",
+                1
+              ]
+            ],
+            "roles": [],
+            "cost": 0,
+            "kind": "GATE"
+          }
+        ],
+        "predecessors": [
+          "Z_SHORT_STORE"
+        ],
+        "release": 2,
+        "latest_end": null
+      }
+    ],
+    "resources": [
+      {
+        "id": "OUT1",
+        "capacity": 1
+      },
+      {
+        "id": "OUT2",
+        "capacity": 1
+      },
+      {
+        "id": "FG",
+        "capacity": 2
+      },
+      {
+        "id": "RECEIVER",
+        "capacity": 1
+      },
+      {
+        "id": "CR1",
+        "capacity": 1
+      },
+      {
+        "id": "CR2",
+        "capacity": 1
+      }
+    ],
+    "people": [
+      {
+        "id": "P1",
+        "qualifications": [
+          "MOVE"
+        ],
+        "windows": [
+          [
+            0,
+            6
+          ]
+        ]
+      },
+      {
+        "id": "P2",
+        "qualifications": [
+          "MOVE"
+        ],
+        "windows": [
+          [
+            0,
+            6
+          ]
+        ]
+      }
+    ],
+    "products": [
+      {
+        "id": "A_LONG",
+        "ready": "A_LONG_READY",
+        "store": "A_LONG_STORE",
+        "receive": "A_LONG_RECEIVE",
+        "output": "OUT1",
+        "buffer": "FG",
+        "due": 10,
+        "weight": 1
+      },
+      {
+        "id": "Z_SHORT",
+        "ready": "Z_SHORT_READY",
+        "store": "Z_SHORT_STORE",
+        "receive": "Z_SHORT_RECEIVE",
+        "output": "OUT2",
+        "buffer": "FG",
+        "due": 3,
+        "weight": 1
+      }
+    ],
+    "tick_h": "1",
+    "tardiness_weight": 1,
+    "makespan_weight": 1,
+    "cost_weight": 1,
+    "schema_version": "S16-STATIC-1.1",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE",
+    "layout_version": "S16-ABSTRACT-GRAPH-1"
+  },
+  {
+    "id": "MODE_DISTINCTION",
+    "horizon": 3,
+    "tasks": [
+      {
+        "id": "A",
+        "alternatives": [
+          {
+            "id": "A_SLOW",
+            "duration": 2,
+            "resources": [],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          },
+          {
+            "id": "Z_FAST",
+            "duration": 1,
+            "resources": [],
+            "roles": [],
+            "cost": 0,
+            "kind": "H"
+          }
+        ],
+        "predecessors": [],
+        "release": 0,
+        "latest_end": null
+      }
+    ],
+    "resources": [],
+    "people": [],
+    "products": [],
+    "tick_h": "1",
+    "tardiness_weight": 1,
+    "makespan_weight": 1,
+    "cost_weight": 1,
+    "schema_version": "S16-STATIC-1.1",
+    "purpose": "SYNTHETIC_STATIC_REFERENCE",
+    "layout_version": "S16-ABSTRACT-GRAPH-1"
+  }
+]

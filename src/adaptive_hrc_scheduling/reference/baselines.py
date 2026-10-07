@@ -35,24 +35,29 @@ def rule_schedule(instance, rule="EDD", *, max_trials=100_000, wall_seconds=10.0
     began = perf_counter()
     entries, trials = (), 0
     pending = {t.id: t for t in instance.tasks}
-    due = {p.ready: p.due for p in instance.products}
-    # Propagate product due dates backward over the declared graph only.
+    due = {p.receive: p.due for p in instance.products}
+    # The objective measures external receipt. Propagate its due date to every
+    # ancestor, retaining dates beyond the horizon and the earliest shared due.
     for _ in instance.tasks:
         for task in instance.tasks:
             for pred in task.predecessors:
-                due[pred] = min(due.get(pred, instance.horizon), due.get(task.id, instance.horizon))
+                if task.id in due:
+                    due[pred] = min(due.get(pred, math.inf), due[task.id])
     while pending:
         assigned = {e.task_id: e for e in entries}
         eligible = [t for t in pending.values() if set(t.predecessors) <= set(assigned)]
 
         def priority(t):
             duration = min(a.duration for a in t.alternatives)
-            return (duration if rule == "SPT" else due.get(t.id, instance.horizon), t.id)
+            return (duration if rule == "SPT" else due.get(t.id, math.inf), t.id)
 
         accepted = None
         for task in sorted(eligible, key=priority):
             lower = max([task.release] + [assigned[p].end for p in task.predecessors])
-            candidates = sorted(task.alternatives, key=lambda a: (a.duration, a.cost, a.id))
+            candidates = sorted(
+                task.alternatives,
+                key=lambda a: (a.id,) if rule == "EDD" else (a.duration, a.cost, a.id),
+            )
             for start in range(lower, instance.horizon):
                 for alt in candidates:
                     trials += 1
