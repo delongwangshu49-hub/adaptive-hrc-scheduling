@@ -1,0 +1,138 @@
+{
+  "review_id": "S18-G2-FOLLOWUP-20261008-r1",
+  "date": "2026-10-08",
+  "authorization": "PR151",
+  "base_commit": "cd21aa0a26e53585b9bf8cc3a7b7b6900c428ac1",
+  "order": "G2_CONCLUSION_THEN_RECHECK",
+  "g2_review_ref": "S18_industrial_g2_review_r1.json",
+  "industrial_g2": "OPEN",
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "baseline_control": {
+    "valid": true,
+    "score": [
+      -6,
+      41.79221312489005,
+      5.8914860168062555
+    ],
+    "reasons": []
+  },
+  "fixed_H_control": {
+    "valid": true,
+    "score": [
+      -3,
+      43.660930353135974,
+      5.892241582268547
+    ],
+    "reasons": []
+  },
+  "prefix_time_h": 24.439733333333333,
+  "window_end_h": 32.439733333333336,
+  "F1": {
+    "status": "REPRODUCED_OPEN",
+    "priority": "P2",
+    "direct_repair": {
+      "status": "REPRODUCED",
+      "exception_type": "ValueError",
+      "reason": "min() iterable argument is empty"
+    },
+    "natural_search": {
+      "removed": [
+        "CREW",
+        "START_SLOT"
+      ],
+      "status": "REPRODUCED",
+      "exception_type": "ValueError",
+      "reason": "min() iterable argument is empty"
+    },
+    "policy_scope": "Only budget seed allocation replaced to select deterministic seed2; actual policy/search/prefix/verification unchanged",
+    "plan_status": "WAIT",
+    "plan_reason": "S18_NOMINAL_WAIT",
+    "schedule_retained": false,
+    "recorded_iterations": 0,
+    "recorded_repair_trials": 1,
+    "used_wall_seconds": 43.88294529999985,
+    "budget_issue": "Initial candidate and failed repair were attempted but the failed repair/iteration is not fully counted"
+  },
+  "F2": {
+    "status": "REPRODUCED_OPEN",
+    "priority": "P2",
+    "slots": {
+      "status": "REPRODUCED",
+      "declared_start_h": 132.43973333333332,
+      "verification": {
+        "valid": true,
+        "score": [
+          -6,
+          41.79221312489005,
+          5.8914860168062555
+        ],
+        "reasons": []
+      },
+      "controlled_core_commands": 14
+    },
+    "crews": {
+      "status": "REPRODUCED",
+      "affected_activities": [
+        "PRODUCT-1.W-B",
+        "PRODUCT-1.W-T"
+      ],
+      "original_crews": [
+        [
+          "PRODUCT-1.W-B",
+          "W1"
+        ],
+        [
+          "PRODUCT-1.W-T",
+          "W1"
+        ]
+      ],
+      "declared_crews": [
+        [
+          "PRODUCT-1.W-B",
+          "W2"
+        ],
+        [
+          "PRODUCT-1.W-T",
+          "W2"
+        ]
+      ],
+      "verification": {
+        "valid": true,
+        "score": [
+          -3,
+          43.660930353135974,
+          5.892241582268547
+        ],
+        "reasons": []
+      }
+    }
+  },
+  "C1": {
+    "status": "RECONFIRMED_OPEN",
+    "scope": "Read-only interpretation and exact current public charter locations",
+    "anchors": [
+      {
+        "line": 354,
+        "text": "**2026-10-08现行口径（SR01—SR08，S18-SIM-APPROVAL-001）**：S18在获批并可追溯的`S18-SIM-A1`范围内开展状态依赖H/HR-seq与排程联合决策。`SIM-ADMISSION`核对假设集、产品/组件/输出/过程版本及完整消费者。工业G2 OPEN及NOT_ESTABLISHED独立保留，不阻断获批仿真实现，但继续阻断工业执行和工业资格主张。未批准、越范围或定义缺失输入拒绝。"
+      },
+      {
+        "line": 457,
+        "text": "**前置与输入**：S19、S19A及S19B分别验收且全部受影响重验与适用验证出口通过、资格门满足及S20授权；整理方法/基线版本、实例族、F/A/E/U参数、后端适用域与未解决限制，并绑定受测场景、前端运行模式和性能设置。图表问题、指标/单位、样本/配对结构、不确定性和失败表示按[图文证据规则](#visual-evidence-rules)纳入冻结分析计划。"
+      },
+      {
+        "line": 474,
+        "text": "**前置与输入**：S20实际冻结、G2及适用门关闭和S21授权；固定联合方法、固定模式、合法规则/局部最快等协议指定对照，使用同实例与配对随机流。"
+      }
+    ],
+    "conclusion": "S18 approved simulation exception coexists with generic qualification precondition in S20 and explicit G2 closure precondition in S21; no approval to extend exception or start later steps; G2 remains OPEN after research."
+  },
+  "source_repaired": false,
+  "planning_adjusted": false,
+  "proof_sha256": {
+    "recheck.py": "58407bbef1687ca7d145e7928ec9e2c6fb2df3b98f04ded3f1da173cefce105f",
+    "load_saved.py": "c2cda6745ecf2aabcd00be32840d73a6a578e34ef157778aa7d0a1a4b5dc149f"
+  },
+  "private_result_sha256": "9b9a19ab6b20176dd02ca96d27a450691a0f0b392ff7b9340f3d80f821d56872",
+  "tests_scope": "Actual saved-prefix controls and F1/F2 counterexamples; not full759/wheel/CI/Kit rerun",
+  "proposed_remote_operations": []
+}

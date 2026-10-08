@@ -1,0 +1,320 @@
+{
+  "packet_id": "S18-20261008-simulation-repair-r3",
+  "date": "2026-10-08",
+  "authorization": "PR152",
+  "base_commit": "cd21aa0a26e53585b9bf8cc3a7b7b6900c428ac1",
+  "work_status": "VERIFIED_WITH_LIMITS",
+  "acceptance": "PENDING",
+  "publication": "NOT_APPROVED_NOT_PUBLISHED",
+  "F1": "CLOSED_IN_TESTED_SIMULATION_SCOPE",
+  "F2": "CLOSED_IN_TESTED_SIMULATION_SCOPE",
+  "C1": "SIMULATION_RESEARCH_SCOPE_CONFIRMED_NO_LATER_STEP_STARTED",
+  "industrial_g2": "OPEN",
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "checks": {
+    "source": {
+      "tests": 774,
+      "seconds": 421.488
+    },
+    "isolated_wheel": {
+      "tests": 774,
+      "seconds": 419.195
+    }
+  },
+  "new_regression_tests": 15,
+  "engineering_inputs": 170,
+  "source_and_wheel_checks": "PASS",
+  "generators": "OLD_24_AND_SIMULATION_ASSETS_PASS",
+  "saved_controls": [
+    {
+      "method": "ADAPTIVE_JOINT",
+      "candidate": "candidate-01",
+      "verification": {
+        "valid": true,
+        "score": [
+          -6,
+          41.79221312489005,
+          5.8914860168062555
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "ADAPTIVE_JOINT",
+      "candidate": "candidate-02",
+      "verification": {
+        "valid": true,
+        "score": [
+          -6,
+          41.85559070524562,
+          5.896935142725688
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "ADAPTIVE_JOINT",
+      "candidate": "candidate-03",
+      "verification": {
+        "valid": true,
+        "score": [
+          -3,
+          41.63399500350247,
+          5.896935142725687
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "ADAPTIVE_JOINT",
+      "candidate": "candidate-04",
+      "verification": {
+        "valid": true,
+        "score": [
+          -3,
+          41.633965097900486,
+          5.89693514272569
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "FIXED_H",
+      "candidate": "candidate-01",
+      "verification": {
+        "valid": true,
+        "score": [
+          -3,
+          43.660930353135974,
+          5.892241582268547
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "FIXED_H",
+      "candidate": "candidate-02",
+      "verification": {
+        "valid": true,
+        "score": [
+          -3,
+          43.66567810811043,
+          5.896989337242993
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "FIXED_H",
+      "candidate": "candidate-03",
+      "verification": {
+        "valid": true,
+        "score": [
+          -3,
+          43.66567810811043,
+          5.896989337242993
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "FIXED_H",
+      "candidate": "candidate-04",
+      "verification": {
+        "valid": true,
+        "score": [
+          0,
+          43.66567810811043,
+          5.896989337242993
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "FIXED_HR",
+      "candidate": "candidate-01",
+      "verification": {
+        "valid": true,
+        "score": [
+          -6,
+          41.79221312489005,
+          5.8914860168062555
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "FIXED_HR",
+      "candidate": "candidate-02",
+      "verification": {
+        "valid": true,
+        "score": [
+          -6,
+          41.85559070524562,
+          5.896935142725688
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "FIXED_HR",
+      "candidate": "candidate-03",
+      "verification": {
+        "valid": true,
+        "score": [
+          -3,
+          41.85559070524562,
+          5.896935142725688
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "FIXED_HR",
+      "candidate": "candidate-04",
+      "verification": {
+        "valid": true,
+        "score": [
+          -3,
+          41.75819127929475,
+          5.896935142725689
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "NO_OBSERVATION_UPDATE",
+      "candidate": "candidate-01",
+      "verification": {
+        "valid": true,
+        "score": [
+          -6,
+          41.79221312489005,
+          5.8914860168062555
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "NO_OBSERVATION_UPDATE",
+      "candidate": "candidate-02",
+      "verification": {
+        "valid": true,
+        "score": [
+          -6,
+          41.85559070524562,
+          5.896935142725688
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "NO_OBSERVATION_UPDATE",
+      "candidate": "candidate-03",
+      "verification": {
+        "valid": true,
+        "score": [
+          -3,
+          41.63399500350247,
+          5.896935142725687
+        ],
+        "reasons": []
+      }
+    },
+    {
+      "method": "NO_OBSERVATION_UPDATE",
+      "candidate": "candidate-04",
+      "verification": {
+        "valid": true,
+        "score": [
+          -3,
+          41.633965097900486,
+          5.89693514272569
+        ],
+        "reasons": []
+      }
+    }
+  ],
+  "saved_control_scores_unchanged": true,
+  "crew_only": {
+    "trials": 1,
+    "reasons": [],
+    "verification": {
+      "valid": true,
+      "score": [
+        -6,
+        41.79223415354869,
+        5.891486016806256
+      ],
+      "reasons": []
+    }
+  },
+  "original_seed2_policy": {
+    "plan_status": "WAIT",
+    "schedule_retained": true,
+    "budget": {
+      "declared": {
+        "max_calls": 1,
+        "max_iterations": 1,
+        "max_repair_trials": 2,
+        "max_wall_seconds": 300,
+        "per_call_iterations": 1,
+        "per_call_trials": 1,
+        "per_call_wall_seconds": 300,
+        "opportunities_h": [
+          24.439733333333333
+        ],
+        "future_window_h": 8.000000000000004
+      },
+      "used_calls": 1,
+      "used_iterations": 1,
+      "used_repair_trials": 2,
+      "used_wall_seconds": 117.03285820000019,
+      "validation_calls": 3,
+      "validation_seconds": 80.54557250000107,
+      "records": [
+        {
+          "call": 1,
+          "iterations": 1,
+          "repair_trials": 2,
+          "wall_seconds": 117.03285820000019,
+          "validation_calls": 3,
+          "validation_seconds": 80.54557250000107,
+          "cumulative_iterations": 1,
+          "cumulative_repair_trials": 2,
+          "cumulative_wall_seconds": 117.03285820000019,
+          "within_budget": true
+        }
+      ]
+    }
+  },
+  "metadata_negative_controls": {
+    "slots": {
+      "valid": false,
+      "score": null,
+      "reasons": [
+        "CANDIDATE_DISPATCH_METADATA"
+      ]
+    },
+    "crews": {
+      "valid": false,
+      "score": null,
+      "reasons": [
+        "CANDIDATE_DISPATCH_METADATA"
+      ]
+    }
+  },
+  "validation_limits": [
+    "No new Kit or full backend chain run; adapters and execution kernel unchanged",
+    "Diagnostic saved-prefix policy uses a 300s allowance; historical 120s budgets and results preserved",
+    "Priority/rest audit reuses the deterministic dispatcher; direct binding and S10/causal checks remain separate",
+    "No formal A/D experiment or hard real-time claim"
+  ],
+  "evidence_sha256": {
+    "saved_proof.py": "da4964d46479841ae1df5fb8b7b08a02bbc3aa9af74c1739da07643ab83a6419",
+    "saved-proof.json": "6aaf2750f48c7f887d9f7a3a1a06dee8e88f6c3009db59292e5ad6debe6159d1",
+    "full-check.log": "ee84be02b1a696a32f3064b20f7326c2089c284c4cc8fa58713820aed69a0706",
+    "repair-tests-03.log": "bf3648c1b8b1da7e7de3a0bfdcf9f08b7056b5a6797efc5b5f7b61962c2057ed",
+    "tested-inputs.json": "7a1ed9107d9d48fdf0c59a9388474becec6d9d006a65b81aa8d98190d7ad9fc6"
+  }
+}

@@ -1,0 +1,535 @@
+{
+  "date": "2026-10-08",
+  "prompt_id": "PR150",
+  "log_id": "LOG196",
+  "status": "POST_RELEASE_REVIEW_FINDINGS_OPEN",
+  "review_base": "cd21aa0a26e53585b9bf8cc3a7b7b6900c428ac1",
+  "review_scope": [
+    "S18-1",
+    "S18-2",
+    "S18-3"
+  ],
+  "reviewed_delta_base": "62c1c5393cb715b8089a93ee7ec658a0eb0e571d",
+  "reviewed_delta_paths": 89,
+  "complete_without_known_findings": false,
+  "scope": "APPROVED_SIMULATION_SR01_SR08",
+  "industrial_g2": "OPEN",
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "source_unchanged": true,
+  "fixes_implemented": false,
+  "new_git_writes": false,
+  "later_steps_started": false,
+  "coverage": [
+    {
+      "area": "S18-1 conditional joint/admission",
+      "paths": [
+        "algorithms/joint_lns.py",
+        "tests/test_joint_decisions.py",
+        "scripts/run_joint_mechanisms.py"
+      ],
+      "status": "LIMITED_EVIDENCE_PRESERVED"
+    },
+    {
+      "area": "S18-2 frozen/rolling/adaptive and production boundary",
+      "paths": [
+        "algorithms/joint_rolling.py",
+        "algorithms/joint_production.py",
+        "control/joint_rolling_loop.py",
+        "control/joint_adaptive_loop.py",
+        "scripts/run_joint_continuation.py",
+        "scripts/run_joint_rolling.py",
+        "scripts/run_joint_adaptive.py"
+      ],
+      "status": "LIMITED_EVIDENCE_PRESERVED"
+    },
+    {
+      "area": "S18-3 admission/version/contract/mapping",
+      "paths": [
+        "production_admission.py",
+        "contracts/production.py",
+        "domain/production.py",
+        "production_mapping.py",
+        "scripts/build_simulation_production.py",
+        "scripts/build_production_contracts.py"
+      ],
+      "status": "NO_NEW_CONFIRMED_DEFECT"
+    },
+    {
+      "area": "S18-3 planner/execution/checker/handover",
+      "paths": [
+        "planning/production.py",
+        "production_backend.py",
+        "production_checker.py",
+        "production_handover.py",
+        "production_geometry.py",
+        "control/production_loop.py",
+        "control/production_decisions.py"
+      ],
+      "status": "F1_CALL_PATH_REPRODUCED_OTHER_LIMITED_EVIDENCE_PRESERVED"
+    },
+    {
+      "area": "S18-3 full-window joint and paired budgets",
+      "paths": [
+        "algorithms/simulation_joint.py",
+        "control/simulation_joint_policy.py",
+        "scripts/run_simulation_controls.py"
+      ],
+      "status": "F1_F2_OPEN"
+    },
+    {
+      "area": "S18-3 Isaac/full chain",
+      "paths": [
+        "sim/isaac/scene/production_port.py",
+        "sim/isaac/scene/production_receiver.py",
+        "scripts/verify_production_chain.py"
+      ],
+      "status": "SIX_SAVED_PAIRS_VERIFIED_NOT_RERUN"
+    },
+    {
+      "area": "generated assets/history/publication",
+      "paths": [
+        "schemas/production_simulation",
+        "examples/production_simulation",
+        "simulation_inputs",
+        ".gitattributes",
+        ".github/workflows/ci.yml"
+      ],
+      "status": "GENERATOR_HASH_BLOB_AND_RECEIPT_CHECKS_PASS"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "P2",
+      "title": "Crew repair is generated against a different mode; search loses valid incumbent on exception",
+      "location": "src/adaptive_hrc_scheduling/algorithms/simulation_joint.py:295",
+      "related_locations": [
+        "src/adaptive_hrc_scheduling/planning/production.py:117",
+        "src/adaptive_hrc_scheduling/control/simulation_joint_policy.py:227",
+        "src/adaptive_hrc_scheduling/control/simulation_joint_policy.py:86"
+      ],
+      "baseline": {
+        "valid": true,
+        "score": [
+          -6,
+          41.79221312489005,
+          5.8914860168062555
+        ],
+        "reasons": []
+      },
+      "direct_repair": {
+        "case": "crew_only_repair",
+        "seed": 1,
+        "mismatched_activities": [
+          "PRODUCT-1.W-B"
+        ],
+        "outcome": "EXCEPTION",
+        "exception_type": "ValueError",
+        "reason": "min() iterable argument is empty"
+      },
+      "natural_search": {
+        "seed": 2,
+        "removed": [
+          "CREW",
+          "START_SLOT"
+        ],
+        "status": "UNHANDLED_EXCEPTION",
+        "exception_type": "ValueError",
+        "reason": "min() iterable argument is empty"
+      },
+      "policy": {
+        "test_scope": "Real policy/search with only seed selection for deterministic reproduction",
+        "plan_status": "WAIT",
+        "plan_reason": "S18_NOMINAL_WAIT",
+        "schedule_retained": false,
+        "journal": [
+          {
+            "time_h": 24.439733333333333,
+            "proposal_source": "DELIVERED_CURRENT_PREFIX",
+            "anchor_sha256": "e9fdf062785371be583e56d20ecccbab7f621070fc6f0c02542d83d657c69773",
+            "current_sha256": "e9fdf062785371be583e56d20ecccbab7f621070fc6f0c02542d83d657c69773",
+            "actual_event_count": 634,
+            "actual_decision_count": 274,
+            "schedule_sha256": null,
+            "score_scope": "NOMINAL_COMPLETE_WINDOW",
+            "score": null,
+            "termination": "min() iterable argument is empty"
+          }
+        ],
+        "budget": {
+          "declared": {
+            "max_calls": 1,
+            "max_iterations": 1,
+            "max_repair_trials": 2,
+            "max_wall_seconds": 180,
+            "per_call_iterations": 1,
+            "per_call_trials": 1,
+            "per_call_wall_seconds": 180,
+            "opportunities_h": [
+              24.439733333333333
+            ],
+            "future_window_h": 8.000000000000004
+          },
+          "used_calls": 1,
+          "used_iterations": 0,
+          "used_repair_trials": 1,
+          "used_wall_seconds": 40.78742880000027,
+          "validation_calls": 1,
+          "validation_seconds": 18.819773400000486,
+          "records": [
+            {
+              "call": 1,
+              "iterations": 0,
+              "repair_trials": 1,
+              "wall_seconds": 40.78742880000027,
+              "validation_calls": 1,
+              "validation_seconds": 18.819773400000486,
+              "cumulative_iterations": 0,
+              "cumulative_repair_trials": 1,
+              "cumulative_wall_seconds": 40.78742880000027,
+              "within_budget": true
+            }
+          ]
+        }
+      },
+      "impact": "Search availability and failed-search budget accounting; no evidence of illegal physical dispatch"
+    },
+    {
+      "id": "F2",
+      "priority": "P2",
+      "title": "Candidate genes are not bound to saved command sequence",
+      "location": "src/adaptive_hrc_scheduling/algorithms/simulation_joint.py:366",
+      "related_locations": [
+        "src/adaptive_hrc_scheduling/algorithms/simulation_joint.py:350",
+        "src/adaptive_hrc_scheduling/planning/production.py:540"
+      ],
+      "slots": {
+        "declared_start_h": 132.43973333333332,
+        "window_end_h": 32.439733333333336,
+        "slot_controlled_commands_before_declared_start": 14,
+        "total_commands": 51,
+        "verification": {
+          "valid": true,
+          "score": [
+            -6,
+            41.79221312489005,
+            5.8914860168062555
+          ],
+          "reasons": []
+        }
+      },
+      "crew": {
+        "case": "qualified_crew_metadata_changed_with_unchanged_steps",
+        "affected_activities": [
+          "PRODUCT-1.W-B",
+          "PRODUCT-1.W-T"
+        ],
+        "original_crews": [
+          [
+            "PRODUCT-1.W-B",
+            "W1"
+          ],
+          [
+            "PRODUCT-1.W-T",
+            "W1"
+          ]
+        ],
+        "declared_crews": [
+          [
+            "PRODUCT-1.W-B",
+            "W2"
+          ],
+          [
+            "PRODUCT-1.W-T",
+            "W2"
+          ]
+        ],
+        "verification": {
+          "valid": true,
+          "score": [
+            -3,
+            43.660930353135974,
+            5.892241582268547
+          ],
+          "reasons": []
+        },
+        "start_slot_reproduction_core_command_count": 14
+      },
+      "impact": "Physically valid trace can falsely certify a different declared candidate and attribution; original 16 candidate reports are not rewritten"
+    }
+  ],
+  "verification": {
+    "review_base": "cd21aa0a26e53585b9bf8cc3a7b7b6900c428ac1",
+    "review_scope": "S18-1 through S18-3 including accepted scope change and both published revisions",
+    "engineering_input_hashes_match": 220,
+    "final_captured_input_hashes_match": 327,
+    "published_88_blobs_match": true,
+    "frozen_changed": [
+      ".gitattributes",
+      ".github/workflows/ci.yml",
+      "sim/isaac/scene/production_port.py",
+      "sim/isaac/scene/production_receiver.py",
+      "src/adaptive_hrc_scheduling/contracts/production.py",
+      "src/adaptive_hrc_scheduling/control/production_decisions.py",
+      "src/adaptive_hrc_scheduling/control/production_loop.py",
+      "src/adaptive_hrc_scheduling/domain/production.py",
+      "src/adaptive_hrc_scheduling/planning/production.py",
+      "src/adaptive_hrc_scheduling/production_backend.py",
+      "src/adaptive_hrc_scheduling/production_checker.py",
+      "src/adaptive_hrc_scheduling/production_geometry.py",
+      "src/adaptive_hrc_scheduling/production_mapping.py"
+    ],
+    "frozen_unchanged": 200,
+    "pairs": [
+      {
+        "case": "SR-W1 original stage",
+        "source_family": "stage-source-02",
+        "time_h": 272.35047973655236,
+        "ready": 1,
+        "received": 1,
+        "raw_report_hashes_match": true,
+        "parity_and_normal_exit": "PASS"
+      },
+      {
+        "case": "SR-W2 original stage",
+        "source_family": "stage-source-02",
+        "time_h": 292.6237847222222,
+        "ready": 1,
+        "received": 1,
+        "raw_report_hashes_match": true,
+        "parity_and_normal_exit": "PASS"
+      },
+      {
+        "case": "Mixed actual R1 feedback and charged handover",
+        "source_family": "production-source-04",
+        "time_h": 291.30786155555546,
+        "ready": 1,
+        "received": 1,
+        "raw_report_hashes_match": true,
+        "parity_and_normal_exit": "PASS"
+      },
+      {
+        "case": "Final SR-W1 two products",
+        "source_family": "production-source-05",
+        "time_h": 531.8589726666667,
+        "ready": 2,
+        "received": 2,
+        "raw_report_hashes_match": true,
+        "parity_and_normal_exit": "PASS"
+      },
+      {
+        "case": "Final SR-W2",
+        "source_family": "production-source-05",
+        "time_h": 292.6237847222222,
+        "ready": 1,
+        "received": 1,
+        "raw_report_hashes_match": true,
+        "parity_and_normal_exit": "PASS"
+      },
+      {
+        "case": "Original S15 WV01",
+        "source_family": "production-source-05",
+        "time_h": 845.6183333333332,
+        "ready": 3,
+        "received": 3,
+        "raw_report_hashes_match": true,
+        "parity_and_normal_exit": "PASS"
+      }
+    ],
+    "paired_controls": 4,
+    "saved_candidates_original_reports": 16,
+    "ci_log_hashes_match": true,
+    "ci_source_wheel_each_platform": 759
+  },
+  "historical_archives": [
+    {
+      "packet_id": "S18-20261007-branches-r1",
+      "sha256": "e5d2b083d6e45685d2ae0d6d259a7b49bc04bf5f8e8c95752aafedf7fc75c528",
+      "bytes": 268809,
+      "unchanged": true
+    },
+    {
+      "packet_id": "S18-20261007-continuation-r1",
+      "sha256": "1d5c97c3c0c688cf87c9a140ecda5b060235bca3477dcee11fcd8a1af5cffa96",
+      "bytes": 319862,
+      "unchanged": true
+    },
+    {
+      "packet_id": "S18-20261008-adaptive-r1",
+      "sha256": "69560d0c220d3782c47f8fd1aee84da4e3905ad30e41b3ee5ca42a159627f2a1",
+      "bytes": 410881,
+      "unchanged": true
+    },
+    {
+      "packet_id": "S18-20261008-rolling-r1",
+      "sha256": "bc4162d0acfd5119cab07d133f8f96d8e52f6005fa2f52c44683cbcd9490ffd1",
+      "bytes": 363146,
+      "unchanged": true
+    },
+    {
+      "packet_id": "S18-SIM-SCOPE-20261008-r1",
+      "sha256": "1bf0fd4937176d851545ca64ee5fbd8745fc78724ded7c02e8072fed882e86ea",
+      "bytes": 219149,
+      "unchanged": true
+    }
+  ],
+  "current_review_tests": [
+    {
+      "pattern": "test_joint*.py",
+      "tests": 75,
+      "seconds": 70.951,
+      "status": "PASS"
+    },
+    {
+      "pattern": "test_simulation*.py",
+      "tests": 25,
+      "seconds": 13.929,
+      "status": "PASS"
+    }
+  ],
+  "generator_checks": {
+    "legacy_assets": 24,
+    "simulation_assets": 12,
+    "status": "PASS"
+  },
+  "publication": {
+    "r1": {
+      "status": "PUSHED_CI_TIMEOUT",
+      "commit": "adba1a890cf13b851cdd56fe9cc48a6500936f8c",
+      "parent": "62c1c5393cb715b8089a93ee7ec658a0eb0e571d",
+      "tag": "step-S18-simulation-r1",
+      "tag_object": "5296ae6c116ea6a7a1e1b70e7aece7bd4a9a89c1",
+      "tag_peeled": "adba1a890cf13b851cdd56fe9cc48a6500936f8c",
+      "exact_files": 88,
+      "all_blobs_verified": true,
+      "identity_verified": true,
+      "remote_refs": {
+        "refs/heads/main": "adba1a890cf13b851cdd56fe9cc48a6500936f8c",
+        "refs/tags/step-S18-simulation-r1": "5296ae6c116ea6a7a1e1b70e7aece7bd4a9a89c1",
+        "refs/tags/step-S18-simulation-r1^{}": "adba1a890cf13b851cdd56fe9cc48a6500936f8c"
+      },
+      "verified_at": "2026-10-08T05:29:15.913762+00:00",
+      "atomic_non_force_push": true,
+      "packet_id": "S18-20261008-simulation-publication-r2",
+      "approval_id": "S18-SIM-PUBLISH-APPROVAL-002",
+      "zip_sha256": "7a4ea7bf295b3dfa35055261ecd28a85b0890396a2e323c5430e382abf1dbe5e",
+      "manifest_sha256": "c429874de3b851d525ca8ea9ff6c7d847dbf6a9d41291c0dd31bf060b18ea09f",
+      "all_three_archives_preserved": true,
+      "local_source_tests": 759,
+      "local_wheel_tests": 759,
+      "limitations": [
+        "INDUSTRIAL_G2_OPEN_NOT_ESTABLISHED",
+        "SYMBOLIC_WELDING_SYNTHETIC_QUALITY_AND_RECEIVER",
+        "SHARED_J2_DROP_POINT_RESTRICTION",
+        "NO_SEPARATE_HUMAN_GUI_ACCEPTANCE",
+        "NO_FORMAL_A_D_CONCLUSIONS"
+      ],
+      "later_steps_started": false,
+      "publication_complete": false,
+      "ci": {
+        "run_id": 37731149555,
+        "url": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37731149555",
+        "conclusion": "cancelled",
+        "windows": {
+          "conclusion": "success",
+          "source_tests": 759,
+          "source_seconds": 333.5,
+          "wheel_tests": 759,
+          "wheel_seconds": 329.412
+        },
+        "ubuntu": {
+          "conclusion": "cancelled",
+          "reason": "The job has exceeded the maximum execution time of 15m0s",
+          "source_tests": 759,
+          "source_seconds": 498.273,
+          "wheel": "INCOMPLETE_TIMEOUT"
+        }
+      },
+      "ci_evidence_sha256": {
+        "ci-run.json": "9006e1b5b02c1984d4c1ac02db1bb24b0cc4def93f7f1141c0cde5ca3283822d",
+        "windows-ci.log": "36fdc34bfca318606c83576177a77f6e6d2a129d55d8d193c2ec10a02b3d7663",
+        "ubuntu-ci.log": "67e78d2978ed02d1e0206a56270a21a4f8ee217f974160755487255d6dacbe9d",
+        "ubuntu-check-annotations.json": "d307a9b43ad32069b946cd752271e06a54acfb9e4860b802c7af5d0c9044b474"
+      }
+    },
+    "r2": {
+      "status": "PUBLISHED",
+      "packet_id": "S18-20261008-ci-budget-r1",
+      "approval_id": "S18-SIM-CI-BUDGET-APPROVAL-001",
+      "commit": "cd21aa0a26e53585b9bf8cc3a7b7b6900c428ac1",
+      "parent": "adba1a890cf13b851cdd56fe9cc48a6500936f8c",
+      "tag": "step-S18-simulation-r2",
+      "tag_object": "8907932ba095f5f7a793acab656851a74af0cb06",
+      "tag_peeled": "cd21aa0a26e53585b9bf8cc3a7b7b6900c428ac1",
+      "exact_files": 1,
+      "identity_and_blob_verified": true,
+      "remote_refs": {
+        "refs/heads/main": "cd21aa0a26e53585b9bf8cc3a7b7b6900c428ac1",
+        "refs/tags/step-S18-simulation-r1": "5296ae6c116ea6a7a1e1b70e7aece7bd4a9a89c1",
+        "refs/tags/step-S18-simulation-r1^{}": "adba1a890cf13b851cdd56fe9cc48a6500936f8c",
+        "refs/tags/step-S18-simulation-r2": "8907932ba095f5f7a793acab656851a74af0cb06",
+        "refs/tags/step-S18-simulation-r2^{}": "cd21aa0a26e53585b9bf8cc3a7b7b6900c428ac1"
+      },
+      "verified_at": "2026-10-08T05:58:00.476556+00:00",
+      "atomic_non_force_push": true,
+      "zip_sha256": "6417e28bbdf1ec1c11addb1b6b2df4c9147f720f354359ca94c851467c63b0a6",
+      "manifest_sha256": "bc95a1abc036b0996c046b7a190bfd58503cf6731ad685591146fbab62ac453c",
+      "old_r1_tag_preserved": true,
+      "publication_complete": true,
+      "ci": {
+        "run_id": 37732909073,
+        "url": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37732909073",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "platform": "ubuntu",
+            "job_id": 113165875424,
+            "url": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37732909073/job/113165875424",
+            "status": "success",
+            "source_tests": 759,
+            "source_seconds": 278.568,
+            "wheel_tests": 759,
+            "wheel_seconds": 271.08,
+            "log_sha256": "0e256f0cfccf2cb4440345ecbd6f0e6186957ae8e1f0f4941d18da17d3cc52f4"
+          },
+          {
+            "platform": "windows",
+            "job_id": 113165875572,
+            "url": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37732909073/job/113165875572",
+            "status": "success",
+            "source_tests": 759,
+            "source_seconds": 682.953,
+            "wheel_tests": 759,
+            "wheel_seconds": 716.895,
+            "log_sha256": "9acd384f09ec018f127ec05df7af4490a47d6fc32efb15c5c2b42b958db961fc"
+          }
+        ]
+      },
+      "worktree_and_index_clean": true,
+      "reviewed_archive_unchanged": true,
+      "industrial_g2": "OPEN_NOT_ESTABLISHED",
+      "later_steps_started": false,
+      "prior_timeout_evidence_preserved": true
+    }
+  },
+  "proof_sha256": {
+    "candidate-review.json": "1d110dbdeed9471420bec614236181d168c7d22bf3f16abfc63e7054aebf7a14",
+    "natural-search-review.json": "0310eaebde5b246eb413ddaf243826b00ad57946db300db235240da236c9d113",
+    "policy-repair-review.json": "03b06d1b214eb175a27042bc9aab47dd9aa75ad6945f2c03307e5bf1fed8a620",
+    "crew-metadata-review.json": "f4aa25707f5eb286e73407121693fe4667c8deb753b4e190d70352498209aa8c",
+    "evidence-verification.json": "c22809c819048bc1bc31efbe82e993cfc1b9bd29a8dbdb3041dc5b901c02f318",
+    "joint-tests.log": "98c279b8568c39334f368adf959aa1f0ad7596bf72fce4631ac4bd9eebff665f",
+    "simulation-tests.log": "4b92dd1f5adc3b8440053ba79bd6046e9d550dc658ac866ce5cb908215936a22",
+    "load_saved.py": "58ce4e8259f9eb302713c85ded0c8d3844c0d31d466728ca258f13882fc42fc7",
+    "verify_natural_search.py": "f815284862aa160ea8c3f20c091dbe42a0a70b92db8a5ce3dff23cc80f411ffb",
+    "verify_crew_metadata.py": "e2ebf2d949fafb9a02949b50d451dd339109570d127baf05fe5f4268ad489d2c",
+    "verify_evidence.py": "f70354e8c3e655fc3634ca62fc04357525c257ed2185298499fea43b39bcc332"
+  },
+  "limits": [
+    "No new full 759-test run, isolated wheel, CI or Kit execution in this review",
+    "Six paired runs and 16 original candidate reports are historical evidence with source-family identities retained",
+    "Full chains use the rule driver; paired optimization evidence is an 8h development window, not full-product LNS optimization or formal A/D effects",
+    "No industrial welding qualification or separate human GUI acceptance"
+  ],
+  "proposed_remote_operations": []
+}

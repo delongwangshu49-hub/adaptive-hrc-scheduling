@@ -4,6 +4,7 @@ Rollouts contain only already delivered external facts. Unobserved arrivals,
 quality and receipt permissions remain unknown; they are not forecast as PASS.
 """
 
+import math
 from copy import deepcopy
 from dataclasses import dataclass, replace
 from time import perf_counter
@@ -122,6 +123,8 @@ class SimulationJointProblem:
         self.rejected = tuple(rejected)
         self.validation_seconds = 0.0
         self.validation_calls = 0
+        self.search_iterations = 0
+        self.search_trials = 0
 
     def world(self):
         w = ProductionBackend(self.config, run_id=self.prefix.run_id, epoch=self.prefix.epoch)
@@ -139,7 +142,8 @@ class SimulationJointProblem:
                 w.world_ids[e.world.id] = digest(e.world)
         return w
 
-    def genes(self, rng=None):
+    def genes(self, rng=None, *, retained_modes=()):
+        retained_modes = dict(retained_modes)
         attempts = {a.activity_id: a for a in self.observation.state.mode_attempts}
         modes, crews, order, slots = [], [], [], []
         for n, aid in enumerate(self.scope):
@@ -158,7 +162,8 @@ class SimulationJointProblem:
                     )
                 )
                 if held
-                else self.fixed_mode
+                else retained_modes.get(aid)
+                or self.fixed_mode
                 or (
                     rng.choice(("H", "HR-seq"))
                     if rng
@@ -168,7 +173,9 @@ class SimulationJointProblem:
                 )
             )
             who = (
-                (
+                held.handover.incoming
+                if held and held.handover
+                else (
                     rng.choice(("W1", "W2"))
                     if rng
                     and mode == "H"
@@ -283,6 +290,7 @@ class SimulationJointProblem:
         return Repair(Schedule(self.anchor, self.end_h, genes, tuple(steps)), 1)
 
     def initial(self, deadline):
+        self.search_trials += 1
         return self.rollout(self.genes(), deadline)
 
     def mutable(self, candidate):
@@ -290,9 +298,18 @@ class SimulationJointProblem:
 
     def repair(self, candidate, removed, rng, trials, deadline):
         require(set(removed) <= set(self.mutable(candidate)), "UNKNOWN_JOINT_NEIGHBORHOOD")
+        require(type(trials) is int and trials > 0, "REPAIR_TRIALS")
+        self.search_iterations += 1
         reasons = set()
+        attempted = 0
         for n in range(trials):
-            proposed = self.genes(rng)
+            if perf_counter() >= deadline:
+                return Repair(None, attempted, tuple(sorted(reasons)), "WALL_BUDGET")
+            attempted += 1
+            self.search_trials += 1
+            proposed = self.genes(
+                rng, retained_modes=() if "MODE" in removed else candidate.genes.modes
+            )
             # Only destroyed genes change; actual attempts are already protected in genes().
             fields = dict(
                 MODE="modes", CREW="crews", ORDER="order", START_SLOT="slots", REST="rests"
@@ -301,15 +318,33 @@ class SimulationJointProblem:
                 candidate.genes, **{fields[k]: getattr(proposed, fields[k]) for k in removed}
             )
             # A changed mode requires its own eligible role pool.
-            if "MODE" in removed:
-                genes = replace(genes, crews=proposed.crews)
-            result = self.rollout(genes, deadline)
+            if "MODE" in removed and "CREW" not in removed:
+                old_modes, new_modes = dict(candidate.genes.modes), dict(genes.modes)
+                proposed_crews = dict(proposed.crews)
+                genes = replace(
+                    genes,
+                    crews=tuple(
+                        (
+                            key,
+                            proposed_crews[key]
+                            if key in new_modes and new_modes[key] != old_modes[key]
+                            else who,
+                        )
+                        for key, who in genes.crews
+                    ),
+                )
+            try:
+                # Reject a bad local proposal without losing the verified incumbent.
+                result = self.rollout(genes, deadline)
+            except (ContractError, ValueError, KeyError, TypeError, StopIteration) as exc:
+                reasons.add("REPAIR_REJECTED:" + type(exc).__name__ + ":" + str(exc))
+                continue
             reasons.update(result.reasons)
             if result.candidate is not None:
                 return Repair(result.candidate, n + 1, tuple(sorted(reasons)))
             if perf_counter() >= deadline:
                 break
-        return Repair(None, n + 1, tuple(sorted(reasons)), "REPAIR_BUDGET")
+        return Repair(None, attempted, tuple(sorted(reasons)), "REPAIR_BUDGET")
 
     def preview(self, candidate):
         require(
@@ -349,13 +384,15 @@ class SimulationJointProblem:
         )
         require(
             all(
-                type(v) in (int, float) and v >= self.observation.sampled_h
+                type(v) in (int, float) and math.isfinite(v) and v >= self.observation.sampled_h
                 for _, v in candidate.genes.slots
             ),
             "CANDIDATE_GENE_SLOTS",
         )
         require(
-            set(candidate.genes.rests) <= {p.id for p in self.config.people}, "CANDIDATE_GENE_REST"
+            len(candidate.genes.rests) == len(set(candidate.genes.rests))
+            and set(candidate.genes.rests) <= {p.id for p in self.config.people},
+            "CANDIDATE_GENE_REST",
         )
         if self.fixed_mode:
             committed = {a.activity_id for a in self.observation.state.mode_attempts}
@@ -363,20 +400,98 @@ class SimulationJointProblem:
                 all(v == self.fixed_mode for a, v in candidate.genes.modes if a not in committed),
                 "FIXED_MODE_CHANGED",
             )
-        for step in candidate.steps:
-            for command in step.plan.commands:
-                if command.branch:
-                    require(
-                        command.mode_id == modes[command.activity_id], "CANDIDATE_MODE_METADATA"
-                    )
+        for attempt in self.observation.state.mode_attempts:
+            expected = next(
+                o.production_mode
+                for o in self.config.operations
+                if o.branch and o.branch.definition_id == attempt.definition_id
+            )
+            require(modes[attempt.activity_id] == expected, "CANDIDATE_COMMITTED_MODE")
+            if attempt.handover:
+                require(
+                    crews[attempt.activity_id] == attempt.handover.incoming,
+                    "CANDIDATE_COMMITTED_HANDOVER",
+                )
+            elif attempt.crew and (
+                not attempt.completed_units
+                or any(
+                    r.command.activity_id == attempt.activity_id
+                    for r in self.observation.state.running
+                )
+            ):
+                require(
+                    crews[attempt.activity_id] == attempt.crew[0].person_id,
+                    "CANDIDATE_COMMITTED_CREW",
+                )
+        for committed in self.observation.state.activity_crews:
+            for role in committed.roles:
+                require(
+                    crews[committed.activity_id + ":" + role.role_id] == role.person_id,
+                    "CANDIDATE_COMMITTED_CREW",
+                )
         require(
             candidate.anchor_sha256 == self.anchor and candidate.end_h == self.end_h,
             "CANDIDATE_WINDOW_OR_ANCHOR",
         )
         w, rows = self.world(), list(self.decisions)
-        for step in candidate.steps:
+        slots = dict(candidate.genes.slots)
+        rests, rejected = list(candidate.genes.rests), set(self.rejected)
+        for index, step in enumerate(candidate.steps):
             obs = w.observe()
             require(step.plan.observation_id == obs.id, "SCHEDULE_OBSERVATION")
+            require(len(step.plan.commands) <= 1, "SCHEDULE_COMMAND_COUNT")
+            for command in step.plan.commands:
+                # Independent declaration/trace checks, before dispatch or planner replay.
+                if command.activity_id in slots:
+                    require(
+                        command.issued_sim_h + 1e-10 >= slots[command.activity_id],
+                        "CANDIDATE_SLOT_METADATA",
+                    )
+                if command.branch:
+                    require(
+                        command.mode_id == modes[command.activity_id], "CANDIDATE_MODE_METADATA"
+                    )
+                    require(
+                        all(r.person_id == crews[command.activity_id] for r in command.roles),
+                        "CANDIDATE_CREW_METADATA",
+                    )
+                elif command.service and command.service.operation.handover:
+                    change = command.service.operation.handover
+                    require(
+                        change.incoming == crews[change.activity_id]
+                        and modes[change.activity_id] == "H",
+                        "CANDIDATE_HANDOVER_METADATA",
+                    )
+                elif command.service is None and command.activity_id in self.activities:
+                    require(
+                        all(
+                            crews.get(command.activity_id + ":" + r.role_id) == r.person_id
+                            for r in command.roles
+                        ),
+                        "CANDIDATE_CREW_METADATA",
+                    )
+            # ORDER is a dispatch priority, not a forced total order. REST is a
+            # consumable optional request, not every protective rest in the trace.
+            # Replay these choices at each reconstructed observation, while S10
+            # and the causal audit below independently check execution legality.
+            value = planning_input(self.config, obs, 10000)
+            value = replace(
+                value, operations=tuple(o for o in value.operations if o.id not in rejected)
+            )
+            expected = choose(
+                self.config,
+                value,
+                sequence=index,
+                excluded_operations=rejected,
+                mode_choices=candidate.genes.modes,
+                crew_choices=candidate.genes.crews,
+                order_bias=candidate.genes.order,
+                start_slots=candidate.genes.slots,
+                rest_people=tuple(rests),
+            )
+            require(expected == step.plan, "CANDIDATE_DISPATCH_METADATA")
+            if step.plan.reason == "PROPOSED_REST":
+                rests.remove(step.plan.commands[0].service.operation.entity_id)
             receipt = w.dispatch(step.plan.commands[0]) if step.plan.commands else None
             require(receipt is None or receipt.kind == "STARTED", "SCHEDULE_DISPATCH")
             rows.append(
@@ -395,6 +510,7 @@ class SimulationJointProblem:
                     "SCHEDULE_CLOCK",
                 )
                 w.advance(step.advance_to_h)
+                rejected.clear()
         require(abs(w.s.time_h - self.end_h) <= 1e-8, "FULL_WINDOW_NOT_REACHED")
         rows.append(record(terminal(self.config, w.observe())))
         return w.snapshot(), tuple(rows)

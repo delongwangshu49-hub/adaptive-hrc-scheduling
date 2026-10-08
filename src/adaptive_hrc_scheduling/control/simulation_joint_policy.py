@@ -85,6 +85,9 @@ class BudgetLedger:
         self.calls += 1
         iterations = len(result.history) if result is not None else 0
         trials = 1 + sum(h.trials for h in result.history) if result is not None else 1
+        # Started work remains chargeable even if search returns no Result.
+        iterations = max(iterations, getattr(problem, "search_iterations", 0))
+        trials = max(trials, getattr(problem, "search_trials", 0))
         self.iterations += iterations
         self.trials += trials
         self.wall_seconds += elapsed

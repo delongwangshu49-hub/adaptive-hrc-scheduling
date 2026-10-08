@@ -1,5 +1,11 @@
 # 完整建筑模块的多资源自适应生产调度
 
+2026-10-08现行修复成果（PR152 / LOG201）：负责人确认继续调度仿真研究；F1/F2已在受测仿真范围内一致修复。新增15项回归、源码/隔离wheel各774项通过；原16完整候选复验及原分数保持，原seed2实际策略保留有效候选且记1迭代/2试次。C1仿真研究域衔接已明确，工业G2继续OPEN/NOT_ESTABLISHED。候选S18-20261008-simulation-repair-r3为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；冻结数值及历史证据保持，后续未启动。入口：[S18 r3修复审阅](docs/validation/S18_simulation_repair_r3.md)。
+
+2026-10-08现行工业G2结论及复检（PR151 / LOG198—LOG199）：公开证据研究已完成，22项一手来源及Q01—Q06矩阵可查；均未取得覆盖SR-W1/W2的关闭依据，工业G2保持OPEN / NOT_ESTABLISHED。S18-SIM-A1既有仿真批准/发布有效。结论后实际复检再次复现F1/F2两项P2，C1后续资格前置衔接仍待决定；源码/测试/冻结数值及原审阅保持，统一修复仍待负责人后续授意。本轮无Git写入或后续启动。入口：[G2证据结论](docs/research/S18_industrial_g2_evidence_r1.md)、[保留问题复检](docs/validation/S18_g2_followup_recheck_r1.md)。
+
+2026-10-08现行发布与全量审阅（PR148—PR150 / LOG194—LOG196）：S18 r2已实际限定验收、批准并发布，提交`cd21aa0a26e53585b9bf8cc3a7b7b6900c428ac1`、标签`step-S18-simulation-r2`，双平台各源码/隔离wheel759项成功；原r1超时和标签保持。全量审阅S18-1至S18-3，新增100专项及生成检查通过，但复现F1班组修复异常丢失有效候选/漏记失败预算、F2候选班组与时段声明未绑定执行轨迹两项P2，当前POST_RELEASE_REVIEW_FINDINGS_OPEN，不能认定逻辑无遗留。获批仿真范围继续有效，工业G2 OPEN/NOT_ESTABLISHED不单独阻断该范围。本轮仅审阅/必要治理，未修复源码、执行新Git写入或启动后续；原封包/历史结果保持。入口：[S18全量审阅](docs/validation/S18_post_release_audit_r1.md)。
+
 2026-10-08现行发布批准与预检发现（PR147 / LOG193）：负责人已明确批准87文件S18-20261008-simulation-publication-r1的具体提交/标签/atomic推送方案，记录S18-SIM-PUBLISH-APPROVAL-001。发布前复现F01：现行LF规范化改变四份获批CRLF JSON字节，导致SIM_APPROVED_INPUT_DRIFT；尚未暂存、提交、建标签或推送。原87批准与封包保持；拟仅对冻结.gitattributes增加四条原字节保留例外并形成88文件修订发布审阅，当前PROPOSED / DECISION_PENDING / NOT_IMPLEMENTED。工作区该冻结文件已按原摘要保持，源码/数值/工业边界与后续步骤不变。入口：[具体修订审阅](docs/validation/S18_simulation_publication_r1.md)。旧状态按各自封存时点保留。
 
 

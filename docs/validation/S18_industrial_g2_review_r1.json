@@ -1,0 +1,655 @@
+{
+  "schema_version": "1",
+  "review_id": "S18-G2-PUBLIC-20261008-r1",
+  "date": "2026-10-08",
+  "authorization": "PR151",
+  "base_commit": "cd21aa0a26e53585b9bf8cc3a7b7b6900c428ac1",
+  "work_status": "PUBLIC_EVIDENCE_RESEARCH_COMPLETED_WITH_PROJECT_GAPS",
+  "industrial_g2": "OPEN",
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "q_closed": 0,
+  "q_open": 6,
+  "scope": "SR-W1/SR-W2 W-B/W-T H and HR-seq; no frozen values changed",
+  "sources": [
+    {
+      "id": "B01",
+      "title": "BCA PPVC Guidebook",
+      "url": "https://isomer-user-content.by.gov.sg/338/b8a8e7e3-ff40-496c-8246-1a582efb88ca/ppvc_guidebook.pdf",
+      "version": "既有指南；86页；官方2017发布线索，非2026新版",
+      "locator": "§4.2/4.2.1 印刷p48=PDF50；§4.2.2 p49=PDF51；§8.1.2 p65=PDF67",
+      "access": "本轮直接重新获取86页；关键p48/p65文字与图形视觉核验；与既有原件SHA相同",
+      "scope": "新加坡钢PPVC生产参考指南",
+      "supported_claim": "说明机器人替代方向，要求核对WPS/WPQR、焊工与焊材、工装精度、框架检验及试拼",
+      "project_limit": "不是SR-W1/W2图样或双模式资格；非当前法律证明",
+      "q_ids": [
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q04",
+        "Q05"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false,
+      "retrieved_sha256": "141a620071ac0c0c11618c6520a73d7e7d7d57a876f9b8d47ce1359630d25fe2"
+    },
+    {
+      "id": "B02",
+      "title": "RoboticPlus Automatic Modular Steel Frame Production Line for CSCEC",
+      "url": "https://www.roboticplus.com/en/news/details/cate_id/61/id/495.html",
+      "version": "2024-06-28",
+      "locator": "标题/日期及正文自动上下料、定位、焊接、程序生成段",
+      "access": "供应商正文重新打开",
+      "scope": "CSCEC模块钢框架产线",
+      "supported_claim": "供应商报告全自动钢框架生产及视觉路径修正",
+      "project_limit": "全自动上下料也不同于本项目人工装卸HR-seq；没有交付本项目WPS/范围/程序/检验记录",
+      "q_ids": [
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q05"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "B03",
+      "title": "Kobelco Robotic Welding System with New Equipment for Steel Structures",
+      "url": "https://www.kobelco.co.jp/english/r-d/technology-review/pdf/41_023-029.pdf",
+      "version": "Technology Review 41，2024-03，pp23–29",
+      "locator": "§3.3/3.4，印刷p27=PDF5，Table 2；§4系统",
+      "access": "本轮重新取得7页并提取；p27视觉核验",
+      "scope": "钢柱与贯通隔板接头的REGARC新旧工艺",
+      "supported_claim": "32mm试样、层间温度限制及指定焊丝下比较力学性能；支持系统/工艺关联",
+      "project_limit": "比较的是REGARC常规/新工艺，并非人工H与HR-seq；不得移植试样厚度、工时或性能",
+      "q_ids": [
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q05"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false,
+      "retrieved_sha256": "e2dc7fd429853045f420d90386d6b98c127a8f44b8d7e442ad8cf6097fb11070"
+    },
+    {
+      "id": "B11",
+      "title": "RoboticPlus Empowering Modular Construction Innovative Welding Solutions",
+      "url": "https://www.roboticplus.com/en/news/details/cate_id/61/id/477.html",
+      "version": "2024-04-10",
+      "locator": "正文1–4及AluHouse合作段",
+      "access": "供应商全文重新打开",
+      "scope": "模块钢结构方案与AluHouse合作",
+      "supported_claim": "柔性工装、视觉焊缝定位、程序/工艺库和自动焊接的工程存在",
+      "project_limit": "工艺库推荐不是适用WPS/WPQR；多机协作不是人机同步危险区许可",
+      "q_ids": [
+        "Q02",
+        "Q03",
+        "Q04",
+        "Q05"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G01",
+      "title": "ISO 15607:2019",
+      "url": "https://www.iso.org/standard/71495.html",
+      "version": "2019-10；第2版，2025确认",
+      "locator": "Abstract；Annex A/B/C仅目录描述",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "手工、部分机械化、全机械化与自动焊接",
+      "supported_claim": "WPS应有适用WPQR依据，资格路径受应用标准约束",
+      "project_limit": "未取得本项目WPS/WPQR；不把所有路径规定为必做新试验",
+      "q_ids": [
+        "Q01",
+        "Q02"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G02",
+      "title": "ISO 15609-1:2019",
+      "url": "https://www.iso.org/standard/75556.html",
+      "version": "2019-08；第2版，2025确认",
+      "locator": "Abstract",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "电弧焊WPS内容",
+      "supported_claim": "WPS变量影响焊接接头质量",
+      "project_limit": "只读公开摘要，未读取收费全文变量表或生成实际WPS",
+      "q_ids": [
+        "Q01",
+        "Q02"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G03",
+      "title": "ISO 15614-1:2017",
+      "url": "https://www.iso.org/standard/51792.html",
+      "version": "2017-06；第2版，2017-11纠正版；列有Amd1:2019；2022确认",
+      "locator": "Abstract及Life cycle",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "钢电弧/气焊及镍电弧焊；生产/修补/堆焊",
+      "supported_claim": "规定工艺试验与资格覆盖范围；既有评定可在其适用范围内使用",
+      "project_limit": "页面仍Published且DIS待替代；不将草案当已生效；本项目材料/厚度/接头未知",
+      "q_ids": [
+        "Q01",
+        "Q02",
+        "Q06"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G04",
+      "title": "ISO 15612:2018",
+      "url": "https://www.iso.org/standard/65971.html",
+      "version": "2018-06；第2版，2023确认",
+      "locator": "Abstract",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "钢与铝的标准焊接工艺规程SWPS采用",
+      "supported_claim": "存在采用另一组织基于试验形成的SWPS的路径，受范围和采用组织要求约束",
+      "project_limit": "应用标准可限制；没有选定适用SWPS，也不能仅下载证书即继承",
+      "q_ids": [
+        "Q02"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G05",
+      "title": "ISO 9606-1:2012",
+      "url": "https://www.iso.org/standard/54936.html",
+      "version": "2012-07；第2版，2023确认；DIS后继仍开发",
+      "locator": "Abstract及Life cycle",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "钢手工/部分机械化熔焊焊工",
+      "supported_claim": "人工操控焊接技能资格；不覆盖全机械化/自动焊接",
+      "project_limit": "W1/W2合成资格ID不是焊工证；不能自动覆盖OP1",
+      "q_ids": [
+        "Q04"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G06",
+      "title": "ISO 14732:2025",
+      "url": "https://www.iso.org/standard/82980.html",
+      "version": "2025-06；第3版，替代2013",
+      "locator": "Abstract及Life cycle",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "机械化/自动焊的操作工和调试工",
+      "supported_claim": "控制/调整焊参或参与设备设置的相关人员有对应资格要求",
+      "project_limit": "对仅装卸且不控制焊参/不参与设置者存在范围排除；须先分析实际职责；不证明OP1已合格",
+      "q_ids": [
+        "Q04"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G07",
+      "title": "ISO 10218-2:2025",
+      "url": "https://www.iso.org/standard/73934.html",
+      "version": "2025-02；第2版，替代2011",
+      "locator": "What is addressed / General information；不用页面异常FAQ修订描述",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "工业机器人应用及单元集成全生命周期",
+      "supported_claim": "应用单元设计、集成、调试、操作和维护需具体安全要求",
+      "project_limit": "只读官方范围，未查收费完整条款；本体型号或仿真空间锁不能证明J2集成安全",
+      "q_ids": [
+        "Q03",
+        "Q04",
+        "Q06"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G08",
+      "title": "ISO 5817:2023",
+      "url": "https://www.iso.org/standard/80209.html",
+      "version": "2023-02；第4版",
+      "locator": "Abstract",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "钢/镍/钛非束流熔焊接头质量等级",
+      "supported_claim": "共同缺陷质量等级可覆盖手工、机械化、自动模式",
+      "project_limit": "质量等级不是实际检验结果；不能凭摘要挑等级B或指定允许缺陷尺寸",
+      "q_ids": [
+        "Q05"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G09",
+      "title": "ISO 17635:2025",
+      "url": "https://www.iso.org/standard/85705.html",
+      "version": "2025-04；第4版，替代2016",
+      "locator": "Abstract",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "金属焊缝NDT方法/评定通则",
+      "supported_claim": "检验方法需结合质量、材料、焊厚、工艺和范围；质量等级与NDT接受等级不可直接互换",
+      "project_limit": "未选项目检验计划或NDT接受限值，模拟质量PASS不能代替实测",
+      "q_ids": [
+        "Q05"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G10",
+      "title": "ISO 17637:2016",
+      "url": "https://www.iso.org/standard/67259.html",
+      "version": "2016-12；第2版，2022确认",
+      "locator": "Abstract",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "金属熔焊接头目视检查",
+      "supported_claim": "涵盖焊缝及可适用于焊前接头的目视检查",
+      "project_limit": "不是充分证明全部内在质量或结构试拼合格",
+      "q_ids": [
+        "Q05"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G11",
+      "title": "ISO 3834-2:2021",
+      "url": "https://www.iso.org/standard/81651.html",
+      "version": "2021-04；第3版，2026确认",
+      "locator": "Abstract / General information",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "车间/现场熔焊全面质量要求",
+      "supported_claim": "提供制造质量体系候选依据",
+      "project_limit": "只有摘要，未声称已查全文追溯/返修条款，也未证明本项目获认证",
+      "q_ids": [
+        "Q02",
+        "Q05"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G12",
+      "title": "ISO 14731:2019",
+      "url": "https://www.iso.org/standard/68893.html",
+      "version": "2019-02；第3版，2024确认",
+      "locator": "Abstract",
+      "access": "本轮实际打开ISO官方版本/公开范围摘要；未取得收费全文",
+      "scope": "焊接协调任务、职责与胜任能力",
+      "supported_claim": "制造方应为具体质量任务安排胜任人员；法规/合同可有特定要求",
+      "project_limit": "焊接协调不等于机器人运行阶段OP1必须/可以离岗，需任务级判断",
+      "q_ids": [
+        "Q04"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G13",
+      "title": "OSHA Technical Manual Section IV Chapter 4",
+      "url": "https://www.osha.gov/otm/section-4-safety-hazards/chapter-4",
+      "version": "本轮现行网页；含2011/2012旧标准引文，不视作2025 ISO逐条解释",
+      "locator": "§V safeguarding / §VII risk assessments / §VIII non-collaborative applications",
+      "access": "官方指南相关段落打开",
+      "scope": "美国工业机器人安全指导",
+      "supported_claim": "自动运行人员防护、具体应用风险分析和实施后验证；相似设备仍需各自任务评估",
+      "project_limit": "非本项目法域裁定或J2合格证；不照搬文中旧版本或速度数值",
+      "q_ids": [
+        "Q03",
+        "Q04",
+        "Q06"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G14",
+      "title": "OSHA 29 CFR 1910.147",
+      "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+      "version": "本轮现行官方条文",
+      "locator": "(a)(2)范围；(d)/(e)隔离恢复；(f)(4)换班",
+      "access": "官方条文及指定段落打开",
+      "scope": "美国检修/维护危险能量控制",
+      "supported_claim": "维护隔离、能量验证、重新启动及换班保护连续性",
+      "project_limit": "常规生产不全部属于此条；正常装卸不能一律套LOTO；不提供0.1h交接/恢复定值",
+      "q_ids": [
+        "Q04",
+        "Q06"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G15",
+      "title": "Hong Kong Code of Practice for the Structural Use of Steel 2011 2023 Edition",
+      "url": "https://www.bd.gov.hk/doc/en/resources/codes-and-references/code-and-design-manuals/suos2011/SUOS2011_section_14.pdf",
+      "version": "2011钢规2023版，第14章，19页",
+      "locator": "§14.3.1–3 p328；§14.3.4 p329；§14.3.6 pp330–333；Table14.2a/b",
+      "access": "官方章节重新打开并本地取得；p328/p333视觉核验；其余相关条文读取",
+      "scope": "香港结构钢工程候选体系；非已选本项目法域",
+      "supported_claim": "同一标准体系、WPS/评定/人员、装配及工装、检验等待、返修批准与复验要求",
+      "project_limit": "表14.2a小焊缝审批例外不是取消WPS/整个G2；允许焊后/点焊后卸夹的工艺选择不自动匹配本项目；等待必须按材料/接头确定",
+      "q_ids": [
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q04",
+        "Q05",
+        "Q06"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false,
+      "retrieved_sha256": "ddf855da8c3c4e38cb01c6b8d5a2fb4eaf28cef2bf5e5881e3bac488d2ee634e"
+    },
+    {
+      "id": "G16",
+      "title": "AWS D1.1/D1.1M:2025-AMD1 official preview",
+      "url": "https://pubs.aws.org/Download_PDFS/D1.1-D1.1M-2025-AMD1_PV.pdf",
+      "version": "2025版；2026-01-12 Amendment；2026-02第二次印刷",
+      "locator": "封面/Abstract；目录Clause5 prequalification和Clause6 qualification；公开p1 Scope",
+      "access": "官方38页预览打开；未取得全书",
+      "scope": "常用碳钢/低合金结构焊接候选体系",
+      "supported_claim": "存在WPS预评定和试验资格的不同路径，合同引用时遵循其条件",
+      "project_limit": "仅预览不能证明具体接头满足预评定；钢材和厚度未知不决定D1.1或薄板D1.3，不购买/采纳标准",
+      "q_ids": [
+        "Q01",
+        "Q02"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    },
+    {
+      "id": "G17",
+      "title": "Buildings Department ALUMIC Letter of In-principle Acceptance MiC21/2023",
+      "url": "https://www.bd.gov.hk/doc/en/resources/codes-and-references/mic/MIC0212023_IPA.pdf",
+      "version": "2023-12-21；函载到期2028-12-21；不据此宣称当前全部条件持续满足",
+      "locator": "p1–2函；AppendixI p3，II pp4–5，III p6，IV p7",
+      "access": "官方7页扫描PDF直接重新取得；7页逐页视觉阅读",
+      "scope": "Aluhouse ALUMIC特定体系、被接纳图样及指定工厂",
+      "supported_claim": "官方条件性体系接纳，含钢框架制造工厂；替代设计/材料/方法须重新证明；不能替代具体工程审批",
+      "project_limit": "并非SR-W1/W2；未提供两模式WPS/WPQR、机器人程序、停点或检验原件；ISO9001不等于焊接资格",
+      "q_ids": [
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q04",
+        "Q05",
+        "Q06"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false,
+      "retrieved_sha256": "aebfcfe01015826597ec65ff76681d5624262b099f97856a823c0a649e7dd7e6"
+    },
+    {
+      "id": "G18",
+      "title": "AluHouse Smart Manufacturing",
+      "url": "https://www.aluhouse.com/en/mic-smart-production.html",
+      "version": "网页无明确发布日期；核查2026-10-08；页脚年份非发布年",
+      "locator": "Advanced Manufacturing Equipment / Steel MiC Line段",
+      "access": "制造方原网页正文打开",
+      "scope": "AluHouse现有制造设施自述",
+      "supported_claim": "制造方自述MiC机器人焊接线、检测与物流能力，与B11工程方向交叉支持",
+      "project_limit": "未公开本项目资格附件或同接头H/HR验收；不外推节拍、实验质量或认证范围",
+      "q_ids": [
+        "Q03",
+        "Q05"
+      ],
+      "checked_on": "2026-10-08",
+      "project_qualification": false
+    }
+  ],
+  "requirements": [
+    {
+      "id": "Q01",
+      "requirement": "SR-W1/W2结构/组件版本、接头族和焊缝表、钢材/板厚、焊接位置与可达包络",
+      "source_ids": [
+        "B01",
+        "B03",
+        "G01",
+        "G02",
+        "G03",
+        "G15",
+        "G17"
+      ],
+      "project_correspondence": "selected_steel.md B-ST明确钢号/截面/板厚/节点U；S18-SIM-A1仅抽象接头集合，未指定工业接头",
+      "evidence": "通用及其他对象要求已定位；32mm钢柱试样、ALUMIC被接纳图样不能与当前未知接头建立范围包含关系",
+      "gap": "本项目构件/接头/焊缝版本清单、材料证明和范围匹配表",
+      "closure_evidence": "具备实际目标接头定义，逐焊缝映射到适用评定和两模式可达/姿态范围，记录排除项",
+      "suggested_provider": "产品设计/制造技术责任角色；尚未委派或承诺提供",
+      "status": "OPEN",
+      "industrial_qualification": "NOT_ESTABLISHED",
+      "evidence_level": "REQUIREMENTS_LOCATED_PROJECT_APPLICABILITY_UNPROVEN"
+    },
+    {
+      "id": "Q02",
+      "requirement": "H与HR-seq各自适用WPS、WPQR/PQR或被应用标准允许的替代资格路径、版本和限制",
+      "source_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "B11",
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G11",
+        "G15",
+        "G16",
+        "G17"
+      ],
+      "project_correspondence": "研究过程定义ID只是模型假设；无实际焊接方法代码、WPS或评定覆盖记录",
+      "evidence": "可用既有适用评定、被准许SWPS或预评定，不能要求所有产品一律重做；现有资料未建立采用条件",
+      "gap": "适用标准/合同体系及H/HR过程参数、正式WPS、评定/采用组织条件、范围/有效性核对",
+      "closure_evidence": "在选定且适用的标准体系内逐项证明两种执行路径被合法覆盖；不强求两份独立WPQR但不得默认共享",
+      "suggested_provider": "制造方焊接技术/协调和检验责任角色；尚未委派",
+      "status": "OPEN",
+      "industrial_qualification": "NOT_ESTABLISHED",
+      "evidence_level": "REQUIREMENTS_LOCATED_PROJECT_APPLICABILITY_UNPROVEN"
+    },
+    {
+      "id": "Q03",
+      "requirement": "实际机器人/控制器/电源/焊枪/传感器与程序版本、夹具/定位器及变化失效规则",
+      "source_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "B11",
+        "G07",
+        "G13",
+        "G15",
+        "G17",
+        "G18"
+      ],
+      "project_correspondence": "R1/FIX-J2是固定模型资源，未选工业型号；符号焊接/共用落点等限制保留",
+      "evidence": "原厂/工程资料支持程序、视觉与夹具关联，但不同单元不能靠设备相似继承",
+      "gap": "实际设备清单、程序和工艺参数版本、工装图/定位精度、可达/碰撞和变更验证",
+      "closure_evidence": "相同目标接头在H/HR夹持和焊接设置下的已审阅记录，程序/夹具/工艺变化后的重验范围明确",
+      "suggested_provider": "系统集成/机器人编程/工装技术责任角色；尚未委派",
+      "status": "OPEN",
+      "industrial_qualification": "NOT_ESTABLISHED",
+      "evidence_level": "REQUIREMENTS_LOCATED_PROJECT_APPLICABILITY_UNPROVEN"
+    },
+    {
+      "id": "Q04",
+      "requirement": "具名人员实际职责及资格、装卸/调参边界、隔离联锁、安全确认和监督能否释放",
+      "source_ids": [
+        "B01",
+        "B11",
+        "G05",
+        "G06",
+        "G07",
+        "G12",
+        "G13",
+        "G14",
+        "G15",
+        "G17"
+      ],
+      "project_correspondence": "W1/W2/OP1是模型资格标签；HR机器人段无人是假设A04，非工业人员释放记录",
+      "evidence": "人工焊工与自动焊操作/调试资格不同；装卸人员是否属于14732取决于实际任务；焊接协调非持续机器人监督",
+      "gap": "职责分解、资格/连续性记录、J2风险评估与联锁/防弧光等措施验证、运行/恢复/监督责任",
+      "closure_evidence": "任务级确定每阶段职责、占用/可释放条件和安全方案，由实际适用记录支持；维护LOTO与正常生产防护分开",
+      "suggested_provider": "制造/集成/人员资格及安全技术责任角色；尚未委派",
+      "status": "OPEN",
+      "industrial_qualification": "NOT_ESTABLISHED",
+      "evidence_level": "REQUIREMENTS_LOCATED_PROJECT_APPLICABILITY_UNPROVEN"
+    },
+    {
+      "id": "Q05",
+      "requirement": "同组件/焊缝/图样/质量准则及检验计划、真实结果、共同验收状态和失效传播",
+      "source_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "B11",
+        "G08",
+        "G09",
+        "G10",
+        "G11",
+        "G15",
+        "G17",
+        "G18"
+      ],
+      "project_correspondence": "两模式模型工作完成事实相同；质量外生合成；Q-STR试拼替代仍U",
+      "evidence": "存在共同质量等级/检验路径，不等于有合格结果；B03是两种机器人REGARC工艺，非H/HR共同输出实证",
+      "gap": "确定的接受准则与检验方法/范围/等待条件、H/HR实际试件或产品追溯结果、框架精度/试拼记录",
+      "closure_evidence": "两模式相同目标输出按同一适用标准取得可查结果并由审阅认定共同输出；不能将NDT级别直接当5817质量等级",
+      "suggested_provider": "质量/焊接检验/适用检测责任角色；尚未委派",
+      "status": "OPEN",
+      "industrial_qualification": "NOT_ESTABLISHED",
+      "evidence_level": "REQUIREMENTS_LOCATED_PROJECT_APPLICABILITY_UNPROVEN"
+    },
+    {
+      "id": "Q06",
+      "requirement": "合法停点与焊接分段、班组交接、异常停弧/重启、准备保持及返修/复验",
+      "source_ids": [
+        "B03",
+        "G03",
+        "G07",
+        "G13",
+        "G14",
+        "G15"
+      ],
+      "project_correspondence": "H U1–U6/HR U1–U3及0.5h、1h、双人0.1h交接/0.1h恢复为获批模型单元；结构返修配方未定义",
+      "evidence": "已找到批准返修/复验与隔离换班的原则；没有资料把时间单元认定为本焊缝安全工艺停点",
+      "gap": "焊缝/焊道终点定义、热过程/层间温度与检查条件、中断/停弧恢复和批准返修方法",
+      "closure_evidence": "把具体焊段与许可停点逐项绑定，异常记录/重启条件/换班与检验重新放行可追溯；不可自动H重焊",
+      "suggested_provider": "焊接工艺/集成/质量责任角色；尚未委派",
+      "status": "OPEN",
+      "industrial_qualification": "NOT_ESTABLISHED",
+      "evidence_level": "REQUIREMENTS_LOCATED_PROJECT_APPLICABILITY_UNPROVEN"
+    }
+  ],
+  "qualification_logic": "A source describes requirements or another product is not proof that this project meets them. Family qualification/adoption is possible only after documented scope match.",
+  "source_limits": [
+    "ISO pages are public scope/version abstracts, not paid full standards",
+    "AWS official PDF is a 38-page preview, not the complete code",
+    "BCA historical guide is reference material, not 2026 compliance certification",
+    "ALUMIC IPA is a conditional external-system record, not this project welding qualification",
+    "Search bounded to public indexed authoritative/first-party material; no assertion that all undisclosed records are absent"
+  ],
+  "search_families": [
+    {
+      "topic": "original_sources",
+      "coverage": "B01/B02/B03/B11 direct reopening and BCA PDF reacquisition"
+    },
+    {
+      "topic": "qualification",
+      "coverage": "ISO15607/15609/15614/15612 and AWS official qualification/prequalification preview"
+    },
+    {
+      "topic": "people_and_safety",
+      "coverage": "ISO9606/14732/14731/10218 and OSHA tasks/isolation/restart"
+    },
+    {
+      "topic": "inspection_and_repair",
+      "coverage": "ISO5817/17635/17637/3834; Hong Kong steel code14"
+    },
+    {
+      "topic": "target_records",
+      "coverage": "SR-W1 and vendor WPS searches; AluHouse official manufacture/ALUMIC IPA and appendices"
+    },
+    {
+      "topic": "regional_candidates",
+      "coverage": "BCA/Hong Kong; GB50661/50205 official-domain searches did not yield usable publisher text, no normative claim made"
+    }
+  ],
+  "access_failures": [
+    {
+      "source": "B01",
+      "issue": "web PDF reader internal error for old and two BCA URLs",
+      "resolved": "direct HTTPS reacquisition of original official asset; SHA matches prior original"
+    },
+    {
+      "source": "BCA supervision guide",
+      "issue": "search-indexed URL returned HTTP404; not used to assert requirements"
+    },
+    {
+      "source": "BD common conditions index",
+      "issue": "web internal error; alternative code/IPA read, not claim this index was reviewed"
+    },
+    {
+      "source": "B03 web screenshot",
+      "issue": "cache miss",
+      "resolved": "new local PDF rendered and inspected"
+    }
+  ],
+  "primary_pdf_retrievals": [
+    {
+      "id": "B01",
+      "url": "https://isomer-user-content.by.gov.sg/338/b8a8e7e3-ff40-496c-8246-1a582efb88ca/ppvc_guidebook.pdf",
+      "final_url": "https://isomer-user-content.by.gov.sg/338/b8a8e7e3-ff40-496c-8246-1a582efb88ca/ppvc_guidebook.pdf",
+      "mime": "application/pdf",
+      "bytes": 49148660,
+      "sha256": "141a620071ac0c0c11618c6520a73d7e7d7d57a876f9b8d47ce1359630d25fe2",
+      "pdf": true
+    },
+    {
+      "id": "B03",
+      "url": "https://www.kobelco.co.jp/english/r-d/technology-review/pdf/41_023-029.pdf",
+      "final_url": "https://www.kobelco.co.jp/english/r-d/technology-review/pdf/41_023-029.pdf",
+      "mime": "application/pdf",
+      "bytes": 1344646,
+      "sha256": "e2dc7fd429853045f420d90386d6b98c127a8f44b8d7e442ad8cf6097fb11070",
+      "pdf": true
+    },
+    {
+      "id": "HK_STEEL",
+      "url": "https://www.bd.gov.hk/doc/en/resources/codes-and-references/code-and-design-manuals/SUOS2011.pdf",
+      "final_url": "https://www.bd.gov.hk/doc/en/resources/codes-and-references/code-and-design-manuals/SUOS2011.pdf",
+      "mime": "application/pdf",
+      "bytes": 11461914,
+      "sha256": "67e21506b7ee319cae22103a33c1fdc7952c13560920251c3627e57cb0b9507d",
+      "pdf": true
+    },
+    {
+      "id": "BCA_SUPERVISION",
+      "url": "https://www1.bca.gov.sg/docs/default-source/vica-link/rev1-1-guide-book-for-ssp---final.pdf?sfvrsn=f5eb7c1a_2",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "ALUMIC_IPA",
+      "url": "https://www.bd.gov.hk/doc/en/resources/codes-and-references/mic/MIC0212023_IPA.pdf",
+      "bytes": 2410074,
+      "sha256": "aebfcfe01015826597ec65ff76681d5624262b099f97856a823c0a649e7dd7e6",
+      "pdf": true
+    },
+    {
+      "id": "HK_SECTION14",
+      "url": "https://www.bd.gov.hk/doc/en/resources/codes-and-references/code-and-design-manuals/suos2011/SUOS2011_section_14.pdf",
+      "bytes": 379701,
+      "sha256": "ddf855da8c3c4e38cb01c6b8d5a2fb4eaf28cef2bf5e5881e3bac488d2ee634e",
+      "pdf": true
+    }
+  ],
+  "implementation_repair_authorized": false,
+  "git_write_authorized": false,
+  "later_steps_started": false,
+  "proposed_remote_operations": [],
+  "followup_recheck_status": "COMPLETED_FINDINGS_REMAIN_OPEN",
+  "followup_recheck_ref": "S18_g2_followup_recheck_r1.json"
+}

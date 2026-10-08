@@ -5287,3 +5287,90 @@ PR055 补录 S08 r2 实际批准；PR056 单独授权 S09 本地实施。PR057 �
   "limit": "ORIGINAL87APPROVAL_RETAINED_NEW88ATTRIBUTE_EXCEPTION_PENDING_NO_GIT_EXECUTION_OR_LATER_STEP_START"
 }
 ```
+
+## PR148：补录88文件修订发布实际批准
+
+```json
+{
+  "id": "PR148",
+  "date": "2026-10-08",
+  "stage": "S18_PUBLICATION_APPROVAL_BACKFILL",
+  "human_command": {
+    "operation": "APPROVE_EXACT_88_FILE_REVISION_AND_FOUR_JSON_BYTE_PRESERVING_ATTRIBUTE_EXCEPTIONS"
+  },
+  "resolution": "S18_SIM_PUBLISH_APPROVAL_002_EXECUTED_R1_PUSHED_CI_TIMEOUT",
+  "packet_id": "S18-20261008-simulation-publication-r2",
+  "packet_sha256": "7a4ea7bf295b3dfa35055261ecd28a85b0890396a2e323c5430e382abf1dbe5e",
+  "evidence_ref": "docs/validation/S18_post_release_audit_r1.json",
+  "limit": "BACKFILL_ACTUAL_PRIOR_APPROVAL_NO_NEW_AUTHORIZATION"
+}
+```
+
+## PR149：补录CI预算单文件修订及r2发布实际批准
+
+```json
+{
+  "id": "PR149",
+  "date": "2026-10-08",
+  "stage": "S18_CI_BUDGET_APPROVAL_BACKFILL",
+  "human_command": {
+    "operation": "APPROVE_EXACT_SINGLE_FILE_UBUNTU_TIMEOUT_15_TO_25_AND_R2_PUBLICATION"
+  },
+  "resolution": "S18_SIM_CI_BUDGET_APPROVAL_001_EXECUTED_R2_PUBLISHED_CI_SUCCESS",
+  "packet_id": "S18-20261008-ci-budget-r1",
+  "packet_sha256": "6417e28bbdf1ec1c11addb1b6b2df4c9147f720f354359ca94c851467c63b0a6",
+  "evidence_ref": "docs/validation/S18_post_release_audit_r1.json",
+  "limit": "BACKFILL_ACTUAL_PRIOR_APPROVAL_WINDOWS_STAYS25_NO_RUNTIME_CHANGE"
+}
+```
+
+## PR150：全量审阅S18-1至S18-3完成性与逻辑
+
+```json
+{
+  "id": "PR150",
+  "date": "2026-10-08",
+  "stage": "S18_FULL_POST_RELEASE_REVIEW",
+  "human_command": {
+    "operation": "REVIEW_ALL_S18_1_THROUGH_S18_3_FOR_COMPLETENESS_AND_LOGIC"
+  },
+  "resolution": "POST_RELEASE_REVIEW_FINDINGS_OPEN_F1_F2_P2",
+  "human_contribution": [
+    "REQUESTED_FULL_COMPLETENESS_AND_LOGIC_REVIEW"
+  ],
+  "assistant_support": [
+    "READ_ALL_THREE_THREAD_HISTORIES_AND_SCOPE_DECISIONS",
+    "REVIEWED_ALL_S18_CHANGED_PATHS_BY_RESPONSIBILITY",
+    "VERIFIED_PUBLICATION_AND_CAPTURED_EVIDENCE",
+    "RERAN_100_S18_TESTS_AND_GENERATOR_CHECKS",
+    "REPRODUCED_TWO_LOGIC_FINDINGS"
+  ],
+  "evidence_ref": "docs/validation/S18_post_release_audit_r1.md",
+  "limit": "REVIEW_AND_NECESSARY_GOVERNANCE_ONLY_NO_SOURCE_FIX_NEW_PUBLICATION_OR_LATER_STEP_START"
+}
+```
+
+## PR151：批准S18-4工业G2公开证据工作并保留修复清单
+
+```json
+{
+  "id": "PR151",
+  "date": "2026-10-08",
+  "stage": "S18_4_INDUSTRIAL_G2_PUBLIC_EVIDENCE_HANDOFF",
+  "human_command": {
+    "operation": "CREATE_S18_4_AND_START_INDUSTRIAL_G2_USING_EXISTING_INTERNET_SOURCES",
+    "working_directory": "EXISTING_MAIN_NO_NEW_BRANCH_OR_WORKTREE",
+    "model_and_reasoning": "PRESERVE_CURRENT_SELECTIONS",
+    "repair_order": "PRESERVE_FINDINGS_RECHECK_AFTER_G2_THEN_REPAIR_ONLY_ON_FURTHER_USER_INSTRUCTION"
+  },
+  "resolution": "INDUSTRIAL_G2_EVIDENCE_WORK_AUTHORIZED",
+  "evidence_ref": "docs/steps/S18_4_handoff.md",
+  "limit": "NO_PREDECLARED_QUALIFICATION_NO_F1_F2_REPAIR_NO_NEW_GIT_PUBLICATION_OR_LATER_STEP_START"
+}
+```
+
+## PR152：确认调度仿真研究并授权S18两项问题一致修复
+
+```json
+{"id":"PR152","date":"2026-10-08","stage":"S18_SIMULATION_LIMITED_REPAIR","human_command":{"research_scope":"CONTINUE_SCHEDULING_SIMULATION_WITHOUT_INDUSTRIAL_PRIMARY_RECORDS","operation":"REPAIR_F1_F2_CONSISTENTLY_AND_PREPARE_EXACT_UPLOAD_REVIEW"},"resolution":"LOCAL_REPAIR_AUTHORIZED_PUBLICATION_PENDING","limit":"EXISTING_MAIN_NO_BRANCH_WORKTREE_OR_SUBAGENT; INDUSTRIAL_G2_OPEN; NO_LATER_STEP_START; EXACT_UPLOAD_REQUIRES_USER_APPROVAL"}
+```
