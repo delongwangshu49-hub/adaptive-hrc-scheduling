@@ -1,0 +1,2329 @@
+{
+  "date": "2026-10-08",
+  "scope_implementation_complete": true,
+  "packet_id": "S18-20261008-simulation-r1",
+  "implementation_status": "SIMULATION_IMPLEMENTATION_VERIFIED_WITH_LIMITS",
+  "acceptance": "ACCEPTANCE_PENDING",
+  "publication_approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "decision_id": "S18-SIM-APPROVAL-001",
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "industrial_g2": "OPEN",
+  "schema_version": "S18-PROD-2.0",
+  "assumption_set": "S18-SIM-A1",
+  "exits": {
+    "V01": "PASS_IN_DECLARED_SIMULATION_SCOPE",
+    "V02": "PASS_IN_DECLARED_SIMULATION_SCOPE",
+    "V03": "PASS_IN_DECLARED_SIMULATION_SCOPE",
+    "V04": "PASS_IN_DECLARED_SIMULATION_SCOPE",
+    "V05": "PASS_IN_DECLARED_SIMULATION_SCOPE",
+    "V06": "PASS_IN_DECLARED_SIMULATION_SCOPE",
+    "V07": "PASS_IN_DECLARED_SIMULATION_SCOPE",
+    "V08": "PASS_IN_DECLARED_SIMULATION_SCOPE"
+  },
+  "engineering": {
+    "source_tests": 759,
+    "wheel_tests": 759,
+    "new_unique_tests": 25,
+    "log_sha256": "e8a8e87e6e5afde5da55944d818e72577f6110b271027098878aec72fe12aa29",
+    "input_sha256": {
+      "schemas/Configuration.schema.json": "56336d71bced51ad27e9a6d05b485ee558269139c2191112c27c50b4e588b3ba",
+      "schemas/DispatchCommand.schema.json": "e3670706c95581eeff99eb01a98004ea704ec05ea81f2a218e8bbc930653cf88",
+      "schemas/ExecutionEvent.schema.json": "c1c1fb10728ed8437ba3140752cd325de7d2f0bffe9e9baed1816e164454a43e",
+      "schemas/ExecutionSnapshot.schema.json": "c04434d01e6f2f1d762db82558f2de752897149c2f66aec402cf9aca7ad7b51b",
+      "schemas/HiddenScenario.schema.json": "853e0ca7e8b81821c731534bb50d1af355b46416b787a532de3a125e2bf66e6b",
+      "schemas/OfflineEvaluation.schema.json": "ad4dd4f3d41e63a7eb0037b9512759fda51a5b9cd2d8d1986395577573a86144",
+      "schemas/Plan.schema.json": "fbb3ec20694d1bff7e2b351a41cde46d4a98826f17b4da0980aea8a0eeba4231",
+      "schemas/PlanningInput.schema.json": "3e4ae4ec8d9ab85870c3d055b92fcf4f42e632f8338991cf5d7763e436ba5163",
+      "schemas/PlanningObservation.schema.json": "bf0125fd3ee13726728aa2da1d03da82fee39f757c4016c2cfece82ba5c9f44b",
+      "schemas/RunManifest.schema.json": "9a9a524b5875e39f8ea2f3895abd0dd1a04678c8f218d60f7df92c3cfde97372",
+      "schemas/building/Configuration.schema.json": "604e64c253dd9f2911def715ab66fa8156c42eaa8e4e80c199ecfde097ded349",
+      "schemas/building/DispatchCommand.schema.json": "838606225cc729228d4e38c1b8ecc672cdbc7b508a01bcd654d32136a7b7ebff",
+      "schemas/building/ExecutionEvent.schema.json": "273a754f40a074836a5bea4ee11c5edeca2790a07bb197307cf13a30ef0961e8",
+      "schemas/building/ExecutionSnapshot.schema.json": "680faaa20e1f390b7b57f50bae913c14cdc77199334059bf69e6e0fea2f84462",
+      "schemas/building/HiddenScenario.schema.json": "9080c4b5446dd26c2ac0735ca13176b5f7cac4fafcc3d8e73db5835467c0ef27",
+      "schemas/building/OfflineEvaluation.schema.json": "8b152aaf980e23e25dfe3a772226fa33f6a5b1f8f357b0f451af9c158ea25e1a",
+      "schemas/building/Plan.schema.json": "c3882280f4038f5485226aea9070703133ba9d002b952a6902c1fa92d106757c",
+      "schemas/building/PlanningInput.schema.json": "6d3977c0f860169cb0c907cb4a3dcbd4b040cf8360c4edd26dcf478837ffcebb",
+      "schemas/building/PlanningObservation.schema.json": "3789401466e74bd2d1263647afc2382f68182a2cb640db0384fc74f5c9718380",
+      "schemas/building/RunManifest.schema.json": "516b36719cd719417bcbc44a5a9a1275ab3908f08a97de94343f143279c0c06b",
+      "schemas/logistics/Configuration.schema.json": "6e238866ce401e7113878ad1096f85be1e5504eb1be1ce422ca6475ab4dafc62",
+      "schemas/logistics/DispatchCommand.schema.json": "94f7b25f8975567e4832c87084011e773327c38854bd68408dc9b39829fe2937",
+      "schemas/logistics/ExecutionEvent.schema.json": "44b0b98641e8dac10f124baaa4fd2c406b99a731a8e8e03a1362dab2015056b9",
+      "schemas/logistics/ExecutionSnapshot.schema.json": "f5b425bf22b610ee89d04dee6cb0ba787d73f77bce18fb5e62faa4ceba5c5cc2",
+      "schemas/logistics/HiddenScenario.schema.json": "4124cbd20adf67e217798814428b98293c0813b54ce66cbe1ac78ba4e43ea312",
+      "schemas/logistics/OfflineEvaluation.schema.json": "f479d610a6baf73a81f2851fddf1b7ac360a5ef64d54d55b2b1ba8ab39c90a0a",
+      "schemas/logistics/Plan.schema.json": "eddfc234f3bf86a25a5e647daedb9964b0dc53062e95734e8a655a21513cbd26",
+      "schemas/logistics/PlanningInput.schema.json": "f364a372cc5c41dbe07831b65872dc765d8277dea006773aad994b42be808d35",
+      "schemas/logistics/PlanningObservation.schema.json": "ee3f03d6012e39a6086f22556d12462ff042150148dea7a7ffc0f54b74280e72",
+      "schemas/logistics/RunManifest.schema.json": "51dec5b1e8ecab515f5c7628edfdff8173502760a4fac707d8a48ab0a65f0cca",
+      "schemas/production/Configuration.schema.json": "1664d1c2c7571b3b48f8b8b194c53836e695dfb0ef5da1e3bb0f262964769551",
+      "schemas/production/DispatchCommand.schema.json": "d7e9d791adc0a9a2e37c4767efdf2046c7af65ac960ae93414bfbe650446d3ba",
+      "schemas/production/ExecutionEvent.schema.json": "b7493b9cc6d66a4db7ace20f894a924c2ec6c2eff70367ea4469a173ecc49ab8",
+      "schemas/production/ExecutionSnapshot.schema.json": "3dae6fc70a226f23338057ed6e3faae9b73f48e4dc4e9f7c8e0d749ce230be45",
+      "schemas/production/HiddenScenario.schema.json": "235ede106f48d115994d1d395657aa5216a6f4a971d277f9b80fd13d7a2ee05c",
+      "schemas/production/OfflineEvaluation.schema.json": "131c81b33521246e0f4269695e146a3b2ff739e0209a882e278441678a802af0",
+      "schemas/production/Plan.schema.json": "853b016d25ab7de29630b88935ef31fcdb06c9779570bc81b667b225c60465c3",
+      "schemas/production/PlanningInput.schema.json": "daae1e74c4171d4666e912c33c03ed0c6d6fb8e8aecd096982729fdef3c9cedb",
+      "schemas/production/PlanningObservation.schema.json": "d3e21000a4c00317cb1a169cfea1ee56ccdd8d076329d8aa411c7aa70af21758",
+      "schemas/production/RunManifest.schema.json": "12c9d39614fea2d5c98d795b47503d1110d5f2c13bf935e4e8e8c17f9145c368",
+      "schemas/production_simulation/Configuration.schema.json": "df430cc385f2ce7fe089e738baf99df7a7dfa8a0044963e6d693dfe2c4d002fe",
+      "schemas/production_simulation/DispatchCommand.schema.json": "5046569e40ecc17eff7f13721f0ed9087141e56946eeaf8f72ebabeeb6b54e22",
+      "schemas/production_simulation/ExecutionEvent.schema.json": "80de5b7f69286a5760979804cd0a89060a47373c193d00b17b69d6d3724aa254",
+      "schemas/production_simulation/ExecutionSnapshot.schema.json": "c20d3b25617497d9fe2108c51a87e9191f62d4a63c98b2e7725cbe8de8432b06",
+      "schemas/production_simulation/HiddenScenario.schema.json": "ad5c2ffd9fab6f2deb7190cde5eec3c78322c77fab1347a27c4df13e3ca28555",
+      "schemas/production_simulation/OfflineEvaluation.schema.json": "ff24a9edb1a7a55a593e593297a68b40c562c242057c5bf4fbf838b9e7d2fa77",
+      "schemas/production_simulation/Plan.schema.json": "f4a477985442cd198c9c6c23fe27c63fb3914f2977b763b4222b6a8c6817a1d0",
+      "schemas/production_simulation/PlanningInput.schema.json": "1cfe8c1cecc328531421fd29f296a06fea119a147d4ba7edd005965e17fa8d49",
+      "schemas/production_simulation/PlanningObservation.schema.json": "1723e9c51810bf697ba2d41fca66e185d42e3a940b62660e075f411b4d2d50ac",
+      "schemas/production_simulation/RunManifest.schema.json": "6b3b440024f0f303c6228804f0092951b6dfdea11beadcbe2eb3cbc5d8fd481e",
+      "scripts/build_building_contracts.py": "1193f06d564d8c6c985e184032c1d6929dcc74340635bcafce4e8f8d77559885",
+      "scripts/build_building_scene.py": "97d2ed092fe02eab3e257c6e663bdd4387b8542bd00844ab52297dadfd88148b",
+      "scripts/build_contract_examples.py": "58f5965c2f59f4f0896c39b2a090a8587635c366585fba32194be20480733ffe",
+      "scripts/build_logistics_contracts.py": "25c5b35d815f32620fb9c9a495ca3a3affe9c5da88ea45a11bb1ae27cf51fa3f",
+      "scripts/build_production_contracts.py": "43fc1fe165c5533484290d4914850c51e3a286d99cf968878ae6ac75482a57aa",
+      "scripts/build_production_motion_table.py": "f5fc22b5e8ff46a4313e3c4862ec3231da2b12649523cabe8f4cc7c492eaa970",
+      "scripts/build_production_rework.py": "b2ef94fcc749f478795c8c4b11d5cfa27433fbe18e0d863680992556dd1de03e",
+      "scripts/build_simulation_production.py": "1dc9391cfbc9d25fcdb4db9d9dc04f1aa89301e5943e87dd10cd109728623663",
+      "scripts/build_target_coverage.py": "75fdfde16639373c0e92a48b60de90ac170e76a5a55c4dbb876fecf5f6919196",
+      "scripts/check.py": "810affd825dd73bbe8934501e3c90600606f72d3094da01004067332a24a523f",
+      "scripts/compare_production_chain.py": "07f12d4c07ed8e2516176cdfcce8adab7e12fb6eb6523d52c782dece4302b21f",
+      "scripts/compare_production_supports.py": "278ee46a29e92fb5a2185aa4ba2233e6528360b744b2f375dc8a4d46355d5648",
+      "scripts/isaac_smoke.py": "96cc743ae53fad80a60d97e9e5eb39a212721e9fcb5a2be57f51fd49231ac730",
+      "scripts/probe_production_isaac.py": "250065b7d94d380037f65ad29d231530a6488fc45c009aa979e43ff7db95a7cb",
+      "scripts/run_building_checker.py": "c8f9cb3d4c15be5e1e20c02e91607c3d51823b9fafd1794ec7665cc6651f69b1",
+      "scripts/run_building_witness.py": "694c7fb4134914674b1a2a865749d4a4b3348cb4fbcd6809d536d0dcc8a09511",
+      "scripts/run_cpsat_reference.py": "af22efce7291302200a4a81f63f37d910c434fb09768b7405e10c0f718b31ba5",
+      "scripts/run_execution_witness.py": "56f3357bdad54d78912e8cda57eb2fff59adf14b5ad16c93cd4278c41c7cf8ce",
+      "scripts/run_joint_adaptive.py": "af253a46fdf21d9fe790e3fc31de79eb1dd029e07f43de41d194bacadf87fd70",
+      "scripts/run_joint_continuation.py": "3e3e60efdfe5a15a336cbbd5cb64a2b7e216ad6520937a35c0871767ab077919",
+      "scripts/run_joint_mechanisms.py": "6e28686e995fe17a4d02ee75ed91a1fb2ea483447ca0f4ac8733038b9f72ea5a",
+      "scripts/run_joint_rolling.py": "58e825531d757e59dac481e8b7897efd10b3283e6fb9a0950475ef3f90c1d7dc",
+      "scripts/run_light_loop.py": "4a937995f74bdfa95d75db409c8260c86b6a375a4512a316cb694423f8e4221e",
+      "scripts/run_lns_production.py": "32d971a524931a0370024ec20b558d95f16423102b007f22bebf8162a25da7f6",
+      "scripts/run_lns_reference.py": "40024010bdcceb9202075f2bcf56ff4495eed1ce0fd5a2a55a60c8cef959559a",
+      "scripts/run_lns_repair.py": "e5ad1bb83935edbc70f991d4c7609dfaf336f1fa9703b154e9ffaf7986cf1348",
+      "scripts/run_rule_planners.py": "62628e54901f4b9fc5475588026ab1cedd71d7f7fa0267142b40cf68b9b5833d",
+      "scripts/run_simulation_controls.py": "649d165f8158f98c0c3f0422c69b2f21566af6564a35d3cdd6e648077bb760f4",
+      "scripts/verify_building_target.py": "c86d8e2127f3a5f64acd6cbe60534ce962e30a5439941623b4144cb53c2e1f48",
+      "scripts/verify_logistics_isaac.py": "6a360b2435ef0837856c3f7f65d12f3473c3c503670b0ab38e092818a6158711",
+      "scripts/verify_production_chain.py": "ae60d7ff09242c804adc142b958aacdd214f4b0ed64d56dcce9221b8d9371c26",
+      "scripts/verify_production_supports.py": "b386920e86080f21747ad2f66c35b727ff935bcf65a8bcca3c9c61f6d824a5a5",
+      "scripts/view_building_scene.py": "250f87bba5dbe3d1dc8143b59e8677c463153631f235bbdba0f8d2614b6d1e28",
+      "scripts/view_legacy_building_scene.py": "894238a0cf7dfa2c04d333c3dc186e3a4c6922030a84c070380ef445ba5a07a3",
+      "sim/__init__.py": "74cf015db4285108c06c6c6b6edcf85e05a8802186e9af855aaa3c82a1a809f7",
+      "sim/isaac/__init__.py": "2fc8fe53994e6a1ba84be15c20b0b75f7d384b2e38ce1a9ac7a74f54dae953ea",
+      "sim/isaac/scene/README.md": "9f65bfbdc3a1ebd48f64398f4031d4556b0951cace371c468613b99325a4f11c",
+      "sim/isaac/scene/__init__.py": "e3a240987d86f87e019278e05cb69b723638ece144f7450865d89a1937fc2094",
+      "sim/isaac/scene/inspection.py": "7f795fd6b68aa413def3416d852cc806b0876f1a327908cbaa400bea7697d886",
+      "sim/isaac/scene/layout.py": "1e5543a4f5863532bc620f1d88388b461656870fb2dd2a7f544d5d89812dc42c",
+      "sim/isaac/scene/logistics_port.py": "b4a206aa48d59c381ecb9935f53c4819af22a8766deaa404a4daa6c9fe106ceb",
+      "sim/isaac/scene/model.py": "9a3304942dc2d8ddad721b65949de9ca252995224b34670d1580a29f9400d36c",
+      "sim/isaac/scene/production_port.py": "85462608815305886fe720d6efd4c0a97df7624ff5e625618cd1a0d0a1ec8b00",
+      "sim/isaac/scene/production_receiver.py": "b0267772452bbcb10ab1986414c22bd6cc069bc45aabcc0239b5aa3c92adb376",
+      "sim/isaac/scene/production_support_port.py": "319aed476969e4df108d36c5f743003c9b83a078200f330a33d98e3f06d098a9",
+      "sim/isaac/scene/revision_checks.py": "c85089588a1de1faa5694e19874f306ea9da2ca9d91708edc345df02ead396f5",
+      "sim/isaac/scene/target_layout.py": "ed0c80b3111362325f38ce97500b1a9f87279cf800fd53967414df4681efb447",
+      "sim/isaac/scene/target_repair_checks.py": "0243f4d71741d585931a8c5a0c7b4cf53fcb99c86d68f8cd4077ebc5651c92b7",
+      "sim/isaac/scene/target_scene.py": "005b79fed8e9596f4136aaf087b650957b2c808eb7b5b4c447f54a601ac044b2",
+      "sim/isaac/scene/target_trials.py": "f13eee7c26ef4059d3464cacafd5384b4b0dd279be86bfb79529760edc6df70e",
+      "sim/isaac/scene/trial_scene.py": "af842a5876091816fce2d525d055f01e0b638dda47384d09b35b5ca715bf0240",
+      "sim/isaac/scene/trials.py": "dfd80b79a59bf0c7df5ed7ad0d87f3b2c2a9798c989dc67b24523361ad586451",
+      "sim/isaac/scene/usd_scene.py": "9e7a84caf010abbf2aea3cea4201325fb329a9a2affe73c43f5337b49cc2dec9",
+      "src/adaptive_hrc_scheduling/__init__.py": "8100015a05e8c14763749abba147da66ac79cc4df8d08043a47f77448dc80ab6",
+      "src/adaptive_hrc_scheduling/__main__.py": "12b25f10edfcc22863d7a2dffe4a2e7db50c944163b5d5aec368992f28f924c3",
+      "src/adaptive_hrc_scheduling/algorithms/__init__.py": "ae7977fe3ce9f096903e1ced799dcf14b1d4b33ebbd57237dcd583b99ee05159",
+      "src/adaptive_hrc_scheduling/algorithms/joint_lns.py": "e9c689786de12f5610f9b4ac9bd524852a0a92728afd6ea2a709f8fbd6206031",
+      "src/adaptive_hrc_scheduling/algorithms/joint_production.py": "507d426fe184132c2710cce8283ad8abb01c04d45b6dc07465cb57c81ac7ee0b",
+      "src/adaptive_hrc_scheduling/algorithms/joint_rolling.py": "2b3517a65afb6d64ae89321734b40e3d1059a9e12a344d2d1b67761ad1a1ea35",
+      "src/adaptive_hrc_scheduling/algorithms/lns.py": "6d95fc25ab4fa4f51ad7d1b179c954e4ffcbdb981a9bf9a19fdb932fc955de6e",
+      "src/adaptive_hrc_scheduling/algorithms/production_lns.py": "e806898a9cd02073af867e4228408305458d3d9e049a14a06de41ec0872402f4",
+      "src/adaptive_hrc_scheduling/algorithms/simulation_joint.py": "575893109c9d450ad66a3d12a697eb19d53ffcce8e36bf932087d55505a99c03",
+      "src/adaptive_hrc_scheduling/algorithms/static_lns.py": "477dfc3dfcabafe626bc8ac977648eead16c760565a6f967c7e3c4487b16bfb5",
+      "src/adaptive_hrc_scheduling/backends/__init__.py": "25b0f4502043695d4324754ccdf3b543c4bc4d856a38b380734301cfd429275a",
+      "src/adaptive_hrc_scheduling/backends/isaac_adapter.py": "ea34d28fc7ea2883e618c47641861bf4123677728894a4647673cd223a48afeb",
+      "src/adaptive_hrc_scheduling/backends/production_isaac_adapter.py": "084d75d811270e69281723e8a60ab91cb2a4e432c11a791856d282128b033f47",
+      "src/adaptive_hrc_scheduling/building_backend.py": "3665a0afa298083db2cfab8f4970848ab34f65fbfc68b15cb366b54dad4543a7",
+      "src/adaptive_hrc_scheduling/building_human.py": "874b62d2b56e473663f20b81d112fe125de491312dcc84dabdc1339bd4f6ca76",
+      "src/adaptive_hrc_scheduling/checker.py": "54c56adea0f041d9e9cb67d4faab090af41c4ffe9442462323481f3cc0527f5e",
+      "src/adaptive_hrc_scheduling/contracts/__init__.py": "0ffdb9a1c688376a4d7a16e84a7f19bbb3a8bb28381654f1bd9e529be58f5b9d",
+      "src/adaptive_hrc_scheduling/contracts/building.py": "4e3f0c43e547fdc9e8eb374dc15bb35004fac649cbab117b19cea9a471c7250c",
+      "src/adaptive_hrc_scheduling/contracts/codec.py": "159f4863830a3731eed3eb1a68ff77ab1e251354f92e2e0ef576355b1b444d6d",
+      "src/adaptive_hrc_scheduling/contracts/logistics.py": "152251db512e5b1f217eaaa7af575aa9a7477bba3ce58ff3ae87d0a63645c28e",
+      "src/adaptive_hrc_scheduling/contracts/messages.py": "b0aa5532a77ad8b654e8490725a0d36e990fc67d8d1e913e856b8a56e7c45690",
+      "src/adaptive_hrc_scheduling/contracts/planning.py": "5c64982d4c5c8a31ae3a26374c1f38c3c6716763cd4fed58e3b11cac4045024f",
+      "src/adaptive_hrc_scheduling/contracts/production.py": "c7497e885cbbd056ec2c78eb6b1c12856b253d6222a877484ef93b889e3133f2",
+      "src/adaptive_hrc_scheduling/contracts/validation.py": "50148f9539e574c7d29419ceeaabb7b23409ff22dc218e5750bfd471689043c5",
+      "src/adaptive_hrc_scheduling/control/__init__.py": "36da3cf84e0f82d633970ca2820ffe10f7cccf6e56a2982ddef36220805a51ff",
+      "src/adaptive_hrc_scheduling/control/joint_adaptive_loop.py": "da45eaf813b2d758b231c964f1c59147c67d3e585dffb410ad5effa51de82471",
+      "src/adaptive_hrc_scheduling/control/joint_rolling_loop.py": "8df44f9bf8c2797722abc28fe8d99d4e6c265455c17671b77dcd1a24e87c6eb5",
+      "src/adaptive_hrc_scheduling/control/ledger.py": "b09a6c96a8dabc927b9808fac79b1219a993ccd5d337fa524419a0cbe1837cbb",
+      "src/adaptive_hrc_scheduling/control/light_loop.py": "b70fd165e7623288c99ad4856a954f8f590684ccb00e0303d60e532c016e4be1",
+      "src/adaptive_hrc_scheduling/control/logistics_ledger.py": "a0b28126b1a34994a2010183ae9cd512fb793ff845190f22d59a38574b6512f4",
+      "src/adaptive_hrc_scheduling/control/logistics_loop.py": "ad1483e81e1cd511a601429ca6e86f7cf9d9977207cb8395c0fbeed6deb671ef",
+      "src/adaptive_hrc_scheduling/control/production_decisions.py": "3cc1e89401fcebd2654687871c040a618535fd737202a77b1daa74b6548d1105",
+      "src/adaptive_hrc_scheduling/control/production_ledger.py": "91fe3c92cedc604166ea23bd3c3dccb675be707ab0996327301d6f8b1e01d377",
+      "src/adaptive_hrc_scheduling/control/production_loop.py": "a89f46ea45b5bb30ee752c17c98b777164c6688b01d04fae729b6fffa84774d1",
+      "src/adaptive_hrc_scheduling/control/simulation_joint_policy.py": "98735ec3a8450bbd86bd6ef21b7c884239264d5b244e25ee2dc570a9df25d8a8",
+      "src/adaptive_hrc_scheduling/domain/__init__.py": "cedbdebb3f07bcd2041d0544851462d6192884516cd9d67cbf9692f591172bfe",
+      "src/adaptive_hrc_scheduling/domain/building.py": "9a16439b1469e5890879ec92a49e4ac04123b53726b3df2fbfabf2f0f47ae04d",
+      "src/adaptive_hrc_scheduling/domain/logistics.py": "e20a0e7d8c1facb0a6d54f7ad1a77159e7afd092d534b47263ff9b0ab8b886d3",
+      "src/adaptive_hrc_scheduling/domain/models.py": "c9efd2eed6c81b7f8ef7c28fc92f3b7a8e9389ac3be39f267a3bd4c85678f1e9",
+      "src/adaptive_hrc_scheduling/domain/phases.py": "40a2ff96ef9514ea08206ace96f4cd40b0a1086e3d906c9f9ab48083eedc3158",
+      "src/adaptive_hrc_scheduling/domain/production.py": "07061325b6d778cbdf1625303c988f3d4dc3f9e254dd1e9f45a723e1821218ab",
+      "src/adaptive_hrc_scheduling/domain/state.py": "5e5b684af2b1c241fbf35fe1659434f144b80a625257ef81401fa9186f6525e4",
+      "src/adaptive_hrc_scheduling/event_backend.py": "284a97b6b02624ca4309a01b71750d794bd3c4d2bc4836049b79f8c6193d0e90",
+      "src/adaptive_hrc_scheduling/events.py": "cd9f4651bca3971129ba36c3a7285c3464d832a907657393ff401cf736727926",
+      "src/adaptive_hrc_scheduling/human_state.py": "fb559ffef42313e4f51d2472382acfb1b130992c0378ee1a570f234f443cc4b2",
+      "src/adaptive_hrc_scheduling/logistics_backend.py": "3b62887007197de4c9359322f0fe1a9a9c54e4f9a43cb0d7f36d585818e40439",
+      "src/adaptive_hrc_scheduling/logistics_checker.py": "ca8e68ff208b076391d8407374eacbd4eeca782174133b67178dd00f36390c8b",
+      "src/adaptive_hrc_scheduling/logistics_geometry.py": "a706867c4bccddef1b4fd21123d647646a24c2f1fd2189532a31f3716717bf1b",
+      "src/adaptive_hrc_scheduling/metrics.py": "27c43106fc7a3296351e8145070d7ad96dbcc480ff10ffcfcce068d18e1175a6",
+      "src/adaptive_hrc_scheduling/observation.py": "ca664e3bd5c9e7b2dd963a07c5c793de324a20437383cb24e1db8394cfbead86",
+      "src/adaptive_hrc_scheduling/planning/__init__.py": "e4e65f4bc4a586427f5c97d2dccbe03ea0ea1a33494ed31a38a47e2dab2c1587",
+      "src/adaptive_hrc_scheduling/planning/decoder.py": "1649bdaeecac309110fe0e5ba72f80ef15410aa6be94deb596693255be91b6b5",
+      "src/adaptive_hrc_scheduling/planning/logistics.py": "df252196539cbc051d09c85e6e615b184a3f4d008bd536363944c2419f970ae0",
+      "src/adaptive_hrc_scheduling/planning/production.py": "a19b7a7de92aa164c1c334e0a3276ee6281b632be6bd253e0d0d0686e9a6df60",
+      "src/adaptive_hrc_scheduling/planning/rules.py": "e1e16789334c2dc7cfec25f53c4328e0f49278cdc137ba6ac6cd3c8abfb52681",
+      "src/adaptive_hrc_scheduling/production_admission.py": "6de7939d1b42250c903e3b67afe0ee6b2438b877bd8723cd065e54127d24b3d4",
+      "src/adaptive_hrc_scheduling/production_audit_geometry.py": "42077e493a21f5b43af5aafcd8aaf4af59e54108e48a6d1db52e63bd4101c130",
+      "src/adaptive_hrc_scheduling/production_backend.py": "cb66b25f488c13e8ea6d4e1488fa57bc5232fecabb644055d18e71fa6d40ac50",
+      "src/adaptive_hrc_scheduling/production_cancel.py": "a5d8778bf5f16ad2e9c5b9e4e851c196f994d14e2b5e1517590c86a651ff6130",
+      "src/adaptive_hrc_scheduling/production_checker.py": "f9a801d2b950d5b83f360d120ed505afbc3ae6b9d97933632cfc8f5d34eff7cf",
+      "src/adaptive_hrc_scheduling/production_external.py": "0cb288ecdf964d924e3e862e0bf327bfc6139bf777476d08038772f472056573",
+      "src/adaptive_hrc_scheduling/production_geometry.py": "f33fa080c847d36c6ee9f74bdc4327f46d96731269407b246e302a168ea87e8a",
+      "src/adaptive_hrc_scheduling/production_handover.py": "4520a9c09603a2ebadec34f48bc77cdf2ea29e185c7f4a864dadd582b57e3f01",
+      "src/adaptive_hrc_scheduling/production_mapping.py": "c8cc78a57f8619aee24a7c80a4d29222f9e12852c4cc5bb5642cea8f47b74f17",
+      "src/adaptive_hrc_scheduling/production_navigation.py": "d161846ca145ab4f70712245afd74278b4bd5c9c54816720e1ef112b5f669f01",
+      "src/adaptive_hrc_scheduling/production_pedestrians.py": "b818621e4cb5b10396cf97496d735cc3db8368a1ae4970290b62223015c92579",
+      "src/adaptive_hrc_scheduling/production_recipe.json": "cc7753f0d43ce0a45a5e521d0b283db337922de86ea81734a2605842ea9909b2",
+      "src/adaptive_hrc_scheduling/production_rework.py": "af2e678e2a35feda0e6de958e0d8ac9710cdb1a98183fb5af4b0a74b95a72070",
+      "src/adaptive_hrc_scheduling/production_supports.py": "21b1ee8ae66d026512b9ca12768b17f818750b0e56d9a56cbe9c33be89a2cb32",
+      "src/adaptive_hrc_scheduling/production_witness.py": "4dcad6c11a4ff13090080abcbbf4baedef2eb00f59ac8c31a8fff86d6945fa37",
+      "src/adaptive_hrc_scheduling/reference/__init__.py": "b346dd23e8ccde2cf325d779459884585cd3b206e3368b40c7efbf3d3619d84e",
+      "src/adaptive_hrc_scheduling/reference/baselines.py": "3dfaaaded053791ef6b1e62370e718f2a5aeab8477c706008a02025caf2b7a03",
+      "src/adaptive_hrc_scheduling/reference/cases.py": "63612d573b9e7631a0509c90ea3403a4491aa7bdb1faa9d82ba56ae6e37eaa99",
+      "src/adaptive_hrc_scheduling/reference/checker.py": "7f1375b94ea8f9c1c1e6b7a736a6bd740d9813c6556bcca89abf5e1dd9de7957",
+      "src/adaptive_hrc_scheduling/reference/cpsat.py": "3e66e6447547a76724bd9fd5715bf0a9f1c8eff56d8de6198f922de86f57d221",
+      "src/adaptive_hrc_scheduling/reference/domain.py": "923243ad79041a98798e2926763a2dd0aae98e2754ac72d3e990c0e330443176",
+      "src/adaptive_hrc_scheduling/simulation_inputs/S15_preserved_inputs.json": "d54cb6ef5e454a015b44edb29417b3fa0969bd8e53eb0e04884cc37c93b2df24",
+      "src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_approval_r1.json": "8d2f083b89980f6e9239e1453550eb27060bf928a79f359739d902ebbc230c5f",
+      "src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_proposal_r1.json": "8f1f2ea6a4e9096c57d9f3d6fc882291231c0240f2b03c2a97a7a93ba9065bbd",
+      "src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_proposal_r1.md": "5834f023c3ccb9789b43aa9a72b9cc3a4a9d951b35bc0670a885bdec93f995a0",
+      "tests/test_building_checker.py": "5c635fd2d242366c67e26076dab821f4123e5411bf183e81567c202477f13180",
+      "tests/test_building_contracts.py": "3ef1dd5d24eb3d5c9bd56616ae0417aa47728e27000424a84288af805c062012",
+      "tests/test_building_execution.py": "08ee846b8a7d7ae57ddb865043a6699e42aeff799c074839954733324f35ba2e",
+      "tests/test_building_repairs.py": "6adcc103657b9588d14e72756c39a9ef83de20eff591a7a80452c751eced576d",
+      "tests/test_building_scene.py": "aeb9469b3fbae8eb0284dbd232fa27b5c0d77aca19632d31929c40934b6a1e1c",
+      "tests/test_building_target.py": "9c697bac48be6500445e376052366f01c513b7d2911aac71e1b500efacb675f0",
+      "tests/test_building_trials.py": "93911e312cf9a2139e1dc5bfb8883cf4dce1302b164e2d7ff3b1f1b94062f419",
+      "tests/test_contract_repairs.py": "6fe5a6ceef539dc214b90890f222d14b437ec699ac44088b981600a646c01d28",
+      "tests/test_contracts.py": "bc79a2ad248d7f1ffe99ab14ba09449494723a4799d42c04d62acb5214889517",
+      "tests/test_cpsat_reference.py": "eaefffe6fecccfe9566036179b7326649b6683e4688a762228512dfae6ae99d8",
+      "tests/test_event_backend.py": "a8f6ecdc13a36aa673fc12e5f72a9e4156bc0c49dab8f4f0a48d659520c02a7b",
+      "tests/test_events.py": "8ce3e96fd2b93d6da77ff0fbb7be1ebb477e32dc600ed0204fe06e115b147f66",
+      "tests/test_execution_boundaries.py": "017fc1f54d72214d1988c95ebe50d3d175b638da8b86658964c99bbe01a57769",
+      "tests/test_execution_repairs.py": "8fc9197a542630da096661ebebafa5cbf77f6e40c4fcbee34f7f5cea78583e55",
+      "tests/test_execution_witness.py": "87f47ce06550d97b6c65b1249ee8d6d1d46cc4e28231f1af5758690d9d41d0d5",
+      "tests/test_human_state.py": "11d3f9b046f4c3340ab1fc36c8843e792238c6f1bbcb44f3f8b7c6ffdf96a0a8",
+      "tests/test_installation.py": "7c0dace1e3a1ad1cf12301d46ef47938e34158ea51369fc2fbc461ddef247129",
+      "tests/test_isaac_adapter.py": "42fc90a921c21838f0715e559d2651a5dc4680e7de2d523d918bb1219bdb451e",
+      "tests/test_isaac_callbacks.py": "71658c3e9341d58b33a1db46a41890aeaebf722a85a5a7b733e6309df8b17fef",
+      "tests/test_joint_adaptive.py": "208445406d1c735cd833f6360c985fc082ed1eec63694a051555be6b47ebab4b",
+      "tests/test_joint_decisions.py": "e01306a323ee2a443358e6383a2aa00a95ce5efa73d82518369f95d32ea262a6",
+      "tests/test_joint_frozen_information.py": "61f91849e82b099a9ef402c9518a1c9305b8ac7ef16cfd7657a9340be02fae9b",
+      "tests/test_joint_production_boundary.py": "475199a87a3764a6157b37791197f7384a4a56c3c7eeb6e4d0168bacd09d5874",
+      "tests/test_joint_rolling.py": "3c76db52eaf2f40aaf1a3e8763283b90a2d7059d8d6dbdbef9bae42001273afd",
+      "tests/test_light_closed_loop.py": "386133892660f5f621704cf9091de1a05bb45d67e7783d3289a284cafcb6ccd1",
+      "tests/test_lns_core.py": "3c07c5d7d4ee18f50391e22b1f8852197dcae51f6c5df7789c549304d0f14673",
+      "tests/test_lns_repair.py": "e7cd6db4a3b3f84f44e39e41cf0845bda9d68717fbf3603b8c5c60ee81b315f7",
+      "tests/test_logistics.py": "723369a0874869ccb47c6ca58ce0b7ddb9bbf7eee383793112816f4803de7ce0",
+      "tests/test_logistics_migration.py": "373c541aaa359a1a06a71ceebdd3cea1748cf54781c342da304bfd3fcae35350",
+      "tests/test_logistics_repairs.py": "e07999740cba625151990f961d1d2ef05b354b026a582ff565a344f2c179f566",
+      "tests/test_observation.py": "55157da551b870b47459f28b8c1bca0ff2b4f85ee74f5115970e8376bc00742c",
+      "tests/test_production.py": "a6086826455f0a3e5f80cbf1f9ea66a9858ec3878194340b9f1443a5b4d508ad",
+      "tests/test_production_repair.py": "32dddb3d4a64da246dedd9e9cf91f60b7e7018043f91a0f4f8a3f29386df6bc5",
+      "tests/test_rule_planners.py": "200c72c6a1f1392bcbc6f539ad3a9e3bcd5a832a2e94ce56ca2b6224eff499c0",
+      "tests/test_simulation_joint.py": "a051d95eadd9e23b3f5002fb97cd374daa53189e5c8ce1459384e0a3adaa55f9",
+      "tests/test_simulation_policy.py": "9d1bc21b21254552917e810b1679f3aca36b1a6da86ea52c122127a89d0ad630",
+      "tests/test_simulation_production.py": "9050f9dd30e347119249789690000dd315e381910e0fcfe1e209047b79fc604e"
+    },
+    "reproducer_driver_sha256": "649d165f8158f98c0c3f0422c69b2f21566af6564a35d3cdd6e648077bb760f4",
+    "reproducer_separately_verified": true
+  },
+  "approved_inputs": [
+    {
+      "path": "docs/model/S18_simulation_scope_proposal_r1.md",
+      "sha256": "5834f023c3ccb9789b43aa9a72b9cc3a4a9d951b35bc0670a885bdec93f995a0"
+    },
+    {
+      "path": "docs/model/S18_simulation_scope_proposal_r1.json",
+      "sha256": "8f1f2ea6a4e9096c57d9f3d6fc882291231c0240f2b03c2a97a7a93ba9065bbd"
+    },
+    {
+      "path": "docs/model/S18_simulation_scope_approval_r1.json",
+      "sha256": "8d2f083b89980f6e9239e1453550eb27060bf928a79f359739d902ebbc230c5f"
+    }
+  ],
+  "final_captured_input_sha256": {
+    "examples/structural_instance.json": "eb373c306e9ffdc2e9aeaefd91c18f13f003dd6a35e1a3747ce7d873086e2814",
+    "examples/toy_instance.json": "866af36b5ca232fd97002599fe730e694b88992e1c84c4fd00b09a4488346138",
+    "schemas/Configuration.schema.json": "56336d71bced51ad27e9a6d05b485ee558269139c2191112c27c50b4e588b3ba",
+    "schemas/DispatchCommand.schema.json": "e3670706c95581eeff99eb01a98004ea704ec05ea81f2a218e8bbc930653cf88",
+    "schemas/ExecutionEvent.schema.json": "c1c1fb10728ed8437ba3140752cd325de7d2f0bffe9e9baed1816e164454a43e",
+    "schemas/ExecutionSnapshot.schema.json": "c04434d01e6f2f1d762db82558f2de752897149c2f66aec402cf9aca7ad7b51b",
+    "schemas/HiddenScenario.schema.json": "853e0ca7e8b81821c731534bb50d1af355b46416b787a532de3a125e2bf66e6b",
+    "schemas/OfflineEvaluation.schema.json": "ad4dd4f3d41e63a7eb0037b9512759fda51a5b9cd2d8d1986395577573a86144",
+    "schemas/Plan.schema.json": "fbb3ec20694d1bff7e2b351a41cde46d4a98826f17b4da0980aea8a0eeba4231",
+    "schemas/PlanningInput.schema.json": "3e4ae4ec8d9ab85870c3d055b92fcf4f42e632f8338991cf5d7763e436ba5163",
+    "schemas/PlanningObservation.schema.json": "bf0125fd3ee13726728aa2da1d03da82fee39f757c4016c2cfece82ba5c9f44b",
+    "schemas/RunManifest.schema.json": "9a9a524b5875e39f8ea2f3895abd0dd1a04678c8f218d60f7df92c3cfde97372",
+    "scripts/build_building_contracts.py": "1193f06d564d8c6c985e184032c1d6929dcc74340635bcafce4e8f8d77559885",
+    "scripts/build_building_scene.py": "97d2ed092fe02eab3e257c6e663bdd4387b8542bd00844ab52297dadfd88148b",
+    "scripts/build_contract_examples.py": "58f5965c2f59f4f0896c39b2a090a8587635c366585fba32194be20480733ffe",
+    "scripts/build_logistics_contracts.py": "25c5b35d815f32620fb9c9a495ca3a3affe9c5da88ea45a11bb1ae27cf51fa3f",
+    "scripts/build_production_contracts.py": "43fc1fe165c5533484290d4914850c51e3a286d99cf968878ae6ac75482a57aa",
+    "scripts/build_production_motion_table.py": "f5fc22b5e8ff46a4313e3c4862ec3231da2b12649523cabe8f4cc7c492eaa970",
+    "scripts/build_production_rework.py": "b2ef94fcc749f478795c8c4b11d5cfa27433fbe18e0d863680992556dd1de03e",
+    "scripts/build_simulation_production.py": "1dc9391cfbc9d25fcdb4db9d9dc04f1aa89301e5943e87dd10cd109728623663",
+    "scripts/build_target_coverage.py": "75fdfde16639373c0e92a48b60de90ac170e76a5a55c4dbb876fecf5f6919196",
+    "scripts/check.py": "810affd825dd73bbe8934501e3c90600606f72d3094da01004067332a24a523f",
+    "scripts/compare_production_chain.py": "07f12d4c07ed8e2516176cdfcce8adab7e12fb6eb6523d52c782dece4302b21f",
+    "scripts/compare_production_supports.py": "278ee46a29e92fb5a2185aa4ba2233e6528360b744b2f375dc8a4d46355d5648",
+    "scripts/isaac_smoke.py": "96cc743ae53fad80a60d97e9e5eb39a212721e9fcb5a2be57f51fd49231ac730",
+    "scripts/probe_production_isaac.py": "250065b7d94d380037f65ad29d231530a6488fc45c009aa979e43ff7db95a7cb",
+    "scripts/run_building_checker.py": "c8f9cb3d4c15be5e1e20c02e91607c3d51823b9fafd1794ec7665cc6651f69b1",
+    "scripts/run_building_witness.py": "694c7fb4134914674b1a2a865749d4a4b3348cb4fbcd6809d536d0dcc8a09511",
+    "scripts/run_cpsat_reference.py": "af22efce7291302200a4a81f63f37d910c434fb09768b7405e10c0f718b31ba5",
+    "scripts/run_execution_witness.py": "56f3357bdad54d78912e8cda57eb2fff59adf14b5ad16c93cd4278c41c7cf8ce",
+    "scripts/run_joint_adaptive.py": "af253a46fdf21d9fe790e3fc31de79eb1dd029e07f43de41d194bacadf87fd70",
+    "scripts/run_joint_continuation.py": "3e3e60efdfe5a15a336cbbd5cb64a2b7e216ad6520937a35c0871767ab077919",
+    "scripts/run_joint_mechanisms.py": "6e28686e995fe17a4d02ee75ed91a1fb2ea483447ca0f4ac8733038b9f72ea5a",
+    "scripts/run_joint_rolling.py": "58e825531d757e59dac481e8b7897efd10b3283e6fb9a0950475ef3f90c1d7dc",
+    "scripts/run_light_loop.py": "4a937995f74bdfa95d75db409c8260c86b6a375a4512a316cb694423f8e4221e",
+    "scripts/run_lns_production.py": "32d971a524931a0370024ec20b558d95f16423102b007f22bebf8162a25da7f6",
+    "scripts/run_lns_reference.py": "40024010bdcceb9202075f2bcf56ff4495eed1ce0fd5a2a55a60c8cef959559a",
+    "scripts/run_lns_repair.py": "e5ad1bb83935edbc70f991d4c7609dfaf336f1fa9703b154e9ffaf7986cf1348",
+    "scripts/run_rule_planners.py": "62628e54901f4b9fc5475588026ab1cedd71d7f7fa0267142b40cf68b9b5833d",
+    "scripts/verify_building_target.py": "c86d8e2127f3a5f64acd6cbe60534ce962e30a5439941623b4144cb53c2e1f48",
+    "scripts/verify_logistics_isaac.py": "6a360b2435ef0837856c3f7f65d12f3473c3c503670b0ab38e092818a6158711",
+    "scripts/verify_production_chain.py": "ae60d7ff09242c804adc142b958aacdd214f4b0ed64d56dcce9221b8d9371c26",
+    "scripts/verify_production_supports.py": "b386920e86080f21747ad2f66c35b727ff935bcf65a8bcca3c9c61f6d824a5a5",
+    "scripts/view_building_scene.py": "250f87bba5dbe3d1dc8143b59e8677c463153631f235bbdba0f8d2614b6d1e28",
+    "scripts/view_legacy_building_scene.py": "894238a0cf7dfa2c04d333c3dc186e3a4c6922030a84c070380ef445ba5a07a3",
+    "sim/__init__.py": "74cf015db4285108c06c6c6b6edcf85e05a8802186e9af855aaa3c82a1a809f7",
+    "tests/test_building_checker.py": "5c635fd2d242366c67e26076dab821f4123e5411bf183e81567c202477f13180",
+    "tests/test_building_contracts.py": "3ef1dd5d24eb3d5c9bd56616ae0417aa47728e27000424a84288af805c062012",
+    "tests/test_building_execution.py": "08ee846b8a7d7ae57ddb865043a6699e42aeff799c074839954733324f35ba2e",
+    "tests/test_building_repairs.py": "6adcc103657b9588d14e72756c39a9ef83de20eff591a7a80452c751eced576d",
+    "tests/test_building_scene.py": "aeb9469b3fbae8eb0284dbd232fa27b5c0d77aca19632d31929c40934b6a1e1c",
+    "tests/test_building_target.py": "9c697bac48be6500445e376052366f01c513b7d2911aac71e1b500efacb675f0",
+    "tests/test_building_trials.py": "93911e312cf9a2139e1dc5bfb8883cf4dce1302b164e2d7ff3b1f1b94062f419",
+    "tests/test_contracts.py": "bc79a2ad248d7f1ffe99ab14ba09449494723a4799d42c04d62acb5214889517",
+    "tests/test_contract_repairs.py": "6fe5a6ceef539dc214b90890f222d14b437ec699ac44088b981600a646c01d28",
+    "tests/test_cpsat_reference.py": "eaefffe6fecccfe9566036179b7326649b6683e4688a762228512dfae6ae99d8",
+    "tests/test_events.py": "8ce3e96fd2b93d6da77ff0fbb7be1ebb477e32dc600ed0204fe06e115b147f66",
+    "tests/test_event_backend.py": "a8f6ecdc13a36aa673fc12e5f72a9e4156bc0c49dab8f4f0a48d659520c02a7b",
+    "tests/test_execution_boundaries.py": "017fc1f54d72214d1988c95ebe50d3d175b638da8b86658964c99bbe01a57769",
+    "tests/test_execution_repairs.py": "8fc9197a542630da096661ebebafa5cbf77f6e40c4fcbee34f7f5cea78583e55",
+    "tests/test_execution_witness.py": "87f47ce06550d97b6c65b1249ee8d6d1d46cc4e28231f1af5758690d9d41d0d5",
+    "tests/test_human_state.py": "11d3f9b046f4c3340ab1fc36c8843e792238c6f1bbcb44f3f8b7c6ffdf96a0a8",
+    "tests/test_installation.py": "7c0dace1e3a1ad1cf12301d46ef47938e34158ea51369fc2fbc461ddef247129",
+    "tests/test_isaac_adapter.py": "42fc90a921c21838f0715e559d2651a5dc4680e7de2d523d918bb1219bdb451e",
+    "tests/test_isaac_callbacks.py": "71658c3e9341d58b33a1db46a41890aeaebf722a85a5a7b733e6309df8b17fef",
+    "tests/test_joint_adaptive.py": "208445406d1c735cd833f6360c985fc082ed1eec63694a051555be6b47ebab4b",
+    "tests/test_joint_decisions.py": "e01306a323ee2a443358e6383a2aa00a95ce5efa73d82518369f95d32ea262a6",
+    "tests/test_joint_frozen_information.py": "61f91849e82b099a9ef402c9518a1c9305b8ac7ef16cfd7657a9340be02fae9b",
+    "tests/test_joint_production_boundary.py": "475199a87a3764a6157b37791197f7384a4a56c3c7eeb6e4d0168bacd09d5874",
+    "tests/test_joint_rolling.py": "3c76db52eaf2f40aaf1a3e8763283b90a2d7059d8d6dbdbef9bae42001273afd",
+    "tests/test_light_closed_loop.py": "386133892660f5f621704cf9091de1a05bb45d67e7783d3289a284cafcb6ccd1",
+    "tests/test_lns_core.py": "3c07c5d7d4ee18f50391e22b1f8852197dcae51f6c5df7789c549304d0f14673",
+    "tests/test_lns_repair.py": "e7cd6db4a3b3f84f44e39e41cf0845bda9d68717fbf3603b8c5c60ee81b315f7",
+    "tests/test_logistics.py": "723369a0874869ccb47c6ca58ce0b7ddb9bbf7eee383793112816f4803de7ce0",
+    "tests/test_logistics_migration.py": "373c541aaa359a1a06a71ceebdd3cea1748cf54781c342da304bfd3fcae35350",
+    "tests/test_logistics_repairs.py": "e07999740cba625151990f961d1d2ef05b354b026a582ff565a344f2c179f566",
+    "tests/test_observation.py": "55157da551b870b47459f28b8c1bca0ff2b4f85ee74f5115970e8376bc00742c",
+    "tests/test_production.py": "a6086826455f0a3e5f80cbf1f9ea66a9858ec3878194340b9f1443a5b4d508ad",
+    "tests/test_production_repair.py": "32dddb3d4a64da246dedd9e9cf91f60b7e7018043f91a0f4f8a3f29386df6bc5",
+    "tests/test_rule_planners.py": "200c72c6a1f1392bcbc6f539ad3a9e3bcd5a832a2e94ce56ca2b6224eff499c0",
+    "tests/test_simulation_joint.py": "a051d95eadd9e23b3f5002fb97cd374daa53189e5c8ce1459384e0a3adaa55f9",
+    "tests/test_simulation_policy.py": "9d1bc21b21254552917e810b1679f3aca36b1a6da86ea52c122127a89d0ad630",
+    "tests/test_simulation_production.py": "9050f9dd30e347119249789690000dd315e381910e0fcfe1e209047b79fc604e",
+    "docs/model/candidate_comparison.md": "a1833c49b540f27b89c4989219aeff64a20ae27b784bdcf7efb869a4cfc1056f",
+    "docs/model/candidate_rc.md": "c97b90898b80e4de0b4a05b1efd72f86fc3eeed64dd412154f6c22f70cf6b762",
+    "docs/model/candidate_steel.md": "d0250e26a4127d605ec2ac77ce6597155f8068c6c9c8ff6375278538e6655c31",
+    "docs/model/candidate_traces.json": "9d1a2fd6be9e76cfa074c9dcfdc1d3ed6057c383d1a132282941f22cf587ff0f",
+    "docs/model/candidate_traces.md": "822ae4aaf3d805e61a44b28b16b1f7f052a53dfb45c20b089a8fec2748e4ed48",
+    "docs/model/events.md": "ab9b4e110aecfac8797a97e822ddbafe35ed3feac5bd218e555826092b0b5956",
+    "docs/model/execution.md": "c6a7fb18b63df6a93720e68f1015fbfc028a88f3841b6cdcbdfec05f73f06add",
+    "docs/model/fatigue.md": "62c419f8e6a72d6e77c729ff80904eded33cead84bc15c188d140c143f800a0f",
+    "docs/model/instance_families.md": "7609c496bf4fd80c7c1c82f007b4965e4f83f495cd9e7a4e75f6dc71ccaf03a7",
+    "docs/model/material_logistics_extension.md": "d9248e72edcc48148b5ae33d77879e168078c8a5d6bef2176600d38c890ee358",
+    "docs/model/parameters.md": "c3a88c63681e97cb0fb75694b501279a0004058735e06366d38a84c2a9c1c3b7",
+    "docs/model/S15_move_mapping_r1.json": "6f351e058b9c3fbb28a616834be635ba5a8a45a25ff7a422eeb7fa196df9393b",
+    "docs/model/S15_move_mapping_r1.md": "28b0fbf1efb59f1376da34e1a7fe147f9372163f0236643b76cff3c1cbca83f1",
+    "docs/model/S15_recipe_proposal_r1.json": "cc7753f0d43ce0a45a5e521d0b283db337922de86ea81734a2605842ea9909b2",
+    "docs/model/S15_recipe_proposal_r1.md": "d3e36d83fef115f9ef38ac915bbd60f83b4358e425faa44909763af85109f00c",
+    "docs/model/S15_support_change_proposal_r1.md": "ffab6862a5d4000103b3bef091081b7d7e732050d4304075782b719670301f43",
+    "docs/model/S15_support_height_proposal_r1.md": "587404cce4bc3f8a65fb9770b7f9af1d8be61e090809429e06d788154891a93c",
+    "docs/model/S15_window_proposal_r1.json": "c65d4c3434824cd88f4a495a15c36003f51e8a70f5f9f8944cd79aa76a00c085",
+    "docs/model/S15_window_proposal_r1.md": "d142b12d290a34ee09ef1d7b9776e54f68066afc680cbeca9993d0a8070b4ce0",
+    "docs/model/S18_production_mapping_r1.md": "ac4b7eed4046913843707ef6019c09eefd68458fe8e3ddc22e84573477c3b6b9",
+    "docs/model/S18_qualification_decisions_r1.md": "23a0884d3005bba1ef3c4daadf2da80aaf8c22a2a83c8b7d99a4ce3328d124ac",
+    "docs/model/S18_simulation_contract_2.md": "1c80735a1116a3f01429cf531884e4b5f9e2d83abf09a11638deeb961ea6a583",
+    "docs/model/S18_simulation_scope_approval_r1.json": "8d2f083b89980f6e9239e1453550eb27060bf928a79f359739d902ebbc230c5f",
+    "docs/model/S18_simulation_scope_proposal_r1.json": "8f1f2ea6a4e9096c57d9f3d6fc882291231c0240f2b03c2a97a7a93ba9065bbd",
+    "docs/model/S18_simulation_scope_proposal_r1.md": "5834f023c3ccb9789b43aa9a72b9cc3a4a9d951b35bc0670a885bdec93f995a0",
+    "docs/model/selected_steel.md": "5f2e2f04e8b51970843743ae78795a07b87255f618bd4300930a475c11403eae",
+    "docs/model/specification.md": "44bcdc7976932b54cbe4d828ea4753c1726df875b1153b363ced8508b2be361d",
+    "docs/model/steel_edges.tsv": "6cb4e31c43f69540ac0c7f66c539e10a57a02fd4e7f14d4f3b703a97dbfe52b7",
+    "docs/model/steel_modes.tsv": "a49aaa2b7a26754d2559380b350c8931ff8b093032f4324efb1ff1f71d3ab565",
+    "docs/model/steel_process.tsv": "7315916329c3959e26b5eb86a3a28a1f45e21a2587fe6932905c138abb460809",
+    "examples/building_checker/summary.json": "398b122868578fc4c0622daee82805fc11433b0c54d7ceba6c42a7989e1d0706",
+    "examples/building_contracts/configuration.json": "f7d0e5b0104ccc8f6f28a5ac30eef6c0eda5de77fad8f85e5ed3cb9a3b9fef56",
+    "examples/building_contracts/dispatch.json": "c511c185f00ea55cb3dd257c36e1f1b4f939b399d49faf80f0d560e23f95fe93",
+    "examples/building_contracts/execution_event.json": "bd2efdfd15176399289927d32a1ca0192ae86d98a80083b5db1c9ff07ccf258f",
+    "examples/building_contracts/execution_snapshot.json": "aafcda2921908585dda35443962754e397b1b68aa612cdc1837e6a61b256051a",
+    "examples/building_contracts/hidden_scenario.json": "049858228158f9c85974db242fedaa780ae3ead595504b30ac9e9d6350c4deac",
+    "examples/building_contracts/offline_evaluation.json": "898fa262f089ac2793f651c242b375dbff47ad0f417dfb3d004294f66a963819",
+    "examples/building_contracts/plan.json": "7fd1f5f7b0f73ec25222ac546a9415369a58afd4cc8f748bbe31652828978a66",
+    "examples/building_contracts/planning_input.json": "4750e28824cac05c1ea1b7fe3da408725175471e4d39abc8d1882e19bdd5803d",
+    "examples/building_contracts/planning_observation.json": "60c4f7f24631702a8ef37d85ef00b3672294abe6e7ec7239dfd40e8fc01e28d8",
+    "examples/building_contracts/run_manifest.json": "55ea2032fce579d8c1731b02e8807449fc3285a70deabfefde5eabf015010d08",
+    "examples/building_contracts/sr_w2.json": "3d986d070c209dde9e768ff0164244bcb09ffe4cd917f60e74118ad4b193f174",
+    "examples/building_execution/summary.json": "afb772f6cfc81a1ffbbf1e73f25970ac6918dded05a0c62d79c3d63efe95bdc1",
+    "examples/building_scene/summary.json": "85916975330e242e26e660bbb2750dbcc923c1661a2d9a647e85a8a10f32ff98",
+    "examples/building_scene/target_repair_summary.json": "f01a90ef7fe9064f97e75411d32284b7aa0849dcc74ea6e6ca08de142dde6c88",
+    "examples/building_scene/target_summary.json": "6afefae7c48c03b80f9841b4658ab281d379a70bdfba616d0b46db52716aa95d",
+    "examples/contracts/dispatch.json": "f1aede420e4440a79b2bc0a2f887aa2e4d8b02de33a3ef60ac9ef6cbbd178b35",
+    "examples/contracts/execution_event.json": "77c7478f0fd0c35bac5e9a9beecd58294504a904782522d5233ce2a185afb451",
+    "examples/contracts/execution_snapshot.json": "77ce2ceec344497049d975e6b06406953cadc34959c0ea0cbd72fbd56bb7cb7e",
+    "examples/contracts/hidden_scenario.json": "ff1331d79bd545ba811066b7bc5a9b21116378c327ed650a2c12ff67620b6093",
+    "examples/contracts/offline_evaluation.json": "59139c00181c19b3cb95d7701cc6655e633eec9059b6e49900dc55183d518c4a",
+    "examples/contracts/plan.json": "df07a142dd4aaf963585cc974e35212999290ca5cb8bfdfe7935f5b6847d6cd4",
+    "examples/contracts/planning_input.json": "c7fbb3d7897342b6838891f746b21ad3480ce41737af65eb84a6435cbd9ba6b5",
+    "examples/contracts/planning_observation.json": "bd7c6d50d855dfb03ce1458b4968221756e4cf7914ca9ee9b19998a6d2056863",
+    "examples/contracts/run_manifest.json": "d96484d22349c701ce2ece0a14a3e593252183b211408888711816a1f0e9d060",
+    "examples/contracts/structural.json": "ed22a17345c29ae4a24c33e930f1d1bcd120df45f21b32377a94ecf23391157c",
+    "examples/contracts/toy.json": "0d4fe94f284d783f2bd1619091bc49242e28f5d6d1f1c9a5f648cedbdfe5c7da",
+    "examples/cpsat/cases.json": "6ece1020fcc68f9a30027795463d74522a063d17e891bfe1452a04cd7554f5ef",
+    "examples/cpsat/repair_cases.json": "83010048e65f5a74cfb0c85b3e104aced39bb6037cef7215371beba451408014",
+    "examples/cpsat/repair_summary.json": "58b2150c728aefb56419f8d553c98a17f212367b9de6b8aea4a27b9bdc73dd59",
+    "examples/cpsat/summary.json": "c84e5cf96a347f39b975fdd02f4dc7005b305317c0623f5cddb4022a7db1ec8d",
+    "examples/execution_cases/toy_summary.json": "e97b7604d8c9e17faf0023c180c5f11d94163fae37391c74c6669ed29acaba64",
+    "examples/joint_modes/adaptive.json": "16e230b3b53c288941095d9c5cd9e9f0c38a4b6ae36cd777611cbb4ae5fc8f07",
+    "examples/joint_modes/continuation.json": "2124e83c6ad60528279f469684bcd9446bbd24b72e0f6b8fc09ddf4f4c086d19",
+    "examples/joint_modes/mechanisms.json": "0cc076f0bbdc0b284be1759ebfcea855861c491ff580e2324bc741bd4f157e89",
+    "examples/joint_modes/rolling.json": "58f11f7d9431c4e4c7c038cf724758ceacde13a757dc6083206c262bd390db0c",
+    "examples/light_loop/cases.json": "fff78e0df29dc04ad4449ed229ca2038a7b2df862550575d3c12acf9de65736c",
+    "examples/light_loop/summary.json": "dd58b39b3c03479b167bba0b6fe363d7f0e357fce234a3be8485ef3a333c5b99",
+    "examples/lns/cases.json": "196952d5241da2e4ea87efd19331e79539d49a57305386c523f970b89d7c8405",
+    "examples/lns/production_summary.json": "736e6765e5b00384e320d4cbcfd6ca436fc0ec705ba7f000e03fc53c9bb17138",
+    "examples/lns/repair_summary.json": "5a97330dbb9bf58fb34d60a047d8c33f209f6fdd3836fd8bb34436cb618ebbff",
+    "examples/lns/repair_traces.json": "df5f7445633e2af295fa86a092b0d4c3805fdc46df8d6b9f0c4e0ebd8754da3f",
+    "examples/lns/search_traces.json": "4a5efbd200bc01505945f546f0ed548dd420fb557df26eb832d17a6ce2fdf4ba",
+    "examples/lns/summary.json": "3da03ce5d4f38f4e806724821e927dbe72ae865d4f1f5e1f13899cee5f5aaed6",
+    "examples/logistics_contracts/Configuration.json": "7bb3d26a1471d84da9311d7b42b857ec588536bc86601aac581137ce5b18043a",
+    "examples/logistics_contracts/DispatchCommand.json": "30c6e8a442648b9aa2daa5678e867bee2086918305f136dffc4c2cab3cd92090",
+    "examples/logistics_contracts/ExecutionEvent.json": "3e6c6856b4ba3a1906e1cad179054dcf5f6a5f0ee1b44f61614ee7654f0ddb21",
+    "examples/logistics_contracts/ExecutionSnapshot.json": "bbcc89c3d9b8996c72dd90a763de18ecfb737d3934e07b09d02bb7da214ab379",
+    "examples/logistics_contracts/HiddenScenario.json": "4fd64c7606ce4cedde04cfebe8bd7266acee2e7b2f91bfee1c8055d9d640049c",
+    "examples/logistics_contracts/OfflineEvaluation.json": "e8e05ea7ac72d17b6ea49372af3e2d9da042d4201ad497fb6f65462a6fc41d9b",
+    "examples/logistics_contracts/Plan.json": "ff706faa83f50b78332c4dc94a458f970f38436e182f23087578d658de73df77",
+    "examples/logistics_contracts/PlanningInput.json": "d6a02de418222197332ef6ff455a573fe67109a14a48d4ff4506a7de59507bf0",
+    "examples/logistics_contracts/PlanningObservation.json": "c42bb656ffeff5b98f6bf0fff81863dab3964b36c24abf2c0093cbc3e80d7e95",
+    "examples/logistics_contracts/RunManifest.json": "f473886ca1c843d72a1946bb314c12dd0e1a93f041a642869bd9df8536d0189a",
+    "examples/logistics_contracts/SR-W2.json": "eb7ebc58a365c724f28d603dddfee06ae54c431bb919948365fdf2fa33207f35",
+    "examples/logistics_contracts/V01.json": "b18c534c6e1d2889931edd2592cd3bfbc27add3198eb2abea64af9ce88d41606",
+    "examples/logistics_contracts/V02.json": "d0e46ebfd7cee2430575c429db9c22b9f85820a97037729fbc02eae7f0863551",
+    "examples/logistics_contracts/V03.json": "cfab32d688f441e9f6741bccad267a7914a3e7dd7ad436925c510c518ff9aa83",
+    "examples/production_contracts/Configuration.json": "c5a8bf63b8369b4117d5f7a6a42ec51b699ba05357938f398445e6197cd76012",
+    "examples/production_contracts/DispatchCommand.json": "361ccf0dc7b58fd8470fe6d9f2e2e69404da65cfa13239cc4d8ce3b6791efc9a",
+    "examples/production_contracts/ExecutionEvent.json": "6e641529848a51b050c94facfd68a41e0c301ecbd0c41c43191ede48692aa26c",
+    "examples/production_contracts/ExecutionSnapshot.json": "a1d08f7790d75e6ffc35584e3e33731bc1757a0b55e629487c61a58807f5f965",
+    "examples/production_contracts/HiddenScenario.json": "846cf946d741e21f250cb3ebd5e5685fe558dd05074b766c04be2fa17fe4ac48",
+    "examples/production_contracts/OfflineEvaluation.json": "f8d8b5fd310ae7437da64e7df349bdbe78480045dfb927fc07245da11acad6af",
+    "examples/production_contracts/Plan.json": "c1080318930ce257635fe7af47e20cc172ea3ca6f62bfd4bd3cf559ca51fce46",
+    "examples/production_contracts/PlanningInput.json": "c3ef7e4a6c5c484f1f3f5e88f17b30ef215a06f5160848e533365c3f5133b8fc",
+    "examples/production_contracts/PlanningObservation.json": "97a567599af67e7ae1cd536f44032b845b731d9ee57994e2c4a0b4bde044a7f7",
+    "examples/production_contracts/RunManifest.json": "69742039d1f681deda3de97f46759ea8827c1b69fafc5288e85dd7a7173ddcb0",
+    "examples/production_contracts/SR-W1-REPAIR-SYNTHETIC-TEST-ONLY.json": "6bb2cab93d410c2f5aebf53baf230447b312b63004b2136a80d3b065befe4878",
+    "examples/production_contracts/SR-W1-SYNTHETIC-TEST-ONLY.json": "59acdd9022e63de482e6687246a632ae33fc531c34f5989e054e9e0a48ba41b1",
+    "examples/production_contracts/SR-W2-REPAIR-SYNTHETIC-TEST-ONLY.json": "641d57749d6119ca20f4bd198d9cb7f8ffc89371a61e51fe4e752e6d1fb4220a",
+    "examples/production_contracts/SR-W2-SYNTHETIC-TEST-ONLY.json": "e30685c9043b67e1eb43082bf9ff3ce0f3a8fed7e678e27f335708f6c431482d",
+    "examples/production_simulation/SR-W1.json": "9f274387ad94ce12ae2e6846b1f26dec14cd6b24686420fca1e793150d1d5c34",
+    "examples/production_simulation/SR-W2.json": "03fc0d3c493e31cf65304fcfa3a554f9b4eb7eb6a073bb8fbf9dabeb68c9987d",
+    "examples/rule_planners/cases.json": "c50d6400978698d2ff551e1bd528552ed183b1013158fcef86dc293691419ef4",
+    "examples/rule_planners/summary.json": "ab57b01929c1d6e5d164f990b98155d59f2c15f05da4e83eee8c84f744ebdad4",
+    "schemas/building/Configuration.schema.json": "604e64c253dd9f2911def715ab66fa8156c42eaa8e4e80c199ecfde097ded349",
+    "schemas/building/DispatchCommand.schema.json": "838606225cc729228d4e38c1b8ecc672cdbc7b508a01bcd654d32136a7b7ebff",
+    "schemas/building/ExecutionEvent.schema.json": "273a754f40a074836a5bea4ee11c5edeca2790a07bb197307cf13a30ef0961e8",
+    "schemas/building/ExecutionSnapshot.schema.json": "680faaa20e1f390b7b57f50bae913c14cdc77199334059bf69e6e0fea2f84462",
+    "schemas/building/HiddenScenario.schema.json": "9080c4b5446dd26c2ac0735ca13176b5f7cac4fafcc3d8e73db5835467c0ef27",
+    "schemas/building/OfflineEvaluation.schema.json": "8b152aaf980e23e25dfe3a772226fa33f6a5b1f8f357b0f451af9c158ea25e1a",
+    "schemas/building/Plan.schema.json": "c3882280f4038f5485226aea9070703133ba9d002b952a6902c1fa92d106757c",
+    "schemas/building/PlanningInput.schema.json": "6d3977c0f860169cb0c907cb4a3dcbd4b040cf8360c4edd26dcf478837ffcebb",
+    "schemas/building/PlanningObservation.schema.json": "3789401466e74bd2d1263647afc2382f68182a2cb640db0384fc74f5c9718380",
+    "schemas/building/RunManifest.schema.json": "516b36719cd719417bcbc44a5a9a1275ab3908f08a97de94343f143279c0c06b",
+    "schemas/logistics/Configuration.schema.json": "6e238866ce401e7113878ad1096f85be1e5504eb1be1ce422ca6475ab4dafc62",
+    "schemas/logistics/DispatchCommand.schema.json": "94f7b25f8975567e4832c87084011e773327c38854bd68408dc9b39829fe2937",
+    "schemas/logistics/ExecutionEvent.schema.json": "44b0b98641e8dac10f124baaa4fd2c406b99a731a8e8e03a1362dab2015056b9",
+    "schemas/logistics/ExecutionSnapshot.schema.json": "f5b425bf22b610ee89d04dee6cb0ba787d73f77bce18fb5e62faa4ceba5c5cc2",
+    "schemas/logistics/HiddenScenario.schema.json": "4124cbd20adf67e217798814428b98293c0813b54ce66cbe1ac78ba4e43ea312",
+    "schemas/logistics/OfflineEvaluation.schema.json": "f479d610a6baf73a81f2851fddf1b7ac360a5ef64d54d55b2b1ba8ab39c90a0a",
+    "schemas/logistics/Plan.schema.json": "eddfc234f3bf86a25a5e647daedb9964b0dc53062e95734e8a655a21513cbd26",
+    "schemas/logistics/PlanningInput.schema.json": "f364a372cc5c41dbe07831b65872dc765d8277dea006773aad994b42be808d35",
+    "schemas/logistics/PlanningObservation.schema.json": "ee3f03d6012e39a6086f22556d12462ff042150148dea7a7ffc0f54b74280e72",
+    "schemas/logistics/RunManifest.schema.json": "51dec5b1e8ecab515f5c7628edfdff8173502760a4fac707d8a48ab0a65f0cca",
+    "schemas/production/Configuration.schema.json": "1664d1c2c7571b3b48f8b8b194c53836e695dfb0ef5da1e3bb0f262964769551",
+    "schemas/production/DispatchCommand.schema.json": "d7e9d791adc0a9a2e37c4767efdf2046c7af65ac960ae93414bfbe650446d3ba",
+    "schemas/production/ExecutionEvent.schema.json": "b7493b9cc6d66a4db7ace20f894a924c2ec6c2eff70367ea4469a173ecc49ab8",
+    "schemas/production/ExecutionSnapshot.schema.json": "3dae6fc70a226f23338057ed6e3faae9b73f48e4dc4e9f7c8e0d749ce230be45",
+    "schemas/production/HiddenScenario.schema.json": "235ede106f48d115994d1d395657aa5216a6f4a971d277f9b80fd13d7a2ee05c",
+    "schemas/production/OfflineEvaluation.schema.json": "131c81b33521246e0f4269695e146a3b2ff739e0209a882e278441678a802af0",
+    "schemas/production/Plan.schema.json": "853b016d25ab7de29630b88935ef31fcdb06c9779570bc81b667b225c60465c3",
+    "schemas/production/PlanningInput.schema.json": "daae1e74c4171d4666e912c33c03ed0c6d6fb8e8aecd096982729fdef3c9cedb",
+    "schemas/production/PlanningObservation.schema.json": "d3e21000a4c00317cb1a169cfea1ee56ccdd8d076329d8aa411c7aa70af21758",
+    "schemas/production/RunManifest.schema.json": "12c9d39614fea2d5c98d795b47503d1110d5f2c13bf935e4e8e8c17f9145c368",
+    "schemas/production_simulation/Configuration.schema.json": "df430cc385f2ce7fe089e738baf99df7a7dfa8a0044963e6d693dfe2c4d002fe",
+    "schemas/production_simulation/DispatchCommand.schema.json": "5046569e40ecc17eff7f13721f0ed9087141e56946eeaf8f72ebabeeb6b54e22",
+    "schemas/production_simulation/ExecutionEvent.schema.json": "80de5b7f69286a5760979804cd0a89060a47373c193d00b17b69d6d3724aa254",
+    "schemas/production_simulation/ExecutionSnapshot.schema.json": "c20d3b25617497d9fe2108c51a87e9191f62d4a63c98b2e7725cbe8de8432b06",
+    "schemas/production_simulation/HiddenScenario.schema.json": "ad5c2ffd9fab6f2deb7190cde5eec3c78322c77fab1347a27c4df13e3ca28555",
+    "schemas/production_simulation/OfflineEvaluation.schema.json": "ff24a9edb1a7a55a593e593297a68b40c562c242057c5bf4fbf838b9e7d2fa77",
+    "schemas/production_simulation/Plan.schema.json": "f4a477985442cd198c9c6c23fe27c63fb3914f2977b763b4222b6a8c6817a1d0",
+    "schemas/production_simulation/PlanningInput.schema.json": "1cfe8c1cecc328531421fd29f296a06fea119a147d4ba7edd005965e17fa8d49",
+    "schemas/production_simulation/PlanningObservation.schema.json": "1723e9c51810bf697ba2d41fca66e185d42e3a940b62660e075f411b4d2d50ac",
+    "schemas/production_simulation/RunManifest.schema.json": "6b3b440024f0f303c6228804f0092951b6dfdea11beadcbe2eb3cbc5d8fd481e",
+    "sim/isaac/__init__.py": "2fc8fe53994e6a1ba84be15c20b0b75f7d384b2e38ce1a9ac7a74f54dae953ea",
+    "sim/isaac/scene/inspection.py": "7f795fd6b68aa413def3416d852cc806b0876f1a327908cbaa400bea7697d886",
+    "sim/isaac/scene/layout.py": "1e5543a4f5863532bc620f1d88388b461656870fb2dd2a7f544d5d89812dc42c",
+    "sim/isaac/scene/logistics_port.py": "b4a206aa48d59c381ecb9935f53c4819af22a8766deaa404a4daa6c9fe106ceb",
+    "sim/isaac/scene/model.py": "9a3304942dc2d8ddad721b65949de9ca252995224b34670d1580a29f9400d36c",
+    "sim/isaac/scene/production_port.py": "85462608815305886fe720d6efd4c0a97df7624ff5e625618cd1a0d0a1ec8b00",
+    "sim/isaac/scene/production_receiver.py": "b0267772452bbcb10ab1986414c22bd6cc069bc45aabcc0239b5aa3c92adb376",
+    "sim/isaac/scene/production_support_port.py": "319aed476969e4df108d36c5f743003c9b83a078200f330a33d98e3f06d098a9",
+    "sim/isaac/scene/README.md": "9f65bfbdc3a1ebd48f64398f4031d4556b0951cace371c468613b99325a4f11c",
+    "sim/isaac/scene/revision_checks.py": "c85089588a1de1faa5694e19874f306ea9da2ca9d91708edc345df02ead396f5",
+    "sim/isaac/scene/target_layout.py": "ed0c80b3111362325f38ce97500b1a9f87279cf800fd53967414df4681efb447",
+    "sim/isaac/scene/target_repair_checks.py": "0243f4d71741d585931a8c5a0c7b4cf53fcb99c86d68f8cd4077ebc5651c92b7",
+    "sim/isaac/scene/target_scene.py": "005b79fed8e9596f4136aaf087b650957b2c808eb7b5b4c447f54a601ac044b2",
+    "sim/isaac/scene/target_trials.py": "f13eee7c26ef4059d3464cacafd5384b4b0dd279be86bfb79529760edc6df70e",
+    "sim/isaac/scene/trials.py": "dfd80b79a59bf0c7df5ed7ad0d87f3b2c2a9798c989dc67b24523361ad586451",
+    "sim/isaac/scene/trial_scene.py": "af842a5876091816fce2d525d055f01e0b638dda47384d09b35b5ca715bf0240",
+    "sim/isaac/scene/usd_scene.py": "9e7a84caf010abbf2aea3cea4201325fb329a9a2affe73c43f5337b49cc2dec9",
+    "sim/isaac/scene/__init__.py": "e3a240987d86f87e019278e05cb69b723638ece144f7450865d89a1937fc2094",
+    "src/adaptive_hrc_scheduling/building_backend.py": "3665a0afa298083db2cfab8f4970848ab34f65fbfc68b15cb366b54dad4543a7",
+    "src/adaptive_hrc_scheduling/building_human.py": "874b62d2b56e473663f20b81d112fe125de491312dcc84dabdc1339bd4f6ca76",
+    "src/adaptive_hrc_scheduling/checker.py": "54c56adea0f041d9e9cb67d4faab090af41c4ffe9442462323481f3cc0527f5e",
+    "src/adaptive_hrc_scheduling/events.py": "cd9f4651bca3971129ba36c3a7285c3464d832a907657393ff401cf736727926",
+    "src/adaptive_hrc_scheduling/event_backend.py": "284a97b6b02624ca4309a01b71750d794bd3c4d2bc4836049b79f8c6193d0e90",
+    "src/adaptive_hrc_scheduling/human_state.py": "fb559ffef42313e4f51d2472382acfb1b130992c0378ee1a570f234f443cc4b2",
+    "src/adaptive_hrc_scheduling/logistics_backend.py": "3b62887007197de4c9359322f0fe1a9a9c54e4f9a43cb0d7f36d585818e40439",
+    "src/adaptive_hrc_scheduling/logistics_checker.py": "ca8e68ff208b076391d8407374eacbd4eeca782174133b67178dd00f36390c8b",
+    "src/adaptive_hrc_scheduling/logistics_geometry.py": "a706867c4bccddef1b4fd21123d647646a24c2f1fd2189532a31f3716717bf1b",
+    "src/adaptive_hrc_scheduling/metrics.py": "27c43106fc7a3296351e8145070d7ad96dbcc480ff10ffcfcce068d18e1175a6",
+    "src/adaptive_hrc_scheduling/observation.py": "ca664e3bd5c9e7b2dd963a07c5c793de324a20437383cb24e1db8394cfbead86",
+    "src/adaptive_hrc_scheduling/production_admission.py": "6de7939d1b42250c903e3b67afe0ee6b2438b877bd8723cd065e54127d24b3d4",
+    "src/adaptive_hrc_scheduling/production_audit_geometry.py": "42077e493a21f5b43af5aafcd8aaf4af59e54108e48a6d1db52e63bd4101c130",
+    "src/adaptive_hrc_scheduling/production_backend.py": "cb66b25f488c13e8ea6d4e1488fa57bc5232fecabb644055d18e71fa6d40ac50",
+    "src/adaptive_hrc_scheduling/production_cancel.py": "a5d8778bf5f16ad2e9c5b9e4e851c196f994d14e2b5e1517590c86a651ff6130",
+    "src/adaptive_hrc_scheduling/production_checker.py": "f9a801d2b950d5b83f360d120ed505afbc3ae6b9d97933632cfc8f5d34eff7cf",
+    "src/adaptive_hrc_scheduling/production_external.py": "0cb288ecdf964d924e3e862e0bf327bfc6139bf777476d08038772f472056573",
+    "src/adaptive_hrc_scheduling/production_geometry.py": "f33fa080c847d36c6ee9f74bdc4327f46d96731269407b246e302a168ea87e8a",
+    "src/adaptive_hrc_scheduling/production_handover.py": "4520a9c09603a2ebadec34f48bc77cdf2ea29e185c7f4a864dadd582b57e3f01",
+    "src/adaptive_hrc_scheduling/production_mapping.py": "c8cc78a57f8619aee24a7c80a4d29222f9e12852c4cc5bb5642cea8f47b74f17",
+    "src/adaptive_hrc_scheduling/production_navigation.py": "d161846ca145ab4f70712245afd74278b4bd5c9c54816720e1ef112b5f669f01",
+    "src/adaptive_hrc_scheduling/production_pedestrians.py": "b818621e4cb5b10396cf97496d735cc3db8368a1ae4970290b62223015c92579",
+    "src/adaptive_hrc_scheduling/production_recipe.json": "cc7753f0d43ce0a45a5e521d0b283db337922de86ea81734a2605842ea9909b2",
+    "src/adaptive_hrc_scheduling/production_rework.py": "af2e678e2a35feda0e6de958e0d8ac9710cdb1a98183fb5af4b0a74b95a72070",
+    "src/adaptive_hrc_scheduling/production_supports.py": "21b1ee8ae66d026512b9ca12768b17f818750b0e56d9a56cbe9c33be89a2cb32",
+    "src/adaptive_hrc_scheduling/production_witness.py": "4dcad6c11a4ff13090080abcbbf4baedef2eb00f59ac8c31a8fff86d6945fa37",
+    "src/adaptive_hrc_scheduling/__init__.py": "8100015a05e8c14763749abba147da66ac79cc4df8d08043a47f77448dc80ab6",
+    "src/adaptive_hrc_scheduling/__main__.py": "12b25f10edfcc22863d7a2dffe4a2e7db50c944163b5d5aec368992f28f924c3",
+    "src/adaptive_hrc_scheduling/algorithms/joint_lns.py": "e9c689786de12f5610f9b4ac9bd524852a0a92728afd6ea2a709f8fbd6206031",
+    "src/adaptive_hrc_scheduling/algorithms/joint_production.py": "507d426fe184132c2710cce8283ad8abb01c04d45b6dc07465cb57c81ac7ee0b",
+    "src/adaptive_hrc_scheduling/algorithms/joint_rolling.py": "2b3517a65afb6d64ae89321734b40e3d1059a9e12a344d2d1b67761ad1a1ea35",
+    "src/adaptive_hrc_scheduling/algorithms/lns.py": "6d95fc25ab4fa4f51ad7d1b179c954e4ffcbdb981a9bf9a19fdb932fc955de6e",
+    "src/adaptive_hrc_scheduling/algorithms/production_lns.py": "e806898a9cd02073af867e4228408305458d3d9e049a14a06de41ec0872402f4",
+    "src/adaptive_hrc_scheduling/algorithms/simulation_joint.py": "575893109c9d450ad66a3d12a697eb19d53ffcce8e36bf932087d55505a99c03",
+    "src/adaptive_hrc_scheduling/algorithms/static_lns.py": "477dfc3dfcabafe626bc8ac977648eead16c760565a6f967c7e3c4487b16bfb5",
+    "src/adaptive_hrc_scheduling/algorithms/__init__.py": "ae7977fe3ce9f096903e1ced799dcf14b1d4b33ebbd57237dcd583b99ee05159",
+    "src/adaptive_hrc_scheduling/backends/isaac_adapter.py": "ea34d28fc7ea2883e618c47641861bf4123677728894a4647673cd223a48afeb",
+    "src/adaptive_hrc_scheduling/backends/production_isaac_adapter.py": "084d75d811270e69281723e8a60ab91cb2a4e432c11a791856d282128b033f47",
+    "src/adaptive_hrc_scheduling/backends/__init__.py": "25b0f4502043695d4324754ccdf3b543c4bc4d856a38b380734301cfd429275a",
+    "src/adaptive_hrc_scheduling/contracts/building.py": "4e3f0c43e547fdc9e8eb374dc15bb35004fac649cbab117b19cea9a471c7250c",
+    "src/adaptive_hrc_scheduling/contracts/codec.py": "159f4863830a3731eed3eb1a68ff77ab1e251354f92e2e0ef576355b1b444d6d",
+    "src/adaptive_hrc_scheduling/contracts/logistics.py": "152251db512e5b1f217eaaa7af575aa9a7477bba3ce58ff3ae87d0a63645c28e",
+    "src/adaptive_hrc_scheduling/contracts/messages.py": "b0aa5532a77ad8b654e8490725a0d36e990fc67d8d1e913e856b8a56e7c45690",
+    "src/adaptive_hrc_scheduling/contracts/planning.py": "5c64982d4c5c8a31ae3a26374c1f38c3c6716763cd4fed58e3b11cac4045024f",
+    "src/adaptive_hrc_scheduling/contracts/production.py": "c7497e885cbbd056ec2c78eb6b1c12856b253d6222a877484ef93b889e3133f2",
+    "src/adaptive_hrc_scheduling/contracts/validation.py": "50148f9539e574c7d29419ceeaabb7b23409ff22dc218e5750bfd471689043c5",
+    "src/adaptive_hrc_scheduling/contracts/__init__.py": "0ffdb9a1c688376a4d7a16e84a7f19bbb3a8bb28381654f1bd9e529be58f5b9d",
+    "src/adaptive_hrc_scheduling/control/joint_adaptive_loop.py": "da45eaf813b2d758b231c964f1c59147c67d3e585dffb410ad5effa51de82471",
+    "src/adaptive_hrc_scheduling/control/joint_rolling_loop.py": "8df44f9bf8c2797722abc28fe8d99d4e6c265455c17671b77dcd1a24e87c6eb5",
+    "src/adaptive_hrc_scheduling/control/ledger.py": "b09a6c96a8dabc927b9808fac79b1219a993ccd5d337fa524419a0cbe1837cbb",
+    "src/adaptive_hrc_scheduling/control/light_loop.py": "b70fd165e7623288c99ad4856a954f8f590684ccb00e0303d60e532c016e4be1",
+    "src/adaptive_hrc_scheduling/control/logistics_ledger.py": "a0b28126b1a34994a2010183ae9cd512fb793ff845190f22d59a38574b6512f4",
+    "src/adaptive_hrc_scheduling/control/logistics_loop.py": "ad1483e81e1cd511a601429ca6e86f7cf9d9977207cb8395c0fbeed6deb671ef",
+    "src/adaptive_hrc_scheduling/control/production_decisions.py": "3cc1e89401fcebd2654687871c040a618535fd737202a77b1daa74b6548d1105",
+    "src/adaptive_hrc_scheduling/control/production_ledger.py": "91fe3c92cedc604166ea23bd3c3dccb675be707ab0996327301d6f8b1e01d377",
+    "src/adaptive_hrc_scheduling/control/production_loop.py": "a89f46ea45b5bb30ee752c17c98b777164c6688b01d04fae729b6fffa84774d1",
+    "src/adaptive_hrc_scheduling/control/simulation_joint_policy.py": "98735ec3a8450bbd86bd6ef21b7c884239264d5b244e25ee2dc570a9df25d8a8",
+    "src/adaptive_hrc_scheduling/control/__init__.py": "36da3cf84e0f82d633970ca2820ffe10f7cccf6e56a2982ddef36220805a51ff",
+    "src/adaptive_hrc_scheduling/domain/building.py": "9a16439b1469e5890879ec92a49e4ac04123b53726b3df2fbfabf2f0f47ae04d",
+    "src/adaptive_hrc_scheduling/domain/logistics.py": "e20a0e7d8c1facb0a6d54f7ad1a77159e7afd092d534b47263ff9b0ab8b886d3",
+    "src/adaptive_hrc_scheduling/domain/models.py": "c9efd2eed6c81b7f8ef7c28fc92f3b7a8e9389ac3be39f267a3bd4c85678f1e9",
+    "src/adaptive_hrc_scheduling/domain/phases.py": "40a2ff96ef9514ea08206ace96f4cd40b0a1086e3d906c9f9ab48083eedc3158",
+    "src/adaptive_hrc_scheduling/domain/production.py": "07061325b6d778cbdf1625303c988f3d4dc3f9e254dd1e9f45a723e1821218ab",
+    "src/adaptive_hrc_scheduling/domain/state.py": "5e5b684af2b1c241fbf35fe1659434f144b80a625257ef81401fa9186f6525e4",
+    "src/adaptive_hrc_scheduling/domain/__init__.py": "cedbdebb3f07bcd2041d0544851462d6192884516cd9d67cbf9692f591172bfe",
+    "src/adaptive_hrc_scheduling/planning/decoder.py": "1649bdaeecac309110fe0e5ba72f80ef15410aa6be94deb596693255be91b6b5",
+    "src/adaptive_hrc_scheduling/planning/logistics.py": "df252196539cbc051d09c85e6e615b184a3f4d008bd536363944c2419f970ae0",
+    "src/adaptive_hrc_scheduling/planning/production.py": "a19b7a7de92aa164c1c334e0a3276ee6281b632be6bd253e0d0d0686e9a6df60",
+    "src/adaptive_hrc_scheduling/planning/rules.py": "e1e16789334c2dc7cfec25f53c4328e0f49278cdc137ba6ac6cd3c8abfb52681",
+    "src/adaptive_hrc_scheduling/planning/__init__.py": "e4e65f4bc4a586427f5c97d2dccbe03ea0ea1a33494ed31a38a47e2dab2c1587",
+    "src/adaptive_hrc_scheduling/reference/baselines.py": "3dfaaaded053791ef6b1e62370e718f2a5aeab8477c706008a02025caf2b7a03",
+    "src/adaptive_hrc_scheduling/reference/cases.py": "63612d573b9e7631a0509c90ea3403a4491aa7bdb1faa9d82ba56ae6e37eaa99",
+    "src/adaptive_hrc_scheduling/reference/checker.py": "7f1375b94ea8f9c1c1e6b7a736a6bd740d9813c6556bcca89abf5e1dd9de7957",
+    "src/adaptive_hrc_scheduling/reference/cpsat.py": "3e66e6447547a76724bd9fd5715bf0a9f1c8eff56d8de6198f922de86f57d221",
+    "src/adaptive_hrc_scheduling/reference/domain.py": "923243ad79041a98798e2926763a2dd0aae98e2754ac72d3e990c0e330443176",
+    "src/adaptive_hrc_scheduling/reference/__init__.py": "b346dd23e8ccde2cf325d779459884585cd3b206e3368b40c7efbf3d3619d84e",
+    "src/adaptive_hrc_scheduling/simulation_inputs/S15_preserved_inputs.json": "d54cb6ef5e454a015b44edb29417b3fa0969bd8e53eb0e04884cc37c93b2df24",
+    "src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_approval_r1.json": "8d2f083b89980f6e9239e1453550eb27060bf928a79f359739d902ebbc230c5f",
+    "src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_proposal_r1.json": "8f1f2ea6a4e9096c57d9f3d6fc882291231c0240f2b03c2a97a7a93ba9065bbd",
+    "src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_proposal_r1.md": "5834f023c3ccb9789b43aa9a72b9cc3a4a9d951b35bc0670a885bdec93f995a0"
+  },
+  "source_families": [
+    {
+      "id": "stage-source-02",
+      "input_manifest_sha256": "9f74e73dde7cf94f95aebec139de3b1bbd938a131ba5bd24df0cc918cfc361d9"
+    },
+    {
+      "id": "production-source-04",
+      "input_manifest_sha256": "82feeccd6d8780a739dc41a2310a8e24888778bda127b2cf6580a0ceb0e4ae0e"
+    },
+    {
+      "id": "production-source-05",
+      "input_manifest_sha256": "2d03ada4218daf085cb87a79e4dc4be4e962c0cc489c9a1d9915dbe6864e5b05"
+    }
+  ],
+  "pairs": [
+    {
+      "case": "SR-W1 original stage",
+      "source_family": "stage-source-02",
+      "light": {
+        "schema_version": "S18-PROD-2.0",
+        "config_sha256": "3542a70c79cb5d2a33836777ec6b8537a4d2a2cae4223f508341b4ffae87029d",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 272.35047973655236,
+        "static_operations": 448,
+        "active_static_operations": 436,
+        "completed_static_operations": 436,
+        "ready": 1,
+        "received": 1,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "2ec377876fcc3482bcccee8f5d55c6e71b0023e224fa0458331f98649c0e6384"
+      },
+      "isaac": {
+        "schema_version": "S18-PROD-2.0",
+        "config_sha256": "3542a70c79cb5d2a33836777ec6b8537a4d2a2cae4223f508341b4ffae87029d",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 272.35047973655236,
+        "static_operations": 448,
+        "active_static_operations": 436,
+        "completed_static_operations": 436,
+        "ready": 1,
+        "received": 1,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "c73141bfdb70df63225a243939ee7b2327653e14169cd1c0d87fc9b1e2db5190"
+      },
+      "kit_exit": {
+        "supervisor_status": "PASSED",
+        "fatal_exception": false,
+        "report_status": "PASS",
+        "closed": true,
+        "forced_cleanup": false,
+        "normal_process_exit": true,
+        "status": "PASSED"
+      },
+      "parity": {
+        "status": "PASS",
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "independent_decision_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "compared_records": {
+          "events.jsonl.gz": 4400,
+          "decisions.jsonl.gz": 2070
+        },
+        "maximum_differences": {
+          "time_h": 0.0,
+          "geometry_m": 6.847300504375653e-14,
+          "other_numeric": 0.0
+        },
+        "finding_count": 0,
+        "buffer_backpressure_witnesses": [],
+        "sha256": "a8e6eba19d645b4734482ffb7f3a113e132a0af174fa100fa5208afac92695fa"
+      }
+    },
+    {
+      "case": "SR-W2 original stage",
+      "source_family": "stage-source-02",
+      "light": {
+        "schema_version": "S18-PROD-2.0",
+        "config_sha256": "22b1c22bf38576dce32652c0dbca4ea75d1b9ce6ce4f5af6c8fbc06b312d58aa",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 292.6237847222222,
+        "static_operations": 462,
+        "active_static_operations": 450,
+        "completed_static_operations": 450,
+        "ready": 1,
+        "received": 1,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "46904245d50acf4d88256c217c03591151464ec8e2d871e9a4faefab6321ece1"
+      },
+      "isaac": {
+        "schema_version": "S18-PROD-2.0",
+        "config_sha256": "22b1c22bf38576dce32652c0dbca4ea75d1b9ce6ce4f5af6c8fbc06b312d58aa",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 292.6237847222222,
+        "static_operations": 462,
+        "active_static_operations": 450,
+        "completed_static_operations": 450,
+        "ready": 1,
+        "received": 1,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "52c7185ca24c9b6a0a243de2f665066a20a64b2cc0866702382988add050b267"
+      },
+      "kit_exit": {
+        "supervisor_status": "PASSED",
+        "fatal_exception": false,
+        "report_status": "PASS",
+        "closed": true,
+        "forced_cleanup": false,
+        "normal_process_exit": true,
+        "status": "PASSED"
+      },
+      "parity": {
+        "status": "PASS",
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "independent_decision_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "compared_records": {
+          "events.jsonl.gz": 4507,
+          "decisions.jsonl.gz": 2120
+        },
+        "maximum_differences": {
+          "time_h": 0.0,
+          "geometry_m": 9.026113190202523e-14,
+          "other_numeric": 0.0
+        },
+        "finding_count": 0,
+        "buffer_backpressure_witnesses": [],
+        "sha256": "3c8639b7339ed974c5b3ab8edf8caa80d4d9dd0ffa79c377e5ed96ae2e424f0f"
+      }
+    },
+    {
+      "case": "Mixed actual R1 feedback and charged handover",
+      "source_family": "production-source-04",
+      "light": {
+        "schema_version": "S18-PROD-2.0",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 291.30786155555546,
+        "static_operations": 448,
+        "active_static_operations": 439,
+        "completed_static_operations": 439,
+        "ready": 1,
+        "received": 1,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "194c40d3b290a67f24e90f8b4de8dda3adf5ea2855c7fe07306e15123a59d90d"
+      },
+      "isaac": {
+        "schema_version": "S18-PROD-2.0",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 291.30786155555546,
+        "static_operations": 448,
+        "active_static_operations": 439,
+        "completed_static_operations": 439,
+        "ready": 1,
+        "received": 1,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "0ab64d0d1e4e8adba462d58565f35395c404a53f427dc18a4615784f16676918"
+      },
+      "kit_exit": {
+        "supervisor_status": "PASSED",
+        "fatal_exception": false,
+        "report_status": "PASS",
+        "closed": true,
+        "forced_cleanup": false,
+        "normal_process_exit": true,
+        "status": "PASSED"
+      },
+      "parity": {
+        "status": "PASS",
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "independent_decision_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "compared_records": {
+          "events.jsonl.gz": 4438,
+          "decisions.jsonl.gz": 2089
+        },
+        "maximum_differences": {
+          "time_h": 0.0,
+          "geometry_m": 6.847300504375653e-14,
+          "other_numeric": 0.0
+        },
+        "finding_count": 0,
+        "buffer_backpressure_witnesses": [],
+        "sha256": "aafda4e376442c75c0ebcaa864c206f6d312128350dcd75d5fa8f1c56645a4aa"
+      }
+    },
+    {
+      "case": "Final SR-W1 two products",
+      "source_family": "production-source-05",
+      "light": {
+        "schema_version": "S18-PROD-2.0",
+        "config_sha256": "987957ba81d75696d1f20d9de246954020cbbd054de6fb81da19fecb76fae220",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 531.8589726666667,
+        "static_operations": 896,
+        "active_static_operations": 872,
+        "completed_static_operations": 872,
+        "ready": 2,
+        "received": 2,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "a61811199c8e8d51f2bddb68298b5429c7e60cd5f11b2f609872e9255c82dc31"
+      },
+      "isaac": {
+        "schema_version": "S18-PROD-2.0",
+        "config_sha256": "987957ba81d75696d1f20d9de246954020cbbd054de6fb81da19fecb76fae220",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 531.8589726666667,
+        "static_operations": 896,
+        "active_static_operations": 872,
+        "completed_static_operations": 872,
+        "ready": 2,
+        "received": 2,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "50fe8ea646d6de1a5b81b5bd0b3ae253bfc83b2a9f0dba74c42d93c30d0ed385"
+      },
+      "kit_exit": {
+        "supervisor_status": "PASSED",
+        "fatal_exception": false,
+        "report_status": "PASS",
+        "closed": true,
+        "forced_cleanup": false,
+        "normal_process_exit": true,
+        "status": "PASSED"
+      },
+      "parity": {
+        "status": "PASS",
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "independent_decision_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "compared_records": {
+          "events.jsonl.gz": 8719,
+          "decisions.jsonl.gz": 4096
+        },
+        "maximum_differences": {
+          "time_h": 0.0,
+          "geometry_m": 4.689226784648781e-11,
+          "other_numeric": 0.0
+        },
+        "finding_count": 0,
+        "buffer_backpressure_witnesses": [],
+        "sha256": "393b50580a3d27185e98bbab6503eb6c104120b67d2e6bf60efcedf6654a7be4"
+      }
+    },
+    {
+      "case": "Final SR-W2",
+      "source_family": "production-source-05",
+      "light": {
+        "schema_version": "S18-PROD-2.0",
+        "config_sha256": "a71fd4f4aff9c2c8db8470392f90ba8e62bb3d484e80611412393d9eadfad03e",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 292.6237847222222,
+        "static_operations": 462,
+        "active_static_operations": 450,
+        "completed_static_operations": 450,
+        "ready": 1,
+        "received": 1,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "4b782f7e63c1329021e6d4d00762685dfb18aac6220270486eeaa4abcb0f80f0"
+      },
+      "isaac": {
+        "schema_version": "S18-PROD-2.0",
+        "config_sha256": "a71fd4f4aff9c2c8db8470392f90ba8e62bb3d484e80611412393d9eadfad03e",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 292.6237847222222,
+        "static_operations": 462,
+        "active_static_operations": 450,
+        "completed_static_operations": 450,
+        "ready": 1,
+        "received": 1,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "011297bb5ad4c6dfefe15794c40e3d219417a77c40311079668700960b04d2af"
+      },
+      "kit_exit": {
+        "supervisor_status": "PASSED",
+        "fatal_exception": false,
+        "report_status": "PASS",
+        "closed": true,
+        "forced_cleanup": false,
+        "normal_process_exit": true,
+        "status": "PASSED"
+      },
+      "parity": {
+        "status": "PASS",
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "independent_decision_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "compared_records": {
+          "events.jsonl.gz": 4507,
+          "decisions.jsonl.gz": 2120
+        },
+        "maximum_differences": {
+          "time_h": 0.0,
+          "geometry_m": 9.026113190202523e-14,
+          "other_numeric": 0.0
+        },
+        "finding_count": 0,
+        "buffer_backpressure_witnesses": [],
+        "sha256": "43f70e3567b27a52ef9775bd69b1a627e699877aa1deb10855134c16781b400b"
+      }
+    },
+    {
+      "case": "Original S15 WV01",
+      "source_family": "production-source-05",
+      "light": {
+        "schema_version": "S15-PROD-1.0",
+        "config_sha256": "1054c876ea017ee9e6df55fdabacc7493bacd435f051477e016710eb632f69b2",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 845.6183333333332,
+        "static_operations": 1425,
+        "active_static_operations": 1326,
+        "completed_static_operations": 1326,
+        "ready": 3,
+        "received": 3,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "4addc62d4f296287cb04607e88bf3b8119421a46982ad60c6675867ed0ccb4b4"
+      },
+      "isaac": {
+        "schema_version": "S15-PROD-1.0",
+        "config_sha256": "1054c876ea017ee9e6df55fdabacc7493bacd435f051477e016710eb632f69b2",
+        "termination": "OPERATIONS_COMPLETE",
+        "time_h": 845.6183333333332,
+        "static_operations": 1425,
+        "active_static_operations": 1326,
+        "completed_static_operations": 1326,
+        "ready": 3,
+        "received": 3,
+        "audit": "PASS",
+        "decision_audit": "PASS",
+        "status": "PASS",
+        "report_sha256": "67ca4eccef1c532f8a983608fa256b51bd20d7a442d49e57e30a5a329de659ea"
+      },
+      "kit_exit": {
+        "supervisor_status": "PASSED",
+        "fatal_exception": false,
+        "report_status": "PASS",
+        "closed": true,
+        "forced_cleanup": false,
+        "normal_process_exit": true,
+        "status": "PASSED"
+      },
+      "parity": {
+        "status": "PASS",
+        "independent_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "independent_decision_audits": [
+          "PASS",
+          "PASS"
+        ],
+        "compared_records": {
+          "events.jsonl.gz": 13177,
+          "decisions.jsonl.gz": 6177
+        },
+        "maximum_differences": {
+          "time_h": 0.0,
+          "geometry_m": 6.789591111555637e-11,
+          "other_numeric": 0.0
+        },
+        "finding_count": 0,
+        "buffer_backpressure_witnesses": [
+          {
+            "start_h": 770.5164726666667,
+            "end_h": 840.0,
+            "finished_positions": {
+              "PRODUCT-1": "FG1",
+              "PRODUCT-2": "FG2"
+            },
+            "blocked_product": "PRODUCT-3",
+            "location": "OUT1",
+            "ready_h": 770.5164726666667,
+            "operation": "PRODUCT-3.BUFFER",
+            "decision_reason": "PRODUCT-3.BUFFER:CAPACITY:FG1",
+            "state_event_sequence": 13129
+          },
+          {
+            "start_h": 770.5164726666667,
+            "end_h": 840.0,
+            "finished_positions": {
+              "PRODUCT-1": "FG1",
+              "PRODUCT-2": "FG2"
+            },
+            "blocked_product": "PRODUCT-3",
+            "location": "OUT1",
+            "ready_h": 770.5164726666667,
+            "operation": "PRODUCT-3.BUFFER",
+            "decision_reason": "PRODUCT-3.BUFFER:CAPACITY:FG1",
+            "state_event_sequence": 13129
+          }
+        ],
+        "sha256": "6af59cec64a0e53468129b4c5712cc20bbe0cd8ba66ca5f5677148d60f9a5d44"
+      }
+    }
+  ],
+  "paired_controls": [
+    {
+      "method": "ADAPTIVE_JOINT",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 32.439733333333336,
+      "ready": 0,
+      "received": 0,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 4,
+          "max_iterations": 4,
+          "max_repair_trials": 8,
+          "max_wall_seconds": 480,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 120,
+          "opportunities_h": [
+            24.439733333333333,
+            26.439733333333333,
+            28.439733333333333,
+            30.439733333333333
+          ],
+          "future_window_h": 8
+        },
+        "used_calls": 4,
+        "used_iterations": 4,
+        "used_repair_trials": 8,
+        "used_wall_seconds": 240.55439830000978,
+        "validation_calls": 12,
+        "validation_seconds": 160.0794439004967,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 70.59146999998484,
+            "validation_calls": 3,
+            "validation_seconds": 41.81002330011688,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 70.59146999998484,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 58.0287432000041,
+            "validation_calls": 3,
+            "validation_seconds": 39.66058660019189,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 128.62021319998894,
+            "within_budget": true
+          },
+          {
+            "call": 3,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 56.4221873000497,
+            "validation_calls": 3,
+            "validation_seconds": 39.38279870012775,
+            "cumulative_iterations": 3,
+            "cumulative_repair_trials": 6,
+            "cumulative_wall_seconds": 185.04240050003864,
+            "within_budget": true
+          },
+          {
+            "call": 4,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 55.51199779997114,
+            "validation_calls": 3,
+            "validation_seconds": 39.226035300060175,
+            "cumulative_iterations": 4,
+            "cumulative_repair_trials": 8,
+            "cumulative_wall_seconds": 240.55439830000978,
+            "within_budget": true
+          }
+        ]
+      },
+      "elapsed_s": 324.25,
+      "result_sha256": "3c9f8ad229239183f2aa7fcc498b0902f16f9616c7232e1fafae343d5f8daceb"
+    },
+    {
+      "method": "FIXED_H",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 32.439733333333336,
+      "ready": 0,
+      "received": 0,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 4,
+          "max_iterations": 4,
+          "max_repair_trials": 8,
+          "max_wall_seconds": 480,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 120,
+          "opportunities_h": [
+            24.439733333333333,
+            26.439733333333333,
+            28.439733333333333,
+            30.439733333333333
+          ],
+          "future_window_h": 8
+        },
+        "used_calls": 4,
+        "used_iterations": 4,
+        "used_repair_trials": 8,
+        "used_wall_seconds": 213.87114490009844,
+        "validation_calls": 12,
+        "validation_seconds": 149.46318470011465,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 61.117285200045444,
+            "validation_calls": 3,
+            "validation_seconds": 38.86396920005791,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 61.117285200045444,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 52.254829499986954,
+            "validation_calls": 3,
+            "validation_seconds": 37.063954200129956,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 113.3721147000324,
+            "within_budget": true
+          },
+          {
+            "call": 3,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 50.70111790008377,
+            "validation_calls": 3,
+            "validation_seconds": 36.78087489993777,
+            "cumulative_iterations": 3,
+            "cumulative_repair_trials": 6,
+            "cumulative_wall_seconds": 164.07323260011617,
+            "within_budget": true
+          },
+          {
+            "call": 4,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 49.79791229998227,
+            "validation_calls": 3,
+            "validation_seconds": 36.754386399989016,
+            "cumulative_iterations": 4,
+            "cumulative_repair_trials": 8,
+            "cumulative_wall_seconds": 213.87114490009844,
+            "within_budget": true
+          }
+        ]
+      },
+      "elapsed_s": 281.59399999992456,
+      "result_sha256": "1f2f8beaec8e35945e41834b19c9f7ffbacfab45535286db01fdc895b7725c69"
+    },
+    {
+      "method": "FIXED_HR",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 32.439733333333336,
+      "ready": 0,
+      "received": 0,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 4,
+          "max_iterations": 4,
+          "max_repair_trials": 8,
+          "max_wall_seconds": 480,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 120,
+          "opportunities_h": [
+            24.439733333333333,
+            26.439733333333333,
+            28.439733333333333,
+            30.439733333333333
+          ],
+          "future_window_h": 8
+        },
+        "used_calls": 4,
+        "used_iterations": 4,
+        "used_repair_trials": 8,
+        "used_wall_seconds": 240.88625290000346,
+        "validation_calls": 12,
+        "validation_seconds": 160.49765379983,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 70.34227170003578,
+            "validation_calls": 3,
+            "validation_seconds": 41.66728749987669,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 70.34227170003578,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 58.79458810004871,
+            "validation_calls": 3,
+            "validation_seconds": 39.93223420006689,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 129.1368598000845,
+            "within_budget": true
+          },
+          {
+            "call": 3,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 56.71879299997818,
+            "validation_calls": 3,
+            "validation_seconds": 39.63283759995829,
+            "cumulative_iterations": 3,
+            "cumulative_repair_trials": 6,
+            "cumulative_wall_seconds": 185.85565280006267,
+            "within_budget": true
+          },
+          {
+            "call": 4,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 55.030600099940784,
+            "validation_calls": 3,
+            "validation_seconds": 39.26529449992813,
+            "cumulative_iterations": 4,
+            "cumulative_repair_trials": 8,
+            "cumulative_wall_seconds": 240.88625290000346,
+            "within_budget": true
+          }
+        ]
+      },
+      "elapsed_s": 324.78100000007544,
+      "result_sha256": "f3b40cc27ce77e4eed4361285ca6a8b598939c8d8eac94d9b74b92551312c21d"
+    },
+    {
+      "method": "NO_OBSERVATION_UPDATE",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 32.439733333333336,
+      "ready": 0,
+      "received": 0,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 4,
+          "max_iterations": 4,
+          "max_repair_trials": 8,
+          "max_wall_seconds": 480,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 120,
+          "opportunities_h": [
+            24.439733333333333,
+            26.439733333333333,
+            28.439733333333333,
+            30.439733333333333
+          ],
+          "future_window_h": 8
+        },
+        "used_calls": 4,
+        "used_iterations": 4,
+        "used_repair_trials": 8,
+        "used_wall_seconds": 245.09229630010668,
+        "validation_calls": 12,
+        "validation_seconds": 162.55565939994995,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 70.509502000059,
+            "validation_calls": 3,
+            "validation_seconds": 41.68658609990962,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 70.509502000059,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 59.7248707000399,
+            "validation_calls": 3,
+            "validation_seconds": 40.585438999929465,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 130.2343727000989,
+            "within_budget": true
+          },
+          {
+            "call": 3,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 57.89387579995673,
+            "validation_calls": 3,
+            "validation_seconds": 40.24728850007523,
+            "cumulative_iterations": 3,
+            "cumulative_repair_trials": 6,
+            "cumulative_wall_seconds": 188.12824850005563,
+            "within_budget": true
+          },
+          {
+            "call": 4,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 56.96404780005105,
+            "validation_calls": 3,
+            "validation_seconds": 40.03634580003563,
+            "cumulative_iterations": 4,
+            "cumulative_repair_trials": 8,
+            "cumulative_wall_seconds": 245.09229630010668,
+            "within_budget": true
+          }
+        ]
+      },
+      "elapsed_s": 329.7029999999795,
+      "result_sha256": "604198a1282ebd49be3a00445410eaff5f44c879adcc1a7df93de3e840e14af8"
+    }
+  ],
+  "continuous_hold": [
+    {
+      "case": "PREPARED_CANCEL",
+      "injected": true,
+      "termination": "DECLARED_CHECKPOINT",
+      "time_h": 26.45709738333333,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "attempts": [
+        {
+          "activity_id": "PRODUCT-1.W-B",
+          "attempt": 0,
+          "definition_id": "PRODUCT-1.W-B.HR-SIM-v1",
+          "revision": "v1",
+          "output_revision": "v1",
+          "assumption_revision": "S18-SIM-A1",
+          "crew": [
+            {
+              "role_id": "OPERATOR",
+              "person_id": "OP1"
+            }
+          ],
+          "completed_units": [
+            0
+          ],
+          "prepared_revision": 735,
+          "state": "HOLD",
+          "handover": null
+        }
+      ],
+      "owners": [
+        {
+          "resource_id": "R1",
+          "command_id": "ATTEMPT:PRODUCT-1.W-B:0:v1"
+        },
+        {
+          "resource_id": "FIX-J2",
+          "command_id": "ATTEMPT:PRODUCT-1.W-B:0:v1"
+        }
+      ],
+      "result_sha256": "c79cac9f63c2eeabf421bbb423ed711db9836e273c443d2bee2d0c625065086f"
+    },
+    {
+      "case": "ROBOT_INTERRUPTION",
+      "injected": true,
+      "termination": "DECLARED_CHECKPOINT",
+      "time_h": 26.97284738333333,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "attempts": [
+        {
+          "activity_id": "PRODUCT-1.W-B",
+          "attempt": 0,
+          "definition_id": "PRODUCT-1.W-B.HR-SIM-v1",
+          "revision": "v1",
+          "output_revision": "v1",
+          "assumption_revision": "S18-SIM-A1",
+          "crew": [
+            {
+              "role_id": "OPERATOR",
+              "person_id": "OP1"
+            }
+          ],
+          "completed_units": [
+            0
+          ],
+          "prepared_revision": 735,
+          "state": "HOLD",
+          "handover": null
+        }
+      ],
+      "owners": [
+        {
+          "resource_id": "ENTITY:PRODUCT-1.BOTTOM",
+          "command_id": "PLAN-743-331-PRODUCT-1.W-B.HR.U2"
+        },
+        {
+          "resource_id": "FIX-J2",
+          "command_id": "PLAN-743-331-PRODUCT-1.W-B.HR.U2"
+        },
+        {
+          "resource_id": "R1",
+          "command_id": "PLAN-743-331-PRODUCT-1.W-B.HR.U2"
+        }
+      ],
+      "result_sha256": "0fa379035b603a6e2cfd12318c8960aa91648023b3c2a46c02880b0a724a548d"
+    }
+  ],
+  "saved_candidate_replay": [
+    {
+      "case": "ADAPTIVE_JOINT",
+      "candidate": "candidate-01",
+      "valid": true,
+      "score": [
+        -6,
+        41.79221312489005,
+        5.8914860168062555
+      ],
+      "reasons": [],
+      "candidate_sha256": "3fd401850888e5843d34b0eeeaca4d34f8c7a5c83f494d184d79df70ad0b871c",
+      "raw_sha256": "3aacbace52cec9c151c227cc3148efea7004f097dd3c978ae9958e8f27d0251a",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "ADAPTIVE_JOINT",
+      "candidate": "candidate-02",
+      "valid": true,
+      "score": [
+        -6,
+        41.85559070524562,
+        5.896935142725688
+      ],
+      "reasons": [],
+      "candidate_sha256": "7e263c505b8aa9ac16d6626a58b0aacfd851f519c58642063291ffb0a77892bd",
+      "raw_sha256": "7e34b0b0aa7625b58c1940100ecf02b83d6fd5acf8b8d2219c47701e31042463",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "ADAPTIVE_JOINT",
+      "candidate": "candidate-03",
+      "valid": true,
+      "score": [
+        -3,
+        41.63399500350247,
+        5.896935142725687
+      ],
+      "reasons": [],
+      "candidate_sha256": "b8074ce9c820acd63dabbf4901100058f3482ef05af87603057bea1300564c9d",
+      "raw_sha256": "2d052177cf5d0523624b33ff9eaa4ec445ce54bcdaf1173202f49c086a011f0f",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "ADAPTIVE_JOINT",
+      "candidate": "candidate-04",
+      "valid": true,
+      "score": [
+        -3,
+        41.633965097900486,
+        5.89693514272569
+      ],
+      "reasons": [],
+      "candidate_sha256": "ba39c3a466c5315ba6e6180cff4c2f5abf2623dd77e21a8f72e2b9a7ea9093c7",
+      "raw_sha256": "be678050553c70ec8eff9f9dd150f2057f3ae302b1d32fd01671be785c046704",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "FIXED_H",
+      "candidate": "candidate-01",
+      "valid": true,
+      "score": [
+        -3,
+        43.660930353135974,
+        5.892241582268547
+      ],
+      "reasons": [],
+      "candidate_sha256": "9f51df7b14a70053d556775f0552799294500a3527ea19daefadfb0a48138385",
+      "raw_sha256": "a898fdd66dcfa065918f1fb5ff09e996eeedbe132e45e81bce6a12f5a21194bd",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "FIXED_H",
+      "candidate": "candidate-02",
+      "valid": true,
+      "score": [
+        -3,
+        43.66567810811043,
+        5.896989337242993
+      ],
+      "reasons": [],
+      "candidate_sha256": "3964cdcfc00aae101c985e51844603fb4b90282feb192e44f58e97219260bd3e",
+      "raw_sha256": "ced0ecec31078a6fb617c123ce8bd7223b4a71586108d9260ff220e902a0a1e7",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "FIXED_H",
+      "candidate": "candidate-03",
+      "valid": true,
+      "score": [
+        -3,
+        43.66567810811043,
+        5.896989337242993
+      ],
+      "reasons": [],
+      "candidate_sha256": "3724f86462c614e4d1ca4c6c8679e709d42ffad4f2037c10b8f4b39a6e37988a",
+      "raw_sha256": "edc33a377e833b16323d1c022b00cc71f1750614a57d215e2fee05be4d8e23bb",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "FIXED_H",
+      "candidate": "candidate-04",
+      "valid": true,
+      "score": [
+        0,
+        43.66567810811043,
+        5.896989337242993
+      ],
+      "reasons": [],
+      "candidate_sha256": "c26de0780dc5e00508a98ac7ed03fe1b74740bf1cb1368ca36e2212153d096e1",
+      "raw_sha256": "feaa777c9d6132ffaf15132c70dfb72187a120309d6b99762205064030e5cfe4",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "FIXED_HR",
+      "candidate": "candidate-01",
+      "valid": true,
+      "score": [
+        -6,
+        41.79221312489005,
+        5.8914860168062555
+      ],
+      "reasons": [],
+      "candidate_sha256": "3fd401850888e5843d34b0eeeaca4d34f8c7a5c83f494d184d79df70ad0b871c",
+      "raw_sha256": "3aacbace52cec9c151c227cc3148efea7004f097dd3c978ae9958e8f27d0251a",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "FIXED_HR",
+      "candidate": "candidate-02",
+      "valid": true,
+      "score": [
+        -6,
+        41.85559070524562,
+        5.896935142725688
+      ],
+      "reasons": [],
+      "candidate_sha256": "7e263c505b8aa9ac16d6626a58b0aacfd851f519c58642063291ffb0a77892bd",
+      "raw_sha256": "7e34b0b0aa7625b58c1940100ecf02b83d6fd5acf8b8d2219c47701e31042463",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "FIXED_HR",
+      "candidate": "candidate-03",
+      "valid": true,
+      "score": [
+        -3,
+        41.85559070524562,
+        5.896935142725688
+      ],
+      "reasons": [],
+      "candidate_sha256": "c4080315ba9f3f5386225de6883f5ca5b4f91b10b7c805cc0a21ba78dc560bef",
+      "raw_sha256": "f954cfe3253e13e76f02edf10389642bfbd341010f5905bf2dcaeb7714406c4f",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "FIXED_HR",
+      "candidate": "candidate-04",
+      "valid": true,
+      "score": [
+        -3,
+        41.75819127929475,
+        5.896935142725689
+      ],
+      "reasons": [],
+      "candidate_sha256": "de27869950b16fb2bfbc6c49618d54ede495cbb23387fe5fa1570c43db5583a2",
+      "raw_sha256": "f9a7aa7be5702681b549a8d4f69dde840a659605d867ad2237dc73c8e41dc8d7",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "NO_OBSERVATION_UPDATE",
+      "candidate": "candidate-01",
+      "valid": true,
+      "score": [
+        -6,
+        41.79221312489005,
+        5.8914860168062555
+      ],
+      "reasons": [],
+      "candidate_sha256": "3fd401850888e5843d34b0eeeaca4d34f8c7a5c83f494d184d79df70ad0b871c",
+      "raw_sha256": "3aacbace52cec9c151c227cc3148efea7004f097dd3c978ae9958e8f27d0251a",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "NO_OBSERVATION_UPDATE",
+      "candidate": "candidate-02",
+      "valid": true,
+      "score": [
+        -6,
+        41.85559070524562,
+        5.896935142725688
+      ],
+      "reasons": [],
+      "candidate_sha256": "3593001024e13078b9e412b5a51c8661f88d68a6201daf23561da0515ed634fc",
+      "raw_sha256": "8e182028f370cbc208d49ebccf4400cb5cfd3c9946ef772bd0ebc2ce4f46d92b",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "NO_OBSERVATION_UPDATE",
+      "candidate": "candidate-03",
+      "valid": true,
+      "score": [
+        -3,
+        41.63399500350247,
+        5.896935142725687
+      ],
+      "reasons": [],
+      "candidate_sha256": "109c4d3bfc84a58e50690ebf23a996241bb916fb91674cbcefe63c4e70ee7f70",
+      "raw_sha256": "ff45c1afae1506b9db9777822542c5bed3ad9391e1f8ea8a4df895427c36d5d3",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    },
+    {
+      "case": "NO_OBSERVATION_UPDATE",
+      "candidate": "candidate-04",
+      "valid": true,
+      "score": [
+        -3,
+        41.633965097900486,
+        5.89693514272569
+      ],
+      "reasons": [],
+      "candidate_sha256": "3d00625f55e44a87ba1776b4fa5ff2e43ea02c1e1974233e7c2ba3c419adba31",
+      "raw_sha256": "aeab4846d329382a697ac734df6ae071190b38741e2bd67fd23e787e57913eaf",
+      "audit_scope": "SAVED_COMPLETE_WINDOW_RECONSTRUCTION_WITH_CAPTURED_MATCHING_CONSUMERS"
+    }
+  ],
+  "feedback_options": {
+    "seed": 0,
+    "iterations": 1,
+    "destroy_size": 2,
+    "repair_trials": 1,
+    "wall_seconds": 120,
+    "stagnation": 1,
+    "accept_equal": true
+  },
+  "feedback": [
+    {
+      "case": "DUPLICATE_VISIBLE_HISTORY",
+      "status": "FEASIBLE",
+      "termination": "NO_IMPROVEMENT",
+      "initial_score": [
+        -6,
+        41.79221312489005,
+        5.8914860168062555
+      ],
+      "best_score": [
+        -6,
+        41.79221312489005,
+        5.8914860168062555
+      ],
+      "iterations": 1,
+      "repair_trials": 2,
+      "wall_seconds": 64.49080870009493,
+      "recheck": {
+        "valid": true,
+        "score": [
+          -6,
+          41.79221312489005,
+          5.8914860168062555
+        ],
+        "reasons": []
+      },
+      "modes": [
+        [
+          "PRODUCT-1.W-B",
+          "HR-seq"
+        ],
+        [
+          "PRODUCT-1.W-T",
+          "HR-seq"
+        ]
+      ],
+      "candidate_sha256": "c307ab597abe40b80767733c8a99a098373feb2dbda79fe9472ca06ca919f244",
+      "result_sha256": "365edaf3b0e40de33e26f218f90117554e59d4454c27ea534332832b99726e3a"
+    },
+    {
+      "case": "NORMAL",
+      "status": "FEASIBLE",
+      "termination": "NO_IMPROVEMENT",
+      "initial_score": [
+        -6,
+        41.79221312489005,
+        5.8914860168062555
+      ],
+      "best_score": [
+        -6,
+        41.79221312489005,
+        5.8914860168062555
+      ],
+      "iterations": 1,
+      "repair_trials": 2,
+      "wall_seconds": 63.997099600033835,
+      "recheck": {
+        "valid": true,
+        "score": [
+          -6,
+          41.79221312489005,
+          5.8914860168062555
+        ],
+        "reasons": []
+      },
+      "modes": [
+        [
+          "PRODUCT-1.W-B",
+          "HR-seq"
+        ],
+        [
+          "PRODUCT-1.W-T",
+          "HR-seq"
+        ]
+      ],
+      "candidate_sha256": "c307ab597abe40b80767733c8a99a098373feb2dbda79fe9472ca06ca919f244",
+      "result_sha256": "39b27a7441b2ef8d8c5dddd1d60695e71e4d04446d798ae1af6e8cc83aa03746"
+    },
+    {
+      "case": "R1_FAILURE",
+      "status": "FEASIBLE",
+      "termination": "NO_IMPROVEMENT",
+      "initial_score": [
+        -3,
+        43.660930353135974,
+        5.892241582268547
+      ],
+      "best_score": [
+        -3,
+        43.660930353135974,
+        5.892241582268547
+      ],
+      "iterations": 1,
+      "repair_trials": 2,
+      "wall_seconds": 55.68119739997201,
+      "recheck": {
+        "valid": true,
+        "score": [
+          -3,
+          43.660930353135974,
+          5.892241582268547
+        ],
+        "reasons": []
+      },
+      "modes": [
+        [
+          "PRODUCT-1.W-B",
+          "H"
+        ],
+        [
+          "PRODUCT-1.W-T",
+          "H"
+        ]
+      ],
+      "candidate_sha256": "7ea2566734ccc12a4ee9edf9b6f3bb6756c64c97d8c45b1dcf33a2ea714a59d4",
+      "result_sha256": "26b8c0ee6f428090b1afb069fd85c8f6c910949b74c2477fb815d29c1a3026e9"
+    },
+    {
+      "case": "UNRELATED_TEST1_FAILURE",
+      "status": "FEASIBLE",
+      "termination": "NO_IMPROVEMENT",
+      "initial_score": [
+        -6,
+        41.79221312489005,
+        5.8914860168062555
+      ],
+      "best_score": [
+        -6,
+        41.79221312489005,
+        5.8914860168062555
+      ],
+      "iterations": 1,
+      "repair_trials": 2,
+      "wall_seconds": 63.46303159999661,
+      "recheck": {
+        "valid": true,
+        "score": [
+          -6,
+          41.79221312489005,
+          5.8914860168062555
+        ],
+        "reasons": []
+      },
+      "modes": [
+        [
+          "PRODUCT-1.W-B",
+          "HR-seq"
+        ],
+        [
+          "PRODUCT-1.W-T",
+          "HR-seq"
+        ]
+      ],
+      "candidate_sha256": "a2304cde3bcf99cfbc102951a4e39b49ab98f796f1f37ce099e29891c0c912fa",
+      "result_sha256": "eb1d91ee132a3082601cda128557f32e6844b68fb4cdc411533b0423048f118b"
+    }
+  ],
+  "late_unload": [
+    {
+      "declaration": {
+        "common_window_end_h": 32.439733333333336,
+        "rest_request_start_h": 25.439733333333333,
+        "rest_requests": 8,
+        "rest_h": 0.25,
+        "person": "OP1",
+        "search_calls": 0,
+        "mechanism": "SAME_OPERATOR_REST_REQUESTS_IN_BOTH_FIXED_PHASE_WITNESSES_NOT_FORMAL_A"
+      },
+      "declaration_sha256": "28c1a78b5be12c2e8f4e83936a0e771502789e6e2bceef644d44578e08c02984",
+      "results": [
+        {
+          "mode": "H",
+          "unload_h": 30.114228154862662,
+          "rest_requests": 8,
+          "execution_audit": "PASS",
+          "decision_audit": "PASS",
+          "termination": "WINDOW_CENSORED",
+          "result_sha256": "f7156703f1030b18404b3b31bf000d2bb9c729b9c8987909fb3a7a88807ad4c2"
+        },
+        {
+          "mode": "HR-seq",
+          "unload_h": 29.487140833333335,
+          "rest_requests": 8,
+          "execution_audit": "PASS",
+          "decision_audit": "PASS",
+          "termination": "WINDOW_CENSORED",
+          "result_sha256": "7cd1e05786e57e6d5f62fee2fd36e2d9ddc359889bac18f564fe8d6947e4a867"
+        }
+      ]
+    },
+    {
+      "declaration": {
+        "common_window_end_h": 32.439733333333336,
+        "rest_request_start_h": 25.439733333333333,
+        "rest_requests": 16,
+        "rest_h": 0.25,
+        "person": "OP1",
+        "search_calls": 0,
+        "mechanism": "SAME_OPERATOR_REST_REQUESTS_IN_BOTH_FIXED_PHASE_WITNESSES_NOT_FORMAL_A"
+      },
+      "declaration_sha256": "1d4fce5d97e0eb24046f6e1a0e81f593906de6f0b644075a03c5ad06eab3022a",
+      "results": [
+        {
+          "mode": "H",
+          "unload_h": 30.114228154862662,
+          "rest_requests": 16,
+          "execution_audit": "PASS",
+          "decision_audit": "PASS",
+          "termination": "WINDOW_CENSORED",
+          "result_sha256": "1e619ce452c930594083e322207ffe9a9dc14b7f7ce5167399dc1dab15ef94e6"
+        },
+        {
+          "mode": "HR-seq",
+          "unload_h": 31.487140833333335,
+          "rest_requests": 16,
+          "execution_audit": "PASS",
+          "decision_audit": "PASS",
+          "termination": "WINDOW_CENSORED",
+          "result_sha256": "f975826129228f6749586318f2d05a44ee04f32aaa6dcd05bc385dd116611f15"
+        }
+      ]
+    }
+  ],
+  "independent_negative_audit": {
+    "baseline": "PASS",
+    "cases": [
+      {
+        "case": "wrong_setup_qualification",
+        "status": "INVALID",
+        "findings": [
+          {
+            "rule": "R16",
+            "event_id": "EV-738",
+            "reason": "PAYLOAD_CONFLICT"
+          },
+          {
+            "rule": "R09",
+            "event_id": "EV-738",
+            "reason": "RUNNING_LEDGER"
+          },
+          {
+            "rule": "R09",
+            "event_id": "EV-739",
+            "reason": "RUNNING_LEDGER"
+          },
+          {
+            "rule": "R10",
+            "event_id": "EV-739",
+            "reason": "HUMAN_INTEGRAL"
+          },
+          {
+            "rule": "R10",
+            "event_id": "EV-739",
+            "reason": "HUMAN_INTEGRAL"
+          },
+          {
+            "rule": "R16",
+            "event_id": "EV-740",
+            "reason": "PAYLOAD_CONFLICT"
+          },
+          {
+            "rule": "R10",
+            "event_id": "EV-740",
+            "reason": "HUMAN_INTEGRAL"
+          },
+          {
+            "rule": "R10",
+            "event_id": "EV-740",
+            "reason": "HUMAN_INTEGRAL"
+          }
+        ]
+      },
+      {
+        "case": "prepared_mode_change",
+        "status": "INVALID",
+        "findings": [
+          {
+            "rule": "R18",
+            "event_id": "EV-748",
+            "reason": "COMMAND_MODE"
+          },
+          {
+            "rule": "R16",
+            "event_id": "EV-748",
+            "reason": "PAYLOAD_CONFLICT"
+          }
+        ]
+      },
+      {
+        "case": "wrong_phase_definition",
+        "status": "INVALID",
+        "findings": [
+          {
+            "rule": "R16",
+            "event_id": "EV-748",
+            "reason": "PAYLOAD_CONFLICT"
+          }
+        ]
+      },
+      {
+        "case": "robot_not_isolated",
+        "status": "INVALID",
+        "findings": [
+          {
+            "rule": "R04",
+            "event_id": "EV-748",
+            "reason": "SIM_ISOLATION_READBACK"
+          }
+        ]
+      },
+      {
+        "case": "unload_without_stop",
+        "status": "INVALID",
+        "findings": [
+          {
+            "rule": "R04",
+            "event_id": "EV-758",
+            "reason": "SIM_STOP_CONFIRMATION_READBACK"
+          }
+        ]
+      },
+      {
+        "case": "wrong_attempt_owner",
+        "status": "INCOMPLETE",
+        "findings": [
+          {
+            "rule": "R18",
+            "event_id": "EV-748",
+            "reason": "$ .readback: no matching union member"
+          }
+        ]
+      },
+      {
+        "case": "early_resource_release",
+        "status": "INVALID",
+        "findings": [
+          {
+            "rule": "R04",
+            "event_id": "EV-748",
+            "reason": "OWNERSHIP_LEDGER"
+          }
+        ]
+      },
+      {
+        "case": "premature_attempt_complete",
+        "status": "INVALID",
+        "findings": [
+          {
+            "rule": "R18",
+            "event_id": "EV-748",
+            "reason": "SIM_ATTEMPT_LEDGER"
+          }
+        ]
+      },
+      {
+        "case": "phantom_quality_pass",
+        "status": "INVALID",
+        "findings": [
+          {
+            "rule": "R02",
+            "event_id": "EV-758",
+            "reason": "GATE_OR_FAILURE_LEDGER"
+          }
+        ]
+      },
+      {
+        "case": "duplicate_event_sequence",
+        "status": "INCOMPLETE",
+        "findings": [
+          {
+            "rule": "R16",
+            "event_id": "EV-747",
+            "reason": "EVENT_GAP_OR_DUPLICATE"
+          }
+        ]
+      },
+      {
+        "case": "duplicate_material_consumption",
+        "status": "INVALID",
+        "findings": [
+          {
+            "rule": "R01",
+            "event_id": "EV-738",
+            "reason": "LOT_LEDGER"
+          }
+        ]
+      },
+      {
+        "case": "unload_wrong_person_location",
+        "status": "INVALID",
+        "findings": [
+          {
+            "rule": "R04",
+            "event_id": "EV-758",
+            "reason": "ACTUAL_ROLES"
+          }
+        ]
+      },
+      {
+        "case": "human_cap_overrun",
+        "status": "INCOMPLETE",
+        "findings": [
+          {
+            "rule": "R18",
+            "event_id": "SNAPSHOT",
+            "reason": "$ .state.humans[3].fatigue: expected [0,1)"
+          }
+        ]
+      }
+    ],
+    "auditor_sha256": "f9a801d2b950d5b83f360d120ed505afbc3ae6b9d97933632cfc8f5d34eff7cf"
+  },
+  "additional_semantic_audit": [
+    {
+      "case": "valid_foreign_attempt_owner",
+      "status": "INVALID",
+      "findings": [
+        {
+          "rule": "R18",
+          "event_id": "EV-748",
+          "reason": "SIM_STAGE_OWNERS_READBACK"
+        }
+      ]
+    },
+    {
+      "case": "valid_fraction_above_cap",
+      "status": "INVALID",
+      "findings": [
+        {
+          "rule": "R10",
+          "event_id": "EV-758",
+          "reason": "HUMAN_INTEGRAL"
+        }
+      ]
+    }
+  ],
+  "frozen": {
+    "total": 213,
+    "changed": 11,
+    "unchanged": 202,
+    "migrations": [
+      {
+        "path": "sim/isaac/scene/production_port.py",
+        "before_sha256": "bdf5b53a18521fbec4831beaa07c29b056023e2fb8e6f44af907fd790701760d",
+        "after_sha256": "85462608815305886fe720d6efd4c0a97df7624ff5e625618cd1a0d0a1ec8b00",
+        "authority": "S18-SIM-APPROVAL-001 / SR01-SR08; limited D02/D03 and D04 role expression",
+        "clauses": [
+          "SR01",
+          "SR02/A03-A06",
+          "SR03",
+          "SR05",
+          "SR07/V05"
+        ],
+        "change": "USD phase/attempt owner/isolation/stop/handover readback"
+      },
+      {
+        "path": "sim/isaac/scene/production_receiver.py",
+        "before_sha256": "4dd5b146c2edfff86e975c032fb9b80265d1bbb85350b6e615f0915c79e4c13b",
+        "after_sha256": "b0267772452bbcb10ab1986414c22bd6cc069bc45aabcc0239b5aa3c92adb376",
+        "authority": "S18-SIM-APPROVAL-001 / SR01-SR08; limited D02/D03 and D04 role expression",
+        "clauses": [
+          "SR01",
+          "SR02/A05",
+          "SR07/V06"
+        ],
+        "change": "Allow only explicitly approved simulation receiver purpose"
+      },
+      {
+        "path": "src/adaptive_hrc_scheduling/contracts/production.py",
+        "before_sha256": "f0b0de210f4f0e5cb9b13778d2dc9295e5d3c187aa45151773aeed0da1967798",
+        "after_sha256": "c7497e885cbbd056ec2c78eb6b1c12856b253d6222a877484ef93b889e3133f2",
+        "authority": "S18-SIM-APPROVAL-001 / SR01-SR08; limited D02/D03 and D04 role expression",
+        "clauses": [
+          "SR01",
+          "SR04/D03",
+          "SR05",
+          "SR07/V01-V02"
+        ],
+        "change": "Separate strict schema and legacy wire/defaults; research/branch/service validation"
+      },
+      {
+        "path": "src/adaptive_hrc_scheduling/control/production_decisions.py",
+        "before_sha256": "db51fd7ceabe8b9c1ce18e68bf1e2f5669ad161b5be6133c42dcaf0867e817e6",
+        "after_sha256": "3cc1e89401fcebd2654687871c040a618535fd737202a77b1daa74b6548d1105",
+        "authority": "S18-SIM-APPROVAL-001 / SR01-SR08; limited D02/D03 and D04 role expression",
+        "clauses": [
+          "SR01",
+          "SR05",
+          "SR06",
+          "SR07/V03-V07"
+        ],
+        "change": "New initial identity; legacy fingerprints preserved; independent causality"
+      },
+      {
+        "path": "src/adaptive_hrc_scheduling/control/production_loop.py",
+        "before_sha256": "6ad13b4c9d27a2902a9c0c1e70a7fee6bc673cb4c4ec2b29c0d12ed46a024c19",
+        "after_sha256": "a89f46ea45b5bb30ee752c17c98b777164c6688b01d04fae729b6fffa84774d1",
+        "authority": "S18-SIM-APPROVAL-001 / SR01-SR08; limited D02/D03 and D04 role expression",
+        "clauses": [
+          "SR01",
+          "SR02/A04-A06",
+          "SR06",
+          "SR07/V03-V06"
+        ],
+        "change": "Delivered failures, joint continuation, chosen-branch completion, charged service witnesses"
+      },
+      {
+        "path": "src/adaptive_hrc_scheduling/domain/production.py",
+        "before_sha256": "0d1eb57838af146dabed37a4daf2e0849e5507f433f9d0fcecaf73d6faa1b1dc",
+        "after_sha256": "07061325b6d778cbdf1625303c988f3d4dc3f9e254dd1e9f45a723e1821218ab",
+        "authority": "S18-SIM-APPROVAL-001 / SR01-SR08; limited D02/D03 and D04 role expression",
+        "clauses": [
+          "SR01",
+          "SR04/D03",
+          "SR05/D03-D04"
+        ],
+        "change": "Versioned branch/research/attempt/crew/readback records"
+      },
+      {
+        "path": "src/adaptive_hrc_scheduling/planning/production.py",
+        "before_sha256": "4fdb11bd123aec8a5968ad76c02c6d036453d71922d8f568eb455f37707d6309",
+        "after_sha256": "a19b7a7de92aa164c1c334e0a3276ee6281b632be6bd253e0d0d0686e9a6df60",
+        "authority": "S18-SIM-APPROVAL-001 / SR01-SR08; limited D02/D03 and D04 role expression",
+        "clauses": [
+          "SR02/A04-A06",
+          "SR03",
+          "SR05",
+          "SR06"
+        ],
+        "change": "Qualified role pools, committed crews, exit/unload/handover and complete joint dispatch preparation"
+      },
+      {
+        "path": "src/adaptive_hrc_scheduling/production_backend.py",
+        "before_sha256": "d77abb25ce7b814b5433569cb139dc6cef36e9d5f4b61f06ca6c26eee1236798",
+        "after_sha256": "cb66b25f488c13e8ea6d4e1488fa57bc5232fecabb644055d18e71fa6d40ac50",
+        "authority": "S18-SIM-APPROVAL-001 / SR01-SR08; limited D02/D03 and D04 role expression",
+        "clauses": [
+          "SR01",
+          "SR02/A03-A06",
+          "SR04/D03",
+          "SR05"
+        ],
+        "change": "Atomic commitment, activity/attempt resource holds, interruption/cancel and charged handover"
+      },
+      {
+        "path": "src/adaptive_hrc_scheduling/production_checker.py",
+        "before_sha256": "9929b8d3ddd8c679d6e0772e732c3f4ed8cf6edbc50c9dc780d16bb48cfb7acf",
+        "after_sha256": "f9a801d2b950d5b83f360d120ed505afbc3ae6b9d97933632cfc8f5d34eff7cf",
+        "authority": "S18-SIM-APPROVAL-001 / SR01-SR08; limited D02/D03 and D04 role expression",
+        "clauses": [
+          "SR01",
+          "SR02/A03-A06",
+          "SR04/D03",
+          "SR05",
+          "SR07/V02-V04"
+        ],
+        "change": "Independent phase/commitment/owners/isolation/crew/handover reconstruction"
+      },
+      {
+        "path": "src/adaptive_hrc_scheduling/production_geometry.py",
+        "before_sha256": "5f6ba6892a07203ed493588e50120f84a4cc378a48645a992e7b133fe3bc2908",
+        "after_sha256": "f33fa080c847d36c6ee9f74bdc4327f46d96731269407b246e302a168ea87e8a",
+        "authority": "S18-SIM-APPROVAL-001 / SR01-SR08; limited D02/D03 and D04 role expression",
+        "clauses": [
+          "SR02/A06",
+          "SR05/D03"
+        ],
+        "change": "Strict existing-cost handover service validation; ordinary services cannot carry branch effects"
+      },
+      {
+        "path": "src/adaptive_hrc_scheduling/production_mapping.py",
+        "before_sha256": "654c1f1b89d25c4969a475c49919b6cb7c1cf8fb927c3220e6ad5f44e540128d",
+        "after_sha256": "c8cc78a57f8619aee24a7c80a4d29222f9e12852c4cc5bb5642cea8f47b74f17",
+        "authority": "S18-SIM-APPROVAL-001 / SR01-SR08; limited D02/D03 and D04 role expression",
+        "clauses": [
+          "SR01",
+          "SR03",
+          "SR04/D03",
+          "SR05"
+        ],
+        "change": "Complete H/HR branch phases and selected-branch successor mapping"
+      }
+    ]
+  },
+  "history": [
+    {
+      "path": ".local/S18-20261007-branches-r1.zip",
+      "sha256": "e5d2b083d6e45685d2ae0d6d259a7b49bc04bf5f8e8c95752aafedf7fc75c528",
+      "bytes": 268809
+    },
+    {
+      "path": ".local/S18-20261007-continuation-r1.zip",
+      "sha256": "1d5c97c3c0c688cf87c9a140ecda5b060235bca3477dcee11fcd8a1af5cffa96",
+      "bytes": 319862
+    },
+    {
+      "path": ".local/S18-20261008-adaptive-r1.zip",
+      "sha256": "69560d0c220d3782c47f8fd1aee84da4e3905ad30e41b3ee5ca42a159627f2a1",
+      "bytes": 410881
+    },
+    {
+      "path": ".local/S18-20261008-rolling-r1.zip",
+      "sha256": "bc4162d0acfd5119cab07d133f8f96d8e52f6005fa2f52c44683cbcd9490ffd1",
+      "bytes": 363146
+    },
+    {
+      "path": ".local/S18-SIM-SCOPE-20261008-r1.zip",
+      "sha256": "1bf0fd4937176d851545ca64ee5fbd8745fc78724ded7c02e8072fed882e86ea",
+      "bytes": 219149
+    }
+  ],
+  "target_repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling.git",
+  "target_branch": "main",
+  "tag": null,
+  "proposed_tag": "step-S18-simulation-r1",
+  "proposed_remote_operations": [],
+  "limitations": [
+    "Symbolic timed welding; no metallurgy, weld-path, industrial safety or capacity proof",
+    "External synthetic quality and receiver; no industrial qualification",
+    "J2 shared landing collision retained; lawful chains move bottom out before top enters",
+    "Paired search evidence is complete declared 8h window, WINDOW_CENSORED; not full-product LNS effect or formal A/D",
+    "Source families retain their actual capture lineage",
+    "Original failed, unhelpful, reverse and censored records preserved; no reset",
+    "No separate human GUI acceptance; no later step started"
+  ]
+}

@@ -1,0 +1,284 @@
+{
+  "packet_id": "S18-20261007-continuation-r1",
+  "base_commit": "62c1c5393cb715b8089a93ee7ec658a0eb0e571d",
+  "authorization": [
+    "PR140",
+    "PR141"
+  ],
+  "result_log": "LOG183",
+  "program_work": "VERIFIED_WITH_LIMITS",
+  "step_work": "RESEARCH_BLOCKED_G2_OPEN",
+  "acceptance": "ACCEPTANCE_PENDING",
+  "approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "source_tests": {
+    "count": 709,
+    "seconds": 220.213,
+    "result": "PASS"
+  },
+  "isolated_wheel_tests": {
+    "count": 709,
+    "seconds": 223.154,
+    "result": "PASS"
+  },
+  "specialty_tests_in_full_suite": 50,
+  "new_tests": 16,
+  "engineering_checks": [
+    "LOCK_PASS",
+    "RUFF_PASS",
+    "FORMAT_149_FILES_PASS",
+    "DEPENDENCY_PASS",
+    "SDIST_TO_WHEEL_PASS",
+    "LOCKED_REFERENCE_HASH_INSTALL_PASS"
+  ],
+  "python_input_files": 148,
+  "prior_python_inputs_unchanged": 143,
+  "frozen_files_unchanged": 213,
+  "original_packet_unchanged": true,
+  "original_s17_seven_summary_and_replay_identical": true,
+  "original_s18_nine_semantic_rows_and_repair_histories_identical": true,
+  "conditional_controls": [
+    {
+      "name": "NORMAL",
+      "adaptive_status": "FEASIBLE",
+      "adaptive_mode": "HR-seq",
+      "adaptive_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "frozen_status": "FEASIBLE",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "actual_safety": {
+        "valid": true,
+        "score": [
+          3.9928861,
+          32.718049827,
+          2.386287743
+        ],
+        "reasons": [
+          "CONDITIONAL_C04_BRANCH_ONLY"
+        ]
+      }
+    },
+    {
+      "name": "R1_FAILURE",
+      "adaptive_status": "FEASIBLE",
+      "adaptive_mode": "H",
+      "adaptive_score": [
+        6.225840079,
+        35.460819074,
+        4.762655775
+      ],
+      "frozen_status": "WAIT",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "actual_safety": {
+        "valid": false,
+        "score": null,
+        "reasons": [
+          "RESOURCE_FAILED:R1"
+        ]
+      }
+    },
+    {
+      "name": "IRRELEVANT_FAILURE",
+      "adaptive_status": "FEASIBLE",
+      "adaptive_mode": "HR-seq",
+      "adaptive_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "frozen_status": "FEASIBLE",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "actual_safety": {
+        "valid": true,
+        "score": [
+          3.9928861,
+          32.718049827,
+          2.386287743
+        ],
+        "reasons": [
+          "CONDITIONAL_C04_BRANCH_ONLY"
+        ]
+      }
+    },
+    {
+      "name": "CANCELLATION",
+      "adaptive_status": "WAIT",
+      "adaptive_mode": null,
+      "adaptive_score": null,
+      "frozen_status": "WAIT",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "actual_safety": {
+        "valid": false,
+        "score": null,
+        "reasons": [
+          "CANCELLED_OR_QUARANTINED"
+        ]
+      }
+    }
+  ],
+  "production_controls": [
+    {
+      "name": "NORMAL_WALK",
+      "scope": "CURRENT_S15_FIXED_MODE_PLUMBING_NOT_JOINT_HR",
+      "joint_boundary": {
+        "status": "BLOCKED",
+        "reasons": [
+          "G2_OPEN_HR_DISABLED",
+          "S15_HR_SEQUENCE_MAPPING_ABSENT"
+        ],
+        "observation_sha256": "b3492bcfea09a0f845b84b90f8b166b7a3a0cb6ac10d7322a89fc138d78e2080",
+        "protected_sha256": "0136bacbf55f2a477e21d9f3ee80b5c36b8b3f3f004412d3015e27a1a8ce2620",
+        "candidate": null
+      },
+      "frozen_status": "SHIELDED",
+      "nominal_candidate_sha256": "9a62edd04370cc5adb2bfe40f6d9f866ed4446ae82fa3248a2d1902fc22b2d69",
+      "nominal_score": [
+        1,
+        0.009708333333333333
+      ],
+      "actual_safety": {
+        "valid": true,
+        "score": [
+          1,
+          0.009708333333333333
+        ],
+        "reasons": []
+      },
+      "actual_execution": "WALK_COMPLETED",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      },
+      "command_sha256": "f81dd9bdd313dee04ac3e43bae2731a027ffc7604e27964c8e92649c60999034",
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "actual_time_h": 0.009708333333333333,
+      "people_positions": [
+        {
+          "id": "P1",
+          "location": "RECEIVE",
+          "support": "RECEIVE"
+        }
+      ]
+    },
+    {
+      "name": "GROUND_SPINE_FAILURE",
+      "scope": "CURRENT_S15_FIXED_MODE_PLUMBING_NOT_JOINT_HR",
+      "joint_boundary": {
+        "status": "BLOCKED",
+        "reasons": [
+          "G2_OPEN_HR_DISABLED",
+          "S15_HR_SEQUENCE_MAPPING_ABSENT"
+        ],
+        "observation_sha256": "42ae57fb2f0e4a400dff2e9d5cedd95b4455c0a3f8f71ef3aa426531766514fc",
+        "protected_sha256": "0136bacbf55f2a477e21d9f3ee80b5c36b8b3f3f004412d3015e27a1a8ce2620",
+        "candidate": null
+      },
+      "frozen_status": "WAIT",
+      "nominal_candidate_sha256": "9a62edd04370cc5adb2bfe40f6d9f866ed4446ae82fa3248a2d1902fc22b2d69",
+      "nominal_score": [
+        1,
+        0.009708333333333333
+      ],
+      "actual_safety": {
+        "valid": false,
+        "score": null,
+        "reasons": [
+          "PREVIEW:PATH_BLOCKED"
+        ]
+      },
+      "actual_execution": "NOT_DISPATCHED",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    }
+  ],
+  "autonomous_judgment": "MAINTAIN_G2_OPEN_HR_DISABLED_A_BLOCKED_SELECT_GATE_DEPENDENT_M01_M02_DESIGN",
+  "failures_retained": [
+    "FIRST_RUN_STALE_LOCAL_PACKAGE_IMPORT_ERROR",
+    "TEN_TEST_RUN_UNSUPPORTED_MATERIAL_FACT_ERROR",
+    "FIFTY_TEST_RUN_UNSUPPORTED_PERSON_FAILURE_ERROR",
+    "INITIAL_LINT_IMPORT_AND_AMBIGUOUS_VARIABLE_FIXED",
+    "ALL_ORIGINAL_FAILURES_CENSORED_INVALID_AND_NEGATIVE_RESULTS"
+  ],
+  "open_exits": [
+    "Q01_Q06_REAL_PRODUCT_JOINT_AND_PROCESS_EVIDENCE",
+    "CURRENT_PRODUCTION_HR_SCHEMA_EXECUTION_AND_INDEPENDENT_AUDIT_MIGRATION",
+    "ISAAC_HR_STAGE_AND_POSITION_READBACK_AND_TWO_BACKEND_FULL_CHAIN",
+    "FULL_FUTURE_PRODUCTION_FEASIBILITY_AND_ROLLING_JOINT_STATE_ABLATION",
+    "COMPLETE_S18_RESEARCH_ACCEPTANCE"
+  ],
+  "actual_git_writes": [],
+  "new_kit_run": false,
+  "new_remote_ci": false,
+  "later_steps_started": false,
+  "exact_review_files": [
+    "AGENTS.md",
+    "PROGRESS_LOG.md",
+    "PROMPT_LEDGER.md",
+    "README.md",
+    "docs/PROJECT_CHARTER.md",
+    "docs/algorithms/joint_modes.md",
+    "docs/architecture.md",
+    "docs/model/S18_production_mapping_r1.md",
+    "docs/model/S18_qualification_decisions_r1.md",
+    "docs/roadmap.md",
+    "docs/steps/S17.md",
+    "docs/steps/S18.md",
+    "docs/validation/S18_continuation_r1.json",
+    "docs/validation/S18_continuation_r1.md",
+    "docs/validation/S18_joint_branches_r1.json",
+    "docs/validation/S18_joint_branches_r1.md",
+    "examples/joint_modes/continuation.json",
+    "examples/joint_modes/mechanisms.json",
+    "scripts/run_joint_continuation.py",
+    "scripts/run_joint_mechanisms.py",
+    "src/adaptive_hrc_scheduling/algorithms/joint_lns.py",
+    "src/adaptive_hrc_scheduling/algorithms/joint_production.py",
+    "tests/test_joint_decisions.py",
+    "tests/test_joint_frozen_information.py",
+    "tests/test_joint_production_boundary.py"
+  ],
+  "target_repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling.git",
+  "branch": "main",
+  "proposed_tag": "step-S18-continuation-r1",
+  "proposed_remote_actions": [],
+  "limitations": [
+    "Same-tick retained anchor; not a rolling production HR policy or full future-factory ablation.",
+    "No current updates enter nominal ranking/repair/score/cache; actual shield only rejects and never retries.",
+    "Safety scores are separately labelled; nominal scores are not actual performance.",
+    "Current production joint gate remains closed. Actual walk is fixed-mode plumbing, not full-chain or Kit evidence.",
+    "PR141 delegates judgment, not acquired qualification or human acceptance/publication.",
+    "M01/M02 is selected gate-dependent design; current frozen production fields are unchanged."
+  ]
+}

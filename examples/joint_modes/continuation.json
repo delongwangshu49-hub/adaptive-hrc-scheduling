@@ -1,0 +1,708 @@
+{
+  "research": "BLOCKED_G2_OPEN",
+  "scope": "S18_2_CONDITIONAL_CONTROLS_AND_FIXED_PRODUCTION_BOUNDARY_ONLY",
+  "conditional_cases": [
+    {
+      "name": "NORMAL",
+      "scope": "CONDITIONAL_C04_SAME_TICK_NO_UPDATE_TAIL",
+      "adaptive_status": "FEASIBLE",
+      "adaptive_mode": "HR-seq",
+      "adaptive_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "frozen_status": "FEASIBLE",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "nominal_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "actual_safety": {
+        "valid": true,
+        "score": [
+          3.9928861,
+          32.718049827,
+          2.386287743
+        ],
+        "reasons": [
+          "CONDITIONAL_C04_BRANCH_ONLY"
+        ]
+      },
+      "anchor_sha256": "4f7a780b8bdcd59b4061a1ac7437520240963ed9550c195e5d0cccb5b6e3e9b4",
+      "current_sha256": "4f7a780b8bdcd59b4061a1ac7437520240963ed9550c195e5d0cccb5b6e3e9b4",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    },
+    {
+      "name": "R1_FAILURE",
+      "scope": "CONDITIONAL_C04_SAME_TICK_NO_UPDATE_TAIL",
+      "adaptive_status": "FEASIBLE",
+      "adaptive_mode": "H",
+      "adaptive_score": [
+        6.225840079,
+        35.460819074,
+        4.762655775
+      ],
+      "frozen_status": "WAIT",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "nominal_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "actual_safety": {
+        "valid": false,
+        "score": null,
+        "reasons": [
+          "RESOURCE_FAILED:R1"
+        ]
+      },
+      "anchor_sha256": "4f7a780b8bdcd59b4061a1ac7437520240963ed9550c195e5d0cccb5b6e3e9b4",
+      "current_sha256": "8430539978e931a994052e019a80e018091d55dc1f605fab537902a4a3180f7a",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    },
+    {
+      "name": "IRRELEVANT_FAILURE",
+      "scope": "CONDITIONAL_C04_SAME_TICK_NO_UPDATE_TAIL",
+      "adaptive_status": "FEASIBLE",
+      "adaptive_mode": "HR-seq",
+      "adaptive_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "frozen_status": "FEASIBLE",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "nominal_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "actual_safety": {
+        "valid": true,
+        "score": [
+          3.9928861,
+          32.718049827,
+          2.386287743
+        ],
+        "reasons": [
+          "CONDITIONAL_C04_BRANCH_ONLY"
+        ]
+      },
+      "anchor_sha256": "4f7a780b8bdcd59b4061a1ac7437520240963ed9550c195e5d0cccb5b6e3e9b4",
+      "current_sha256": "f4205008c6a2fae67744a2a52bd252a3dfa16affd0ab9b6a89898510d25d1b5a",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    },
+    {
+      "name": "CANCELLATION",
+      "scope": "CONDITIONAL_C04_SAME_TICK_NO_UPDATE_TAIL",
+      "adaptive_status": "WAIT",
+      "adaptive_mode": null,
+      "adaptive_score": null,
+      "frozen_status": "WAIT",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "nominal_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "actual_safety": {
+        "valid": false,
+        "score": null,
+        "reasons": [
+          "CANCELLED_OR_QUARANTINED"
+        ]
+      },
+      "anchor_sha256": "4f7a780b8bdcd59b4061a1ac7437520240963ed9550c195e5d0cccb5b6e3e9b4",
+      "current_sha256": "a9265ffc6687504173f063002bbba822c8c01bd4dca6b626369bd1fcc09ca649",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    }
+  ],
+  "production_cases": [
+    {
+      "name": "NORMAL_WALK",
+      "scope": "CURRENT_S15_FIXED_MODE_PLUMBING_NOT_JOINT_HR",
+      "joint_boundary": {
+        "status": "BLOCKED",
+        "reasons": [
+          "G2_OPEN_HR_DISABLED",
+          "S15_HR_SEQUENCE_MAPPING_ABSENT"
+        ],
+        "observation_sha256": "b3492bcfea09a0f845b84b90f8b166b7a3a0cb6ac10d7322a89fc138d78e2080",
+        "protected_sha256": "0136bacbf55f2a477e21d9f3ee80b5c36b8b3f3f004412d3015e27a1a8ce2620",
+        "candidate": null
+      },
+      "frozen_status": "SHIELDED",
+      "nominal_candidate_sha256": "9a62edd04370cc5adb2bfe40f6d9f866ed4446ae82fa3248a2d1902fc22b2d69",
+      "nominal_score": [
+        1,
+        0.009708333333333333
+      ],
+      "actual_safety": {
+        "valid": true,
+        "score": [
+          1,
+          0.009708333333333333
+        ],
+        "reasons": []
+      },
+      "actual_execution": "WALK_COMPLETED",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      },
+      "command_sha256": "f81dd9bdd313dee04ac3e43bae2731a027ffc7604e27964c8e92649c60999034",
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "actual_time_h": 0.009708333333333333,
+      "people_positions": [
+        {
+          "id": "P1",
+          "location": "RECEIVE",
+          "support": "RECEIVE"
+        }
+      ]
+    },
+    {
+      "name": "GROUND_SPINE_FAILURE",
+      "scope": "CURRENT_S15_FIXED_MODE_PLUMBING_NOT_JOINT_HR",
+      "joint_boundary": {
+        "status": "BLOCKED",
+        "reasons": [
+          "G2_OPEN_HR_DISABLED",
+          "S15_HR_SEQUENCE_MAPPING_ABSENT"
+        ],
+        "observation_sha256": "42ae57fb2f0e4a400dff2e9d5cedd95b4455c0a3f8f71ef3aa426531766514fc",
+        "protected_sha256": "0136bacbf55f2a477e21d9f3ee80b5c36b8b3f3f004412d3015e27a1a8ce2620",
+        "candidate": null
+      },
+      "frozen_status": "WAIT",
+      "nominal_candidate_sha256": "9a62edd04370cc5adb2bfe40f6d9f866ed4446ae82fa3248a2d1902fc22b2d69",
+      "nominal_score": [
+        1,
+        0.009708333333333333
+      ],
+      "actual_safety": {
+        "valid": false,
+        "score": null,
+        "reasons": [
+          "PREVIEW:PATH_BLOCKED"
+        ]
+      },
+      "actual_execution": "NOT_DISPATCHED",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    }
+  ],
+  "current_weld_mapping": [
+    {
+      "activity_id": "PRODUCT-1.W-B",
+      "location": "J2",
+      "modes": [
+        {
+          "id": "PRODUCT-1.H",
+          "kind": "H",
+          "enabled": true,
+          "units": [
+            {
+              "id": "U1",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "phase": "SETUP",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": true
+            },
+            {
+              "id": "U2",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "phase": "WORK",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": false
+            },
+            {
+              "id": "U3",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "phase": "WORK",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": false
+            },
+            {
+              "id": "U4",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "phase": "WORK",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": false
+            },
+            {
+              "id": "U5",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "phase": "WORK",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": false
+            },
+            {
+              "id": "U6",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "phase": "UNLOAD",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.0,
+              "resumable": true
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT-1.HR-seq",
+          "kind": "HR-seq",
+          "enabled": false,
+          "units": [
+            {
+              "id": "U1",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "phase": "SETUP",
+              "roles": [
+                {
+                  "id": "OP1",
+                  "qualification": "ROBOT"
+                }
+              ],
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": true
+            },
+            {
+              "id": "U2",
+              "base_h": 1.0,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "phase": "ROBOT",
+              "roles": [],
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "kappa": 0.0,
+              "resumable": false
+            },
+            {
+              "id": "U3",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-B",
+              "phase": "UNLOAD",
+              "roles": [
+                {
+                  "id": "OP1",
+                  "qualification": "ROBOT"
+                }
+              ],
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "kappa": 0.0,
+              "resumable": true
+            }
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "activity_id": "PRODUCT-1.W-B",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U1",
+          "operation_ids": [
+            "PRODUCT-1.W-B.U1"
+          ]
+        },
+        {
+          "activity_id": "PRODUCT-1.W-B",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U2",
+          "operation_ids": [
+            "PRODUCT-1.W-B.U2"
+          ]
+        },
+        {
+          "activity_id": "PRODUCT-1.W-B",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U3",
+          "operation_ids": [
+            "PRODUCT-1.W-B.U3"
+          ]
+        },
+        {
+          "activity_id": "PRODUCT-1.W-B",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U4",
+          "operation_ids": [
+            "PRODUCT-1.W-B.U4"
+          ]
+        },
+        {
+          "activity_id": "PRODUCT-1.W-B",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U5",
+          "operation_ids": [
+            "PRODUCT-1.W-B.U5"
+          ]
+        },
+        {
+          "activity_id": "PRODUCT-1.W-B",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U6",
+          "operation_ids": [
+            "PRODUCT-1.W-B.U6"
+          ]
+        }
+      ]
+    },
+    {
+      "activity_id": "PRODUCT-1.W-T",
+      "location": "J2",
+      "modes": [
+        {
+          "id": "PRODUCT-1.H",
+          "kind": "H",
+          "enabled": true,
+          "units": [
+            {
+              "id": "U1",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "phase": "SETUP",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": true
+            },
+            {
+              "id": "U2",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "phase": "WORK",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": false
+            },
+            {
+              "id": "U3",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "phase": "WORK",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": false
+            },
+            {
+              "id": "U4",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "phase": "WORK",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": false
+            },
+            {
+              "id": "U5",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "phase": "WORK",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": false
+            },
+            {
+              "id": "U6",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "phase": "UNLOAD",
+              "roles": [
+                {
+                  "id": "W1",
+                  "qualification": "WELD"
+                }
+              ],
+              "equipment": [
+                "WELD-J2",
+                "FIX-J2"
+              ],
+              "kappa": 0.0,
+              "resumable": true
+            }
+          ]
+        },
+        {
+          "id": "PRODUCT-1.HR-seq",
+          "kind": "HR-seq",
+          "enabled": false,
+          "units": [
+            {
+              "id": "U1",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "phase": "SETUP",
+              "roles": [
+                {
+                  "id": "OP1",
+                  "qualification": "ROBOT"
+                }
+              ],
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "kappa": 0.5,
+              "resumable": true
+            },
+            {
+              "id": "U2",
+              "base_h": 1.0,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "phase": "ROBOT",
+              "roles": [],
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "kappa": 0.0,
+              "resumable": false
+            },
+            {
+              "id": "U3",
+              "base_h": 0.5,
+              "checkpoint_id": "PRODUCT-1.CHECKPOINT-W-T",
+              "phase": "UNLOAD",
+              "roles": [
+                {
+                  "id": "OP1",
+                  "qualification": "ROBOT"
+                }
+              ],
+              "equipment": [
+                "R1",
+                "FIX-J2"
+              ],
+              "kappa": 0.0,
+              "resumable": true
+            }
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "activity_id": "PRODUCT-1.W-T",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U1",
+          "operation_ids": [
+            "PRODUCT-1.W-T.U1"
+          ]
+        },
+        {
+          "activity_id": "PRODUCT-1.W-T",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U2",
+          "operation_ids": [
+            "PRODUCT-1.W-T.U2"
+          ]
+        },
+        {
+          "activity_id": "PRODUCT-1.W-T",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U3",
+          "operation_ids": [
+            "PRODUCT-1.W-T.U3"
+          ]
+        },
+        {
+          "activity_id": "PRODUCT-1.W-T",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U4",
+          "operation_ids": [
+            "PRODUCT-1.W-T.U4"
+          ]
+        },
+        {
+          "activity_id": "PRODUCT-1.W-T",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U5",
+          "operation_ids": [
+            "PRODUCT-1.W-T.U5"
+          ]
+        },
+        {
+          "activity_id": "PRODUCT-1.W-T",
+          "mode_id": "PRODUCT-1.H",
+          "unit_id": "U6",
+          "operation_ids": [
+            "PRODUCT-1.W-T.U6"
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Same-tick retained anchor; not a rolling production HR policy or full future-factory ablation.",
+    "No current updates enter nominal ranking/repair/score/cache; actual shield only rejects and never retries.",
+    "Safety scores are separately labelled; nominal scores are not actual performance.",
+    "Current production joint gate remains closed. Actual walk is fixed-mode plumbing, not full-chain or Kit evidence."
+  ]
+}

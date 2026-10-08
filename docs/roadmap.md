@@ -1,5 +1,26 @@
 # 钢建筑模块研究逐步路线
 
+2026-10-08现行发布批准与预检发现（PR147 / LOG193）：负责人已明确批准87文件S18-20261008-simulation-publication-r1的具体提交/标签/atomic推送方案，记录S18-SIM-PUBLISH-APPROVAL-001。发布前复现F01：现行LF规范化改变四份获批CRLF JSON字节，导致SIM_APPROVED_INPUT_DRIFT；尚未暂存、提交、建标签或推送。原87批准与封包保持；拟仅对冻结.gitattributes增加四条原字节保留例外并形成88文件修订发布审阅，当前PROPOSED / DECISION_PENDING / NOT_IMPLEMENTED。工作区该冻结文件已按原摘要保持，源码/数值/工业边界与后续步骤不变。入口：[具体修订审阅](validation/S18_simulation_publication_r1.md)。旧状态按各自封存时点保留。
+
+
+2026-10-08现行限定验收（PR146 / LOG192）：负责人已批准85文件确切快照S18-20261008-simulation-r1，记录S18-SIM-ACCEPTANCE-001，成果ACCEPTED_WITH_DOCUMENTED_LIMITS；原封包、逐文件摘要及全部限制保持。原拟远端操作为空，本次不扩展为未列明的Git发布操作。具体main提交与step-S18-simulation-r1标签推送方案另形成确切发布审阅，当前DECISION_PENDING / NOT_PUBLISHED；无Git写入或后续启动。工业G2 OPEN/NOT_ESTABLISHED保持。入口：[实际验收](validation/S18_simulation_acceptance_r1.json)。下方状态保留各自封存时点。
+
+
+2026-10-08现行本地仿真成果（LOG191）：S18-SIM-APPROVAL-001的SR01—SR08已完成本地实现与V01—V08实际验证，候选S18-20261008-simulation-r1为SIMULATION_IMPLEMENTATION_VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。源码与隔离wheel各759项通过；最新SR-W1双产品、SR-W2及原WV01连续双后端链、严格比较和Kit正常退出通过；四共同8h通道及16个完整候选复验、实际反馈/交班、连续中断/取消HOLD和15个独立负例拒绝通过。213基线中11个获批消费者迁移、202个摘要保持，原数值与历史失败/封包不变。工业G2 OPEN/NOT_ESTABLISHED、符号焊接/合成质量接收及共用落点限制保持；未执行正式A/D、Git/远端写入或后续启动。成果验收及确切发布另审。入口：[确切审阅](validation/S18_simulation_implementation_r1.md)。下文早期G2全域阻断与未迁移叙述按历史时点保留，当前获批仿真以本条及实际批准为准。
+
+
+2026-10-08现行仿真范围批准与交接（PR145 / LOG189）：负责人已批准S18-SIM-SCOPE-20261008-r1的SR01—SR08及配套假设表，决定S18-SIM-APPROVAL-001；要求新对话S18-3沿用当前目录/main、不建分支/worktree，完成S18剩余本地实施、Kit验证和收尾，不调用子代理。仿真范围IMPLEMENTATION_AUTHORIZED，工业G2 OPEN/NOT_ESTABLISHED保持；不再以工业G2缺资料单独阻断已批准仿真。仅按具体条款修订冻结项，原数值/历史证据保持；内部子阶段不重复等待启动许可。V01—V08与完整双后端出口仍须实际通过；成果验收、确切发布和后续步骤另审。下方待审/全域阻断叙述保留历史时点，以本决定为准。 入口：[实际批准记录](model/S18_simulation_scope_approval_r1.json)、[获批方案](model/S18_simulation_scope_proposal_r1.md)。
+
+2026-10-08现行自适应成果（PR143 / LOG186—LOG187）：上一32文件有限成果获ACCEPTED_WITH_DOCUMENTED_LIMITS；新增条件C04反馈后逐动作联合重规划，75专项含于源码/隔离wheel各734项。八个自适应例与两个冻结对照保存记录双审计通过；搬运中R1故障改变未承诺焊接为H，装夹故障/取消截尾及晚卸载反向保持。213冻结文件保持，完整S18仍RESEARCH_BLOCKED_G2_OPEN；Q01—Q06、生产HR映射及Isaac全链出口未满。新39文件候选VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；无Git发布或后续启动。 入口：[当前审阅](validation/S18_adaptive_control_r1.md)、[完整出口](validation/S18_completion_exits.md)。
+
+2026-10-08現行跨时刻成果（PR142 / LOG184—LOG185）：上一S18续接25文件成果已限定ACCEPTED_WITH_DOCUMENTED_LIMITS，未发布；本轮条件C04跨时刻无更新实际执行完成，65专项含于源码/隔离wheel各724项。九例实际执行/决策双审计及保存记录重建通过，四截尾保留；预算恰达实际完成误标已修正。213冻结文件、上一148项Python输入及旧封包/失败保持。候选S18-20261008-rolling-r1程序VERIFIED_WITH_LIMITS，完整研究RESEARCH_BLOCKED_G2_OPEN，新32文件快照ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。现行生产HR滚动联合、共同生产对照、资格及Isaac全链仍缺；实际HR禁用/A BLOCKED与门后设计保持。未执行Git发布或启动后续。入口：[S18跨时刻审阅](validation/S18_rolling_control_r1.md)。
+
+2026-10-07现行续接成果（PR140—PR141 / LOG182—LOG183）：S18-2完成全状态类别无更新的同刻条件控制、现行S15固定接口/联合拒绝边界及M01/M02具体门后设计。50专项含于源码/隔离wheel各709项，213冻结文件、原S17七例及S18九例保持；实际WALK执行/因果双审计PASS，无新Kit。负责人委托AI自主判断后，依据前置证据保持G2 OPEN/HR禁用/A BLOCKED，不删A或改时长/负荷。候选S18-20261007-continuation-r1程序VERIFIED_WITH_LIMITS，完整研究RESEARCH_BLOCKED_G2_OPEN；新快照ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。真实资格、生产HR/Isaac全链及滚动联合消融出口仍缺；未启动后续步骤。入口：[S18-2审阅](validation/S18_continuation_r1.md)。
+
+2026-10-07条件程序成果（PR139 / LOG180）：S18准入拒绝与条件联合分支已有限验证，34专项、源码/隔离wheel各693项通过，213冻结文件及原S17七例保持。候选S18-20261007-branches-r1程序VERIFIED_WITH_LIMITS，整步RESEARCH_BLOCKED_G2_OPEN；ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。真实资格、现行生产HR映射及完整状态消融出口未满；合成分支不替代研究准入。成果验收与确切发布另审，S19—S28及S19A/S19B未启动。入口：[S18程序审阅](validation/S18_joint_branches_r1.md)。
+
+2026-10-07现行交接（PR138—PR139 / LOG178—LOG179）：S17 r2已实际限定验收、批准并发布，提交 `62c1c5393cb715b8089a93ee7ec658a0eb0e571d`、标签 `step-S17-r2`，双平台各源码/隔离wheel659项成功。负责人已授权沿用main/目录直接实施S18，不建分支/worktree或子代理。当前IMPLEMENTATION_IN_PROGRESS；G2仍OPEN，研究功能与A实验BLOCKED，先完成接口、拒绝门及条件程序机制验证。新成果验收与确切发布另审，S19—S28及S19A/S19B未启动。入口：[S18步骤卡](steps/S18.md)。
+
 2026-10-07有限修复成果（PR137 / LOG177）：S17 F1/F2及C1已完成限定本地修复，候选S17-20261007-r2为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。47专项、源码/隔离wheel各659项通过，原七例及213冻结文件保持；拒绝后30次LNS的1h续接双审计通过但保持WINDOW_CENSORED，非新全链/Kit。原r1发布及全部历史证据不变，成果验收与确切发布另审，后续未启动。入口：[S17 r2审阅](validation/S17_limited_repair_r2.md)。
 
 2026-10-07现行有限修复授权（PR137 / LOG176）：负责人已批准S17发布后F1/F2及C1必要契约处理、回归、说明、治理和新确切审阅包的有限本地修复。沿用现有main/目录，不建分支/worktree，保留r1发布及全部历史证据和冻结边界；当前LIMITED_REPAIR_IN_PROGRESS。新成果验收与确切发布另审，后续未启动。入口：[S17步骤卡](steps/S17.md)。
@@ -56,7 +77,7 @@ C00接手、C01共通总纲/入口、C02候选比较已形成原本地包；PR06
 
 ## S10—S28：新功能逐步实施
 
-下表每个步骤标题链接到总纲内该步的完整执行说明；七项说明包括前置与输入、执行动作、拟交付产物、验证与验收出口、候选公开范围、失败处理与边界、后续交接与授权。现行路线共21个步骤（S10—S28及S19A/S19B），不能以旧C06—C08三个粗包替代。默认按表串行推进，表中多项前置均须满足；可并行实现必须另获明确授权。S10 r2、S11 r2、S12 r2、S13 r4、S14 r2和S15 r4均已发布；S16 r1已限定验收并发布，有限修复r2本地通过、验收及新发布待审；S17—S28及S19A/S19B均NOT_STARTED。每步结束呈确切文件/完整差异/证据/限制/目标分支标签/远端动作，再分别验收及批准发布；上一发布不自动启动下一步。
+下表每个步骤标题链接到总纲内该步的完整执行说明；七项说明包括前置与输入、执行动作、拟交付产物、验证与验收出口、候选公开范围、失败处理与边界、后续交接与授权。现行路线共21个步骤（S10—S28及S19A/S19B），不能以旧C06—C08三个粗包替代。默认按表串行推进，表中多项前置均须满足；可并行实现必须另获明确授权。S10 r2、S11 r2、S12 r2、S13 r4、S14 r2和S15 r4均已发布；S16 r2及S17 r2已实际限定验收/批准/发布；S18本地工作已获授权，研究功能因G2 OPEN及生产HR映射缺失BLOCKED；S19—S28及S19A/S19B均NOT_STARTED。每步结束呈确切文件/完整差异/证据/限制/目标分支标签/远端动作，再分别验收及批准发布；上一发布不自动启动下一步。
 
 | 步骤 | 前置 | 范围 | 具体产物 | 验证/验收出口 | 授权及发布边界 | 历史映射 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -67,8 +88,8 @@ C00接手、C01共通总纲/入口、C02候选比较已形成原本地包；PR06
 | [S14 派工反馈适配](PROJECT_CHARTER.md#s14) | S13及S12契约 | 命令确认/拒绝/延后/完成/异常；异步时钟和ID关联 | Isaac适配层、反馈状态机、迟到/重复消息用例 | 实际占位/失败能拒绝下一派工；无重复执行/未来泄漏 | r2已批准并发布，见LOG124；原限制保持 | C07 |
 | [S15 双后端一致性/完整闭环](PROJECT_CHARTER.md#s15) | S14通过 | 共享规则和条件下比较轻量与Isaac；离散抽象误差界 | 两后端对照日志、差异归因、端到端闭环演示 | 非动画回放；规则相容、误差在预定界内；差异不静默覆盖 | r3已限定验收、批准并发布，见LOG157；原限制保持 | C07 |
 | [S16 匹配简化CP-SAT](PROJECT_CHARTER.md#s16) | S10/S11；按本路线S15后实施 | 静态小例；明确省略人因非线性/反馈等项；整数时间映射 | 简化模型映射表、CP-SAT模型、严格同域参照实例 | 逐约束/目标等价；手枚举小例一致；FEASIBLE不称最优 | r2已限定验收/批准/发布，双平台各612项，见[S16步骤卡](steps/S16.md) | C07 |
-| [S17 LNS骨架](PROJECT_CHARTER.md#s17) | S11/S12/S16 | 可行初解、破坏/修复、接受与停止；先固定合法模式 | LNS框架、可复现实验种子、每轮可行性/预算记录 | 任何返回方案过S10；失败有基线回退；不预设优于规则法 | r1已发布；F1/F2/C1有限修复r2本地VERIFIED_WITH_LIMITS，见[S17步骤卡](steps/S17.md)；成果验收/新发布另审 | C07 |
-| [S18 状态依赖模式与排程联合决策](PROJECT_CHARTER.md#s18) | S17；G2及适用工艺门关闭 | 联合模式/具名班组/次序/合法休息，尊重冻结执行承诺 | 联合邻域/修复、模式准入、状态观测对照和机制例 | 同输出资格合法；无隐藏真值；固定模式消融可比；保留无益例 | 未授权实施；单步启动/验收/快照发布分别批准 | C07 |
+| [S17 LNS骨架](PROJECT_CHARTER.md#s17) | S11/S12/S16 | 可行初解、破坏/修复、接受与停止；先固定合法模式 | LNS框架、可复现实验种子、每轮可行性/预算记录 | 任何返回方案过S10；失败有基线回退；不预设优于规则法 | r2已实际限定验收/批准/发布，双平台各源码/隔离wheel659项，见[S17步骤卡](steps/S17.md) | C07 |
+| [S18 状态依赖模式与排程联合决策](PROJECT_CHARTER.md#s18) | S17；G2及适用工艺门关闭 | 联合模式/具名班组/次序/合法休息，尊重冻结执行承诺 | 联合邻域/修复、模式准入、状态观测对照和机制例 | 同输出资格合法；无隐藏真值；固定模式消融可比；保留无益例 | PR139已授权本地实施；G2 OPEN，程序分支有限验证与研究BLOCKED分开；验收/确切发布另审 | C07 |
 | [S19 在线预算/回退/稳定性](PROJECT_CHARTER.md#s19) | S18、S15 | 预算超时、中止、可行回退、计划承诺与变化代价 | 预算管理/可中止求解、回退策略、延迟/过载记录 | 超时返回合法动作或明确等待；墙钟与仿真时钟分开；变化可核算 | 未授权实施；单步启动/验收/快照发布分别批准 | C07 |
 | [S19A 受限场景与人物表现](PROJECT_CHARTER.md#s19a) | S19验收；届时S15—S19最终验收基线；单独启动授权 | 保护尺寸/碰撞/路径/手位/工时/容量/人因，有限改善材质、照明及人物朝向 | 基线清单、代表方案、固定动作用例、同镜头截图/短视频、回归与性能对照 | A1代表方案→A2动作验证→A3对照及负责人视觉审阅；越界变更另批 | 规划已批准；NOT_STARTED；实施/验收/快照发布分别批准 | 新增独立步骤 |
 | [S19B 轻量操控与审查前端](PROJECT_CHARTER.md#s19b) | S19A验收；S19接口与预算；单独启动授权 | 选案例/观察/证据入口及经端到端验证的控制；单一后端事实、观察隔离 | 只读入口、薄控制契约与能力表、负例、人工任务和语义/性能对照 | B1信息审查→B2最小控制→B3完整人工任务及规定负载；只读不等于完成 | 规划已批准；NOT_STARTED；实施/验收/快照发布分别批准 | 新增独立步骤 |

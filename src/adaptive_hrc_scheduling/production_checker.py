@@ -77,7 +77,7 @@ def _check_run(config, snapshot):
             and evidence[i].reference
             and (
                 evidence[i].basis == "INDUSTRIAL"
-                or config.purpose == "SYNTHETIC_TEST_ONLY"
+                or config.purpose in ("SYNTHETIC_TEST_ONLY", "SIMULATION_RESEARCH_ONLY")
                 and evidence[i].basis == "SYNTHETIC_TEST"
             )
             for i in ids
@@ -176,6 +176,22 @@ def _check_run(config, snapshot):
             stock[ident]["available"] + sum(v for k, v in reserved.items() if k[0] == ident)
             if ident in stock
             else masses[ident]
+        )
+
+    attempts = {}
+    activity_crews = {}
+
+    def activity_complete(aid):
+        activity = next(a for a in config.core_activities if a.id == aid)
+        return any(
+            all(
+                i in done
+                for b in config.bindings
+                if b.activity_id == aid and b.mode_id == mode.id
+                for i in b.operation_ids
+            )
+            for mode in activity.modes
+            if mode.enabled
         )
 
     clock = 0
@@ -406,11 +422,140 @@ def _check_run(config, snapshot):
                 e,
             )
             need(
-                op.id not in done and all(x in done for x in op.prerequisites),
+                op.id not in done
+                and all(x in done for x in op.prerequisites)
+                and all(activity_complete(a) for a in op.activity_prerequisites),
                 "R02",
                 "PREDECESSORS",
                 e,
             )
+            if (
+                config.research
+                and op.activity_id in {a.id for a in config.core_activities}
+                and not op.branch
+                and not op.handover
+                and op.roles
+            ):
+                prior_crew = activity_crews.get(op.activity_id)
+                need(
+                    prior_crew is None or prior_crew.roles == c.roles,
+                    "R04",
+                    "SIM_ACTIVITY_CREW_COMMITMENT",
+                    e,
+                )
+                if prior_crew is None:
+                    activity_crews[op.activity_id] = m.ActivityCrew(op.activity_id, c.roles)
+            if config.research and op.action == "WALK" and op.target == "J2":
+                need(
+                    not any(
+                        ops[r.command.operation_id].branch
+                        and ops[r.command.operation_id].branch.phase == "ROBOT"
+                        for r in running.values()
+                    ),
+                    "R04",
+                    "SIM_ENTRY_REQUIRES_STOP",
+                    e,
+                )
+            if op.handover:
+                h, a = op.handover, attempts.get(op.activity_id)
+                need(
+                    not c.resume_of
+                    and a is not None
+                    and a.state == "COMMITTED"
+                    and a.definition_id == h.definition_id
+                    and a.completed_units
+                    and a.completed_units[-1] == h.after_unit
+                    and a.crew[0].person_id == h.outgoing
+                    and not any(r.command.activity_id == h.activity_id for r in running.values()),
+                    "R09",
+                    "HANDOVER_NOT_AT_MODEL_STOP",
+                    e,
+                )
+                need(
+                    a is not None
+                    and (
+                        a.handover is None
+                        if h.phase == "HANDOVER"
+                        else a.handover == replace(h, phase="HANDOVER")
+                    ),
+                    "R09",
+                    "HANDOVER_RESTORE_ORDER",
+                    e,
+                )
+                if h.phase == "HANDOVER":
+                    for pid in (h.outgoing, h.incoming):
+                        person = people[pid]
+                        phase = clock % person.calendar.period_h
+                        need(
+                            any(
+                                w.start_h <= phase and phase + 0.2 <= w.end_h + 1e-10
+                                for w in person.calendar.windows
+                            )
+                            and clock + 0.2 <= person.valid_until_h
+                            and humans[pid][0] + 0.2 * person.work_rate <= config.cap + 1e-10,
+                            "R10",
+                            "HANDOVER_RESTORE_PROTECTION",
+                            e,
+                        )
+            if op.branch:
+                prior_attempt = attempts.get(op.activity_id)
+                need(
+                    prior_attempt is None or prior_attempt.handover is None,
+                    "R09",
+                    "SIM_RESTORE_REQUIRED",
+                    e,
+                )
+                need(
+                    c.schema_version == config.schema_version
+                    and c.branch == op.branch
+                    and c.research == config.research,
+                    "R18",
+                    "SIM_COMMAND_IDENTITY",
+                    e,
+                )
+                need(not c.resume_of, "R14", "SIM_INTERRUPTED_ATTEMPT_HOLD", e)
+                need(
+                    prior_attempt is None
+                    and op.unit_index == 0
+                    or prior_attempt is not None
+                    and prior_attempt.state == "COMMITTED"
+                    and prior_attempt.definition_id == op.branch.definition_id
+                    and prior_attempt.revision == op.branch.revision
+                    and (not c.roles or c.roles == prior_attempt.crew),
+                    "R02",
+                    "SIM_MODE_OR_CREW_CHANGED",
+                    e,
+                )
+                if op.branch.phase == "ROBOT":
+                    need(
+                        all(positions[p][0] != "J2" for p in people),
+                        "R04",
+                        "SIM_ISOLATION_EXIT_REQUIRED",
+                        e,
+                    )
+                    need(
+                        not any(
+                            ops[r.command.operation_id].action == "WALK"
+                            and ops[r.command.operation_id].target == "J2"
+                            for r in running.values()
+                        ),
+                        "R04",
+                        "SIM_INCOMING_PERSON_DURING_ROBOT",
+                        e,
+                    )
+                if prior_attempt is None:
+                    attempts[op.activity_id] = m.ModeAttempt(
+                        op.activity_id,
+                        c.attempt,
+                        op.branch.definition_id,
+                        op.branch.revision,
+                        op.branch.output_revision,
+                        op.branch.assumption_revision,
+                        c.roles,
+                        (),
+                        revision,
+                        "COMMITTED",
+                    )
             p = products[c.product_id]
             if any(a.id == op.activity_id and a.code == "KIT" for a in config.core_activities):
                 raw = [
@@ -585,6 +730,7 @@ def _check_run(config, snapshot):
                     running=tuple(running.values()),
                     motions=tuple(motions.values()),
                     supports=tuple(support_states.values()),
+                    research=config.research,
                     positions=tuple(m.Position(i, *p) for i, p in positions.items()),
                     lots=tuple(
                         SimpleNamespace(id=i, available=s["available"]) for i, s in stock.items()
@@ -704,7 +850,13 @@ def _check_run(config, snapshot):
                     or resumed
                     and owners[key] == resumed.command.id
                     or key == op.release_device
-                    and owners[key] == "HELD:" + c.product_id,
+                    and owners[key] == "HELD:" + c.product_id
+                    or op.branch
+                    and key in (*op.hold_resources, *op.release_resources)
+                    and owners[key] == f"ATTEMPT:{op.activity_id}:{c.attempt}:{op.branch.revision}"
+                    or op.handover
+                    and key in op.equipment
+                    and owners[key] == f"ATTEMPT:{op.handover.activity_id}:0:v1",
                     "R04",
                     "RESOURCE_OVERLAP",
                     e,
@@ -830,6 +982,31 @@ def _check_run(config, snapshot):
             command_states[c.id] = "STARTED"
         elif e.kind == "PROGRESS" and c:
             proof = e.readback
+            need(proof is not None and proof.branch == op.branch, "R18", "SIM_STAGE_READBACK", e)
+            need(proof is not None and proof.handover == op.handover, "R09", "HANDOVER_READBACK", e)
+            if op.branch and proof is not None:
+                need(
+                    proof.stage_owners
+                    == tuple(
+                        m.Ownership(i, f"ATTEMPT:{op.activity_id}:{c.attempt}:{op.branch.revision}")
+                        for i in op.equipment
+                    ),
+                    "R18",
+                    "SIM_STAGE_OWNERS_READBACK",
+                    e,
+                )
+                need(
+                    op.branch.phase != "ROBOT" or proof.isolated is True,
+                    "R04",
+                    "SIM_ISOLATION_READBACK",
+                    e,
+                )
+                need(
+                    op.production_mode != "HR-seq" or proof.robot_stopped is True,
+                    "R04",
+                    "SIM_STOP_CONFIRMATION_READBACK",
+                    e,
+                )
             need(
                 c.id in running
                 and running[c.id].status == "STARTED"
@@ -978,6 +1155,8 @@ def _check_run(config, snapshot):
             need(c.id not in command_states, "R16", "REJECT_AFTER_EXECUTION", e)
             command_states[c.id] = e.kind
         elif e.kind == "EXCEPTION" and c:
+            if (op.branch or op.handover) and op.activity_id in attempts:
+                attempts[op.activity_id] = replace(attempts[op.activity_id], state="HOLD")
             need(c.id in running, "R16", "EXCEPTION_WITHOUT_START", e)
             if c.id in running:
                 running[c.id] = replace(running[c.id], status="EXCEPTION", held_at_h=clock)
@@ -1011,6 +1190,31 @@ def _check_run(config, snapshot):
                 e,
             )
             proof = e.readback
+            need(proof is not None and proof.branch == op.branch, "R18", "SIM_STAGE_READBACK", e)
+            need(proof is not None and proof.handover == op.handover, "R09", "HANDOVER_READBACK", e)
+            if op.branch and proof is not None:
+                need(
+                    proof.stage_owners
+                    == tuple(
+                        m.Ownership(i, f"ATTEMPT:{op.activity_id}:{c.attempt}:{op.branch.revision}")
+                        for i in op.equipment
+                    ),
+                    "R18",
+                    "SIM_STAGE_OWNERS_READBACK",
+                    e,
+                )
+                need(
+                    op.branch.phase != "ROBOT" or proof.isolated is True,
+                    "R04",
+                    "SIM_ISOLATION_READBACK",
+                    e,
+                )
+                need(
+                    op.production_mode != "HR-seq" or proof.robot_stopped is True,
+                    "R04",
+                    "SIM_STOP_CONFIRMATION_READBACK",
+                    e,
+                )
             need(proof is not None, "R18", "MISSING_READBACK", e)
             if proof:
                 if op.action == "SUPPORT_CHANGE":
@@ -1191,6 +1395,30 @@ def _check_run(config, snapshot):
                 products[c.product_id]["received_h"] = clock
                 permits.discard(c.product_id)
             owners = {k: v for k, v in owners.items() if v != c.id}
+            if op.handover:
+                h = op.handover
+                a = attempts.get(h.activity_id)
+                if a is not None:
+                    attempts[h.activity_id] = replace(
+                        a,
+                        handover=h if h.phase == "HANDOVER" else None,
+                        crew=a.crew
+                        if h.phase == "HANDOVER"
+                        else (m.RoleBinding(a.crew[0].role_id, h.incoming),),
+                    )
+                owners.update({i: f"ATTEMPT:{h.activity_id}:0:v1" for i in op.equipment})
+            if op.branch:
+                attempts[op.activity_id] = replace(
+                    attempts[op.activity_id],
+                    completed_units=(*attempts[op.activity_id].completed_units, op.unit_index),
+                    state="COMPLETE" if op.branch.terminal else "COMMITTED",
+                )
+                owners.update(
+                    {
+                        i: f"ATTEMPT:{op.activity_id}:{c.attempt}:{op.branch.revision}"
+                        for i in op.hold_resources
+                    }
+                )
             if op.hold_device:
                 owners[op.hold_device] = "HELD:" + c.product_id
             done.append(op.id)
@@ -1358,6 +1586,22 @@ def _check_run(config, snapshot):
                     failed.discard(w.entity_id)
                 elif w.kind == "CANCEL":
                     products[w.product_id]["cancelled"] = True
+                    if config.research:
+                        aids = {
+                            a.id for a in config.core_activities if a.product_id == w.product_id
+                        }
+                        attempts = {
+                            aid: replace(a, state="HOLD")
+                            if aid in aids and a.state != "COMPLETE"
+                            else a
+                            for aid, a in attempts.items()
+                        }
+                        for key, run in list(running.items()):
+                            rop = ops[run.command.operation_id]
+                            if run.command.product_id == w.product_id and (
+                                rop.branch or rop.handover
+                            ):
+                                running[key] = replace(run, status="EXCEPTION", held_at_h=clock)
                     if not any(r.command.product_id == w.product_id for r in running.values()):
                         for key, qty in list(reserved.items()):
                             if key[1] == w.product_id:
@@ -1443,6 +1687,14 @@ def _check_run(config, snapshot):
         )
         need({p.command_id: p for p in state.motions} == motions, "R09", "MOTION_LEDGER", e)
         need(list(state.completed) == done, "R02", "COMPLETION_LEDGER", e)
+        need(
+            tuple(attempts.values()) == state.mode_attempts
+            and tuple(activity_crews.values()) == state.activity_crews
+            and state.research == config.research,
+            "R18",
+            "SIM_ATTEMPT_LEDGER",
+            e,
+        )
         for active in running.values():
             active_op = ops[active.command.operation_id]
             for amount in active_op.material_inputs:
@@ -1587,6 +1839,7 @@ def _check_run(config, snapshot):
                 initial,
                 masses=tuple(m.MassState(i, 0) for i in masses),
                 supports=tuple(support_states.values()),
+                research=config.research,
             ),
             "R18",
             "MISSING_HISTORY",
@@ -1608,7 +1861,7 @@ def _check_run(config, snapshot):
     ready = sum(p["ready_h"] is not None for p in products.values())
     received = sum(p["received_h"] is not None for p in products.values())
     metrics = m.OfflineEvaluation(
-        "S15-PROD-1.0",
+        config.schema_version,
         config.id,
         clock,
         ready,

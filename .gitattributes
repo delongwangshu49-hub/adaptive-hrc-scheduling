@@ -18,3 +18,9 @@
 *.usd binary
 *.usdc binary
 *.usdz binary
+
+# Approved S18 evidence is bound to original CRLF JSON bytes.
+docs/model/S18_simulation_scope_proposal_r1.json -text
+docs/model/S18_simulation_scope_approval_r1.json -text
+src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_proposal_r1.json -text
+src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_approval_r1.json -text

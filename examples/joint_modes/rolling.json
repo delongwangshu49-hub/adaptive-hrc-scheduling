@@ -1,0 +1,377 @@
+{
+  "research": "BLOCKED_G2_OPEN",
+  "cases": [
+    {
+      "scope": "CONDITIONAL_C04_CROSS_TICK_FIXED_PROGRAM_EXECUTION",
+      "status": "COMPLETED",
+      "reason": "FIXED_PROGRAM_COMPLETED",
+      "nominal_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "actual_score": [
+        3.9928860999999998,
+        32.71804982683536,
+        2.38628774316
+      ],
+      "window_complete": true,
+      "actual_end_h": 9.93322,
+      "planned_end_h": 9.93322,
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "request_count": 16,
+      "turn_count_including_preparation": 24,
+      "request_stream_sha256": "a311cb830dbf80b931eedc099904c751147479249e1bce24bf045de0efb9f55e",
+      "actual_trace_sha256": "621b98fad3c6e75a87b5efd43a02a4c9fd7d843951cc22edbf3a00e8138d2635",
+      "nominal_program_sha256": "a0837e6db93be13373c996c6770e396f00af4f6d67bc94af3617d7e8ca4a304d",
+      "preserved_J2": true,
+      "held_resources_at_end": [],
+      "completed_targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "name": "NORMAL",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    },
+    {
+      "scope": "CONDITIONAL_C04_CROSS_TICK_FIXED_PROGRAM_EXECUTION",
+      "status": "WINDOW_CENSORED",
+      "reason": "QUALITY_HOLD_UNRESOLVED",
+      "nominal_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "actual_score": null,
+      "window_complete": false,
+      "actual_end_h": 2.4928860999999998,
+      "planned_end_h": 9.93322,
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "request_count": 8,
+      "turn_count_including_preparation": 16,
+      "request_stream_sha256": "3d3516ea6dee385bd0c15c4019c99cb79e21d13c5dee131bd3f368b7f890cbe3",
+      "actual_trace_sha256": "5ef82076137088b6b0cac3465794eaa09dbbe468619082bf7fc375acab82af11",
+      "nominal_program_sha256": "a0837e6db93be13373c996c6770e396f00af4f6d67bc94af3617d7e8ca4a304d",
+      "preserved_J2": true,
+      "held_resources_at_end": [],
+      "completed_targets": [],
+      "name": "EARLY_R1_FAILURE",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    },
+    {
+      "scope": "CONDITIONAL_C04_CROSS_TICK_FIXED_PROGRAM_EXECUTION",
+      "status": "COMPLETED",
+      "reason": "FIXED_PROGRAM_COMPLETED",
+      "nominal_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "actual_score": [
+        3.9928860999999998,
+        32.71804982683536,
+        2.38628774316
+      ],
+      "window_complete": true,
+      "actual_end_h": 9.93322,
+      "planned_end_h": 9.93322,
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "request_count": 17,
+      "turn_count_including_preparation": 25,
+      "request_stream_sha256": "5f08d3b6c8dea989a07dd8e6bfe7b8b8fb3d2a94174eafc0d3ccff1b05705c37",
+      "actual_trace_sha256": "ba384448176cc57a1d7928de72fa8d27cb98c36e6c32315ce405e1585bb60463",
+      "nominal_program_sha256": "a0837e6db93be13373c996c6770e396f00af4f6d67bc94af3617d7e8ca4a304d",
+      "preserved_J2": true,
+      "held_resources_at_end": [],
+      "completed_targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "name": "IRRELEVANT_TEST1_FAILURE",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    },
+    {
+      "scope": "CONDITIONAL_C04_CROSS_TICK_FIXED_PROGRAM_EXECUTION",
+      "status": "WINDOW_CENSORED",
+      "reason": "CANCELLED_OR_QUARANTINED",
+      "nominal_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "actual_score": null,
+      "window_complete": false,
+      "actual_end_h": 2.4928860999999998,
+      "planned_end_h": 9.93322,
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "request_count": 8,
+      "turn_count_including_preparation": 16,
+      "request_stream_sha256": "546b2e251f92a85d49d7dbae82960c4b8a9fb3b92c82167c71d1c697fe4f8d7a",
+      "actual_trace_sha256": "f6948ab9246f85939dcc73180e80229388273d6168b1c261e707f53609b77c2f",
+      "nominal_program_sha256": "a0837e6db93be13373c996c6770e396f00af4f6d67bc94af3617d7e8ca4a304d",
+      "preserved_J2": true,
+      "held_resources_at_end": [
+        "FIX-J2",
+        "R1"
+      ],
+      "completed_targets": [],
+      "name": "CANCEL_DURING_SETUP",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    },
+    {
+      "scope": "CONDITIONAL_C04_CROSS_TICK_FIXED_PROGRAM_EXECUTION",
+      "status": "COMPLETED",
+      "reason": "FIXED_PROGRAM_COMPLETED",
+      "nominal_candidate_sha256": "a55a615cc8b28b502476fe93617cbf2b57d405830ff84a952201047963c759b2",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        7.5,
+        31.664810286,
+        2.606561705
+      ],
+      "actual_score": [
+        7.5,
+        31.66481028623537,
+        2.6065617045636
+      ],
+      "window_complete": true,
+      "actual_end_h": 9.93322,
+      "planned_end_h": 9.93322,
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "request_count": 32,
+      "turn_count_including_preparation": 40,
+      "request_stream_sha256": "59bfe75bf108d9a170c21328d91d05e5b596699be0dea278dfdbe6c2a4ad7771",
+      "actual_trace_sha256": "33313622fbbfc40112f05b5706d8fbbf86254ef8a1f79387d2af8adb24168603",
+      "nominal_program_sha256": "d5e48ed89972ba796a4d70e5f96c953d6c04d543a60618f08a2de3bec1c4dc67",
+      "preserved_J2": true,
+      "held_resources_at_end": [],
+      "completed_targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "name": "LATE_UNLOAD_FIXED_HR",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    },
+    {
+      "scope": "CONDITIONAL_C04_CROSS_TICK_FIXED_PROGRAM_EXECUTION",
+      "status": "COMPLETED",
+      "reason": "FIXED_PROGRAM_COMPLETED",
+      "nominal_candidate_sha256": "3d314beba60f59453f5b820390e46588e12e6e9b562d18f6991e0ba58d66d49a",
+      "nominal_mode": "H",
+      "nominal_score": [
+        6.225840079,
+        34.201228912,
+        4.762655775
+      ],
+      "actual_score": [
+        6.225840078676372,
+        34.201228912332255,
+        4.762655774617398
+      ],
+      "window_complete": true,
+      "actual_end_h": 9.93322,
+      "planned_end_h": 9.93322,
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "request_count": 32,
+      "turn_count_including_preparation": 40,
+      "request_stream_sha256": "9c094a29098bd1c13187c4dcf866d342cfc2e9728538b12af359b8144ab8293a",
+      "actual_trace_sha256": "f5128179ba389bb292fbeb035f0dd3b43d0477fd4d633c2eeee0b7d5c4064b47",
+      "nominal_program_sha256": "adba85fc8044c26daa8534d6707a86038ea29770306c2cb3c9b1318547979cd6",
+      "preserved_J2": true,
+      "held_resources_at_end": [],
+      "completed_targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "name": "LATE_UNLOAD_FIXED_H",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    },
+    {
+      "scope": "CONDITIONAL_C04_CROSS_TICK_FIXED_PROGRAM_EXECUTION",
+      "status": "WINDOW_CENSORED",
+      "reason": "RESOURCE_FAILED:R1",
+      "nominal_candidate_sha256": "a55a615cc8b28b502476fe93617cbf2b57d405830ff84a952201047963c759b2",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        7.5,
+        31.664810286,
+        2.606561705
+      ],
+      "actual_score": null,
+      "window_complete": false,
+      "actual_end_h": 7.0,
+      "planned_end_h": 9.93322,
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "request_count": 28,
+      "turn_count_including_preparation": 36,
+      "request_stream_sha256": "610fd85194fa8ddf02e1cf9d2b4a1dbda25d65d40dd26628abf12f8e2981010e",
+      "actual_trace_sha256": "64f71915ac45666a178ae2c871e8d046b8fa483043688c9fca84638e69e99d7c",
+      "nominal_program_sha256": "d5e48ed89972ba796a4d70e5f96c953d6c04d543a60618f08a2de3bec1c4dc67",
+      "preserved_J2": true,
+      "held_resources_at_end": [
+        "FIX-J2",
+        "R1"
+      ],
+      "completed_targets": [],
+      "name": "FAILURE_WHILE_WAITING_FOR_UNLOAD",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    },
+    {
+      "scope": "CONDITIONAL_C04_CROSS_TICK_FIXED_PROGRAM_EXECUTION",
+      "status": "WINDOW_CENSORED",
+      "reason": "CALL_BUDGET",
+      "nominal_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "actual_score": null,
+      "window_complete": false,
+      "actual_end_h": 1.93322,
+      "planned_end_h": 9.93322,
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "request_count": 1,
+      "turn_count_including_preparation": 10,
+      "request_stream_sha256": "18bbeda03a0ba73cd0b4338c09c6f599f08708b2efd37bc0fd6774aef378969e",
+      "actual_trace_sha256": "3ccc20e79249ae5f98736b7498e12479f6e88074de4b664a53f9b06ad3c5911b",
+      "nominal_program_sha256": "a0837e6db93be13373c996c6770e396f00af4f6d67bc94af3617d7e8ca4a304d",
+      "preserved_J2": true,
+      "held_resources_at_end": [
+        "FIX-J2",
+        "OP1",
+        "R1"
+      ],
+      "completed_targets": [],
+      "name": "ONE_CALL_CENSORED",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    },
+    {
+      "scope": "CONDITIONAL_C04_CROSS_TICK_FIXED_PROGRAM_EXECUTION",
+      "status": "COMPLETED",
+      "reason": "CALL_BUDGET_EXIT_AFTER_COMPLETION",
+      "nominal_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "nominal_mode": "HR-seq",
+      "nominal_score": [
+        3.9928861,
+        32.718049827,
+        2.386287743
+      ],
+      "actual_score": [
+        3.9928860999999998,
+        32.71804982683536,
+        2.38628774316
+      ],
+      "window_complete": true,
+      "actual_end_h": 9.93322,
+      "planned_end_h": 9.93322,
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "request_count": 15,
+      "turn_count_including_preparation": 24,
+      "request_stream_sha256": "38c28697dbcd9cc5f9ab88a43ce5fec8bd5b2b370ff19935d7618f44c268fbf7",
+      "actual_trace_sha256": "621b98fad3c6e75a87b5efd43a02a4c9fd7d843951cc22edbf3a00e8138d2635",
+      "nominal_program_sha256": "a0837e6db93be13373c996c6770e396f00af4f6d67bc94af3617d7e8ca4a304d",
+      "preserved_J2": true,
+      "held_resources_at_end": [],
+      "completed_targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "name": "CALL_BUDGET_AT_ACTUAL_END",
+      "options": {
+        "seed": 18,
+        "iterations": 2,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      }
+    }
+  ],
+  "new_kit_run": false,
+  "new_production_hr_mapping": false,
+  "limitations": [
+    "Conditional C04 target-tail execution, not S15 production HR or full-module completion.",
+    "One sealed nominal plan; later visible state only gates safety, clock/receipt identity and actual auditing.",
+    "Early feedback resumes the same waiting deadline; rejection/missed schedule never triggers search.",
+    "Censored windows have no comparable full-window performance score; prior failures remain."
+  ]
+}

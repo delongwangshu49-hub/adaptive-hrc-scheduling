@@ -1,0 +1,2216 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "ActivityCrew": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/RoleBinding"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "activity_id",
+        "roles"
+      ],
+      "type": "object"
+    },
+    "Amount": {
+      "additionalProperties": false,
+      "properties": {
+        "lot_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quantity": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "lot_id",
+        "quantity"
+      ],
+      "type": "object"
+    },
+    "BeamPose": {
+      "additionalProperties": false,
+      "properties": {
+        "index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "position": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "index",
+        "position"
+      ],
+      "type": "object"
+    },
+    "BeamReadback": {
+      "additionalProperties": false,
+      "properties": {
+        "collision_enabled": {
+          "type": "boolean"
+        },
+        "index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "position": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "index",
+        "position",
+        "visible",
+        "collision_enabled"
+      ],
+      "type": "object"
+    },
+    "Branch": {
+      "additionalProperties": false,
+      "properties": {
+        "assumption_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "definition_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "joint_set_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "output_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "SETUP",
+            "WORK",
+            "ROBOT",
+            "UNLOAD"
+          ]
+        },
+        "revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "terminal": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "definition_id",
+        "revision",
+        "output_revision",
+        "assumption_revision",
+        "joint_set_id",
+        "phase",
+        "terminal"
+      ],
+      "type": "object"
+    },
+    "CompletionTime": {
+      "additionalProperties": false,
+      "properties": {
+        "operation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "time_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "operation_id",
+        "time_h"
+      ],
+      "type": "object"
+    },
+    "ComponentPort": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "place_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entity_id",
+        "place_id"
+      ],
+      "type": "object"
+    },
+    "Consumer": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "type": "object"
+    },
+    "DispatchCommand": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "branch": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Branch"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "epoch": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "expected_revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "issued_sim_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "mode_id": {
+          "enum": [
+            "H",
+            "HR-seq",
+            "H-team",
+            "MOVE",
+            "WAIT",
+            "GATE"
+          ]
+        },
+        "operation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "research": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ResearchProfile"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "resume_of": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/RoleBinding"
+          },
+          "type": "array"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S18-PROD-2.0"
+          ]
+        },
+        "service": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Service"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_index": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "config_sha256",
+        "run_id",
+        "epoch",
+        "id",
+        "product_id",
+        "activity_id",
+        "operation_id",
+        "attempt",
+        "unit_index",
+        "mode_id",
+        "issued_sim_h",
+        "expected_revision",
+        "roles",
+        "resume_of",
+        "service",
+        "branch",
+        "research"
+      ],
+      "type": "object"
+    },
+    "ExecutionEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "attempt": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "command": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DispatchCommand"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "command_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "command_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "epoch": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "ACCEPTED",
+            "REJECTED",
+            "DEFERRED",
+            "STARTED",
+            "COMPLETED",
+            "EXCEPTION",
+            "WORLD",
+            "CLOCK",
+            "PROGRESS"
+          ]
+        },
+        "occurred_sim_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "product_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "readback": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Readback"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "received_sim_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S18-PROD-2.0"
+          ]
+        },
+        "sequence": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "state": {
+          "$ref": "#/$defs/State"
+        },
+        "wall_elapsed_s": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "world": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WorldEvent"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "config_sha256",
+        "run_id",
+        "epoch",
+        "id",
+        "sequence",
+        "command_id",
+        "product_id",
+        "activity_id",
+        "attempt",
+        "kind",
+        "occurred_sim_h",
+        "received_sim_h",
+        "wall_elapsed_s",
+        "reason",
+        "command",
+        "command_sha256",
+        "world",
+        "readback",
+        "state"
+      ],
+      "type": "object"
+    },
+    "ExecutionSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "epoch": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/ExecutionEvent"
+          },
+          "type": "array"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S18-PROD-2.0"
+          ]
+        },
+        "state": {
+          "$ref": "#/$defs/State"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "config_sha256",
+        "run_id",
+        "epoch",
+        "state",
+        "events"
+      ],
+      "type": "object"
+    },
+    "Gate": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "occurred_sim_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "result": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN"
+          ]
+        },
+        "revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "attempt",
+        "result",
+        "occurred_sim_h",
+        "revision"
+      ],
+      "type": "object"
+    },
+    "Handover": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "after_unit": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "definition_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "incoming": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "outgoing": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "HANDOVER",
+            "RESTORE"
+          ]
+        }
+      },
+      "required": [
+        "activity_id",
+        "definition_id",
+        "outgoing",
+        "incoming",
+        "after_unit",
+        "phase"
+      ],
+      "type": "object"
+    },
+    "HumanInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "command_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "end_f": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "end_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "exposure": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "WALK",
+            "DRIVE",
+            "PUSH",
+            "SETUP",
+            "WORK",
+            "SUPERVISE",
+            "WAIT",
+            "REST",
+            "OFF_SHIFT",
+            "EMERGENCY_HOLD",
+            "HANDOVER",
+            "RESTORE"
+          ]
+        },
+        "rate": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "start_f": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "start_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "person_id",
+        "command_id",
+        "start_h",
+        "end_h",
+        "phase",
+        "rate",
+        "start_f",
+        "end_f",
+        "exposure"
+      ],
+      "type": "object"
+    },
+    "HumanState": {
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "fatigue": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "peak": {
+          "exclusiveMaximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "rest_until_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "person_id",
+        "fatigue",
+        "exposure",
+        "peak",
+        "rest_until_h"
+      ],
+      "type": "object"
+    },
+    "InputReadback": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "position_m": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "quantity": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "supported": {
+          "type": "boolean"
+        },
+        "visible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "entity_id",
+        "position_m",
+        "quantity",
+        "visible",
+        "supported"
+      ],
+      "type": "object"
+    },
+    "LotState": {
+      "additionalProperties": false,
+      "properties": {
+        "arrived": {
+          "type": "boolean"
+        },
+        "available": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "consumed": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "converted": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "identified": {
+          "type": "boolean"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "released": {
+          "type": "boolean"
+        },
+        "returned": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "scrapped": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "location",
+        "available",
+        "consumed",
+        "converted",
+        "scrapped",
+        "returned",
+        "arrived",
+        "identified",
+        "released"
+      ],
+      "type": "object"
+    },
+    "MassState": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "installed_t": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "entity_id",
+        "installed_t"
+      ],
+      "type": "object"
+    },
+    "MaterialPort": {
+      "additionalProperties": false,
+      "properties": {
+        "lot_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "place_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "lot_id",
+        "place_id"
+      ],
+      "type": "object"
+    },
+    "ModeAttempt": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "assumption_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "completed_units": {
+          "items": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "crew": {
+          "items": {
+            "$ref": "#/$defs/RoleBinding"
+          },
+          "type": "array"
+        },
+        "definition_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "handover": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Handover"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "output_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "prepared_revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "COMMITTED",
+            "HOLD",
+            "COMPLETE"
+          ]
+        }
+      },
+      "required": [
+        "activity_id",
+        "attempt",
+        "definition_id",
+        "revision",
+        "output_revision",
+        "assumption_revision",
+        "crew",
+        "completed_units",
+        "prepared_revision",
+        "state",
+        "handover"
+      ],
+      "type": "object"
+    },
+    "Operation": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "enum": [
+            "WALK",
+            "TRANSFER",
+            "EMPTY_RETURN",
+            "RESERVE",
+            "RELEASE_RESERVATION",
+            "CONVERT",
+            "WORK",
+            "READY",
+            "RECEIVE_EXTERNAL",
+            "RETURN",
+            "SCRAP",
+            "REST",
+            "DEPLOY_TOOL",
+            "RETRIEVE_TOOL",
+            "SUPPORT_CHANGE",
+            "HANDOVER",
+            "RESTORE"
+          ]
+        },
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "activity_prerequisites": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "attempt_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "base_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "branch": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Branch"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "component_input_places": {
+          "items": {
+            "$ref": "#/$defs/ComponentPort"
+          },
+          "type": "array"
+        },
+        "component_inputs": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "component_outputs": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entity_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "equipment": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "handover": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Handover"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hold_device": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hold_resources": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "input_places": {
+          "items": {
+            "$ref": "#/$defs/MaterialPort"
+          },
+          "type": "array"
+        },
+        "kappa": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "mass_remove_t": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "material_inputs": {
+          "items": {
+            "$ref": "#/$defs/Amount"
+          },
+          "type": "array"
+        },
+        "material_outputs": {
+          "items": {
+            "$ref": "#/$defs/Amount"
+          },
+          "type": "array"
+        },
+        "output_places": {
+          "items": {
+            "$ref": "#/$defs/MaterialPort"
+          },
+          "type": "array"
+        },
+        "phase": {
+          "enum": [
+            "WALK",
+            "DRIVE",
+            "PUSH",
+            "SETUP",
+            "WORK",
+            "SUPERVISE",
+            "REST",
+            "HANDOVER",
+            "RESTORE"
+          ]
+        },
+        "prerequisites": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "production_mode": {
+          "anyOf": [
+            {
+              "enum": [
+                "H",
+                "HR-seq",
+                "H-team",
+                "MOVE",
+                "WAIT",
+                "GATE"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualification_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "quality_gates": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "release_device": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "release_resources": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role_locations": {
+          "items": {
+            "$ref": "#/$defs/PersonPosition"
+          },
+          "type": "array"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/Role"
+          },
+          "type": "array"
+        },
+        "route_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scrap_quantity": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "support_layout_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "wait_after": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wait_gate": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wait_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "activity_id",
+        "action",
+        "phase",
+        "prerequisites",
+        "roles",
+        "role_locations",
+        "equipment",
+        "location",
+        "target",
+        "route_id",
+        "entity_id",
+        "material_inputs",
+        "material_outputs",
+        "scrap_quantity",
+        "base_h",
+        "kappa",
+        "qualification_ids",
+        "quality_gates",
+        "wait_gate",
+        "hold_device",
+        "release_device",
+        "component_inputs",
+        "component_outputs",
+        "attempt_index",
+        "unit_index",
+        "input_places",
+        "output_places",
+        "production_mode",
+        "wait_after",
+        "wait_h",
+        "mass_remove_t",
+        "component_input_places",
+        "support_layout_id",
+        "branch",
+        "hold_resources",
+        "release_resources",
+        "activity_prerequisites",
+        "handover"
+      ],
+      "type": "object"
+    },
+    "Ownership": {
+      "additionalProperties": false,
+      "properties": {
+        "command_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "resource_id",
+        "command_id"
+      ],
+      "type": "object"
+    },
+    "PersonPosition": {
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "person_id",
+        "location"
+      ],
+      "type": "object"
+    },
+    "Point": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "type": "object"
+    },
+    "Position": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "support": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "location",
+        "support"
+      ],
+      "type": "object"
+    },
+    "ProductState": {
+      "additionalProperties": false,
+      "properties": {
+        "cancelled": {
+          "type": "boolean"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "ready_h": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "received_h": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "released": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "product_id",
+        "released",
+        "cancelled",
+        "ready_h",
+        "received_h"
+      ],
+      "type": "object"
+    },
+    "Readback": {
+      "additionalProperties": false,
+      "properties": {
+        "attached": {
+          "type": "boolean"
+        },
+        "beams": {
+          "items": {
+            "$ref": "#/$defs/BeamReadback"
+          },
+          "type": "array"
+        },
+        "branch": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Branch"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "command_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "departed_boundary": {
+          "type": "boolean"
+        },
+        "detached": {
+          "type": "boolean"
+        },
+        "device_ok": {
+          "type": "boolean"
+        },
+        "entity_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "epoch": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "evidence_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "handover": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Handover"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "inputs": {
+          "items": {
+            "$ref": "#/$defs/InputReadback"
+          },
+          "type": "array"
+        },
+        "isolated": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "landed": {
+          "type": "boolean"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "path_clear": {
+          "type": "boolean"
+        },
+        "position_m": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "progress": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "robot_stopped": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "role_positions": {
+          "items": {
+            "$ref": "#/$defs/PersonPosition"
+          },
+          "type": "array"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "sample_sim_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "source": {
+          "enum": [
+            "LIGHT_EXECUTOR",
+            "ISAAC_USD"
+          ]
+        },
+        "stage_owners": {
+          "items": {
+            "$ref": "#/$defs/Ownership"
+          },
+          "type": "array"
+        },
+        "support": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "run_id",
+        "epoch",
+        "command_id",
+        "sample_sim_h",
+        "entity_id",
+        "location",
+        "support",
+        "position_m",
+        "role_positions",
+        "device_ok",
+        "path_clear",
+        "attached",
+        "landed",
+        "detached",
+        "departed_boundary",
+        "evidence_id",
+        "progress",
+        "inputs",
+        "beams",
+        "branch",
+        "isolated",
+        "robot_stopped",
+        "stage_owners",
+        "handover"
+      ],
+      "type": "object"
+    },
+    "ResearchProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_id": {
+          "enum": [
+            "S18-SIM-APPROVAL-001"
+          ]
+        },
+        "assumption_set_id": {
+          "enum": [
+            "S18-SIM-A1"
+          ]
+        },
+        "assumption_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "consumers": {
+          "items": {
+            "$ref": "#/$defs/Consumer"
+          },
+          "type": "array"
+        },
+        "gate": {
+          "enum": [
+            "APPROVED_ASSUMPTION_SET"
+          ]
+        },
+        "industrial_g2": {
+          "enum": [
+            "OPEN"
+          ]
+        },
+        "industrial_qualification": {
+          "enum": [
+            "NOT_ESTABLISHED"
+          ]
+        },
+        "proposal_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "purpose": {
+          "enum": [
+            "SIMULATION_RESEARCH_ONLY"
+          ]
+        },
+        "scope_bindings": {
+          "items": {
+            "$ref": "#/$defs/ScopeBinding"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "purpose",
+        "assumption_set_id",
+        "approval_id",
+        "proposal_sha256",
+        "assumption_sha256",
+        "gate",
+        "industrial_qualification",
+        "industrial_g2",
+        "scope_bindings",
+        "consumers"
+      ],
+      "type": "object"
+    },
+    "Reservation": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "lot_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quantity": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "lot_id",
+        "product_id",
+        "activity_id",
+        "attempt",
+        "quantity"
+      ],
+      "type": "object"
+    },
+    "Role": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "qualification": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "qualification"
+      ],
+      "type": "object"
+    },
+    "RoleBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "role_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role_id",
+        "person_id"
+      ],
+      "type": "object"
+    },
+    "Route": {
+      "additionalProperties": false,
+      "properties": {
+        "device_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "max_size_m": {
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "points": {
+          "items": {
+            "$ref": "#/$defs/Point"
+          },
+          "type": "array"
+        },
+        "qualification": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "segments": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "speed_m_s": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "target": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "vertical_speed_m_s": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "target",
+        "device_id",
+        "segments",
+        "points",
+        "speed_m_s",
+        "vertical_speed_m_s",
+        "qualification",
+        "max_size_m"
+      ],
+      "type": "object"
+    },
+    "Running": {
+      "additionalProperties": false,
+      "properties": {
+        "active_before_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "command": {
+          "$ref": "#/$defs/DispatchCommand"
+        },
+        "earliest_end_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "held_at_h": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "start_progress": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "started_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "status": {
+          "enum": [
+            "STARTED",
+            "EXCEPTION"
+          ]
+        }
+      },
+      "required": [
+        "command",
+        "started_h",
+        "earliest_end_h",
+        "status",
+        "held_at_h",
+        "start_progress",
+        "active_before_h"
+      ],
+      "type": "object"
+    },
+    "ScopeBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "assumption_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "component_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "fixture_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "h_definition": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "hr_definition": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "joint_set_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "output_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "process_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "product_id",
+        "product_revision",
+        "activity_id",
+        "component_id",
+        "joint_set_id",
+        "output_revision",
+        "h_definition",
+        "hr_definition",
+        "process_revision",
+        "fixture_revision",
+        "assumption_ids"
+      ],
+      "type": "object"
+    },
+    "Service": {
+      "additionalProperties": false,
+      "properties": {
+        "operation": {
+          "$ref": "#/$defs/Operation"
+        },
+        "route": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Route"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "operation",
+        "route"
+      ],
+      "type": "object"
+    },
+    "State": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_crews": {
+          "items": {
+            "$ref": "#/$defs/ActivityCrew"
+          },
+          "type": "array"
+        },
+        "completed": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "completion_times": {
+          "items": {
+            "$ref": "#/$defs/CompletionTime"
+          },
+          "type": "array"
+        },
+        "failed_resources": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "gates": {
+          "items": {
+            "$ref": "#/$defs/Gate"
+          },
+          "type": "array"
+        },
+        "humans": {
+          "items": {
+            "$ref": "#/$defs/HumanState"
+          },
+          "type": "array"
+        },
+        "intervals": {
+          "items": {
+            "$ref": "#/$defs/HumanInterval"
+          },
+          "type": "array"
+        },
+        "lots": {
+          "items": {
+            "$ref": "#/$defs/LotState"
+          },
+          "type": "array"
+        },
+        "masses": {
+          "items": {
+            "$ref": "#/$defs/MassState"
+          },
+          "type": "array"
+        },
+        "mode_attempts": {
+          "items": {
+            "$ref": "#/$defs/ModeAttempt"
+          },
+          "type": "array"
+        },
+        "motions": {
+          "items": {
+            "$ref": "#/$defs/Readback"
+          },
+          "type": "array"
+        },
+        "owners": {
+          "items": {
+            "$ref": "#/$defs/Ownership"
+          },
+          "type": "array"
+        },
+        "positions": {
+          "items": {
+            "$ref": "#/$defs/Position"
+          },
+          "type": "array"
+        },
+        "products": {
+          "items": {
+            "$ref": "#/$defs/ProductState"
+          },
+          "type": "array"
+        },
+        "receive_permits": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "research": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ResearchProfile"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reservations": {
+          "items": {
+            "$ref": "#/$defs/Reservation"
+          },
+          "type": "array"
+        },
+        "revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "running": {
+          "items": {
+            "$ref": "#/$defs/Running"
+          },
+          "type": "array"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/SupportState"
+          },
+          "type": "array"
+        },
+        "time_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "time_h",
+        "revision",
+        "lots",
+        "reservations",
+        "positions",
+        "owners",
+        "products",
+        "humans",
+        "completed",
+        "running",
+        "gates",
+        "failed_resources",
+        "intervals",
+        "receive_permits",
+        "motions",
+        "masses",
+        "completion_times",
+        "supports",
+        "mode_attempts",
+        "activity_crews",
+        "research"
+      ],
+      "type": "object"
+    },
+    "SupportState": {
+      "additionalProperties": false,
+      "properties": {
+        "beams": {
+          "items": {
+            "$ref": "#/$defs/BeamPose"
+          },
+          "type": "array"
+        },
+        "clearance_people": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "layout_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "root": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "root",
+        "layout_id",
+        "beams",
+        "clearance_people"
+      ],
+      "type": "object"
+    },
+    "WorldEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "epoch": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "evidence_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "ARRIVAL",
+            "IDENTIFY",
+            "RELEASE",
+            "QUALITY",
+            "PROCESS_RELEASE",
+            "FAILURE",
+            "REPAIR",
+            "CANCEL",
+            "ORDER_ARRIVAL",
+            "RECEIVE_PERMIT"
+          ]
+        },
+        "occurred_sim_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "result": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN"
+          ]
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "run_id",
+        "epoch",
+        "occurred_sim_h",
+        "kind",
+        "entity_id",
+        "product_id",
+        "attempt",
+        "result",
+        "evidence_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/ExecutionSnapshot",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExecutionSnapshot"
+}

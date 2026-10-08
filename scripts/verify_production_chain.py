@@ -32,9 +32,14 @@ def witness(args):
     from adaptive_hrc_scheduling.control.production_loop import Scenario, run
     from adaptive_hrc_scheduling.production_backend import ProductionBackend
 
-    config = Builder(
-        products=args.products, variant=args.variant, rework=args.rework
-    ).configuration()
+    if args.simulation:
+        from build_simulation_production import configuration
+
+        config = configuration(products=args.products, variant=args.variant, rework=args.rework)
+    else:
+        config = Builder(
+            products=args.products, variant=args.variant, rework=args.rework
+        ).configuration()
     if args.release_times is not None:
         if len(args.release_times) != args.products:
             raise ValueError("release-times requires one time per product")
@@ -51,8 +56,27 @@ def witness(args):
         raise ValueError("delayed-lot must identify a declared primary package")
     save(args.output / "configuration.json", as_data(config))
     receiver = None
+    r1_physical_unavailable = False
     if args.backend == "light":
         engine = ProductionBackend(config)
+        if args.actual_r1_before_setup or args.actual_r1_after_bottom:
+            original_dispatch = engine.dispatch
+
+            def mirrored_physical_dispatch(command, **options):
+                def preflight(cmd):
+                    from adaptive_hrc_scheduling.contracts.codec import ContractError
+
+                    op = (
+                        cmd.service.operation
+                        if cmd.service
+                        else engine.operations[cmd.operation_id]
+                    )
+                    if r1_physical_unavailable and "R1" in op.equipment:
+                        raise ContractError("ACTUAL_PREFLIGHT:ACTUAL_DEVICE_FAILED:R1")
+
+                return original_dispatch(command, preflight=preflight, **options)
+
+            engine.dispatch = mirrored_physical_dispatch
     else:
         import omni.usd
 
@@ -77,11 +101,70 @@ def witness(args):
 
         engine.port.step = with_receiver
     world = getattr(engine, "world", engine)
+    r1_injected = False
     last_count = -1
     last_heartbeat = time.monotonic()
 
     def progress(_engine, _phase):
-        nonlocal last_count, last_heartbeat
+        nonlocal last_count, last_heartbeat, r1_injected, r1_physical_unavailable
+        if (
+            (args.actual_r1_before_setup or args.actual_r1_after_bottom)
+            and not r1_injected
+            and _phase == "after_dispatch"
+        ):
+            moving = next(
+                (
+                    r
+                    for r in world.s.running
+                    if world.operations[r.command.operation_id].action == "TRANSFER"
+                    and world.operations[r.command.operation_id].entity_id == "PRODUCT-1.BOTTOM"
+                    and (
+                        world.operations[r.command.operation_id].target == "J2"
+                        if args.actual_r1_before_setup
+                        else world.operations[r.command.operation_id].target.startswith("BUF.")
+                        and any(
+                            a.activity_id == "PRODUCT-1.W-B" and a.state == "COMPLETE"
+                            for a in world.s.mode_attempts
+                        )
+                    )
+                ),
+                None,
+            )
+            if moving is not None:
+                from adaptive_hrc_scheduling.production_backend import route_hours
+
+                op = world.operations[moving.command.operation_id]
+                halfway = (
+                    moving.started_h
+                    + config.setup_h
+                    + config.load_h
+                    + route_hours(world.routes[op.route_id]) / 2
+                )
+                if args.backend == "isaac":
+                    engine.advance_to(halfway)
+                else:
+                    world.advance(halfway)
+                if not any(
+                    p.command_id == moving.command.id and 0 < p.progress < 1
+                    for p in world.s.motions
+                ):
+                    raise ValueError("R1 intervention requires loaded execution progress")
+                if args.backend == "isaac":
+                    engine.port.scene.attr(engine.port.prim("R1"), "s15Available", False)
+                else:
+                    r1_physical_unavailable = True
+                r1_injected = True
+                save(
+                    args.output / "actual-r1-intervention.json",
+                    dict(
+                        time_h=world.s.time_h,
+                        source="ACTUAL_USD_ONLY"
+                        if args.backend == "isaac"
+                        else "LIGHT_EXECUTION_PREFLIGHT_MIRROR",
+                        device="R1",
+                        planner_notice="ONLY_AFTER_EXECUTION_PREFLIGHT_FAILURE",
+                    ),
+                )
         count = sum(o.id in world.s.completed for o in config.operations)
         if _phase == "before_audit":
             print(
@@ -124,6 +207,23 @@ def witness(args):
             )
             last_heartbeat = time.monotonic()
 
+    policy = None
+    if args.method:
+        if not args.simulation or args.budget_file is None:
+            raise ValueError(
+                "Joint controls require explicit simulation admission and predeclared budget file"
+            )
+        from adaptive_hrc_scheduling.control.simulation_joint_policy import (
+            Budget,
+            SimulationJointPolicy,
+        )
+
+        data = json.loads(args.budget_file.read_text(encoding="utf-8"))
+        data["opportunities_h"] = tuple(data["opportunities_h"])
+        budget = Budget(**data)
+        budget.validate()
+        save(args.output / "predeclared-search-budget.json", data)
+        policy = SimulationJointPolicy(config, budget, method=args.method, end_h=args.until_h)
     result = run(
         engine,
         Scenario(
@@ -141,6 +241,9 @@ def witness(args):
             arrival_after_h=args.arrival_after_h,
         ),
         execution_hook=progress,
+        joint_policy=policy,
+        fixed_mode=args.fixed_mode,
+        handover_after_setup=args.handover_after_setup,
     )
     # Stream each event independently. Expanding the entire shared event graph
     # into one JSON object can exhaust memory on continuous multi-product runs.
@@ -223,6 +326,34 @@ def witness(args):
         )
     elif not args.expect_window:
         passed = passed and manifest["received"] == args.products
+    if args.actual_r1_before_setup or args.actual_r1_after_bottom:
+        passed = (
+            passed
+            and r1_injected
+            and any(
+                e.kind == "REJECTED" and "ACTUAL_DEVICE_FAILED:R1" in e.reason for e in world.events
+            )
+            and all(
+                a.definition_id.endswith(".H-SIM-v1")
+                for a in world.s.mode_attempts
+                if args.actual_r1_before_setup or a.activity_id == "PRODUCT-1.W-T"
+            )
+            and (
+                args.actual_r1_before_setup
+                or any(
+                    a.activity_id == "PRODUCT-1.W-B" and a.definition_id.endswith(".HR-SIM-v1")
+                    for a in world.s.mode_attempts
+                )
+            )
+        )
+    manifest["r1_intervention"] = (
+        "AFTER_BOTTOM_DURING_LOADED_OUTBOUND"
+        if args.actual_r1_after_bottom
+        else "BEFORE_SETUP_DURING_LOADED_INBOUND"
+        if args.actual_r1_before_setup
+        else None
+    )
+    manifest["r1_intervention_injected"] = r1_injected
     backpressure = None
     if args.scenario == "B2_SUPPLEMENTAL_960":
         from adaptive_hrc_scheduling.production_witness import buffer_backpressure
@@ -263,6 +394,15 @@ def main():
     parser.add_argument("--receive-after-h", type=float, default=0)
     parser.add_argument("--expect-window", action="store_true")
     parser.add_argument("--rework", action="store_true")
+    parser.add_argument("--simulation", action="store_true")
+    parser.add_argument(
+        "--method", choices=("ADAPTIVE_JOINT", "FIXED_H", "FIXED_HR", "NO_OBSERVATION_UPDATE")
+    )
+    parser.add_argument("--budget-file", type=Path)
+    parser.add_argument("--actual-r1-before-setup", action="store_true")
+    parser.add_argument("--actual-r1-after-bottom", action="store_true")
+    parser.add_argument("--fixed-mode", choices=("H", "HR-seq"))
+    parser.add_argument("--handover-after-setup", action="store_true")
     parser.add_argument("--quality-fail", choices=("Q-POND",))
     parser.add_argument("--rework-fail", action="store_true")
     parser.add_argument("--expect-quality-hold", action="store_true")
@@ -282,15 +422,17 @@ def main():
         *ROOT.glob("sim/**/*.py"),
         *ROOT.glob("scripts/*production*.py"),
         ROOT / "src/adaptive_hrc_scheduling/production_recipe.json",
+        *ROOT.glob("src/adaptive_hrc_scheduling/simulation_inputs/*"),
+        *ROOT.glob("schemas/production_simulation/*.json"),
         Path(__file__),
     ]
     report = dict(
         status="FAILED",
         closed=False,
         runtime="KIT_APPLICATION" if args.backend == "isaac" else "LIGHT_EVENT",
-        scope="SYNTHETIC_TEST_ONLY",
+        scope="SIMULATION_RESEARCH_ONLY" if args.simulation else "SYNTHETIC_TEST_ONLY",
         S15_complete=False,
-        industrial_qualification="UNKNOWN",
+        industrial_qualification="NOT_ESTABLISHED" if args.simulation else "UNKNOWN",
         rendered_frame_validation=False,
         sources={
             p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()

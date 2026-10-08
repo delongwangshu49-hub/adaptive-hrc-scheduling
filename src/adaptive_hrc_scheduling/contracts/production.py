@@ -25,7 +25,7 @@ TOP_LEVEL = (
 
 
 def _digest(record):
-    canonical = as_data(decode(type(record), as_data(record)))
+    canonical = wire(decode(type(record), as_data(record)))
     return hashlib.sha256(
         json.dumps(canonical, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
     ).hexdigest()
@@ -53,7 +53,7 @@ def qualified(config, ids):
         and evidence[i].status == "PASS"
         and (
             evidence[i].basis == "INDUSTRIAL"
-            or config.purpose == "SYNTHETIC_TEST_ONLY"
+            or config.purpose in ("SYNTHETIC_TEST_ONLY", "SIMULATION_RESEARCH_ONLY")
             and evidence[i].basis == "SYNTHETIC_TEST"
         )
         and evidence[i].reference
@@ -88,6 +88,16 @@ def validate(record, *, config=None):
     else:
         decode(type(record), as_data(record))
     require(config is not None and record.config_id == config.id, "CONFIG_REFERENCE")
+    require(record.schema_version == config.schema_version, "CONSUMER_VERSION_MISMATCH")
+    if hasattr(record, "research"):
+        require(record.research == config.research, "SIM_RECORD_IDENTITY")
+    if hasattr(record, "state"):
+        if config.research is None:
+            require(
+                not (record.state.mode_attempts or record.state.activity_crews),
+                "NEW_STATE_IN_LEGACY",
+            )
+        require(record.state.research == config.research, "SIM_STATE_IDENTITY")
     if hasattr(record, "config_sha256"):
         require(record.config_sha256 == digest(config), "CONFIG_DIGEST")
     if isinstance(record, m.DispatchCommand):
@@ -103,6 +113,7 @@ def validate(record, *, config=None):
         require(record.operation_id in ops, "UNKNOWN_OPERATION")
         o = ops[record.operation_id]
         require(record.mode_id == mode_for(o), "COMMAND_MODE")
+        require(record.branch == o.branch, "COMMAND_BRANCH_BINDING")
         if o.action == "WALK":
             require(
                 len(record.roles) == 1 and record.roles[0].person_id == o.entity_id,
@@ -172,6 +183,9 @@ def validate(record, *, config=None):
 @lru_cache(maxsize=8)
 def _validate_configuration(c):
     decode(m.Configuration, as_data(c))
+    from adaptive_hrc_scheduling.production_admission import validate_admission
+
+    validate_admission(c)
     from adaptive_hrc_scheduling.production_mapping import validate_mapping
 
     validate_mapping(c)
@@ -360,6 +374,11 @@ def _validate_configuration(c):
             "ROLE_LOCATION_COVERAGE",
         )
         require(
+            set(o.activity_prerequisites) <= set(core)
+            and all(core[a].product_id == o.product_id for a in o.activity_prerequisites),
+            "ACTIVITY_PREREQUISITE_REFERENCE",
+        )
+        require(
             set(o.prerequisites) <= set(operations) and o.id not in o.prerequisites,
             "PREREQUISITE_REFERENCE",
         )
@@ -458,19 +477,24 @@ def _validate_configuration(c):
             e.status != "PASS" or e.basis != "UNRESOLVED" and e.reference, "FALSE_EVIDENCE_PASS"
         )
         require(
-            e.basis != "SYNTHETIC_TEST" or c.purpose == "SYNTHETIC_TEST_ONLY",
+            e.basis != "SYNTHETIC_TEST"
+            or c.purpose in ("SYNTHETIC_TEST_ONLY", "SIMULATION_RESEARCH_ONLY"),
             "SYNTHETIC_PROVENANCE",
         )
     for a in c.core_activities:
         require(a.product_id in products, "CORE_PRODUCT")
-        require(all(not mode.enabled for mode in a.modes if mode.kind == "HR-seq"), "HR_DISABLED")
+        require(
+            c.research is not None
+            or all(not mode.enabled for mode in a.modes if mode.kind == "HR-seq"),
+            "HR_DISABLED",
+        )
     return c
 
 
 def dumps(record, *, config=None):
     validate(record, config=config)
     return (
-        json.dumps(as_data(record), ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False)
+        json.dumps(wire(record), ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False)
         + "\n"
     )
 
@@ -480,4 +504,129 @@ def loads(kind, text, *, config=None):
         value = json.loads(text, object_pairs_hook=_pairs)
     except (ValueError, UnicodeError) as exc:
         raise ContractError(str(exc)) from exc
+    if value.get("schema_version") == "S15-PROD-1.0":
+        value = legacy_fields(value, expand=True)
     return validate(decode(kind, value), config=config)
+
+
+# Legacy wire bytes and content identities remain reproducible. New fields are
+# present in Python records but absent from the strictly separated S15 wire family.
+def legacy_fields(value, *, expand=False):
+    if isinstance(value, list):
+        return [legacy_fields(x, expand=expand) for x in value]
+    if not isinstance(value, dict):
+        return value
+    result = {k: legacy_fields(v, expand=expand) for k, v in value.items()}
+    additions = {}
+    if "production_mode" in result and "action" in result:
+        additions = dict(
+            branch=None,
+            hold_resources=[],
+            release_resources=[],
+            activity_prerequisites=[],
+            handover=None,
+        )
+    elif "mode_id" in result and "operation_id" in result:
+        additions = dict(branch=None, research=None)
+    elif "time_h" in result and "completed" in result:
+        additions = dict(mode_attempts=[], research=None, activity_crews=[])
+    elif "role_positions" in result and "evidence_id" in result:
+        additions = dict(
+            branch=None, isolated=None, robot_stopped=None, stage_owners=[], handover=None
+        )
+    elif "specification" in result and "operations" in result:
+        additions = dict(research=None)
+    elif "commands" in result and "observation_id" in result:
+        additions = dict(research=None)
+    elif "code_revision" in result and "backend" in result:
+        additions = dict(research=None)
+    for k, v in additions.items():
+        if expand:
+            result.setdefault(k, v)
+        else:
+            result.pop(k, None)
+    return result
+
+
+def wire(record):
+    value = as_data(record)
+    return (
+        legacy_fields(value) if getattr(record, "schema_version", None) == "S15-PROD-1.0" else value
+    )
+
+
+def production_schema(kind, *, simulation=False):
+    from adaptive_hrc_scheduling.contracts.codec import schema
+
+    value = schema(kind)
+    additions = {
+        "Operation": (
+            "branch",
+            "hold_resources",
+            "release_resources",
+            "activity_prerequisites",
+            "handover",
+        ),
+        "DispatchCommand": ("branch", "research"),
+        "State": ("mode_attempts", "research", "activity_crews"),
+        "Readback": ("branch", "isolated", "robot_stopped", "stage_owners", "handover"),
+        "Configuration": ("research",),
+        "RunManifest": ("research",),
+        "Plan": ("research",),
+    }
+    for name, definition in value["$defs"].items():
+        props = definition.get("properties", {})
+        if "schema_version" in props:
+            props["schema_version"] = {"enum": ["S18-PROD-2.0" if simulation else "S15-PROD-1.0"]}
+        if not simulation:
+            for field in additions.get(name, ()):
+                props.pop(field, None)
+                definition["required"].remove(field)
+            for field in (
+                "specification",
+                "purpose",
+                "production_mode",
+                "mode_id",
+                "action",
+                "phase",
+            ):
+                if field in props:
+
+                    def narrow(item):
+                        if "enum" in item:
+                            item["enum"] = [
+                                x
+                                for x in item["enum"]
+                                if x
+                                not in (
+                                    "S18-PROD-SPEC-2.0",
+                                    "SIMULATION_RESEARCH_ONLY",
+                                    "HR-seq",
+                                    "HANDOVER",
+                                    "RESTORE",
+                                )
+                            ]
+                        for branch in item.get("anyOf", []):
+                            narrow(branch)
+
+                    narrow(props[field])
+    # Remove definitions reachable only from the new fields.
+    needed = set()
+
+    def references(item):
+        if isinstance(item, dict):
+            if "$ref" in item:
+                name = item["$ref"].split("/")[-1]
+                if name not in needed:
+                    needed.add(name)
+                    references(value["$defs"][name])
+            for k, child in item.items():
+                if k != "$defs":
+                    references(child)
+        elif isinstance(item, list):
+            for child in item:
+                references(child)
+
+    references(value)
+    value["$defs"] = {k: v for k, v in value["$defs"].items() if k in needed}
+    return value

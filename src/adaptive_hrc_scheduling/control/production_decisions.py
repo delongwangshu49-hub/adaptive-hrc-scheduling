@@ -11,7 +11,7 @@ from dataclasses import replace
 
 from adaptive_hrc_scheduling import production_supports as supports
 from adaptive_hrc_scheduling.contracts.codec import ContractError, as_data, decode
-from adaptive_hrc_scheduling.contracts.production import digest, validate
+from adaptive_hrc_scheduling.contracts.production import digest, legacy_fields, validate, wire
 from adaptive_hrc_scheduling.domain import production as m
 from adaptive_hrc_scheduling.production_checker import Finding, Report
 
@@ -49,9 +49,16 @@ def fingerprint(value):
             return int(item)
         return item
 
+    data = as_data(value)
+    if (
+        getattr(value, "schema_version", None) == "S15-PROD-1.0"
+        or isinstance(value, m.State)
+        and value.research is None
+    ):
+        data = legacy_fields(data)
     return hashlib.sha256(
         json.dumps(
-            normalized(as_data(value)), sort_keys=True, separators=(",", ":"), allow_nan=False
+            normalized(data), sort_keys=True, separators=(",", ":"), allow_nan=False
         ).encode()
     ).hexdigest()
 
@@ -71,7 +78,7 @@ def record(decision):
         "state_sha256": fingerprint(obs.state),
         "event_count": len(obs.event_ids),
         "event_ids_sha256": fingerprint(obs.event_ids),
-        "plan": as_data(decision.plan),
+        "plan": wire(decision.plan),
         "rejected_parents": list(decision.rejected_parents),
         "receipt_id": decision.receipt_id,
     }
@@ -123,6 +130,7 @@ def initial_visible_state(config):
         receive_permits=(),
         masses=tuple(m.MassState(x.id, 0) for x in config.entities),
         supports=supports.initial(config),
+        research=config.research,
     )
 
 
@@ -258,7 +266,12 @@ def check_decisions(config, snapshot, records):
                 "UNOBSERVED_REJECTION_FILTER",
                 ident,
             )
-            plan = decode(m.Plan, row["plan"])
+            plan = decode(
+                m.Plan,
+                legacy_fields(row["plan"], expand=True)
+                if config.schema_version == "S15-PROD-1.0"
+                else row["plan"],
+            )
             validate(plan, config=config)
             need(
                 plan.observation_id == ident and plan.config_id == config.id,

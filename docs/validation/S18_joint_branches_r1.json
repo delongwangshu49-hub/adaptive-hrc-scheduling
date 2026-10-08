@@ -1,0 +1,265 @@
+{
+  "packet_id": "S18-20261007-branches-r1",
+  "base_commit": "62c1c5393cb715b8089a93ee7ec658a0eb0e571d",
+  "authorization": "PR139",
+  "result_log": "LOG180",
+  "program_work": "VERIFIED_WITH_LIMITS",
+  "step_work": "RESEARCH_BLOCKED_G2_OPEN",
+  "acceptance": "ACCEPTANCE_PENDING",
+  "approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "specialty_tests": 34,
+  "source_tests": {
+    "count": 693,
+    "seconds": 203.676,
+    "result": "PASS"
+  },
+  "isolated_wheel_tests": {
+    "count": 693,
+    "seconds": 206.422,
+    "result": "PASS"
+  },
+  "engineering_checks": [
+    "LOCK_PASS",
+    "RUFF_PASS",
+    "FORMAT_145_FILES_PASS",
+    "DEPENDENCY_PASS",
+    "SDIST_TO_WHEEL_PASS",
+    "LOCKED_REFERENCE_HASH_INSTALL_PASS"
+  ],
+  "checked_python_input_digests_unchanged": 144,
+  "frozen_files_unchanged": 213,
+  "original_s17_seven_summary_and_replay_identical": true,
+  "mechanisms": [
+    {
+      "name": "NORMAL",
+      "status": "FEASIBLE",
+      "mode": "HR-seq",
+      "initial_score": [
+        3.9928861,
+        33.569483688,
+        3.16229103
+      ],
+      "best_score": [
+        3.9928861,
+        32.049188762,
+        2.310857169
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ]
+    },
+    {
+      "name": "OBSERVED_R1_FAILURE",
+      "status": "FEASIBLE",
+      "mode": "H",
+      "initial_score": [
+        6.225840079,
+        36.061522291,
+        4.762655775
+      ],
+      "best_score": [
+        6.206065494,
+        35.475298563,
+        4.519339464
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ]
+    },
+    {
+      "name": "IRRELEVANT_TEST1_FAILURE",
+      "status": "FEASIBLE",
+      "mode": "HR-seq",
+      "initial_score": [
+        3.9928861,
+        33.569483688,
+        3.16229103
+      ],
+      "best_score": [
+        3.9928861,
+        32.049188762,
+        2.310857169
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ]
+    },
+    {
+      "name": "FIXED_H",
+      "status": "FEASIBLE",
+      "mode": "H",
+      "initial_score": [
+        6.225840079,
+        36.061522291,
+        4.762655775
+      ],
+      "best_score": [
+        6.206065494,
+        35.475298563,
+        4.519339464
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ]
+    },
+    {
+      "name": "LATE_UNLOAD_JOINT",
+      "status": "FEASIBLE",
+      "mode": "HR-seq",
+      "initial_score": [
+        7.5,
+        32.220539612,
+        3.16229103
+      ],
+      "best_score": [
+        7.5,
+        31.664810286,
+        2.606561705
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ]
+    },
+    {
+      "name": "LATE_UNLOAD_FIXED_H",
+      "status": "FEASIBLE",
+      "mode": "H",
+      "initial_score": [
+        6.225840079,
+        34.821272291,
+        4.762655775
+      ],
+      "best_score": [
+        6.225840079,
+        34.113995288,
+        4.762655775
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ]
+    },
+    {
+      "name": "LATE_UNLOAD_FIXED_HR",
+      "status": "FEASIBLE",
+      "mode": "HR-seq",
+      "initial_score": [
+        7.5,
+        32.220539612,
+        3.16229103
+      ],
+      "best_score": [
+        7.5,
+        31.664810286,
+        2.606561705
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ]
+    },
+    {
+      "name": "FIXED_HR",
+      "status": "FEASIBLE",
+      "mode": "HR-seq",
+      "initial_score": [
+        3.9928861,
+        33.569483688,
+        3.16229103
+      ],
+      "best_score": [
+        3.9928861,
+        32.049188762,
+        2.310857169
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ]
+    },
+    {
+      "name": "NO_FATIGUE_RANKING",
+      "status": "FEASIBLE",
+      "mode": "HR-seq",
+      "initial_score": [
+        3.9928861,
+        0.0,
+        0.0
+      ],
+      "best_score": [
+        3.9928861,
+        0.0,
+        0.0
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ]
+    }
+  ],
+  "failures_retained": {
+    "first_mechanism_run": "six_WAIT_due_to_wrong_completion_event_reading",
+    "first_specialty_run": {
+      "tests": 29,
+      "failures": 1,
+      "errors": 3
+    },
+    "initial_lint": "new_file_import_order_and_semicolon_findings_corrected",
+    "late_unload_joint": "NO_GAIN_OVER_FIXED_HR_AND_WORSE_THAN_FIXED_H_RETAINED"
+  },
+  "open_exits": [
+    "REAL_PRODUCT_JOINT_QUALIFICATION_G2_AND_APPLICABLE_PROCESS_GATES",
+    "S15_HR_SEQUENCE_MAPPING_TO_CURRENT_LOGISTICS_AND_ISAAC",
+    "CORRESPONDING_EXTENDED_S10_PRODUCTION_AND_CAUSAL_AUDIT",
+    "FULL_STATE_INFORMATION_ABLATION_CURRENT_SWITCH_IS_PARTIAL_FATIGUE_RANKING_ONLY",
+    "FULL_PRODUCTION_FUTURE_FEASIBILITY_AND_S18_RESEARCH_ACCEPTANCE"
+  ],
+  "actual_git_writes": [],
+  "new_kit_run": false,
+  "new_remote_ci": false,
+  "later_steps_started": false,
+  "exact_review_files": [
+    "AGENTS.md",
+    "PROGRESS_LOG.md",
+    "PROMPT_LEDGER.md",
+    "README.md",
+    "docs/PROJECT_CHARTER.md",
+    "docs/algorithms/joint_modes.md",
+    "docs/architecture.md",
+    "docs/model/S18_qualification_decisions_r1.md",
+    "docs/roadmap.md",
+    "docs/steps/S17.md",
+    "docs/steps/S18.md",
+    "docs/validation/S18_joint_branches_r1.json",
+    "docs/validation/S18_joint_branches_r1.md",
+    "examples/joint_modes/mechanisms.json",
+    "scripts/run_joint_mechanisms.py",
+    "src/adaptive_hrc_scheduling/algorithms/joint_lns.py",
+    "tests/test_joint_decisions.py"
+  ],
+  "target_repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling.git",
+  "branch": "main",
+  "proposed_tag": "step-S18-branches-r1",
+  "limitations": [
+    "Conditional C04 program tails do not certify S15 production or acquired G2.",
+    "No hidden future facts or quality/receipt forecasts; explicit target completion is not full module completion.",
+    "Current fatigue-ranking switch does not implement full state-information ablation.",
+    "Cooperative finite budgets and negative search outcomes; no optimality or real-time guarantee.",
+    "All prior censored/invalid/failure evidence, HR disablement, industrial UNKNOWN and RP/SC/SH/WV/frozen boundaries remain."
+  ]
+}

@@ -14,7 +14,10 @@ def check_boundary_path(points, size, obstacles):
 
 class SyntheticReceiver:
     def __init__(self, port):
-        require(port.config.purpose == "SYNTHETIC_TEST_ONLY", "SYNTHETIC_RECEIVER_ONLY")
+        require(
+            port.config.purpose in ("SYNTHETIC_TEST_ONLY", "SIMULATION_RESEARCH_ONLY"),
+            "SYNTHETIC_RECEIVER_ONLY",
+        )
         self.port = port
         self.runs = {}
         self.samples = []

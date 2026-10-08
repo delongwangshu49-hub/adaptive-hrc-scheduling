@@ -1,0 +1,244 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "Consumer": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "type": "object"
+    },
+    "ResearchProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_id": {
+          "enum": [
+            "S18-SIM-APPROVAL-001"
+          ]
+        },
+        "assumption_set_id": {
+          "enum": [
+            "S18-SIM-A1"
+          ]
+        },
+        "assumption_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "consumers": {
+          "items": {
+            "$ref": "#/$defs/Consumer"
+          },
+          "type": "array"
+        },
+        "gate": {
+          "enum": [
+            "APPROVED_ASSUMPTION_SET"
+          ]
+        },
+        "industrial_g2": {
+          "enum": [
+            "OPEN"
+          ]
+        },
+        "industrial_qualification": {
+          "enum": [
+            "NOT_ESTABLISHED"
+          ]
+        },
+        "proposal_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "purpose": {
+          "enum": [
+            "SIMULATION_RESEARCH_ONLY"
+          ]
+        },
+        "scope_bindings": {
+          "items": {
+            "$ref": "#/$defs/ScopeBinding"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "purpose",
+        "assumption_set_id",
+        "approval_id",
+        "proposal_sha256",
+        "assumption_sha256",
+        "gate",
+        "industrial_qualification",
+        "industrial_g2",
+        "scope_bindings",
+        "consumers"
+      ],
+      "type": "object"
+    },
+    "RunManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "backend": {
+          "enum": [
+            "logistics-event",
+            "isaac-usd"
+          ]
+        },
+        "code_revision": {
+          "type": "string"
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "epoch": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "industrial_qualification": {
+          "enum": [
+            "NOT_ESTABLISHED"
+          ]
+        },
+        "layout_version": {
+          "enum": [
+            "S15-RECIPE-LAYOUT-r1",
+            "S15-RECIPE-LAYOUT-r2"
+          ]
+        },
+        "research": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ResearchProfile"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S18-PROD-2.0"
+          ]
+        },
+        "specification": {
+          "enum": [
+            "S15-PROD-SPEC-1.0",
+            "S18-PROD-SPEC-2.0"
+          ]
+        },
+        "status": {
+          "enum": [
+            "PLANNED",
+            "HOLD",
+            "SYNTHETIC_TEST_COMPLETE"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "config_sha256",
+        "specification",
+        "layout_version",
+        "backend",
+        "run_id",
+        "epoch",
+        "code_revision",
+        "status",
+        "industrial_qualification",
+        "research"
+      ],
+      "type": "object"
+    },
+    "ScopeBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "assumption_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "component_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "fixture_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "h_definition": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "hr_definition": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "joint_set_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "output_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "process_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "product_id",
+        "product_revision",
+        "activity_id",
+        "component_id",
+        "joint_set_id",
+        "output_revision",
+        "h_definition",
+        "hr_definition",
+        "process_revision",
+        "fixture_revision",
+        "assumption_ids"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/RunManifest",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunManifest"
+}

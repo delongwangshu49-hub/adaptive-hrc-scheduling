@@ -23,7 +23,7 @@ from adaptive_hrc_scheduling.domain.building import (
     RoleBinding,
 )
 
-Version = Literal["S15-PROD-1.0"]
+Version = Literal["S15-PROD-1.0", "S18-PROD-2.0"]
 Action = Literal[
     "WALK",
     "TRANSFER",
@@ -40,6 +40,8 @@ Action = Literal[
     "DEPLOY_TOOL",
     "RETRIEVE_TOOL",
     "SUPPORT_CHANGE",
+    "HANDOVER",
+    "RESTORE",
 ]
 
 
@@ -129,7 +131,9 @@ class Operation:
     product_id: ID
     activity_id: ID
     action: Action
-    phase: Literal["WALK", "DRIVE", "PUSH", "SETUP", "WORK", "SUPERVISE", "REST"]
+    phase: Literal[
+        "WALK", "DRIVE", "PUSH", "SETUP", "WORK", "SUPERVISE", "REST", "HANDOVER", "RESTORE"
+    ]
     prerequisites: tuple[ID, ...]
     roles: tuple[Role, ...]
     role_locations: tuple[PersonPosition, ...]
@@ -154,12 +158,88 @@ class Operation:
     unit_index: Index = 0
     input_places: tuple["MaterialPort", ...] = ()
     output_places: tuple["MaterialPort", ...] = ()
-    production_mode: Literal["H", "H-team", "MOVE", "WAIT", "GATE"] | None = None
+    production_mode: Literal["H", "HR-seq", "H-team", "MOVE", "WAIT", "GATE"] | None = None
     wait_after: ID | None = None
     wait_h: Nonnegative = 0
     mass_remove_t: Nonnegative = 0
     component_input_places: tuple["ComponentPort", ...] = ()
     support_layout_id: ID | None = None
+    branch: "Branch | None" = None
+    hold_resources: tuple[ID, ...] = ()
+    release_resources: tuple[ID, ...] = ()
+    activity_prerequisites: tuple[ID, ...] = ()
+    handover: "Handover | None" = None
+
+
+@dataclass(frozen=True)
+class Branch:
+    definition_id: ID
+    revision: ID
+    output_revision: ID
+    assumption_revision: ID
+    joint_set_id: ID
+    phase: Literal["SETUP", "WORK", "ROBOT", "UNLOAD"]
+    terminal: bool
+
+
+@dataclass(frozen=True)
+class ScopeBinding:
+    product_id: ID
+    product_revision: ID
+    activity_id: ID
+    component_id: ID
+    joint_set_id: ID
+    output_revision: ID
+    h_definition: ID
+    hr_definition: ID
+    process_revision: ID
+    fixture_revision: ID
+    assumption_ids: tuple[ID, ...]
+
+
+@dataclass(frozen=True)
+class Consumer:
+    id: ID
+    version: ID
+
+
+@dataclass(frozen=True)
+class ResearchProfile:
+    purpose: Literal["SIMULATION_RESEARCH_ONLY"]
+    assumption_set_id: Literal["S18-SIM-A1"]
+    approval_id: Literal["S18-SIM-APPROVAL-001"]
+    proposal_sha256: Digest
+    assumption_sha256: Digest
+    gate: Literal["APPROVED_ASSUMPTION_SET"]
+    industrial_qualification: Literal["NOT_ESTABLISHED"]
+    industrial_g2: Literal["OPEN"]
+    scope_bindings: tuple[ScopeBinding, ...]
+    consumers: tuple[Consumer, ...]
+
+
+@dataclass(frozen=True)
+class Handover:
+    activity_id: ID
+    definition_id: ID
+    outgoing: ID
+    incoming: ID
+    after_unit: Index
+    phase: Literal["HANDOVER", "RESTORE"]
+
+
+@dataclass(frozen=True)
+class ModeAttempt:
+    activity_id: ID
+    attempt: Index
+    definition_id: ID
+    revision: ID
+    output_revision: ID
+    assumption_revision: ID
+    crew: tuple[RoleBinding, ...]
+    completed_units: tuple[Index, ...]
+    prepared_revision: Index
+    state: Literal["COMMITTED", "HOLD", "COMPLETE"]
+    handover: Handover | None = None
 
 
 @dataclass(frozen=True)
@@ -244,10 +324,10 @@ class BeamReadback:
 @dataclass(frozen=True)
 class Configuration:
     schema_version: Version
-    specification: Literal["S15-PROD-SPEC-1.0"]
+    specification: Literal["S15-PROD-SPEC-1.0", "S18-PROD-SPEC-2.0"]
     layout_version: Literal["S15-RECIPE-LAYOUT-r1", "S15-RECIPE-LAYOUT-r2"]
     id: ID
-    purpose: Literal["RESEARCH_BLOCKED", "SYNTHETIC_TEST_ONLY"]
+    purpose: Literal["RESEARCH_BLOCKED", "SYNTHETIC_TEST_ONLY", "SIMULATION_RESEARCH_ONLY"]
     scope: Literal["PRODUCTION", "WITNESS_FRAGMENT"]
     products: tuple[Product, ...]
     core_activities: tuple[Activity, ...]
@@ -278,6 +358,7 @@ class Configuration:
     support_proposal_sha256: Digest | None = None
     support_height_approval_id: Literal["S15-SH-APPROVAL-001"] | None = None
     rework_enabled: bool = False
+    research: ResearchProfile | None = None
 
 
 @dataclass(frozen=True)
@@ -352,6 +433,8 @@ class HumanInterval:
         "REST",
         "OFF_SHIFT",
         "EMERGENCY_HOLD",
+        "HANDOVER",
+        "RESTORE",
     ]
     rate: Nonnegative
     start_f: Fraction
@@ -372,12 +455,14 @@ class DispatchCommand:
     operation_id: ID
     attempt: Index
     unit_index: Index
-    mode_id: Literal["H", "H-team", "MOVE", "WAIT", "GATE"]
+    mode_id: Literal["H", "HR-seq", "H-team", "MOVE", "WAIT", "GATE"]
     issued_sim_h: Nonnegative
     expected_revision: Index
     roles: tuple[RoleBinding, ...]
     resume_of: ID | None = None
     service: "Service | None" = None
+    branch: Branch | None = None
+    research: ResearchProfile | None = None
 
 
 @dataclass(frozen=True)
@@ -395,6 +480,12 @@ class Running:
     held_at_h: Nonnegative | None = None
     start_progress: Nonnegative = 0
     active_before_h: Nonnegative = 0
+
+
+@dataclass(frozen=True)
+class ActivityCrew:
+    activity_id: ID
+    roles: tuple[RoleBinding, ...]
 
 
 @dataclass(frozen=True)
@@ -417,6 +508,9 @@ class State:
     masses: tuple[MassState, ...] = ()
     completion_times: tuple[CompletionTime, ...] = ()
     supports: tuple[SupportState, ...] = ()
+    mode_attempts: tuple[ModeAttempt, ...] = ()
+    activity_crews: tuple[ActivityCrew, ...] = ()
+    research: ResearchProfile | None = None
 
 
 @dataclass(frozen=True)
@@ -452,6 +546,11 @@ class Readback:
     progress: Nonnegative = 0
     inputs: tuple[InputReadback, ...] = ()
     beams: tuple[BeamReadback, ...] = ()
+    branch: Branch | None = None
+    isolated: bool | None = None
+    robot_stopped: bool | None = None
+    stage_owners: tuple[Ownership, ...] = ()
+    handover: Handover | None = None
 
 
 @dataclass(frozen=True)
@@ -556,6 +655,7 @@ class Plan:
     commands: tuple[DispatchCommand, ...]
     status: Literal["CANDIDATE", "WAIT", "NO_PLAN_FOUND"]
     reason: str
+    research: ResearchProfile | None = None
 
 
 @dataclass(frozen=True)
@@ -585,7 +685,7 @@ class RunManifest:
     schema_version: Version
     config_id: ID
     config_sha256: Digest
-    specification: Literal["S15-PROD-SPEC-1.0"]
+    specification: Literal["S15-PROD-SPEC-1.0", "S18-PROD-SPEC-2.0"]
     layout_version: Literal["S15-RECIPE-LAYOUT-r1", "S15-RECIPE-LAYOUT-r2"]
     backend: Literal["logistics-event", "isaac-usd"]
     run_id: ID
@@ -593,3 +693,4 @@ class RunManifest:
     code_revision: str
     status: Literal["PLANNED", "HOLD", "SYNTHETIC_TEST_COMPLETE"]
     industrial_qualification: Literal["NOT_ESTABLISHED"]
+    research: ResearchProfile | None = None

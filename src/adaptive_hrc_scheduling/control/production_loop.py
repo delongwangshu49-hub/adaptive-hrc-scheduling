@@ -9,6 +9,7 @@ from adaptive_hrc_scheduling.contracts.production import digest
 from adaptive_hrc_scheduling.control.production_decisions import check_decisions, record
 from adaptive_hrc_scheduling.domain import production as m
 from adaptive_hrc_scheduling.planning.production import choose, planning_input
+from adaptive_hrc_scheduling.production_admission import applicable, completed_activity
 from adaptive_hrc_scheduling.production_checker import check_run
 
 
@@ -70,13 +71,39 @@ def validate_scenario(config, scenario):
         require(0 < scenario.until_h <= 720, "FIXED_S15_WINDOW")
 
 
-def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_hook=None):
+def run(
+    backend,
+    scenario=Scenario(),
+    *,
+    rule="EDD",
+    max_turns=20000,
+    execution_hook=None,
+    joint_policy=None,
+    stop_condition=None,
+    warmup_only=False,
+    prefix_decisions=(),
+    continuation=False,
+    fixed_mode=None,
+    handover_after_setup=False,
+):
     world = getattr(backend, "world", backend)
     isaac = hasattr(backend, "world")
-    require(world.s.time_h == 0 and not world.events, "FRESH_RUN_REQUIRED")
+    if continuation:
+        require(
+            check_run(world.config, world.snapshot()).status == "PASS"
+            and check_decisions(
+                world.config, world.snapshot(), tuple(record(d) for d in prefix_decisions)
+            ).status
+            == "PASS",
+            "VERIFIED_CONTINUATION_PREFIX_REQUIRED",
+        )
+    else:
+        require(world.s.time_h == 0 and not world.events, "FRESH_RUN_REQUIRED")
     c = world.config
     validate_scenario(c, scenario)
-    require(c.purpose == "SYNTHETIC_TEST_ONLY", "SYNTHETIC_DRIVER_ONLY")
+    require(
+        c.purpose in ("SYNTHETIC_TEST_ONLY", "SIMULATION_RESEARCH_ONLY"), "SYNTHETIC_DRIVER_ONLY"
+    )
     places = {p.id: p for p in c.places}
     lots = {lot.id: lot for lot in c.lots}
     incoming = {
@@ -85,7 +112,16 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
         if not lot.parent_ids
     }
     rejected = set()
-    decisions = []
+    decisions = list(prefix_decisions)
+    checkpoint_wait_replaced = bool(
+        continuation
+        and decisions
+        and decisions[-1].receipt_id is None
+        and not decisions[-1].plan.commands
+        and decisions[-1].observation.event_ids == tuple(e.id for e in world.events)
+    )
+    if checkpoint_wait_replaced:
+        decisions.pop()
     last_revision = -1
     last_changed = 0
     termination = "TURN_LIMIT"
@@ -137,9 +173,32 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
                 return False
         return True
 
-    for sequence in range(max_turns):
+    for sequence in range(len(decisions), len(decisions) + max_turns):
         if execution_hook:
             execution_hook(backend, "before_decision")
+        if stop_condition and stop_condition(world):
+            if isaac:
+                backend.deliver()
+            observed = world.observe()
+            world.deliver()
+            decisions.append(
+                Decision(
+                    observed,
+                    m.Plan(
+                        c.schema_version,
+                        c.id,
+                        observed.id,
+                        (),
+                        "WAIT",
+                        "DECLARED_CHECKPOINT",
+                        c.research,
+                    ),
+                    tuple(sorted(rejected)),
+                    None,
+                )
+            )
+            termination = "DECLARED_CHECKPOINT"
+            break
         if any(
             r.status == "STARTED" and r.earliest_end_h <= world.s.time_h + 1e-10
             for r in world.s.running
@@ -257,7 +316,7 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
             fact("RELEASE", ident, lot.product_id)
         for activity in c.core_activities:
             bound = [i for b in c.bindings if b.activity_id == activity.id for i in b.operation_ids]
-            if bound and all(i in world.s.completed for i in bound):
+            if bound and completed_activity(c, world.s.completed, activity.id):
                 for kind, gate in [
                     ("QUALITY", activity.quality_evidence),
                     ("PROCESS_RELEASE", activity.release_evidence),
@@ -339,9 +398,40 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
             )
         value = planning_input(c, observation, 10000)
         value = replace(
-            value, operations=tuple(o for o in value.operations if o.id not in rejected)
+            value,
+            operations=tuple(
+                o
+                for o in value.operations
+                if o.id not in rejected and (not warmup_only or not o.branch)
+            ),
         )
-        plan = choose(c, value, rule=rule, sequence=sequence, excluded_operations=rejected)
+        plan = (
+            joint_policy.decide(
+                value,
+                world.snapshot(),
+                (record(d) for d in decisions),
+                sequence=sequence,
+                rejected=rejected,
+            )
+            if joint_policy
+            else choose(
+                c,
+                value,
+                rule=rule,
+                sequence=sequence,
+                excluded_operations=rejected,
+                mode_choices=tuple((s.activity_id, fixed_mode) for s in c.research.scope_bindings)
+                if fixed_mode
+                else (),
+                crew_choices=tuple(
+                    (a.activity_id, "W2")
+                    for a in world.s.mode_attempts
+                    if a.completed_units and a.definition_id.endswith(".H-SIM-v1")
+                )
+                if handover_after_setup
+                else (),
+            )
+        )
         receipt = backend.dispatch(plan.commands[0]) if plan.commands else None
         decisions.append(
             Decision(observation, plan, tuple(sorted(rejected)), receipt.id if receipt else None)
@@ -418,6 +508,10 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
                 fact("FAILURE", failure_resource, op.product_id)
                 failure_done, failure_product = True, op.product_id
                 repair_at = world.s.time_h + 0.25
+            if receipt.reason.startswith("ACTUAL_PREFLIGHT:ACTUAL_DEVICE_FAILED:"):
+                resource = receipt.reason.rsplit(":", 1)[-1]
+                if resource in world.devices and resource not in world.s.failed_resources:
+                    fact("FAILURE", resource, op.product_id)
             if receipt.kind != "STARTED":
                 parent = (
                     plan.reason.removeprefix("PREPARE:")
@@ -429,7 +523,9 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
                 execution_hook(backend, "after_dispatch")
             continue
         if all(
-            o.id in world.s.completed for o in c.operations if rework.active(c, world.s.gates, o)
+            o.id in world.s.completed
+            for o in c.operations
+            if rework.active(c, world.s.gates, o) and applicable(o, world.s.mode_attempts)
         ):
             termination = "OPERATIONS_COMPLETE"
             break
@@ -440,6 +536,8 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
             termination = "WINDOW_CENSORED"
             break
         pending = [r.earliest_end_h for r in world.s.running if r.status == "STARTED"]
+        if joint_policy:
+            pending.append(joint_policy.next_tick(world.s.time_h))
         pending += [
             t.time_h + o.wait_h
             for o in c.operations
@@ -485,7 +583,10 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
         "time_h": world.s.time_h,
         "static_operations": len(c.operations),
         "completed_static_operations": sum(o.id in world.s.completed for o in c.operations),
-        "active_static_operations": sum(rework.active(c, world.s.gates, o) for o in c.operations),
+        "active_static_operations": sum(
+            rework.active(c, world.s.gates, o) and applicable(o, world.s.mode_attempts)
+            for o in c.operations
+        ),
         "ready": sum(p.ready_h is not None for p in world.s.products),
         "received": sum(p.received_h is not None for p in world.s.products),
         "audit": audit.status,
@@ -493,9 +594,22 @@ def run(backend, scenario=Scenario(), *, rule="EDD", max_turns=20000, execution_
         "decision_protocol": "S15-DECISION-1",
         "observation_delivery": "CURRENT_EVENT_PREFIX_ZERO_DELAY",
         "S15_complete": False,
-        "industrial_qualification": "UNKNOWN",
+        "industrial_qualification": "NOT_ESTABLISHED" if c.research else "UNKNOWN",
+        "schema_version": c.schema_version,
+        "warmup_only": warmup_only,
+        "continuation": continuation,
+        "checkpoint_wait_replaced_in_extended_journal": checkpoint_wait_replaced,
+        "fixed_phase_witness_mode": fixed_mode,
+        "handover_after_setup_witness": handover_after_setup,
+        "research": __import__(
+            "adaptive_hrc_scheduling.contracts.codec", fromlist=["as_data"]
+        ).as_data(c.research),
         "loaded_failure_injected": failure_done and not scenario.actual_path_obstruction,
         "actual_path_obstruction_injected": failure_done and scenario.actual_path_obstruction,
         "preparation_steps_since_progress": preparation_steps,
     }
+    if joint_policy:
+        manifest["method"] = joint_policy.method
+        manifest["search_budget"] = joint_policy.budget.report()
+        manifest["joint_journal"] = joint_policy.journal
     return Result(snapshot, tuple(decisions), manifest, audit, decision_audit)

@@ -1,0 +1,249 @@
+{
+  "proposal_id": "S18-SIM-SCOPE-20261008-r1",
+  "date": "2026-10-08",
+  "status": "PROPOSED_DECISION_PENDING_NOT_IMPLEMENTED",
+  "authorization_to_draft": "PR144",
+  "approval_record": null,
+  "decision_clauses": [
+    "SR01",
+    "SR02",
+    "SR03",
+    "SR04",
+    "SR05",
+    "SR06",
+    "SR07",
+    "SR08"
+  ],
+  "proposed_profile": {
+    "purpose": "SIMULATION_RESEARCH_ONLY",
+    "assumption_set_id": "S18-SIM-A1",
+    "schema_version": "S18-PROD-2.0",
+    "research_gate": "SIM-ADMISSION",
+    "admitted_value": "APPROVED_ASSUMPTION_SET",
+    "default_admitted": false,
+    "industrial_qualification": "NOT_ESTABLISHED",
+    "industrial_g2": "OPEN"
+  },
+  "scope": {
+    "products": [
+      "SR-W1",
+      "SR-W2"
+    ],
+    "activities": [
+      "W-B",
+      "W-T"
+    ],
+    "structure_versions": "EXISTING_ONLY_NO_NEW_OPENINGS",
+    "cell": "J2",
+    "output_equivalence": "SAME_COMPONENT_VERSION_ABSTRACT_JOINT_SET_MATERIAL_INPUT_AND_QUALITY_SUCCESSORS",
+    "research_questions": [
+      "A_JOINT_MODE_AND_SCHEDULE",
+      "D_HUMAN_FACTOR_TRADEOFF"
+    ]
+  },
+  "assumptions": [
+    {
+      "id": "A01",
+      "replaces_missing_input": "Q01",
+      "value": "ABSTRACT_JOINT_SET_PER_BOTTOM_OR_TOP_COMPONENT",
+      "industrial_scope_known": false
+    },
+    {
+      "id": "A02",
+      "replaces_missing_input": "Q02",
+      "value": "VERSIONED_ASSUMED_H_AND_HR_PROCESS_DEFINITIONS",
+      "is_wps_or_pqr": false
+    },
+    {
+      "id": "A03",
+      "replaces_missing_input": "Q03",
+      "value": "R1_FIX_J2_SYMBOLIC_PROCESS_WITH_VERSION_INVALIDATION",
+      "thermal_or_weld_path_simulation": false
+    },
+    {
+      "id": "A04",
+      "replaces_missing_input": "Q04",
+      "value": "SEQUENTIAL_ISOLATED_ROBOT_PHASE_NO_CONTINUOUS_SUPERVISOR",
+      "human_motion_and_entry_exit_required": true
+    },
+    {
+      "id": "A05",
+      "replaces_missing_input": "Q05",
+      "value": "COMMON_EXOGENOUS_SYNTHETIC_QUALITY_PROTOCOL",
+      "mode_dependent_success_rate": false,
+      "automatic_quality_pass": false
+    },
+    {
+      "id": "A06",
+      "replaces_missing_input": "Q06",
+      "value": "EXISTING_WHOLE_UNITS_AS_MODEL_STOP_POINTS",
+      "split_units": false,
+      "interrupted_structural_attempt": "HOLD_NO_AUTOMATIC_REPAIR_OR_MODE_SWITCH"
+    }
+  ],
+  "modes": [
+    {
+      "kind": "H",
+      "total_base_h": 3.0,
+      "eligible_people": [
+        "W1",
+        "W2"
+      ],
+      "equipment": [
+        "WELD-J2",
+        "FIX-J2"
+      ],
+      "units": [
+        {
+          "id": "U1",
+          "phase": "SETUP",
+          "base_h": 0.5,
+          "kappa": 0.5
+        },
+        {
+          "id": "U2",
+          "phase": "WORK",
+          "base_h": 0.5,
+          "kappa": 0.5
+        },
+        {
+          "id": "U3",
+          "phase": "WORK",
+          "base_h": 0.5,
+          "kappa": 0.5
+        },
+        {
+          "id": "U4",
+          "phase": "WORK",
+          "base_h": 0.5,
+          "kappa": 0.5
+        },
+        {
+          "id": "U5",
+          "phase": "WORK",
+          "base_h": 0.5,
+          "kappa": 0.5
+        },
+        {
+          "id": "U6",
+          "phase": "UNLOAD",
+          "base_h": 0.5,
+          "kappa": 0
+        }
+      ]
+    },
+    {
+      "kind": "HR-seq",
+      "total_base_h": 2.0,
+      "equipment": [
+        "R1",
+        "FIX-J2"
+      ],
+      "units": [
+        {
+          "id": "U1",
+          "phase": "SETUP",
+          "base_h": 0.5,
+          "kappa": 0.5,
+          "eligible_people": [
+            "OP1"
+          ]
+        },
+        {
+          "id": "U2",
+          "phase": "ROBOT",
+          "base_h": 1.0,
+          "kappa": 0,
+          "eligible_people": []
+        },
+        {
+          "id": "U3",
+          "phase": "UNLOAD",
+          "base_h": 0.5,
+          "kappa": 0,
+          "eligible_people": [
+            "OP1"
+          ]
+        }
+      ],
+      "hold_until": "ACTUAL_MODEL_UNLOAD_COMPLETE",
+      "operator_supervision_during_robot": false
+    }
+  ],
+  "preserved": {
+    "human_calendar_and_cap": true,
+    "human_rates": true,
+    "equipment_count": 8,
+    "people_count": 15,
+    "finished_buffer_capacity": 2,
+    "rp_sc_sh_wv_values": true,
+    "product_bom": true,
+    "transport_capacity_speed_setup": true,
+    "old_versions_and_failures": true,
+    "stage_duration_source": "scripts/build_building_contracts.py"
+  },
+  "existing_handoff_assumptions_h": {
+    "two_person_handoff": 0.1,
+    "check_and_recovery": 0.1
+  },
+  "freeze_changes": {
+    "D01": "NO_VALUE_CHANGE",
+    "D02": "EXPLICIT_SIMULATION_ONLY_ADMISSION_EXCEPTION",
+    "D03": "VERSIONED_MODE_BRANCHES_ATTEMPTS_MULTI_RESOURCE_OWNERSHIP_ROLE_MAPPING_AND_PROVENANCE",
+    "D04": "ROLE_EXPRESSION_ONLY_NO_RATE_CAP_CALENDAR_OR_KAPPA_CHANGE",
+    "D05": "NO_SEQUENCE_CHANGE",
+    "D06": "NO_PROJECT_METADATA_GOVERNANCE_CHANGE",
+    "RP05_RP07": "VERSION_SCOPED_HR_AND_SIMULATION_PURPOSE_EXCEPTION"
+  },
+  "controls": [
+    "ADAPTIVE_JOINT",
+    "FIXED_H",
+    "FIXED_HR",
+    "NO_OBSERVATION_UPDATE"
+  ],
+  "budget_rule": "PREDECLARED_COMMON_OPPORTUNITIES_AND_RUN_CUMULATIVE_LIMIT_RECORD_ACTUAL_USAGE_NO_RETROACTIVE_EXTRA_BUDGET",
+  "validation_exits": [
+    "V01",
+    "V02",
+    "V03",
+    "V04",
+    "V05",
+    "V06",
+    "V07",
+    "V08"
+  ],
+  "full_chain_required": {
+    "SR-W1": true,
+    "SR-W2": true,
+    "ready_and_actual_receipt": true,
+    "no_reset": true,
+    "two_product_competition": true,
+    "same_product_two_frames": true,
+    "old_B_plus_1_and_WV_regression": true
+  },
+  "backend_parity": {
+    "quantity_tolerance": 1e-09,
+    "clock_tolerance_h": 1e-08,
+    "position_tolerance_m": 0.002,
+    "rule_failure_tolerated": false
+  },
+  "completion_label_proposed": "S18_SIMULATION_IMPLEMENTATION_COMPLETE_INDUSTRIAL_QUALIFICATION_NOT_ESTABLISHED",
+  "on_explicit_approval": "IMPLEMENT_SR01_SR08_LOCALLY_THROUGH_VALIDATION_AND_REVIEW_WITHOUT_REPEATED_SUBSTAGE_START_APPROVAL",
+  "not_authorized": [
+    "INDUSTRIAL_DEPLOYMENT",
+    "NEW_EQUIPMENT_OR_PARAMETERS",
+    "FORMAL_A_D_EXPERIMENTS",
+    "S19_S28_S19A_S19B_START",
+    "GIT_WRITES_OR_REMOTE_RELEASE",
+    "ASSET_DOWNLOAD",
+    "ENVIRONMENT_UPGRADE"
+  ],
+  "source_refs": [
+    "docs/model/S18_production_mapping_r1.md",
+    "docs/model/S18_qualification_decisions_r1.md",
+    "docs/model/selected_steel.md",
+    "docs/model/S15_recipe_proposal_r1.md",
+    "docs/PROJECT_CHARTER.md",
+    "docs/validation/S18_completion_exits.md"
+  ]
+}

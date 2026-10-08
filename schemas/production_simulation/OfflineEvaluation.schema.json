@@ -1,0 +1,73 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "OfflineEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "cancelled_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "incomplete_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "internal_finished_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "max_exposure": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "ready_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "received_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_version": {
+          "enum": [
+            "S18-PROD-2.0"
+          ]
+        },
+        "scope": {
+          "enum": [
+            "INDEPENDENT_EVENT_RECONSTRUCTION"
+          ]
+        },
+        "total_exposure": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "window_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "window_h",
+        "ready_count",
+        "received_count",
+        "internal_finished_count",
+        "cancelled_count",
+        "incomplete_count",
+        "total_exposure",
+        "max_exposure",
+        "scope"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/OfflineEvaluation",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OfflineEvaluation"
+}

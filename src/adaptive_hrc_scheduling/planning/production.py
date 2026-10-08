@@ -10,6 +10,7 @@ from adaptive_hrc_scheduling.building_human import calendar_state
 from adaptive_hrc_scheduling.contracts.codec import ContractError
 from adaptive_hrc_scheduling.contracts.production import mode_for, validate
 from adaptive_hrc_scheduling.domain import production as m
+from adaptive_hrc_scheduling.production_admission import applicable, completed_activity
 from adaptive_hrc_scheduling.production_backend import ProductionBackend
 from adaptive_hrc_scheduling.production_geometry import route, standing_point, transport_sweeps
 from adaptive_hrc_scheduling.production_navigation import clear_segment, ingress_groups, walk
@@ -21,7 +22,7 @@ def planning_input(config, observation, budget_ms=100):
     released = {p.product_id for p in observation.state.products if p.released}
     cancelled = {p.product_id for p in observation.state.products if p.cancelled}
     value = m.PlanningInput(
-        "S15-PROD-1.0",
+        config.schema_version,
         config.id,
         observation,
         tuple(
@@ -29,6 +30,7 @@ def planning_input(config, observation, budget_ms=100):
             for o in config.operations
             if o.product_id in released
             and active(config, observation.state.gates, o)
+            and applicable(o, observation.state.mode_attempts)
             and (
                 o.product_id not in cancelled
                 or cancellation.disposal(config, o)
@@ -42,10 +44,27 @@ def planning_input(config, observation, budget_ms=100):
     return value
 
 
-def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
+def choose(
+    config,
+    value,
+    *,
+    rule="EDD",
+    sequence=0,
+    excluded_operations=(),
+    mode_choices=(),
+    crew_choices=(),
+    order_bias=(),
+    start_slots=(),
+    rest_people=(),
+):
     validate(value, config=config)
     if rule not in ("EDD", "SPT", "FASTEST_LEGAL"):
         raise ValueError("Unknown rule")
+
+    def plan(*args):
+        return m.Plan(*args, research=config.research)
+
+    modes, crews, order, slots = map(dict, (mode_choices, crew_choices, order_bias, start_slots))
     start, obs = time.perf_counter(), value.observation
     world = ProductionBackend(config, run_id=obs.run_id, epoch=obs.epoch)
     world.s = obs.state
@@ -72,10 +91,50 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
         if item.route:
             world.routes[item.route.id] = item.route
 
+    handover_services = {}
+
+    def bindings_for(op):
+        if not op.branch:
+            committed = next(
+                (a.roles for a in obs.state.activity_crews if a.activity_id == op.activity_id), None
+            )
+            if committed is not None:
+                return committed
+            chosen = []
+            for role in op.roles:
+                requested = crews.get(op.activity_id + ":" + role.id) if config.research else None
+                person = requested or role.id
+                chosen.append(m.RoleBinding(role.id, person))
+            return tuple(chosen)
+        attempt = next(
+            (a for a in obs.state.mode_attempts if a.activity_id == op.activity_id), None
+        )
+        if attempt and op.roles:
+            return attempt.crew
+        return tuple(
+            m.RoleBinding(
+                r.id,
+                min(
+                    (
+                        p
+                        for p in config.people
+                        if r.qualification in p.qualifications
+                        and (op.activity_id not in crews or p.id == crews[op.activity_id])
+                    ),
+                    key=lambda p: (
+                        p.id in busy,
+                        next(h.fatigue for h in obs.state.humans if h.person_id == p.id),
+                        p.id,
+                    ),
+                ).id,
+            )
+            for r in op.roles
+        )
+
     def command(op, service=None, held=None):
-        service = service or cancel_services.get(op.id)
+        service = service or cancel_services.get(op.id) or handover_services.get(op.id)
         return m.DispatchCommand(
-            "S15-PROD-1.0",
+            config.schema_version,
             config.id,
             obs.config_sha256,
             obs.run_id,
@@ -89,9 +148,11 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
             mode_for(op),
             obs.sampled_h,
             obs.state.revision,
-            held.command.roles if held else tuple(m.RoleBinding(r.id, r.id) for r in op.roles),
+            held.command.roles if held else bindings_for(op),
             resume_of=held.command.id if held else None,
             service=service,
+            branch=op.branch,
+            research=config.research,
         )
 
     def admissible(cmd):
@@ -217,6 +278,17 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
         # this does not expose its future arrival time or prepare its material.
         unfinished = next(iter(value.operations), None)
     if unfinished is not None:
+        for requested in rest_people:
+            rested = service_for(unfinished, requested, rest=True)
+            if rested:
+                return plan(
+                    config.schema_version,
+                    config.id,
+                    obs.id,
+                    (rested,),
+                    "CANDIDATE",
+                    "PROPOSED_REST",
+                )
         for human in obs.state.humans:
             person = world.people[human.person_id]
             phase, shift_end = calendar_state(person, obs.sampled_h)
@@ -231,8 +303,13 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
                 # another command runs or the driver advances its event clock.
                 rest = service_for(unfinished, human.person_id, rest=True)
                 if rest:
-                    return m.Plan(
-                        "S15-PROD-1.0", config.id, obs.id, (rest,), "CANDIDATE", "IDLE_CAP_REST"
+                    return plan(
+                        config.schema_version,
+                        config.id,
+                        obs.id,
+                        (rest,),
+                        "CANDIDATE",
+                        "IDLE_CAP_REST",
                     )
 
     for rack in obs.state.supports:
@@ -254,8 +331,8 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
         for person in rack.clearance_people:
             cleared = service_for(parent, person, "CONTROL-" + person)
             if cleared:
-                return m.Plan(
-                    "S15-PROD-1.0",
+                return plan(
+                    config.schema_version,
                     config.id,
                     obs.id,
                     (cleared,),
@@ -292,8 +369,8 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
         if previous and previous.id in {o.id for o in value.operations}:
             cleanup = service_for(previous, carrier, park)
             if cleanup:
-                return m.Plan(
-                    "S15-PROD-1.0",
+                return plan(
+                    config.schema_version,
                     config.id,
                     obs.id,
                     (cleanup,),
@@ -305,6 +382,7 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
         stage = int(o.id.rsplit(".DELIVER-", 1)[1]) if ".DELIVER-" in o.id else -1
         point = world.places[o.location].position
         return (
+            order.get(o.activity_id, 0),
             deadlines[o.product_id] if rule == "EDD" else o.base_h,
             -stage,
             point[1] if stage >= 0 else 0,
@@ -312,6 +390,40 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
             -point[0] if stage >= 0 else 0,
             o.id,
         )
+
+    handover_services = {}
+    if config.research:
+        from adaptive_hrc_scheduling.production_handover import operation as handover_operation
+
+        for a in obs.state.mode_attempts:
+            if (
+                a.state != "COMMITTED"
+                or not a.completed_units
+                or any(r.command.activity_id == a.activity_id for r in obs.state.running)
+            ):
+                continue
+            desired = crews.get(a.activity_id)
+            if a.handover is not None:
+                change = replace(a.handover, phase="RESTORE")
+            elif desired is not None and desired != a.crew[0].person_id:
+                change = m.Handover(
+                    a.activity_id,
+                    a.definition_id,
+                    a.crew[0].person_id,
+                    desired,
+                    a.completed_units[-1],
+                    "HANDOVER",
+                )
+            else:
+                continue
+            try:
+                op = handover_operation(
+                    config, change, f"HANDOVER-{obs.state.revision}-{a.activity_id}-{change.phase}"
+                )
+            except ContractError:
+                continue
+            handover_services[op.id] = m.Service(op, None)
+            world.operations[op.id] = op
 
     cancelled = {p.product_id for p in obs.state.products if p.cancelled}
     candidates = sorted(
@@ -323,7 +435,8 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
             or o.action in ("RETURN", "SCRAP", "RELEASE_RESERVATION")
             or any(r.command.operation_id == o.id for r in obs.state.running)
         ]
-        + [s.operation for s in cancel_services.values()],
+        + [s.operation for s in cancel_services.values()]
+        + [s.operation for s in handover_services.values()],
         key=priority,
     )
 
@@ -387,18 +500,49 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
     def support_plan(parent, layout_id):
         cmd = support_preparation(parent, layout_id)
         return (
-            m.Plan("S15-PROD-1.0", config.id, obs.id, (cmd,), "CANDIDATE", "PREPARE:" + parent.id)
+            plan(
+                config.schema_version,
+                config.id,
+                obs.id,
+                (cmd,),
+                "CANDIDATE",
+                "PREPARE:" + parent.id,
+            )
             if cmd
             else None
         )
 
     for op in candidates:
         if (time.perf_counter() - start) * 1000 > value.budget_ms:
-            return m.Plan("S15-PROD-1.0", config.id, obs.id, (), "NO_PLAN_FOUND", "DECISION_BUDGET")
+            return plan(
+                config.schema_version, config.id, obs.id, (), "NO_PLAN_FOUND", "DECISION_BUDGET"
+            )
         held = next((r for r in obs.state.running if r.command.operation_id == op.id), None)
         if op.id in done or held and held.status != "EXCEPTION":
             continue
-        if not set(op.prerequisites) <= done:
+        if not applicable(op, obs.state.mode_attempts):
+            continue
+        if op.branch and any(
+            a.activity_id == op.activity_id
+            and (
+                a.handover is not None
+                or (
+                    op.activity_id in crews
+                    and a.crew
+                    and a.crew[0].person_id != crews[op.activity_id]
+                )
+            )
+            for a in obs.state.mode_attempts
+        ):
+            continue
+        if op.branch and op.activity_id in modes and modes[op.activity_id] != op.production_mode:
+            continue
+        if obs.sampled_h + 1e-10 < slots.get(op.activity_id, obs.sampled_h):
+            reasons.append(op.id + ":PLANNED_START_WAIT")
+            continue
+        if not set(op.prerequisites) <= done or not all(
+            completed_activity(config, done, a) for a in op.activity_prerequisites
+        ):
             reasons.append(op.id + ":PREDECESSORS")
             continue
         if op.entity_id in world.lots and not world._lot(op.entity_id).arrived:
@@ -415,20 +559,43 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
                     if prepared:
                         return prepared
         cmd = command(op, held=held)
+        if op.branch and op.branch.phase == "ROBOT":
+            for person in config.people:
+                if positions[person.id] == "J2":
+                    prepared = service_for(op, person.id, "CONTROL-" + person.id)
+                    if prepared:
+                        return plan(
+                            config.schema_version,
+                            config.id,
+                            obs.id,
+                            (prepared,),
+                            "CANDIDATE",
+                            "PREPARE:" + op.id,
+                        )
         reason = admissible(cmd)
         if reason is None:
             clear = traffic_clearance(op)
             if clear:
-                return m.Plan(
-                    "S15-PROD-1.0", config.id, obs.id, (clear,), "CANDIDATE", "PREPARE:" + op.id
+                return plan(
+                    config.schema_version,
+                    config.id,
+                    obs.id,
+                    (clear,),
+                    "CANDIDATE",
+                    "PREPARE:" + op.id,
                 )
-            return m.Plan("S15-PROD-1.0", config.id, obs.id, (cmd,), "CANDIDATE", rule)
+            return plan(config.schema_version, config.id, obs.id, (cmd,), "CANDIDATE", rule)
         reasons.append(op.id + ":" + reason)
         if reason == "TRANSPORT_COLLISION:Lsig":
             clear = traffic_clearance(op)
             if clear:
-                return m.Plan(
-                    "S15-PROD-1.0", config.id, obs.id, (clear,), "CANDIDATE", "PREPARE:" + op.id
+                return plan(
+                    config.schema_version,
+                    config.id,
+                    obs.id,
+                    (clear,),
+                    "CANDIDATE",
+                    "PREPARE:" + op.id,
                 )
         if reason.startswith("SUPPORT_NOT_READY:"):
             prepared = support_plan(op, reason.split(":", 1)[1])
@@ -438,15 +605,21 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
         if reason == "KIT_INPUT_NOT_RELEASED" and positions["FORK-01"] == "RECEIVE":
             prepared = service_for(op, "FORK-01", "STEEL")
             if prepared:
-                return m.Plan(
-                    "S15-PROD-1.0", config.id, obs.id, (prepared,), "CANDIDATE", "PREPARE:" + op.id
+                return plan(
+                    config.schema_version,
+                    config.id,
+                    obs.id,
+                    (prepared,),
+                    "CANDIDATE",
+                    "PREPARE:" + op.id,
                 )
         if held or reason not in ("PERSON_NOT_PRESENT", "DEVICE_NOT_AT_SOURCE", "HUMAN_CAP"):
             continue
         # Test other admission constraints before investing in preparation. This is
         # an estimate only; neither observation nor execution state is changed.
         probe = copy.copy(world)
-        destinations = {p.person_id: p.location for p in op.role_locations}
+        bound_people = {r.role_id: r.person_id for r in cmd.roles}
+        destinations = {bound_people[p.person_id]: p.location for p in op.role_locations}
         if op.route_id:
             carrier = world.routes[op.route_id].device_id
             if carrier:
@@ -466,8 +639,13 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
             if str(exc) == "TRANSPORT_COLLISION:Lsig":
                 clear = traffic_clearance(op)
                 if clear:
-                    return m.Plan(
-                        "S15-PROD-1.0", config.id, obs.id, (clear,), "CANDIDATE", "PREPARE:" + op.id
+                    return plan(
+                        config.schema_version,
+                        config.id,
+                        obs.id,
+                        (clear,),
+                        "CANDIDATE",
+                        "PREPARE:" + op.id,
                     )
             if str(exc).startswith("SUPPORT_NOT_READY:"):
                 prepared = support_plan(op, str(exc).split(":", 1)[1])
@@ -479,16 +657,16 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
                 continue
         clear = traffic_clearance(op)
         if clear:
-            return m.Plan(
-                "S15-PROD-1.0", config.id, obs.id, (clear,), "CANDIDATE", "PREPARE:" + op.id
+            return plan(
+                config.schema_version, config.id, obs.id, (clear,), "CANDIDATE", "PREPARE:" + op.id
             )
         if op.route_id:
             device = world.routes[op.route_id].device_id
             if device and positions[device] != op.location:
                 prepared = service_for(op, device, op.location)
                 if prepared:
-                    return m.Plan(
-                        "S15-PROD-1.0",
+                    return plan(
+                        config.schema_version,
                         config.id,
                         obs.id,
                         (prepared,),
@@ -498,19 +676,25 @@ def choose(config, value, *, rule="EDD", sequence=0, excluded_operations=()):
                 continue
         for role in op.role_locations:
             prepared = None
-            if positions[role.person_id] != role.location:
-                prepared = service_for(op, role.person_id, role.location)
+            person_id = bound_people[role.person_id]
+            if positions[person_id] != role.location:
+                prepared = service_for(op, person_id, role.location)
             elif reason == "HUMAN_CAP":
-                prepared = service_for(op, role.person_id, rest=True)
+                prepared = service_for(op, person_id, rest=True)
             if prepared:
-                return m.Plan(
-                    "S15-PROD-1.0",
+                return plan(
+                    config.schema_version,
                     config.id,
                     obs.id,
                     (prepared,),
                     "CANDIDATE",
                     "PREPARE:" + op.id,
                 )
-    return m.Plan(
-        "S15-PROD-1.0", config.id, obs.id, (), "WAIT", ";".join(reasons) or "NO_PENDING_OPERATION"
+    return plan(
+        config.schema_version,
+        config.id,
+        obs.id,
+        (),
+        "WAIT",
+        ";".join(reasons) or "NO_PENDING_OPERATION",
     )

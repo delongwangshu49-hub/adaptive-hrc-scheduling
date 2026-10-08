@@ -1,0 +1,1264 @@
+{
+  "scope": "SYNTHETIC_CONDITIONAL_PROGRAM_BRANCHES_NOT_A_EXPERIMENT",
+  "research": "BLOCKED_G2_OPEN",
+  "actual_gate": {
+    "status": "BLOCKED",
+    "reasons": [
+      "G2_OPEN",
+      "MODE_DISABLED_OR_UNQUALIFIED:PRODUCT-1.W-B",
+      "MODE_DISABLED_OR_UNQUALIFIED:PRODUCT-1.W-T",
+      "REVIEWED_PRODUCT_JOINT_DOSSIER_REQUIRED",
+      "CONDITIONAL_FIXTURE_REQUIRED"
+    ],
+    "references": [
+      [
+        "G2-JOINT",
+        "v1",
+        "UNRESOLVED",
+        "docs/research/production_evidence.md"
+      ],
+      [
+        "G2-WPS",
+        "v1",
+        "UNRESOLVED",
+        "docs/research/production_evidence.md"
+      ],
+      [
+        "G2-PROGRAM",
+        "v1",
+        "UNRESOLVED",
+        "docs/research/production_evidence.md"
+      ],
+      [
+        "G2-FIXTURE",
+        "v1",
+        "UNRESOLVED",
+        "docs/research/production_evidence.md"
+      ],
+      [
+        "G2-PEOPLE",
+        "v1",
+        "UNRESOLVED",
+        "docs/research/production_evidence.md"
+      ],
+      [
+        "G2-ISOLATION",
+        "v1",
+        "UNRESOLVED",
+        "docs/research/production_evidence.md"
+      ],
+      [
+        "G2-INSPECTION",
+        "v1",
+        "UNRESOLVED",
+        "docs/research/production_evidence.md"
+      ],
+      [
+        "G2-OUTPUT",
+        "v1",
+        "UNRESOLVED",
+        "docs/research/production_evidence.md"
+      ]
+    ]
+  },
+  "cases": [
+    {
+      "name": "NORMAL",
+      "scope": "CONDITIONAL_C04_BRANCH_ONLY",
+      "status": "FEASIBLE",
+      "termination": "ITERATION_BUDGET",
+      "initial_reasons": [
+        "CONDITIONAL_BRANCH_ONLY"
+      ],
+      "mode": "HR-seq",
+      "initial_score": [
+        3.9928861,
+        33.569483688,
+        3.16229103
+      ],
+      "best_score": [
+        3.9928861,
+        32.049188762,
+        2.310857169
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "candidate_sha256": "fc7704c8f5221a37ed652a9706fda82097f305d89e08cf3a9ba3ece63b2d6f51",
+      "options": {
+        "seed": 18,
+        "iterations": 4,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      },
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "STEP:1",
+            "STEP:10"
+          ],
+          "candidate_sha256": "b74c9d0600dda2447c55bcd39a5d76b2014fe2f38e562465a2be7184c72af92c",
+          "score": [
+            3.9928861,
+            33.136358688,
+            2.72916603
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.20883089990820736
+        },
+        {
+          "index": 1,
+          "removed": [
+            "STEP:3",
+            "STEP:6"
+          ],
+          "candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+          "score": [
+            3.9928861,
+            32.718049827,
+            2.386287743
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.2146867000265047
+        },
+        {
+          "index": 2,
+          "removed": [
+            "STEP:11",
+            "STEP:13"
+          ],
+          "candidate_sha256": "da1cf7ccd6bcf46cf9b62ff3b9c0d33e6e50850d4d428e3323f78460634d15be",
+          "score": [
+            3.9928861,
+            32.376744294,
+            2.386287743
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.21776469994802028
+        },
+        {
+          "index": 3,
+          "removed": [
+            "STEP:14",
+            "STEP:15"
+          ],
+          "candidate_sha256": "fc7704c8f5221a37ed652a9706fda82097f305d89e08cf3a9ba3ece63b2d6f51",
+          "score": [
+            3.9928861,
+            32.049188762,
+            2.310857169
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.20156570000108331
+        }
+      ],
+      "completed": [
+        "PRODUCT-1.KIT",
+        "PRODUCT-1.CUT",
+        "PRODUCT-1.MV-IN-B",
+        "PRODUCT-1.W-B"
+      ],
+      "preserved_J2": true
+    },
+    {
+      "name": "OBSERVED_R1_FAILURE",
+      "scope": "CONDITIONAL_C04_BRANCH_ONLY",
+      "status": "FEASIBLE",
+      "termination": "ITERATION_BUDGET",
+      "initial_reasons": [
+        "CONDITIONAL_BRANCH_ONLY"
+      ],
+      "mode": "H",
+      "initial_score": [
+        6.225840079,
+        36.061522291,
+        4.762655775
+      ],
+      "best_score": [
+        6.206065494,
+        35.475298563,
+        4.519339464
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "candidate_sha256": "95550f1ea422f677d6540c05c7bfe964779c24ed7a883504b8ccc40c18b1ebe3",
+      "options": {
+        "seed": 18,
+        "iterations": 4,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      },
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "STEP:11",
+            "STEP:13"
+          ],
+          "candidate_sha256": "13d4fc3cb923d5c686ff4a9b6ae675a344918948e13b7c60394b17d93dfac2f1",
+          "score": [
+            6.225840079,
+            35.718614873,
+            4.762655775
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.35798850003629923
+        },
+        {
+          "index": 1,
+          "removed": [
+            "STEP:21",
+            "STEP:28"
+          ],
+          "candidate_sha256": "c56b40b6f2c359214bbebd1683799cac0f37f02ed04e672c72ebfd5f11c3d0b8",
+          "score": [
+            6.225840079,
+            35.460819074,
+            4.762655775
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.3535635999869555
+        },
+        {
+          "index": 2,
+          "removed": [
+            "STEP:15",
+            "STEP:18"
+          ],
+          "candidate_sha256": "e342bade3192d016450c2546e5404a00f38b31f1583861de7f6973bd1b5bd25e",
+          "score": [
+            6.225840079,
+            35.718614873,
+            4.762655775
+          ],
+          "accepted": false,
+          "improved": false,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY",
+            "WORSE_OR_EQUAL_REJECTED"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.3633364000124857
+        },
+        {
+          "index": 3,
+          "removed": [
+            "STEP:14",
+            "STEP:22"
+          ],
+          "candidate_sha256": "95550f1ea422f677d6540c05c7bfe964779c24ed7a883504b8ccc40c18b1ebe3",
+          "score": [
+            6.206065494,
+            35.475298563,
+            4.519339464
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.37460590002592653
+        }
+      ],
+      "completed": [
+        "PRODUCT-1.KIT",
+        "PRODUCT-1.CUT",
+        "PRODUCT-1.MV-IN-B",
+        "PRODUCT-1.W-B"
+      ],
+      "preserved_J2": true
+    },
+    {
+      "name": "IRRELEVANT_TEST1_FAILURE",
+      "scope": "CONDITIONAL_C04_BRANCH_ONLY",
+      "status": "FEASIBLE",
+      "termination": "ITERATION_BUDGET",
+      "initial_reasons": [
+        "CONDITIONAL_BRANCH_ONLY"
+      ],
+      "mode": "HR-seq",
+      "initial_score": [
+        3.9928861,
+        33.569483688,
+        3.16229103
+      ],
+      "best_score": [
+        3.9928861,
+        32.049188762,
+        2.310857169
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "candidate_sha256": "359821b07d4c031fdd6fb998fa5b72dde7f5ab444650cf57a6c7b9b94ee4cf6d",
+      "options": {
+        "seed": 18,
+        "iterations": 4,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      },
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "STEP:1",
+            "STEP:10"
+          ],
+          "candidate_sha256": "c72fb7142d843712f09845c5ed70fe1619a2e4d116bebdc60b6320c56d9b266c",
+          "score": [
+            3.9928861,
+            33.136358688,
+            2.72916603
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.21455729997251183
+        },
+        {
+          "index": 1,
+          "removed": [
+            "STEP:3",
+            "STEP:6"
+          ],
+          "candidate_sha256": "5ad5508b649176e6c03792a6f07bc7d3dd67232de532244d8b9691884b83d19a",
+          "score": [
+            3.9928861,
+            32.718049827,
+            2.386287743
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.20810479996725917
+        },
+        {
+          "index": 2,
+          "removed": [
+            "STEP:11",
+            "STEP:13"
+          ],
+          "candidate_sha256": "3663ccc12de919efff605e8aa9caf512cbc507208c76984173ba37f7adde14ef",
+          "score": [
+            3.9928861,
+            32.376744294,
+            2.386287743
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.207433000090532
+        },
+        {
+          "index": 3,
+          "removed": [
+            "STEP:14",
+            "STEP:15"
+          ],
+          "candidate_sha256": "359821b07d4c031fdd6fb998fa5b72dde7f5ab444650cf57a6c7b9b94ee4cf6d",
+          "score": [
+            3.9928861,
+            32.049188762,
+            2.310857169
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.20737620000727475
+        }
+      ],
+      "completed": [
+        "PRODUCT-1.KIT",
+        "PRODUCT-1.CUT",
+        "PRODUCT-1.MV-IN-B",
+        "PRODUCT-1.W-B"
+      ],
+      "preserved_J2": true
+    },
+    {
+      "name": "FIXED_H",
+      "scope": "CONDITIONAL_C04_BRANCH_ONLY",
+      "status": "FEASIBLE",
+      "termination": "ITERATION_BUDGET",
+      "initial_reasons": [
+        "CONDITIONAL_BRANCH_ONLY"
+      ],
+      "mode": "H",
+      "initial_score": [
+        6.225840079,
+        36.061522291,
+        4.762655775
+      ],
+      "best_score": [
+        6.206065494,
+        35.475298563,
+        4.519339464
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "candidate_sha256": "cc8d8fbaeeb3284fed3e52b91f998539be3c06f5d1ccc76fdff21f17ca5c75f6",
+      "options": {
+        "seed": 18,
+        "iterations": 4,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      },
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "STEP:11",
+            "STEP:13"
+          ],
+          "candidate_sha256": "e41fa0aae20ad4a57167276b53735bf6a89bf9a8f28f034715063cbb25aa0458",
+          "score": [
+            6.225840079,
+            35.718614873,
+            4.762655775
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.3654274999862537
+        },
+        {
+          "index": 1,
+          "removed": [
+            "STEP:21",
+            "STEP:28"
+          ],
+          "candidate_sha256": "54370730b52688288e013971db7fcb0f2eb4ab43357890d44f57101afcb88731",
+          "score": [
+            6.225840079,
+            35.460819074,
+            4.762655775
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.35607690003234893
+        },
+        {
+          "index": 2,
+          "removed": [
+            "STEP:15",
+            "STEP:18"
+          ],
+          "candidate_sha256": "8b5b9e6902bdc9359368be57447901075d2baef1df165a52036b362587658ea4",
+          "score": [
+            6.225840079,
+            35.718614873,
+            4.762655775
+          ],
+          "accepted": false,
+          "improved": false,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY",
+            "WORSE_OR_EQUAL_REJECTED"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.3678515999345109
+        },
+        {
+          "index": 3,
+          "removed": [
+            "STEP:14",
+            "STEP:22"
+          ],
+          "candidate_sha256": "cc8d8fbaeeb3284fed3e52b91f998539be3c06f5d1ccc76fdff21f17ca5c75f6",
+          "score": [
+            6.206065494,
+            35.475298563,
+            4.519339464
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.3803020999766886
+        }
+      ],
+      "completed": [
+        "PRODUCT-1.KIT",
+        "PRODUCT-1.CUT",
+        "PRODUCT-1.MV-IN-B",
+        "PRODUCT-1.W-B"
+      ],
+      "preserved_J2": true
+    },
+    {
+      "name": "LATE_UNLOAD_JOINT",
+      "scope": "CONDITIONAL_C04_BRANCH_ONLY",
+      "status": "FEASIBLE",
+      "termination": "ITERATION_BUDGET",
+      "initial_reasons": [
+        "CONDITIONAL_BRANCH_ONLY"
+      ],
+      "mode": "HR-seq",
+      "initial_score": [
+        7.5,
+        32.220539612,
+        3.16229103
+      ],
+      "best_score": [
+        7.5,
+        31.664810286,
+        2.606561705
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "candidate_sha256": "a55a615cc8b28b502476fe93617cbf2b57d405830ff84a952201047963c759b2",
+      "options": {
+        "seed": 18,
+        "iterations": 4,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      },
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "STEP:11",
+            "STEP:13"
+          ],
+          "candidate_sha256": "a8c3f825da05dfb3d4a6f76bee83f737b1a436ca70c06ee12ff6f9b80168a75d",
+          "score": [
+            7.5,
+            31.886946247,
+            2.828697666
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.41197579994332045
+        },
+        {
+          "index": 1,
+          "removed": [
+            "STEP:21",
+            "STEP:28"
+          ],
+          "candidate_sha256": "a55a615cc8b28b502476fe93617cbf2b57d405830ff84a952201047963c759b2",
+          "score": [
+            7.5,
+            31.664810286,
+            2.606561705
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.3967401999980211
+        },
+        {
+          "index": 2,
+          "removed": [
+            "STEP:15",
+            "STEP:18"
+          ],
+          "candidate_sha256": "4130bf61f90ee6d40b986ad9ccfb855ea227e64e6ef7f74d0eb08db789edb5ac",
+          "score": [
+            7.5,
+            31.886946247,
+            2.828697666
+          ],
+          "accepted": false,
+          "improved": false,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY",
+            "WORSE_OR_EQUAL_REJECTED"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.40905200003180653
+        },
+        {
+          "index": 3,
+          "removed": [
+            "STEP:14",
+            "STEP:9"
+          ],
+          "candidate_sha256": "8853b0a8b20c17ed53c82553f4b77751d7203f8f3643c4c4e46f8a10840e48ea",
+          "score": [
+            7.5,
+            31.859837512,
+            2.80158893
+          ],
+          "accepted": false,
+          "improved": false,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY",
+            "WORSE_OR_EQUAL_REJECTED"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.4171578000532463
+        }
+      ],
+      "completed": [
+        "PRODUCT-1.KIT",
+        "PRODUCT-1.CUT",
+        "PRODUCT-1.MV-IN-B",
+        "PRODUCT-1.W-B"
+      ],
+      "preserved_J2": true
+    },
+    {
+      "name": "LATE_UNLOAD_FIXED_H",
+      "scope": "CONDITIONAL_C04_BRANCH_ONLY",
+      "status": "FEASIBLE",
+      "termination": "ITERATION_BUDGET",
+      "initial_reasons": [
+        "CONDITIONAL_BRANCH_ONLY"
+      ],
+      "mode": "H",
+      "initial_score": [
+        6.225840079,
+        34.821272291,
+        4.762655775
+      ],
+      "best_score": [
+        6.225840079,
+        34.113995288,
+        4.762655775
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "candidate_sha256": "ecf1622083b9d95203a2170a2725a914ec0398c0ba6819aac585c9b051f0a750",
+      "options": {
+        "seed": 18,
+        "iterations": 4,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      },
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "STEP:11",
+            "STEP:13"
+          ],
+          "candidate_sha256": "424468ddb136af3f85d45614b41105d94aac9f591a8d2e3ba489fd3e804ebf41",
+          "score": [
+            6.225840079,
+            34.464614873,
+            4.762655775
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.38386900001205504
+        },
+        {
+          "index": 1,
+          "removed": [
+            "STEP:21",
+            "STEP:28"
+          ],
+          "candidate_sha256": "3d314beba60f59453f5b820390e46588e12e6e9b562d18f6991e0ba58d66d49a",
+          "score": [
+            6.225840079,
+            34.201228912,
+            4.762655775
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.3939178000437096
+        },
+        {
+          "index": 2,
+          "removed": [
+            "STEP:23",
+            "STEP:8"
+          ],
+          "candidate_sha256": "719a697527d89dec63044d8020adb0e317f3f7195974d63b9a5cdef28423b5c1",
+          "score": [
+            6.225840079,
+            34.446820191,
+            4.762655775
+          ],
+          "accepted": false,
+          "improved": false,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY",
+            "WORSE_OR_EQUAL_REJECTED"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.3898571999743581
+        },
+        {
+          "index": 3,
+          "removed": [
+            "STEP:12",
+            "STEP:22"
+          ],
+          "candidate_sha256": "ecf1622083b9d95203a2170a2725a914ec0398c0ba6819aac585c9b051f0a750",
+          "score": [
+            6.225840079,
+            34.113995288,
+            4.762655775
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CALENDAR_OR_QUALIFICATION",
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY",
+            "REST_COMMITTED",
+            "VISIBLE_TAIL_NOT_COMPLETED"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.4078270000172779
+        }
+      ],
+      "completed": [
+        "PRODUCT-1.KIT",
+        "PRODUCT-1.CUT",
+        "PRODUCT-1.MV-IN-B",
+        "PRODUCT-1.W-B"
+      ],
+      "preserved_J2": true
+    },
+    {
+      "name": "LATE_UNLOAD_FIXED_HR",
+      "scope": "CONDITIONAL_C04_BRANCH_ONLY",
+      "status": "FEASIBLE",
+      "termination": "ITERATION_BUDGET",
+      "initial_reasons": [
+        "CONDITIONAL_BRANCH_ONLY"
+      ],
+      "mode": "HR-seq",
+      "initial_score": [
+        7.5,
+        32.220539612,
+        3.16229103
+      ],
+      "best_score": [
+        7.5,
+        31.664810286,
+        2.606561705
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "candidate_sha256": "a55a615cc8b28b502476fe93617cbf2b57d405830ff84a952201047963c759b2",
+      "options": {
+        "seed": 18,
+        "iterations": 4,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      },
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "STEP:11",
+            "STEP:13"
+          ],
+          "candidate_sha256": "a8c3f825da05dfb3d4a6f76bee83f737b1a436ca70c06ee12ff6f9b80168a75d",
+          "score": [
+            7.5,
+            31.886946247,
+            2.828697666
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.41222600010223687
+        },
+        {
+          "index": 1,
+          "removed": [
+            "STEP:21",
+            "STEP:28"
+          ],
+          "candidate_sha256": "a55a615cc8b28b502476fe93617cbf2b57d405830ff84a952201047963c759b2",
+          "score": [
+            7.5,
+            31.664810286,
+            2.606561705
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.4059806000441313
+        },
+        {
+          "index": 2,
+          "removed": [
+            "STEP:15",
+            "STEP:18"
+          ],
+          "candidate_sha256": "4130bf61f90ee6d40b986ad9ccfb855ea227e64e6ef7f74d0eb08db789edb5ac",
+          "score": [
+            7.5,
+            31.886946247,
+            2.828697666
+          ],
+          "accepted": false,
+          "improved": false,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY",
+            "WORSE_OR_EQUAL_REJECTED"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.41920020000543445
+        },
+        {
+          "index": 3,
+          "removed": [
+            "STEP:14",
+            "STEP:9"
+          ],
+          "candidate_sha256": "8853b0a8b20c17ed53c82553f4b77751d7203f8f3643c4c4e46f8a10840e48ea",
+          "score": [
+            7.5,
+            31.859837512,
+            2.80158893
+          ],
+          "accepted": false,
+          "improved": false,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY",
+            "WORSE_OR_EQUAL_REJECTED"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.4187582000158727
+        }
+      ],
+      "completed": [
+        "PRODUCT-1.KIT",
+        "PRODUCT-1.CUT",
+        "PRODUCT-1.MV-IN-B",
+        "PRODUCT-1.W-B"
+      ],
+      "preserved_J2": true
+    },
+    {
+      "name": "FIXED_HR",
+      "scope": "CONDITIONAL_C04_BRANCH_ONLY",
+      "status": "FEASIBLE",
+      "termination": "ITERATION_BUDGET",
+      "initial_reasons": [
+        "CONDITIONAL_BRANCH_ONLY"
+      ],
+      "mode": "HR-seq",
+      "initial_score": [
+        3.9928861,
+        33.569483688,
+        3.16229103
+      ],
+      "best_score": [
+        3.9928861,
+        32.049188762,
+        2.310857169
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "candidate_sha256": "fc7704c8f5221a37ed652a9706fda82097f305d89e08cf3a9ba3ece63b2d6f51",
+      "options": {
+        "seed": 18,
+        "iterations": 4,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      },
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "STEP:1",
+            "STEP:10"
+          ],
+          "candidate_sha256": "b74c9d0600dda2447c55bcd39a5d76b2014fe2f38e562465a2be7184c72af92c",
+          "score": [
+            3.9928861,
+            33.136358688,
+            2.72916603
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.20891759998630732
+        },
+        {
+          "index": 1,
+          "removed": [
+            "STEP:3",
+            "STEP:6"
+          ],
+          "candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+          "score": [
+            3.9928861,
+            32.718049827,
+            2.386287743
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.2035094000166282
+        },
+        {
+          "index": 2,
+          "removed": [
+            "STEP:11",
+            "STEP:13"
+          ],
+          "candidate_sha256": "da1cf7ccd6bcf46cf9b62ff3b9c0d33e6e50850d4d428e3323f78460634d15be",
+          "score": [
+            3.9928861,
+            32.376744294,
+            2.386287743
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.2129647999536246
+        },
+        {
+          "index": 3,
+          "removed": [
+            "STEP:14",
+            "STEP:15"
+          ],
+          "candidate_sha256": "fc7704c8f5221a37ed652a9706fda82097f305d89e08cf3a9ba3ece63b2d6f51",
+          "score": [
+            3.9928861,
+            32.049188762,
+            2.310857169
+          ],
+          "accepted": true,
+          "improved": true,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.20708469999954104
+        }
+      ],
+      "completed": [
+        "PRODUCT-1.KIT",
+        "PRODUCT-1.CUT",
+        "PRODUCT-1.MV-IN-B",
+        "PRODUCT-1.W-B"
+      ],
+      "preserved_J2": true
+    },
+    {
+      "name": "NO_FATIGUE_RANKING",
+      "scope": "CONDITIONAL_C04_BRANCH_ONLY",
+      "status": "FEASIBLE",
+      "termination": "NO_IMPROVEMENT",
+      "initial_reasons": [
+        "CONDITIONAL_BRANCH_ONLY"
+      ],
+      "mode": "HR-seq",
+      "initial_score": [
+        3.9928861,
+        0.0,
+        0.0
+      ],
+      "best_score": [
+        3.9928861,
+        0.0,
+        0.0
+      ],
+      "trace_status": true,
+      "window_h": 8,
+      "targets": [
+        "PRODUCT-1.W-B"
+      ],
+      "candidate_sha256": "5b66107fc1294a03bd70f4da88783f760136ce59301c76f4a4af2b9705e8e68b",
+      "options": {
+        "seed": 18,
+        "iterations": 4,
+        "destroy_size": 2,
+        "repair_trials": 6,
+        "wall_seconds": 30,
+        "stagnation": 4,
+        "accept_equal": true
+      },
+      "history": [
+        {
+          "index": 0,
+          "removed": [
+            "STEP:1",
+            "STEP:10"
+          ],
+          "candidate_sha256": "57d5d800963e2c6e6de0788cc14ace662254e609aace775be721ed42bb641578",
+          "score": [
+            3.9928861,
+            0.0,
+            0.0
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.21795109997037798
+        },
+        {
+          "index": 1,
+          "removed": [
+            "STEP:3",
+            "STEP:6"
+          ],
+          "candidate_sha256": "36c86c82b6ede05c71ea6c7c5ab6c1477a6bf9f9c9f67d634daa5a9bb93d6747",
+          "score": [
+            3.9928861,
+            0.0,
+            0.0
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.21178620005957782
+        },
+        {
+          "index": 2,
+          "removed": [
+            "STEP:11",
+            "STEP:13"
+          ],
+          "candidate_sha256": "36c86c82b6ede05c71ea6c7c5ab6c1477a6bf9f9c9f67d634daa5a9bb93d6747",
+          "score": [
+            3.9928861,
+            0.0,
+            0.0
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.2137545000296086
+        },
+        {
+          "index": 3,
+          "removed": [
+            "STEP:11",
+            "STEP:2"
+          ],
+          "candidate_sha256": "3c988396810a26f0ec7ea46f0d13ba923e0cd49efe99d5e29f67078781fbfe07",
+          "score": [
+            3.9928861,
+            0.0,
+            0.0
+          ],
+          "accepted": true,
+          "improved": false,
+          "reasons": [
+            "CONDITIONAL_BRANCH_ONLY",
+            "CONDITIONAL_C04_BRANCH_ONLY"
+          ],
+          "trials": 6,
+          "termination": "REPAIR_TRIAL_BUDGET",
+          "wall_seconds": 0.24468710005749017
+        }
+      ],
+      "completed": [
+        "PRODUCT-1.KIT",
+        "PRODUCT-1.CUT",
+        "PRODUCT-1.MV-IN-B",
+        "PRODUCT-1.W-B"
+      ],
+      "preserved_J2": true
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "HiddenScenario": {
+      "additionalProperties": false,
+      "properties": {
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/WorldEvent"
+          },
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            "S18-PROD-2.0"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "events"
+      ],
+      "type": "object"
+    },
+    "WorldEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "epoch": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "evidence_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "ARRIVAL",
+            "IDENTIFY",
+            "RELEASE",
+            "QUALITY",
+            "PROCESS_RELEASE",
+            "FAILURE",
+            "REPAIR",
+            "CANCEL",
+            "ORDER_ARRIVAL",
+            "RECEIVE_PERMIT"
+          ]
+        },
+        "occurred_sim_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "result": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN"
+          ]
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "run_id",
+        "epoch",
+        "occurred_sim_h",
+        "kind",
+        "entity_id",
+        "product_id",
+        "attempt",
+        "result",
+        "evidence_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/HiddenScenario",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HiddenScenario"
+}

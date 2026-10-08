@@ -1,0 +1,37 @@
+{
+  "decision_id": "S18-SIM-APPROVAL-001",
+  "date": "2026-10-08",
+  "instruction_record": "PR145",
+  "proposal_id": "S18-SIM-SCOPE-20261008-r1",
+  "status": "APPROVED_FOR_LOCAL_IMPLEMENTATION",
+  "approved_clauses": [
+    "SR01",
+    "SR02",
+    "SR03",
+    "SR04",
+    "SR05",
+    "SR06",
+    "SR07",
+    "SR08"
+  ],
+  "proposal_file": "docs/model/S18_simulation_scope_proposal_r1.md",
+  "proposal_sha256": "5834f023c3ccb9789b43aa9a72b9cc3a4a9d951b35bc0670a885bdec93f995a0",
+  "assumption_file": "docs/model/S18_simulation_scope_proposal_r1.json",
+  "assumption_sha256": "8f1f2ea6a4e9096c57d9f3d6fc882291231c0240f2b03c2a97a7a93ba9065bbd",
+  "approved_packet_sha256": "1bf0fd4937176d851545ca64ee5fbd8745fc78724ded7c02e8072fed882e86ea",
+  "scope": "SIMULATION_RESEARCH_ONLY",
+  "industrial_qualification": "NOT_ESTABLISHED",
+  "industrial_g2": "OPEN",
+  "continuation": "CREATE_S18_3_USE_EXISTING_CHECKOUT_MAIN_NO_NEW_BRANCH_OR_WORKTREE_COMPLETE_REMAINING_S18",
+  "implementation_authorized": [
+    "SR01_SR08_CONTRACT_EXECUTION_AUDIT_ALGORITHMS_KIT_VALIDATION_AND_LOCAL_CLOSEOUT"
+  ],
+  "exclusions": [
+    "INDUSTRIAL_QUALIFICATION_CLAIM",
+    "GIT_OR_REMOTE_PUBLICATION",
+    "LATER_STEP_START",
+    "ASSET_DOWNLOAD",
+    "ENVIRONMENT_UPGRADE"
+  ],
+  "prior_39_file_result_acceptance": "NOT_GRANTED_BY_THIS_SCOPE_APPROVAL"
+}

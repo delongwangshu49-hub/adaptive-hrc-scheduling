@@ -1,0 +1,963 @@
+{
+  "$comment": "Structural schema only. Python semantic validation is mandatory.",
+  "$defs": {
+    "Amount": {
+      "additionalProperties": false,
+      "properties": {
+        "lot_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "quantity": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "lot_id",
+        "quantity"
+      ],
+      "type": "object"
+    },
+    "Branch": {
+      "additionalProperties": false,
+      "properties": {
+        "assumption_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "definition_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "joint_set_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "output_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "SETUP",
+            "WORK",
+            "ROBOT",
+            "UNLOAD"
+          ]
+        },
+        "revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "terminal": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "definition_id",
+        "revision",
+        "output_revision",
+        "assumption_revision",
+        "joint_set_id",
+        "phase",
+        "terminal"
+      ],
+      "type": "object"
+    },
+    "ComponentPort": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "place_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entity_id",
+        "place_id"
+      ],
+      "type": "object"
+    },
+    "Consumer": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "type": "object"
+    },
+    "DispatchCommand": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "branch": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Branch"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "config_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "epoch": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "expected_revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "issued_sim_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "mode_id": {
+          "enum": [
+            "H",
+            "HR-seq",
+            "H-team",
+            "MOVE",
+            "WAIT",
+            "GATE"
+          ]
+        },
+        "operation_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "research": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ResearchProfile"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "resume_of": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/RoleBinding"
+          },
+          "type": "array"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            "S18-PROD-2.0"
+          ]
+        },
+        "service": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Service"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_index": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_id",
+        "config_sha256",
+        "run_id",
+        "epoch",
+        "id",
+        "product_id",
+        "activity_id",
+        "operation_id",
+        "attempt",
+        "unit_index",
+        "mode_id",
+        "issued_sim_h",
+        "expected_revision",
+        "roles",
+        "resume_of",
+        "service",
+        "branch",
+        "research"
+      ],
+      "type": "object"
+    },
+    "Handover": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "after_unit": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "definition_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "incoming": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "outgoing": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "HANDOVER",
+            "RESTORE"
+          ]
+        }
+      },
+      "required": [
+        "activity_id",
+        "definition_id",
+        "outgoing",
+        "incoming",
+        "after_unit",
+        "phase"
+      ],
+      "type": "object"
+    },
+    "MaterialPort": {
+      "additionalProperties": false,
+      "properties": {
+        "lot_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "place_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "lot_id",
+        "place_id"
+      ],
+      "type": "object"
+    },
+    "Operation": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "enum": [
+            "WALK",
+            "TRANSFER",
+            "EMPTY_RETURN",
+            "RESERVE",
+            "RELEASE_RESERVATION",
+            "CONVERT",
+            "WORK",
+            "READY",
+            "RECEIVE_EXTERNAL",
+            "RETURN",
+            "SCRAP",
+            "REST",
+            "DEPLOY_TOOL",
+            "RETRIEVE_TOOL",
+            "SUPPORT_CHANGE",
+            "HANDOVER",
+            "RESTORE"
+          ]
+        },
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "activity_prerequisites": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "attempt_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "base_h": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "branch": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Branch"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "component_input_places": {
+          "items": {
+            "$ref": "#/$defs/ComponentPort"
+          },
+          "type": "array"
+        },
+        "component_inputs": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "component_outputs": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "entity_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "equipment": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "handover": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Handover"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hold_device": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hold_resources": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "input_places": {
+          "items": {
+            "$ref": "#/$defs/MaterialPort"
+          },
+          "type": "array"
+        },
+        "kappa": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "mass_remove_t": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "material_inputs": {
+          "items": {
+            "$ref": "#/$defs/Amount"
+          },
+          "type": "array"
+        },
+        "material_outputs": {
+          "items": {
+            "$ref": "#/$defs/Amount"
+          },
+          "type": "array"
+        },
+        "output_places": {
+          "items": {
+            "$ref": "#/$defs/MaterialPort"
+          },
+          "type": "array"
+        },
+        "phase": {
+          "enum": [
+            "WALK",
+            "DRIVE",
+            "PUSH",
+            "SETUP",
+            "WORK",
+            "SUPERVISE",
+            "REST",
+            "HANDOVER",
+            "RESTORE"
+          ]
+        },
+        "prerequisites": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "production_mode": {
+          "anyOf": [
+            {
+              "enum": [
+                "H",
+                "HR-seq",
+                "H-team",
+                "MOVE",
+                "WAIT",
+                "GATE"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualification_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "quality_gates": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "release_device": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "release_resources": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role_locations": {
+          "items": {
+            "$ref": "#/$defs/PersonPosition"
+          },
+          "type": "array"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/Role"
+          },
+          "type": "array"
+        },
+        "route_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scrap_quantity": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "support_layout_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "wait_after": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wait_gate": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "wait_h": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "product_id",
+        "activity_id",
+        "action",
+        "phase",
+        "prerequisites",
+        "roles",
+        "role_locations",
+        "equipment",
+        "location",
+        "target",
+        "route_id",
+        "entity_id",
+        "material_inputs",
+        "material_outputs",
+        "scrap_quantity",
+        "base_h",
+        "kappa",
+        "qualification_ids",
+        "quality_gates",
+        "wait_gate",
+        "hold_device",
+        "release_device",
+        "component_inputs",
+        "component_outputs",
+        "attempt_index",
+        "unit_index",
+        "input_places",
+        "output_places",
+        "production_mode",
+        "wait_after",
+        "wait_h",
+        "mass_remove_t",
+        "component_input_places",
+        "support_layout_id",
+        "branch",
+        "hold_resources",
+        "release_resources",
+        "activity_prerequisites",
+        "handover"
+      ],
+      "type": "object"
+    },
+    "PersonPosition": {
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "person_id",
+        "location"
+      ],
+      "type": "object"
+    },
+    "Point": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "type": "object"
+    },
+    "ResearchProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_id": {
+          "enum": [
+            "S18-SIM-APPROVAL-001"
+          ]
+        },
+        "assumption_set_id": {
+          "enum": [
+            "S18-SIM-A1"
+          ]
+        },
+        "assumption_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "consumers": {
+          "items": {
+            "$ref": "#/$defs/Consumer"
+          },
+          "type": "array"
+        },
+        "gate": {
+          "enum": [
+            "APPROVED_ASSUMPTION_SET"
+          ]
+        },
+        "industrial_g2": {
+          "enum": [
+            "OPEN"
+          ]
+        },
+        "industrial_qualification": {
+          "enum": [
+            "NOT_ESTABLISHED"
+          ]
+        },
+        "proposal_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "purpose": {
+          "enum": [
+            "SIMULATION_RESEARCH_ONLY"
+          ]
+        },
+        "scope_bindings": {
+          "items": {
+            "$ref": "#/$defs/ScopeBinding"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "purpose",
+        "assumption_set_id",
+        "approval_id",
+        "proposal_sha256",
+        "assumption_sha256",
+        "gate",
+        "industrial_qualification",
+        "industrial_g2",
+        "scope_bindings",
+        "consumers"
+      ],
+      "type": "object"
+    },
+    "Role": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "qualification": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "qualification"
+      ],
+      "type": "object"
+    },
+    "RoleBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "person_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "role_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role_id",
+        "person_id"
+      ],
+      "type": "object"
+    },
+    "Route": {
+      "additionalProperties": false,
+      "properties": {
+        "device_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "max_size_m": {
+          "items": {
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "points": {
+          "items": {
+            "$ref": "#/$defs/Point"
+          },
+          "type": "array"
+        },
+        "qualification": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "segments": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "speed_m_s": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "target": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "vertical_speed_m_s": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "target",
+        "device_id",
+        "segments",
+        "points",
+        "speed_m_s",
+        "vertical_speed_m_s",
+        "qualification",
+        "max_size_m"
+      ],
+      "type": "object"
+    },
+    "ScopeBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "activity_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "assumption_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "component_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "fixture_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "h_definition": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "hr_definition": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "joint_set_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "output_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "process_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        },
+        "product_revision": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,159}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "product_id",
+        "product_revision",
+        "activity_id",
+        "component_id",
+        "joint_set_id",
+        "output_revision",
+        "h_definition",
+        "hr_definition",
+        "process_revision",
+        "fixture_revision",
+        "assumption_ids"
+      ],
+      "type": "object"
+    },
+    "Service": {
+      "additionalProperties": false,
+      "properties": {
+        "operation": {
+          "$ref": "#/$defs/Operation"
+        },
+        "route": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Route"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "operation",
+        "route"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/DispatchCommand",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DispatchCommand"
+}

@@ -1038,8 +1038,8 @@ class Builder:
 
 
 def generated():
-    from adaptive_hrc_scheduling.contracts.codec import schema
     from adaptive_hrc_scheduling.contracts.production import TOP_LEVEL, digest, mode_for
+    from adaptive_hrc_scheduling.contracts.production import production_schema as schema
     from adaptive_hrc_scheduling.production_backend import ProductionBackend
 
     c = Builder(synthetic=False).configuration()

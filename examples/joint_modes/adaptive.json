@@ -1,0 +1,210 @@
+{
+  "scope": "CONDITIONAL_C04_ADAPTIVE_TARGET_TAIL",
+  "research": "BLOCKED_G2_OPEN",
+  "options_per_search": {
+    "seed": 18,
+    "iterations": 2,
+    "destroy_size": 2,
+    "repair_trials": 6,
+    "wall_seconds": 30,
+    "stagnation": 4,
+    "accept_equal": true
+  },
+  "cases": [
+    {
+      "name": "NORMAL",
+      "status": "COMPLETED",
+      "reason": "ACTUAL_WINDOW_END",
+      "actual_score": [
+        3.9928860999999998,
+        25.38853496271306,
+        2.124
+      ],
+      "actual_weld_mode_ids": [
+        "PRODUCT-1.HR-seq"
+      ],
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "replans": 48,
+      "end_h": 9.93322,
+      "actual_end_h": 9.93322,
+      "first_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "actual_trace_sha256": "e35a1c0e7a2c108b9bfc2b6a950fb5fd7fae13fd8053f4ba7902b1d863ab5d41",
+      "replan_stream_sha256": "8f7b8b24356ddac3ab85accb63d11fa2370d2cdab810ef6c856d77f5dc61214c",
+      "search_wall_seconds": 17.21962100046221,
+      "repair_trials": 576
+    },
+    {
+      "name": "IRRELEVANT_FAILURE",
+      "status": "COMPLETED",
+      "reason": "ACTUAL_WINDOW_END",
+      "actual_score": [
+        3.9928860999999998,
+        25.38853496271306,
+        2.124
+      ],
+      "actual_weld_mode_ids": [
+        "PRODUCT-1.HR-seq"
+      ],
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "replans": 48,
+      "end_h": 9.93322,
+      "actual_end_h": 9.93322,
+      "first_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "actual_trace_sha256": "f7f9f11bdb5a75b841d2bd7b37acdcfd18dec48d9b70ae4e990973336f642f0a",
+      "replan_stream_sha256": "5c0c66b26f669aba18dad48e95ff5c47a0a9c3b1709c237f4b98d74f1f6b4e58",
+      "search_wall_seconds": 17.24110409989953,
+      "repair_trials": 576
+    },
+    {
+      "name": "SETUP_FAILURE",
+      "status": "WINDOW_CENSORED",
+      "reason": "NO_LEGAL_VISIBLE_SUFFIX",
+      "actual_score": null,
+      "actual_weld_mode_ids": [
+        "PRODUCT-1.HR-seq"
+      ],
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "replans": 3,
+      "end_h": 9.93322,
+      "actual_end_h": 2.03322,
+      "first_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "actual_trace_sha256": "3fcce28ccd46a36c2e8c485ab84ba86badf06ed405988881a330ea93976f198b",
+      "replan_stream_sha256": "e7ae48c1c0125658c807acab25e40efc8f942b5a11671e842f466987514210b0",
+      "search_wall_seconds": 1.0069140000268817,
+      "repair_trials": 24
+    },
+    {
+      "name": "CANCEL",
+      "status": "WINDOW_CENSORED",
+      "reason": "NO_LEGAL_VISIBLE_SUFFIX",
+      "actual_score": null,
+      "actual_weld_mode_ids": [
+        "PRODUCT-1.HR-seq"
+      ],
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "replans": 3,
+      "end_h": 9.93322,
+      "actual_end_h": 2.03322,
+      "first_candidate_sha256": "71a1fe06e67d8ea69757a2aa44e6a5dfe03a44453f4fe34d90abd1fc3d56d581",
+      "actual_trace_sha256": "77d3f08e74827b022579b2a3c60e7bfef3a8357bfe15098f0a34988732f5a5f0",
+      "replan_stream_sha256": "480ae175dc42c01968dd8ff07cde8eea948c96d60d880bc73c08f5a174cef85e",
+      "search_wall_seconds": 0.9910532999783754,
+      "repair_trials": 24
+    },
+    {
+      "name": "LATE_FIXED_HR",
+      "status": "COMPLETED",
+      "reason": "ACTUAL_WINDOW_END",
+      "actual_score": [
+        7.5,
+        28.911125474415368,
+        2.223205429063599
+      ],
+      "actual_weld_mode_ids": [
+        "PRODUCT-1.HR-seq"
+      ],
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "replans": 58,
+      "end_h": 9.93322,
+      "actual_end_h": 9.93322,
+      "first_candidate_sha256": "a55a615cc8b28b502476fe93617cbf2b57d405830ff84a952201047963c759b2",
+      "actual_trace_sha256": "f8b9fd0622d55aaf8f5f25b1cb7cd002f80932126ec1ebcb605741f73b86656c",
+      "replan_stream_sha256": "3387543338ca51e2e455e68dd15d387e4719077a1ce6a784489d41eacad7b5d2",
+      "search_wall_seconds": 25.762458900688216,
+      "repair_trials": 696
+    },
+    {
+      "name": "LATE_FIXED_H",
+      "status": "COMPLETED",
+      "reason": "ACTUAL_WINDOW_END",
+      "actual_score": [
+        6.225840078676372,
+        30.970243629762095,
+        4.565624878944599
+      ],
+      "actual_weld_mode_ids": [
+        "PRODUCT-1.H"
+      ],
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "replans": 50,
+      "end_h": 9.93322,
+      "actual_end_h": 9.93322,
+      "first_candidate_sha256": "3d314beba60f59453f5b820390e46588e12e6e9b562d18f6991e0ba58d66d49a",
+      "actual_trace_sha256": "41c6e6673c5ba9b0e37d0436678f65c08fd0df0d1edfb132efda77e793b8857e",
+      "replan_stream_sha256": "8ff4b6e5a4fc58f3702dca9a6d32c1545916e5aa27256772379040a7f890acf4",
+      "search_wall_seconds": 22.4763119998388,
+      "repair_trials": 600
+    },
+    {
+      "name": "BEFORE_MOVE_NORMAL",
+      "status": "COMPLETED",
+      "reason": "ACTUAL_WINDOW_END",
+      "actual_score": [
+        3.9928860999999998,
+        25.37626115115306,
+        2.12263624316
+      ],
+      "actual_weld_mode_ids": [
+        "PRODUCT-1.HR-seq"
+      ],
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "replans": 51,
+      "end_h": 9.68322,
+      "actual_end_h": 9.68322,
+      "first_candidate_sha256": "4bc9ceb5d6afa29f4d7df9b328cdb5c17d461e053ce5f6a57a7e5984f6509a40",
+      "actual_trace_sha256": "3ca349b0572c28365d14ca9b5d2d9a9a4327ecc0617075eade087079748dd863",
+      "replan_stream_sha256": "2cedf4701345f7d32fc62faae1249b8f54d47d3c186dd18837d2c0251fc5256b",
+      "search_wall_seconds": 19.3676975001581,
+      "repair_trials": 612,
+      "frozen_status": "COMPLETED",
+      "frozen_actual_score": [
+        3.9791361,
+        33.07082632549101,
+        3.133703730212
+      ],
+      "frozen_first_candidate_sha256": "4bc9ceb5d6afa29f4d7df9b328cdb5c17d461e053ce5f6a57a7e5984f6509a40",
+      "frozen_execution_audit": "PASS",
+      "frozen_decision_findings": []
+    },
+    {
+      "name": "BEFORE_MOVE_R1_FAILURE",
+      "status": "COMPLETED",
+      "reason": "ACTUAL_WINDOW_END",
+      "actual_score": [
+        6.225840078676372,
+        31.452366241302755,
+        4.467056773969764
+      ],
+      "actual_weld_mode_ids": [
+        "PRODUCT-1.H"
+      ],
+      "execution_audit": "PASS",
+      "decision_findings": [],
+      "replans": 56,
+      "end_h": 9.68322,
+      "actual_end_h": 9.68322,
+      "first_candidate_sha256": "4bc9ceb5d6afa29f4d7df9b328cdb5c17d461e053ce5f6a57a7e5984f6509a40",
+      "actual_trace_sha256": "880bf5704c6fad5611a1bbe4ee1aa5b1937bd6ca1627752d2b4aa30a9341c8e7",
+      "replan_stream_sha256": "fa12db59947daba77c6a20d11296c71e970a1296ef98ff23d8bbf24e354790ca",
+      "search_wall_seconds": 25.60993789951317,
+      "repair_trials": 672,
+      "frozen_status": "WINDOW_CENSORED",
+      "frozen_actual_score": null,
+      "frozen_first_candidate_sha256": "4bc9ceb5d6afa29f4d7df9b328cdb5c17d461e053ce5f6a57a7e5984f6509a40",
+      "frozen_execution_audit": "PASS",
+      "frozen_decision_findings": []
+    }
+  ],
+  "limitations": [
+    "Not production HR, full-module completion or industrial qualification.",
+    "Frozen control searches once; adaptive searches each call. No matched-total-budget effect claim.",
+    "No legal suffix stops with actual facts retained; no S19 fallback implemented."
+  ]
+}

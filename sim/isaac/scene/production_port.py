@@ -4,11 +4,12 @@ This port is an S15 mechanism witness, not a rigid-body dynamics or industrial
 qualification model. It reuses the original target geometry, not its trial script.
 """
 
+import json
 from types import SimpleNamespace
 
 from pxr import Gf, UsdGeom, UsdPhysics
 
-from adaptive_hrc_scheduling.contracts.codec import require
+from adaptive_hrc_scheduling.contracts.codec import as_data, decode, require
 from adaptive_hrc_scheduling.domain import production as m
 from adaptive_hrc_scheduling.logistics_geometry import (
     close,
@@ -274,6 +275,21 @@ class USDProductionPort:
                 self.routes[command.service.route.id] = command.service.route
 
         op = self.ops[command.operation_id]
+        if op.branch:
+            expected_owner = f"ATTEMPT:{op.activity_id}:{op.attempt_index}:{op.branch.revision}"
+            for resource in op.equipment:
+                owner = self.prim(resource).GetAttribute("s13:s18Owner").Get()
+                require(
+                    owner in (None, "", expected_owner)
+                    if op.unit_index == 0
+                    else owner == expected_owner,
+                    "ACTUAL_SIMULATION_RESOURCE_OWNER:" + resource,
+                )
+            if op.production_mode == "HR-seq" and op.branch.phase == "UNLOAD":
+                require(
+                    self.prim("R1").GetAttribute("s13:s18Stopped").Get() is True,
+                    "ACTUAL_SIMULATION_STOP_NOT_CONFIRMED",
+                )
         for ident in (
             *op.equipment,
             *(r.person_id for r in command.roles),
@@ -573,6 +589,27 @@ class USDProductionPort:
             if next(r.qualification for r in op.roles if r.id == binding.role_id) == "TOOL":
                 UsdGeom.Xformable(self.prim(binding.person_id)).GetOrderedXformOps()[-1].Set(180)
         self.controls_ok(run.command)
+        if op.handover:
+            self.scene.attr(
+                self.prim("FIX-J2"), "s18Handover", json.dumps(as_data(op.handover), sort_keys=True)
+            )
+        if op.branch:
+            for resource in op.equipment:
+                prim = self.prim(resource)
+                self.scene.attr(prim, "s18Definition", op.branch.definition_id)
+                self.scene.attr(prim, "s18Revision", op.branch.revision)
+                self.scene.attr(prim, "s18Output", op.branch.output_revision)
+                self.scene.attr(prim, "s18Assumption", op.branch.assumption_revision)
+                self.scene.attr(prim, "s18JointSet", op.branch.joint_set_id)
+                self.scene.attr(prim, "s18Phase", op.branch.phase)
+                self.scene.attr(prim, "s18Terminal", op.branch.terminal)
+                self.scene.attr(
+                    prim,
+                    "s18Owner",
+                    f"ATTEMPT:{op.activity_id}:{op.attempt_index}:{op.branch.revision}",
+                )
+            if op.production_mode == "HR-seq" and op.branch.phase != "UNLOAD":
+                self.scene.attr(self.prim("R1"), "s18Stopped", op.branch.phase != "ROBOT")
         if op.route_id and self.routes[op.route_id].device_id == "FORK-01":
             tine_spread = (
                 0.2
@@ -682,6 +719,49 @@ class USDProductionPort:
                 and abs(tray[1] - point[1]) < 0.55
             )
         return True
+
+    def simulation_stage(self, op, done):
+        if op.handover:
+            raw = self.prim("FIX-J2").GetAttribute("s13:s18Handover").Get()
+            change = decode(m.Handover, json.loads(raw))
+            require(change == op.handover, "ACTUAL_HANDOVER_PHASE_DRIFT")
+            return dict(branch=None, handover=change)
+        if not op.branch:
+            return dict(branch=None)
+        fixture = self.prim("FIX-J2")
+
+        def read(name):
+            return fixture.GetAttribute("s13:" + name).Get()
+
+        branch = m.Branch(
+            read("s18Definition"),
+            read("s18Revision"),
+            read("s18Output"),
+            read("s18Assumption"),
+            read("s18JointSet"),
+            read("s18Phase"),
+            read("s18Terminal"),
+        )
+        require(branch == op.branch, "ACTUAL_SIMULATION_STAGE_DRIFT")
+        # The process itself is a symbolic timed unit. Position/exit/stop/owner
+        # predicates come from this live stage and are read before dispatch completion.
+        isolated = all(
+            not close(self.position(p.id), standing_point(self.config, p.id, "J2"))
+            for p in self.config.people
+        )
+        if op.branch.phase == "ROBOT":
+            require(isolated, "ACTUAL_SIMULATION_ISOLATION")
+            if done:
+                self.scene.attr(self.prim("R1"), "s18Stopped", True)
+        stopped = (
+            self.prim("R1").GetAttribute("s13:s18Stopped").Get() is True
+            if op.production_mode == "HR-seq"
+            else True
+        )
+        owners = tuple(
+            m.Ownership(i, self.prim(i).GetAttribute("s13:s18Owner").Get()) for i in op.equipment
+        )
+        return dict(branch=branch, isolated=isolated, robot_stopped=stopped, stage_owners=owners)
 
     def step(self, command_id, now_h):
         run = self.running[command_id]
@@ -859,8 +939,12 @@ class USDProductionPort:
             "USD-" + c.id + "-" + str(len(self.samples)),
             1 if done else min(fraction, 1 - 1e-12),
             inputs=self.input_samples.get(command_id, ()),
+            **self.simulation_stage(op, done),
         )
         self.samples.append(proof)
+        if done and op.branch and op.branch.terminal:
+            for resource in op.release_resources:
+                self.scene.attr(self.prim(resource), "s18Owner", "")
         return proof
 
     def material_effect(self, op):

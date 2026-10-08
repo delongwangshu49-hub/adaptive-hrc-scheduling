@@ -1,0 +1,28 @@
+{
+  "id": "S18-SIM-ACCEPTANCE-001",
+  "date": "2026-10-08",
+  "ledger_id": "PR146",
+  "actor_role": "PROJECT_OWNER",
+  "decision": "ACCEPTED_WITH_DOCUMENTED_LIMITS",
+  "snapshot_review": "APPROVED_AS_DELIVERED",
+  "packet_id": "S18-20261008-simulation-r1",
+  "packet_sha256": "0f6338798dec7cf474ee90f299a7ed96b17f676ddc88f809e0831750fb463b71",
+  "manifest_sha256": "c054a1185a2031447d883b64984b241b88208228b78c33b6c8c4f978cff9c207",
+  "file_count": 85,
+  "implementation": "SIMULATION_IMPLEMENTATION_VERIFIED_WITH_LIMITS",
+  "approved_scope": "SR01-SR08 / V01-V08 in S18-SIM-A1",
+  "original_proposed_remote_operations": [],
+  "authorized_remote_operations": [],
+  "publication": "NOT_PUBLISHED",
+  "publication_operations": "SPECIFIC_PUBLICATION_PLAN_REQUIRES_SEPARATE_DECISION",
+  "preserved_limits": [
+    "INDUSTRIAL_G2_OPEN",
+    "INDUSTRIAL_QUALIFICATION_NOT_ESTABLISHED",
+    "SYMBOLIC_TIMED_WELDING",
+    "SYNTHETIC_EXTERNAL_QUALITY_AND_RECEIVER",
+    "SHARED_J2_LANDING_COLLISION_RETAINED",
+    "NO_FORMAL_A_D_EFFECT_CONCLUSION",
+    "NO_SEPARATE_GUI_EXPERIENCE_ACCEPTANCE",
+    "NO_LATER_STEP_START"
+  ]
+}

@@ -79,12 +79,20 @@ def validate_mapping(config):
     modes = {}
     for a in activities.values():
         active = [mode for mode in a.modes if mode.enabled]
-        require(len(active) == 1 and active[0].kind != "HR-seq", "S15_LEGAL_MODE")
-        mode = active[0]
-        modes[a.id] = mode
-        expected.update((a.id, mode.id, u.id) for u in mode.units)
-        if not mode.units:
-            expected.add((a.id, mode.id, "GATE"))
+        require(
+            (
+                config.research
+                and a.code in ("W-B", "W-T")
+                and {m.kind for m in active} == {"H", "HR-seq"}
+            )
+            or (len(active) == 1 and active[0].kind != "HR-seq"),
+            "S15_LEGAL_MODE",
+        )
+        for mode in active:
+            modes[a.id, mode.id] = mode
+            expected.update((a.id, mode.id, u.id) for u in mode.units)
+            if not mode.units:
+                expected.add((a.id, mode.id, "GATE"))
     seen = set()
     bound_operations = set()
     by_activity = {}
@@ -95,7 +103,7 @@ def validate_mapping(config):
         require(b.operation_ids and set(b.operation_ids) <= ops.keys(), "CORE_BINDING_OPERATION")
         require(not (set(b.operation_ids) & bound_operations), "CORE_UNIT_REUSED")
         bound_operations.update(b.operation_ids)
-        a, mode = activities[b.activity_id], modes[b.activity_id]
+        a, mode = activities[b.activity_id], modes[b.activity_id, b.mode_id]
         mapped = [ops[i] for i in b.operation_ids]
         require(
             all(
@@ -161,13 +169,25 @@ def validate_mapping(config):
                 mapped[-1].release_device == "TEST1" and mapped[-1].mass_remove_t == 0.1,
                 "TEST_DRAIN_AND_RELEASE",
             )
-        for u in (*modes[a.id].units,):
-            b = next(b for b in config.bindings if b.activity_id == a.id and b.unit_id == u.id)
-            require(all(previous <= ancestors[i] for i in b.operation_ids), "CORE_UNIT_ORDER")
-            previous.update(b.operation_ids)
+        for mode in (mode for (aid, mid), mode in modes.items() if aid == a.id):
+            previous = set()
+            for u in mode.units:
+                b = next(
+                    b
+                    for b in config.bindings
+                    if b.activity_id == a.id and b.mode_id == mode.id and b.unit_id == u.id
+                )
+                require(all(previous <= ancestors[i] for i in b.operation_ids), "CORE_UNIT_ORDER")
+                previous.update(b.operation_ids)
     for e in config.core_edges:
         before, after = set(by_activity[e.source]), by_activity[e.target]
-        require(all(before <= ancestors[i] for i in after), "CORE_PRECEDENCE_MAPPING")
+        if config.research and activities[e.source].code in ("W-B", "W-T"):
+            require(
+                all(e.source in ops[i].activity_prerequisites for i in after),
+                "SIM_SELECTED_BRANCH_PRECEDENCE",
+            )
+        else:
+            require(all(before <= ancestors[i] for i in after), "CORE_PRECEDENCE_MAPPING")
         source = activities[e.source]
         if e.relation == "quality":
             require(
@@ -178,6 +198,72 @@ def validate_mapping(config):
             require(
                 all(ops[i].wait_gate == source.release_evidence for i in after), "CORE_WAIT_MAPPING"
             )
+    if config.research:
+        scoped = {s.activity_id for s in config.research.scope_bindings}
+        bound = {i for b in config.bindings if b.activity_id in scoped for i in b.operation_ids}
+        require(
+            {o.id for o in config.operations if o.activity_id in scoped} == bound
+            and {o.id for o in config.operations if o.branch} == bound,
+            "SIM_UNBOUND_BRANCH",
+        )
+        require(
+            all(
+                not (o.hold_resources or o.release_resources)
+                for o in config.operations
+                if not o.branch
+            ),
+            "SIM_UNBOUND_HOLD",
+        )
+        for scope in config.research.scope_bindings:
+            a = activities[scope.activity_id]
+            for mode in a.modes:
+                mapped = [
+                    ops[i]
+                    for b in config.bindings
+                    if b.activity_id == a.id and b.mode_id == mode.id
+                    for i in b.operation_ids
+                ]
+                for n, (op, unit) in enumerate(zip(mapped, mode.units)):
+                    from adaptive_hrc_scheduling.domain.production import Branch
+
+                    definition = scope.h_definition if mode.kind == "H" else scope.hr_definition
+                    require(
+                        op.branch
+                        == Branch(
+                            definition,
+                            "v1",
+                            scope.output_revision,
+                            "S18-SIM-A1",
+                            scope.joint_set_id,
+                            unit.phase,
+                            n == len(mapped) - 1,
+                        ),
+                        "SIM_BRANCH_MAPPING",
+                    )
+                    require(
+                        op.entity_id == scope.component_id
+                        and op.location == "J2"
+                        and not (op.hold_device or op.release_device),
+                        "SIM_COMPONENT_MAPPING",
+                    )
+                    require(
+                        not (
+                            op.material_inputs
+                            or op.material_outputs
+                            or op.component_inputs
+                            or op.component_outputs
+                            or op.route_id
+                            or op.target
+                            or op.scrap_quantity
+                        ),
+                        "SIM_BRANCH_SIDE_EFFECT",
+                    )
+                    require(
+                        op.hold_resources == (() if n == len(mapped) - 1 else unit.equipment)
+                        and op.release_resources
+                        == (unit.equipment if n == len(mapped) - 1 else ()),
+                        "SIM_HOLD_MAPPING",
+                    )
     return config
 
 

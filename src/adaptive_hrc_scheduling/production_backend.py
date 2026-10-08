@@ -13,6 +13,7 @@ from adaptive_hrc_scheduling.contracts.codec import ContractError, require
 from adaptive_hrc_scheduling.contracts.production import digest, qualified, validate
 from adaptive_hrc_scheduling.domain import production as m
 from adaptive_hrc_scheduling.logistics_geometry import interpolate, motion_fraction
+from adaptive_hrc_scheduling.production_admission import attempt_owner, completed_activity
 from adaptive_hrc_scheduling.production_geometry import standing_point
 
 
@@ -99,6 +100,7 @@ class ProductionBackend:
             self.s,
             masses=tuple(m.MassState(e.id, 0) for e in config.entities),
             supports=supports.initial(config),
+            research=config.research,
         )
         self._capacity()
 
@@ -134,7 +136,7 @@ class ProductionBackend:
     def _event(self, kind, command=None, reason="", world=None, proof=None):
         self._put(revision=self.s.revision + 1)
         e = m.ExecutionEvent(
-            "S15-PROD-1.0",
+            self.config.schema_version,
             self.config.id,
             self.config_hash,
             self.run_id,
@@ -161,7 +163,7 @@ class ProductionBackend:
 
     def snapshot(self):
         return m.ExecutionSnapshot(
-            "S15-PROD-1.0",
+            self.config.schema_version,
             self.config.id,
             self.config_hash,
             self.run_id,
@@ -346,6 +348,17 @@ class ProductionBackend:
 
     def _admit(self, c):
         op = self.operations[c.operation_id]
+        if self.config.research and op.action == "WALK" and op.target == "J2":
+            require(
+                not any(
+                    (
+                        self.operations[r.command.operation_id].branch
+                        and self.operations[r.command.operation_id].branch.phase == "ROBOT"
+                    )
+                    for r in self.s.running
+                ),
+                "SIM_ENTRY_REQUIRES_STOP",
+            )
         if c.service and op.action == "WALK":
             from adaptive_hrc_scheduling.production_navigation import walk_blocker
 
@@ -356,6 +369,79 @@ class ProductionBackend:
                 "DECLARED_WALK_COLLISION",
             )
         resumed = next((r for r in self.s.running if r.command.id == c.resume_of), None)
+        attempt = next((a for a in self.s.mode_attempts if a.activity_id == op.activity_id), None)
+        core_ids = {a.id for a in self.config.core_activities}
+        committed_crew = next(
+            (a for a in self.s.activity_crews if a.activity_id == op.activity_id), None
+        )
+        crew_required = bool(
+            self.config.research
+            and op.activity_id in core_ids
+            and not op.branch
+            and not op.handover
+            and op.roles
+        )
+        if crew_required and committed_crew:
+            require(c.roles == committed_crew.roles, "SIM_ACTIVITY_CREW_COMMITMENT")
+        if op.handover:
+            h = op.handover
+            require(
+                not c.resume_of
+                and attempt is not None
+                and attempt.state == "COMMITTED"
+                and attempt.definition_id == h.definition_id
+                and attempt.completed_units
+                and attempt.completed_units[-1] == h.after_unit
+                and attempt.crew[0].person_id == h.outgoing
+                and not any(r.command.activity_id == h.activity_id for r in self.s.running),
+                "HANDOVER_NOT_AT_MODEL_STOP",
+            )
+            require(
+                (
+                    attempt.handover is None
+                    if h.phase == "HANDOVER"
+                    else attempt.handover == replace(h, phase="HANDOVER")
+                ),
+                "HANDOVER_RESTORE_ORDER",
+            )
+            if h.phase == "HANDOVER":
+                for pid in (h.outgoing, h.incoming):
+                    person = self.people[pid]
+                    human = next(x for x in self.s.humans if x.person_id == pid)
+                    require(
+                        can_work(person, self.s.time_h, self.s.time_h + 0.2)
+                        and human.fatigue + 0.2 * person.work_rate <= self.config.cap + 1e-10,
+                        "HANDOVER_RESTORE_PROTECTION",
+                    )
+        if op.branch:
+            require(attempt is None or attempt.handover is None, "SIM_RESTORE_REQUIRED")
+            require(not c.resume_of, "SIM_INTERRUPTED_ATTEMPT_HOLD")
+            require(
+                attempt is None
+                or attempt.state == "COMMITTED"
+                and attempt.definition_id == op.branch.definition_id
+                and attempt.revision == op.branch.revision
+                and attempt.assumption_revision == op.branch.assumption_revision,
+                "SIM_ATTEMPT_IMMUTABLE",
+            )
+            require(attempt is not None or op.unit_index == 0, "SIM_SETUP_REQUIRED")
+            require(
+                attempt is None or not c.roles or c.roles == attempt.crew,
+                "SIM_CREW_CHANGE_REQUIRES_HANDOFF",
+            )
+            if op.branch.phase == "ROBOT":
+                require(
+                    all(self._position(p.id).location != "J2" for p in self.people.values()),
+                    "SIM_ISOLATION_EXIT_REQUIRED",
+                )
+                require(
+                    not any(
+                        self.operations[r.command.operation_id].action == "WALK"
+                        and self.operations[r.command.operation_id].target == "J2"
+                        for r in self.s.running
+                    ),
+                    "SIM_INCOMING_PERSON_DURING_ROBOT",
+                )
         if c.resume_of:
             require(
                 resumed is not None
@@ -427,7 +513,12 @@ class ProductionBackend:
             "PRODUCT_UNAVAILABLE",
         )
         require(
-            op.id not in self.s.completed and all(x in self.s.completed for x in op.prerequisites),
+            op.id not in self.s.completed
+            and all(x in self.s.completed for x in op.prerequisites)
+            and all(
+                completed_activity(self.config, self.s.completed, a)
+                for a in op.activity_prerequisites
+            ),
             "PREDECESSORS",
         )
         if any(a.id == op.activity_id and a.code == "KIT" for a in self.config.core_activities):
@@ -639,6 +730,14 @@ class ProductionBackend:
                     if o.product_id == c.product_id
                     and o.action == "WORK"
                     and o.activity_id in {a.id for a in core}
+                    and (
+                        not o.branch
+                        or any(
+                            a.activity_id == o.activity_id
+                            and a.definition_id == o.branch.definition_id
+                            for a in self.s.mode_attempts
+                        )
+                    )
                 ),
                 "READY_INCOMPLETE_WORK",
             )
@@ -686,7 +785,13 @@ class ProductionBackend:
                 or resumed
                 and owners[key] == resumed.command.id
                 or key == op.release_device
-                and owners[key] == "HELD:" + c.product_id,
+                and owners[key] == "HELD:" + c.product_id
+                or op.branch
+                and key in (*op.hold_resources, *op.release_resources)
+                and owners[key] == attempt_owner(op)
+                or op.handover
+                and key in op.equipment
+                and owners[key] == f"ATTEMPT:{op.handover.activity_id}:0:v1",
                 "RESOURCE_BUSY:" + key,
             )
         # Human limits are checked after physical feasibility so preparation
@@ -712,6 +817,28 @@ class ProductionBackend:
             owners=tuple(x for x in self.s.owners if x.resource_id not in keys)
             + tuple(m.Ownership(k, c.id) for k in sorted(set(keys)))
         )
+        if crew_required and committed_crew is None:
+            self._put(
+                activity_crews=self.s.activity_crews + (m.ActivityCrew(op.activity_id, c.roles),)
+            )
+        if op.branch and attempt is None:
+            self._put(
+                mode_attempts=self.s.mode_attempts
+                + (
+                    m.ModeAttempt(
+                        op.activity_id,
+                        c.attempt,
+                        op.branch.definition_id,
+                        op.branch.revision,
+                        op.branch.output_revision,
+                        op.branch.assumption_revision,
+                        c.roles,
+                        (),
+                        self.s.revision,
+                        "COMMITTED",
+                    ),
+                )
+            )
         if resumed:
             self._put(running=tuple(r for r in self.s.running if r != resumed))
         return duration
@@ -1072,6 +1199,15 @@ class ProductionBackend:
             op.action == "RECEIVE_EXTERNAL" or op.action == "RETURN" and op.target == "EXTERNAL",
             "LIGHT-" + command.id,
             progress=1,
+            branch=op.branch,
+            handover=op.handover,
+            isolated=all(self._position(p).location != "J2" for p in self.people)
+            if op.branch
+            else None,
+            robot_stopped=True if op.branch else None,
+            stage_owners=tuple(m.Ownership(i, attempt_owner(op)) for i in op.equipment)
+            if op.branch
+            else (),
             beams=tuple(
                 m.BeamReadback(p.index, p.position, True, True)
                 for p in supports.deployed(self.config, self._support_layout(op.support_layout_id))
@@ -1160,7 +1296,22 @@ class ProductionBackend:
         )
 
     def _proof(self, run, proof):
+        require(
+            proof.branch == self.operations[run.command.operation_id].branch, "SIM_STAGE_READBACK"
+        )
         op = self.operations[run.command.operation_id]
+        require(proof.handover == op.handover, "HANDOVER_READBACK")
+        if op.branch:
+            require(
+                proof.stage_owners
+                == tuple(m.Ownership(i, attempt_owner(op)) for i in op.equipment),
+                "SIM_STAGE_OWNERS_READBACK",
+            )
+            require(op.branch.phase != "ROBOT" or proof.isolated is True, "SIM_ISOLATION_READBACK")
+            require(
+                op.production_mode != "HR-seq" or proof.robot_stopped is True,
+                "SIM_STOP_CONFIRMATION_READBACK",
+            )
         require(
             (proof.run_id, proof.epoch, proof.command_id)
             == (self.run_id, self.epoch, run.command.id),
@@ -1454,6 +1605,39 @@ class ProductionBackend:
             owners=tuple(x for x in self.s.owners if x.command_id != c.id),
             motions=tuple(p for p in self.s.motions if p.command_id not in (c.id, c.resume_of)),
         )
+        if op.handover:
+            h = op.handover
+            self._put(
+                mode_attempts=tuple(
+                    replace(
+                        a,
+                        handover=h if h.phase == "HANDOVER" else None,
+                        crew=a.crew
+                        if h.phase == "HANDOVER"
+                        else (m.RoleBinding(a.crew[0].role_id, h.incoming),),
+                    )
+                    if a.activity_id == h.activity_id
+                    else a
+                    for a in self.s.mode_attempts
+                ),
+                owners=self.s.owners
+                + tuple(m.Ownership(i, f"ATTEMPT:{h.activity_id}:0:v1") for i in op.equipment),
+            )
+        if op.branch:
+            self._put(
+                mode_attempts=tuple(
+                    replace(
+                        a,
+                        completed_units=(*a.completed_units, op.unit_index),
+                        state="COMPLETE" if op.branch.terminal else "COMMITTED",
+                    )
+                    if a.activity_id == op.activity_id
+                    else a
+                    for a in self.s.mode_attempts
+                ),
+                owners=self.s.owners
+                + tuple(m.Ownership(i, attempt_owner(op)) for i in op.hold_resources),
+            )
         if op.hold_device:
             self._put(owners=self.s.owners + (m.Ownership(op.hold_device, "HELD:" + c.product_id),))
         if p.cancelled and not any(r.command.product_id == c.product_id for r in self.s.running):
@@ -1481,6 +1665,16 @@ class ProductionBackend:
                 for r in self.s.running
             )
         )
+        if (
+            self.operations[run.command.operation_id].branch
+            or self.operations[run.command.operation_id].handover
+        ):
+            self._put(
+                mode_attempts=tuple(
+                    replace(a, state="HOLD") if a.activity_id == run.command.activity_id else a
+                    for a in self.s.mode_attempts
+                )
+            )
         receipt = self._event("EXCEPTION", run.command, reason)
         self.commands[command_id] = (digest(run.command), receipt)
         return receipt
@@ -1635,6 +1829,26 @@ class ProductionBackend:
             p = self._product(e.product_id)
             require(p.received_h is None, "CANCEL_RECEIVED")
             self._put(products=changed(self.s.products, "product_id", replace(p, cancelled=True)))
+            if self.config.research:
+                aids = {a.id for a in self.config.core_activities if a.product_id == e.product_id}
+                self._put(
+                    mode_attempts=tuple(
+                        replace(a, state="HOLD")
+                        if a.activity_id in aids and a.state != "COMPLETE"
+                        else a
+                        for a in self.s.mode_attempts
+                    ),
+                    running=tuple(
+                        replace(r, status="EXCEPTION", held_at_h=self.s.time_h)
+                        if r.command.product_id == e.product_id
+                        and (
+                            self.operations[r.command.operation_id].branch
+                            or self.operations[r.command.operation_id].handover
+                        )
+                        else r
+                        for r in self.s.running
+                    ),
+                )
             if not any(r.command.product_id == e.product_id for r in self.s.running):
                 self._unreserve(e.product_id)
         elif e.kind == "ORDER_ARRIVAL":
@@ -1655,7 +1869,7 @@ class ProductionBackend:
     def observe(self, delay_h=0):
         require(math.isfinite(delay_h) and delay_h >= 0, "OBSERVATION_DELAY")
         obs = m.PlanningObservation(
-            "S15-PROD-1.0",
+            self.config.schema_version,
             self.config.id,
             self.config_hash,
             self.run_id,

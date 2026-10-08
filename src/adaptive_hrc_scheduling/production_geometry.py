@@ -315,6 +315,13 @@ def route(config, ident, source, target, device, *, person=None, empty=False):
 
 def validate_service(config, service):
     op, rt = service.operation, service.route
+    if op.handover:
+        from adaptive_hrc_scheduling.production_handover import operation
+
+        require(
+            rt is None and op == operation(config, op.handover, op.id), "HANDOVER_SERVICE_FIELDS"
+        )
+        return
     if op.action in ("TRANSFER", "RETURN"):
         from adaptive_hrc_scheduling.production_cancel import validate
 
@@ -334,7 +341,12 @@ def validate_service(config, service):
     require(op.action in ("WALK", "EMPTY_RETURN", "REST"), "ILLEGAL_SERVICE_ACTION")
     require(
         not (
-            op.material_inputs
+            op.branch
+            or op.hold_resources
+            or op.release_resources
+            or op.activity_prerequisites
+            or op.handover
+            or op.material_inputs
             or op.material_outputs
             or op.component_inputs
             or op.component_outputs
