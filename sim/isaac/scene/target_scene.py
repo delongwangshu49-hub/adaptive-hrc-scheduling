@@ -6,6 +6,8 @@ from types import SimpleNamespace
 from pxr import Gf, UsdGeom, UsdLux, UsdPhysics
 
 from .model import POSES, Box, key, require
+from .person_appearance import apply_person_appearance
+from .scene_appearance import apply_scene_appearance
 from .target_layout import CONTROL, FIXED, PADS, PEOPLE, TASK_BY_ID, VERSION, static_boxes
 from .target_trials import TargetRun
 from .usd_scene import BuildingScene
@@ -170,6 +172,7 @@ class TargetScene(BuildingScene):
         sun = UsdLux.DistantLight.Define(self.stage, "/World/Lighting/Sun")
         sun.CreateIntensityAttr(2500)
         sun.AddRotateXYZOp().Set(Gf.Vec3f(25, -30, -25))
+        apply_scene_appearance(self)
         UsdPhysics.Scene.Define(self.stage, "/PhysicsScene")
         if not self.stage.GetPrimAtPath("/World/Cameras/Overview"):
             self.cameras()
@@ -195,6 +198,8 @@ class TargetScene(BuildingScene):
                 p + "/Occupancy", (0, 0, 0.95), (0.6, 1.2, 1.9), "red", collision=True
             )
             proxy.CreateVisibilityAttr("invisible")
+
+            apply_person_appearance(self, p, name)
 
     def vehicles(self):
         for name in ("SCN-FORK-01", "SCN-CART-01", "TEST1"):

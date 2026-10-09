@@ -1,0 +1,193 @@
+{
+  "decision_id": "S19A-W1-VISUAL-ACCEPTANCE-001",
+  "date": "2026-10-09",
+  "ledger": "PR164",
+  "owner_decision": "ACCEPTED",
+  "scope": "W1_STATIC_APPEARANCE_ONLY",
+  "accepted_candidate": "S19A-A1-W1-20261009-r1",
+  "accepted_review_sha256": "e979c02370ed2da2952c84088fb7e833ff9c5eebede327b7639b5eb34f6cca81",
+  "accepted_images": {
+    "W1-back-before-proposal.png": "d5bea39c981e5e38a1d40d395c545de5cc6ce326e811f4513f01bd011c014d38",
+    "W1-face-before-proposal.png": "d64918966c2c20784b0b9d01f34ca5a4a7b0e1fd17285099b2053abde7ecd81e",
+    "W1-front-before-proposal.png": "aed0ab0482e138b68ac3faab173fe347cac0e24ce694af1016b0d03c0759e327",
+    "W1-route-proposal.png": "c673e3b32ee95a9ec2a0e9ec54b094d73e728c812ae0743774e8b4bf44c11af2",
+    "W1-three-quarter-before-proposal.png": "de94f537f563d89234ce7149ab3238667b7e8c9696de45d7e840e230b3492903"
+  },
+  "implementation": "APPLIED_TO_W1_ONLY",
+  "verification": {
+    "status": "PASS",
+    "scope": "W1_EXACT_APPROVED_APPEARANCE_ONLY",
+    "original_boundables_identical": 1148,
+    "original_prim_attributes_and_schemas_identical": true,
+    "only_w1_ten_material_bindings_changed": true,
+    "new_boundables": 10,
+    "new_colliders": 0,
+    "approved_preview_properties_match": true,
+    "all_15_people_roots_and_hand_references_unchanged": true,
+    "other_people_appearance_unchanged": true,
+    "source_hashes": {
+      "sim/isaac/scene/person_appearance.py": "8bae164e8d07ad2c1049afbfb0603afcf3b33b4f1dff09fa91d0d1fece474158",
+      "sim/isaac/scene/target_scene.py": "bc4a4289426a2c717a10e31d3c0e020a3c6f9b14f0dc3438473e42d6c21a981a"
+    }
+  },
+  "regression": {
+    "command": "python -m unittest tests.test_building_target tests.test_building_scene",
+    "tests": 57,
+    "seconds": 2.954,
+    "status": "PASS"
+  },
+  "style_checks": "RUFF_CHECK_AND_FORMAT_CHECK_PASS",
+  "diagnostic_history": [
+    {
+      "stage": "FIRST_INDEPENDENT_USD_CHECK",
+      "status": "SCRIPT_ARGUMENT_ERROR",
+      "reason": "BBoxCache optional useExtentsHint positional argument omitted; corrected script passed; model implementation unchanged"
+    }
+  ],
+  "render_evidence": {
+    "status": "PASS_PREVIEWS_ONLY",
+    "closed": true,
+    "applied_people": [
+      "W1"
+    ],
+    "pending_people": [
+      "P1",
+      "W2",
+      "Lop"
+    ],
+    "images": [
+      {
+        "person": "W1",
+        "view": "front",
+        "file": "W1-front.png",
+        "sha256": "2a6f89543fe83201bff54247f40a11bc3b2943913214b59ec5eb25075243eee5",
+        "camera_error": 0.0
+      },
+      {
+        "person": "W1",
+        "view": "side",
+        "file": "W1-side.png",
+        "sha256": "7e9a52ed64467a0e3392f637afe33c0757529ecc54e709af75a4074f6391fe68",
+        "camera_error": 2.220446049250313e-16
+      },
+      {
+        "person": "P1",
+        "view": "front",
+        "file": "P1-front.png",
+        "sha256": "5d50a16ed8003561c584f0cf9691907c6d22618f1ec91011cee614cfb6f017bd",
+        "camera_error": 0.0
+      },
+      {
+        "person": "P1",
+        "view": "side",
+        "file": "P1-side.png",
+        "sha256": "53045ef1b1f3240e7234942c25edd68b7c3b487379784277bdb708ded42b9a5e",
+        "camera_error": 2.220446049250313e-16
+      },
+      {
+        "person": "W2",
+        "view": "front",
+        "file": "W2-front.png",
+        "sha256": "7821e638793676380cf228629187892924354401c4e9b4d945721be623d861a1",
+        "camera_error": 0.0
+      },
+      {
+        "person": "W2",
+        "view": "side",
+        "file": "W2-side.png",
+        "sha256": "2c0b93d0ace26a8a7f0a2cbd9ccee73fec6a50a0546e0be4734c0f0c0c998f8a",
+        "camera_error": 2.220446049250313e-16
+      },
+      {
+        "person": "Lop",
+        "view": "front",
+        "file": "Lop-front.png",
+        "sha256": "3f8666cfef432dcee954dc0b2ddc83e0f4a860911579036bf5124f6e4022798f",
+        "camera_error": 0.0
+      },
+      {
+        "person": "Lop",
+        "view": "side",
+        "file": "Lop-side.png",
+        "sha256": "0573a06ff8f28dbf19bf0cafbe5d30cfe8fae586de33a3edea97f72607366c2a",
+        "camera_error": 2.220446049250313e-16
+      }
+    ],
+    "geometry_checks": {
+      "W1": {
+        "body_bounds_equal": true,
+        "body_bounds_m": [
+          [
+            -0.3199999986588955,
+            -0.15000000596046448,
+            1.341104505225843e-09
+          ],
+          [
+            0.3199999986588955,
+            0.5344077395059537,
+            1.8749999976158143
+          ]
+        ],
+        "original_occupancy_unchanged": true,
+        "remote_retained": false
+      },
+      "P1": {
+        "body_bounds_equal": true,
+        "body_bounds_m": [
+          [
+            -0.3199999986588955,
+            -0.15000000596046448,
+            1.341104505225843e-09
+          ],
+          [
+            0.3199999986588955,
+            0.5344077395059537,
+            1.8749999976158143
+          ]
+        ],
+        "original_occupancy_unchanged": true,
+        "remote_retained": false
+      },
+      "W2": {
+        "body_bounds_equal": true,
+        "body_bounds_m": [
+          [
+            -0.3199999986588955,
+            -0.15000000596046448,
+            1.341104505225843e-09
+          ],
+          [
+            0.3199999986588955,
+            0.5344077395059537,
+            1.8749999976158143
+          ]
+        ],
+        "original_occupancy_unchanged": true,
+        "remote_retained": false
+      },
+      "Lop": {
+        "body_bounds_equal": true,
+        "body_bounds_m": [
+          [
+            -0.3199999986588955,
+            -0.15000000596046448,
+            1.341104505225843e-09
+          ],
+          [
+            0.3199999986588955,
+            0.5500000014901161,
+            1.8749999976158143
+          ]
+        ],
+        "original_occupancy_unchanged": true,
+        "remote_retained": true
+      }
+    }
+  },
+  "render_process_exit": 0,
+  "other_people_applied": false,
+  "walk_orientation_applied": false,
+  "step_acceptance": "PENDING",
+  "publication": "NOT_PUBLISHED",
+  "remote_actions": []
+}

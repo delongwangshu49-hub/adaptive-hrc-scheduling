@@ -1,0 +1,186 @@
+{
+  "decision_id": "S19A-PEOPLE-VISUAL-ACCEPTANCE-002",
+  "date": "2026-10-10",
+  "authority": "PR166",
+  "scope": "ALL_15_PEOPLE_STATIC_APPEARANCE_ONLY",
+  "identities": [
+    "P1",
+    "W1",
+    "W2",
+    "OP1",
+    "AF1",
+    "AF2",
+    "E1",
+    "PL1",
+    "T1",
+    "T2",
+    "C1",
+    "QA1",
+    "Lop",
+    "Lrig",
+    "Lsig"
+  ],
+  "accepted_packet": "S19A-20261010-static-batch-r1",
+  "status": "ACCEPTED_WITH_EXISTING_GEOMETRY_LIMITS",
+  "accepted_person_images": [
+    {
+      "file": "P1-front.png",
+      "sha256": "bbb58eea3e3eb08b784fffc9666d379c0ccc0c08a879119eda973fbee9749e88",
+      "camera_error": 0.0
+    },
+    {
+      "file": "P1-side.png",
+      "sha256": "2ccf6b5f4809fb1193a0ab8620e64d22e73033cfba68f2bf9bf0fa564e1691cd",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "W1-front.png",
+      "sha256": "15dd1c6db71e6257d160b6f88f552e5502bc73c5ed881a061b4dfa7be43e557e",
+      "camera_error": 0.0
+    },
+    {
+      "file": "W1-side.png",
+      "sha256": "8b7170b44837f604f136a7b65e734b8141ec472c2a689333d445c82924641a2b",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "W2-front.png",
+      "sha256": "4f5fcb67fefcc3c21775608be0914eb846d2541eb9e80745789bb3703b798eb5",
+      "camera_error": 0.0
+    },
+    {
+      "file": "W2-side.png",
+      "sha256": "9add049fd5f47cd7818218508d8351d52ffab40090c95e770cf9c26ed0046634",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "OP1-front.png",
+      "sha256": "1c0543ba57937581849b03ea93aaa22a7c1f591e7a04836ccffdaee38a9c254b",
+      "camera_error": 0.0
+    },
+    {
+      "file": "OP1-side.png",
+      "sha256": "81a59bb51b2eb2e910fe3abd7481f012369a55a82897c62f9b7e2ab716939168",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "AF1-front.png",
+      "sha256": "f8003d05cb4a4ff5c7e4f9c36bb20a34279175d86548087611b8bc064e6f524a",
+      "camera_error": 0.0
+    },
+    {
+      "file": "AF1-side.png",
+      "sha256": "98c3787f739d50f6137903f4a7950f8f9a167d198dc3041a3e8e838629276e03",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "AF2-front.png",
+      "sha256": "ed03829a203c7f71d1a666506c2762a67674512d8e53d09adade212aef025211",
+      "camera_error": 0.0
+    },
+    {
+      "file": "AF2-side.png",
+      "sha256": "a8ec1b14d594baf61db98ab4a8ba04372207f196e27204d60d09fa286316183a",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "E1-front.png",
+      "sha256": "6518d90dea55883acbce969c92301a1b379cd6cedb1b91af74b83f1027711b8c",
+      "camera_error": 0.0
+    },
+    {
+      "file": "E1-side.png",
+      "sha256": "70b64aa4ab7f026f1db1760b65328508ac0f09b3751c3efe45818f72f128b1e0",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "PL1-front.png",
+      "sha256": "3e4664005e009cae8e6aff3cf4b78fa513f8201d8d1bce94cb164daa44176a72",
+      "camera_error": 0.0
+    },
+    {
+      "file": "PL1-side.png",
+      "sha256": "5bd720c16bfa4cc789cab087454a7290fbb6a78f535a470d56442713c18884bd",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "T1-front.png",
+      "sha256": "e7eecb3b7d9ef28835143e0231afaa17a27035be05ed1a617627ab0b7864d2a2",
+      "camera_error": 0.0
+    },
+    {
+      "file": "T1-side.png",
+      "sha256": "0afb45dfbb908065364bb30d82c66d5f4afd752b393eae0d2a615913c260f72d",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "T2-front.png",
+      "sha256": "2c13d89acad7bd77c3b537fe20f0067746966f23584e03b4674fff2dcf26a2c7",
+      "camera_error": 0.0
+    },
+    {
+      "file": "T2-side.png",
+      "sha256": "4d4235e593145e785aa8f0c22dafad48411ee81f21886cc38bd1d25b55ef3680",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "C1-front.png",
+      "sha256": "10a0d8ca4ee81247a592dd881ac8fd9f8fe9c2b52f3b854886fb2cecaa169ea8",
+      "camera_error": 0.0
+    },
+    {
+      "file": "C1-side.png",
+      "sha256": "1691dda0f6fb12ce9936e5b72f31529171af8d058562894f341e846ebb3a7982",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "QA1-front.png",
+      "sha256": "21db9176ce4e82e49a3acf8ffcedf0757597d64a6713a449039e275395548f77",
+      "camera_error": 0.0
+    },
+    {
+      "file": "QA1-side.png",
+      "sha256": "d78023479eb68592b5802f583ebbad5fa35c880e6db06aa45122837c46819e16",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "Lop-front.png",
+      "sha256": "447192153df4ff8f19b0a9db9ffd335cae6cf827612d9560dbe48947f322e334",
+      "camera_error": 0.0
+    },
+    {
+      "file": "Lop-side.png",
+      "sha256": "5f4cb13c31b3878e58768ea16e0cb7fa3ae115b4fb4f534aa69e379a92157e5c",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "Lrig-front.png",
+      "sha256": "ec3159d2da2242032e998f75b3984a88bbc64fe22a505a1df102b2d357a66beb",
+      "camera_error": 0.0
+    },
+    {
+      "file": "Lrig-side.png",
+      "sha256": "d369d1634a811baec894eb6f9db398e7d56eff0ab16f1057a722e7f1445ebd2a",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "Lsig-front.png",
+      "sha256": "9a3c42c8c0803e4e13fe28fb9c0861d497da7fba4d50a37b55772cdd49b9c999",
+      "camera_error": 0.0
+    },
+    {
+      "file": "Lsig-side.png",
+      "sha256": "aa6ae5c231334097c7b65a1c037f0d009dff133cd08062ef17498d5c38bee06f",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "people-all-after.png",
+      "sha256": "9965b48b0d700520d4f4c8b0cfc93c2d5ea787d33c89c290616edcf5d55c467c",
+      "camera_error": 0.0
+    }
+  ],
+  "current_person_attributes_and_bindings_unchanged": true,
+  "limits": [
+    "No motion, whole-step, device-revision or publication acceptance inferred."
+  ]
+}

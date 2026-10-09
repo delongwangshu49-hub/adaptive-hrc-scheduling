@@ -1,5 +1,20 @@
 # 完整钢建筑模块生产调度研究总纲
 
+2026-10-10现行静态外观验收与发布批准（PR167 / LOG223）：负责人通过最终设备/地面/打光效果并明确批准发布，要求README图片替换为最新版，决定S19A-STATIC-PUBLISH-APPROVAL-003。原15人物验收保持；已更新README全场及人物总览图片。静态成果ACCEPTED_WITH_DOCUMENTED_LIMITS / APPROVED_FOR_PUBLICATION，拟main单提交及新标签step-S19A-static-r1原子推送，实际回执与CI另核验。A2动作、A3视频及整步出口未完成，工业G2/后续边界保持，旧审阅与失败证据保持。[验收及确切发布范围](validation/S19A_static_publication_r1.md)。以下旧状态按各自时点保留。
+
+
+2026-10-10现行人物通过及对比度修订（PR166 / LOG221—LOG222）：负责人通过15人物静态外观，决定S19A-PEOPLE-VISUAL-ACCEPTANCE-002；要求集中调整CUT1承料色差、R1关节/控制柜、搬运车、手推车、测试托盘及场景打光/地面。已形成11张本次对照图和本地r2候选。深黑灰地面、浅工作区及四处橘黄条纹采用原地面UV改色，本轮新增几何0。现有1,313几何对象、728碰撞、已认可15人物属性/绑定保持，57回归及Kit完整关闭/退出0。修订效果VISUAL_REVIEW_PENDING / NOT_PUBLISHED；原图/失败证据保持，A2/A3剩余及工业G2/后续边界保持。[本次图片与回执](validation/S19A_contrast_r2.md)。以下旧状态按各自时点保留。
+
+
+2026-10-10现行整组静态外观（PR165 / LOG219—LOG220）：负责人改为集中完成拟调整内容后统一逐个图审，不再逐个暂停；保留人物建模并加强岗位/个体涂装。15人物、11设备和全场已形成44图及本地候选。原1,148几何对象、728碰撞体、15人身体尺寸/根位置/手位和实际障碍集合保持；57项回归通过，最终Kit完整关闭/退出0，首轮关闭异常保留。当前STATIC_BATCH_VERIFIED_WITH_LIMITS / BATCH_VISUAL_REVIEW_PENDING / NOT_PUBLISHED。A2动作未改，A3视频及整步验收未完成，S19B及后续未启动，工业G2保持。旧逐个暂停要求由本次明确纠正覆盖，原几何硬约束继续有效。[完整逐项图册与验证](validation/S19A_static_batch_r1.md)。以下旧记录按各自时点保留。
+
+
+2026-10-09现行W1图审通过与应用（PR164 / LOG218）：负责人通过W1静态外观，决定S19A-W1-VISUAL-ACCEPTANCE-001；已只应用W1。独立USD核对原1,148几何对象及15人物根位置/手位保持，与获批预览属性/材质一致，57项场景回归通过。P1、W2、Lop已分别生成图片，保持PREVIEW_PENDING / NOT_APPLIED。原尺寸硬约束和逐个体先图审后应用持续有效；A2/A3、整步验收及新发布仍未完成，S19B及后续未启动。[当前图片与回执](validation/S19A_people_review_r1.md)。以下记录按各自时点保留。
+
+
+2026-10-09现行S19A启动与逐个体图片审阅（PR161—PR163 / LOG215—LOG217）：S19 r2已实际限定验收、批准并发布，提交`5a69646fc3d4ed16cca0e6151dffe71b2447dae6`、标签`step-S19-r2`，CI双平台源码/隔离wheel各849项通过。负责人现授权S19A，并严格要求调整不得超出现有模型几何尺寸、每个个体先出图验收后落实。沿用main/目录，不建分支/worktree或子代理。当前W1独立A1预览及原路线方案为A1_REVIEW_PENDING / NOT_APPLIED；正式模型、碰撞、路径、手位、工时、容量和人因保持。工业G2 OPEN/NOT_ESTABLISHED；S19B及S20—S28未启动，新成果验收及确切发布另审。入口：[S19A步骤与图片审阅](steps/S19A.md)。下方旧状态保留各自封存时点。
+
+
 2026-10-08现行发布批准与预检发现（PR147 / LOG193）：负责人已明确批准87文件S18-20261008-simulation-publication-r1的具体提交/标签/atomic推送方案，记录S18-SIM-PUBLISH-APPROVAL-001。发布前复现F01：现行LF规范化改变四份获批CRLF JSON字节，导致SIM_APPROVED_INPUT_DRIFT；尚未暂存、提交、建标签或推送。原87批准与封包保持；拟仅对冻结.gitattributes增加四条原字节保留例外并形成88文件修订发布审阅，当前PROPOSED / DECISION_PENDING / NOT_IMPLEMENTED。工作区该冻结文件已按原摘要保持，源码/数值/工业边界与后续步骤不变。入口：[具体修订审阅](validation/S18_simulation_publication_r1.md)。旧状态按各自封存时点保留。
 
 

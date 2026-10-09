@@ -1,0 +1,25 @@
+{
+  "decision_id": "S19A-STATIC-PUBLISH-APPROVAL-003",
+  "date": "2026-10-10",
+  "authority": "PR167",
+  "operation": "ACCEPT_FINAL_STATIC_VISUALS_PUBLISH_AND_REPLACE_README_IMAGES",
+  "scope": "S19A_STATIC_APPEARANCE_AND_EVIDENCE_WITH_LATEST_README_IMAGES",
+  "status": "ACCEPTED_WITH_DOCUMENTED_LIMITS_APPROVED_FOR_PUBLICATION",
+  "accepted_packet": "S19A-20261010-contrast-r2",
+  "persons": "S19A-PEOPLE-VISUAL-ACCEPTANCE-002",
+  "repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling",
+  "branch": "main",
+  "parent_commit": "5a69646fc3d4ed16cca0e6151dffe71b2447dae6",
+  "tag": "step-S19A-static-r1",
+  "remote_operations": [
+    "CREATE_SINGLE_REVIEWED_MAIN_COMMIT",
+    "CREATE_NEW_ANNOTATED_TAG",
+    "ATOMIC_PUSH_MAIN_AND_TAG_TO_ORIGIN",
+    "VERIFY_REMOTE_TREE_AND_CPU_CI"
+  ],
+  "limits": [
+    "Static acceptance only; A2 motion and A3 video/whole-step exits remain incomplete.",
+    "Industrial G2 OPEN/NOT_ESTABLISHED; no S19B/S20-S28 start.",
+    "Archived images/reviews/failures and frozen production values preserved."
+  ]
+}
