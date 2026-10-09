@@ -7,6 +7,14 @@ import math
 from dataclasses import fields, is_dataclass, replace
 from pathlib import Path
 
+from audit_online_provenance import (
+    PlanHistory,
+    candidate_sources,
+    decision_for,
+    decision_sources,
+    states_at,
+)
+
 from adaptive_hrc_scheduling.algorithms.lns import fingerprint
 from adaptive_hrc_scheduling.contracts.codec import as_data, decode
 from adaptive_hrc_scheduling.contracts.production import digest
@@ -113,6 +121,7 @@ def coverage(folder, rows, event_ids, event_kinds, timing):
             row.get("final_reason"),
             row.get("dispatched"),
             row.get("receipt_kind"),
+            row.get("receipt_id"),
         ) == (
             decision["run_id"],
             decision["epoch"],
@@ -122,6 +131,7 @@ def coverage(folder, rows, event_ids, event_kinds, timing):
             decision["plan"]["reason"],
             bool(decision["plan"]["commands"]),
             event_kinds.get(decision["receipt_id"]),
+            decision["receipt_id"],
         )
         stale_wait = (
             decision is not None
@@ -213,21 +223,19 @@ def audit(folder):
     config = decode(m.Configuration, wire)
     rows = json.loads((folder / "online-journal.json").read_text(encoding="utf-8"))
     limits = json.loads((folder / "predeclared-online-limits.json").read_text(encoding="utf-8"))
-    counts = {r["event_count"] for r in rows}
-    states = {0: as_data(initial_state_from_wire(config, wire))}
-    event_ids, event_kinds, prefixes = [], {}, {0: ()}
+    initial = as_data(initial_state_from_wire(config, wire))
+    event_ids, event_kinds = [], {}
     with gzip.open(folder / "events.jsonl.gz", "rt", encoding="utf-8") as stream:
         for index, line in enumerate(stream, 1):
             event = json.loads(line)
             event_ids.append(event["id"])
             event_kinds[event["id"]] = event["kind"]
-            if index in counts:
-                states[index] = event["state"]
-                prefixes[index] = tuple(event_ids)
     timing = json.loads((folder / "online-timing.json").read_text(encoding="utf-8"))
     errors, expected_feedback, coverage_result = coverage(
         folder, rows, event_ids, event_kinds, timing
     )
+    history = PlanHistory(candidate_sources(folder))
+    decisions = decision_sources(folder)
     totals = {}
     protections = (
         "running",
@@ -240,8 +248,14 @@ def audit(folder):
         "mode_attempts",
         "activity_crews",
     )
-    for index, row in enumerate(rows):
+    states = states_at(folder, (r["event_count"] for r in rows), initial)
+    for index, (row, state) in enumerate(zip(rows, states)):
         try:
+            history.check(
+                row,
+                state,
+                decision_for(row, decisions),
+            )
             change = recompute(row["before"], row["after"])
             # Count fields are exact. Different independent summation orders
             # may round the same non-negative floating-point shifts differently.
@@ -256,7 +270,6 @@ def audit(folder):
                 raise ValueError("CHANGE_COUNT")
             for k, v in change.items():
                 totals[k] = totals.get(k, 0) + v
-            state = states[row["event_count"]]
             if fingerprint({k: state[k] for k in protections}) != row["protected_sha256"]:
                 raise ValueError("PROTECTION_ANCHOR")
             obs = m.PlanningObservation(
@@ -269,7 +282,7 @@ def audit(folder):
                 row["time_h"],
                 row["time_h"],
                 decode(m.State, state),
-                prefixes[row["event_count"]],
+                tuple(event_ids[: row["event_count"]]),
             )
             if digest(obs) != row["observation_sha256"]:
                 raise ValueError("OBSERVATION_ANCHOR")

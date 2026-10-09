@@ -1,0 +1,188 @@
+{
+  "review_id": "S19-POST-RELEASE-AUDIT-20261009-r1",
+  "date": "2026-10-09",
+  "authorization": "PR159",
+  "governance": "LOG212",
+  "baseline": "674f4fe1036615e80fca4520dacffc8182a8e4a4",
+  "tag": "step-S19-r1",
+  "status": "POST_RELEASE_REVIEW_FINDINGS_OPEN",
+  "existing_acceptance": "ACCEPTED_WITH_DOCUMENTED_LIMITS",
+  "existing_approval": "APPROVED",
+  "existing_publication": "PUBLISHED",
+  "scope": [
+    "S19-1",
+    "S19-2",
+    "S19-3"
+  ],
+  "published_changed_paths": 36,
+  "approved_snapshot_verified": true,
+  "industrial_g2": "OPEN / NOT_ESTABLISHED",
+  "findings": [
+    {
+      "id": "F1",
+      "priority": 2,
+      "title": "Unbound plan and actual-delay provenance in saved audit",
+      "locations": [
+        {
+          "file": "scripts/audit_online_continuation.py",
+          "line": 110
+        },
+        {
+          "file": "scripts/audit_online.py",
+          "line": 245
+        }
+      ],
+      "reproductions": [
+        {
+          "case": "DELAY_ERASED",
+          "original_delayed_starts": 3,
+          "original_total_delay_h": 0.75,
+          "altered_delayed_starts": 0,
+          "altered_total_delay_h": 0,
+          "base_audit": "PASS",
+          "commitment_audit": "PASS",
+          "changed_rows": [
+            9,
+            11,
+            13
+          ]
+        },
+        {
+          "case": "PLAN_CHANGE_ERASED",
+          "changed_row": 45,
+          "original_start_changes": 1,
+          "original_shift_h": 0.14280182222222493,
+          "altered_start_changes": 0,
+          "altered_shift_h": 0,
+          "base_audit": "PASS",
+          "commitment_audit": "PASS"
+        }
+      ],
+      "impact": "Coherent incorrect journal metrics can pass without changing real events, candidates or promises. Original evidence remains unchanged; no claim that its published values were falsified.",
+      "recommendation": "Bind selected proposal and before/after plans to candidate/commitment provenance, prior pending state and the actual decision receipt; independently recompute the metrics."
+    },
+    {
+      "id": "F2",
+      "priority": 2,
+      "title": "Audit checkpoint equality bypasses strict numeric types",
+      "locations": [
+        {
+          "file": "src/adaptive_hrc_scheduling/control/audit_cache.py",
+          "line": 42
+        },
+        {
+          "file": "src/adaptive_hrc_scheduling/control/audit_cache.py",
+          "line": 125
+        }
+      ],
+      "reproductions": [
+        {
+          "case": "STATE_REVISION_INT_TO_FLOAT",
+          "original": "PASS",
+          "full_audit": "INCOMPLETE",
+          "cached_audit": "PASS",
+          "numeric_value": 0
+        },
+        {
+          "case": "DECISION_EVENT_COUNT_INT_TO_FLOAT",
+          "original": "PASS",
+          "full_audit": "INCOMPLETE",
+          "cached_audit": "PASS",
+          "numeric_value": 0
+        }
+      ],
+      "impact": "The online incremental audit and full audit disagree on invalid declared types. This demonstrates a validation gap, not an observed illegal dispatch in the published chains.",
+      "recommendation": "Use identity or type-sensitive certified comparison, and enforce structural validation before reuse, row sharing and prefix restoration."
+    },
+    {
+      "id": "F3",
+      "priority": 3,
+      "title": "Exact JSON digest depends on signed-zero cache priming",
+      "locations": [
+        {
+          "file": "src/adaptive_hrc_scheduling/contracts/codec.py",
+          "line": 49
+        }
+      ],
+      "reproductions": [
+        {
+          "primed_with": "0.0",
+          "actual_json": "{\"position_z\":0.0}",
+          "digest": "4a300485600845eaa1278d26bb971cd7f794ed92ebf32d49bc5ed20f89d1c6a4",
+          "expected": "e2dae620ceb69ab9d412e1dc4c2eca4b6f0fa548320491aee8a78f39a0fd1e92"
+        },
+        {
+          "primed_with": "-0.0",
+          "actual_json": "{\"position_z\":-0.0}",
+          "digest": "e2dae620ceb69ab9d412e1dc4c2eca4b6f0fa548320491aee8a78f39a0fd1e92",
+          "expected": "e2dae620ceb69ab9d412e1dc4c2eca4b6f0fa548320491aee8a78f39a0fd1e92"
+        }
+      ],
+      "impact": "A valid finite signed-zero payload can hash differently depending on prior unrelated calls; the exact-JSON cache is not byte-equivalent to json.dumps. No signed-zero discrepancy was observed in retained production results.",
+      "recommendation": "Distinguish signed zero in the scalar cache key or avoid memoizing that case; test byte equivalence in both call orders."
+    }
+  ],
+  "new_validation": {
+    "targeted_tests": {
+      "tests": 67,
+      "successful": true,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 61.94601270000203
+    },
+    "generation_checks": [
+      "S15_24_EXAMPLES_SCHEMAS_PASS",
+      "S18_SIMULATION_SCHEMAS_EXAMPLES_PASS"
+    ],
+    "new_full_suite": false,
+    "new_wheel": false,
+    "new_kit_or_long_chain": false
+  },
+  "evidence_integrity": {
+    "r1_runs": 21,
+    "r1_artifacts": 342,
+    "r1_source_groups": 6,
+    "r1_status": "PASS",
+    "r2_runs": 17,
+    "r2_artifacts": 280,
+    "r2_captured_files": 351,
+    "strict_comparisons": 7,
+    "r2_status": "PASS",
+    "old_zip_preserved": true,
+    "combined_zip_preserved": true,
+    "ci_logs_verified": true,
+    "ci_source_and_wheel_each": 824
+  },
+  "completion": {
+    "delivery_and_publication": "ESTABLISHED_WITH_APPROVED_LIMITS",
+    "logic_complete_no_known_findings": false,
+    "original_performance_and_geometry_fixes": "RETAINED_MEASURED_EVIDENCE",
+    "independent_stability_audit": "F1_OPEN",
+    "strict_incremental_audit": "F2_OPEN",
+    "exact_digest": "F3_OPEN"
+  },
+  "limits": [
+    "50ms cooperative search is not a hard deadline",
+    "B+1 Kit maximum feedback latency 5.971843s",
+    "Nonzero future commitment uses separate 120s/110s diagnostic",
+    "No method-advantage or industrial qualification conclusion"
+  ],
+  "proof_sha256": {
+    "baseline.json": "503efd0d2da4633023f7ff4bb918a40bfd74e525fe3a417d86770a272c33c8a7",
+    "evidence-integrity.json": "b002401b13b0c3439bdd1264103daed63ce7ac024c82c369a77257ac2c19c8f5",
+    "r1-integrity.json": "196b0b7cfcf0d1c52b5e907aa207db29b8b22bf414f21f6a491154ce1153e410",
+    "targeted-tests.json": "b6ae990d4780ecd6ec0ebd1f823b45d241c17c718dbb9dafacb887547b036d1e",
+    "targeted-tests.log": "65c7551a52de2d0ef1bfb46e45cf685ceda9d793b0265a3e6c9a1aef2719f9d9",
+    "delay-erased-result.json": "d9bb49ef158c385048f63989b4e5850e33e2a469802ab725f24a254ec5becc12",
+    "plan-change-erased-result.json": "21cff0aeec0a7ad982c8d6a23e1a1598e590fb3f4ba70e8668cb613a0cda5811",
+    "cache-type-probe.json": "87dbc4826215834864e9b6f626012f7111d2296ca6ee7870c45abdef6780c80d",
+    "signed-zero-result.json": "b7bc04c0bd31382c69bb2b2403b4d4ebbe1051a1f9a1cf0453e57010dc5b1214",
+    "baseline_and_delay.py": "8a48c73780940972ba78ae3366d09af3f61b5e68a17cf4854eee6dd607bbc107",
+    "cache_type_probe.py": "c72c7b270930435fa19ac974c6e134332aaa09846ec32413a26eaff0e1b54ea8",
+    "additional_probes.py": "eb87f3328145c225f8739297465e0278d3169ede0ed333a431fc5f1f6b94546c"
+  },
+  "source_fixes": [],
+  "git_write_operations": [],
+  "remote_operations": [],
+  "later_steps_started": false
+}

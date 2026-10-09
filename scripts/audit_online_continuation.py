@@ -8,6 +8,13 @@ import math
 from pathlib import Path
 
 from audit_online import audit
+from audit_online_provenance import (
+    PlanHistory,
+    candidate_sources,
+    decision_for,
+    decision_sources,
+    states_at,
+)
 
 
 def commitments(folder):
@@ -28,15 +35,14 @@ def commitments(folder):
         commands = [c for step in candidate["steps"] for c in step["plan"]["commands"]]
         candidates[sha] = {(c["operation_id"], c["attempt"]): c for c in commands}
         products.update((c["operation_id"], c["product_id"]) for c in commands)
-    events, states = {}, {}
-    counts = {r["event_count"] for r in rows}
+    events = {}
     with gzip.open(folder / "events.jsonl.gz", "rt", encoding="utf-8") as stream:
         for count, line in enumerate(stream, 1):
             event = json.loads(line)
-            if count in counts:
-                states[count] = event["state"]
             if event["kind"] == "STARTED":
-                events[event["id"]] = event
+                events[event["id"]] = {k: event[k] for k in ("command", "occurred_sim_h")}
+    history = PlanHistory(candidate_sources(folder))
+    decisions = decision_sources(folder)
     errors, previous = [], []
     totals = dict(
         future_promises=0,
@@ -47,11 +53,16 @@ def commitments(folder):
         max_delay_h=0.0,
     )
     identity = None
-    for index, row in enumerate(rows):
+    states = states_at(folder, (r["event_count"] for r in rows))
+    for index, (row, state) in enumerate(zip(rows, states)):
         try:
+            decision = decision_for(row, decisions)
+            if decision is not None and row.get("receipt_id") != decision["receipt_id"]:
+                raise ValueError("ACTUAL_RECEIPT_SOURCE")
+            history.check(row, state, decision)
             current_identity = (row["run_id"], row["epoch"])
             before, after = row["commitments_before"], row["commitments_after"]
-            if identity == current_identity and before != previous:
+            if before != (previous if identity == current_identity else []):
                 raise ValueError("COMMITMENT_HISTORY")
             identity = current_identity
 
@@ -66,7 +77,6 @@ def commitments(folder):
             }
             if set(old) - set(new) != set(released):
                 raise ValueError("UNEXPLAINED_COMMITMENT_REMOVAL")
-            state = states.get(row["event_count"], {})
             started = set(state.get("completed", [])) | {
                 r["command"]["operation_id"] for r in state.get("running", [])
             }
@@ -108,6 +118,8 @@ def commitments(folder):
                 if receipt is None or actual is None or row["selected_proposal"] is None:
                     raise ValueError("MISSING_ACTUAL_START")
                 proposal, command = row["selected_proposal"], receipt["command"]
+                if decision is None or decision["plan"]["commands"] != [command]:
+                    raise ValueError("ACTUAL_COMMAND_SOURCE")
                 if (
                     (actual["operation"], actual["attempt"])
                     != (command["operation_id"], command["attempt"])

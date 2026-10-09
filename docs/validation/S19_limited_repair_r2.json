@@ -1,0 +1,717 @@
+{
+  "candidate": "S19-20261009-repair-r2",
+  "status": "VERIFIED_WITH_LIMITS",
+  "acceptance": "ACCEPTANCE_PENDING",
+  "approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "authorization": "PR160 / LOG213",
+  "governance": "LOG214",
+  "baseline": {
+    "commit": "674f4fe1036615e80fca4520dacffc8182a8e4a4",
+    "tag": "step-S19-r1",
+    "status": "PUBLISHED"
+  },
+  "scope": "S18-SIM-A1_SIMULATION_ONLY",
+  "industrial_g2": "OPEN / NOT_ESTABLISHED",
+  "findings": {
+    "F1": "CLOSED_IN_TESTED_SCOPE_PLAN_HISTORY_CANDIDATE_AND_ACTUAL_RECEIPT_BINDING",
+    "F2": "CLOSED_IN_TESTED_SCOPE_STRICT_TYPES_ON_REUSE_CAPTURE_AND_PREFIX_RESTORE",
+    "F3": "CLOSED_IN_TESTED_SCOPE_SIGNED_ZERO_EXACT_JSON_AND_NATIVE_DECODE"
+  },
+  "engineering": {
+    "new_regressions": 25,
+    "project_environment": {
+      "tests": 849,
+      "seconds": 282.782,
+      "status": "PASS",
+      "installed_source_files_identical": 83
+    },
+    "isolated_wheel": {
+      "tests": 849,
+      "seconds": 222.999,
+      "status": "PASS"
+    },
+    "ruff_lock_build_dependencies": "PASS",
+    "production_generated_examples": 24,
+    "simulation_generated_inputs": "PASS",
+    "remote_ci_for_this_revision": "NOT_RUN",
+    "command": "uv run --locked --no-cache --no-editable --reinstall-package adaptive-hrc-scheduling python scripts/check.py",
+    "log_sha256": "3b33fc0398ba9f32a313701b240a790173208914daf318667476bc5a208c9e92",
+    "program_input_capture_count": 187,
+    "program_input_capture_sha256": "54e32cd216dde0a2fac50d0bba282f654424d69d4c0755c08f7f17c2abd96626"
+  },
+  "historical_plan_provenance": {
+    "scope": "SAVED_PLAN_SOURCE_AND_METRIC_RECHECK_NOT_NEW_PRODUCTION_EXECUTION_OR_FULL_CLOCK_AUDIT",
+    "groups": 17,
+    "rows": 21318,
+    "status": "PASS",
+    "original_journal_digests_match": true,
+    "all_original_change_totals_match": true,
+    "runs": {
+      "active-short": {
+        "status": "PASS",
+        "rows": 54,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 29,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 0.32796910000251955,
+        "journal_sha256": "78c2690100785863122da0c4c4622de8ee531058581158dd45933cc4ecb36c4f"
+      },
+      "b_plus_one-isaac": {
+        "status": "PASS",
+        "rows": 6156,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 3056,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 34.105909099998826,
+        "journal_sha256": "aaea59a169bb049b59a4b32ae90c79aacd3a0686ff487e05eed76431a84714f3"
+      },
+      "b_plus_one-light": {
+        "status": "PASS",
+        "rows": 6156,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 3056,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 36.51751869999862,
+        "journal_sha256": "ef3c0c310a2890495ee115b6d5accf6f582ec240461f4544daafa38a40734655"
+      },
+      "loaded_path_obstruction-isaac": {
+        "status": "PASS",
+        "rows": 235,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 116,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 0.5548436999997648,
+        "journal_sha256": "6f17acf31f61e8b725e08be5f3b361824b0b4ef41de2ab25b9d7643ecec36750"
+      },
+      "loaded_path_obstruction-light": {
+        "status": "PASS",
+        "rows": 235,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 116,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 0.2648728000021947,
+        "journal_sha256": "3d426c48d12c3b4d80111b6b54ea652f139111971510e74d0c5ba6a9914e0e14"
+      },
+      "multiple_orders_delayed_supply-isaac": {
+        "status": "PASS",
+        "rows": 4092,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 2026,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 17.21170390000043,
+        "journal_sha256": "ecc006b74b2f03e8742a8df43b70c92b109d87dc52b9e0586368c4735f46ffd4"
+      },
+      "multiple_orders_delayed_supply-light": {
+        "status": "PASS",
+        "rows": 4092,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 2026,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 17.450495899996895,
+        "journal_sha256": "50ccfb04ee1f6e45fffc574a20e79c79597c9b7ccde4d58c730cb5d6f31b1442"
+      },
+      "overloaded_budget-isaac": {
+        "status": "PASS",
+        "rows": 8,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 0,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 0.11234460000196123,
+        "journal_sha256": "159b898971694f25192edde0979a81a32f347b69e69ab31e47d74f86cbcd439e"
+      },
+      "overloaded_budget-light": {
+        "status": "PASS",
+        "rows": 8,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 0,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 0.008975900000223191,
+        "journal_sha256": "d06a13db2297f8204818e76b92f9bd49d6249226170642e199e400b56adb0c6c"
+      },
+      "short_parity_probe-isaac": {
+        "status": "PASS",
+        "rows": 7,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 2,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 0.06230090000099153,
+        "journal_sha256": "5c91e8f0d8ead7277a54b20befbb3c00c1f938df853dfd9515d12eeafc8859cf"
+      },
+      "short_parity_probe-light": {
+        "status": "PASS",
+        "rows": 7,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 2,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 0.052068199998757336,
+        "journal_sha256": "a51b49bbb41bad1e3532cec2353cf8c493d31eab9fed4a6714ec47e84945ee5e"
+      },
+      "stability": {
+        "status": "PASS",
+        "rows": 56,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 201,
+          "added": 30,
+          "removed": 1,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0.0
+        },
+        "seconds": 0.5710655000002589,
+        "journal_sha256": "e0754f34cbc66dc2f3de7bcc4f4b978dab9c3ea8bae17dbee5c62ab200ed3719"
+      },
+      "stability-failure": {
+        "status": "PASS",
+        "rows": 56,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 182,
+          "added": 35,
+          "removed": 8,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 1,
+          "total_start_shift_h": 0.14280182222222493
+        },
+        "seconds": 0.5320055000011052,
+        "journal_sha256": "d6a7aaba8b041c152a6484d50947447a38233f9904952b993f9dca374ea183b9"
+      },
+      "three_product_initial_probe_r3-isaac": {
+        "status": "PASS",
+        "rows": 70,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 34,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 0.26996299999882467,
+        "journal_sha256": "900ced3d514b02b9220de70f79da7072c0f416a6b98b4585bdc640cdd87b4682"
+      },
+      "three_product_initial_probe_r3-light": {
+        "status": "PASS",
+        "rows": 70,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 34,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 0.2745552999986103,
+        "journal_sha256": "cba54d61789ae6653e25ec822fe422fe89e15e3016fd77f8b7af1654f5b32dac"
+      },
+      "zero_budget-isaac": {
+        "status": "PASS",
+        "rows": 8,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 0,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 0.010261499999614898,
+        "journal_sha256": "1b9c5dffa84be93f94038cd7f05db3d346d4894b0dec843379718f8c04cfa0a8"
+      },
+      "zero_budget-light": {
+        "status": "PASS",
+        "rows": 8,
+        "errors": [],
+        "error_count": 0,
+        "change_totals": {
+          "comparable": 0,
+          "added": 0,
+          "removed": 0,
+          "order_inversions": 0,
+          "mode_changes": 0,
+          "crew_changes": 0,
+          "start_changes": 0,
+          "total_start_shift_h": 0
+        },
+        "seconds": 0.008002499998838175,
+        "journal_sha256": "1be9a23037fe4aaed56819b229950f6e10fa939d9bee4b863afe4a85127720d4"
+      }
+    }
+  },
+  "original_failure_diagnostic_reaudit": {
+    "base": {
+      "status": "PASS",
+      "rows": 56,
+      "feedback": 113,
+      "coverage": {
+        "initial_event_count": 636,
+        "driver_decisions": 56,
+        "matched_driver_decisions": 56,
+        "standalone_pause_rows": 0
+      },
+      "change_totals": {
+        "comparable": 182,
+        "added": 35,
+        "removed": 8,
+        "order_inversions": 0,
+        "mode_changes": 0,
+        "crew_changes": 0,
+        "start_changes": 1,
+        "total_start_shift_h": 0.14280182222222493
+      },
+      "errors": [],
+      "error_count": 0,
+      "scope": "INDEPENDENT_SAVED_ANCHORS_AND_METRIC_RECOMPUTATION_NOT_A_CLOCK_CERTIFICATION"
+    },
+    "commitments": {
+      "status": "PASS",
+      "errors": [],
+      "totals": {
+        "future_promises": 19,
+        "protected_comparisons": 110,
+        "actual_starts": 28,
+        "delayed_starts": 3,
+        "total_delay_h": 0.75,
+        "max_delay_h": 0.25
+      }
+    }
+  },
+  "original_full_candidate_replay": {
+    "status": "PASS",
+    "candidates": 6,
+    "cached_started": 25,
+    "scope": "OFFLINE_FULL_REPLAY_NOT_ONLINE_BUDGET_MEASUREMENT",
+    "artifact_sha256": "9184147b5cb99ab1aa70043268769c1bc1ec6d9abb4a63d88c1f2d7bfc561f18"
+  },
+  "negative_controls": {
+    "erased_delay_rejected": true,
+    "erased_comparison_domain_rejected": true,
+    "cached_invalid_types_equal_full_audit": true,
+    "signed_zero": [
+      "0.0",
+      "-0.0",
+      "0.0",
+      "-0.0"
+    ],
+    "artifact_sha256": "43bbfd1a2488e53f14dfd6ba649ce56cc77a042b654b0a27b69c176703b36c4c"
+  },
+  "fresh_runs": {
+    "active-short": {
+      "status": "PASS",
+      "start_h": 24.477448888888887,
+      "end_h": 26.477448888888887,
+      "termination": "WINDOW_CENSORED",
+      "execution_audit": "PASS",
+      "causal_audit": "PASS",
+      "candidate_count": 3,
+      "cached_started": 3,
+      "cycles": 54,
+      "max_cycle_s": 1.083448600002157,
+      "cycle_overruns": 0,
+      "search_overruns": 1,
+      "limits": {
+        "decision_seconds": 5.0,
+        "search_seconds": 0.05,
+        "period_h": 0.25,
+        "horizon_h": 0.5,
+        "iterations": 1,
+        "repair_trials": 1,
+        "max_search_calls": 4,
+        "future_commitment_h": 0.0
+      },
+      "online_audits": {
+        "base": {
+          "status": "PASS",
+          "rows": 54,
+          "feedback": 110,
+          "coverage": {
+            "initial_event_count": 636,
+            "driver_decisions": 54,
+            "matched_driver_decisions": 54,
+            "standalone_pause_rows": 0
+          },
+          "change_totals": {
+            "comparable": 0,
+            "added": 29,
+            "removed": 0,
+            "order_inversions": 0,
+            "mode_changes": 0,
+            "crew_changes": 0,
+            "start_changes": 0,
+            "total_start_shift_h": 0
+          },
+          "errors": [],
+          "error_count": 0,
+          "scope": "INDEPENDENT_SAVED_ANCHORS_AND_METRIC_RECOMPUTATION_NOT_A_CLOCK_CERTIFICATION"
+        },
+        "commitments": {
+          "status": "PASS",
+          "errors": [],
+          "totals": {
+            "future_promises": 0,
+            "protected_comparisons": 0,
+            "actual_starts": 29,
+            "delayed_starts": 0,
+            "total_delay_h": 0.0,
+            "max_delay_h": 0.0
+          }
+        }
+      },
+      "feedback_to_decision_end": {
+        "count": 110,
+        "total_s": 7.097619999978633,
+        "max_s": 0.13347679999787943,
+        "p50_s": 0.08730020000075456,
+        "p95_s": 0.1300693000011961
+      },
+      "source_file_count": 104,
+      "files": {
+        "candidate-0.json": "80a8e1776f18ca1a079066b5f314c6c856adf32e1fe25e02c92d9a9aa5681056",
+        "candidate-1.json": "6e984c81b6216e9c8638b5fb9ed069f7d35dcc1abe615557d475bcceb751e858",
+        "candidate-2.json": "aebbba9de7c76b2082968bdf61e48cd940565aafcc2d2aaa065344d28a0e88a4",
+        "configuration.json": "0adff9a6c5df570bfd116c10c891bbaba97e584f3c2b8c75ef42308e5540fa42",
+        "decisions.jsonl.gz": "db931c2440ee5180b7a55b9732a4c6f9c5e71aef9b01574e1da5a0d8fdcc8413",
+        "events.jsonl.gz": "99ec8f1a8ca43e579df5e56c72e0d1f984c4158273cd3ef6b3967449dc32bffb",
+        "online-candidates.json": "acd91429226643da36622293f4860bc4a86419c87a0f3d056b3a663cdf365685",
+        "online-feedback.json": "5c512f796e9c5c5e4cc4a0ba23268583bbe3a8fe86fb3bafe330822ba80fdfb5",
+        "online-journal.json": "5b09914c7546524efb8d039dceb026dec06a20b6d4c89c14845c479e5b0f2e76",
+        "online-timing.json": "b038b9094a50c974469ddd87e66c21baf4838bd00375c775818b1c2c94685fdb",
+        "predeclared-online-limits.json": "777d265741b90ea0ed7accab9120c3c31f12e3b201d4e5c5df677809c11d3e3b",
+        "report.json": "a19dc334489f5160af0e67976cc262d6cfe55962849a108505bff76317fd0f3d",
+        "state.json": "4279bb4ff7d99207ee4228a5a070a428de0df9c4548f73af6cd0e97739fd20ba"
+      },
+      "scope": "SHORT_BUDGET_EXECUTED_PREFIX_NOT_FULL_PRODUCT_EFFECT"
+    },
+    "stability-failure": {
+      "status": "PASS",
+      "start_h": 24.477448888888887,
+      "end_h": 26.477448888888887,
+      "termination": "WINDOW_CENSORED",
+      "execution_audit": "PASS",
+      "causal_audit": "PASS",
+      "candidate_count": 6,
+      "cached_started": 25,
+      "cycles": 56,
+      "max_cycle_s": 1.6166074000029766,
+      "cycle_overruns": 0,
+      "search_overruns": 0,
+      "limits": {
+        "decision_seconds": 120.0,
+        "search_seconds": 110.0,
+        "period_h": 0.25,
+        "horizon_h": 0.5,
+        "iterations": 1,
+        "repair_trials": 1,
+        "max_search_calls": 12,
+        "future_commitment_h": 0.25
+      },
+      "online_audits": {
+        "base": {
+          "status": "PASS",
+          "rows": 56,
+          "feedback": 113,
+          "coverage": {
+            "initial_event_count": 636,
+            "driver_decisions": 56,
+            "matched_driver_decisions": 56,
+            "standalone_pause_rows": 0
+          },
+          "change_totals": {
+            "comparable": 182,
+            "added": 35,
+            "removed": 8,
+            "order_inversions": 0,
+            "mode_changes": 0,
+            "crew_changes": 0,
+            "start_changes": 1,
+            "total_start_shift_h": 0.14280182222222493
+          },
+          "errors": [],
+          "error_count": 0,
+          "scope": "INDEPENDENT_SAVED_ANCHORS_AND_METRIC_RECOMPUTATION_NOT_A_CLOCK_CERTIFICATION"
+        },
+        "commitments": {
+          "status": "PASS",
+          "errors": [],
+          "totals": {
+            "future_promises": 19,
+            "protected_comparisons": 110,
+            "actual_starts": 28,
+            "delayed_starts": 3,
+            "total_delay_h": 0.75,
+            "max_delay_h": 0.25
+          }
+        }
+      },
+      "feedback_to_decision_end": {
+        "count": 113,
+        "total_s": 13.490468200008763,
+        "max_s": 0.6713450999995985,
+        "p50_s": 0.09265859999868553,
+        "p95_s": 0.37370199999713805
+      },
+      "source_file_count": 104,
+      "files": {
+        "candidate-0.json": "c2979b24d8f78c8c3bfb2168e5c7f8dcb2d4ac395762297ff12bb043a6880a14",
+        "candidate-1.json": "ed443ee6e357b42a890739ede1415fc5e634053dbc36c76bdd140ca41c1f952b",
+        "candidate-2.json": "032fe598e3e18e55a342c6c572fce7aa8bd3e0d21d27df41153a79c758bb6754",
+        "candidate-3.json": "1824251a11ad6d4265464c70a5b682f2f473e5a54e54000b2552ac4569eaa985",
+        "candidate-4.json": "0d9f5a32e46578d76c9aacbab95e240e6ef5aa36bc668a1c1b5fe87612b605bf",
+        "candidate-5.json": "e034dcdba7b53a88120fd6913910083d16ba1dbd3579f40d0e50934892c19b54",
+        "configuration.json": "0adff9a6c5df570bfd116c10c891bbaba97e584f3c2b8c75ef42308e5540fa42",
+        "decisions.jsonl.gz": "1ff069fc77ed052c275ea4127c8b97a36487b930e4a4a067fc3fd95fc40c22b1",
+        "events.jsonl.gz": "680a579fa2fda168574539e48b0f0a60016aeca602562f134c1a0e57ba4b1cb2",
+        "online-candidates.json": "361f4f38960ffe036f05ff789fa99dfa013c0461520e1864b93ecaa708f2187e",
+        "online-feedback.json": "bddf8b42d7e06a82a4cdc9edbc97f63b6d501411ba39fd032e534d8c8c32c1dd",
+        "online-journal.json": "b60bcf450e8a0c36d5e4180735f89d2842ab8499113c0ac7170813c7f09108e1",
+        "online-timing.json": "9eb10f77d6a2097bb3a73c3e329f0555dbe1f3eeba1ac2cec7cc9bf1b315240e",
+        "predeclared-online-limits.json": "9c643380593613c5e1671a862adfc0a2e56eeb99c71327afff660abad2502b1e",
+        "report.json": "e0c9823914b62ab5b0d569f9463f36437304b3eec3ce1ad3450cda5c4c5d62a6",
+        "state.json": "90baff60f3b20678749514fc0747e27db6b49061b188510dcb416ecae9219885"
+      },
+      "scope": "DIAGNOSTIC_ALLOWANCE_NOT_SHORT_BUDGET_OR_FULL_PRODUCT_EFFECT"
+    }
+  },
+  "fresh_trace_parity": {
+    "active-short": {
+      "events": {
+        "decompressed_sha256": "0c4730b0752d629e41c2dc9f212d650d4db184e3a333ed7467920bca106d8288",
+        "original_sha256": "0c4730b0752d629e41c2dc9f212d650d4db184e3a333ed7467920bca106d8288",
+        "identical": true
+      },
+      "decisions": {
+        "decompressed_sha256": "71239867c763a97235e94d88ca95e49765095938512b35784af8fe830f18145f",
+        "original_sha256": "71239867c763a97235e94d88ca95e49765095938512b35784af8fe830f18145f",
+        "identical": true
+      }
+    },
+    "stability-failure": {
+      "events": {
+        "decompressed_sha256": "97e011aba8e3389daa5bd6ca4303e3f92514055ed228f2d6c80f7635664ef983",
+        "original_sha256": "97e011aba8e3389daa5bd6ca4303e3f92514055ed228f2d6c80f7635664ef983",
+        "identical": true
+      },
+      "decisions": {
+        "decompressed_sha256": "cd9d3fd4512d5eab80df5b551bbacb0acf7ace1681e001168e9b679d67f4b072",
+        "original_sha256": "cd9d3fd4512d5eab80df5b551bbacb0acf7ace1681e001168e9b679d67f4b072",
+        "identical": true
+      }
+    }
+  },
+  "readme": {
+    "rewrite": "PROJECT_FRONT_PAGE_WITH_REAL_SCENE_QUICKSTART_ARCHITECTURE_VALIDATION_AND_NAVIGATION",
+    "link_check": {
+      "readme_links": 49,
+      "local_links": 37,
+      "missing": [],
+      "local_anchors": true,
+      "images": [
+        "docs/sim/images/r3/target_overview.png"
+      ],
+      "old_readme_bytes": 39283,
+      "new_readme_bytes": 12264
+    },
+    "cpu_example": "PASS",
+    "example_termination": "DECLARED_CHECKPOINT",
+    "example_audit": "PASS",
+    "example_report_sha256": "f7ede5ed1317d754ade6d2178cec52abfbd9a0789024614b9d02893a399b7207",
+    "old_readme_preserved_in": "PUBLISHED_BASELINE_AND_ORIGINAL_PACKETS_AND_LOCAL_PRE_REPAIR_COPY"
+  },
+  "preservation": {
+    "head": "674f4fe1036615e80fca4520dacffc8182a8e4a4",
+    "baseline_same": true,
+    "tracked": 563,
+    "changed_since_repair_start": [
+      "AGENTS.md",
+      "PROGRESS_LOG.md",
+      "PROMPT_LEDGER.md",
+      "README.md",
+      "docs/algorithms/online_policy.md",
+      "docs/steps/S19.md",
+      "scripts/audit_online.py",
+      "scripts/audit_online_continuation.py",
+      "src/adaptive_hrc_scheduling/contracts/codec.py",
+      "src/adaptive_hrc_scheduling/control/audit_cache.py"
+    ],
+    "unexpected_changes": [],
+    "packets": [
+      {
+        "path": ".local/s19-work-20261008/S19-20261008-online-r1-review.zip",
+        "sha256": "61133bfc3f4bdeb85b90e7efc33ae03d72a320e6e968ce9769a0d473bb67860e",
+        "preserved": true
+      },
+      {
+        "path": ".local/s19-2-work-20261009/S19-20261009-online-r2-review.zip",
+        "sha256": "322fb352080b807a3e05fd24749f640f4a7b175af77398194bdf33588c0ef96d",
+        "preserved": true
+      }
+    ],
+    "index_empty": true
+  },
+  "preserved_preliminary_attempts": [
+    {
+      "kind": "OFFLINE_AUDIT_MEMORY_PRESSURE_STOPPED",
+      "description": "Initial whole-state collection reached about 8.8 GB; retained partial log. Replaced with sequential state reading and completed plan-source review separately."
+    },
+    {
+      "kind": "PRE_FINAL_CHECK_INTERRUPTED",
+      "description": "Stopped to add provenance gate coverage before final checks; not counted as passing."
+    },
+    {
+      "kind": "STALE_PROJECT_INSTALLATION_FAILED",
+      "description": "24 installed-source mismatches; module imports failed. Forced same-version no-cache package reinstall and verified all 83 package files before two successful 849-test rounds."
+    }
+  ],
+  "limits": [
+    "No new complete production chain or Kit run; original full two-order/B+1 execution and Kit claims retain their original captured source.",
+    "New CPU windows end after two simulated hours and are WINDOW_CENSORED, not completed orders.",
+    "50ms search is cooperative; one short-budget search overrun remains. No hard-real-time or method-advantage claim.",
+    "Historical provenance review is not a new full event legality, clock or industrial certification.",
+    "Industrial G2 and all original assumptions/failures remain; no later steps started."
+  ],
+  "post_validation_documents": "Final README status, review and governance text completed after code validation; code, tests and run inputs remain capture-identical.",
+  "proposed_files": [
+    "AGENTS.md",
+    "PROGRESS_LOG.md",
+    "PROMPT_LEDGER.md",
+    "README.md",
+    "docs/algorithms/online_policy.md",
+    "docs/steps/S19.md",
+    "docs/validation/S19_limited_repair_r2.json",
+    "docs/validation/S19_limited_repair_r2.md",
+    "docs/validation/S19_post_release_audit_r1.json",
+    "docs/validation/S19_post_release_audit_r1.md",
+    "scripts/audit_online.py",
+    "scripts/audit_online_continuation.py",
+    "scripts/audit_online_provenance.py",
+    "src/adaptive_hrc_scheduling/contracts/codec.py",
+    "src/adaptive_hrc_scheduling/control/audit_cache.py",
+    "tests/test_online_repair.py"
+  ],
+  "proposed_publication": {
+    "repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling",
+    "branch": "main",
+    "new_annotated_tag": "step-S19-r2",
+    "operations": "One reviewed main commit; create new annotated tag; atomic push main and tag only after exact snapshot approval. No force push or historical tag movement.",
+    "approval": "PENDING",
+    "files": 16
+  }
+}

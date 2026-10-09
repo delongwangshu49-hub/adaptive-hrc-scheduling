@@ -1,6 +1,27 @@
 """Private append-only audit checkpoints. Never substitute executor state for ledgers."""
 
+from dataclasses import fields, is_dataclass
+
 from adaptive_hrc_scheduling.contracts.codec import _checked
+
+
+def exact_equal(left, right):
+    """Type-sensitive comparison; private copies protect mutable record ownership."""
+    if type(left) is not type(right):
+        return False
+    if left is right:
+        return True
+    if is_dataclass(left):
+        return all(exact_equal(getattr(left, f.name), getattr(right, f.name)) for f in fields(left))
+    if type(left) in (tuple, list):
+        return len(left) == len(right) and all(exact_equal(a, b) for a, b in zip(left, right))
+    if type(left) is dict:
+        return len(left) == len(right) and all(
+            type(k) is str and k in right and exact_equal(v, right[k]) for k, v in left.items()
+        )
+    if type(left) is float:
+        return left.hex() == right.hex()
+    return left == right
 
 
 def clone(value):
@@ -27,7 +48,9 @@ class ExecutionCheckpoint:
     def matches(self, config, snapshot):
         return (
             self._config is config
-            and self._identity == (snapshot.run_id, snapshot.epoch, snapshot.config_sha256)
+            and exact_equal(
+                self._identity, (snapshot.run_id, snapshot.epoch, snapshot.config_sha256)
+            )
             and self._ledger is not None
             and len(snapshot.events) >= len(self._events)
             and all(a is b for a, b in zip(self._events, snapshot.events))
@@ -39,8 +62,8 @@ class ExecutionCheckpoint:
         if (
             self._certified is not None
             and self.matches(config, snapshot)
-            and snapshot == self._certified
-            and (records is None or tuple(records) == self._certified_rows)
+            and exact_equal(snapshot, self._certified)
+            and (records is None or exact_equal(tuple(records), self._certified_rows))
         ):
             return self._report
         return None
@@ -66,7 +89,7 @@ class ExecutionCheckpoint:
         saved = self._certified_rows or ()
         count = 0
         for old, new in zip(saved, records):
-            if old != new:
+            if not exact_equal(old, new):
                 break
             count += 1
         return saved[:count] + tuple(clone(r) for r in records[count:])
@@ -122,14 +145,14 @@ class DecisionCheckpoint(ExecutionCheckpoint):
         if (
             ledger is not None
             and len(records) >= len(self._records)
-            and tuple(records[: len(self._records)]) == self._records
+            and exact_equal(tuple(records[: len(self._records)]), self._records)
         ):
             return len(self._records), ledger
         return 0, None
 
     def save_rows(self, config, snapshot, records, ledger):
         self.save(config, snapshot, ledger)
-        if self._config is config and self._events == snapshot.events:
+        if self._config is config and exact_equal(self._events, snapshot.events):
             # Terminal non-dispatch observation is replaced by the next proposal.
             self._records = self._capture_rows(records[:-1])
 

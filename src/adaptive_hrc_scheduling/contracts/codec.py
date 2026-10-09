@@ -46,8 +46,13 @@ def canonical_json(value, *, normalize_numbers=False):
     return _canonical_json(value, normalize_numbers)[0]
 
 
+def _negative_zero(value):
+    # Python numeric equality merges signed zeros; exact wire caches must not.
+    return type(value) is float and value == 0 and math.copysign(1, value) < 0
+
+
 @lru_cache(maxsize=16384, typed=True)
-def _json_atom(value):
+def _json_atom(value, negative_zero=False):
     return json.dumps(value, separators=(",", ":"), allow_nan=False)
 
 
@@ -60,7 +65,7 @@ def _canonical_json(value, normalize):
     if type(value) in (str, int, float, bool, type(None)):
         if normalize and type(value) is float and value.is_integer():
             value = int(value)
-        return _json_atom(value), True
+        return _json_atom(value, _negative_zero(value)), True
     key = (id(value), normalize)
     previous = _json_records.get(key)
     if previous is not None and previous[0] is value:
@@ -89,7 +94,7 @@ def _canonical_json(value, normalize):
     else:
         if normalize and type(value) is float and value.is_integer():
             value = int(value)
-        return _json_atom(value), type(value) in (
+        return _json_atom(value, _negative_zero(value)), type(value) in (
             str,
             int,
             float,
@@ -116,7 +121,7 @@ def checked(record):
 def _checked(kind, value, path):
     if type(value) in (str, int, float, bool, type(None)):
         try:
-            return _checked_atom(kind, value, type(value)), True
+            return _checked_atom(kind, value, type(value), _negative_zero(value)), True
         except ContractError:
             # Failed checks retain the caller's full diagnostic field path.
             return decode(kind, value, path), True
@@ -167,7 +172,7 @@ def _checked(kind, value, path):
 
 
 @lru_cache(maxsize=16384)
-def _checked_atom(kind, value, actual_type):
+def _checked_atom(kind, value, actual_type, negative_zero=False):
     return decode(kind, value)
 
 
