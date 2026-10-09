@@ -1,0 +1,10 @@
+{
+  "decision_seconds": 5.0,
+  "search_seconds": 0.05,
+  "period_h": 0.25,
+  "horizon_h": 0.5,
+  "iterations": 1,
+  "repair_trials": 1,
+  "max_search_calls": 4,
+  "future_commitment_h": 0.0
+}

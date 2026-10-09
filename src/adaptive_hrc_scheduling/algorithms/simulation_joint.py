@@ -29,6 +29,7 @@ class Genes:
     order: tuple[tuple[str, int], ...]
     slots: tuple[tuple[str, float], ...]
     rests: tuple[str, ...] = ()
+    initial_action_only: bool = False
 
 
 @dataclass(frozen=True)
@@ -75,7 +76,14 @@ class SimulationJointProblem:
         fixed_mode=None,
         max_steps=4096,
         rejected=(),
+        checkpoint=None,
+        committed=(),
+        execution_checkpoint=None,
+        decision_checkpoint=None,
+        initial_action_only=False,
     ):
+        self.checkpoint = checkpoint or (lambda: None)
+        self.checkpoint()
         validate(config)
         require(config.research is not None, "SIMULATION_JOINT_ADMISSION_REQUIRED")
         validate(observation, config=config)
@@ -90,9 +98,20 @@ class SimulationJointProblem:
             end_h > observation.sampled_h and fixed_mode in (None, "H", "HR-seq"),
             "COMMON_WINDOW_OR_MODE",
         )
-        require(check_run(config, prefix).status == "PASS", "INVALID_EXECUTION_PREFIX")
+        require(
+            check_run(config, prefix, checkpoint=execution_checkpoint).status == "PASS",
+            "INVALID_EXECUTION_PREFIX",
+        )
+        self.execution_checkpoint = (
+            execution_checkpoint.fork() if execution_checkpoint is not None else None
+        )
+        self.checkpoint()
         self.config, self.observation, self.prefix = config, observation, prefix
-        supplied = deepcopy(tuple(decisions))
+        supplied = (
+            decision_checkpoint._capture_rows(tuple(decisions))
+            if decision_checkpoint is not None
+            else deepcopy(tuple(decisions))
+        )
         terminal_row = record(terminal(config, observation))
         already_closed = bool(
             supplied
@@ -101,11 +120,19 @@ class SimulationJointProblem:
             and not supplied[-1]["plan"]["commands"]
         )
         closed = supplied if already_closed else supplied + (terminal_row,)
-        require(check_decisions(config, prefix, closed).status == "PASS", "INVALID_CAUSAL_PREFIX")
+        require(
+            check_decisions(config, prefix, closed, checkpoint=decision_checkpoint).status
+            == "PASS",
+            "INVALID_CAUSAL_PREFIX",
+        )
+        self.decision_checkpoint = (
+            decision_checkpoint.fork() if decision_checkpoint is not None else None
+        )
+        self.checkpoint()
         # Preserve the source journal separately. A non-dispatch terminal WAIT
         # closes an archived checkpoint; the extended journal uses the next
         # proposal at that same observation instead of duplicating its prefix.
-        self.decisions = supplied[:-1] if already_closed else supplied
+        self._decisions = supplied[:-1] if already_closed else supplied
         self.end_h, self.fixed_mode, self.max_steps = end_h, fixed_mode, max_steps
         self.anchor = digest(observation)
         self.scope = tuple(s.activity_id for s in config.research.scope_bindings)
@@ -121,10 +148,107 @@ class SimulationJointProblem:
         )
         self.crew_keys = (*self.scope, *(key for key, _, _, _ in self.crew_specs))
         self.rejected = tuple(rejected)
+        self.committed = tuple(committed)
         self.validation_seconds = 0.0
         self.validation_calls = 0
         self.search_iterations = 0
         self.search_trials = 0
+        self._plan_reference = {}
+        require(type(initial_action_only) is bool, "INITIAL_POLICY_TYPE")
+        self.initial_action_only = initial_action_only
+
+    @property
+    def decisions(self):
+        # Exported journals cannot mutate the private certified history.
+        return deepcopy(self._decisions)
+
+    def input_for(self, w, genes, index, budget_ms):
+        # The conservative seed may choose its first action, then deliberately
+        # hold all uncommitted new work. Actual holds and promises still pass
+        # through the regular recovery/commitment choice and physical replay.
+        if (
+            genes.initial_action_only
+            and index > 0
+            and not self.committed
+            and not any(r.status == "EXCEPTION" for r in w.s.running)
+        ):
+            return m.PlanningInput(
+                self.config.schema_version, self.config.id, w.observe(), (), budget_ms
+            )
+        return planning_input(self.config, w.observe(), budget_ms)
+
+    def planned(self, w, value, genes, rejected, rests, index):
+        key = (value.observation, value.operations, genes, tuple(sorted(rejected)), tuple(rests))
+        prior = self._plan_reference.get(index)
+        if prior is not None and prior[0] == key:
+            return prior[1]
+        result = self._planned(w, value, genes, rejected, rests, index)
+        # Only a completed deterministic choice is reusable. A time-limited
+        # planner failure cannot certify a future reference choice. Physical
+        # replay and both independent audits still run for every candidate.
+        if result.status != "NO_PLAN_FOUND":
+            self._plan_reference[index] = (key, result)
+        return result
+
+    def _planned(self, w, value, genes, rejected, rests, index):
+        held = {r.command.id for r in w.s.running if r.status == "EXCEPTION"}
+        if held:
+            recovery = choose(
+                self.config,
+                value,
+                sequence=index,
+                excluded_operations=rejected,
+                mode_choices=genes.modes,
+                crew_choices=genes.crews,
+                order_bias=genes.order,
+                start_slots=genes.slots,
+                rest_people=tuple(rests),
+            )
+            if recovery.commands and recovery.commands[0].resume_of in held:
+                return recovery
+        started = set(w.s.completed) | {r.command.operation_id for r in w.s.running}
+        outstanding = [(c, reason) for c, reason in self.committed if c.operation_id not in started]
+        if outstanding:
+            head, reason = outstanding[0]
+            obs = value.observation
+            if head.issued_sim_h > obs.sampled_h + 1e-10:
+                return m.Plan(
+                    self.config.schema_version,
+                    self.config.id,
+                    obs.id,
+                    (),
+                    "WAIT",
+                    "S19_COMMITTED_FUTURE_START",
+                    self.config.research,
+                )
+            command = replace(
+                head,
+                id=f"LOCKED-{w.s.revision}-{index}-{head.operation_id}",
+                expected_revision=w.s.revision,
+                issued_sim_h=obs.sampled_h,
+            )
+            return m.Plan(
+                self.config.schema_version,
+                self.config.id,
+                obs.id,
+                (command,),
+                "CANDIDATE",
+                reason,
+                self.config.research,
+            )
+        if genes.initial_action_only and index > 0:
+            return replace(terminal(self.config, value.observation).plan, reason="S19_SEED_HOLD")
+        return choose(
+            self.config,
+            value,
+            sequence=index,
+            excluded_operations=rejected,
+            mode_choices=genes.modes,
+            crew_choices=genes.crews,
+            order_bias=genes.order,
+            start_slots=genes.slots,
+            rest_people=tuple(rests),
+        )
 
     def world(self):
         w = ProductionBackend(self.config, run_id=self.prefix.run_id, epoch=self.prefix.epoch)
@@ -239,40 +363,39 @@ class SimulationJointProblem:
         rests = list(genes.rests)
         rejected = set(self.rejected)
         while w.s.time_h < self.end_h - 1e-10 and len(steps) < self.max_steps:
+            self.checkpoint()
             if perf_counter() >= deadline:
                 return Repair(None, reasons=("WALL_BUDGET",), termination="WALL_BUDGET")
-            obs = w.observe()
-            value = planning_input(
-                self.config, obs, min(10000, max(1, (deadline - perf_counter()) * 1000))
+            value = self.input_for(
+                w, genes, len(steps), min(10000, max(1, (deadline - perf_counter()) * 1000))
             )
             value = replace(
                 value, operations=tuple(o for o in value.operations if o.id not in rejected)
             )
-            plan = choose(
-                self.config,
-                value,
-                sequence=len(steps),
-                excluded_operations=rejected,
-                mode_choices=genes.modes,
-                crew_choices=genes.crews,
-                order_bias=genes.order,
-                start_slots=genes.slots,
-                rest_people=tuple(rests),
-            )
+            plan = self.planned(w, value, genes, rejected, rests, len(steps))
             if plan.commands:
                 c = plan.commands[0]
                 receipt = w.dispatch(c)
                 if receipt.kind != "STARTED":
                     return Repair(None, reasons=("NOMINAL_DISPATCH:" + receipt.reason,))
-                if plan.reason == "PROPOSED_REST":
+                if plan.reason == "PROPOSED_REST" and c.service.operation.entity_id in rests:
                     rests.remove(c.service.operation.entity_id)
                 steps.append(Step(plan, None))
                 continue
             if plan.status == "NO_PLAN_FOUND":
                 return Repair(None, reasons=(plan.reason,))
+            if plan.reason == "S19_SEED_HOLD":
+                # advance() still integrates every completion and calendar
+                # boundary. No new dispatch is proposed inside this interval.
+                steps.append(Step(plan, self.end_h))
+                w.advance(self.end_h)
+                continue
             ticks = [self.end_h]
             ticks += [r.earliest_end_h for r in w.s.running if r.status == "STARTED"]
             ticks += [t for _, t in genes.slots if t > w.s.time_h + 1e-10]
+            ticks += [
+                c.issued_sim_h for c, _ in self.committed if c.issued_sim_h > w.s.time_h + 1e-10
+            ]
             ticks += [calendar_state(p, w.s.time_h)[1] for p in self.config.people]
             ticks += [
                 t.time_h + o.wait_h
@@ -291,7 +414,9 @@ class SimulationJointProblem:
 
     def initial(self, deadline):
         self.search_trials += 1
-        return self.rollout(self.genes(), deadline)
+        return self.rollout(
+            replace(self.genes(), initial_action_only=self.initial_action_only), deadline
+        )
 
     def mutable(self, candidate):
         return ("MODE", "CREW", "ORDER", "START_SLOT", "REST")
@@ -303,6 +428,7 @@ class SimulationJointProblem:
         reasons = set()
         attempted = 0
         for n in range(trials):
+            self.checkpoint()
             if perf_counter() >= deadline:
                 return Repair(None, attempted, tuple(sorted(reasons)), "WALL_BUDGET")
             attempted += 1
@@ -315,7 +441,9 @@ class SimulationJointProblem:
                 MODE="modes", CREW="crews", ORDER="order", START_SLOT="slots", REST="rests"
             )
             genes = replace(
-                candidate.genes, **{fields[k]: getattr(proposed, fields[k]) for k in removed}
+                candidate.genes,
+                initial_action_only=False,
+                **{fields[k]: getattr(proposed, fields[k]) for k in removed},
             )
             # A changed mode requires its own eligible role pool.
             if "MODE" in removed and "CREW" not in removed:
@@ -347,6 +475,7 @@ class SimulationJointProblem:
         return Repair(None, attempted, tuple(sorted(reasons)), "REPAIR_BUDGET")
 
     def preview(self, candidate):
+        require(type(candidate.genes.initial_action_only) is bool, "CANDIDATE_INITIAL_POLICY")
         require(
             candidate.scope == "COMPLETE_NOMINAL_WINDOW_NO_UNKNOWN_EXTERNAL_FACTS",
             "CANDIDATE_SCOPE",
@@ -433,14 +562,22 @@ class SimulationJointProblem:
             candidate.anchor_sha256 == self.anchor and candidate.end_h == self.end_h,
             "CANDIDATE_WINDOW_OR_ANCHOR",
         )
-        w, rows = self.world(), list(self.decisions)
+        w, rows = self.world(), list(self._decisions)
         slots = dict(candidate.genes.slots)
         rests, rejected = list(candidate.genes.rests), set(self.rejected)
         for index, step in enumerate(candidate.steps):
+            self.checkpoint()
             obs = w.observe()
             require(step.plan.observation_id == obs.id, "SCHEDULE_OBSERVATION")
             require(len(step.plan.commands) <= 1, "SCHEDULE_COMMAND_COUNT")
             for command in step.plan.commands:
+                if any(
+                    (command.operation_id, command.attempt) == (c.operation_id, c.attempt)
+                    for c, _ in self.committed
+                ):
+                    # Bound to the exact promise by planned() equality below;
+                    # mutable genes govern only the remaining uncommitted work.
+                    continue
                 # Independent declaration/trace checks, before dispatch or planner replay.
                 if command.activity_id in slots:
                     require(
@@ -474,23 +611,16 @@ class SimulationJointProblem:
             # consumable optional request, not every protective rest in the trace.
             # Replay these choices at each reconstructed observation, while S10
             # and the causal audit below independently check execution legality.
-            value = planning_input(self.config, obs, 10000)
+            value = self.input_for(w, candidate.genes, index, 10000)
             value = replace(
                 value, operations=tuple(o for o in value.operations if o.id not in rejected)
             )
-            expected = choose(
-                self.config,
-                value,
-                sequence=index,
-                excluded_operations=rejected,
-                mode_choices=candidate.genes.modes,
-                crew_choices=candidate.genes.crews,
-                order_bias=candidate.genes.order,
-                start_slots=candidate.genes.slots,
-                rest_people=tuple(rests),
-            )
+            expected = self.planned(w, value, candidate.genes, rejected, rests, index)
             require(expected == step.plan, "CANDIDATE_DISPATCH_METADATA")
-            if step.plan.reason == "PROPOSED_REST":
+            if (
+                step.plan.reason == "PROPOSED_REST"
+                and step.plan.commands[0].service.operation.entity_id in rests
+            ):
                 rests.remove(step.plan.commands[0].service.operation.entity_id)
             receipt = w.dispatch(step.plan.commands[0]) if step.plan.commands else None
             require(receipt is None or receipt.kind == "STARTED", "SCHEDULE_DISPATCH")
@@ -520,9 +650,25 @@ class SimulationJointProblem:
         self.validation_calls += 1
         try:
             snapshot, rows = self.preview(candidate)
-            audit = check_run(self.config, snapshot)
+            self.checkpoint()
+            audit = check_run(
+                self.config,
+                snapshot,
+                checkpoint=self.execution_checkpoint.fork()
+                if self.execution_checkpoint is not None
+                else None,
+            )
+            self.checkpoint()
             require(audit.status == "PASS", "S10:" + ";".join(f.reason for f in audit.findings))
-            causal = check_decisions(self.config, snapshot, rows)
+            causal = check_decisions(
+                self.config,
+                snapshot,
+                rows,
+                checkpoint=self.decision_checkpoint.fork()
+                if self.decision_checkpoint is not None
+                else None,
+            )
+            self.checkpoint()
             require(causal.status == "PASS", "CAUSE:" + ";".join(f.reason for f in causal.findings))
             # Completed facts/exposure in the whole nominal window; no score for
             # assumed future QUALITY, receipts, or unfinished makespan.

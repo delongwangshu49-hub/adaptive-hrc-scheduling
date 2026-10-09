@@ -387,6 +387,8 @@ def run(
             if seen_preparation_states[cycle_key] > 3:
                 termination = "DECISION_CYCLE"
                 break
+        if joint_policy and hasattr(joint_policy, "begin_cycle"):
+            joint_policy.begin_cycle()
         observation = world.observe()
         require(observation in world.deliver(), "OBSERVATION_NOT_DELIVERED")
         if isaac:
@@ -432,7 +434,15 @@ def run(
                 else (),
             )
         )
+        if joint_policy and hasattr(joint_policy, "guard"):
+            current = world.observe()
+            plan = joint_policy.guard(plan, current)
+            if current != observation:
+                observation = current
+                require(observation in world.deliver(), "OBSERVATION_NOT_DELIVERED")
         receipt = backend.dispatch(plan.commands[0]) if plan.commands else None
+        if joint_policy and hasattr(joint_policy, "end_cycle"):
+            joint_policy.end_cycle(plan, receipt)
         decisions.append(
             Decision(observation, plan, tuple(sorted(rejected)), receipt.id if receipt else None)
         )

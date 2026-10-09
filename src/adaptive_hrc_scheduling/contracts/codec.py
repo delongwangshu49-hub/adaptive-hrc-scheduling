@@ -8,7 +8,9 @@ import json
 import math
 import re
 import types
+from collections import OrderedDict
 from dataclasses import fields, is_dataclass
+from functools import lru_cache, wraps
 from typing import Annotated, Literal, Union, get_args, get_origin, get_type_hints
 
 ID = Annotated[str, "id"]
@@ -28,6 +30,177 @@ class ContractError(ValueError):
 def require(condition, message):
     if not condition:
         raise ContractError(message)
+
+
+@lru_cache(maxsize=256)
+def type_hints(kind):
+    return get_type_hints(kind, include_extras=True)
+
+
+_checked_records = OrderedDict()
+_json_records = OrderedDict()
+
+
+def canonical_json(value, *, normalize_numbers=False):
+    """Exact compact sorted JSON; reuse only immutable serialized subtrees."""
+    return _canonical_json(value, normalize_numbers)[0]
+
+
+@lru_cache(maxsize=16384, typed=True)
+def _json_atom(value):
+    return json.dumps(value, separators=(",", ":"), allow_nan=False)
+
+
+@lru_cache(maxsize=256)
+def _json_fields(kind):
+    return tuple((f.name, json.dumps(f.name)) for f in sorted(fields(kind), key=lambda f: f.name))
+
+
+def _canonical_json(value, normalize):
+    if type(value) in (str, int, float, bool, type(None)):
+        if normalize and type(value) is float and value.is_integer():
+            value = int(value)
+        return _json_atom(value), True
+    key = (id(value), normalize)
+    previous = _json_records.get(key)
+    if previous is not None and previous[0] is value:
+        _json_records.move_to_end(key)
+        return previous[1], True
+    if is_dataclass(value):
+        parts = [
+            (encoded, _canonical_json(getattr(value, name), normalize))
+            for name, encoded in _json_fields(type(value))
+        ]
+        result = "{" + ",".join(k + ":" + v for k, (v, _) in parts) + "}"
+        immutable = type(value).__dataclass_params__.frozen and all(ok for _, (_, ok) in parts)
+    elif type(value) in (tuple, list):
+        parts = [_canonical_json(x, normalize) for x in value]
+        result = "[" + ",".join(v for v, _ in parts) + "]"
+        immutable = type(value) is tuple and all(ok for _, ok in parts)
+    elif type(value) is dict:
+        result = (
+            "{"
+            + ",".join(
+                json.dumps(k) + ":" + _canonical_json(value[k], normalize)[0] for k in sorted(value)
+            )
+            + "}"
+        )
+        immutable = False
+    else:
+        if normalize and type(value) is float and value.is_integer():
+            value = int(value)
+        return _json_atom(value), type(value) in (
+            str,
+            int,
+            float,
+            bool,
+            type(None),
+        )
+    if immutable:
+        _json_records[key] = (value, result)
+        if len(_json_records) > 32768:
+            _json_records.popitem(last=False)
+    return result, immutable
+
+
+def checked(record):
+    """Strict native structural decoding, reusing frozen, immutable subtrees.
+
+    Equivalent to decode(type(record), as_data(record)). Entries retain their
+    source object and are identity checked; mutable leaves never enter the cache.
+    Domain/relational validation remains the caller's responsibility.
+    """
+    return _checked(type(record), record, "$ ")[0]
+
+
+def _checked(kind, value, path):
+    if type(value) in (str, int, float, bool, type(None)):
+        try:
+            return _checked_atom(kind, value, type(value)), True
+        except ContractError:
+            # Failed checks retain the caller's full diagnostic field path.
+            return decode(kind, value, path), True
+    key = (kind, id(value))
+    prior = _checked_records.get(key)
+    if prior is not None and prior[0] is value:
+        _checked_records.move_to_end(key)
+        return prior[1], True
+    origin, args = get_origin(kind), get_args(kind)
+    if origin is tuple and type(value) is tuple:
+        parts = [_checked(args[0], x, f"{path}[{i}]") for i, x in enumerate(value)]
+        result, immutable = (
+            (
+                value
+                if all(x is old for (x, _), old in zip(parts, value))
+                else tuple(x for x, _ in parts)
+            ),
+            all(ok for _, ok in parts),
+        )
+        if immutable:
+            _remember_checked(key, value, result)
+        return result, immutable
+    if is_dataclass(kind) and is_dataclass(value):
+        require(
+            type(value) is kind or {f.name for f in fields(value)} == set(type_hints(kind)),
+            f"{path}: missing or unknown fields",
+        )
+        parts = {
+            k: _checked(t, getattr(value, k), f"{path}.{k}") for k, t in type_hints(kind).items()
+        }
+        result = (
+            value
+            if type(value) is kind and all(x is getattr(value, k) for k, (x, _) in parts.items())
+            else kind(**{k: x for k, (x, _) in parts.items()})
+        )
+        immutable = type(value).__dataclass_params__.frozen and all(ok for _, ok in parts.values())
+        if immutable:
+            _remember_checked(key, value, result)
+        return result, immutable
+    if origin in (types.UnionType, Union):
+        for branch in args:
+            try:
+                return _checked(branch, value, path)
+            except ContractError:
+                pass
+        raise ContractError(f"{path}: no matching union member")
+    return decode(kind, as_data(value), path), type(value) in (str, int, float, bool, type(None))
+
+
+@lru_cache(maxsize=16384)
+def _checked_atom(kind, value, actual_type):
+    return decode(kind, value)
+
+
+def _remember_checked(key, value, result):
+    _checked_records[key] = (value, result)
+    if len(_checked_records) > 16384:
+        _checked_records.popitem(last=False)
+
+
+def immutable_memo(maxsize=128):
+    """Bounded identity cache for one validated immutable native argument."""
+
+    def decorate(function):
+        entries = OrderedDict()
+
+        @wraps(function)
+        def call(value):
+            previous = entries.get(id(value))
+            if previous is not None and previous[0] is value:
+                entries.move_to_end(id(value))
+                return previous[1]
+            result = function(value)
+            _, immutable = _checked(type(value), value, "$ ")
+            if immutable:
+                entries[id(value)] = (value, result)
+                if len(entries) > maxsize:
+                    entries.popitem(last=False)
+            return result
+
+        call.cache_clear = entries.clear
+        return call
+
+    return decorate
 
 
 def decode(kind, value, path="$ "):
@@ -61,7 +234,7 @@ def decode(kind, value, path="$ "):
         return tuple(decode(args[0], x, f"{path}[{i}]") for i, x in enumerate(value))
     if is_dataclass(kind):
         require(type(value) is dict, f"{path}: expected object")
-        hints = get_type_hints(kind, include_extras=True)
+        hints = type_hints(kind)
         require(set(value) == set(hints), f"{path}: missing or unknown fields")
         return kind(**{k: decode(t, value[k], f"{path}.{k}") for k, t in hints.items()})
     if kind is float:

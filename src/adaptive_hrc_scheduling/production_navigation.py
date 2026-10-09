@@ -2,9 +2,11 @@
 
 import heapq
 import math
+from functools import lru_cache
+from types import SimpleNamespace
 
 from adaptive_hrc_scheduling import production_supports as supports
-from adaptive_hrc_scheduling.contracts.codec import require
+from adaptive_hrc_scheduling.contracts.codec import immutable_memo, require
 from adaptive_hrc_scheduling.production_geometry import standing_point, transport_sweeps
 from adaptive_hrc_scheduling.production_pedestrians import fork_access, fork_walk_phases, walk_yaw
 
@@ -34,7 +36,47 @@ def ingress_groups(config, state):
     return groups
 
 
+class _GeometryContext:
+    def __init__(self, config):
+        self.config = config
+
+
+@immutable_memo(maxsize=8)
+def _geometry_context(config):
+    return _GeometryContext(config)
+
+
 def boxes(config, state, excluded=()):
+    return list(
+        _boxes_cached(
+            _geometry_context(config),
+            tuple(state.running),
+            tuple(state.motions),
+            tuple(state.positions),
+            tuple(state.supports),
+            tuple((x.id, x.available) for x in state.lots),
+            tuple((x.lot_id, x.quantity) for x in state.reservations),
+            tuple(sorted(excluded)),
+        )
+    )
+
+
+@lru_cache(maxsize=64)
+def _boxes_cached(
+    context, running, motions, positions, supports_state, lots, reservations, excluded
+):
+    state = SimpleNamespace(
+        running=running,
+        motions=motions,
+        positions=positions,
+        supports=supports_state,
+        lots=tuple(SimpleNamespace(id=i, available=q) for i, q in lots),
+        reservations=tuple(SimpleNamespace(lot_id=i, quantity=q) for i, q in reservations),
+    )
+    return tuple(_boxes_uncached(context.config, state, excluded))
+
+
+def _boxes_uncached(config, state, excluded=()):
     places = {p.id: p for p in config.places}
     positions = {p.id: p.location for p in state.positions}
     transit = {}
@@ -263,6 +305,9 @@ def boxes(config, state, excluded=()):
 
 
 def transport_blocker(config, state, op, rt):
+    conflict = concurrent_crane_blocker(config, state, op, rt)
+    if conflict is not None:
+        return conflict
     moving = {
         op.entity_id,
         rt.device_id,
@@ -271,9 +316,49 @@ def transport_blocker(config, state, op, rt):
     obstacles = [b for b in boxes(config, state) if b[0].split("/", 1)[0] not in moving]
     for path, size in transport_sweeps(config, op, rt):
         for a, b in zip(path, path[1:]):
+            if clear_segment(a, b, obstacles, size, margin=0):
+                continue
             for obstacle in obstacles:
                 if not clear_segment(a, b, (obstacle,), size, margin=0):
                     return obstacle[0]
+    return None
+
+
+def concurrent_crane_blocker(config, state, op, rt):
+    """Reserve overlapping crane/ground swept volumes until real release.
+
+    Current endpoint geometry alone misses a crane empty return crossing an
+    already accepted forklift route. Use only delivered running commands, not
+    future jobs or hidden events. Full-route envelopes are conservative.
+    """
+    operations = {o.id: o for o in config.operations}
+    routes = {r.id: r for r in config.routes}
+    for running in state.running:
+        command = running.command
+        if command.operation_id == op.id:
+            continue
+        other = command.service.operation if command.service else operations[command.operation_id]
+        if not other.route_id:
+            continue
+        other_route = command.service.route if command.service else routes[other.route_id]
+        if (rt.device_id == "CR1") == (other_route.device_id == "CR1"):
+            continue
+        crane, ground, ground_route = (
+            (rt, other, other_route) if rt.device_id == "CR1" else (other_route, op, rt)
+        )
+        crane_min, crane_max = min(p.x for p in crane.points), max(p.x for p in crane.points)
+        columns = tuple(
+            ("CR1", (crane_min - 2, y - 0.7, 0), (crane_max + 2, y + 0.7, 8.7)) for y in (4, 40)
+        )
+        paths = transport_sweeps(config, ground, ground_route)
+        if ground.action == "WALK":
+            paths += ((tuple((p.x, p.y, p.z) for p in ground_route.points), (1.2, 1.2, 1.9)),)
+        if any(
+            not clear_segment(a, b, columns, size, margin=0)
+            for points, size in paths
+            for a, b in zip(points, points[1:])
+        ):
+            return "CONCURRENT_CRANE_SWEEP:" + command.operation_id
     return None
 
 
@@ -301,7 +386,26 @@ def clear_segment(a, b, obstacles, size=(0.6, 1.2, 1.9), margin=0.02):
     # Slab intersection of a segment and the obstacle expanded by actor extents.
     a = (*a[:2], a[2] + size[2] / 2)
     b = (*b[:2], b[2] + size[2] / 2)
+    low = (
+        min(a[0], b[0]) - size[0] / 2 - margin,
+        min(a[1], b[1]) - size[1] / 2 - margin,
+        min(a[2], b[2]) - size[2] / 2 - margin,
+    )
+    high = (
+        max(a[0], b[0]) + size[0] / 2 + margin,
+        max(a[1], b[1]) + size[1] / 2 + margin,
+        max(a[2], b[2]) + size[2] / 2 + margin,
+    )
     for _, lo, hi in obstacles:
+        if (
+            high[0] <= lo[0]
+            or low[0] >= hi[0]
+            or high[1] <= lo[1]
+            or low[1] >= hi[1]
+            or high[2] <= lo[2]
+            or low[2] >= hi[2]
+        ):
+            continue
         lower, upper = 0.0, 1.0
         for i in range(3):
             left, right = lo[i] - size[i] / 2 - margin, hi[i] + size[i] / 2 + margin
@@ -384,8 +488,12 @@ def walk_blocker(config, state, person, source, target, points):
     )
     for index, (a, b) in enumerate(zip(points, points[1:])):
         contacts, yaw = phases.get(index, ((), 0))
+        contact_names = {"FORK-01/" + part for part in contacts}
+        relevant = [o for o in obstacles if o[0] not in contact_names] if contacts else obstacles
+        if clear_segment(a, b, relevant, (1.2, 0.6, 1.9) if yaw else (0.6, 1.2, 1.9)):
+            continue
         for obstacle in obstacles:
-            if obstacle[0] not in {"FORK-01/" + part for part in contacts}:
+            if obstacle[0] not in contact_names:
                 if not clear_segment(
                     a, b, (obstacle,), (1.2, 0.6, 1.9) if yaw else (0.6, 1.2, 1.9)
                 ):
@@ -430,6 +538,16 @@ def walk(config, state, person, source, target):
 
     starts, finishes = access(source, start), access(target, end, True)
     require(starts and finishes, "NO_LEGAL_PERSON_ACCESS")
+    points = _walk_graph(starts, finishes, tuple(obstacle))
+    require(
+        walk_blocker(config, state, person, source, target, points) is None, "NO_LEGAL_PERSON_ROUTE"
+    )
+    return points if len(points) > 1 else (start, end)
+
+
+@lru_cache(maxsize=128)
+def _walk_graph(starts, finishes, obstacle):
+    """Cache only the exact visible geometry, endpoints and legal access paths."""
     endpoints = [p[-1] for p in starts] + [p[0] for p in finishes]
     xs = {1, 3, 10, 13, 25, 35, 45, 57, 59, *(p[0] for p in endpoints)}
     ys = {2, 7, 18, 29, 39, 42, *(p[1] for p in endpoints)}
@@ -449,8 +567,17 @@ def walk(config, state, person, source, target):
             groups.setdefault(point[1 - axis], []).append(point)
         for row in groups.values():
             row.sort(key=lambda p: p[axis])
+            # Every edge in this row has the same orthogonal coordinate.
+            # Reject disjoint obstacle slabs once per row, retaining the exact
+            # segment test (and original obstacle order) for possible contacts.
+            other = 1 - axis
+            fixed = row[0][other]
+            half = (0.3, 0.6)[other] + 0.02
+            relevant = tuple(
+                o for o in obstacle if o[1][other] - half <= fixed <= o[2][other] + half
+            )
             for p, q in zip(row, row[1:]):
-                if clear_segment(p, q, obstacle):
+                if clear_segment(p, q, relevant):
                     edges[p].append(q)
                     edges[q].append(p)
     heap, best = [], {}
@@ -462,12 +589,7 @@ def walk(config, state, person, source, target):
     while heap:
         cost, p, path = heapq.heappop(heap)
         if p in goals:
-            points = tuple(dict.fromkeys((*path, *goals[p][1:])))
-            require(
-                walk_blocker(config, state, person, source, target, points) is None,
-                "NO_LEGAL_PERSON_ROUTE",
-            )
-            return points if len(points) > 1 else (start, end)
+            return tuple(dict.fromkeys((*path, *goals[p][1:])))
         if cost > best[p]:
             continue
         for q in edges[p]:

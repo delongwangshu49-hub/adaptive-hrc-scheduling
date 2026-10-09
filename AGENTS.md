@@ -1,5 +1,15 @@
 # 仓库协作规则
 
+2026-10-09现行S19-2合并成果（PR156 / LOG209）：四项问题在所列仿真范围完成修复与最终复验，候选S19-20261009-online-r2为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。同一351文件捕获源码的完整两订单及B+1双后端均全部接收，严格比较、独立执行/因果审计与Kit完整关闭/退出0通过；B+1原Bogie0阻挡未复现。源码/隔离wheel各824项通过。原5s/50ms前缀取得完整候选及实际派工，完整生产决策周期无5s超限，但50ms为协作退出且B+1 Kit最大反馈时延5.972s；非零未来承诺与实际延迟采用独立长预算诊断，均不构成硬实时或方法优势证明。原S19包及所有历史失败保持，新旧成果合并待确切验收/发布；冻结数值、工业G2 OPEN/NOT_ESTABLISHED和后续未启动保持。入口：[合并确切审阅](docs/validation/S19_online_r2.md)。
+
+2026-10-09现行S19-2实施与复验（PR156 / LOG208）：性能缓存、独立增量审计、完整窗口保守初解、并发吊机扫掠准入及非零未来承诺已进入本地复验；源码/隔离wheel各822项通过。原5s/50ms真实前缀已有完整候选及实际派工证据，非零承诺采用单列长预算诊断；内部反馈校验/未来搜索分段及其限制见在线策略文档。第一轮统一源码复算发现未采用合法候选摘要未留存，已修复并保留失败；第二轮统一源码验证进行中。完整两订单/B+1最终双后端链尚未关闭，不作四项全部完成结论。现有成果继续挂起、未验收/未批准/未发布；原包、历史证据、冻结数值及工业G2 OPEN/NOT_ESTABLISHED保持，后续未启动。入口：[S19步骤](docs/steps/S19.md)。
+
+2026-10-09现行S19-2交接授权（PR156 / LOG207）：负责人已知悉五项问题，要求现有S19成果及封包保留挂起，待前四项解决后汇总一并提交发布；明确仅做仿真，工业G2保持OPEN/NOT_ESTABLISHED，不开展工业落实。授权创建S19-2新对话，沿用当前目录/main、不建分支/worktree、ASTRA高思考强度，直接解决在线性能、B+1双后端差异/实际USD阻挡、最终源码完整长链验证和计划稳定性/未来承诺四项问题。当前LOCAL_CONTINUATION_AUTHORIZED，原候选未发布；原封包、摘要和失败证据保持，新旧成果最终合并形成确切审阅内容。S19A/S19B及S20—S28未启动。入口：[S19-2交接](docs/steps/S19_2_handoff.md)。
+
+2026-10-09现行S19本地成果（PR155 / LOG206）：沿用已发布S18 r4基线，在线协作预算、完整候选缓存、版本失效、派工前再验证及承诺保护已完成有限实现；新增32项，源码/隔离wheel各806项通过。两订单及B+1完整链均完成接收并通过各自执行/因果审计，但B+1 Kit有3次5s超限和实际USD阻挡，严格轨迹一致性未成立；原五个Kit快速关闭报告缺返回回执，历史失败保留。最终源码有限窗口与长预算缓存诊断另列，不能替代原长链结果。候选S19-20261008-online-r1为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；工业G2 OPEN/NOT_ESTABLISHED，冻结数值保持。未执行新Git写入或启动S19A/S19B、S20—S28。入口：[S19审阅](docs/validation/S19_online_r1.md)。
+
+2026-10-08现行发布与S19启动授权（PR153—PR155 / LOG202—LOG204）：S18修复r3已获限定验收及确切发布批准，原Windows CI超时证据保持；单文件CI时限修订r4已实际PUBLISHED，提交`d761df261dacd953db288e3ca55416b555255a4b`、标签`step-S18-simulation-r4`，双平台源码/隔离wheel各774项通过。负责人现授权创建“S19”新对话，沿用当前目录/main，不建分支/worktree，使用ASTRA高思考强度直接开展S19在线预算、回退与计划稳定性本地工作。S19为IMPLEMENTATION_AUTHORIZED；新成果验收及确切发布另审，S19A/S19B和S20—S28未启动。工业G2继续OPEN/NOT_ESTABLISHED，按已批准仿真研究域推进。入口：[S19步骤与交接](docs/steps/S19.md)。
+
 2026-10-08现行修复成果（PR152 / LOG201）：负责人确认继续调度仿真研究；F1/F2已在受测仿真范围内一致修复。新增15项回归、源码/隔离wheel各774项通过；原16完整候选复验及原分数保持，原seed2实际策略保留有效候选且记1迭代/2试次。C1仿真研究域衔接已明确，工业G2继续OPEN/NOT_ESTABLISHED。候选S18-20261008-simulation-repair-r3为VERIFIED_WITH_LIMITS / ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；冻结数值及历史证据保持，后续未启动。入口：[S18 r3修复审阅](docs/validation/S18_simulation_repair_r3.md)。
 
 2026-10-08现行工业G2结论及复检（PR151 / LOG198—LOG199）：公开证据研究已完成，22项一手来源及Q01—Q06矩阵可查；均未取得覆盖SR-W1/W2的关闭依据，工业G2保持OPEN / NOT_ESTABLISHED。S18-SIM-A1既有仿真批准/发布有效。结论后实际复检再次复现F1/F2两项P2，C1后续资格前置衔接仍待决定；源码/测试/冻结数值及原审阅保持，统一修复仍待负责人后续授意。本轮无Git写入或后续启动。入口：[G2证据结论](docs/research/S18_industrial_g2_evidence_r1.md)、[保留问题复检](docs/validation/S18_g2_followup_recheck_r1.md)。

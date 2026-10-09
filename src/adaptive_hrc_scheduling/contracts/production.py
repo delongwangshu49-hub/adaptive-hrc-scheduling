@@ -3,9 +3,17 @@
 import hashlib
 import json
 from dataclasses import replace
-from functools import lru_cache
 
-from adaptive_hrc_scheduling.contracts.codec import ContractError, _pairs, as_data, decode, require
+from adaptive_hrc_scheduling.contracts.codec import (
+    ContractError,
+    _pairs,
+    as_data,
+    canonical_json,
+    checked,
+    decode,
+    immutable_memo,
+    require,
+)
 from adaptive_hrc_scheduling.domain import production as m
 from adaptive_hrc_scheduling.logistics_geometry import close
 from adaptive_hrc_scheduling.production_geometry import standing_point, validate_service
@@ -24,14 +32,17 @@ TOP_LEVEL = (
 )
 
 
+@immutable_memo(maxsize=1024)
 def _digest(record):
-    canonical = wire(decode(type(record), as_data(record)))
+    if getattr(record, "schema_version", None) != "S15-PROD-1.0":
+        return hashlib.sha256(canonical_json(checked(record)).encode()).hexdigest()
+    canonical = wire(checked(record))
     return hashlib.sha256(
         json.dumps(canonical, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
     ).hexdigest()
 
 
-@lru_cache(maxsize=32)
+@immutable_memo(maxsize=32)
 def _configuration_digest(record):
     return _digest(record)
 
@@ -79,14 +90,17 @@ def validate(record, *, config=None):
         require(isinstance(record.operations, tuple), "OPERATION_COLLECTION")
         known = {o.id: o for o in config.operations}
         require(
-            all(isinstance(o, m.Operation) and known.get(o.id) == o for o in record.operations),
+            all(
+                isinstance(o, m.Operation) and (known.get(o.id) is o or known.get(o.id) == o)
+                for o in record.operations
+            ),
             "UNOBSERVED_OPERATION",
         )
         # Immutable operations were decoded with Configuration. Check exact
         # membership above, then decode the changing observation once.
-        decode(type(record), as_data(replace(record, operations=())))
+        checked(replace(record, operations=()))
     else:
-        decode(type(record), as_data(record))
+        checked(record)
     require(config is not None and record.config_id == config.id, "CONFIG_REFERENCE")
     require(record.schema_version == config.schema_version, "CONSUMER_VERSION_MISMATCH")
     if hasattr(record, "research"):
@@ -180,9 +194,9 @@ def validate(record, *, config=None):
     return record
 
 
-@lru_cache(maxsize=8)
+@immutable_memo(maxsize=8)
 def _validate_configuration(c):
-    decode(m.Configuration, as_data(c))
+    checked(c)
     from adaptive_hrc_scheduling.production_admission import validate_admission
 
     validate_admission(c)

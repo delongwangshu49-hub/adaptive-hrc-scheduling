@@ -1,0 +1,9 @@
+{
+  "protocol": "S19-CACHE-PORT-1",
+  "scope": "DIAGNOSTIC_CACHE_DISPATCH_NOT_50MS_SEARCH_BUDGET_EVIDENCE",
+  "backends": ["light", "isaac"],
+  "limits": "examples/online/limits_diagnostic.json",
+  "arguments": ["--simulation", "--online-measure-window-h", "2"],
+  "required": ["verified_candidate", "actual_cached_command_started", "execution_audit", "decision_audit", "saved_candidate_replay", "online_metric_audit", "paired_comparison"],
+  "reason": "Verify cache command identity and preparation-parent semantics on the actual USD port, separately from the short-budget fallback load matrix"
+}

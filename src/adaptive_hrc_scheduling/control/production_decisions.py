@@ -8,9 +8,15 @@ The production driver declares zero-delay, complete-prefix observations.
 import hashlib
 import json
 from dataclasses import replace
+from itertools import islice
 
 from adaptive_hrc_scheduling import production_supports as supports
-from adaptive_hrc_scheduling.contracts.codec import ContractError, as_data, decode
+from adaptive_hrc_scheduling.contracts.codec import (
+    ContractError,
+    as_data,
+    canonical_json,
+    decode,
+)
 from adaptive_hrc_scheduling.contracts.production import digest, legacy_fields, validate, wire
 from adaptive_hrc_scheduling.domain import production as m
 from adaptive_hrc_scheduling.production_checker import Finding, Report
@@ -37,6 +43,18 @@ DISPATCH_KINDS = {"ACCEPTED", "STARTED", "REJECTED", "DEFERRED"}
 
 
 def fingerprint(value):
+    if isinstance(value, m.State):
+        return _state_fingerprint(value)
+    return _fingerprint(value)
+
+
+def _state_fingerprint(value):
+    if value.research is not None:
+        return hashlib.sha256(canonical_json(value, normalize_numbers=True).encode()).hexdigest()
+    return _fingerprint(value)
+
+
+def _fingerprint(value):
     # Integer-valued floats and integers have identical numerical semantics in
     # a decoded State. Normalize only that representation difference, not time
     # tolerance, identifiers, array order, unknown fields or boolean types.
@@ -134,7 +152,7 @@ def initial_visible_state(config):
     )
 
 
-def check_decisions(config, snapshot, records):
+def check_decisions(config, snapshot, records, *, checkpoint=None):
     findings = []
     incomplete = False
 
@@ -145,7 +163,18 @@ def check_decisions(config, snapshot, records):
             findings.append(Finding("R16", ident, reason))
 
     try:
-        stream = iter(snapshot.events)
+        records = tuple(records)
+        if checkpoint is not None:
+            prior = checkpoint.reuse(config, snapshot, records)
+            if prior is not None:
+                return prior
+        offset, saved = (
+            checkpoint.restore_rows(config, snapshot, records)
+            if checkpoint is not None
+            else (0, None)
+        )
+        event_offset = len(saved["prefix"]) if saved is not None else 0
+        stream = islice(snapshot.events, event_offset, None)
         next_event = next(stream, None)
         prefix = []
         state = initial_visible_state(config)
@@ -153,6 +182,12 @@ def check_decisions(config, snapshot, records):
         config_hash = digest(config)
         seen_commands, observed_rejections = set(), set()
         count = 0
+        if saved is not None:
+            prefix, state = saved["prefix"], saved["state"]
+            seen_commands, observed_rejections = (
+                saved["seen_commands"],
+                saved["observed_rejections"],
+            )
 
         def consume(limit=None):
             nonlocal next_event, state
@@ -225,7 +260,7 @@ def check_decisions(config, snapshot, records):
                         else command.operation_id
                     )
 
-        for count, row in enumerate(records, 1):
+        for count, row in enumerate(records[offset:], offset + 1):
             if not isinstance(row, dict) or set(row) != FIELDS or row["schema_version"] != PROTOCOL:
                 need(False, "MISSING_OR_UNKNOWN_DECISION_SCHEMA", f"DECISION-{count}", missing=True)
                 break
@@ -316,6 +351,20 @@ def check_decisions(config, snapshot, records):
         )
     except (ContractError, TypeError, ValueError, KeyError, IndexError, AttributeError) as exc:
         need(False, "MALFORMED_DECISION_HISTORY:" + str(exc), "SNAPSHOT", missing=True)
-    return Report(
+    report = Report(
         "INCOMPLETE" if incomplete else "INVALID" if findings else "PASS", tuple(findings), None
     )
+    if checkpoint is not None and report.status == "PASS":
+        checkpoint.save_rows(
+            config,
+            snapshot,
+            records,
+            dict(
+                prefix=prefix,
+                state=state,
+                seen_commands=seen_commands,
+                observed_rejections=observed_rejections,
+            ),
+        )
+        checkpoint.certify(config, snapshot, report, records)
+    return report

@@ -1,0 +1,44 @@
+{
+  "protocol": "S19-DEVELOPMENT-LOAD-1",
+  "scope": "S18-SIM-A1_DEVELOPMENT_NOT_FORMAL_A_D_OR_REAL_TIME_CERTIFICATION",
+  "run_order": "sequential_no_other_validation_load",
+  "cases": [
+    {
+      "id": "multiple_orders_delayed_supply",
+      "backends": ["light", "isaac"],
+      "limits": "examples/online/limits.json",
+      "arguments": ["--products", "2", "--release-times", "0", "12", "--delayed-lot", "PRODUCT-1.ST-B.01", "--arrival-after-h", "4", "--online-pause-once"]
+    },
+    {
+      "id": "b_plus_one",
+      "backends": ["light", "isaac"],
+      "limits": "examples/online/limits.json",
+      "arguments": ["--products", "3", "--rework", "--scenario", "B2_SUPPLEMENTAL_960", "--until-h", "960", "--receive-after-h", "840"]
+    },
+    {
+      "id": "loaded_path_obstruction",
+      "backends": ["light", "isaac"],
+      "limits": "examples/online/limits.json",
+      "arguments": ["--actual-path-obstruction", "--online-measure-window-h", "8", "--online-pause-once"]
+    },
+    {
+      "id": "zero_budget",
+      "backends": ["light", "isaac"],
+      "limits": "examples/online/limits_zero.json",
+      "arguments": ["--products", "3", "--online-measure-window-h", "2"]
+    },
+    {
+      "id": "overloaded_budget",
+      "backends": ["light", "isaac"],
+      "limits": "examples/online/limits_overload.json",
+      "arguments": ["--products", "3", "--online-measure-window-h", "2"]
+    }
+  ],
+  "diagnostic": {
+    "script": "scripts/run_online_window.py",
+    "limits": "examples/online/limits_diagnostic.json",
+    "window_h": 2,
+    "prefix": "ACTUAL_BOTTOM_AT_J2_NO_RUNNING_COMMANDS",
+    "warning": "110s search is a separate diagnostic allowance, not evidence for the 50ms search allowance"
+  }
+}

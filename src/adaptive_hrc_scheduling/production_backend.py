@@ -177,12 +177,27 @@ class ProductionBackend:
 
     def _capacity(self, reserve=None):
         occupied = {p.id: set() for p in self.config.places}
+        stock = {x.id: x for x in self.s.lots}
+        reserved_quantities = {}
+        for item in self.s.reservations:
+            reserved_quantities[item.lot_id] = (
+                reserved_quantities.get(item.lot_id, 0) + item.quantity
+            )
+        masses = {x.entity_id: x.installed_t for x in self.s.masses}
+
+        def mass(ident):
+            return (
+                stock[ident].available + reserved_quantities.get(ident, 0)
+                if ident in self.lots
+                else masses[ident]
+            )
+
         for pos in self.s.positions:
-            if pos.location not in occupied or pos.id in (*self.people, *self.devices):
+            if pos.location not in occupied or pos.id in self.people or pos.id in self.devices:
                 continue
             if pos.id in self.lots:
-                lot = self._lot(pos.id)
-                reserved = sum(r.quantity for r in self.s.reservations if r.lot_id == pos.id)
+                lot = stock[pos.id]
+                reserved = reserved_quantities.get(pos.id, 0)
                 if lot.available + reserved <= 1e-9:
                     continue
             pid = (
@@ -244,7 +259,7 @@ class ProductionBackend:
                     "GROUP_PACKAGE_LIMIT:" + gid,
                 )
                 require(
-                    sum(self._mass(i) for i in members)
+                    sum(mass(i) for i in members)
                     <= (3.16 if parent == "PRE-OUT" else group.max_mass_t) + 1e-9,
                     "GROUP_MASS_LIMIT:" + gid,
                 )
@@ -360,8 +375,15 @@ class ProductionBackend:
                 "SIM_ENTRY_REQUIRES_STOP",
             )
         if c.service and op.action == "WALK":
-            from adaptive_hrc_scheduling.production_navigation import walk_blocker
+            from adaptive_hrc_scheduling.production_navigation import (
+                concurrent_crane_blocker,
+                walk_blocker,
+            )
 
+            require(
+                concurrent_crane_blocker(self.config, self.s, op, self.routes[op.route_id]) is None,
+                "CONCURRENT_WALK_CRANE_SWEEP",
+            )
             points = [(p.x, p.y, p.z) for p in self.routes[op.route_id].points]
             require(
                 walk_blocker(self.config, self.s, op.entity_id, op.location, op.target, points)

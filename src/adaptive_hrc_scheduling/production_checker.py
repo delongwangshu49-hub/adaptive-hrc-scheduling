@@ -2,12 +2,13 @@
 
 import math
 from dataclasses import dataclass, replace
+from itertools import islice
 from types import SimpleNamespace
 
 from adaptive_hrc_scheduling import production_cancel as cancellation
 from adaptive_hrc_scheduling import production_rework as rework
 from adaptive_hrc_scheduling import production_supports as supports
-from adaptive_hrc_scheduling.contracts.codec import ContractError, as_data, decode
+from adaptive_hrc_scheduling.contracts.codec import ContractError, as_data, checked
 from adaptive_hrc_scheduling.contracts.production import digest, validate
 from adaptive_hrc_scheduling.domain import production as m
 from adaptive_hrc_scheduling.production_audit_geometry import walk_collision
@@ -15,6 +16,7 @@ from adaptive_hrc_scheduling.production_external import blocker as external_bloc
 from adaptive_hrc_scheduling.production_external import is_external
 from adaptive_hrc_scheduling.production_geometry import standing_point, validate_service
 from adaptive_hrc_scheduling.production_navigation import (
+    concurrent_crane_blocker,
     output_blocker,
     support_paths_clear,
     transport_blocker,
@@ -35,16 +37,20 @@ class Report:
     metrics: m.OfflineEvaluation | None
 
 
-def check_run(config, snapshot):
+def check_run(config, snapshot, *, checkpoint=None):
     try:
-        return _check_run(config, snapshot)
+        if checkpoint is not None:
+            prior = checkpoint.reuse(config, snapshot)
+            if prior is not None:
+                return prior
+        return _check_run(config, snapshot, checkpoint=checkpoint)
     except (KeyError, IndexError, TypeError, ValueError, StopIteration) as exc:
         return Report(
             "INCOMPLETE", (Finding("R18", "SNAPSHOT", "MALFORMED_HISTORY:" + str(exc)),), None
         )
 
 
-def _check_run(config, snapshot):
+def _check_run(config, snapshot, *, checkpoint=None):
     findings = []
 
     def need(ok, rule, reason, event):
@@ -52,8 +58,7 @@ def _check_run(config, snapshot):
             findings.append(Finding(rule, event.id if event else "SNAPSHOT", reason))
 
     try:
-        decode(m.Configuration, as_data(config))
-        decode(m.ExecutionSnapshot, as_data(replace(snapshot, events=())))
+        checked(replace(snapshot, events=()))
     except (ContractError, TypeError, ValueError) as exc:
         return Report("INCOMPLETE", (Finding("R18", "SNAPSHOT", str(exc)),), None)
     try:
@@ -204,9 +209,73 @@ def _check_run(config, snapshot):
     motions = {}
     command_hashes = {}
     world_ids = set()
-    for ordinal, e in enumerate(snapshot.events, 1):
+    ledger_names = (
+        "ops",
+        "routes",
+        "stock",
+        "positions",
+        "products",
+        "reserved",
+        "owners",
+        "running",
+        "done",
+        "gates",
+        "failed",
+        "permits",
+        "humans",
+        "intervals",
+        "masses",
+        "completions",
+        "support_states",
+        "attempts",
+        "activity_crews",
+        "clock",
+        "revision",
+        "event_ids",
+        "command_states",
+        "resume_durations",
+        "resume_progress",
+        "resume_elapsed",
+        "motions",
+        "command_hashes",
+        "world_ids",
+    )
+    offset, saved = checkpoint.restore(config, snapshot) if checkpoint is not None else (0, None)
+    if saved is not None:
+        (
+            ops,
+            routes,
+            stock,
+            positions,
+            products,
+            reserved,
+            owners,
+            running,
+            done,
+            gates,
+            failed,
+            permits,
+            humans,
+            intervals,
+            masses,
+            completions,
+            support_states,
+            attempts,
+            activity_crews,
+            clock,
+            revision,
+            event_ids,
+            command_states,
+            resume_durations,
+            resume_progress,
+            resume_elapsed,
+            motions,
+            command_hashes,
+            world_ids,
+        ) = (saved[k] for k in ledger_names)
+    for ordinal, e in enumerate(islice(snapshot.events, offset, None), offset + 1):
         try:
-            decode(m.ExecutionEvent, as_data(e))
+            checked(e)
         except ContractError as exc:
             return Report("INCOMPLETE", (Finding("R18", e.id, str(exc)),), None)
         need(e.sequence == ordinal and e.id not in event_ids, "R16", "EVENT_GAP_OR_DUPLICATE", e)
@@ -746,6 +815,8 @@ def _check_run(config, snapshot):
                 blocker = transport_blocker(config, geometry_state, op, routes[op.route_id])
                 need(blocker is None, "R08", "TRANSPORT_COLLISION:" + str(blocker), e)
             if op.action == "WALK":
+                conflict = concurrent_crane_blocker(config, geometry_state, op, routes[op.route_id])
+                need(conflict is None, "R08", "WALK_CRANE_SWEEP:" + str(conflict), e)
                 blocker = walk_collision(config, geometry_state, op, routes[op.route_id])
                 need(blocker is None, "R08", "WALK_COLLISION:" + str(blocker), e)
             if is_external(op):
@@ -1845,6 +1916,7 @@ def _check_run(config, snapshot):
             "MISSING_HISTORY",
             None,
         )
+    interval_offset = checkpoint.interval_prefix(config, snapshot) if checkpoint is not None else 0
     need(
         len(snapshot.state.intervals) == len(intervals)
         and all(
@@ -1852,7 +1924,7 @@ def _check_run(config, snapshot):
                 abs(v - getattr(b, k)) < 1e-9 if isinstance(v, float) else v == getattr(b, k)
                 for k, v in as_data(a).items()
             )
-            for a, b in zip(snapshot.state.intervals, intervals)
+            for a, b in zip(snapshot.state.intervals[interval_offset:], intervals[interval_offset:])
         ),
         "R10",
         "HUMAN_INTERVALS",
@@ -1884,6 +1956,11 @@ def _check_run(config, snapshot):
         )
         for f in findings
     )
-    return Report(
+    report = Report(
         "INCOMPLETE" if incomplete else "INVALID" if findings else "PASS", tuple(findings), metrics
     )
+    if checkpoint is not None and report.status == "PASS":
+        values = locals()
+        checkpoint.save(config, snapshot, {k: values[k] for k in ledger_names})
+        checkpoint.certify(config, snapshot, report)
+    return report

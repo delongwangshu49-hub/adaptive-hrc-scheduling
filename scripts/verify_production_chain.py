@@ -23,7 +23,7 @@ def save(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def witness(args):
+def witness(args, app=None):
     from build_production_contracts import Builder
 
     from adaptive_hrc_scheduling.contracts.codec import as_data
@@ -104,9 +104,44 @@ def witness(args):
     r1_injected = False
     last_count = -1
     last_heartbeat = time.monotonic()
+    timing = None
+    pause_witness = None
 
     def progress(_engine, _phase):
         nonlocal last_count, last_heartbeat, r1_injected, r1_physical_unavailable
+        nonlocal pause_witness
+        if timing and app is not None and _phase == "before_decision":
+            timing.kit_update(app)
+        if (
+            timing
+            and getattr(args, "online_pause_once", False)
+            and pause_witness is None
+            and _phase == "after_dispatch"
+            and world.s.running
+        ):
+            from adaptive_hrc_scheduling.contracts.production import digest
+            from adaptive_hrc_scheduling.control.online import protected
+            from adaptive_hrc_scheduling.planning.production import planning_input
+
+            before = world.snapshot()
+            began = time.perf_counter()
+            policy.pause()
+            policy.begin_cycle()
+            observed = world.observe()
+            paused = policy.decide(planning_input(config, observed), before, ())
+            policy.end_cycle(paused, None)
+            policy.resume()
+            unchanged = before == world.snapshot()
+            pause_witness = dict(
+                time_h=world.s.time_h,
+                protected_sha256=digest(protected(world.s)),
+                state_unchanged=unchanged,
+                no_dispatch=not paused.commands,
+                elapsed_s=time.perf_counter() - began,
+                scope="CONTROLLER_PAUSE_RESUME_NO_GUI_OR_WALL_PACING_CLAIM",
+            )
+            if not unchanged or paused.commands:
+                raise RuntimeError("ONLINE_PAUSE_CHANGED_EXECUTION")
         if (
             (args.actual_r1_before_setup or args.actual_r1_after_bottom)
             and not r1_injected
@@ -224,6 +259,18 @@ def witness(args):
         budget.validate()
         save(args.output / "predeclared-search-budget.json", data)
         policy = SimulationJointPolicy(config, budget, method=args.method, end_h=args.until_h)
+    if getattr(args, "online_limits_file", None):
+        if not args.simulation or policy is not None:
+            raise ValueError("Online policy requires simulation and cannot combine with --method")
+        from adaptive_hrc_scheduling.control.online import Limits, OnlinePolicy
+        from adaptive_hrc_scheduling.control.online_timing import OnlineTiming
+
+        data = json.loads(args.online_limits_file.read_text(encoding="utf-8"))
+        limits = Limits(**data)
+        limits.validate()
+        save(args.output / "predeclared-online-limits.json", data)
+        policy = OnlinePolicy(config, limits, end_h=args.until_h)
+        timing = OnlineTiming(engine, policy)
     result = run(
         engine,
         Scenario(
@@ -242,9 +289,36 @@ def witness(args):
         ),
         execution_hook=progress,
         joint_policy=policy,
+        stop_condition=(
+            (lambda w: w.s.time_h >= args.online_measure_window_h)
+            if getattr(args, "online_measure_window_h", None) is not None
+            else None
+        ),
         fixed_mode=args.fixed_mode,
         handover_after_setup=args.handover_after_setup,
     )
+    if timing:
+        save(args.output / "online-timing.json", timing.report())
+        save(args.output / "online-journal.json", policy.journal)
+        save(args.output / "online-feedback.json", timing.feedback)
+        save(args.output / "online-pause.json", pause_witness)
+        save(
+            args.output / "online-candidates.json",
+            [
+                dict(
+                    candidate=as_data(candidate),
+                    observation=as_data(problem.observation),
+                    prefix_state=as_data(problem.prefix.state),
+                    prefix_event_count=len(problem.prefix.events),
+                    decisions=problem.decisions,
+                    rejected=problem.rejected,
+                    fixed_mode=problem.fixed_mode,
+                    committed=[dict(command=as_data(c), reason=r) for c, r in problem.committed],
+                )
+                for problem, candidate in policy.candidates
+            ],
+        )
+        timing.close()
     # Stream each event independently. Expanding the entire shared event graph
     # into one JSON object can exhaust memory on continuous multi-product runs.
     with gzip.open(args.output / "events.jsonl.gz", "wt", encoding="utf-8") as stream:
@@ -265,8 +339,20 @@ def witness(args):
     if receiver is not None:
         save(args.output / "receiver-samples.json", receiver.samples)
     manifest = result.manifest
+    if timing:
+        # Preserve the complete journal once; do not duplicate it in stdout and
+        # the main report. This changes archival layout, not measured decisions.
+        journal_path = args.output / "online-journal.json"
+        manifest["online_journal"] = dict(
+            path=journal_path.name,
+            records=len(policy.journal),
+            sha256=hashlib.sha256(journal_path.read_bytes()).hexdigest(),
+        )
+        manifest.pop("joint_journal", None)
     expected = (
-        "STALLED"
+        "DECLARED_CHECKPOINT"
+        if getattr(args, "online_measure_window_h", None) is not None
+        else "STALLED"
         if args.expect_quality_hold or args.cancel_stage
         else "WINDOW_CENSORED"
         if args.expect_window
@@ -324,7 +410,7 @@ def witness(args):
                 for p in config.products
             )
         )
-    elif not args.expect_window:
+    elif not args.expect_window and getattr(args, "online_measure_window_h", None) is None:
         passed = passed and manifest["received"] == args.products
     if args.actual_r1_before_setup or args.actual_r1_after_bottom:
         passed = (
@@ -399,6 +485,9 @@ def main():
         "--method", choices=("ADAPTIVE_JOINT", "FIXED_H", "FIXED_HR", "NO_OBSERVATION_UPDATE")
     )
     parser.add_argument("--budget-file", type=Path)
+    parser.add_argument("--online-limits-file", type=Path)
+    parser.add_argument("--online-pause-once", action="store_true")
+    parser.add_argument("--online-measure-window-h", type=float)
     parser.add_argument("--actual-r1-before-setup", action="store_true")
     parser.add_argument("--actual-r1-after-bottom", action="store_true")
     parser.add_argument("--fixed-mode", choices=("H", "HR-seq"))
@@ -415,12 +504,17 @@ def main():
     parser.add_argument("--delayed-lot")
     parser.add_argument("--arrival-after-h", type=float, default=0)
     args = parser.parse_args()
+    if args.online_measure_window_h is not None:
+        if args.online_limits_file is None or not 0 < args.online_measure_window_h <= args.until_h:
+            parser.error("online measurement window must be within the unchanged scenario window")
     args.output.mkdir(parents=True, exist_ok=False)
     save(args.output / "started.json", {"pid": os.getpid()})
     files = [
         *ROOT.glob("src/adaptive_hrc_scheduling/**/*.py"),
         *ROOT.glob("sim/**/*.py"),
         *ROOT.glob("scripts/*production*.py"),
+        *ROOT.glob("scripts/*online*.py"),
+        *ROOT.glob("examples/online/*.json"),
         ROOT / "src/adaptive_hrc_scheduling/production_recipe.json",
         *ROOT.glob("src/adaptive_hrc_scheduling/simulation_inputs/*"),
         *ROOT.glob("schemas/production_simulation/*.json"),
@@ -450,13 +544,17 @@ def main():
                     "width": 1280,
                     "height": 720,
                     "multi_gpu": False,
-                    "fast_shutdown": True,
+                    # S19 records close() returning before reporting cleanup.
+                    # Fast shutdown exits inside Kit and skips that receipt.
+                    "fast_shutdown": not bool(args.online_limits_file),
                     "enable_crashreporter": False,
                     "renderer": "MinimalRendering",
                     "disable_viewport_updates": True,
                 }
             )
-        report.update(witness(args))
+            if args.online_limits_file:
+                report["shutdown_strategy"] = "FULL_EXTENSION_TEARDOWN"
+        report.update(witness(args, app))
     except Exception:
         report["error"] = traceback.format_exc()
     finally:
