@@ -1,0 +1,707 @@
+{
+  "packet_id": "S19A-20261011-completion-r2",
+  "date": "2026-10-11",
+  "authority": "PR169",
+  "status": "IMPLEMENTATION_AND_EVIDENCE_COMPLETE_WITH_LIMITS_OWNER_ACCEPTANCE_PENDING",
+  "acceptance": "NOT_YET_ACCEPTED",
+  "publication": "NOT_APPROVED_NOT_PUBLISHED",
+  "base_commit": "07de8d761a8adea3e5219355d682429381a68a70",
+  "F1": "FIXED_AND_RELOCATION_VERIFIED_IN_TESTED_SCOPE",
+  "C1": "PERSISTENT_USD_AND_RENDER_CHECK_ENTRIES_ADDED",
+  "geometry": {
+    "original_dimensions_paths_root_colliders_and_operating_hand_reference": "PRESERVED",
+    "visual_transform": "Uniform XY downscale <=1 and rotation about original visible-body envelope centre; Z height retained.",
+    "ordinary_walk_hand_binding": "No controller binding claimed during unbound WALK; original upper-body control pose restored/retained for operations, push/pull, backward and side access.",
+    "usd_guard_frames": 3816,
+    "kit_guard_frames": 864,
+    "max_body_growth_m": 1.3322676295501878e-15,
+    "max_operating_hand_error_m": 4.83881315050185e-10
+  },
+  "matrix": [
+    {
+      "case": "P1-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "W1-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "W2-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "OP1-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "AF1-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "AF2-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "E1-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "PL1-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "T1-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "T2-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "C1-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "QA1-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "Lop-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "Lrig-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "Lsig-all-headings-and-control-restore",
+      "status": "PASS"
+    },
+    {
+      "case": "north-route-stop-stability",
+      "status": "PASS"
+    },
+    {
+      "case": "east-route-stop-stability",
+      "status": "PASS"
+    },
+    {
+      "case": "south-route-stop-stability",
+      "status": "PASS"
+    },
+    {
+      "case": "west-route-stop-stability",
+      "status": "PASS"
+    },
+    {
+      "case": "turn-route-stop-stability",
+      "status": "PASS"
+    },
+    {
+      "case": "fold-route-stop-stability",
+      "status": "PASS"
+    },
+    {
+      "case": "T1-complete-fixed-trial-and-reset",
+      "steps": 752,
+      "status": "PASS"
+    },
+    {
+      "case": "T2-complete-fixed-trial-and-reset",
+      "steps": 1836,
+      "status": "PASS"
+    },
+    {
+      "case": "T3-complete-fixed-trial-and-reset",
+      "steps": 995,
+      "status": "PASS"
+    },
+    {
+      "case": "T4-complete-fixed-trial-and-reset",
+      "steps": 550,
+      "status": "PASS"
+    }
+  ],
+  "exports": [
+    {
+      "variant": "SR-W1",
+      "dependencies": [
+        {
+          "file": "_assets/83b3356a977bae0d-s19a_floor_paint_r2.png",
+          "sha256": "83b3356a977bae0d9c3d80e85960e3662df0d1c52469eb45cfedc81aae5cca25"
+        }
+      ],
+      "relocated_relative_assets": "PASS"
+    },
+    {
+      "variant": "SR-W2",
+      "dependencies": [
+        {
+          "file": "_assets/83b3356a977bae0d-s19a_floor_paint_r2.png",
+          "sha256": "83b3356a977bae0d9c3d80e85960e3662df0d1c52469eb45cfedc81aae5cca25"
+        }
+      ],
+      "relocated_relative_assets": "PASS"
+    }
+  ],
+  "negative_missing_texture": "REJECTED_WITHOUT_EXPORT",
+  "kit_frames": [
+    {
+      "case": "NORTH",
+      "identity": "W1",
+      "frames": 72,
+      "mode": "WALK",
+      "root_yaw_preserved": 0,
+      "body_growth_max_m": 2.220446049250313e-16,
+      "control_hand_error_max_m": 0,
+      "root_pair_offset_error_max_m": 0
+    },
+    {
+      "case": "EAST",
+      "identity": "W1",
+      "frames": 72,
+      "mode": "WALK",
+      "root_yaw_preserved": 0,
+      "body_growth_max_m": 1.1102230246251565e-16,
+      "control_hand_error_max_m": 0,
+      "root_pair_offset_error_max_m": 0
+    },
+    {
+      "case": "SOUTH",
+      "identity": "W1",
+      "frames": 72,
+      "mode": "WALK",
+      "root_yaw_preserved": 0,
+      "body_growth_max_m": 5.551115123125783e-17,
+      "control_hand_error_max_m": 0,
+      "root_pair_offset_error_max_m": 0
+    },
+    {
+      "case": "WEST",
+      "identity": "W1",
+      "frames": 72,
+      "mode": "WALK",
+      "root_yaw_preserved": 0,
+      "body_growth_max_m": 2.220446049250313e-16,
+      "control_hand_error_max_m": 0,
+      "root_pair_offset_error_max_m": 0
+    },
+    {
+      "case": "TURN",
+      "identity": "W1",
+      "frames": 72,
+      "mode": "WALK",
+      "root_yaw_preserved": 0,
+      "body_growth_max_m": 1.1102230246251565e-16,
+      "control_hand_error_max_m": 0,
+      "root_pair_offset_error_max_m": 0
+    },
+    {
+      "case": "FOLD",
+      "identity": "W1",
+      "frames": 72,
+      "mode": "WALK",
+      "root_yaw_preserved": 0,
+      "body_growth_max_m": 1.1102230246251565e-16,
+      "control_hand_error_max_m": 0,
+      "root_pair_offset_error_max_m": 0
+    },
+    {
+      "case": "STOP-RESUME",
+      "identity": "W1",
+      "frames": 72,
+      "mode": "WALK",
+      "root_yaw_preserved": 0,
+      "body_growth_max_m": 1.1102230246251565e-16,
+      "control_hand_error_max_m": 0,
+      "root_pair_offset_error_max_m": 0
+    },
+    {
+      "case": "FORK-BACKSTEP",
+      "identity": "P1",
+      "frames": 72,
+      "mode": "BACKSTEP",
+      "root_yaw_preserved": 0,
+      "body_growth_max_m": 2.220446049250313e-16,
+      "control_hand_error_max_m": 4.838811078855091e-10,
+      "root_pair_offset_error_max_m": 0
+    },
+    {
+      "case": "FORK-SIDESTEP",
+      "identity": "P1",
+      "frames": 72,
+      "mode": "SIDESTEP",
+      "root_yaw_preserved": 90,
+      "body_growth_max_m": 2.220446049250313e-16,
+      "control_hand_error_max_m": 4.83881315050185e-10,
+      "root_pair_offset_error_max_m": 0
+    },
+    {
+      "case": "TOOL-CONTROL",
+      "identity": "QA1",
+      "frames": 72,
+      "mode": "CONTROL_WALK",
+      "root_yaw_preserved": 180,
+      "body_growth_max_m": 4.440892098500626e-16,
+      "control_hand_error_max_m": 4.838811078855091e-10,
+      "root_pair_offset_error_max_m": 0
+    },
+    {
+      "case": "LOADED-CART",
+      "identity": "E1",
+      "frames": 72,
+      "mode": "CONTROL_WALK",
+      "root_yaw_preserved": 0,
+      "body_growth_max_m": 2.220446049250313e-16,
+      "control_hand_error_max_m": 4.838811078855091e-10,
+      "root_pair_offset_error_max_m": 0
+    },
+    {
+      "case": "RECORDED-W1",
+      "identity": "W1",
+      "frames": 72,
+      "mode": "WALK",
+      "root_yaw_preserved": 0,
+      "body_growth_max_m": 1.3322676295501878e-15,
+      "control_hand_error_max_m": 0,
+      "root_pair_offset_error_max_m": 2.6645352591003757e-15
+    }
+  ],
+  "images": [
+    {
+      "file": "NORTH.png",
+      "sha256": "ea11cf23dec4ea8b401fbb3a67e682b22a747dfdbe2c247cb88fb1260eb492ba",
+      "camera_error": 1.7763568394002505e-15
+    },
+    {
+      "file": "EAST.png",
+      "sha256": "7141c51d62177f05df678303606ef026ec057207ba69c3f27b6be938e17e5153",
+      "camera_error": 2.220446049250313e-16
+    },
+    {
+      "file": "SOUTH.png",
+      "sha256": "8d203e6c64bb60a1249f8dcfea768e38672eff478859ae527eaf56e2f6060be0",
+      "camera_error": 8.881784197001252e-16
+    },
+    {
+      "file": "WEST.png",
+      "sha256": "148cf00d1331cf2e18808d01e2580a69713323de65591eb708f1d884bef8d72e",
+      "camera_error": 2.220446049250313e-16
+    },
+    {
+      "file": "TURN.png",
+      "sha256": "bb89993cfbfd21e32fdc945ff0052cb8c93b082931e80978dbab83b54e7c3d3e",
+      "camera_error": 7.771561172376096e-16
+    },
+    {
+      "file": "FOLD.png",
+      "sha256": "71ca655420641ea1e5905bf68cc1bc426a050940810b538aafbb90abeedd684f",
+      "camera_error": 1.7763568394002505e-15
+    },
+    {
+      "file": "STOP-RESUME.png",
+      "sha256": "99d4fcd2e49e269c974ac979c3c0a18d51d9ca542b1632a0c2e150159ea900f9",
+      "camera_error": 2.220446049250313e-16
+    },
+    {
+      "file": "FORK-BACKSTEP.png",
+      "sha256": "ea5168741b71fb8b26dfa75489db5b6697eb38b1b9dc541996665459ec098b15",
+      "camera_error": 2.220446049250313e-16
+    },
+    {
+      "file": "FORK-SIDESTEP.png",
+      "sha256": "3b363eafed9f87bbfdf427c2579b5c9680b1d8413eae291a2dc3825117375807",
+      "camera_error": 1.7763568394002505e-15
+    },
+    {
+      "file": "TOOL-CONTROL.png",
+      "sha256": "60f861a82d27d19762960427b2e04084734c221429016fcb54ead4709dd13509",
+      "camera_error": 2.220446049250313e-16
+    },
+    {
+      "file": "LOADED-CART.png",
+      "sha256": "bfc1ead621346c574ab6639bb1d5bb2cdaadbce49ffe946255afba8e74e3b585",
+      "camera_error": 2.220446049250313e-16
+    },
+    {
+      "file": "RECORDED-W1.png",
+      "sha256": "4bad99c23420fa35ec7b1af0854b3234d1511ad04791fed529b34ffd6e8fa155",
+      "camera_error": 1.3322676295501878e-15
+    },
+    {
+      "file": "relocated-SR-W1.png",
+      "sha256": "2a7d4c4cd6251fab0d7443c6cfb763d5a7f18cf05f85c8ddd46a45e9b8d8cea0",
+      "camera_error": null
+    },
+    {
+      "file": "relocated-SR-W2.png",
+      "sha256": "00034ef618d9fc07616bb9ec804ee323ea679074b22a434225427d5ebf2dc804",
+      "camera_error": null
+    }
+  ],
+  "video": {
+    "file": "motion-before-after.mp4",
+    "sha256": "d1bfaa3c9debb9abb9c9b8b11afbbaae6187cb1818edb8f1a54a812a127dc363",
+    "frames": 864,
+    "fps": 24,
+    "duration_s": 36.0,
+    "recorded_route": "12 original points / 40.4m / original 1m/s; accelerated review playback only"
+  },
+  "full_close": true,
+  "exit_code": 0,
+  "performance": {
+    "protocol": {
+      "declared_before_measurement": true,
+      "reference": "step-S19A-static-r1",
+      "geometry": {
+        "body_aabb_growth_m": 1e-06,
+        "collider_and_root_transform_tolerance_m": 1e-09,
+        "operating_hand_reference_m": 1e-06,
+        "path_time_domain_and_capacity": "EXACT_EQUAL"
+      },
+      "direction": {
+        "front_axis": "+Y",
+        "straight_dot_min": 0.999,
+        "corner_blend_metres": 0.6
+      },
+      "performance": {
+        "renderer": "RayTracedLighting",
+        "resolution": [
+          1280,
+          720
+        ],
+        "order": [
+          "before",
+          "after",
+          "after",
+          "before"
+        ],
+        "warmup_frames": 60,
+        "samples_per_run": 180,
+        "load": "SAME_FIXED_T3_EXECUTION_SAMPLES_WITH_PEOPLE_CART_AND_TOOL",
+        "candidate_median_ratio_max": 1.5,
+        "candidate_p95_ratio_max": 1.65,
+        "owner_acceptance": "PENDING_WITH_FINAL_PACKET",
+        "no_hard_realtime_claim": true
+      },
+      "visual_acceptance": "OWNER_WILL_REVIEW_COMPLETE_PACKET_IMAGES_AND_VIDEO",
+      "scope": "LOCAL_IMPLEMENTATION_ONLY_NO_GIT_WRITE_OR_UPLOAD"
+    },
+    "measured": {
+      "median_ratio": 1.0813041842002995,
+      "p95_ratio": 1.0429256259517998,
+      "predeclared_candidate_limits_satisfied": true,
+      "owner_protocol_acceptance": "PENDING; NO_HARD_REALTIME_CLAIM"
+    },
+    "runs": [
+      {
+        "kind": "before",
+        "workloads": [
+          "TWO PEOPLE CROSS / W2 YIELDS TO W1",
+          "CARRY P01",
+          "TEST DELIVER"
+        ],
+        "median_ms": 9.40364999405574,
+        "p95_ms": 11.569099995540455,
+        "max_ms": 71.50090002687648,
+        "domain_snapshots_sha256": "54a23ee0677439ef603a8789a636eeaa4a30e704771d566b102b6155d20821ba"
+      },
+      {
+        "kind": "after",
+        "workloads": [
+          "TWO PEOPLE CROSS / W2 YIELDS TO W1",
+          "CARRY P01",
+          "TEST DELIVER"
+        ],
+        "median_ms": 10.190850007347763,
+        "p95_ms": 12.188399996375665,
+        "max_ms": 13.10620000003837,
+        "domain_snapshots_sha256": "54a23ee0677439ef603a8789a636eeaa4a30e704771d566b102b6155d20821ba"
+      },
+      {
+        "kind": "after",
+        "workloads": [
+          "TWO PEOPLE CROSS / W2 YIELDS TO W1",
+          "CARRY P01",
+          "TEST DELIVER"
+        ],
+        "median_ms": 10.538399990764447,
+        "p95_ms": 12.591200007591397,
+        "max_ms": 73.38829999207519,
+        "domain_snapshots_sha256": "54a23ee0677439ef603a8789a636eeaa4a30e704771d566b102b6155d20821ba"
+      },
+      {
+        "kind": "before",
+        "workloads": [
+          "TWO PEOPLE CROSS / W2 YIELDS TO W1",
+          "CARRY P01",
+          "TEST DELIVER"
+        ],
+        "median_ms": 9.766950010089204,
+        "p95_ms": 12.19060001312755,
+        "max_ms": 72.2869000164792,
+        "domain_snapshots_sha256": "54a23ee0677439ef603a8789a636eeaa4a30e704771d566b102b6155d20821ba"
+      }
+    ],
+    "owner_approval": "PENDING",
+    "no_hard_realtime_or_method_advantage_claim": true
+  },
+  "cpu_checks": {
+    "source_tests": 858,
+    "source_seconds": 249.591,
+    "wheel_tests": 858,
+    "wheel_seconds": 219.443,
+    "result": "PASS",
+    "final_ruff_and_public_cli_replay": "PASS"
+  },
+  "actual_command_prefix": {
+    "result": "PASS_SAME_COMMAND_PREFIX",
+    "steps": [
+      {
+        "op": "SERVICE-3-P1-WALK",
+        "kind": "STARTED",
+        "reason": ""
+      },
+      {
+        "kind": "COMPLETED",
+        "reason": ""
+      },
+      {
+        "op": "SERVICE-7-FORK-01-EMPTY_RETURN",
+        "kind": "STARTED",
+        "reason": ""
+      },
+      {
+        "kind": "COMPLETED",
+        "reason": ""
+      }
+    ],
+    "scope": "INITIAL_GEOMETRY_ONLY"
+  },
+  "source_hashes": {
+    "src/adaptive_hrc_scheduling/building_backend.py": "3665a0afa298083db2cfab8f4970848ab34f65fbfc68b15cb366b54dad4543a7",
+    "src/adaptive_hrc_scheduling/building_human.py": "874b62d2b56e473663f20b81d112fe125de491312dcc84dabdc1339bd4f6ca76",
+    "src/adaptive_hrc_scheduling/checker.py": "54c56adea0f041d9e9cb67d4faab090af41c4ffe9442462323481f3cc0527f5e",
+    "src/adaptive_hrc_scheduling/events.py": "2dcfdd2c0bf1b1ffde3a3db30cb6683fbce474a70422fbb553b88a3125c32834",
+    "src/adaptive_hrc_scheduling/event_backend.py": "284a97b6b02624ca4309a01b71750d794bd3c4d2bc4836049b79f8c6193d0e90",
+    "src/adaptive_hrc_scheduling/human_state.py": "fb559ffef42313e4f51d2472382acfb1b130992c0378ee1a570f234f443cc4b2",
+    "src/adaptive_hrc_scheduling/logistics_backend.py": "3b62887007197de4c9359322f0fe1a9a9c54e4f9a43cb0d7f36d585818e40439",
+    "src/adaptive_hrc_scheduling/logistics_checker.py": "ca8e68ff208b076391d8407374eacbd4eeca782174133b67178dd00f36390c8b",
+    "src/adaptive_hrc_scheduling/logistics_geometry.py": "a706867c4bccddef1b4fd21123d647646a24c2f1fd2189532a31f3716717bf1b",
+    "src/adaptive_hrc_scheduling/metrics.py": "27c43106fc7a3296351e8145070d7ad96dbcc480ff10ffcfcce068d18e1175a6",
+    "src/adaptive_hrc_scheduling/observation.py": "bdc61db17a110ab5dc175318658d4f24ff973d307aeb89744d4d8ddf2564b669",
+    "src/adaptive_hrc_scheduling/production_admission.py": "fe3f8eb25afb1550c0cc61d65e5e9915509c509ae6a6c4dd33fe072088fc25d5",
+    "src/adaptive_hrc_scheduling/production_audit_geometry.py": "42077e493a21f5b43af5aafcd8aaf4af59e54108e48a6d1db52e63bd4101c130",
+    "src/adaptive_hrc_scheduling/production_backend.py": "287001ebc5797a51d4b66c98f076040e4b4c997e84bbc9719eb36f113fea2a6b",
+    "src/adaptive_hrc_scheduling/production_cancel.py": "a5d8778bf5f16ad2e9c5b9e4e851c196f994d14e2b5e1517590c86a651ff6130",
+    "src/adaptive_hrc_scheduling/production_checker.py": "c9de9b4c380c496e8671779356f73db7f9232340d5fcef9cd5b20545e65ab398",
+    "src/adaptive_hrc_scheduling/production_external.py": "0cb288ecdf964d924e3e862e0bf327bfc6139bf777476d08038772f472056573",
+    "src/adaptive_hrc_scheduling/production_geometry.py": "ccc87837c228b1be65f97d473e8e41385e7da07733a2861a5c446b00df7c43d9",
+    "src/adaptive_hrc_scheduling/production_handover.py": "0b682a6debc59a1c2693baa6f177ddd9d43096b1e88eba5ad41c7f2e43c5f276",
+    "src/adaptive_hrc_scheduling/production_mapping.py": "26ab74519c5a91893d360df30b2c8159968df3101ba09da1c6dd4641d288b2c2",
+    "src/adaptive_hrc_scheduling/production_navigation.py": "edf8820849c3b07bf58483c1cd252a33059f35da968f1cde3ab327a367cb4e30",
+    "src/adaptive_hrc_scheduling/production_pedestrians.py": "b818621e4cb5b10396cf97496d735cc3db8368a1ae4970290b62223015c92579",
+    "src/adaptive_hrc_scheduling/production_rework.py": "af2e678e2a35feda0e6de958e0d8ac9710cdb1a98183fb5af4b0a74b95a72070",
+    "src/adaptive_hrc_scheduling/production_supports.py": "21b1ee8ae66d026512b9ca12768b17f818750b0e56d9a56cbe9c33be89a2cb32",
+    "src/adaptive_hrc_scheduling/production_witness.py": "4dcad6c11a4ff13090080abcbbf4baedef2eb00f59ac8c31a8fff86d6945fa37",
+    "src/adaptive_hrc_scheduling/__init__.py": "8100015a05e8c14763749abba147da66ac79cc4df8d08043a47f77448dc80ab6",
+    "src/adaptive_hrc_scheduling/__main__.py": "12b25f10edfcc22863d7a2dffe4a2e7db50c944163b5d5aec368992f28f924c3",
+    "src/adaptive_hrc_scheduling/algorithms/joint_lns.py": "24150741992f2279192c056cbb89a87b68e8532fdc655d86e97ed84d67fa8e02",
+    "src/adaptive_hrc_scheduling/algorithms/joint_production.py": "505b03eb12be04cf89277fd0d93fb21e64ddcb9d34f0a1cfe9e3e35c6800921e",
+    "src/adaptive_hrc_scheduling/algorithms/joint_rolling.py": "2b3517a65afb6d64ae89321734b40e3d1059a9e12a344d2d1b67761ad1a1ea35",
+    "src/adaptive_hrc_scheduling/algorithms/lns.py": "6d95fc25ab4fa4f51ad7d1b179c954e4ffcbdb981a9bf9a19fdb932fc955de6e",
+    "src/adaptive_hrc_scheduling/algorithms/production_lns.py": "e806898a9cd02073af867e4228408305458d3d9e049a14a06de41ec0872402f4",
+    "src/adaptive_hrc_scheduling/algorithms/simulation_joint.py": "d266539c70b8dd6442076617c915cff564293c786eddb08799a1bfa2361ab1fd",
+    "src/adaptive_hrc_scheduling/algorithms/static_lns.py": "477dfc3dfcabafe626bc8ac977648eead16c760565a6f967c7e3c4487b16bfb5",
+    "src/adaptive_hrc_scheduling/algorithms/__init__.py": "ae7977fe3ce9f096903e1ced799dcf14b1d4b33ebbd57237dcd583b99ee05159",
+    "src/adaptive_hrc_scheduling/backends/isaac_adapter.py": "ea34d28fc7ea2883e618c47641861bf4123677728894a4647673cd223a48afeb",
+    "src/adaptive_hrc_scheduling/backends/production_isaac_adapter.py": "084d75d811270e69281723e8a60ab91cb2a4e432c11a791856d282128b033f47",
+    "src/adaptive_hrc_scheduling/backends/__init__.py": "25b0f4502043695d4324754ccdf3b543c4bc4d856a38b380734301cfd429275a",
+    "src/adaptive_hrc_scheduling/contracts/building.py": "4e3f0c43e547fdc9e8eb374dc15bb35004fac649cbab117b19cea9a471c7250c",
+    "src/adaptive_hrc_scheduling/contracts/codec.py": "290890255c21af555726b204122b73f0d9c265a5960e6154df56ebbba8e09601",
+    "src/adaptive_hrc_scheduling/contracts/logistics.py": "152251db512e5b1f217eaaa7af575aa9a7477bba3ce58ff3ae87d0a63645c28e",
+    "src/adaptive_hrc_scheduling/contracts/messages.py": "b0aa5532a77ad8b654e8490725a0d36e990fc67d8d1e913e856b8a56e7c45690",
+    "src/adaptive_hrc_scheduling/contracts/planning.py": "5c64982d4c5c8a31ae3a26374c1f38c3c6716763cd4fed58e3b11cac4045024f",
+    "src/adaptive_hrc_scheduling/contracts/production.py": "ddb94fa8dcac5a2001854c3d7a8a5c5dabf62839bf842f6700d4c925a5ff990a",
+    "src/adaptive_hrc_scheduling/contracts/validation.py": "50148f9539e574c7d29419ceeaabb7b23409ff22dc218e5750bfd471689043c5",
+    "src/adaptive_hrc_scheduling/contracts/__init__.py": "0ffdb9a1c688376a4d7a16e84a7f19bbb3a8bb28381654f1bd9e529be58f5b9d",
+    "src/adaptive_hrc_scheduling/control/audit_cache.py": "042d37719145042c5ff36720fafb013115ee17904e3366ae750c01a7f8a0c641",
+    "src/adaptive_hrc_scheduling/control/joint_adaptive_loop.py": "da45eaf813b2d758b231c964f1c59147c67d3e585dffb410ad5effa51de82471",
+    "src/adaptive_hrc_scheduling/control/joint_rolling_loop.py": "8df44f9bf8c2797722abc28fe8d99d4e6c265455c17671b77dcd1a24e87c6eb5",
+    "src/adaptive_hrc_scheduling/control/ledger.py": "b09a6c96a8dabc927b9808fac79b1219a993ccd5d337fa524419a0cbe1837cbb",
+    "src/adaptive_hrc_scheduling/control/light_loop.py": "b70fd165e7623288c99ad4856a954f8f590684ccb00e0303d60e532c016e4be1",
+    "src/adaptive_hrc_scheduling/control/logistics_ledger.py": "a0b28126b1a34994a2010183ae9cd512fb793ff845190f22d59a38574b6512f4",
+    "src/adaptive_hrc_scheduling/control/logistics_loop.py": "ad1483e81e1cd511a601429ca6e86f7cf9d9977207cb8395c0fbeed6deb671ef",
+    "src/adaptive_hrc_scheduling/control/online.py": "c77832aa84de2790e6426310c668993379e526647c1f7ddd8059a0e321f77190",
+    "src/adaptive_hrc_scheduling/control/online_timing.py": "99d7ca99895b5cd2dba3fa77cbab0485e1d0d3ec0ecc0651aa399a394d4f2808",
+    "src/adaptive_hrc_scheduling/control/production_decisions.py": "dc4511a03162d0b1c8d4afb452d095e9b413dd32e659a5366e90ed9956612c4c",
+    "src/adaptive_hrc_scheduling/control/production_ledger.py": "91fe3c92cedc604166ea23bd3c3dccb675be707ab0996327301d6f8b1e01d377",
+    "src/adaptive_hrc_scheduling/control/production_loop.py": "3e29db57ac4119b3f50bb8aa486015b530616ccc4dabbb309871b496849630ce",
+    "src/adaptive_hrc_scheduling/control/simulation_joint_policy.py": "13b8fb5d389c3c8faa2b3b18e0ba54ae6437be614879ff77ee53c31c76dc3e21",
+    "src/adaptive_hrc_scheduling/control/__init__.py": "36da3cf84e0f82d633970ca2820ffe10f7cccf6e56a2982ddef36220805a51ff",
+    "src/adaptive_hrc_scheduling/domain/building.py": "9a16439b1469e5890879ec92a49e4ac04123b53726b3df2fbfabf2f0f47ae04d",
+    "src/adaptive_hrc_scheduling/domain/logistics.py": "e20a0e7d8c1facb0a6d54f7ad1a77159e7afd092d534b47263ff9b0ab8b886d3",
+    "src/adaptive_hrc_scheduling/domain/models.py": "c9efd2eed6c81b7f8ef7c28fc92f3b7a8e9389ac3be39f267a3bd4c85678f1e9",
+    "src/adaptive_hrc_scheduling/domain/phases.py": "40a2ff96ef9514ea08206ace96f4cd40b0a1086e3d906c9f9ab48083eedc3158",
+    "src/adaptive_hrc_scheduling/domain/production.py": "53892c4cb53079b408249419e56a9cf3e20bda8141335ad02635c24fc9d718e1",
+    "src/adaptive_hrc_scheduling/domain/state.py": "5e5b684af2b1c241fbf35fe1659434f144b80a625257ef81401fa9186f6525e4",
+    "src/adaptive_hrc_scheduling/domain/__init__.py": "cedbdebb3f07bcd2041d0544851462d6192884516cd9d67cbf9692f591172bfe",
+    "src/adaptive_hrc_scheduling/planning/decoder.py": "1649bdaeecac309110fe0e5ba72f80ef15410aa6be94deb596693255be91b6b5",
+    "src/adaptive_hrc_scheduling/planning/logistics.py": "df252196539cbc051d09c85e6e615b184a3f4d008bd536363944c2419f970ae0",
+    "src/adaptive_hrc_scheduling/planning/production.py": "7d3507d35b438916f3ff43df5972c0a97b1785689e4689f2aedd4664b66eec96",
+    "src/adaptive_hrc_scheduling/planning/rules.py": "e1e16789334c2dc7cfec25f53c4328e0f49278cdc137ba6ac6cd3c8abfb52681",
+    "src/adaptive_hrc_scheduling/planning/__init__.py": "e4e65f4bc4a586427f5c97d2dccbe03ea0ea1a33494ed31a38a47e2dab2c1587",
+    "src/adaptive_hrc_scheduling/reference/baselines.py": "3dfaaaded053791ef6b1e62370e718f2a5aeab8477c706008a02025caf2b7a03",
+    "src/adaptive_hrc_scheduling/reference/cases.py": "63612d573b9e7631a0509c90ea3403a4491aa7bdb1faa9d82ba56ae6e37eaa99",
+    "src/adaptive_hrc_scheduling/reference/checker.py": "7f1375b94ea8f9c1c1e6b7a736a6bd740d9813c6556bcca89abf5e1dd9de7957",
+    "src/adaptive_hrc_scheduling/reference/cpsat.py": "3e66e6447547a76724bd9fd5715bf0a9f1c8eff56d8de6198f922de86f57d221",
+    "src/adaptive_hrc_scheduling/reference/domain.py": "923243ad79041a98798e2926763a2dd0aae98e2754ac72d3e990c0e330443176",
+    "src/adaptive_hrc_scheduling/reference/__init__.py": "b346dd23e8ccde2cf325d779459884585cd3b206e3368b40c7efbf3d3619d84e",
+    "sim/__init__.py": "74cf015db4285108c06c6c6b6edcf85e05a8802186e9af855aaa3c82a1a809f7",
+    "sim/isaac/__init__.py": "2fc8fe53994e6a1ba84be15c20b0b75f7d384b2e38ce1a9ac7a74f54dae953ea",
+    "sim/isaac/scene/appearance_styles.py": "71d55933979407fd9283d4b93ceba5ba0a3fd93e8874115fe747dc977eadcd20",
+    "sim/isaac/scene/floor_finish.py": "c6d8abfc47f9b0ab30f03e954da6cbae52d9ba66bba24461f350809f2d7e9cfe",
+    "sim/isaac/scene/inspection.py": "7f795fd6b68aa413def3416d852cc806b0876f1a327908cbaa400bea7697d886",
+    "sim/isaac/scene/layout.py": "c0333f6af0a607df5845f08f0a6347d0b9f8a3dd0814cdfbd5284c16f9669afe",
+    "sim/isaac/scene/logistics_port.py": "b4a206aa48d59c381ecb9935f53c4819af22a8766deaa404a4daa6c9fe106ceb",
+    "sim/isaac/scene/model.py": "1411f6c9022c4f3a6247365a0da532dbbe02e947eb4ef41493f655682909f87f",
+    "sim/isaac/scene/person_appearance.py": "aac7066a8d89eaf7b788d261c7fc6d38063cc18176b051ea4228393b61efe6e2",
+    "sim/isaac/scene/person_motion.py": "42e84ce8deff16584ba3073d656804d3c3eda9d8d0bc4013d995397b24daecee",
+    "sim/isaac/scene/production_port.py": "18fbe57e9bb1a4fa463e86d87824f924a5b1b91991869a57783e5a4bf14567f5",
+    "sim/isaac/scene/production_receiver.py": "734c706829f102d5e5473dcd09c06e264924a9144cf72f1ada0b8e109df9572d",
+    "sim/isaac/scene/production_support_port.py": "319aed476969e4df108d36c5f743003c9b83a078200f330a33d98e3f06d098a9",
+    "sim/isaac/scene/review_export.py": "2759eef6ccc4504bf5cd17456426c30d3de4841a3e172e03f07bc2cb672c0b0c",
+    "sim/isaac/scene/revision_checks.py": "fca5a7e56727d51c40aa93689b70bf00ce08afdb8d0e77be7d01a678e1299ffe",
+    "sim/isaac/scene/scene_appearance.py": "bdd3bcd410d2b96eac752764a3faf19bdbb0de4716b3f93489488663e24d05cc",
+    "sim/isaac/scene/target_layout.py": "ed0c80b3111362325f38ce97500b1a9f87279cf800fd53967414df4681efb447",
+    "sim/isaac/scene/target_repair_checks.py": "0243f4d71741d585931a8c5a0c7b4cf53fcb99c86d68f8cd4077ebc5651c92b7",
+    "sim/isaac/scene/target_scene.py": "30946578a9953b159a9131fe158b22dc92110eb5d2ad28a37794199f662cd7df",
+    "sim/isaac/scene/target_trials.py": "f13eee7c26ef4059d3464cacafd5384b4b0dd279be86bfb79529760edc6df70e",
+    "sim/isaac/scene/trials.py": "13275db4b4b73efd70b2c33a1cded68c1d77f98821e4f7f8b820f2df416901ec",
+    "sim/isaac/scene/trial_scene.py": "e4b5eda712d75c2e82a95e9a8f232ba0eeb7a10c2ef5a20dbadaacc9e2ed4acd",
+    "sim/isaac/scene/usd_scene.py": "7cb0ce4b54653a223d86c6a8f47962fb6643da0f7e72e5f114ef25fba66759f9",
+    "sim/isaac/scene/visual_motion.py": "970ba5d4657babafd1c578d258ce9646c211e5c9071387635b6802441e028bd3",
+    "sim/isaac/scene/__init__.py": "e3a240987d86f87e019278e05cb69b723638ece144f7450865d89a1937fc2094",
+    "scripts/audit_online.py": "24b428aa515875fbe8f45da278f77087771a532aadf90e43fbf1c5ead68da9a1",
+    "scripts/audit_online_continuation.py": "9abc37236e834e368e57950e62d695ae32df7bb56ce7ee2513fe91de6ae83c37",
+    "scripts/audit_online_provenance.py": "759b123e3ed809513f623695f25f7b8366d125456fccece80dec594f8f6e4dbc",
+    "scripts/build_building_contracts.py": "1193f06d564d8c6c985e184032c1d6929dcc74340635bcafce4e8f8d77559885",
+    "scripts/build_building_scene.py": "7a4efc5bbfc79047bb50b664cb5234d2deb06d7746912cbadb15a637c2de60a1",
+    "scripts/build_contract_examples.py": "58f5965c2f59f4f0896c39b2a090a8587635c366585fba32194be20480733ffe",
+    "scripts/build_logistics_contracts.py": "25c5b35d815f32620fb9c9a495ca3a3affe9c5da88ea45a11bb1ae27cf51fa3f",
+    "scripts/build_production_contracts.py": "9a36147504cf908975d38f782cb5ba5d6d8474e6f867bf23a0c9c82e0f9d0e8c",
+    "scripts/build_production_motion_table.py": "f5fc22b5e8ff46a4313e3c4862ec3231da2b12649523cabe8f4cc7c492eaa970",
+    "scripts/build_production_rework.py": "b2ef94fcc749f478795c8c4b11d5cfa27433fbe18e0d863680992556dd1de03e",
+    "scripts/build_simulation_production.py": "1dc9391cfbc9d25fcdb4db9d9dc04f1aa89301e5943e87dd10cd109728623663",
+    "scripts/build_target_coverage.py": "75fdfde16639373c0e92a48b60de90ac170e76a5a55c4dbb876fecf5f6919196",
+    "scripts/check.py": "810affd825dd73bbe8934501e3c90600606f72d3094da01004067332a24a523f",
+    "scripts/compare_production_chain.py": "5e52e016a791250c8955d86a7c05dfcc93d24bcbcd594a97e2f0e47da3606c41",
+    "scripts/compare_production_supports.py": "278ee46a29e92fb5a2185aa4ba2233e6528360b744b2f375dc8a4d46355d5648",
+    "scripts/isaac_smoke.py": "96cc743ae53fad80a60d97e9e5eb39a212721e9fcb5a2be57f51fd49231ac730",
+    "scripts/probe_production_isaac.py": "5319a35303fe882887faaae06ac6ddab104dceee3ccc0ecadc5963408e3119fe",
+    "scripts/render_s19a_visual.py": "4298776a5d8df82a02900da1855989d63f2103a0ac7e53d6f641e644a3c25c79",
+    "scripts/replay_online_candidates.py": "5c8d2a94719488c95859b0aea69427b1256419b4e803dfd0987cf05fb4d4577c",
+    "scripts/run_building_checker.py": "c8f9cb3d4c15be5e1e20c02e91607c3d51823b9fafd1794ec7665cc6651f69b1",
+    "scripts/run_building_witness.py": "694c7fb4134914674b1a2a865749d4a4b3348cb4fbcd6809d536d0dcc8a09511",
+    "scripts/run_cpsat_reference.py": "af22efce7291302200a4a81f63f37d910c434fb09768b7405e10c0f718b31ba5",
+    "scripts/run_execution_witness.py": "56f3357bdad54d78912e8cda57eb2fff59adf14b5ad16c93cd4278c41c7cf8ce",
+    "scripts/run_joint_adaptive.py": "af253a46fdf21d9fe790e3fc31de79eb1dd029e07f43de41d194bacadf87fd70",
+    "scripts/run_joint_continuation.py": "3e3e60efdfe5a15a336cbbd5cb64a2b7e216ad6520937a35c0871767ab077919",
+    "scripts/run_joint_mechanisms.py": "6e28686e995fe17a4d02ee75ed91a1fb2ea483447ca0f4ac8733038b9f72ea5a",
+    "scripts/run_joint_rolling.py": "58e825531d757e59dac481e8b7897efd10b3283e6fb9a0950475ef3f90c1d7dc",
+    "scripts/run_light_loop.py": "4a937995f74bdfa95d75db409c8260c86b6a375a4512a316cb694423f8e4221e",
+    "scripts/run_lns_production.py": "32d971a524931a0370024ec20b558d95f16423102b007f22bebf8162a25da7f6",
+    "scripts/run_lns_reference.py": "40024010bdcceb9202075f2bcf56ff4495eed1ce0fd5a2a55a60c8cef959559a",
+    "scripts/run_lns_repair.py": "e5ad1bb83935edbc70f991d4c7609dfaf336f1fa9703b154e9ffaf7986cf1348",
+    "scripts/run_online_window.py": "e0dac2d9f21eb968c5994ecc703504dfbab6235439045222650c2f79c974be17",
+    "scripts/run_rule_planners.py": "62628e54901f4b9fc5475588026ab1cedd71d7f7fa0267142b40cf68b9b5833d",
+    "scripts/run_simulation_controls.py": "649d165f8158f98c0c3f0422c69b2f21566af6564a35d3cdd6e648077bb760f4",
+    "scripts/verify_building_target.py": "ecc092a80ef76f23e5d754148435c55459f7915f929f866bd01031dd356f5cf6",
+    "scripts/verify_logistics_isaac.py": "1a5cc77bf5e393e0bf57cfb054940dbe3cdb678fcfb3045541f813d634281d01",
+    "scripts/verify_production_chain.py": "39c22ca3a9aecee535f2d8377990c34061c9621bcc97163c88820b6bc8727a9e",
+    "scripts/verify_production_supports.py": "b386920e86080f21747ad2f66c35b727ff935bcf65a8bcca3c9c61f6d824a5a5",
+    "scripts/verify_s19a_visual.py": "6e3bfff13114a015f3f2312f96a7122ead63bb34049bb08aaccef31bea04450f",
+    "scripts/view_building_scene.py": "5330a8386c4e68cd8328c3154114b3a752f4067d5343de84cff62bdfaf8dc977",
+    "scripts/view_legacy_building_scene.py": "210552c8d4897821ec09ed1ba7756c55563578befee5b5a80d5306d2360bae15",
+    "tests/test_building_checker.py": "5c635fd2d242366c67e26076dab821f4123e5411bf183e81567c202477f13180",
+    "tests/test_building_contracts.py": "3ef1dd5d24eb3d5c9bd56616ae0417aa47728e27000424a84288af805c062012",
+    "tests/test_building_execution.py": "08ee846b8a7d7ae57ddb865043a6699e42aeff799c074839954733324f35ba2e",
+    "tests/test_building_repairs.py": "6adcc103657b9588d14e72756c39a9ef83de20eff591a7a80452c751eced576d",
+    "tests/test_building_scene.py": "aeb9469b3fbae8eb0284dbd232fa27b5c0d77aca19632d31929c40934b6a1e1c",
+    "tests/test_building_target.py": "9c697bac48be6500445e376052366f01c513b7d2911aac71e1b500efacb675f0",
+    "tests/test_building_trials.py": "93911e312cf9a2139e1dc5bfb8883cf4dce1302b164e2d7ff3b1f1b94062f419",
+    "tests/test_contracts.py": "bc79a2ad248d7f1ffe99ab14ba09449494723a4799d42c04d62acb5214889517",
+    "tests/test_contract_repairs.py": "6fe5a6ceef539dc214b90890f222d14b437ec699ac44088b981600a646c01d28",
+    "tests/test_cpsat_reference.py": "eaefffe6fecccfe9566036179b7326649b6683e4688a762228512dfae6ae99d8",
+    "tests/test_events.py": "8ce3e96fd2b93d6da77ff0fbb7be1ebb477e32dc600ed0204fe06e115b147f66",
+    "tests/test_event_backend.py": "a8f6ecdc13a36aa673fc12e5f72a9e4156bc0c49dab8f4f0a48d659520c02a7b",
+    "tests/test_execution_boundaries.py": "017fc1f54d72214d1988c95ebe50d3d175b638da8b86658964c99bbe01a57769",
+    "tests/test_execution_repairs.py": "8fc9197a542630da096661ebebafa5cbf77f6e40c4fcbee34f7f5cea78583e55",
+    "tests/test_execution_witness.py": "87f47ce06550d97b6c65b1249ee8d6d1d46cc4e28231f1af5758690d9d41d0d5",
+    "tests/test_human_state.py": "11d3f9b046f4c3340ab1fc36c8843e792238c6f1bbcb44f3f8b7c6ffdf96a0a8",
+    "tests/test_installation.py": "7c0dace1e3a1ad1cf12301d46ef47938e34158ea51369fc2fbc461ddef247129",
+    "tests/test_isaac_adapter.py": "42fc90a921c21838f0715e559d2651a5dc4680e7de2d523d918bb1219bdb451e",
+    "tests/test_isaac_callbacks.py": "71658c3e9341d58b33a1db46a41890aeaebf722a85a5a7b733e6309df8b17fef",
+    "tests/test_joint_adaptive.py": "208445406d1c735cd833f6360c985fc082ed1eec63694a051555be6b47ebab4b",
+    "tests/test_joint_decisions.py": "e01306a323ee2a443358e6383a2aa00a95ce5efa73d82518369f95d32ea262a6",
+    "tests/test_joint_frozen_information.py": "61f91849e82b099a9ef402c9518a1c9305b8ac7ef16cfd7657a9340be02fae9b",
+    "tests/test_joint_production_boundary.py": "475199a87a3764a6157b37791197f7384a4a56c3c7eeb6e4d0168bacd09d5874",
+    "tests/test_joint_rolling.py": "3c76db52eaf2f40aaf1a3e8763283b90a2d7059d8d6dbdbef9bae42001273afd",
+    "tests/test_light_closed_loop.py": "386133892660f5f621704cf9091de1a05bb45d67e7783d3289a284cafcb6ccd1",
+    "tests/test_lns_core.py": "3c07c5d7d4ee18f50391e22b1f8852197dcae51f6c5df7789c549304d0f14673",
+    "tests/test_lns_repair.py": "e7cd6db4a3b3f84f44e39e41cf0845bda9d68717fbf3603b8c5c60ee81b315f7",
+    "tests/test_logistics.py": "723369a0874869ccb47c6ca58ce0b7ddb9bbf7eee383793112816f4803de7ce0",
+    "tests/test_logistics_migration.py": "373c541aaa359a1a06a71ceebdd3cea1748cf54781c342da304bfd3fcae35350",
+    "tests/test_logistics_repairs.py": "e07999740cba625151990f961d1d2ef05b354b026a582ff565a344f2c179f566",
+    "tests/test_observation.py": "55157da551b870b47459f28b8c1bca0ff2b4f85ee74f5115970e8376bc00742c",
+    "tests/test_online_budget.py": "f5fe9c67c8145202c457bb4909fd6e1c34956e1bb95a917366dea8cd4c07fb45",
+    "tests/test_online_continuation.py": "35aede94682445e2399282490c490853653207ef6b0631565cd6afc1c38d7fe8",
+    "tests/test_online_repair.py": "308501683dad0e4494290dde238c336786b6539a21ab39968b68ff87a77412d1",
+    "tests/test_production.py": "a6086826455f0a3e5f80cbf1f9ea66a9858ec3878194340b9f1443a5b4d508ad",
+    "tests/test_production_repair.py": "32dddb3d4a64da246dedd9e9cf91f60b7e7018043f91a0f4f8a3f29386df6bc5",
+    "tests/test_rule_planners.py": "200c72c6a1f1392bcbc6f539ad3a9e3bcd5a832a2e94ce56ca2b6224eff499c0",
+    "tests/test_simulation_joint.py": "a051d95eadd9e23b3f5002fb97cd374daa53189e5c8ce1459384e0a3adaa55f9",
+    "tests/test_simulation_joint_repair.py": "876590ed384462b1ef4827c628cb73fe9b01a9dc260bb0f02fea69a3d659c2b3",
+    "tests/test_simulation_policy.py": "9d1bc21b21254552917e810b1679f3aca36b1a6da86ea52c122127a89d0ad630",
+    "tests/test_simulation_production.py": "9050f9dd30e347119249789690000dd315e381910e0fcfe1e209047b79fc604e",
+    "tests/test_visual_motion.py": "3c0e5348b6628b886319f19228d33543a7ab36e0c15ec9c3b54c309aae785996"
+  },
+  "history": [
+    "First video pass rejected asynchronous camera readback; retained.",
+    "Second video pass stopped on a transient Windows screenshot write lock; retained.",
+    "Third diagnostic pass completed; final public-CLI pass completed after waiting for camera/readable PNG.",
+    "Initial public renderer lint issues fixed by formatting/import organisation before final checks.",
+    "Complete CPU check began before final renderer protocol validation was strengthened; core src/sim/tests were unchanged, final Ruff and actual public-CLI Kit replay were run on frozen final code."
+  ],
+  "limits": [
+    "Bounded kinematic visual presentation, not a new skeletal/physical-human or industrial qualification model.",
+    "Fixed scene trials and actual finite command prefix do not replace old full production-chain evidence or formal A/D experiments.",
+    "Original visible-body versus collision-envelope difference remains; no collider shrinking or new safety certification.",
+    "A1 direction, A2 visual matrix, A3 protocol/effects and whole-step acceptance are included in this owner review; no owner acceptance inferred.",
+    "Industrial G2 OPEN/NOT_ESTABLISHED; S19B/S20-S28 not started."
+  ],
+  "evidence_sha256": {
+    "verify-r3/report.json": "9947ad56e3c77e25954332ec0b58391575aefe5c8cf072570b0cebe662df46b7",
+    "check.log": "89009098e9900d062d3e0c7f91cbbea5f36296d0f095e7eb86879e7ce71fe150",
+    "native-probe.json": "f36dd01bf3378745bb2d87f1a4e8e1e11d6874f0ba6538a5e35595bc3adfc8d4",
+    "final-render/report.json": "40d449bfba1e0ff6750d4bb240c99d8fe2ef2ac794fbbe8c5afb0905073f67a1",
+    "final-render.log": "e73fcf546bd3c5694151e0993c885902f3c7493dfebf9ca648a584c9f29e8705",
+    "final-render-process.json": "4eda3a0536572eb5bd92dec319262fbd710e759c789e862d04fa088469e954d4",
+    "render-r1/report.json": "d7b6fcb856a44ebd2d716eaf31ba4e653a18cfc3ae8074588c3fcb5793d62b11",
+    "render-r2/report.json": "53d6cfbecaf8120a511ef62f5521d4779fec148060529df528c3e6a3f3ad974c",
+    "render-r3/report.json": "9195d9c67e249eceec6663cbae035822064062d1d65ab022d563c85537de45c3"
+  },
+  "proposed_publication": {
+    "repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling",
+    "branch": "main",
+    "new_tag": "step-S19A-r1",
+    "operations": [
+      "ONE_EXACT_MAIN_COMMIT",
+      "NEW_ANNOTATED_TAG",
+      "ATOMIC_PUSH_MAIN_AND_NEW_TAG",
+      "VERIFY_REMOTE_TREE_AND_CPU_CI"
+    ],
+    "execution": "WAITING_FOR_EXACT_PACKET_APPROVAL"
+  }
+}

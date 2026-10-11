@@ -1,0 +1,35 @@
+{
+  "decision_id": "S19A-COMPLETION-PUBLISH-APPROVAL-004",
+  "date": "2026-10-11",
+  "authority": "PR170",
+  "accepted_packet": "S19A-20261011-completion-r2",
+  "accepted_archive_sha256": "cfb8d6c9d7fd026c9580d421784946ac723a403447ba7cdebae99987de7d763c",
+  "accepted_original_files": 46,
+  "status": "ACCEPTED_WITH_DOCUMENTED_LIMITS_APPROVED_FOR_PUBLICATION",
+  "accepted_scope": [
+    "A1_DIRECTION_AND_STYLE",
+    "A2_FIXED_MOTION_AND_CONTROL_HAND_MATRIX",
+    "A3_VIDEO_PREDECLARED_FIXED_LOAD_PROTOCOL_AND_EVIDENCE",
+    "S19A_WHOLE_STEP_LIMITED_ACCEPTANCE",
+    "F1_LIMITED_PORTABLE_EXPORT_REPAIR"
+  ],
+  "additional_authorization": "REMOVE_PEOPLE_OVERVIEW_IMAGE_AND_CAPTION_FROM_README_AND_MODERATELY_UPDATE_CURRENT_STATUS",
+  "repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling",
+  "branch": "main",
+  "parent_commit": "07de8d761a8adea3e5219355d682429381a68a70",
+  "new_tag": "step-S19A-r1",
+  "operations": [
+    "EXACT_SINGLE_MAIN_COMMIT",
+    "NEW_ANNOTATED_TAG",
+    "ATOMIC_PUSH_MAIN_AND_TAG",
+    "VERIFY_REMOTE_TREE_AND_CPU_CI"
+  ],
+  "limits": [
+    "Bounded kinematic visual presentation, not a new skeletal/physical-human or industrial qualification model.",
+    "Fixed scene trials and actual finite command prefix do not replace old full production-chain evidence or formal A/D experiments.",
+    "Original visible-body versus collision-envelope difference remains; no collider shrinking or new safety certification.",
+    "A1 direction, A2 visual matrix, A3 protocol/effects and whole-step acceptance are included in this owner review; no owner acceptance inferred.",
+    "Industrial G2 OPEN/NOT_ESTABLISHED; S19B/S20-S28 not started."
+  ],
+  "later_steps": "NOT_STARTED_NOT_AUTHORIZED"
+}

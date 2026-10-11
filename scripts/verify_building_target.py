@@ -85,7 +85,9 @@ def run(app, args, out):
             for p in [*(ROOT / "sim/isaac/scene").glob("*.py"), Path(__file__)]
         },
     )
-    scene.stage.Export(str(out / "scene.usda"))
+    from sim.isaac.scene.review_export import export_review_stage
+
+    export_review_stage(scene.stage, str(out / "scene.usda"))
     capture("target_overview", "Overview")
     capture("target_top", "Top")
     capture("target_fork", "Fork")

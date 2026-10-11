@@ -1,5 +1,14 @@
 # 仓库协作规则
 
+2026-10-11现行S19A完成包限定验收与发布批准（PR170 / LOG229）：负责人通过46文件S19A-20261011-completion-r2，含A1方向、A2固定动作/手位、A3视频/事前工作判据和整体视觉，决定S19A-COMPLETION-PUBLISH-APPROVAL-004；按所列限制完成S19A整步验收，并批准main及新标签step-S19A-r1原子上传。另明确README删除人员总览图和说明并适度更新状态，已落实；原图审图片仍封存。代码/资产/模型参数与获批包保持，工业G2/后续边界保持；实际推送及CI另核验，不预写成功。[实际验收与发布范围](docs/validation/S19A_completion_publication_r1.md)。以下旧状态按各自时点保留。
+
+
+2026-10-11现行S19A剩余本地完成候选（PR169 / LOG227—LOG228）：负责人授权集中完成A1—A3剩余、有限修复F1并形成整包先审后上传。路线朝向/受限脚步、操作上肢保持和相对依赖导出已本地实现；3816次USD、864帧Kit、四固定场景完整前后比较、迁移/缺失贴图及9新增含于源码/wheel各858项通过。14图、36秒视频和三类ABBA负载齐备，事前工作判据实测满足、负责人认可仍待本包审批。当前IMPLEMENTATION_AND_EVIDENCE_COMPLETE_WITH_LIMITS / OWNER_ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED；转弯平面受限缩小等表现取舍和原几何/碰撞/操作手位保护明确登记，原证据保持，工业G2/后续边界保持。[整包候选审阅](docs/validation/S19A_completion_r2.md)。以下旧状态按各自时点保留。
+
+
+2026-10-11现行S19A全量审阅（PR168 / LOG225—LOG226）：静态成果已实际验收、批准并发布，提交07de8d761a8adea3e5219355d682429381a68a70、标签step-S19A-static-r1，双平台源码/隔离wheel各849项成功。完整S19A仍未完成：A1路线方向未单独关闭，A2动作和A3视频/正式性能/整步验收缺口保持。新24组USD与57场景回归通过，原几何/碰撞/手位保持；发现F1导出USD绝对贴图依赖的P2问题，保持OPEN。仅审阅/必要治理，未修复实现或新发布，原静态批准及全部历史证据有效，工业G2与后续边界保持。[完整完成性与逻辑审阅](docs/validation/S19A_post_release_audit_r1.md)。以下旧状态按各自时点保留。
+
+
 2026-10-10现行静态外观验收与发布批准（PR167 / LOG223）：负责人通过最终设备/地面/打光效果并明确批准发布，要求README图片替换为最新版，决定S19A-STATIC-PUBLISH-APPROVAL-003。原15人物验收保持；已更新README全场及人物总览图片。静态成果ACCEPTED_WITH_DOCUMENTED_LIMITS / APPROVED_FOR_PUBLICATION，拟main单提交及新标签step-S19A-static-r1原子推送，实际回执与CI另核验。A2动作、A3视频及整步出口未完成，工业G2/后续边界保持，旧审阅与失败证据保持。[验收及确切发布范围](docs/validation/S19A_static_publication_r1.md)。以下旧状态按各自时点保留。
 
 

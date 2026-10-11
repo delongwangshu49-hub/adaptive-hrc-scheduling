@@ -133,7 +133,9 @@ def run(app, args, out):
     viewport.camera_path = "/World/Cameras/Overview"
     for _ in range(15):
         app.update()
-    stage.Export(str(out / "scene.usda"))
+    from sim.isaac.scene.review_export import export_review_stage
+
+    export_review_stage(stage, str(out / "scene.usda"))
 
     def capture(name, camera):
         import numpy as np
@@ -436,7 +438,9 @@ def run(app, args, out):
             }
         )
     save(out / "reset-times.json", reset_times)
-    stage.Export(str(out / "scene.usda"))
+    from sim.isaac.scene.review_export import export_review_stage
+
+    export_review_stage(stage, str(out / "scene.usda"))
     bbox = (
         UsdGeom.BBoxCache(0, ["default", "render", "proxy"])
         .ComputeWorldBound(

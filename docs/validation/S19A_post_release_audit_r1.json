@@ -1,0 +1,257 @@
+{
+  "review_id": "S19A-20261011-post-release-audit-r1",
+  "date": "2026-10-11",
+  "authority": "PR168",
+  "status": "WHOLE_STEP_INCOMPLETE_POST_RELEASE_REVIEW_FINDING_OPEN",
+  "reviewed_commit": "07de8d761a8adea3e5219355d682429381a68a70",
+  "tag": "step-S19A-static-r1",
+  "published_scope": "ACCEPTED_STATIC_ONLY",
+  "published_file_count": 94,
+  "repository_file_count": 656,
+  "ci": {
+    "run_id": 37968966809,
+    "url": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37968966809",
+    "conclusion": "success",
+    "jobs": {
+      "ubuntu": {
+        "result": "success",
+        "source": {
+          "tests": 849,
+          "seconds": 400.555
+        },
+        "wheel": {
+          "tests": 849,
+          "seconds": 401.673
+        },
+        "log_sha256": "d90fc482737289104ea9cadd98296a20e1729dd0d866941dd6e80efaf4380a49"
+      },
+      "windows": {
+        "result": "success",
+        "source": {
+          "tests": 849,
+          "seconds": 489.242
+        },
+        "wheel": {
+          "tests": 849,
+          "seconds": 493.562
+        },
+        "log_sha256": "cf2cf8e5aa0e51b2c096db9b4a94c087da2e289801d894a32b702e99cbe264d9"
+      }
+    }
+  },
+  "completion_gaps": [
+    {
+      "id": "G1",
+      "area": "A1",
+      "status": "PARTIAL",
+      "detail": "Protected baseline and person/route proposal delivered; static style accepted, route-facing/semantic review not separately closed."
+    },
+    {
+      "id": "G2",
+      "area": "A2",
+      "status": "NOT_COMPLETED",
+      "detail": "Fixed four-direction/turn/reverse/stop-resume/backstep/side-step/tool/load matrix and per-frame body/hand checks not delivered. Ordinary W1 walk yaw still fixed at 0 while saved route first moves negative X."
+    },
+    {
+      "id": "G3",
+      "area": "A3",
+      "status": "PARTIAL_NOT_CLOSED",
+      "detail": "Screenshots, affected regressions and static ABBA samples exist. No short video, preaccepted formal performance threshold/representative execution-load comparison or whole-step owner acceptance."
+    },
+    {
+      "id": "G4",
+      "area": "WHOLE_STEP_HANDOFF",
+      "status": "NOT_ACCEPTED",
+      "detail": "Static acceptance/publication does not close A2/A3 or authorize S19B/S20."
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "P2",
+      "title": "导出的USD地面贴图依赖原工程绝对路径",
+      "location": {
+        "file": "sim/isaac/scene/floor_finish.py",
+        "line": 27
+      },
+      "save_locations": [
+        {
+          "file": "scripts/view_building_scene.py",
+          "line": 103
+        },
+        {
+          "file": "scripts/view_building_scene.py",
+          "line": 257
+        }
+      ],
+      "reproduction": "Build published scene, export USD, copy USD and texture into a separate review folder, reopen. Asset resolver still selects the original checkout texture rather than the copied asset.",
+      "observed": "Absolute dependency and outside-package resolution reproduced. Current original checkout still resolves successfully.",
+      "impact": "Moving standalone saved USD to a host without the original absolute checkout can lose floor and stripe appearance. Normal source rebuild in a complete new checkout is not shown broken.",
+      "recommendation": "Bundle texture with saved review USD and author a path relative to the exported layer, or package USD with dependencies.",
+      "status": "OPEN_NOT_FIXED"
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "C1",
+      "priority": "ADVISORY",
+      "detail": "Persist the current USD geometry/texture/reset guard in a reproducible checked-in verification entry point; existing 849 CPU tests do not directly cover new S19A material/UV/asset integration."
+    }
+  ],
+  "fresh_validation": {
+    "existing_scene_tests": 57,
+    "elapsed_seconds": 2.961,
+    "usd_invariant_cases": 24,
+    "usd_cases": [
+      {
+        "case": "T1-reset",
+        "original_boundables": 518,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T1-sample-0",
+        "original_boundables": 518,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T1-sample-1",
+        "original_boundables": 518,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T1-sample-2",
+        "original_boundables": 518,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T1-restart",
+        "original_boundables": 518,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T2-reset",
+        "original_boundables": 594,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T2-sample-0",
+        "original_boundables": 594,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T2-sample-1",
+        "original_boundables": 594,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T2-sample-2",
+        "original_boundables": 594,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T2-restart",
+        "original_boundables": 594,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T3-reset",
+        "original_boundables": 517,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T3-sample-0",
+        "original_boundables": 517,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T3-sample-1",
+        "original_boundables": 517,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T3-sample-2",
+        "original_boundables": 517,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T3-restart",
+        "original_boundables": 517,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T4-reset",
+        "original_boundables": 721,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T4-sample-0",
+        "original_boundables": 721,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T4-sample-1",
+        "original_boundables": 721,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T4-sample-2",
+        "original_boundables": 721,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "T4-restart",
+        "original_boundables": 721,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "SR-W1-production-reset",
+        "original_boundables": 1148,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "SR-W1-production-repeat-reset",
+        "original_boundables": 1148,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "SR-W2-production-reset",
+        "original_boundables": 1151,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      },
+      {
+        "case": "SR-W2-production-repeat-reset",
+        "original_boundables": 1151,
+        "geometry_colliders_bodies_hands_and_obstacles": "PASS"
+      }
+    ],
+    "export_dependency": {
+      "absolute_source_dependency": true,
+      "copied_texture_not_selected": true,
+      "original_checkout_still_required": true,
+      "current_source_texture_resolves": true,
+      "scope": "Conditional export/review relocation defect; not a current-local-render failure."
+    },
+    "orientation_gap": {
+      "actual_saved_route_first_segment": "NEGATIVE_X",
+      "current_W1_walk_yaw_degrees": 0,
+      "visual_forward_local_axis": "POSITIVE_Y",
+      "first_segment_forward_dot": 0.0,
+      "source_status": "Inherited unchanged orientation; S19A A2 unmet, not new S19 regression."
+    },
+    "matched_image_digest_entries": 68,
+    "valid_local_links": 239
+  },
+  "evidence_sha256": {
+    "usd-audit.json": "8d4a5b74b2133b020b59f672cf07bf6c44fccc900ebce9f1d4462483ca9f6ae6",
+    "usd-audit.log": "97a61e3670e6c261854976c9cff20622a76dde49852d8190e5dda7ee0d367402",
+    "tests.log": "e51f127d138ae0e6350706ec0db6b85b344a52ecb85439eebc7b7f0154c0308a",
+    "ci-confirmation.json": "86d3cacdafc988dfd0e0035ab810b9bc815bb3e7acc4915bcc7d81fc0097cf01",
+    "first-import-failure.log": "d824f3c523df51c4b5a26f4ad153f7a68e44feaca7dd65d783c1847ceed93fe8",
+    "second-probe-lifetime-failure.log": "64670b278890538612429e91cc9a36653c8d1c05a003039e153990457897a901"
+  },
+  "limits": [
+    "No fresh Kit render, short video, full production chain, complete 849/wheel rerun or formal performance conclusion in this review. Existing successful release CI checked separately.",
+    "Two initial local probe errors (wrong interpolation import, temporary USD object lifetime) corrected with diagnostics preserved; neither is a product failure.",
+    "No implementation/asset/frozen-input change, new Git write or later-step start."
+  ]
+}

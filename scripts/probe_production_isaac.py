@@ -64,7 +64,9 @@ def run(app, out, *, native_usd=False):
         results.append({"kind": w.events[-1].kind, "reason": w.events[-1].reason})
         if w.events[-1].kind == "EXCEPTION":
             break
-    scene.stage.Export(str(out / "scene.usda"))
+    from sim.isaac.scene.review_export import export_review_stage
+
+    export_review_stage(scene.stage, str(out / "scene.usda"))
     return {"probe": results, "scope": "INITIAL_GEOMETRY_ONLY", "production_verified": False}
 
 

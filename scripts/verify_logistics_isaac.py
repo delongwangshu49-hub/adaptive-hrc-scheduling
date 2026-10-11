@@ -336,7 +336,9 @@ def run(app, out):
     for op in ("EMPTY-CR1", "WALK-0", "WALK-1", "BUFFER-3"):
         finish(a, op)
     audit(a, "v03-receiver-b-plus-one")
-    scene.stage.Export(str(out / "scene.usda"))
+    from sim.isaac.scene.review_export import export_review_stage
+
+    export_review_stage(scene.stage, str(out / "scene.usda"))
     return {"cases": results, "scope": "SYNTHETIC_USD_KINEMATIC_AND_SYNTHETIC_EXTERNAL_RECEIVER"}
 
 

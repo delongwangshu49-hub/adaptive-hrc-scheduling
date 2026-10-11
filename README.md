@@ -20,9 +20,7 @@
 
 *负责人已通过的 S19A 静态外观实际截图。原几何尺寸和碰撞保持；橘黄色通行条纹采用地面贴图改色。逐项前后对照见[最新图册](docs/validation/S19A_contrast_r2.md)，完整生产闭环证据另见下方验证入口。*
 
-![15名人员保留原建模，以岗位配色、头盔和胸牌编号区分](docs/sim/images/s19a/batch-r1/people-all-after.png)
-
-*已通过的人员静态外观；总览排布用于配色展示，实际生产位置和手位保持。*
+S19A场景表现已完成限定验收，包含受限人物转向与脚步、36秒对照视频、贴图迁移修复和同负载验证，见[动作与验证记录](docs/validation/S19A_completion_r2.md)。
 
 ## 这个项目解决什么问题？
 
@@ -150,7 +148,7 @@ docs/                   # 模型、方法、验证与步骤记录
 
 ## 验证与已知边界
 
-已发布调度基线为 [`step-S19-r2`](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/tree/step-S19-r2)，提交 `5a69646`。该版本在 Ubuntu 和 Windows 的源码/隔离 wheel 环境各通过 **849 项测试**，见[实际 CI](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37934877304)。S19A 静态外观已获验收和发布批准，使用独立标签 `step-S19A-static-r1`；[验收与发布范围](docs/validation/S19A_static_publication_r1.md)明确保留动作与整步验证的未完成项。
+已发布调度基线为 [`step-S19-r2`](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/tree/step-S19-r2)，提交 `5a69646`。该版本在 Ubuntu 和 Windows 的源码/隔离 wheel 环境各通过 **849 项测试**，见[实际 CI](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/37934877304)。S19A完整场景表现成果已获限定验收和发布批准，本轮使用标签 `step-S19A-r1`；本地源码/隔离wheel各858项通过，验收范围与具体发布记录见[S19A验收](docs/validation/S19A_completion_acceptance_r2.json)及[发布范围](docs/validation/S19A_completion_publication_r1.md)。
 
 | 已保存的验证 | 可支持的结论 |
 | --- | --- |
@@ -163,7 +161,7 @@ docs/                   # 模型、方法、验证与步骤记录
 - **时限是协作式预算。** 单次 Python 调用不能被强制抢占；50 ms 不是硬实时保证。原 B+1 Kit 最大反馈时延约 5.972 s，不能用决策周期指标替代反馈指标。
 - **工业资格仍未建立。** 工业 G2 为 `OPEN / NOT_ESTABLISHED`；仿真中的符号焊接、合成质量和外部接收不构成工业工艺或安全认证。
 - **场景有明确抽象。** USD 运动学读回、共用落点和既有 GUI 限制保持；渲染更新不代表实机动力学或真实帧率认证。
-- **研究结论保持有限。** 正式方法优势、工业适用性和人因效应尚待后续研究；S19A 静态外观已获验收，动态表现与整步出口尚未完成，S19B、S20—S28 尚未启动。
+- **研究结论保持有限。** 正式方法优势、工业适用性和人因效应尚待后续研究。S19A按固定动作矩阵完成限定验收，转弯采用原尺寸内的视觉补偿；S19B、S20—S28 尚未启动。
 
 <a id="docs"></a>
 
@@ -175,7 +173,7 @@ docs/                   # 模型、方法、验证与步骤记录
 | 产品、工艺和数据依据 | [钢结构规格](docs/model/selected_steel.md) · [证据台账](docs/research/production_evidence.md) |
 | 获批仿真假设与工业缺口 | [仿真研究范围](docs/model/S18_simulation_scope_proposal_r1.md) · [G2 证据结论](docs/research/S18_industrial_g2_evidence_r1.md) |
 | 算法与在线行为 | [规则](docs/algorithms/rule_baselines.md) · [CP-SAT](docs/algorithms/cpsat_mapping.md) · [在线策略](docs/algorithms/online_policy.md) |
-| 当前步骤和后续计划 | [S19A 步骤卡](docs/steps/S19A.md) · [最新外观图审](docs/validation/S19A_contrast_r2.md) · [路线图](docs/roadmap.md) |
+| 当前步骤和后续计划 | [S19A 步骤卡](docs/steps/S19A.md) · [动作与场景验证](docs/validation/S19A_completion_r2.md) · [路线图](docs/roadmap.md) |
 | 开发、检查与版本历史 | [开发说明](docs/development.md) · [进度日志](PROGRESS_LOG.md) · [规范化决策记录](PROMPT_LEDGER.md) |
 
 ## 贡献与许可

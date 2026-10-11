@@ -100,7 +100,9 @@ def main():
             issue_count += 1
             name = f"issue-{issue_count:03d}"
             trial.run.paused = True
-            scene.stage.Export(str(out / (name + ".usda")))
+            from sim.isaac.scene.review_export import export_review_stage
+
+            export_review_stage(scene.stage, str(out / (name + ".usda")))
             save(
                 name + ".json",
                 {
@@ -254,7 +256,9 @@ def main():
                 )
         for _ in range(30):
             app.update()
-        scene.stage.Export(str(out / "scene.usda"))
+        from sim.isaac.scene.review_export import export_review_stage
+
+        export_review_stage(scene.stage, str(out / "scene.usda"))
         sources = [p for p in (ROOT / "sim/isaac/scene").glob("*.py")] + [Path(__file__)]
         save(
             "ready.json",

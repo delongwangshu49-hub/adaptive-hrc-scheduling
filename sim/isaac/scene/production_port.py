@@ -5,6 +5,7 @@ qualification model. It reuses the original target geometry, not its trial scrip
 """
 
 import json
+import math
 from types import SimpleNamespace
 
 from pxr import Gf, UsdGeom, UsdPhysics
@@ -25,6 +26,7 @@ from adaptive_hrc_scheduling.production_pedestrians import fork_walk_phases, wal
 from adaptive_hrc_scheduling.production_supports import RACK_POST_X
 
 from .model import key
+from .person_motion import present_route, set_person_pose
 from .production_support_port import SupportPort
 from .target_layout import PERSON_SIZE, check_crane_structure, check_route
 
@@ -581,6 +583,9 @@ class USDProductionPort:
     def start(self, run):
         self.running[run.command.id] = run
         op = self.ops[run.command.operation_id]
+        if op.action != "WALK":
+            for binding in run.command.roles:
+                set_person_pose(self.scene, binding.person_id, mode="OPERATION")
         if op.action == "SUPPORT_CHANGE":
             self.support_port.start(run)
         if op.action == "RETURN" and op.target == "EXTERNAL":
@@ -823,6 +828,21 @@ class USDProductionPort:
                 rotation = UsdGeom.Xformable(self.prim(op.entity_id)).GetOrderedXformOps()[-1]
                 rotation.Set(yaw)
                 require(abs(float(rotation.Get()) - yaw) < 1e-6, "ACTUAL_WALK_YAW")
+                constrained_access = op.entity_id == "P1" and any(
+                    parts
+                    and math.dist(points[i], point) + math.dist(point, points[i + 1])
+                    <= math.dist(points[i], points[i + 1]) + 1e-6
+                    for i, (parts, _) in phases.items()
+                )
+                present_route(
+                    self.scene,
+                    op.entity_id,
+                    points,
+                    fraction,
+                    now_h * 3600,
+                    moving=not done,
+                    mode="SIDESTEP" if constrained_access else "WALK",
+                )
             if op.action == "EMPTY_RETURN" and op.entity_id == "CR1":
                 self.put("CR1-HOOK", point)
                 self.put("CR1", (point[0], 0, 0))
@@ -845,6 +865,13 @@ class USDProductionPort:
                         else (v[0], v[1] - 1.35, 0)
                     )
                     self.put(r.person_id, dest)
+                    set_person_pose(
+                        self.scene,
+                        r.person_id,
+                        mode="CONTROL_WALK" if qual in ("CART", "TOOL") else "OPERATION",
+                        moving=not done,
+                        clock_s=now_h * 3600,
+                    )
                     roles[r.person_id] = op.target if done else "IN_TRANSIT"
             self.controls_ok(c)
             require(

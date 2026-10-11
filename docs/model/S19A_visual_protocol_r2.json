@@ -1,0 +1,37 @@
+{
+  "declared_before_measurement": true,
+  "reference": "step-S19A-static-r1",
+  "geometry": {
+    "body_aabb_growth_m": 1e-06,
+    "collider_and_root_transform_tolerance_m": 1e-09,
+    "operating_hand_reference_m": 1e-06,
+    "path_time_domain_and_capacity": "EXACT_EQUAL"
+  },
+  "direction": {
+    "front_axis": "+Y",
+    "straight_dot_min": 0.999,
+    "corner_blend_metres": 0.6
+  },
+  "performance": {
+    "renderer": "RayTracedLighting",
+    "resolution": [
+      1280,
+      720
+    ],
+    "order": [
+      "before",
+      "after",
+      "after",
+      "before"
+    ],
+    "warmup_frames": 60,
+    "samples_per_run": 180,
+    "load": "SAME_FIXED_T3_EXECUTION_SAMPLES_WITH_PEOPLE_CART_AND_TOOL",
+    "candidate_median_ratio_max": 1.5,
+    "candidate_p95_ratio_max": 1.65,
+    "owner_acceptance": "PENDING_WITH_FINAL_PACKET",
+    "no_hard_realtime_claim": true
+  },
+  "visual_acceptance": "OWNER_WILL_REVIEW_COMPLETE_PACKET_IMAGES_AND_VIDEO",
+  "scope": "LOCAL_IMPLEMENTATION_ONLY_NO_GIT_WRITE_OR_UPLOAD"
+}

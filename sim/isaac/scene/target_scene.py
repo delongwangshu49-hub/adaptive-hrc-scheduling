@@ -7,6 +7,7 @@ from pxr import Gf, UsdGeom, UsdLux, UsdPhysics
 
 from .model import POSES, Box, key, require
 from .person_appearance import apply_person_appearance
+from .person_motion import present_route, register_person_motion, set_person_pose
 from .scene_appearance import apply_scene_appearance
 from .target_layout import CONTROL, FIXED, PADS, PEOPLE, TASK_BY_ID, VERSION, static_boxes
 from .target_trials import TargetRun
@@ -179,6 +180,7 @@ class TargetScene(BuildingScene):
         self.sync()
 
     def people(self):
+        self._person_motions = {}
         for name in PEOPLE:
             p = "/World/People/" + name
             self.ident(name, p, self.run.positions[name])
@@ -200,6 +202,7 @@ class TargetScene(BuildingScene):
             proxy.CreateVisibilityAttr("invisible")
 
             apply_person_appearance(self, p, name)
+            register_person_motion(self, name)
 
     def vehicles(self):
         for name in ("SCN-FORK-01", "SCN-CART-01", "TEST1"):
@@ -346,6 +349,28 @@ class TargetScene(BuildingScene):
             UsdGeom.Xformable(self.stage.GetPrimAtPath(self.mapping[p])).GetOrderedXformOps()[
                 -1
             ].Set(yaw)
+            if a and a.state == "WALK" and p in a.paths:
+                present_route(
+                    self,
+                    p,
+                    a.paths[p],
+                    min(1, self.run.part / a.seconds),
+                    self.run.elapsed,
+                    moving=self.run.status == "RUNNING",
+                )
+            elif a and a.state != "WALK":
+                control_walk = p in a.paths and any(
+                    device in a.paths for device in ("SCN-CART-01", "TEST1")
+                )
+                set_person_pose(
+                    self,
+                    p,
+                    mode="CONTROL_WALK" if control_walk else "OPERATION",
+                    moving=control_walk and self.run.status == "RUNNING",
+                    clock_s=self.run.elapsed,
+                )
+            else:
+                set_person_pose(self, p, moving=False)
             for k, v in state.items():
                 self.attr(self.stage.GetPrimAtPath(self.mapping[p]), k, v)
 
