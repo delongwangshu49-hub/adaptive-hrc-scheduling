@@ -1,0 +1,144 @@
+{
+  "packet_id": "S19B-20261012-B1-feedback-r1",
+  "authorization": "PR176",
+  "status": "B1_UI_FEEDBACK_VERIFIED_WITH_LIMITS",
+  "owner_acceptance": "PENDING",
+  "publication_approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "branch": "main",
+  "repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling",
+  "base_commit": "aab9ca848eec6816717f2929a8217f642c3bc2bd",
+  "proposed_tag": null,
+  "remote_operations": [],
+  "theme": "DARK_LIGHT_TEXT_SQUARE_CORNERS",
+  "qt_flows": 14,
+  "checks": [
+    "BILINGUAL_DRAFT_PRESERVATION_AND_UNICODE_PASTE",
+    "INPUT_REJECTION_AND_TWO_PRODUCT_DRAFT",
+    "B1_CPU_ACTUAL_WAIT_REASON_AND_LOCATION_UNAVAILABLE",
+    "REAL_CPU_PREFIX_AND_LIVE_LANGUAGE_SWITCH",
+    "READ_ONLY_HISTORY_AND_LANGUAGE_SWITCH",
+    "B1_HISTORY_INTEGRITY_IDENTITY_NEGATIVES_AND_BILINGUAL_REASONS",
+    "EMBEDDED_NATIVE_CHILD_RESIZE_AND_MINIMIZE",
+    "CHECKPOINT_NEXT_DRAFT_EDITABLE_CURRENT_INPUT_AND_CONFIG_UNCHANGED",
+    "REAL_KIT_RENDER_RESOLUTION_AUTO_FILLS_CURRENT_EMBEDDED_FRAME",
+    "B1_REAL_USD_READONLY_LOCATION_AND_ACTUAL_UNMAPPED_REJECTION",
+    "B1_UI_STALE_MISSING_DAMAGED_OLD_IDENTITY_AND_VERSION_REJECTION_AND_LIVE_EVIDENCE",
+    "EMBEDDED_NATIVE_WHEEL_CHANGED_REAL_RENDERED_CAMERA",
+    "VISIBLE_REAL_KIT_PREFIX_CAMERA_AND_CONFIRMED_EXIT",
+    "NEXT_TRIAL_DISTINCT_IDENTITY_ONLY_AFTER_ACTUAL_OLD_DISPLAY_EXIT"
+  ],
+  "verifier_exit_code": 0,
+  "desktop_contract_tests": 19,
+  "prior_core_122_and_source_wheel_858": "RETAINED_NOT_REPEATED_CORE_UNCHANGED",
+  "runs": [
+    {
+      "backend": "light",
+      "run_id": "S19B-e1f84315ad3b4ef29964f1fc041a9684",
+      "request_id": "86e651e8a37145c9beebf36d9de3ad98",
+      "entry": "INITIAL_FINITE_TRIAL",
+      "time_h": 1.0381202777777776,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "termination": "DECLARED_CHECKPOINT",
+      "ready": 0,
+      "received": 0,
+      "captured_sources": 119,
+      "source_drift": [],
+      "closed": true,
+      "process_exit_code": 0,
+      "exit_strategy": "NORMAL_CPYTHON_EXIT",
+      "evidence_directory": ".local/s19b-b1-feedback-20261011/ui-r5/runs/S19B-e1f84315ad3b4ef29964f1fc041a9684"
+    },
+    {
+      "backend": "isaac",
+      "run_id": "S19B-09003105e4c74f0cb63ac339b412781f",
+      "request_id": "a25a92b7d641456db34b2c4e1b33720c",
+      "entry": "INITIAL_FINITE_TRIAL",
+      "time_h": 1.0381202777777776,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "termination": "DECLARED_CHECKPOINT",
+      "ready": 0,
+      "received": 0,
+      "captured_sources": 119,
+      "source_drift": [],
+      "closed": true,
+      "process_exit_code": 0,
+      "exit_strategy": "EXPLICIT_EXIT_AFTER_FULL_KIT_CLOSE_RETURN",
+      "evidence_directory": ".local/s19b-b1-feedback-20261011/ui-r5/runs/S19B-09003105e4c74f0cb63ac339b412781f"
+    },
+    {
+      "backend": "isaac",
+      "run_id": "S19B-c198689d38f94960b4e2a36c398ff3a3",
+      "request_id": "65315a7daf7e4843bd2171cc7d38152a",
+      "entry": "NEW_DRAFT_AFTER_CONFIRMED_OLD_DISPLAY_EXIT",
+      "time_h": 1.0669369444444443,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "termination": "DECLARED_CHECKPOINT",
+      "ready": 0,
+      "received": 0,
+      "captured_sources": 119,
+      "source_drift": [],
+      "closed": true,
+      "process_exit_code": 0,
+      "exit_strategy": "EXPLICIT_EXIT_AFTER_FULL_KIT_CLOSE_RETURN",
+      "evidence_directory": ".local/s19b-b1-feedback-20261011/ui-r5/runs/S19B-c198689d38f94960b4e2a36c398ff3a3"
+    }
+  ],
+  "next_draft_does_not_modify_current_request_or_configuration": true,
+  "new_trial_requires_actual_valid_old_display_exit": true,
+  "viewport": {
+    "fill_frame": true,
+    "render_resolution": [
+      892,
+      411
+    ],
+    "ui_size": [
+      892.0,
+      411.3333435058594
+    ],
+    "main_client_ui_size": [
+      892.0,
+      411.3333435058594
+    ],
+    "native_child_preserved": true,
+    "internal_kit_ui_window_fills_same_native_child": true
+  },
+  "legacy_support_finding": {
+    "status": "OPEN_NOT_FIXED",
+    "collider_count": 711,
+    "support_geometry_count": 510,
+    "category_counts": {
+      "FIXED_CONTACT_BAR": 246,
+      "PARKING_HOLDER": 132,
+      "MOVABLE_SUPPORT_BAR": 132
+    },
+    "disconnected_category_counts": {
+      "FIXED_CONTACT_BAR": 238,
+      "PARKING_HOLDER": 120,
+      "MOVABLE_SUPPORT_BAR": 120
+    },
+    "method": "VISIBLE_COLLIDER_AABB_ADJACENCY_SCREEN_NOT_STRUCTURAL_OR_PHYSICS_PROOF",
+    "usd_unchanged": true,
+    "evidence": "docs/sim/S19B_scene_support_issue_r1.md"
+  },
+  "raw_index": ".local/s19b-b1-feedback-20261011/ui-r5/ui-verification.json",
+  "failed_attempts_preserved": [
+    "ui-r1",
+    "ui-r2",
+    "ui-r3",
+    "ui-r4"
+  ],
+  "B2_B3": "NOT_STARTED",
+  "industrial_G2": "OPEN_NOT_ESTABLISHED",
+  "limitations": [
+    "FINITE_PREFIX_NOT_COMPLETE_ORDER_OR_CHAIN",
+    "EXPLICIT_HELPER_EXIT_AFTER_FULL_KIT_CLOSE_RETURN_SKIPS_RC_FINALIZATION",
+    "PRECHECKPOINT_INPUT_LOCKED_NO_RUNTIME_ORDER_MUTATION",
+    "LEGACY_FLOATING_SUPPORTS_OPEN_REQUIRES_SEPARATE_GEOMETRY_COLLISION_SCOPE",
+    "PHYSICAL_OWNER_ACCEPTANCE_AND_FORMAL_SEMANTIC_PERFORMANCE_PENDING",
+    "QT_GRAB_LAYOUT_ONLY_GPU_CHILD_NOT_CAPTURED"
+  ]
+}

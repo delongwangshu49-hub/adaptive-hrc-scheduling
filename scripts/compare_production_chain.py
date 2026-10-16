@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 
-def compare(light, isaac, audit_source_root=ROOT):
+def compare(light, isaac, audit_source_root=ROOT, *, same_backend=False):
     sys.path.insert(0, str(audit_source_root / "src"))
     from adaptive_hrc_scheduling.contracts.codec import decode
     from adaptive_hrc_scheduling.contracts.production import digest
@@ -22,6 +22,15 @@ def compare(light, isaac, audit_source_root=ROOT):
     from adaptive_hrc_scheduling.production_checker import check_run
 
     reports = [json.loads((p / "report.json").read_text(encoding="utf-8")) for p in (light, isaac)]
+    # B2 keeps source binding in its separately sealed sources.json. Preserve
+    # the original witness shape while adapting only this read-only comparison.
+    for folder, report in zip((light, isaac), reports):
+        if report.get("scope") == "B2_CONTROLLED_PRODUCTION":
+            report["sources"] = json.loads((folder / "sources.json").read_text(encoding="utf-8"))
+            report["runtime"] = {
+                "CPU_EVENT": "LIGHT_EVENT",
+                "VISIBLE_KIT_RAYTRACED_PROTOTYPE": "KIT_APPLICATION",
+            }.get(report.get("display_mode"))
     errors, maxima = [], {"time_h": 0.0, "geometry_m": 0.0, "other_numeric": 0.0}
     error_count = 0
 
@@ -83,8 +92,8 @@ def compare(light, isaac, audit_source_root=ROOT):
                 same(x, y, f"{path}[{index}]")
         elif isinstance(a, str) and isinstance(b, str):
             # Run-specific identities are still compared after a bijective prefix mapping.
-            if a.replace("RUN-S15", "RUN-S15-COMPARE", 1) != b.replace(
-                "RUN-S15-ISAAC", "RUN-S15-COMPARE", 1
+            if a.replace(reports[0].get("run_id", "RUN-S15"), "RUN-S15-COMPARE", 1) != b.replace(
+                reports[1].get("run_id", "RUN-S15-ISAAC"), "RUN-S15-COMPARE", 1
             ):
                 error(path, "identity or discrete text differs")
         elif a != b:
@@ -102,7 +111,11 @@ def compare(light, isaac, audit_source_root=ROOT):
             audit_sources[name] = actual
             if actual != expected:
                 error("audit_source." + name, "audit implementation differs from captured source")
-    if [r.get("runtime") for r in reports] != ["LIGHT_EVENT", "KIT_APPLICATION"]:
+    runtimes = [r.get("runtime") for r in reports]
+    if same_backend:
+        if runtimes[0] not in ("LIGHT_EVENT", "KIT_APPLICATION") or runtimes[0] != runtimes[1]:
+            error("runtime", "same-backend comparison requires matching declared runtimes")
+    elif runtimes != ["LIGHT_EVENT", "KIT_APPLICATION"]:
         error("runtime", "requires light and actual Kit application")
     same(reports[0]["manifest"]["scenario"], reports[1]["manifest"]["scenario"], "scenario")
     configurations = [
@@ -204,6 +217,8 @@ def compare(light, isaac, audit_source_root=ROOT):
             same(witness, report.get("buffer_backpressure"), "buffer_backpressure_report")
     return dict(
         status="PASS" if not error_count else "FAILED",
+        comparison_mode="SAME_BACKEND" if same_backend else "LIGHT_VS_KIT",
+        runtimes=runtimes,
         comparator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         independent_audits=audits,
         independent_decision_audits=decision_audits,
@@ -233,8 +248,9 @@ def main():
     parser.add_argument("--isaac", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--audit-source-root", type=Path, default=ROOT)
+    parser.add_argument("--same-backend", action="store_true")
     args = parser.parse_args()
-    result = compare(args.light, args.isaac, args.audit_source_root)
+    result = compare(args.light, args.isaac, args.audit_source_root, same_backend=args.same_backend)
     with args.output.open("x", encoding="utf-8") as stream:
         json.dump(result, stream, indent=2)
     print(result["status"])

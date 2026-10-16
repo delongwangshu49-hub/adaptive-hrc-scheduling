@@ -1,0 +1,46 @@
+{
+  "decision": "S19B-PUBLISH-APPROVAL-001",
+  "date_local": "2026-10-16",
+  "timezone": "Etc/GMT-8",
+  "user_quote": "批准验收，允许发布，你指出的问题留待后续修复",
+  "status": "ACCEPTED_WITH_DOCUMENTED_LIMITS",
+  "publication": "APPROVED_FOR_PUBLICATION",
+  "packet_id": "S19B-20261015-fifth-step-r1",
+  "approved_packet_file_count": 140,
+  "approved_archive_sha256": "05ccdca76899abaa23461c0b6f51daf413b93538ff2fec909cbfa68bdcf87ed8",
+  "approved_manifest_sha256": "e015e78d1a63782913808bd9dc5f558b9e70ef5c8becbd4fa7554aa61c9ce9ad",
+  "formal_performance": "OPEN",
+  "deferred": [
+    "UI-PERF-01 startup poll maximum",
+    "short-load sample sufficiency and CPU boundary measurement",
+    "performance coverage limitations"
+  ],
+  "unchanged_boundaries": [
+    "three support classes technical OPEN / non-blocking demo",
+    "industrial G2 OPEN",
+    "production/observation/budgets/2.4m/0.02h per pair",
+    "S20-S28 separately authorized"
+  ],
+  "proposal": {
+    "branch": "main",
+    "single_commit": true,
+    "new_tag": "step-S19B-r1",
+    "atomic_push_refs": [
+      "main",
+      "step-S19B-r1"
+    ],
+    "remote": "origin",
+    "authorized": true
+  },
+  "actual_publication_receipt": "Written separately after actual push; not asserted by this approval record",
+  "governance_changed": [
+    "AGENTS.md",
+    "docs/steps/S19B.md",
+    "docs/PROJECT_CHARTER.md",
+    "docs/roadmap.md",
+    "desktop/s19b/README.md",
+    "PROGRESS_LOG.md",
+    "PROMPT_LEDGER.md",
+    "README.md"
+  ]
+}

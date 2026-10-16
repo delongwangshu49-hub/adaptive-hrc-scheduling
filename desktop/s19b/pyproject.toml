@@ -1,0 +1,17 @@
+[project]
+name = "s19b-desktop-prototype"
+version = "0.1.0"
+description = "Local bilingual desktop prototype for approved simulation review"
+requires-python = ">=3.12,<3.13"
+dependencies = ["PySide6-Essentials==6.12.0"]
+
+[build-system]
+requires = ["uv_build==0.12.3"]
+build-backend = "uv_build"
+
+[tool.uv]
+required-version = "==0.12.3"
+
+[tool.uv.build-backend]
+module-name = "s19b_desktop"
+

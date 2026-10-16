@@ -1,5 +1,7 @@
 # 规范化提示词记录
 
+2026-10-11当前回执：PR175的S19B-2已实际接续，B1本地受测成果见LOG239及[本轮审阅](docs/validation/S19B_B1_r1.md)。这是既有实施授权的执行回执，不增加人工验收、发布或B2/B3授权；下方历史状态保留各自时点。
+
 2026-10-07条件程序成果（PR139 / LOG180）：S18准入拒绝与条件联合分支已有限验证，34专项、源码/隔离wheel各693项通过，213冻结文件及原S17七例保持。候选S18-20261007-branches-r1程序VERIFIED_WITH_LIMITS，整步RESEARCH_BLOCKED_G2_OPEN；ACCEPTANCE_PENDING / NOT_APPROVED / NOT_PUBLISHED。真实资格、现行生产HR映射及完整状态消融出口未满；合成分支不替代研究准入。成果验收与确切发布另审，S19—S28及S19A/S19B未启动。入口：[S18程序审阅](docs/validation/S18_joint_branches_r1.md)。
 
 2026-10-07现行交接（PR138—PR139 / LOG178—LOG179）：S17 r2已实际限定验收、批准并发布，提交 `62c1c5393cb715b8089a93ee7ec658a0eb0e571d`、标签 `step-S17-r2`，双平台各源码/隔离wheel659项成功。负责人已授权沿用main/目录直接实施S18，不建分支/worktree或子代理。当前IMPLEMENTATION_IN_PROGRESS；G2仍OPEN，研究功能与A实验BLOCKED，先完成接口、拒绝门及条件程序机制验证。新成果验收与确切发布另审，S19—S28及S19A/S19B未启动。入口：[S18步骤卡](docs/steps/S18.md)。
@@ -5483,3 +5485,106 @@ PR055 补录 S08 r2 实际批准；PR056 单独授权 S09 本地实施。PR057 �
 ```json
 {"id":"PR170","date":"2026-10-11","decision_id":"S19A-COMPLETION-PUBLISH-APPROVAL-004","operation":"ACCEPT_EXACT_COMPLETION_PACKET_AUTHORIZE_UPLOAD_AND_REMOVE_PEOPLE_OVERVIEW_FROM_README","packet":"S19A-20261011-completion-r2","archive_sha256":"cfb8d6c9d7fd026c9580d421784946ac723a403447ba7cdebae99987de7d763c","resolution":"S19A_ACCEPTED_WITH_DOCUMENTED_LIMITS_PUBLICATION_AUTHORIZED","readme_scope":"REMOVE_IMAGE_AND_ITS_CAPTION_MODERATE_STATUS_UPDATE","branch":"main","tag":"step-S19A-r1","limit":"KEEP_APPROVED_CODE_ASSETS_AND_GEOMETRY_KEEP_ARCHIVES_NO_LATER_STEP_START"}
 ```
+
+## PR171：S19B新对话与先选型后制作的规划授权
+
+```json
+{"id":"PR171","date":"2026-10-11","operation":"CREATE_S19B_CHAT_AND_RESEARCH_FRONTEND_OPTIONS_BEFORE_OWNER_SELECTION_AND_IMPLEMENTATION","resolution":"PLANNING_AND_TECHNOLOGY_COMPARISON_AUTHORIZED_IMPLEMENTATION_WAITING_FOR_SELECTION","chat_title":"S19B","branch":"main","baseline_commit":"aab9ca848eec6816717f2929a8217f642c3bc2bd","sequence":"COMPARE_OPTIONS_OWNER_SELECTS_MINIMAL_PROTOTYPE_THEN_B1_B2_B3","constraints":["EXISTING_DIRECTORY_NO_BRANCH_WORKTREE_SUBAGENTS","NO_EARLY_FRONTEND_IMPLEMENTATION_OR_NEW_STACK_INSTALL","PRESERVE_GEOMETRY_COLLISIONS_PATHS_HANDS_PRODUCTION_TIMES_CAPACITY_HUMAN_FACTORS_AND_ARCHIVES","SINGLE_BACKEND_FACTS_AND_OBSERVATION_ISOLATION","INDUSTRIAL_G2_AND_S20_TO_S28_BOUNDARIES_RETAINED","NEW_RESULT_ACCEPTANCE_AND_PUBLICATION_SEPARATE"]}
+```
+
+## PR172：双语试用与英文演示工作台需求及重新选型
+
+```json
+{"id":"PR172","date":"2026-10-11","operation":"REVISE_S19B_OPTIONS_FOR_BILINGUAL_CONVENIENT_TRIAL_AND_ENGLISH_DEMONSTRATION","requirements":["SIMPLIFIED_CHINESE_FOR_DEVELOPMENT_TRIAL","SWITCH_TO_ENGLISH_FOR_COURSE_DEMONSTRATION","CONVENIENT_ORDER_AND_CASE_INPUT","INTUITIVE_SYSTEM_FEEDBACK","PRESERVE_REAL_ISAAC_RENDERING_AND_PRODUCTION_ACTIONS","REPEAT_POST_SELECTION_SEQUENCE_IN_NEXT_REPLY"],"resolution":"PLANNING_REVISION_AUTHORIZED_TECHNOLOGY_SELECTION_PENDING","order_change_scope":"DISTINGUISH_PRE_RUN_CONFIGURATION_FROM_RUNTIME_ORDER_MUTATIONS_DO_NOT_ASSUME_NEW_BACKEND_CAPABILITIES","constraints":["NO_IMPLEMENTATION_OR_NEW_STACK_INSTALL_BEFORE_OWNER_SELECTION","PRESERVE_EXISTING_MAIN_DIRECTORY_NO_BRANCH_WORKTREE_SUBAGENTS","PRESERVE_ALL_PRIOR_MODEL_PRODUCTION_OBSERVATION_BUDGET_AND_LATER_STEP_BOUNDARIES"]}
+```
+
+## PR173：方案B选定及步骤1最小双语原型实施
+
+```json
+{"id":"PR173","date":"2026-10-11","operation":"SELECT_OPTION_B_AND_IMPLEMENT_STEP_1_MINIMAL_BILINGUAL_PROTOTYPE","selected":"B_PYSIDE6_DESKTOP","scope":["CPU_ENTRY","REAL_KIT_ENTRY","HISTORY_ENTRY","INPUT_VALIDATION","LANGUAGE_SWITCH","SCENE_CONNECTION","WINDOW_EXPERIENCE"],"resolution":"STEP_1_LOCAL_IMPLEMENTATION_AND_NECESSARY_ISOLATED_DEPENDENCIES_AUTHORIZED","constraints":["EXISTING_MAIN_DIRECTORY_NO_BRANCH_WORKTREE_SUBAGENTS","B1_B2_B3_AND_RUNTIME_ORDER_EXTENSIONS_NOT_STARTED","NEW_RESULT_ACCEPTANCE_AND_PUBLICATION_SEPARATE","PRESERVE_MODEL_PRODUCTION_OBSERVATION_BUDGET_AND_INDUSTRIAL_BOUNDARIES"]}
+```
+
+## PR174：主界面内嵌真实Isaac场景的步骤1修订
+
+```json
+{"id":"PR174","date":"2026-10-11","operation":"REVISE_OPTION_B_STEP_1_FOR_REAL_ISAAC_VIEWPORT_EMBEDDED_IN_WIDENED_MAIN_DESKTOP_WINDOW","requirements":["SINGLE_MAIN_WINDOW_WITH_EMBEDDED_REAL_INTERACTIVE_3D_SCENE","NO_SEPARATE_SCENE_WINDOW","KEEP_BILINGUAL_INPUT_AND_CPU_KIT_HISTORY_ENTRIES"],"resolution":"STEP_1_LAYOUT_CORRECTION_AND_NECESSARY_EMBEDDING_IMPLEMENTATION_VALIDATION_AUTHORIZED","constraints":["PRESERVE_ORIGINAL_PRODUCTION_AND_ASSETS_AND_R1_EVIDENCE","EXISTING_MAIN_NO_BRANCH_WORKTREE_SUBAGENTS","B1_B2_B3_NOT_STARTED","ACCEPTANCE_AND_EXACT_PUBLICATION_SEPARATE"]}
+```
+
+## PR175：S19B-2新对话及B1信息审查实施授权
+
+```json
+{"id":"PR175","date":"2026-10-11","operation":"CREATE_S19B_2_CHAT_HANDOFF_EXISTING_MAIN_AND_DIRECTLY_COMPLETE_B1_INFORMATION_REVIEW","chat_title":"S19B-2","scope":["BILINGUAL_STATUS","INTUITIVE_ACTUAL_REASONS","READ_ONLY_ENTITY_LOCATION_IN_EMBEDDED_REAL_KIT","EVIDENCE_ENTRY_POINTS"],"resolution":"B1_LOCAL_IMPLEMENTATION_AND_NECESSARY_VALIDATION_AUTHORIZED","constraints":["EXISTING_DIRECTORY_MAIN_NO_NEW_BRANCH_WORKTREE_SUBAGENTS","KEEP_REAL_ISAAC_VIEWPORT_INSIDE_MAIN_INTERFACE","PRESERVE_PROTOTYPE_PACKETS_FAILURES_MODELS_PRODUCTION_OBSERVATION_AND_BUDGET","B2_B3_AND_S20_TO_S28_NOT_STARTED","EXACT_ACCEPTANCE_AND_PUBLICATION_SEPARATE"]}
+```
+
+### PR175执行回执：S19B-2与B1本地受测完成
+
+S19B-2已实际创建并在现有main/目录接续；既有实施授权下的B1成果与限制见LOG239和docs/validation/S19B_B1_r1.md/json。负责人未进行本轮人工信息清晰性验收或确切发布批准，不登记新的批准决定。B1程序受测完成，OWNER_REVIEW_PENDING / NOT_APPROVED / NOT_PUBLISHED，原封包及限制保持，B2/B3和S20—S28未启动。
+
+## PR176：负责人B1实际图审的界面反馈与场景问题
+
+```json
+{"id":"PR176","date":"2026-10-12","operation":"REVISE_B1_FOR_DARK_UI_LIGHT_TEXT_SQUARE_BUTTONS_AUTOFILL_REAL_VIEWPORT_AND_CHECKPOINT_INPUT_USABILITY","reported_issues":["FLOATING_SHORT_SUPPORTS_IN_EXISTING_ISAAC_PRODUCTION_SCENE","ALL_ORDER_INPUT_CONTROLS_DISABLED_DURING_CHECKPOINT_DISPLAY"],"resolution":"B1_FEEDBACK_LOCAL_REVISION_AND_LEGACY_SCENE_ISSUE_INVESTIGATION","owner_acceptance":"PENDING","publication_approval":"NOT_APPROVED","limit":"EXISTING_MAIN_NO_BRANCH_WORKTREE_SUBAGENTS; PRESERVE_MODEL_PRODUCTION_OBSERVATION_BUDGET_AND_ARCHIVES; LEGACY_GEOMETRY_COLLISION_REPAIR_REQUIRES_SEPARATE_CONCRETE_SCOPE_NOT_IMPLEMENTED; B2_B3_AND_PUBLICATION_NOT_STARTED"}
+```
+
+实际成果/限制见LOG240及docs/validation/S19B_B1_feedback_r1.md；本记录是语义摘要，不是逐字提示词或新的人工验收决定。
+
+## PR177：创建紧急修正对话、全量排查与先方案批准后修复
+
+```json
+{"id":"PR177","date":"2026-10-12","operation":"CREATE_NEW_CHAT_EMERGENCY_CORRECTION_HANDOFF_FLOATING_AND_OVERLAPPING_SCENE_ISSUES_AND_FULL_CAUSE_INVESTIGATION","chat_title":"紧急修正","working_directory":"EXISTING_MAIN_NO_NEW_BRANCH_OR_WORKTREE","sequence":"FULL_INVESTIGATION_CONCRETE_CORRECTION_PROPOSAL_OWNER_APPROVAL_IMPLEMENTATION_OWNER_REVIEW","resolution":"INVESTIGATION_AND_PROPOSAL_AUTHORIZED_IMPLEMENTATION_NOT_AUTHORIZED","evidence_ref":"docs/steps/emergency_scene_correction_handoff.md","limit":"PRESERVE_ALL_UNCOMMITTED_WORK_ARCHIVES_AND_FAILURES; NO_SUBAGENTS_OR_GIT_PUBLICATION; NO_EARLY_GEOMETRY_COLLISION_PRODUCTION_CHANGE; KEEP_INDUSTRIAL_G2_AND_B2_B3_LATER_STEP_BOUNDARIES"}
+```
+
+### PR177执行回执：紧急修正实际调查与具体方案
+
+本对话已在现有main/目录接续PR177调查/拟案授权；范围与真实证据见LOG242、docs/sim/emergency_scene_investigation_r1.md及emergency_scene_correction_proposal_r1.md。11类问题保持OPEN/NOT_FIXED，E01—E08及新增几何/碰撞、附件范围、支承工时和导向假设均为PROPOSED / OWNER_DECISION_PENDING / IMPLEMENTATION_NOT_AUTHORIZED；未收到新的负责人批准，不登记虚构实施或人工验收。原始/失败/封包与全部边界保持。本条是实际执行语义回执，不是逐字会话或新授权决定。
+
+## PR178：保持生产与运动边界的有限模型修复及原生完整单件审阅
+
+负责人明确批准立即完成有限修复，优先保持原流程、工时、路线、落点和手位，让结构适配既有运动；完成后用Isaac原生面板审阅，并试跑此前矩阵已跑通的一件产品完整生产流程。该批准不包括r1改变支承工时/附件范围和新增生产控制流程，不授权Git发布或工业落实；已有成果/封包/失败保留。本记录为规范化语义摘要，不是逐字会话。
+
+## S19B-MONOCHROME-UI-20261012：仅界面视觉调整与后续交接安排
+
+负责人要求现有界面改为全黑、黑白极简，参考此前IFC ClashTrace的样子。当前仅做界面调整；紧急修正有结果后由负责人安排该对话交接回来，再统一交接给新对话进行步骤三。本命令不是模型修复接入/验收、后续步骤启动或发布批准。
+
+## PR179：原生审阅面板仅用英语、停止中文适配并继续收尾
+
+负责人明确本轮Isaac原生面板英语即可，要求停止中文字体／标签相关工作，继续完成已授权有限修复及剩余验证。实际入口已改为纯英语；未扩展生产、发布或后续步骤范围。本条为规范化语义摘要，不是逐字会话。
+
+## PR180：剩余模型问题保留用于演示、结果交接既有S19B-2
+
+2026-10-14。负责人研判其余内容不修改也不影响流程演示，决定保留剩余支承现状，要求整理本对话成果交接至既有S19B-2，并在目标对话接收核对后回复准备就绪。规范化记录为OWNER_DECISION_RETAIN_FOR_DEMONSTRATION / TECHNICAL_OPEN_NOT_FIXED / NON_BLOCKING_FOR_DEMO，不登记三类技术问题已修复、全部整改完成、确切封包验收或Git发布。仅授权本次交接与目标对话接收回复；步骤三、新对话、B2/B3及后续另行安排。入口docs/steps/emergency_scene_to_S19B_2_handoff_r1.md；实际发送和接收回执另留本地。本条为语义摘要，不是逐字会话。
+## PR181：创建S19B-3并继续完成第三步B2最小控制
+
+2026-10-14。负责人明确要求整理现有内容，创建新对话S19B-3，不创建新分支，在新对话继续完成B2输入校验、启动、有序停止、确认/幂等及断连重连；其他控制受测后开放。记录为B2_LOCAL_IMPLEMENTATION_AUTHORIZED，不重复等待B2启动许可；必要控制契约/桌面驱动/后端适配及验证属于本次范围。保留全黑黑白极简、B1双语中央真实Kit、已接收兼容修订及三类剩余支承演示取舍、原生产/观察/预算/封包/失败/未提交成果。沿现有main/目录，不建worktree/子代理，不执行Git写入/发布；B3/整步验收/S20—S28另审。入口docs/steps/S19B_3_handoff.md。本条为规范化语义摘要，创建与接续实际回执另存。
+### PR181实际接续与B2本地验证回执
+
+2026-10-14。S19B-3已实际按PR181直接接续并完成B2受测范围本地实现、针对性正负例、真实Qt双语/CPU/中央嵌入Kit及实际交互桌面验证，见LOG247和docs/validation/S19B_B2_r1.md。输入/确认启动、有序停止、后端持久幂等与同一运行重连通过；保留失败、未完成及全部既有边界。程序验证不等于负责人人工验收或发布批准；B3/整步验收/发布及后续另审。该条是实际执行语义回执，不是新增负责人授权或逐字原文。
+
+### PR181最终修订实际回执
+
+2026-10-14。仍在PR181既有授权内补齐非法首条停止的持久拒绝，完成24契约/11实际输入负例与最终同源码Qt/CPU/Kit/交互桌面复验，见LOG248。中间89文件r1与全部旧包失败保留，最终r2独立审阅；未收到负责人人工验收/发布或B3批准，不登记为已批准。本条为实际执行语义回执，不是新授权或逐字原文。
+
+
+## PR182：创建S19B-4并继续完成第四步B3实际试用与演示
+
+2026-10-14。负责人明确要求整理现有内容，创建新对话S19B-4，不创建新分支，在新对话继续完成B3，由AI用简中完成完整任务，再切英语检查展示路径。登记B3_ACTUAL_TRIAL_AND_DEMONSTRATION_AUTHORIZED，不重复等待启动许可。沿现有目录/main，不建worktree/子代理，无Git写入；整理B2最终r2、真实桌面入口、试用任务与规定语义/性能对照缺口，必要的本阶段界面修订和针对验证在既有生产/模型边界内推进。原封包/失败/未提交成果、全黑黑白/B1双语/中央真实Kit及三类支承演示取舍保持。程序/AI实际试用与负责人人工验收分别登记，整步验收/发布/后续另审。入口docs/steps/S19B_4_handoff.md；实际创建/接收另存回执。本条为规范化语义摘要，不是逐字会话。
+
+
+### PR182实际接收、B3任务及本地审阅回执
+
+2026-10-14。S19B-4已按既有授权直接接续，实际用简中完成新的完整SR-W1任务，再切英语检查同一保存身份/完成事实/证据和历史，另建独立英语实时身份。必要显示Camera更新与新运行初始文案修订、最终同源码CPU/Kit严格比较、针对性Qt控制及有限回放成本完成，见LOG250和docs/validation/S19B_B3_r1.md。正式在线前端开关/规定生产负载性能仍OPEN，全部失败和边界如实保持。AI试用与程序验证不是负责人人工验收；本条为实际执行语义回执，不新增整步验收/发布/S20授权。无Git写入、分支/worktree/子代理。
+
+
+## PR183：创建S19B-5并继续第五步语义/性能对照与收尾
+
+2026-10-14。负责人要求整理现有内容，创建新对话S19B-5、不创建新分支，在新对话继续验证前端开关及规定负载、形成成果包，再验收和批准发布，并特别要求不遗漏先前修复。记录SEMANTIC_PERFORMANCE_AND_CLOSEOUT_AUTHORIZED；实施、正式测量、必要有界修订和累计收尾直接推进，不重复等待启动许可。先形成具体可审阅包，再由负责人验收及批准确切发布范围，不登记未知包已批准。沿main/当前目录，不建worktree/子代理，发布批准前无Git写入；保留步骤1/B1/B2/有限兼容/B3全部修复、旧包失败、冻结生产/观察/预算/数值、三类支承技术OPEN/演示不阻断与工业G2。入口docs/steps/S19B_5_handoff.md；实际创建/接续仅在发生后另存本地回执，S20—S28另审。本条为规范化语义摘要，不是逐字会话。
+
+
+### PR183范围修订及实际执行回执
+
+2026-10-15。负责人于10:13 UTC明确批准B+A：立即整合，恢复S19B-5并完成剩余；选择15条生产、10次双语固定回放、11对严格比较、30项独立因果/候选审计；绑定内容和版本复用审计，新旧试点/失效负例通过后使用，全部在线测量结束后最多两个离线任务。保留已有有效运行、额外运行与全部失败，不强杀、不从头重跑。转达来源既有协调对话01a13ef3-2fb9-761e-9510-a708b2b0801b；本段为会话授权语义摘要，非逐字原文，也不是发布/验收授权。实际结果见LOG252及docs/validation/S19B_5_r1.md；未满足/缺样保留待审。另在既有必要有界修订授权和r3失败分级范围内处理实际发现的英语输入区布局重叠，r4协议事前落盘，原批全部结束后才改唯一build布局并补相关验证；这不是新增负责人验收决定。
+
+
+## PR184：S19B验收与发布授权
+
+2026-10-16。负责人本对话原文：“批准验收，允许发布，你指出的问题留待后续修复”。承接前述140文件确切包、main单提交和新step-S19B-r1原子发布提案。现登记限定验收和发布批准，必要治理同步；不关闭性能/支承/工业G2技术问题，不授权本轮新增修复或S20—S28。

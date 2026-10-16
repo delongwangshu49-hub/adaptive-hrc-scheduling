@@ -1,0 +1,88 @@
+{
+  "packet_id": "S19B-20261011-prototype-r1",
+  "date": "2026-10-11",
+  "authority": "PR173",
+  "scope": "OPTION_B_STEP_1_MINIMAL_BILINGUAL_PROTOTYPE_ONLY",
+  "status": "VERIFIED_WITH_DOCUMENTED_LIMITS",
+  "owner_acceptance": "PENDING",
+  "publication": "NOT_APPROVED_NOT_PUBLISHED",
+  "base_commit": "aab9ca848eec6816717f2929a8217f642c3bc2bd",
+  "ui_workflow_checks": 5,
+  "ui_verification_status": "PASS_WITH_DOCUMENTED_LIMITS",
+  "harness_exit_code": 0,
+  "frontend_contract_tests": 8,
+  "root_source_and_isolated_wheel_tests": [
+    {
+      "count": 858,
+      "seconds": 290.252
+    },
+    {
+      "count": 858,
+      "seconds": 301.393
+    }
+  ],
+  "backends": [
+    {
+      "backend": "light",
+      "run_id": "S19B-1b77b387862b4e9197b4604fb805f65c",
+      "time_h": 1.0381202777777776,
+      "termination": "DECLARED_CHECKPOINT",
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "kit_close_returned_or_cpu_closed": true,
+      "process_exit_code": 0,
+      "process_exit_status": "NormalExit",
+      "exit_strategy": "NORMAL_CPYTHON_EXIT"
+    },
+    {
+      "backend": "isaac",
+      "run_id": "S19B-57ba45fb5cde40a285f43b6f4e42210d",
+      "time_h": 1.0381202777777776,
+      "termination": "DECLARED_CHECKPOINT",
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "kit_close_returned_or_cpu_closed": true,
+      "process_exit_code": 0,
+      "process_exit_status": "NormalExit",
+      "exit_strategy": "EXPLICIT_EXIT_AFTER_FULL_KIT_CLOSE_RETURN"
+    }
+  ],
+  "implementation_source_binding": "ALL_CAPTURED_CODE_VIEWPORT_AND_DEPENDENCY_HASHES_MATCH_CURRENT",
+  "historical_mutation": "NONE",
+  "camera_view_matrix_max_error": 3.552713678800501e-15,
+  "physical_ime_candidate_window": "NOT_TESTED",
+  "owner_actual_task": "NOT_PERFORMED",
+  "formal_frontend_semantics_performance_abba": "NOT_RUN",
+  "B1": "NOT_STARTED",
+  "B2": "NOT_STARTED",
+  "B3": "NOT_STARTED",
+  "industrial_G2": "OPEN_NOT_ESTABLISHED",
+  "S20_to_S28": "NOT_AUTHORIZED",
+  "limits": [
+    "FINITE_PREFIX_NOT_COMPLETE_ORDER",
+    "EVENT_BOUNDARY_KINEMATICS_NOT_1_TO_1_WALL_PACING",
+    "KIT_EXPLICIT_EXIT_AFTER_FULL_EXTENSION_CLOSE_RETURN_CPYTHON_FINALIZATION_BYPASSED",
+    "SYNTHETIC_QT_INPUT_EVENTS_NOT_PHYSICAL_IME_OR_OWNER_ACCEPTANCE",
+    "FULL_DESKTOP_SCREEN_CAPTURE_UNAVAILABLE_BLACK_OUTPUT_RETAINED",
+    "WINDOW_LAYOUT_PRIMARY_SCREEN_ONLY",
+    "RUNTIME_ORDER_CHANGE_PAUSE_RESET_USER_PRODUCTION_STOP_NOT_IMPLEMENTED"
+  ],
+  "window_layout": {
+    "worker_pid": 76880,
+    "qt_window_physical": [
+      7,
+      45,
+      1349,
+      1406
+    ],
+    "scene_window_physical": [
+      1361,
+      45,
+      2548,
+      1406
+    ],
+    "non_overlapping": true,
+    "device_pixel_ratio": 1.5,
+    "scope": "OWN_WORKER_WINDOW_ONLY"
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "packet_id": "EMERGENCY-LIMITED-COMPATIBLE-20261012-r2",
+  "status": "COMPATIBLE_ITEMS_VERIFIED_WITH_LIMITS_SUPPORT_REPAIR_OPEN",
+  "owner_acceptance": "PENDING",
+  "publication": "NOT_PUBLISHED",
+  "complete_scene_repair": false,
+  "simulation_case": {
+    "protocol": "S15-PARITY-1",
+    "scenario": {
+      "id": "NORMAL",
+      "until_h": 720,
+      "receive_after_h": 0,
+      "delayed_lot": null,
+      "arrival_after_h": 0,
+      "cancel_product": null,
+      "cancel_stage": null,
+      "quality_fail": null,
+      "rework_fail": false,
+      "loaded_failure": false,
+      "actual_device_failure": false,
+      "actual_path_obstruction": false
+    },
+    "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+    "backend": "isaac-usd",
+    "termination": "OPERATIONS_COMPLETE",
+    "time_h": 272.35047973655236,
+    "static_operations": 448,
+    "completed_static_operations": 436,
+    "active_static_operations": 436,
+    "ready": 1,
+    "received": 1,
+    "audit": "PASS",
+    "decision_audit": "PASS",
+    "decision_protocol": "S15-DECISION-1",
+    "observation_delivery": "CURRENT_EVENT_PREFIX_ZERO_DELAY",
+    "S15_complete": false,
+    "industrial_qualification": "NOT_ESTABLISHED",
+    "schema_version": "S18-PROD-2.0",
+    "warmup_only": false,
+    "continuation": false,
+    "checkpoint_wait_replaced_in_extended_journal": false,
+    "fixed_phase_witness_mode": null,
+    "handover_after_setup_witness": false,
+    "research": {
+      "purpose": "SIMULATION_RESEARCH_ONLY",
+      "assumption_set_id": "S18-SIM-A1",
+      "approval_id": "S18-SIM-APPROVAL-001",
+      "proposal_sha256": "5834f023c3ccb9789b43aa9a72b9cc3a4a9d951b35bc0670a885bdec93f995a0",
+      "assumption_sha256": "8f1f2ea6a4e9096c57d9f3d6fc882291231c0240f2b03c2a97a7a93ba9065bbd",
+      "gate": "APPROVED_ASSUMPTION_SET",
+      "industrial_qualification": "NOT_ESTABLISHED",
+      "industrial_g2": "OPEN",
+      "scope_bindings": [
+        {
+          "product_id": "PRODUCT-1",
+          "product_revision": "v1",
+          "activity_id": "PRODUCT-1.W-B",
+          "component_id": "PRODUCT-1.BOTTOM",
+          "joint_set_id": "PRODUCT-1.W-B.ABSTRACT-JOINTS-v1",
+          "output_revision": "v1",
+          "h_definition": "PRODUCT-1.W-B.H-SIM-v1",
+          "hr_definition": "PRODUCT-1.W-B.HR-SIM-v1",
+          "process_revision": "v1",
+          "fixture_revision": "v1",
+          "assumption_ids": [
+            "A01",
+            "A02",
+            "A03",
+            "A04",
+            "A05",
+            "A06"
+          ]
+        },
+        {
+          "product_id": "PRODUCT-1",
+          "product_revision": "v1",
+          "activity_id": "PRODUCT-1.W-T",
+          "component_id": "PRODUCT-1.TOP",
+          "joint_set_id": "PRODUCT-1.W-T.ABSTRACT-JOINTS-v1",
+          "output_revision": "v1",
+          "h_definition": "PRODUCT-1.W-T.H-SIM-v1",
+          "hr_definition": "PRODUCT-1.W-T.HR-SIM-v1",
+          "process_revision": "v1",
+          "fixture_revision": "v1",
+          "assumption_ids": [
+            "A01",
+            "A02",
+            "A03",
+            "A04",
+            "A05",
+            "A06"
+          ]
+        }
+      ],
+      "consumers": [
+        {
+          "id": "domain",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "contract",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "schemas",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "generator",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "mapping",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "light",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "human_navigation",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "execution_audit",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "planning",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "observation_ledger",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "decision_audit",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "joint_driver",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "isaac_adapter",
+          "version": "S18-PROD-2.0"
+        },
+        {
+          "id": "isaac_port",
+          "version": "S18-PROD-2.0"
+        }
+      ]
+    },
+    "loaded_failure_injected": false,
+    "actual_path_obstruction_injected": false,
+    "preparation_steps_since_progress": 0,
+    "r1_intervention": null,
+    "r1_intervention_injected": false
+  },
+  "kit_closed_returned": true,
+  "kit_actual_exit_code": 0,
+  "shutdown_strategy": "FULL_KIT_CLOSE_RETURN_THEN_EXPLICIT_HELPER_EXIT_SKIP_RC_INTERPRETER_FINALIZATION",
+  "original_record_byte_identical": true,
+  "final_same_production_source_files": 104,
+  "native_gui": {
+    "language": "ENGLISH",
+    "actual_ai_start_button_execution": "VERIFIED",
+    "owner_review_window": "READY_OBSERVED_NOT_OWNER_ACCEPTED",
+    "camera_selection": [
+      "ATTACHMENTS_OBSERVED",
+      "OVERVIEW_RESTORED_OBSERVED"
+    ],
+    "display": "ACTUAL_EVENT_BOUNDARY_USD",
+    "continuous_physics": false
+  },
+  "regression": {
+    "building_target_tests": 31,
+    "status": "PASS",
+    "ruff": "PASS"
+  },
+  "source_scope": [
+    "sim/isaac/scene/target_scene.py",
+    "sim/isaac/scene/production_port.py",
+    "sim/isaac/scene/scene_correction.py",
+    "scripts/review_limited_model_repair.py"
+  ],
+  "geometry_net_added": 57,
+  "remaining_classes": 3,
+  "all_historical_matrix_reexecution": false,
+  "formal_performance_revalidation": false,
+  "industrial_G2": "OPEN_NOT_ESTABLISHED",
+  "branch": "main",
+  "base_commit": "aab9ca848eec6816717f2929a8217f642c3bc2bd",
+  "remote_operations": []
+}

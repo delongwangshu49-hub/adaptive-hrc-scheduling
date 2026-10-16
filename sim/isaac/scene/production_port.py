@@ -55,6 +55,9 @@ class USDProductionPort:
         # the real handle contact and every existing collision-enabled part.
         self.scene.set_position(self.mapping["CART-01"] + "/Handle", (0, -0.85, 1.1))
         self.scene.set_position(self.mapping["CART-01"] + "/HandlePost", (0, -0.85, 0.65))
+        from .scene_correction import vehicle_brace
+
+        vehicle_brace(self.scene, "CART-01")
         for name in ("Mast0", "Mast1", "Guard", "Controls", "Forks/Tine0", "Forks/Tine1"):
             UsdPhysics.CollisionAPI.Apply(
                 self.scene.stage.GetPrimAtPath(self.mapping["FORK-01"] + "/" + name)
@@ -166,6 +169,15 @@ class USDProductionPort:
                 self.put(x.id, self.places[x.initial_location])
             if x.id in self.quantities:
                 self.scene.attr(self.prim(x.id), "s15Quantity", self.quantities[x.id])
+            from .scene_correction import presence
+
+            presence(
+                self,
+                x.id,
+                self.quantities.get(x.id, 0) > 0
+                if x.id in self.quantities
+                else x.initial_location in self.places,
+            )
         for d in config.devices:
             if d.kind in ("FIXED", "FIXTURE"):
                 self.expected[d.id] = self.position(d.id)
@@ -427,6 +439,7 @@ class USDProductionPort:
                 contacts = {
                     self.mapping[device] + "/Handle",
                     self.mapping[device] + "/HandlePost",
+                    self.mapping[device] + "/CorrectionHandleBrace",
                 }
                 obstacles = [b for b in obstacles if b.name not in contacts]
         size = (
@@ -645,6 +658,9 @@ class USDProductionPort:
             self.scene.attr(
                 self.prim(event.entity_id), "s15Quantity", self.quantities[event.entity_id]
             )
+            from .scene_correction import presence
+
+            presence(self, event.entity_id, True)
         if event.kind in ("FAILURE", "REPAIR") and event.entity_id in self.devices:
             self.scene.attr(self.prim(event.entity_id), "s15Available", event.kind == "REPAIR")
 
@@ -986,6 +1002,7 @@ class USDProductionPort:
                 self.scene.stage.GetPrimAtPath(self.mapping[amount.lot_id] + "/Envelope").RemoveAPI(
                     UsdPhysics.CollisionAPI
                 )
+                self.scene.attr(self.prim(amount.lot_id), "physicalExists", False)
         for amount in op.material_outputs:
             self.put(
                 amount.lot_id,
@@ -996,8 +1013,14 @@ class USDProductionPort:
             self.quantities[amount.lot_id] = amount.quantity
             self.scene.attr(self.prim(amount.lot_id), "s15Quantity", amount.quantity)
             UsdGeom.Imageable(self.prim(amount.lot_id)).MakeVisible()
+            from .scene_correction import presence
+
+            presence(self, amount.lot_id, True)
         for component in op.component_outputs:
             self.put(component, self.places[op.location])
+            from .scene_correction import presence
+
+            presence(self, component, True)
             require(
                 close(self.position(component), self.places[op.location]),
                 "COMPONENT_OUTPUT_READBACK",
@@ -1008,7 +1031,11 @@ class USDProductionPort:
                 self.scene.stage.GetPrimAtPath(self.mapping[component] + "/Envelope").RemoveAPI(
                     UsdPhysics.CollisionAPI
                 )
+                self.scene.attr(self.prim(component), "physicalExists", False)
             self.put(op.entity_id, self.places[op.location])
+            from .scene_correction import presence
+
+            presence(self, op.entity_id, True)
 
     def external_proof(self, run, now_h):
         """Observe a receiver-owned USD interface; dispatch cannot manufacture a receipt."""

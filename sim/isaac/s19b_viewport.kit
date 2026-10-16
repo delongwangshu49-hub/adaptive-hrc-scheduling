@@ -1,0 +1,36 @@
+[package]
+title = "S19B Production Viewport"
+description = "Local viewport for the finite S19B production prototype"
+version = "0.1.0"
+
+[dependencies]
+"omni.kit.uiapp" = {}
+"omni.kit.mainwindow" = {}
+"omni.kit.viewport.window" = {}
+"omni.kit.manipulator.camera" = {}
+"omni.kit.viewport.scene_camera_model" = {}
+"omni.kit.viewport.utility" = {}
+"omni.hydra.rtx" = {}
+"omni.kit.viewport.rtx" = {}
+"omni.hydra.usdrt_delegate" = {}
+"omni.physx.bundle" = {}
+"omni.pip.compute" = {}
+"isaacsim.core.version" = {}
+"isaacsim.simulation_app" = {}
+
+[settings.app]
+name = "S19B Production Viewport"
+window.title = "S19B · Isaac Production Scene"
+settings.persistent = false
+settings.standalone_mode = true
+vulkan = true
+enableDeveloperWarnings = false
+viewport.defaults.noTitleBar = true
+viewport.defaults.resolution = "fill_frame"
+
+[settings.app.exts]
+folders = ["${exe-path}/extscore", "${exe-path}/exts"]
+
+[settings]
+rtx.spg.enabled = true
+persistent.app.viewport.noPadding = true

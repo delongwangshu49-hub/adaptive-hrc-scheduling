@@ -1,0 +1,145 @@
+{
+  "packet_id": "S19B-20261011-B1-r1",
+  "date": "2026-10-11",
+  "authorization": "PR175",
+  "status": "B1_INFORMATION_REVIEW_VERIFIED_WITH_LIMITS",
+  "owner_acceptance": "PENDING",
+  "publication_approval": "NOT_APPROVED",
+  "publication": "NOT_PUBLISHED",
+  "base_commit": "aab9ca848eec6816717f2929a8217f642c3bc2bd",
+  "branch": "main",
+  "repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling",
+  "proposed_tag": null,
+  "remote_operations": [],
+  "qt_flows": 11,
+  "check_names": [
+    "BILINGUAL_DRAFT_PRESERVATION_AND_UNICODE_PASTE",
+    "INPUT_REJECTION_AND_TWO_PRODUCT_DRAFT",
+    "B1_CPU_ACTUAL_WAIT_REASON_AND_LOCATION_UNAVAILABLE",
+    "REAL_CPU_PREFIX_AND_LIVE_LANGUAGE_SWITCH",
+    "READ_ONLY_HISTORY_AND_LANGUAGE_SWITCH",
+    "B1_HISTORY_INTEGRITY_IDENTITY_NEGATIVES_AND_BILINGUAL_REASONS",
+    "EMBEDDED_NATIVE_CHILD_RESIZE_AND_MINIMIZE",
+    "B1_REAL_USD_READONLY_LOCATION_AND_ACTUAL_UNMAPPED_REJECTION",
+    "B1_UI_STALE_MISSING_DAMAGED_OLD_IDENTITY_AND_VERSION_REJECTION_AND_LIVE_EVIDENCE",
+    "EMBEDDED_NATIVE_WHEEL_CHANGED_REAL_RENDERED_CAMERA",
+    "VISIBLE_REAL_KIT_PREFIX_CAMERA_AND_CONFIRMED_EXIT"
+  ],
+  "entire_verifier_exit_code": 0,
+  "desktop_contract_tests": 19,
+  "affected_core_tests": 122,
+  "root_858_source_and_wheel": "PRIOR_R1_RESULTS_NOT_REPEATED_THIS_B1",
+  "runs": [
+    {
+      "backend": "light",
+      "run_id": "S19B-f69454d5f2b145d09995ea268d943587",
+      "request_id": "da06e04eba304b6cb5bbb56e604561f5",
+      "time_h": 1.0381202777777776,
+      "termination": "DECLARED_CHECKPOINT",
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "ready": 0,
+      "received": 0,
+      "closed": true,
+      "process_exit_code": 0,
+      "process_exit_status": "NormalExit",
+      "exit_strategy": "NORMAL_CPYTHON_EXIT",
+      "captured_sources": 118,
+      "current_source_drift": [],
+      "evidence_integrity": "integrity_checked",
+      "entity_catalog_count": 596,
+      "evidence_directory": ".local/s19b-b1-20261011/ui-r4/runs/S19B-f69454d5f2b145d09995ea268d943587"
+    },
+    {
+      "backend": "isaac",
+      "run_id": "S19B-31ce7ad95037470fb41467b65d0e7367",
+      "request_id": "aa019811b52f4c4ca488d33b7b05937f",
+      "time_h": 1.0381202777777776,
+      "termination": "DECLARED_CHECKPOINT",
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "ready": 0,
+      "received": 0,
+      "closed": true,
+      "process_exit_code": 0,
+      "process_exit_status": "NormalExit",
+      "exit_strategy": "EXPLICIT_EXIT_AFTER_FULL_KIT_CLOSE_RETURN",
+      "captured_sources": 118,
+      "current_source_drift": [],
+      "evidence_integrity": "integrity_checked",
+      "entity_catalog_count": 596,
+      "evidence_directory": ".local/s19b-b1-20261011/ui-r4/runs/S19B-31ce7ad95037470fb41467b65d0e7367"
+    }
+  ],
+  "readonly_location": [
+    {
+      "entity_id": "PRODUCT-1",
+      "paths": [
+        "/World/S15/Loads/id_50524f445543542d31"
+      ],
+      "selected_paths": [
+        "/World/S15/Loads/id_50524f445543542d31"
+      ],
+      "usd_unchanged": true,
+      "production_state_unchanged": true
+    },
+    {
+      "entity_id": "P1",
+      "paths": [
+        "/World/People/P1"
+      ],
+      "selected_paths": [
+        "/World/People/P1"
+      ],
+      "usd_unchanged": true,
+      "production_state_unchanged": true
+    },
+    {
+      "entity_id": "PRODUCT-1.ST-T.12.DELIVER-1",
+      "paths": [
+        "/World/S15/Loads/id_50524f445543542d312e53542d542e3132",
+        "/World/Equipment/id_53434e2d464f524b2d3031"
+      ],
+      "selected_paths": [
+        "/World/S15/Loads/id_50524f445543542d312e53542d542e3132",
+        "/World/Equipment/id_53434e2d464f524b2d3031"
+      ],
+      "usd_unchanged": true,
+      "production_state_unchanged": true
+    },
+    {
+      "entity_id": "FORK-01",
+      "paths": [
+        "/World/Equipment/id_53434e2d464f524b2d3031"
+      ],
+      "selected_paths": [
+        "/World/Equipment/id_53434e2d464f524b2d3031"
+      ],
+      "usd_unchanged": true,
+      "production_state_unchanged": true
+    }
+  ],
+  "unmapped_entity_rejected": true,
+  "native_child_resize_restore": true,
+  "dpi": 1.5,
+  "actual_camera_frame_error": 3.552713678800501e-15,
+  "preserved_original_archives": {
+    "r1": "932340ae39376cd390239a4af27ee24f9e99c9d9148ae1d80b5838f393409333",
+    "r2": "44758d3033d9c465e849ddc812431b6f4d8e16b753641a01b2457f690ae6073c"
+  },
+  "raw_index": ".local/s19b-b1-20261011/ui-r4/ui-verification.json",
+  "limits": [
+    "FINITE_EVENT_BOUNDARY_PREFIX_NOT_COMPLETE_ORDER_OR_CHAIN",
+    "EXPLICIT_HELPER_EXIT_AFTER_FULL_KIT_CLOSE_RETURN_SKIPS_RC_INTERPRETER_FINALIZATION",
+    "QT_GRAB_LAYOUT_ONLY_GPU_CHILD_NOT_CAPTURED",
+    "LATEST_DECISION_REASON_NOT_ALL_CURRENT_WAITS",
+    "STATIC_OPERATION_CATALOG_DYNAMIC_SERVICE_IDS_MAY_BE_UNMAPPED",
+    "UNSEALED_LEGACY_INTEGRITY_NOT_VERIFIED",
+    "LOCAL_DIGEST_INDEX_NOT_SIGNED_AUTHENTICITY",
+    "RIGHT_PANEL_SCROLL_REQUIRED_AT_THIS_SCREEN_SIZE",
+    "PHYSICAL_IME_OWNER_TASK_MULTISCREEN_NOT_ACCEPTED",
+    "FORMAL_FRONTEND_SEMANTIC_PERFORMANCE_NOT_RUN"
+  ],
+  "B2_B3": "NOT_STARTED",
+  "industrial_G2": "OPEN_NOT_ESTABLISHED"
+}

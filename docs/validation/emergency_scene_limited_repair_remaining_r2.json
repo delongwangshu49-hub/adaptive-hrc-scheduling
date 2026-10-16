@@ -1,0 +1,169 @@
+{
+  "status": "OPEN_NOT_FIXED",
+  "classes": [
+    "FIXED_LANDING_BAR_FRAMES",
+    "PARKING_HOLDER_FRAMES",
+    "RECONFIGURABLE_BAR_PASSIVE_CONNECTIONS"
+  ],
+  "original_objects_retained": 510,
+  "failed_candidates": [
+    {
+      "candidate": "r1",
+      "status": "FAILED",
+      "time_h": 0,
+      "termination": "STALLED",
+      "last_rejections": [
+        {
+          "operation": "SERVICE-1-P1-WALK",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_53434e2d464f524b2d3031/Wheel00"
+        },
+        {
+          "operation": "SERVICE-2-P1-WALK",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_53434e2d464f524b2d3031/Wheel00"
+        }
+      ]
+    },
+    {
+      "candidate": "r2",
+      "status": "FAILED",
+      "time_h": 0,
+      "termination": "STALLED",
+      "last_rejections": [
+        {
+          "operation": "SERVICE-1-P1-WALK",
+          "reason": "ACTUAL_PREFLIGHT:ACTUAL_WALK_TURN_COLLISION:/World/Equipment/id_53434e2d464f524b2d3031/Wheel00"
+        },
+        {
+          "operation": "SERVICE-2-P1-WALK",
+          "reason": "ACTUAL_PREFLIGHT:ACTUAL_WALK_TURN_COLLISION:/World/Equipment/id_53434e2d464f524b2d3031/Wheel00"
+        }
+      ]
+    },
+    {
+      "candidate": "r3",
+      "status": "FAILED",
+      "time_h": 0.02326388888888889,
+      "termination": "STALLED",
+      "last_rejections": [
+        {
+          "operation": "SERVICE-93-P1-WALK",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_43555431/FeedExtension"
+        },
+        {
+          "operation": "SERVICE-94-P1-WALK",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_43555431/FeedExtension"
+        }
+      ]
+    },
+    {
+      "candidate": "r4",
+      "status": "FAILED",
+      "time_h": 0.5783758333333333,
+      "termination": "STALLED",
+      "last_rejections": [
+        {
+          "operation": "SERVICE-107-P1-WALK",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_43555431/CorrectionInlet"
+        },
+        {
+          "operation": "SERVICE-108-P1-WALK",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_43555431/CorrectionInlet"
+        },
+        {
+          "operation": "SERVICE-109-P1-WALK",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_43555431/CorrectionInlet"
+        },
+        {
+          "operation": "SERVICE-110-P1-WALK",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_43555431/CorrectionInlet"
+        }
+      ]
+    },
+    {
+      "candidate": "r5",
+      "status": "FAILED",
+      "time_h": 1.8361225,
+      "termination": "STALLED",
+      "last_rejections": [
+        {
+          "operation": "PRODUCT-1.ST-T.08.DELIVER-1",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_43555431/CorrectionFeedLeg0"
+        },
+        {
+          "operation": "PRODUCT-1.ST-T.07.DELIVER-1",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_43555431/CorrectionFeedLeg0"
+        },
+        {
+          "operation": "PRODUCT-1.ST-T.06.DELIVER-1",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_43555431/CorrectionFeedLeg0"
+        },
+        {
+          "operation": "PRODUCT-1.ST-T.05.DELIVER-1",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Equipment/id_43555431/CorrectionFeedLeg0"
+        }
+      ]
+    },
+    {
+      "candidate": "r6",
+      "status": "FAILED",
+      "time_h": 31.04388532580555,
+      "termination": "STALLED",
+      "last_rejections": [
+        {
+          "operation": "SERVICE-824-W2-WALK",
+          "reason": "ACTUAL_PREFLIGHT:COLLISION:/World/Static/id_45432d53432d434f4c554d4e2d4a332d312d31"
+        }
+      ]
+    }
+  ],
+  "bounded_search": {
+    "sweep_boxes": 7377,
+    "fixed_bars": 246,
+    "no_path_ids": [
+      "PRE-IN.PRODUCT-1.ST-B.01-support-0",
+      "PRE-IN.PRODUCT-1.ST-B.01-support-1",
+      "PRE-IN.PRODUCT-1.ST-B.02-support-0",
+      "PRE-IN.PRODUCT-1.ST-B.02-support-1",
+      "PRE-IN.PRODUCT-1.ST-B.03-support-0",
+      "PRE-IN.PRODUCT-1.ST-B.03-support-1",
+      "PRE-IN.PRODUCT-1.ST-B.04-support-0",
+      "PRE-IN.PRODUCT-1.ST-B.04-support-1",
+      "PRE-IN.PRODUCT-1.ST-B.05-support-0",
+      "PRE-IN.PRODUCT-1.ST-B.05-support-1",
+      "PRE-IN.PRODUCT-1.ST-B.06-support-0",
+      "PRE-IN.PRODUCT-1.ST-B.06-support-1",
+      "PRE-IN.PRODUCT-1.ST-B.07-support-0",
+      "PRE-IN.PRODUCT-1.ST-B.07-support-1",
+      "PRE-IN.PRODUCT-1.ST-B.08-support-0",
+      "PRE-IN.PRODUCT-1.ST-B.08-support-1",
+      "PRE-IN.PRODUCT-1.ST-C.01-support-0",
+      "PRE-IN.PRODUCT-1.ST-C.01-support-1",
+      "PRE-IN.PRODUCT-1.SCRAP-TOTAL-support-0",
+      "PRE-IN.PRODUCT-1.SCRAP-TOTAL-support-1",
+      "PRE-OUT.PRODUCT-1.ST-T.05.NET-support-0",
+      "PRE-OUT.PRODUCT-1.ST-T.05.NET-support-1",
+      "PRE-OUT.PRODUCT-1.ST-T.06.NET-support-0",
+      "PRE-OUT.PRODUCT-1.ST-T.06.NET-support-1",
+      "PRE-OUT.PRODUCT-1.ST-T.07.NET-support-0",
+      "PRE-OUT.PRODUCT-1.ST-T.07.NET-support-1",
+      "PRE-OUT.PRODUCT-1.ST-T.08.NET-support-0",
+      "PRE-OUT.PRODUCT-1.ST-T.08.NET-support-1",
+      "PRE-OUT.PRODUCT-1.ST-T.09.NET-support-0",
+      "PRE-OUT.PRODUCT-1.ST-T.09.NET-support-1",
+      "PRE-OUT.PRODUCT-1.ST-T.10.NET-support-0",
+      "PRE-OUT.PRODUCT-1.ST-T.10.NET-support-1",
+      "PRE-OUT.PRODUCT-1.ST-T.11.NET-support-0",
+      "PRE-OUT.PRODUCT-1.ST-T.11.NET-support-1",
+      "PRE-OUT.PRODUCT-1.ST-T.12.NET-support-0",
+      "PRE-OUT.PRODUCT-1.ST-T.12.NET-support-1"
+    ],
+    "scope": "FINITE_CONSERVATIVE_GRID_SEARCH_NOT_MATHEMATICAL_INFEASIBILITY_PROOF"
+  },
+  "withdrawn": [
+    "NEW_CONTROL_STATIONS",
+    "2_8M_ATTACHMENT_DEPTH",
+    "0_04H_PAIR_DURATION",
+    "FAILED_FIXED_AND_PASSIVE_FITTINGS"
+  ],
+  "remote_operations": []
+}

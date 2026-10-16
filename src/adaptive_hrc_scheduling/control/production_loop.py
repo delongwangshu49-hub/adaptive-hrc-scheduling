@@ -85,6 +85,7 @@ def run(
     continuation=False,
     fixed_mode=None,
     handover_after_setup=False,
+    orderly_stop=None,
 ):
     world = getattr(backend, "world", backend)
     isaac = hasattr(backend, "world")
@@ -133,6 +134,7 @@ def run(
     failure_resource = "FORK-01"
     obstruction_path = "/World/Static/S15_TEST_PATH_OBSTRUCTION"
     preparation_steps = 0
+    stop_facts = None
 
     def fact(kind, entity, pid, evidence="ML-METHOD", result="PASS", attempt=0):
         ident = f"{scenario.id}-{kind}-{entity}" + (f"-A{attempt}" if attempt else "")
@@ -176,6 +178,51 @@ def run(
     for sequence in range(len(decisions), len(decisions) + max_turns):
         if execution_hook:
             execution_hook(backend, "before_decision")
+        if orderly_stop and orderly_stop(world):
+            # Control is outside planning. Admit no new production, world inputs,
+            # or service dispatches; finish only already STARTED work using the
+            # same execution/readback path. HOLDs and reservations stay factual.
+            stop_facts = {
+                "accepted_h": world.s.time_h,
+                "accepted_revision": world.s.revision,
+                "started_commands": [
+                    r.command.id for r in world.s.running if r.status == "STARTED"
+                ],
+                "event_count_at_boundary": len(world.events),
+                "future_commitments": "PRESERVED_IN_JOURNAL_NOT_DISPATCHED",
+            }
+            while pending := [r for r in world.s.running if r.status == "STARTED"]:
+                before = world.s.revision
+                tick = max(world.s.time_h, min(r.earliest_end_h for r in pending))
+                if execution_hook:
+                    execution_hook(backend, "before_stop_advance")
+                if isaac:
+                    backend.advance_to(tick)
+                    backend.deliver()
+                else:
+                    world.advance(tick)
+                if execution_hook:
+                    execution_hook(backend, "after_stop_advance")
+                if world.s.revision == before:
+                    break
+            if isaac:
+                backend.deliver()
+            observed = world.observe()
+            world.deliver()
+            decisions.append(
+                Decision(
+                    observed,
+                    m.Plan(
+                        c.schema_version, c.id, observed.id, (), "WAIT", "ORDERLY_STOP", c.research
+                    ),
+                    tuple(sorted(rejected)),
+                    None,
+                )
+            )
+            termination = "ORDERLY_STOPPED" if not world.s.running else "ORDERLY_STOP_BLOCKED"
+            stop_facts["remaining_commands"] = [r.command.id for r in world.s.running]
+            stop_facts["final_h"] = world.s.time_h
+            break
         if stop_condition and stop_condition(world):
             if isaac:
                 backend.deliver()
@@ -622,4 +669,6 @@ def run(
         manifest["method"] = joint_policy.method
         manifest["search_budget"] = joint_policy.budget.report()
         manifest["joint_journal"] = joint_policy.journal
+    if stop_facts is not None:
+        manifest["orderly_stop"] = stop_facts
     return Result(snapshot, tuple(decisions), manifest, audit, decision_audit)

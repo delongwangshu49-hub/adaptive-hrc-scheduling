@@ -179,6 +179,10 @@ class TargetScene(BuildingScene):
             self.cameras()
         self.sync()
 
+        from .scene_correction import equipment
+
+        equipment(self)
+
     def people(self):
         self._person_motions = {}
         for name in PEOPLE:

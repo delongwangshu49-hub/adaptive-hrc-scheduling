@@ -58,7 +58,7 @@ def witness(args, app=None):
     receiver = None
     r1_physical_unavailable = False
     if args.backend == "light":
-        engine = ProductionBackend(config)
+        engine = ProductionBackend(config, run_id=getattr(args, "run_id", None) or "RUN-S15")
         if args.actual_r1_before_setup or args.actual_r1_after_bottom:
             original_dispatch = engine.dispatch
 
@@ -91,7 +91,11 @@ def witness(args, app=None):
             omni.usd.get_context().get_stage(),
             load_config(ROOT / "examples/building_contracts/configuration.json"),
         )
-        engine = IsaacAdapter(config, USDProductionPort(scene))
+        engine = IsaacAdapter(
+            config,
+            USDProductionPort(scene),
+            run_id=getattr(args, "run_id", None) or "RUN-S15-ISAAC",
+        )
         receiver = SyntheticReceiver(engine.port)
         execution_step = engine.port.step
 
@@ -476,6 +480,9 @@ def main():
     parser.add_argument("--products", type=int, choices=(1, 2, 3), default=1)
     parser.add_argument("--variant", choices=("SR-W1", "SR-W2"), default="SR-W1")
     parser.add_argument("--scenario", default="NORMAL")
+    parser.add_argument(
+        "--run-id", help="Explicit witness identity; defaults preserve prior witnesses"
+    )
     parser.add_argument("--until-h", type=float, choices=(240, 720, 960), default=720)
     parser.add_argument("--receive-after-h", type=float, default=0)
     parser.add_argument("--expect-window", action="store_true")

@@ -1,0 +1,140 @@
+{
+  "packet_id": "S19B-20261011-prototype-r2-embedded",
+  "authority": "PR174",
+  "status": "EMBEDDED_MINIMAL_PROTOTYPE_VERIFIED_WITH_LIMITS",
+  "owner_review": "PENDING",
+  "publication": "NOT_APPROVED_NOT_PUBLISHED",
+  "scope": "OPTION_B_STEP_1_LAYOUT_REVISION_ONLY",
+  "ui_workflow_checks": 7,
+  "harness_exit_code": 0,
+  "frontend_contract_tests": 9,
+  "source_bindings": [
+    {
+      "backend": "light",
+      "files": 117,
+      "drift": []
+    },
+    {
+      "backend": "isaac",
+      "files": 117,
+      "drift": []
+    }
+  ],
+  "backends": [
+    {
+      "backend": "light",
+      "run_id": "S19B-04844338aedc4800914fe34366bc5e07",
+      "time_h": 1.0381202777777776,
+      "termination": "DECLARED_CHECKPOINT",
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "closed": true,
+      "process_exit_code": 0,
+      "process_exit_status": "NormalExit",
+      "exit_strategy": "NORMAL_CPYTHON_EXIT"
+    },
+    {
+      "backend": "isaac",
+      "run_id": "S19B-9fa4577ebd86410c8f0e7c8ee9026549",
+      "time_h": 1.0381202777777776,
+      "termination": "DECLARED_CHECKPOINT",
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "closed": true,
+      "process_exit_code": 0,
+      "process_exit_status": "NormalExit",
+      "exit_strategy": "EXPLICIT_EXIT_AFTER_FULL_KIT_CLOSE_RETURN"
+    }
+  ],
+  "window_checks": {
+    "initial": {
+      "child_of_main": true,
+      "contained_in_host": true,
+      "device_pixel_ratio": 1.5,
+      "qt_window_physical": [
+        7,
+        45,
+        2489,
+        1406
+      ],
+      "host_window_physical": [
+        540,
+        390,
+        1881,
+        1185
+      ],
+      "scene_window_physical": [
+        540,
+        390,
+        1881,
+        1185
+      ],
+      "visible": true
+    },
+    "resized": {
+      "child_of_main": true,
+      "contained_in_host": true,
+      "device_pixel_ratio": 1.5,
+      "qt_window_physical": [
+        7,
+        45,
+        2279,
+        1316
+      ],
+      "host_window_physical": [
+        540,
+        390,
+        1671,
+        1095
+      ],
+      "scene_window_physical": [
+        540,
+        390,
+        1671,
+        1095
+      ],
+      "visible": true
+    },
+    "restored": {
+      "child_of_main": true,
+      "contained_in_host": true,
+      "device_pixel_ratio": 1.5,
+      "qt_window_physical": [
+        7,
+        45,
+        2489,
+        1406
+      ],
+      "host_window_physical": [
+        540,
+        390,
+        1881,
+        1185
+      ],
+      "scene_window_physical": [
+        540,
+        390,
+        1881,
+        1185
+      ],
+      "visible": true
+    }
+  },
+  "synthetic_native_wheel_changed_rendered_view": true,
+  "view_matrix_max_delta_after_wheel": 0.919780029987491,
+  "preset_camera_matrix_max_error": 3.552713678800501e-15,
+  "images_method": {
+    "workbench": "QT_WIDGET_GRAB_LAYOUT_ONLY_NO_GPU_CHILD_CAPTURE_CLAIM",
+    "kit-ui-frame": "ACTUAL_KIT_GPU_SWAPCHAIN",
+    "production-scene": "ACTUAL_USD_VIEWPORT_CAPTURE"
+  },
+  "root_858_source_and_wheel": "R1_RESULTS_RETAINED_CORE_ASSETS_LOCK_UNCHANGED_NOT_REPEATED_IN_THIS_REVISION",
+  "physical_ime_owner_task_multiscreen": "NOT_PERFORMED",
+  "formal_frontend_performance": "NOT_RUN",
+  "B1_B2_B3": "NOT_STARTED",
+  "remote_operations": [],
+  "branch": "main",
+  "repository": "https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling",
+  "proposed_tag": null,
+  "industrial_G2": "OPEN_NOT_ESTABLISHED"
+}

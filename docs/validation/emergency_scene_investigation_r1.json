@@ -1,0 +1,1180 @@
+{
+  "id": "EMERGENCY-SCENE-INVESTIGATION-20261012-r1",
+  "authority": "PR177",
+  "status": "INVESTIGATION_COMPLETE_WITH_DOCUMENTED_LIMITS_PROPOSAL_PENDING",
+  "implementation_authorized": false,
+  "fixed": false,
+  "published": false,
+  "remote_operations": [],
+  "head": "aab9ca848eec6816717f2929a8217f642c3bc2bd",
+  "branch": "main",
+  "initial_cases": [
+    {
+      "case": "SR-W1-1-initial",
+      "counts": {
+        "boundables": 1313,
+        "visible": 1296,
+        "colliders": 711
+      },
+      "zero_quantity_visible": 120,
+      "load_count": 124,
+      "duplicate_scene_ids": {},
+      "instances": [],
+      "repeat_reset_identical": true,
+      "read_only_root_unchanged": true
+    },
+    {
+      "case": "SR-W2-1-initial",
+      "counts": {
+        "boundables": 1316,
+        "visible": 1299,
+        "colliders": 714
+      },
+      "zero_quantity_visible": 123,
+      "load_count": 127,
+      "duplicate_scene_ids": {},
+      "instances": [],
+      "repeat_reset_identical": true,
+      "read_only_root_unchanged": true
+    },
+    {
+      "case": "SR-W1-2-initial",
+      "counts": {
+        "boundables": 1437,
+        "visible": 1420,
+        "colliders": 835
+      },
+      "zero_quantity_visible": 240,
+      "load_count": 248,
+      "duplicate_scene_ids": {},
+      "instances": [],
+      "repeat_reset_identical": true,
+      "read_only_root_unchanged": true
+    },
+    {
+      "case": "SR-W2-2-initial",
+      "counts": {
+        "boundables": 1443,
+        "visible": 1426,
+        "colliders": 841
+      },
+      "zero_quantity_visible": 246,
+      "load_count": 254,
+      "duplicate_scene_ids": {},
+      "instances": [],
+      "repeat_reset_identical": true,
+      "read_only_root_unchanged": true
+    },
+    {
+      "case": "SR-W1-3-initial",
+      "counts": {
+        "boundables": 1561,
+        "visible": 1544,
+        "colliders": 959
+      },
+      "zero_quantity_visible": 360,
+      "load_count": 372,
+      "duplicate_scene_ids": {},
+      "instances": [],
+      "repeat_reset_identical": true,
+      "read_only_root_unchanged": true
+    },
+    {
+      "case": "SR-W2-3-initial",
+      "counts": {
+        "boundables": 1570,
+        "visible": 1553,
+        "colliders": 968
+      },
+      "zero_quantity_visible": 369,
+      "load_count": 381,
+      "duplicate_scene_ids": {},
+      "instances": [],
+      "repeat_reset_identical": true,
+      "read_only_root_unchanged": true
+    }
+  ],
+  "native_continuous_diagnostics": [
+    {
+      "directory": ".local/emergency-scene-20261012/chain-w1-1-r2",
+      "status": "PASS",
+      "runtime": "NATIVE_USD_NOT_KIT",
+      "termination": "OPERATIONS_COMPLETE",
+      "time_h": 272.35047973655236,
+      "ready": 1,
+      "received": 1,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "samples": 145,
+      "step_calls": {
+        "WALK": 331,
+        "EMPTY_RETURN": 202,
+        "WORK": 60,
+        "TRANSFER": 343,
+        "RESERVE": 17,
+        "CONVERT": 6,
+        "RETURN": 2,
+        "SUPPORT_CHANGE": 60,
+        "DEPLOY_TOOL": 4,
+        "RETRIEVE_TOOL": 4,
+        "READY": 1,
+        "RECEIVE_EXTERNAL": 1
+      },
+      "scenario": {
+        "id": "NORMAL",
+        "until_h": 720,
+        "receive_after_h": 0,
+        "delayed_lot": null,
+        "arrival_after_h": 0,
+        "cancel_product": null,
+        "cancel_stage": null,
+        "quality_fail": null,
+        "rework_fail": false,
+        "loaded_failure": false,
+        "actual_device_failure": false,
+        "actual_path_obstruction": false
+      }
+    },
+    {
+      "directory": ".local/emergency-scene-20261012/chain-w2-1-r1",
+      "status": "PASS",
+      "runtime": "NATIVE_USD_NOT_KIT",
+      "termination": "OPERATIONS_COMPLETE",
+      "time_h": 292.6237847222222,
+      "ready": 1,
+      "received": 1,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "samples": 147,
+      "step_calls": {
+        "WALK": 331,
+        "EMPTY_RETURN": 212,
+        "WORK": 62,
+        "TRANSFER": 355,
+        "RESERVE": 17,
+        "CONVERT": 6,
+        "RETURN": 2,
+        "SUPPORT_CHANGE": 60,
+        "DEPLOY_TOOL": 4,
+        "RETRIEVE_TOOL": 4,
+        "READY": 1,
+        "RECEIVE_EXTERNAL": 1
+      },
+      "scenario": {
+        "id": "NORMAL",
+        "until_h": 720,
+        "receive_after_h": 0,
+        "delayed_lot": null,
+        "arrival_after_h": 0,
+        "cancel_product": null,
+        "cancel_stage": null,
+        "quality_fail": null,
+        "rework_fail": false,
+        "loaded_failure": false,
+        "actual_device_failure": false,
+        "actual_path_obstruction": false
+      }
+    },
+    {
+      "directory": ".local/emergency-scene-20261012/chain-w1-3-r1",
+      "status": "FAILED",
+      "runtime": "NATIVE_USD_NOT_KIT",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 720,
+      "ready": 2,
+      "received": 2,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "samples": 259,
+      "step_calls": {
+        "WALK": 884,
+        "EMPTY_RETURN": 598,
+        "WORK": 447,
+        "TRANSFER": 1003,
+        "RESERVE": 48,
+        "CONVERT": 22,
+        "RETURN": 11,
+        "SUPPORT_CHANGE": 163,
+        "DEPLOY_TOOL": 11,
+        "RETRIEVE_TOOL": 10,
+        "READY": 2,
+        "RECEIVE_EXTERNAL": 12
+      },
+      "scenario": {
+        "id": "NORMAL",
+        "until_h": 720,
+        "receive_after_h": 0,
+        "delayed_lot": null,
+        "arrival_after_h": 0,
+        "cancel_product": null,
+        "cancel_stage": null,
+        "quality_fail": null,
+        "rework_fail": false,
+        "loaded_failure": false,
+        "actual_device_failure": false,
+        "actual_path_obstruction": false
+      }
+    },
+    {
+      "directory": ".local/emergency-scene-20261012/chain-w1-3-960-r2",
+      "status": "PASS",
+      "runtime": "NATIVE_USD_NOT_KIT",
+      "termination": "OPERATIONS_COMPLETE",
+      "time_h": 845.6183333333332,
+      "ready": 3,
+      "received": 3,
+      "execution_audit": "PASS",
+      "decision_audit": "PASS",
+      "samples": 39,
+      "step_calls": {
+        "WALK": 964,
+        "EMPTY_RETURN": 635,
+        "WORK": 453,
+        "TRANSFER": 1057,
+        "RESERVE": 51,
+        "CONVERT": 22,
+        "RETURN": 11,
+        "SUPPORT_CHANGE": 182,
+        "DEPLOY_TOOL": 12,
+        "RETRIEVE_TOOL": 12,
+        "READY": 3,
+        "RECEIVE_EXTERNAL": 5
+      },
+      "scenario": {
+        "id": "B2_SUPPLEMENTAL_960",
+        "until_h": 960.0,
+        "receive_after_h": 840,
+        "delayed_lot": null,
+        "arrival_after_h": 0,
+        "cancel_product": null,
+        "cancel_stage": null,
+        "quality_fail": null,
+        "rework_fail": false,
+        "loaded_failure": false,
+        "actual_device_failure": false,
+        "actual_path_obstruction": false
+      }
+    }
+  ],
+  "total_geometry_snapshots": 590,
+  "all_visible_exact_cases": 40,
+  "overlay_resolution_count": 28,
+  "direct_shape_proofs": [
+    {
+      "kind": "ELLIPSOID_RAIL_INTERIOR_POINT",
+      "paths": [
+        "/World/Crane/Wheel00",
+        "/World/Static/id_7261696c2d736f757468"
+      ],
+      "point_m": [
+        28.5,
+        4.0,
+        0.12
+      ],
+      "ellipsoid_normalized_squared": 0.27040000000000003,
+      "inside_ellipsoid": true,
+      "inside_rail_cube": true
+    },
+    {
+      "kind": "ELLIPSOID_RAIL_INTERIOR_POINT",
+      "paths": [
+        "/World/Crane/Wheel01",
+        "/World/Static/id_7261696c2d736f757468"
+      ],
+      "point_m": [
+        31.5,
+        4.0,
+        0.12
+      ],
+      "ellipsoid_normalized_squared": 0.27040000000000003,
+      "inside_ellipsoid": true,
+      "inside_rail_cube": true
+    },
+    {
+      "kind": "ELLIPSOID_RAIL_INTERIOR_POINT",
+      "paths": [
+        "/World/Crane/Wheel10",
+        "/World/Static/id_7261696c2d6e6f727468"
+      ],
+      "point_m": [
+        28.5,
+        40.0,
+        0.12
+      ],
+      "ellipsoid_normalized_squared": 0.27040000000000003,
+      "inside_ellipsoid": true,
+      "inside_rail_cube": true
+    },
+    {
+      "kind": "ELLIPSOID_RAIL_INTERIOR_POINT",
+      "paths": [
+        "/World/Crane/Wheel11",
+        "/World/Static/id_7261696c2d6e6f727468"
+      ],
+      "point_m": [
+        31.5,
+        40.0,
+        0.12
+      ],
+      "ellipsoid_normalized_squared": 0.27040000000000003,
+      "inside_ellipsoid": true,
+      "inside_rail_cube": true
+    },
+    {
+      "kind": "P1_BOOT_DECK_EXACT_AXIS_ALIGNED_CUBES",
+      "context": {
+        "time_h": 0.6642091666666666,
+        "command_id": "PLAN-109-12-PRODUCT-1.ST-C.04.DELIVER-0",
+        "operation_id": "PRODUCT-1.ST-C.04.DELIVER-0",
+        "action": "TRANSFER",
+        "phase": "DRIVE",
+        "completed": true
+      },
+      "paths": [
+        "/World/People/P1/Boot0",
+        "/World/Equipment/id_53434e2d464f524b2d3031/Deck"
+      ],
+      "overlap_m": [
+        0.1599999964237213,
+        0.23999999463558197,
+        0.030000002235174184
+      ],
+      "boot_min_z": 0.20000000134110452,
+      "deck_max_z": 0.2300000035762787
+    },
+    {
+      "kind": "P1_BOOT_DECK_EXACT_AXIS_ALIGNED_CUBES",
+      "context": {
+        "time_h": 0.6642091666666666,
+        "command_id": "PLAN-109-12-PRODUCT-1.ST-C.04.DELIVER-0",
+        "operation_id": "PRODUCT-1.ST-C.04.DELIVER-0",
+        "action": "TRANSFER",
+        "phase": "DRIVE",
+        "completed": true
+      },
+      "paths": [
+        "/World/People/P1/Boot1",
+        "/World/Equipment/id_53434e2d464f524b2d3031/Deck"
+      ],
+      "overlap_m": [
+        0.1599999964237213,
+        0.23999999463558197,
+        0.030000002235174184
+      ],
+      "boot_min_z": 0.20000000134110452,
+      "deck_max_z": 0.2300000035762787
+    }
+  ],
+  "cut_feed_examples": [
+    {
+      "case": ".local/emergency-scene-20261012/chain-w1-1-r2/sample-007.json",
+      "context": {
+        "time_h": 5.436826666666667,
+        "command_id": "PLAN-443-180-PRODUCT-1.CUT.RESERVE",
+        "operation_id": "PRODUCT-1.CUT.RESERVE",
+        "action": "RESERVE",
+        "phase": "WORK",
+        "completed": true
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d422e3039/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-B.09",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.40000003322517497,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          7.599999981041583,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "case": ".local/emergency-scene-20261012/chain-w1-1-r2/sample-007.json",
+      "context": {
+        "time_h": 5.436826666666667,
+        "command_id": "PLAN-443-180-PRODUCT-1.CUT.RESERVE",
+        "operation_id": "PRODUCT-1.CUT.RESERVE",
+        "action": "RESERVE",
+        "phase": "WORK",
+        "completed": true
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d542e3035/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-T.05",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.800000011920929,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          8.099999997019768,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "case": ".local/emergency-scene-20261012/chain-w1-1-r2/sample-009.json",
+      "context": {
+        "time_h": 5.998153855555556,
+        "command_id": "PLAN-450-184-PRODUCT-1.CUT.U1",
+        "operation_id": "PRODUCT-1.CUT.U1",
+        "action": "CONVERT",
+        "phase": "WORK",
+        "completed": true
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d422e30392e4e4554/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-B.09.NET",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.40000003322517586,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          7.599999981041583,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "case": ".local/emergency-scene-20261012/chain-w1-1-r2/sample-009.json",
+      "context": {
+        "time_h": 5.998153855555556,
+        "command_id": "PLAN-450-184-PRODUCT-1.CUT.U1",
+        "operation_id": "PRODUCT-1.CUT.U1",
+        "action": "CONVERT",
+        "phase": "WORK",
+        "completed": true
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d542e3035/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-T.05",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.800000011920929,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          8.099999997019768,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "case": ".local/emergency-scene-20261012/chain-w1-1-r2/sample-016.json",
+      "context": {
+        "time_h": 24.36778888888889,
+        "command_id": "PLAN-620-271-SERVICE-620-CR1-EMPTY_RETURN",
+        "operation_id": "SERVICE-620-CR1-EMPTY_RETURN",
+        "action": "EMPTY_RETURN",
+        "phase": "WORK",
+        "completed": true
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d542e30352e4e4554/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-T.05.NET",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.800000011920929,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          8.099999997019768,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "case": ".local/emergency-scene-20261012/chain-w1-1-r2/sample-017.json",
+      "context": {
+        "time_h": 24.38873111111111,
+        "command_id": "PLAN-625-273-PRODUCT-1.MV-IN-B.MOVE-0",
+        "operation_id": "PRODUCT-1.MV-IN-B.MOVE-0",
+        "action": "TRANSFER",
+        "phase": "WORK",
+        "completed": false
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d542e30352e4e4554/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-T.05.NET",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.800000011920929,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          8.099999997019768,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "case": ".local/emergency-scene-20261012/chain-w2-1-r1/sample-007.json",
+      "context": {
+        "time_h": 5.436826666666667,
+        "command_id": "PLAN-443-180-PRODUCT-1.CUT.RESERVE",
+        "operation_id": "PRODUCT-1.CUT.RESERVE",
+        "action": "RESERVE",
+        "phase": "WORK",
+        "completed": true
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d422e3039/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-B.09",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.40000003322517497,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          7.599999981041583,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "case": ".local/emergency-scene-20261012/chain-w2-1-r1/sample-007.json",
+      "context": {
+        "time_h": 5.436826666666667,
+        "command_id": "PLAN-443-180-PRODUCT-1.CUT.RESERVE",
+        "operation_id": "PRODUCT-1.CUT.RESERVE",
+        "action": "RESERVE",
+        "phase": "WORK",
+        "completed": true
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d542e3035/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-T.05",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.800000011920929,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          8.099999997019768,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "case": ".local/emergency-scene-20261012/chain-w2-1-r1/sample-009.json",
+      "context": {
+        "time_h": 5.998153855555556,
+        "command_id": "PLAN-450-184-PRODUCT-1.CUT.U1",
+        "operation_id": "PRODUCT-1.CUT.U1",
+        "action": "CONVERT",
+        "phase": "WORK",
+        "completed": true
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d422e30392e4e4554/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-B.09.NET",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.40000003322517586,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          7.599999981041583,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "case": ".local/emergency-scene-20261012/chain-w2-1-r1/sample-009.json",
+      "context": {
+        "time_h": 5.998153855555556,
+        "command_id": "PLAN-450-184-PRODUCT-1.CUT.U1",
+        "operation_id": "PRODUCT-1.CUT.U1",
+        "action": "CONVERT",
+        "phase": "WORK",
+        "completed": true
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d542e3035/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-T.05",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.800000011920929,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          8.099999997019768,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "case": ".local/emergency-scene-20261012/chain-w2-1-r1/sample-016.json",
+      "context": {
+        "time_h": 24.36778888888889,
+        "command_id": "PLAN-620-271-SERVICE-620-CR1-EMPTY_RETURN",
+        "operation_id": "SERVICE-620-CR1-EMPTY_RETURN",
+        "action": "EMPTY_RETURN",
+        "phase": "WORK",
+        "completed": true
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d542e30352e4e4554/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-T.05.NET",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.800000011920929,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          8.099999997019768,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "case": ".local/emergency-scene-20261012/chain-w2-1-r1/sample-017.json",
+      "context": {
+        "time_h": 24.38873111111111,
+        "command_id": "PLAN-625-273-PRODUCT-1.MV-IN-B.MOVE-0",
+        "operation_id": "PRODUCT-1.MV-IN-B.MOVE-0",
+        "action": "TRANSFER",
+        "phase": "WORK",
+        "completed": false
+      },
+      "pair": {
+        "a": "/World/S15/Loads/id_50524f445543542d312e53542d542e30352e4e4554/Envelope",
+        "b": "/World/Equipment/id_43555431/FeedExtension",
+        "ids": [
+          "PRODUCT-1.ST-T.05.NET",
+          "CUT1"
+        ],
+        "types": [
+          "Cube",
+          "Cylinder"
+        ],
+        "categories": [
+          "LOAD",
+          "EQUIPMENT_OR_DISPLAY"
+        ],
+        "aabb_overlap_m": [
+          0.20000000298023224,
+          0.800000011920929,
+          0.05000000074505806
+        ],
+        "cube_sat_depth_m": null,
+        "point_inside_both": [
+          14.949999999254942,
+          8.099999997019768,
+          0.8124999998137356
+        ],
+        "classification": "EXACT_INTERIOR_POINT_WITNESS",
+        "collision_flags": [
+          true,
+          false
+        ]
+      }
+    }
+  ],
+  "static_kit": {
+    "images": 8,
+    "closed": true,
+    "exit_code": 0,
+    "production_subtree_unchanged": true,
+    "entire_root_equal": false,
+    "root_changes": [
+      "RENDER_PRODUCT_DIAGNOSTIC_CAMERA_RELATIONSHIP",
+      "DIAGNOSTIC_CAMERA_EXPOSURE_ATTRIBUTES"
+    ],
+    "capture_source": "GENERATED_FROM_UNMODIFIED_CURRENT_CORE_INITIAL_CONFIGURATION_NOT_LOADED_NATIVE_ARCHIVE",
+    "exit_strategy": "EXPLICIT_EXIT_AFTER_FULL_KIT_CLOSE_RETURN"
+  },
+  "dynamic_kit": {
+    "images": 2,
+    "closed": true,
+    "exit_code": 0,
+    "manifest": {
+      "protocol": "S15-PARITY-1",
+      "scenario": {
+        "id": "NORMAL",
+        "until_h": 6,
+        "receive_after_h": 0,
+        "delayed_lot": null,
+        "arrival_after_h": 0,
+        "cancel_product": null,
+        "cancel_stage": null,
+        "quality_fail": null,
+        "rework_fail": false,
+        "loaded_failure": false,
+        "actual_device_failure": false,
+        "actual_path_obstruction": false
+      },
+      "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+      "backend": "isaac-usd",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 6,
+      "static_operations": 448,
+      "completed_static_operations": 59,
+      "active_static_operations": 448,
+      "ready": 0,
+      "received": 0,
+      "audit": "PASS",
+      "decision_audit": "PASS",
+      "decision_protocol": "S15-DECISION-1",
+      "observation_delivery": "CURRENT_EVENT_PREFIX_ZERO_DELAY",
+      "S15_complete": false,
+      "industrial_qualification": "NOT_ESTABLISHED",
+      "schema_version": "S18-PROD-2.0",
+      "warmup_only": false,
+      "continuation": false,
+      "checkpoint_wait_replaced_in_extended_journal": false,
+      "fixed_phase_witness_mode": null,
+      "handover_after_setup_witness": false,
+      "research": {
+        "purpose": "SIMULATION_RESEARCH_ONLY",
+        "assumption_set_id": "S18-SIM-A1",
+        "approval_id": "S18-SIM-APPROVAL-001",
+        "proposal_sha256": "5834f023c3ccb9789b43aa9a72b9cc3a4a9d951b35bc0670a885bdec93f995a0",
+        "assumption_sha256": "8f1f2ea6a4e9096c57d9f3d6fc882291231c0240f2b03c2a97a7a93ba9065bbd",
+        "gate": "APPROVED_ASSUMPTION_SET",
+        "industrial_qualification": "NOT_ESTABLISHED",
+        "industrial_g2": "OPEN",
+        "scope_bindings": [
+          {
+            "product_id": "PRODUCT-1",
+            "product_revision": "v1",
+            "activity_id": "PRODUCT-1.W-B",
+            "component_id": "PRODUCT-1.BOTTOM",
+            "joint_set_id": "PRODUCT-1.W-B.ABSTRACT-JOINTS-v1",
+            "output_revision": "v1",
+            "h_definition": "PRODUCT-1.W-B.H-SIM-v1",
+            "hr_definition": "PRODUCT-1.W-B.HR-SIM-v1",
+            "process_revision": "v1",
+            "fixture_revision": "v1",
+            "assumption_ids": [
+              "A01",
+              "A02",
+              "A03",
+              "A04",
+              "A05",
+              "A06"
+            ]
+          },
+          {
+            "product_id": "PRODUCT-1",
+            "product_revision": "v1",
+            "activity_id": "PRODUCT-1.W-T",
+            "component_id": "PRODUCT-1.TOP",
+            "joint_set_id": "PRODUCT-1.W-T.ABSTRACT-JOINTS-v1",
+            "output_revision": "v1",
+            "h_definition": "PRODUCT-1.W-T.H-SIM-v1",
+            "hr_definition": "PRODUCT-1.W-T.HR-SIM-v1",
+            "process_revision": "v1",
+            "fixture_revision": "v1",
+            "assumption_ids": [
+              "A01",
+              "A02",
+              "A03",
+              "A04",
+              "A05",
+              "A06"
+            ]
+          }
+        ],
+        "consumers": [
+          {
+            "id": "domain",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "contract",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "schemas",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "generator",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "mapping",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "light",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "human_navigation",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "execution_audit",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "planning",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "observation_ledger",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "decision_audit",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "joint_driver",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "isaac_adapter",
+            "version": "S18-PROD-2.0"
+          },
+          {
+            "id": "isaac_port",
+            "version": "S18-PROD-2.0"
+          }
+        ]
+      },
+      "loaded_failure_injected": false,
+      "actual_path_obstruction_injected": false,
+      "preparation_steps_since_progress": 0
+    },
+    "production_objects_and_state_unchanged": true,
+    "exit_strategy": "EXPLICIT_EXIT_AFTER_FULL_KIT_CLOSE_RETURN"
+  },
+  "images": [
+    {
+      "file": "docs/sim/images/emergency-scene/r1/initial-overview.png",
+      "sha256": "defaebe9032378f61a6c846a553a782d4e434a5857f9ae57c443534875726308",
+      "time_h": 0,
+      "camera_error": 1.4210854715202004e-14,
+      "production_objects_unchanged": true
+    },
+    {
+      "file": "docs/sim/images/emergency-scene/r1/fixed-supports.png",
+      "sha256": "208643892309e0f6ee32a957565d2bfd45844286905ad4dc749a903f139dba5a",
+      "time_h": 0,
+      "camera_error": 1.3322676295501878e-15,
+      "production_objects_unchanged": true
+    },
+    {
+      "file": "docs/sim/images/emergency-scene/r1/parking-supports.png",
+      "sha256": "93f15dac12ff9f2e83e76c5ba931a7380a23b7c8f8ffc8fdd961b33258e7f746",
+      "time_h": 0,
+      "camera_error": 1.7763568394002505e-15,
+      "production_objects_unchanged": true
+    },
+    {
+      "file": "docs/sim/images/emergency-scene/r1/fixture-j2.png",
+      "sha256": "5125bd2a02c28ded2366669fb5c34eab7369fae90fa20a9c269e4e3395292d4b",
+      "time_h": 0,
+      "camera_error": 7.105427357601002e-15,
+      "production_objects_unchanged": true
+    },
+    {
+      "file": "docs/sim/images/emergency-scene/r1/robot-base.png",
+      "sha256": "7deba6240d74063b314870d8ef92e5c327b99867ba8eceb35e3b81a0603c090f",
+      "time_h": 0,
+      "camera_error": 3.552713678800501e-15,
+      "production_objects_unchanged": true
+    },
+    {
+      "file": "docs/sim/images/emergency-scene/r1/cart-frame.png",
+      "sha256": "b467538632685de5a26a74f625821f5bd4a8811343ece6575fedb44eb940aaf6",
+      "time_h": 0,
+      "camera_error": 1.7763568394002505e-15,
+      "production_objects_unchanged": true
+    },
+    {
+      "file": "docs/sim/images/emergency-scene/r1/test-frame.png",
+      "sha256": "44c52976e779fcc5e0343eb868740c3e482f89f15e278c53a8f32bc91aa85eee",
+      "time_h": 0,
+      "camera_error": 3.552713678800501e-15,
+      "production_objects_unchanged": true
+    },
+    {
+      "file": "docs/sim/images/emergency-scene/r1/offsite-ghosts.png",
+      "sha256": "f4996d9761b2d3f4e1bdd9e758a62bf9833d78e1c1ef8e7f70d0dd29042f478c",
+      "time_h": 0,
+      "camera_error": 7.105427357601002e-15,
+      "production_objects_unchanged": true
+    },
+    {
+      "file": "docs/sim/images/emergency-scene/r1/p1-boot-deck.png",
+      "sha256": "bfc3473f22e90f4b60f4fd1bb9073e4ccc903de4af42f8509d61f7d5e553192c",
+      "time_h": 0.6642091666666666,
+      "camera_error": 3.552713678800501e-15,
+      "production_objects_unchanged": true
+    },
+    {
+      "file": "docs/sim/images/emergency-scene/r1/cut-feed-material.png",
+      "sha256": "6e47ce04c69f70e9854755dcde07d535245c7f9b541f63fcd095a6ab595675ac",
+      "time_h": 5.436826666666667,
+      "camera_error": 1.7763568394002505e-15,
+      "production_objects_unchanged": true
+    }
+  ],
+  "rejected_single_rear_candidate": {
+    "exact_declared_package_intersections": 35,
+    "implemented": false
+  },
+  "dual_side_design": {
+    "cases": 1300,
+    "side_counts": {
+      "REAR": 800,
+      "FRONT": 500
+    },
+    "unresolved_package_intersections": 0,
+    "motion_validated": false
+  },
+  "proposed_geometry_delta": 1044,
+  "proposed_collision_delta_before_lifecycle": 1059,
+  "prior_archives": {
+    ".local/s19b-b1-20261011/S19B-20261011-B1-r1-review.zip": "242e1fb458c3502e8f3b6b18f614918b8f2fbf68fe441a4970450819c948c9c2",
+    ".local/s19b-b1-feedback-20261011/S19B-20261012-B1-feedback-r1-review.zip": "228041e2c802922d102c19762234ed8a70a8df535c162aaec08160ade3773bfe",
+    ".local/s19b-embedded-20261011/S19B-20261011-prototype-r2-embedded-review.zip": "44758d3033d9c465e849ddc812431b6f4d8e16b753641a01b2457f690ae6073c",
+    ".local/s19b-prototype-20261011/S19B-20261011-prototype-r1-review.zip": "932340ae39376cd390239a4af27ee24f9e99c9d9148ae1d80b5838f393409333"
+  },
+  "received_files": 743,
+  "received_file_drift_before_governance": [],
+  "preserved_failures": [
+    "CONTROLLED_INTERRUPTION_CHAIN_W1_1_R1",
+    "NORMAL_3_PRODUCTS_720_CENSORED",
+    "NORMAL_960_WV01_EXACT_SCENARIO_REJECTION",
+    "STATIC_KIT_R1_TO_R6",
+    "DYNAMIC_KIT_R1_R2_INCORRECT_PNG_TAIL_CHECK",
+    "DYNAMIC_R3_CUT_IMAGE_OCCLUDED",
+    "ALL_VISIBLE_R2_INDENTATION_ERROR",
+    "REJECTED_SINGLE_REAR_SUPPORT_DESIGN",
+    "REJECTED_THREE_BOX_BOGIE_WHEEL_OCCLUSION_DESIGN"
+  ],
+  "limitations": [
+    "NATIVE_COMPLETE_DIAGNOSTIC_CHAINS_ARE_NOT_COMPLETE_KIT_DOUBLE_BACKEND_VERIFICATION",
+    "FINITE_DYNAMIC_SAMPLING_NOT_ALL_CONTINUOUS_POSES",
+    "NO_NEW_ALL_FAILURE_CANCELLATION_INTERRUPTION_REWORK_MATRIX",
+    "NO_STRUCTURAL_RIGID_BODY_INDUSTRIAL_OR_ERGONOMIC_CERTIFICATION",
+    "NEW_SUPPORT_GEOMETRY_MOTION_HUMAN_CONTACT_AND_PERFORMANCE_NOT_VALIDATED",
+    "CURRENT_B1_REVIEW_AND_EXACT_PUBLICATION_NOT_APPROVED",
+    "RC_FINAL_INTERPRETER_CLEANUP_SKIPPED_AFTER_FULL_KIT_CLOSE_RETURN"
+  ],
+  "industrial_G2": "OPEN_NOT_ESTABLISHED",
+  "B2_B3_S20_S28": "NOT_STARTED",
+  "bogie_wheel_well_design": {
+    "body_pieces_per_bogie": 12,
+    "exact_ellipsoid_box_checks": 48,
+    "body_wheel_intersections": 0,
+    "dynamic_validated": false
+  }
+}
