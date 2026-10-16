@@ -298,6 +298,10 @@ ERRORS = {
 
 
 def translate(key, locale):
+    if key == "partial_evidence":
+        return ("证据不完整：仅核对已保存文件", "Incomplete evidence: saved files checked only")[
+            0 if locale == "zh-CN" else 1
+        ]
     return TEXT.get(key, (key, key))[0 if locale == "zh-CN" else 1]
 
 

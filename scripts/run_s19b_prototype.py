@@ -29,7 +29,9 @@ from s19b_desktop.model import (  # noqa: E402 -- isolate Qt from CPU/Kit; boots
     validate_request,
 )
 from s19b_desktop.review import (  # noqa: E402
+    DisplayRequestError,
     entity_catalog,
+    guarded_display,
     reason_fact,
     seal_evidence,
     validate_display_request,
@@ -163,6 +165,24 @@ def run(request, output, app=None, control=None):
     timing = OnlineTiming(engine, policy)
     sequence = 0
     view_sequence = -1
+    display_errors = []
+    current_display_error = None
+
+    def record_display_error(error):
+        nonlocal current_display_error
+        message = type(error).__name__ + ": " + str(error)
+        if not display_errors or display_errors[-1]["message"] != message:
+            display_errors.append(dict(message=message, sequence=view_sequence, wall_s=time.time()))
+            atomic_json(
+                output / "display-errors.json",
+                dict(
+                    run_id=request["run_id"],
+                    request_id=request["request_id"],
+                    scope="DISPLAY_ONLY",
+                    errors=display_errors,
+                ),
+            )
+        current_display_error = display_errors[-1]
 
     def catalog():
         return entity_catalog(as_data(config), engine.port.mapping if app else None)
@@ -220,12 +240,13 @@ def run(request, output, app=None, control=None):
             ],
             reason=reason_fact(policy.journal),
             camera=str(viewport.camera_path) if viewport else None,
+            display_error=current_display_error,
             **extra,
         )
         atomic_json(output / "live.json", value)
 
     def view_request():
-        nonlocal view_sequence
+        nonlocal view_sequence, current_display_error
         path = output / "view-request.json"
         if viewport is None or not path.is_file():
             return None
@@ -235,6 +256,7 @@ def run(request, output, app=None, control=None):
         except ValueError:
             return None
         view_sequence = data["sequence"]
+        current_display_error = None
         if data["action"] == "locate":
             row = next((r for r in catalog() if r["id"] == data.get("entity_id")), None)
             paths = row["paths"] if row else []
@@ -320,7 +342,7 @@ def run(request, output, app=None, control=None):
                         "expected_view": [expected_view[i][j] for i in range(4) for j in range(4)],
                     },
                 )
-                raise RuntimeError("CAMERA_FRAME_NOT_CONFIRMED")
+                raise DisplayRequestError("CAMERA_FRAME_NOT_CONFIRMED")
             atomic_json(
                 output / "view-confirmation.json",
                 {
@@ -373,7 +395,7 @@ def run(request, output, app=None, control=None):
                 raise RuntimeError("DISPLAY_CLOSED_DURING_PREFIX")
             fit_viewport()
             timing.kit_update(app)
-            view_request()
+            guarded_display(view_request, record_display_error)
         if control:
             control.poll()
         publish(
@@ -436,15 +458,20 @@ def run(request, output, app=None, control=None):
     )
     atomic_json(output / "online-timing.json", timing_report)
     atomic_json(output / "online-journal.json", policy.journal)
+    atomic_json(
+        output / "reason-summary.json",
+        dict(
+            run_id=request["run_id"],
+            request_id=request["request_id"],
+            reason=reason_fact(policy.journal),
+            source="online-journal.json",
+        ),
+    )
     timing.close()
     if receiver is not None:
         atomic_json(output / "receiver-samples.json", receiver.samples)
-        from inspect_s19b_scene_supports import inspect_supports
-
-        atomic_json(
-            output / "scene-support-diagnostic.json",
-            inspect_supports(scene, request["run_id"], request["request_id"]),
-        )
+        # Owner review passed this item on 2026-10-16; retain historical
+        # diagnostics without re-opening or re-running the support investigation.
     capture("scene-after.png")
     if app is not None:
         from omni.kit.renderer.capture import acquire_renderer_capture_interface
@@ -514,7 +541,7 @@ def run(request, output, app=None, control=None):
                         ui_main_height=omni.ui.Workspace.get_main_window_height(),
                     ),
                 )
-            if view_request() == "close_display":
+            if guarded_display(view_request, record_display_error) == "close_display":
                 break
             publish(
                 "CHECKPOINT_DISPLAY_OPEN",
@@ -635,6 +662,7 @@ def main():
             control.finish("FAILED", {"error": report["error"]})
     finally:
         atomic_json(output / "report.json", report)
+        seal_evidence(output, request)
         if app is not None:
             gc.collect()
             app.close()
@@ -645,8 +673,7 @@ def main():
             else "NORMAL_CPYTHON_EXIT"
         )
         atomic_json(output / "report.json", report)
-        if report["status"] == "PASS":
-            seal_evidence(output, request)
+        seal_evidence(output, request)
     print(json.dumps({k: v for k, v in report.items() if k != "manifest"}), flush=True)
     exit_code = 0 if report["status"] == "PASS" else 1
     if app is not None:

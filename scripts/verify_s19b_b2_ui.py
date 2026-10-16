@@ -119,7 +119,7 @@ def main():
         assert len(accepted_stops) == 1
         assert state["responses"][canonical_digest(pending)]["result"] == "STOPPED"
         assert read_json(directory / "process-exit.json")["exit_code"] == 0
-        assert not read_json(directory / "state.json")["running"]
+        assert not read_json(directory / "state.json", limit=20_000_000)["running"]
         assert manifest["received"] == 0
         check(
             name,
@@ -315,6 +315,42 @@ def main():
             window.request_camera()
             wait(lambda: window.display_key == "camera_confirmed", 120)
             check("B1_READ_ONLY_LOCATION_CAMERA_CURRENT_B2_SOURCE")
+            previous = window.view_sequence
+            valid_request = read_json(window.run_directory / "view-request.json")
+            # A malformed display channel must not escape into production.
+            (window.run_directory / "view-request.json").write_text("{", encoding="utf-8")
+            wait(lambda: (window.run_directory / "display-errors.json").is_file(), 120)
+            wait(lambda: window.last_live.get("display_error"), 120)
+            assert window.record_current and window.stop_button.isEnabled()
+            assert window.display_key == "display_unknown"
+            check("DISPLAY_READ_FAILURE_RETAINED_PRODUCTION_CONTROLS_CURRENT")
+            window.disconnect_control()
+            window.reconnect()
+            wait(lambda: window.record_current)
+            assert window.stop_button.isEnabled()
+            assert not window.send_view("camera", camera="Top")
+            check("CORRUPT_DISPLAY_CHANNEL_DOES_NOT_BLOCK_CONTROL_RECONNECTION")
+            atomic_json(window.run_directory / "view-request.json", valid_request)
+            # Reconstruct lost frontend display fields against the same native host.
+            # The CPU case above separately exercises actual frontend process loss.
+            window.disconnect_control()
+            window.view_sequence, window.pending_view = 0, None
+            window.reconnect()
+            wait(lambda: window.record_current)
+            window.camera.setCurrentText("Overview")
+            window.request_camera()
+            assert window.view_sequence == previous + 1
+            wait(lambda: window.display_key == "camera_confirmed", 120)
+            window.entity.setCurrentText("FORK-01")
+            window.request_location()
+            assert window.view_sequence == previous + 2
+            wait(lambda: window.display_key == "location_confirmed", 120)
+            check(
+                "RECONSTRUCTED_DISPLAY_STATE_FIRST_CAMERA_AND_LOCATION_CONFIRMED",
+                previous=previous,
+                recovered=window.view_sequence,
+                scope="DISPLAY_FIELDS_RECONSTRUCTED_SAME_QT_PROCESS_NATIVE_HOST",
+            )
             stop_and_verify("KIT_STOP_PENDING_RECONNECT_READBACK_AUDITS_CLOSE_EXIT")
         results["status"] = "PASS"
         save()

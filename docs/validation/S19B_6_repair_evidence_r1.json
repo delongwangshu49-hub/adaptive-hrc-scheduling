@@ -1,0 +1,80 @@
+{
+  "status": "VERIFIED_WITH_DOCUMENTED_LIMITS_ACCEPTED_BY_OWNER",
+  "tests": {
+    "desktop": 34,
+    "actual_controls": 11,
+    "source": 862,
+    "isolated_wheel": 862,
+    "strict_comparisons": 8
+  },
+  "summary": {
+    "runs": 14,
+    "pairs": 7,
+    "performance_pass": 1,
+    "performance_open": true,
+    "strict_failures": 0,
+    "full_normal_comparison": "PASS",
+    "replay": "FAILED",
+    "final_sources_unchanged": true
+  },
+  "support": "OWNER_REVIEW_PASS_NO_ISSUE_CLOSED_NO_FURTHER_ACTION",
+  "evidence": [
+    {
+      "path": ".local/s19b-6-repair-20261016/summary.json",
+      "sha256": "6de4d48b8b1b9bf71d0d973164864436f539d6c79e3684f3fda33262117c75ac",
+      "bytes": 211
+    },
+    {
+      "path": ".local/s19b-6-repair-20261016/performance-criteria.json",
+      "sha256": "571567b416928c779ad3a1bdc0bb6ba91e1b528b8cfeed16ec99a0117c4c0b3e",
+      "bytes": 4916
+    },
+    {
+      "path": ".local/s19b-6-repair-20261016/run-metrics.json",
+      "sha256": "0963e1690d562fc8327ec92a9b05f2f95c9d3a8782f6e9bee92a89325134d85e",
+      "bytes": 181341
+    },
+    {
+      "path": ".local/s19b-6-repair-20261016/source-impact-proof.json",
+      "sha256": "0cb27ebea5afe9a661ed8981ddcfbaffda25b123d20915f37512109904ef4ab6",
+      "bytes": 554
+    },
+    {
+      "path": ".local/s19b-6-repair-20261016/replay-r2-source-binding.json",
+      "sha256": "977e6c89405aad6fd9a80ce0a02815a9034250821e0ea31a066482a228843b01",
+      "bytes": 54184
+    },
+    {
+      "path": ".local/s19b-6-repair-20261016/preservation.json",
+      "sha256": "a9b093de216b6370cda1d01075facfd030a96a4c4841c0d8d50218603abe54ce",
+      "bytes": 6122
+    },
+    {
+      "path": ".local/s19b-6-repair-20261016/controls-r3/b2-ui-verification.json",
+      "sha256": "0729af7b8727ce8f086d5abaa0b9da99a96f0c5f95ac93d98fc212c994fd5cc9",
+      "bytes": 6290
+    },
+    {
+      "path": ".local/s19b-6-repair-20261016/replay-r2/replay.json",
+      "sha256": "faf9f32ea62b0c256a76d4a0bb37ee82dccc78b5b6cc6523bab9dd4ea8f81d87",
+      "bytes": 247178
+    },
+    {
+      "path": ".local/s19b-6-repair-20261016/final-r2/compare-full-normal.json",
+      "sha256": "89b8dbd0087b916cf042484372e52deb279a0f9ec8c888eb6bdc607b479d2f3b",
+      "bytes": 11321
+    },
+    {
+      "path": ".local/s19b-6-repair-20261016/final-r2/compare-b_plus_one.json",
+      "sha256": "3b52c9f027cd1b072fba46708921037d6ec461542f08491b8a54f6f5b895ab2f",
+      "bytes": 12154
+    },
+    {
+      "path": ".local/s19b-6-repair-20261016/final-r2/suite-processes.json",
+      "sha256": "8ee8fa6d0a64a40afe41653b368f017a853aca6825b4c32ae55a7516801ce9d4",
+      "bytes": 12157
+    }
+  ],
+  "local_review_archive_sha256": "d1a6aef86f9f24a7ea4e38dc3b359fe048974f278cd2da82cf9981ff6f28b9df",
+  "scope": "Large raw logs and original conversations remain local; hashes identify preserved evidence."
+}

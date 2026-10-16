@@ -281,7 +281,11 @@ def main():
                             worker_watch = ProcessWatch(worker)
                             atomic_json(
                                 out / "process-watch-ready.json",
-                                dict(pid=worker["pid"], process_token=worker["process_token"]),
+                                dict(
+                                    pid=worker["pid"],
+                                    process_token=worker["process_token"],
+                                    observer_pid=os.getpid(),
+                                ),
                             )
                         row["worker"] = process_sample(worker["pid"])
                         if not quiesced and host and (out / "display-ready.json").exists():
@@ -309,6 +313,7 @@ def main():
                             row["ui_poll_s"] = time.perf_counter() - ui_start
                             row["phase"] = window.phase_key
                             row["current"] = window.record_current
+                            row["binding_pending"] = window.bound_version is None
                             if window.last_live:
                                 row["state_age_wall_s"] = (
                                     time.time() - window.last_live["published_wall_s"]

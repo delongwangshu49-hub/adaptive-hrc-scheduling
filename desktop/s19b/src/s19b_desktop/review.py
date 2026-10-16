@@ -9,6 +9,19 @@ from pathlib import Path
 
 from .model import InputError, atomic_json, configuration_digest, read_json, validate_request
 
+
+class DisplayRequestError(RuntimeError):
+    """A failed display acknowledgment, not a failed production operation."""
+
+
+def guarded_display(callback, record_error):
+    try:
+        return callback()
+    except (OSError, ValueError, DisplayRequestError) as error:
+        record_error(error)
+        return None
+
+
 EVIDENCE = (
     "request.json",
     "started.json",
@@ -33,6 +46,8 @@ EVIDENCE = (
     "control-state.json",
     "start-command.json",
     "worker-claim.json",
+    "reason-summary.json",
+    "display-errors.json",
 )
 REQUIRED = EVIDENCE[:14]
 
@@ -62,6 +77,8 @@ EVIDENCE_LABELS = {
         "悬浮支承只读诊断（非结构证明）",
         "Read-only floating-support diagnosis (not structural proof)",
     ),
+    "reason-summary.json": ("最终决策原因摘要", "Final decision reason summary"),
+    "display-errors.json": ("显示请求错误记录", "Display request errors"),
 }
 
 
@@ -103,6 +120,11 @@ def seal_evidence(directory, request):
             run_id=request["run_id"],
             request_id=request["request_id"],
             epoch=0,
+            completeness=(
+                "COMPLETE"
+                if all(safe_file(directory, n).is_file() for n in REQUIRED)
+                else "PARTIAL"
+            ),
             files={
                 name: sha256(safe_file(directory, name))
                 for name in EVIDENCE
@@ -128,13 +150,18 @@ def evidence_status(directory, report):
     ):
         raise InputError("EVIDENCE_IDENTITY_MISMATCH")
     files = index.get("files")
-    if not isinstance(files, dict) or not set(REQUIRED) <= files.keys():
+    if not isinstance(files, dict) or (
+        not set(REQUIRED) <= files.keys() and index.get("completeness") != "PARTIAL"
+    ):
         raise InputError("EVIDENCE_REQUIRED_MISSING")
     for name, digest in files.items():
         path = safe_file(directory, name)
         if not path.is_file() or sha256(path) != digest:
             raise InputError("EVIDENCE_MISSING_OR_DAMAGED:" + name)
-    return "integrity_checked", ["evidence-index.json", *files]
+    return (
+        "partial_evidence" if not set(REQUIRED) <= files.keys() else "integrity_checked",
+        ["evidence-index.json", *files],
+    )
 
 
 def bind_record(directory, report):
@@ -193,12 +220,120 @@ def validate_binding(directory, live, backend):
     return live
 
 
-def data_age(live, now=None):
+def bind_live_bundle(directory, live, backend):
+    """Worker-thread only: publish no cache until every immutable source is bound."""
+    directory = Path(directory)
+    paths = [directory / n for n in ("configuration.json", "sources.json", "entity-catalog.json")]
+    before = [(p.stat().st_size, p.stat().st_mtime_ns) for p in paths]
+    validate_binding(directory, live, backend)
+    catalog = read_json(paths[2])
+    if not isinstance(catalog, dict) or (
+        catalog.get("run_id"),
+        catalog.get("request_id"),
+        catalog.get("config_sha256"),
+    ) != (live["run_id"], live["request_id"], live["config_sha256"]):
+        raise InputError("ENTITY_CATALOG_IDENTITY_MISMATCH")
+    rows = catalog.get("entities")
+    if not isinstance(rows, list) or any(
+        not isinstance(row, dict) or not isinstance(row.get("id"), str) for row in rows
+    ):
+        raise InputError("ENTITY_CATALOG_SHAPE")
+    if before != [(p.stat().st_size, p.stat().st_mtime_ns) for p in paths]:
+        raise InputError("BINDING_FILES_CHANGED")
+    return rows
+
+
+def display_sequence(directory, request):
+    """Reconcile observed display envelopes; never submit or replay one."""
+    highest = 0
+    for name in ("view-request.json", "view-confirmation.json", "location-confirmation.json"):
+        path = Path(directory) / name
+        if path.is_file():
+            value = read_json(path)
+            validate_display_request(value, request, -1)
+            highest = max(highest, value["sequence"])
+    return highest
+
+
+def data_age(live, now=None, monotonic_now=None):
+    # Explicit wall-clock injection remains available for legacy records/tests.
+    # Live records on this host share the OS monotonic clock across processes.
+    if now is None and "published_monotonic_s" in live:
+        clock = live["published_monotonic_s"]
+        current = time.monotonic() if monotonic_now is None else monotonic_now
+        if type(clock) not in (int, float) or not math.isfinite(clock) or not 0 <= clock <= current:
+            raise InputError("LIVE_CLOCK")
+        return current - clock
     clock = live.get("published_wall_s")
     now = time.time() if now is None else now
     if type(clock) not in (int, float) or not math.isfinite(clock) or clock > now + 2:
         raise InputError("LIVE_CLOCK")
     return max(0, now - clock)
+
+
+def history_reason(directory):
+    """Read a bounded summary, or stream legacy JSON arrays one record at a time."""
+    directory = Path(directory)
+    summary = directory / "reason-summary.json"
+    if summary.is_file():
+        value = read_json(summary)
+        report = read_json(directory / "report.json")
+        if (value.get("run_id"), value.get("request_id")) != (
+            report.get("run_id"),
+            report.get("request_id"),
+        ):
+            raise InputError("REASON_SUMMARY_IDENTITY")
+        return value.get("reason")
+    path = directory / "online-journal.json"
+    if not path.is_file():
+        return None
+    decoder = json.JSONDecoder()
+    with path.open(encoding="utf-8") as stream:
+        buffer, last, started, ended, expect_value, after_comma = (
+            "",
+            None,
+            False,
+            False,
+            True,
+            False,
+        )
+        while True:
+            chunk = stream.read(65536)
+            buffer += chunk
+            while True:
+                buffer = buffer.lstrip()
+                if not started:
+                    if not buffer:
+                        break
+                    if buffer[0] != "[":
+                        raise InputError("JOURNAL_SHAPE")
+                    started, buffer = True, buffer[1:]
+                    continue
+                if ended or not buffer:
+                    break
+                if buffer[0] == "]":
+                    if after_comma:
+                        raise InputError("JOURNAL_SHAPE")
+                    ended, buffer = True, buffer[1:]
+                    continue
+                if not expect_value:
+                    if buffer[0] != ",":
+                        raise InputError("JOURNAL_SHAPE")
+                    expect_value, after_comma, buffer = True, True, buffer[1:]
+                    continue
+                try:
+                    row, consumed = decoder.raw_decode(buffer)
+                except ValueError:
+                    break
+                if not isinstance(row, dict):
+                    raise InputError("JOURNAL_SHAPE")
+                last, buffer, expect_value, after_comma = row, buffer[consumed:], False, False
+            if len(buffer) > 20_000_000:
+                raise InputError("JOURNAL_RECORD_TOO_LARGE")
+            if not chunk:
+                if not ended or buffer.strip():
+                    raise InputError("JOURNAL_INCOMPLETE")
+                return reason_fact([last]) if last is not None else None
 
 
 def reason_fact(journal):
@@ -372,5 +507,8 @@ def preview_evidence(directory, name):
     if name.endswith(".gz"):
         with gzip.open(path, "rt", encoding="utf-8") as stream:
             return stream.read(24_000) + "\n[preview limited to 24000 characters]"
+    if path.stat().st_size > 20_000_000:
+        with path.open(encoding="utf-8") as stream:
+            return stream.read(24_000) + "\n[raw prefix; preview limited to 24000 characters]"
     value = read_json(path, limit=20_000_000)
     return json.dumps(value, ensure_ascii=False, indent=2)[:24_000]

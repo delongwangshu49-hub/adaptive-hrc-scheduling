@@ -6,6 +6,7 @@ import os
 import sys
 import time
 import uuid
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -59,11 +60,13 @@ from .model import (
     validate_live,
 )
 from .review import (
+    bind_live_bundle,
     data_age,
+    display_sequence,
     evidence_label,
     explain_reason,
+    history_reason,
     preview_evidence,
-    reason_fact,
     validate_binding,
     validate_confirmation,
 )
@@ -175,6 +178,9 @@ class Workbench(QMainWindow):
         self.view_sequence = 0
         self.pending_view = None
         self.bound_version = None
+        self.binding_executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="s19b-binding")
+        self.binding_future = None
+        self.binding_key = None
         self.record_current = False
         self.saved_record_valid = False
         self.connection_key = "exit_unknown"
@@ -638,6 +644,8 @@ class Workbench(QMainWindow):
         atomic_json(request_file, request)
         self.last_sequence, self.last_live, self.last_window_layout = -1, None, None
         self.bound_version = None
+        self.binding_future = None
+        self.binding_key = None
         self.pending_view = None
         self.entity_rows = []
         self.connection_key = "submitted"
@@ -820,8 +828,11 @@ class Workbench(QMainWindow):
             live["run_id"] + "\n" + live["request_id"] + "\n" + live.get("config_sha256", "")
         )
         self.sim_clock.setText(f"{live['time_h']:.6f} h")
-        age = data_age(live)
-        self.age.setText(f"{age:.1f} " + self.t("age"))
+        try:
+            age = data_age(live)
+            self.age.setText(f"{age:.1f} " + self.t("age"))
+        except InputError:
+            self.age.setText(self.t("unknown_value"))
         self.source_version.setText(live.get("source_version", "—")[:20])
         self.source_version.setToolTip(live.get("source_version", "—"))
         self.audit.setText(self.audit_text(live.get("audit"), live.get("decision_audit")))
@@ -938,6 +949,8 @@ class Workbench(QMainWindow):
         self.record_current = False
         self.phase_key = "unknown"
         self.connection_key = "unknown"
+        # Disable actions before rendering potentially malformed saved values.
+        self.update_controls()
         self.status.setText(self.t("unknown"))
         self.connection.setText(self.t("unknown"))
         self.display_key, self.display_suffix = "display_unknown", ""
@@ -974,16 +987,28 @@ class Workbench(QMainWindow):
                 self.last_sequence,
             )
             if self.bound_version is None:
-                validate_binding(self.run_directory, live, self.backend)
+                key = (
+                    str(self.run_directory.resolve()),
+                    self.run_id,
+                    self.request_id,
+                    self.backend,
+                    live["config_sha256"],
+                    live["source_version"],
+                )
+                if self.binding_key != key or self.binding_future is None:
+                    if self.binding_future:
+                        self.binding_future.cancel()
+                    self.binding_key = key
+                    self.binding_future = self.binding_executor.submit(
+                        bind_live_bundle, self.run_directory, dict(live), self.backend
+                    )
+                if not self.binding_future.done():
+                    self.mark_unknown("IDENTITY_CHECK_PENDING")
+                    return
+                future, self.binding_future = self.binding_future, None
+                rows = future.result()
+                self.entity_rows = rows
                 self.bound_version = (live["config_sha256"], live["source_version"])
-                catalog = read_json(self.run_directory / "entity-catalog.json")
-                if (
-                    catalog.get("run_id"),
-                    catalog.get("request_id"),
-                    catalog.get("config_sha256"),
-                ) != (self.run_id, self.request_id, live["config_sha256"]):
-                    raise InputError("ENTITY_CATALOG_IDENTITY_MISMATCH")
-                self.entity_rows = catalog["entities"]
                 self.render_entities()
             if (live["config_sha256"], live["source_version"]) != self.bound_version:
                 raise InputError("LIVE_VERSION_CHANGED")
@@ -993,9 +1018,9 @@ class Workbench(QMainWindow):
                 and canonical_digest(live) != canonical_digest(self.last_live)
             ):
                 raise InputError("LIVE_SEQUENCE_CONTENT_CHANGED")
+            age = data_age(live)
             self.last_sequence = live["sequence"]
             self.last_live = live
-            age = data_age(live)
             keys = {
                 "INITIALIZED": "initialized",
                 "RUNNING": "running",
@@ -1025,6 +1050,11 @@ class Workbench(QMainWindow):
             self.render_live(live)
             self.arrange_scene()
             self.poll_display()
+            if live.get("display_error"):
+                self.display_key = "display_unknown"
+                self.display_status.setText(
+                    self.t("display_unknown") + "\n" + live["display_error"]["message"]
+                )
             if self.control_request:
                 self.control_state, _ = recover(self.run_directory, self.control_request)
                 self.render_control()
@@ -1147,6 +1177,14 @@ class Workbench(QMainWindow):
     def reconnect(self):
         try:
             state, pending = recover(self.run_directory, self.control_request)
+            try:
+                self.view_sequence = max(
+                    self.view_sequence, display_sequence(self.run_directory, self.control_request)
+                )
+            except (OSError, ValueError, TypeError, KeyError):
+                # Display-channel corruption cannot prevent production control
+                # recovery. New display requests retry their own validation.
+                self.display_key, self.display_suffix = "display_unknown", ""
             started = read_json(self.run_directory / "started.json")
             if (started.get("run_id"), started.get("request_id")) != (self.run_id, self.request_id):
                 raise InputError("CONTROL_PROCESS_IDENTITY")
@@ -1207,6 +1245,11 @@ class Workbench(QMainWindow):
             self.backend = request["backend"]
             self.control_state, self.process_watch = state, watch
             self.last_sequence, self.last_live, self.bound_version = -1, None, None
+            self.binding_future, self.binding_key = None, None
+            self.saved_record_valid = False
+            self.record_current = False
+            self.entity_rows = []
+            self.pending_view = None
             self.submitted_s = time.monotonic()
             self.detached = False
             self.pages.setCurrentIndex(0)
@@ -1219,7 +1262,19 @@ class Workbench(QMainWindow):
 
     def send_view(self, action, **extra):
         if not self.run_directory or not self.busy():
-            return
+            return False
+        try:
+            self.view_sequence = max(
+                self.view_sequence,
+                display_sequence(
+                    self.run_directory, dict(run_id=self.run_id, request_id=self.request_id)
+                ),
+            )
+        except (OSError, ValueError, TypeError, KeyError) as error:
+            self.display_key, self.display_suffix = "display_unknown", str(error)
+            self.display_status.setText(self.t(self.display_key) + "\n" + self.display_suffix)
+            self.set_feedback("display_unknown", str(error))
+            return False
         self.view_sequence += 1
         self.pending_view = dict(
             run_id=self.run_id,
@@ -1234,18 +1289,20 @@ class Workbench(QMainWindow):
             self.run_directory / "view-request.json",
             self.pending_view,
         )
+        return True
 
     def request_camera(self):
         if not self.record_current:
             return
-        self.send_view("camera", camera=self.camera.currentText())
-        self.set_feedback("camera_pending")
+        if self.send_view("camera", camera=self.camera.currentText()):
+            self.set_feedback("camera_pending")
 
     def request_location(self):
         if not self.record_current or self.backend != "isaac" or not self.busy():
             self.display_key = "location_unavailable"
         else:
-            self.send_view("locate", entity_id=self.entity.currentText())
+            if not self.send_view("locate", entity_id=self.entity.currentText()):
+                return
             self.display_key = "location_pending"
         self.display_suffix = ""
         self.display_status.setText(self.t(self.display_key))
@@ -1410,9 +1467,8 @@ class Workbench(QMainWindow):
                 indent=2,
             )
         )
-        journal = self.history_directory / "online-journal.json"
         try:
-            fact = reason_fact(read_json(journal, 20_000_000)) if journal.is_file() else None
+            fact = history_reason(self.history_directory)
             self.render_reason(fact, current=False)
         except (OSError, ValueError, TypeError, KeyError):
             self.render_reason(None)
@@ -1465,6 +1521,7 @@ class Workbench(QMainWindow):
             event.ignore()
         else:
             self.persist_preferences()
+            self.binding_executor.shutdown(wait=False, cancel_futures=True)
             event.accept()
 
 

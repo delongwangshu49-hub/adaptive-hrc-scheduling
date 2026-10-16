@@ -133,6 +133,30 @@ def main():
     )
     app = None
     stages = {}
+    cpu_boundaries = {}
+
+    def cpu_boundary(name):
+        # Actual worker counters at the call boundary. Remote frontend readings
+        # follow immediately; read skew is exposed, not called exact tree CPU.
+        from measure_s19b_ui import process_sample
+
+        read_start = time.perf_counter()
+        worker_cpu = time.process_time()
+        boundary = time.perf_counter()
+        watcher = json.loads((out / "process-watch-ready.json").read_text(encoding="utf-8"))
+        observer = process_sample(watcher["observer_pid"])
+        if name == "production_start":
+            worker_cpu = time.process_time()
+            boundary = time.perf_counter()
+        cpu_boundaries[name] = dict(
+            monotonic_s=boundary,
+            worker_cpu_s=worker_cpu,
+            observer=observer,
+            read_started_monotonic_s=read_start,
+            read_finished_monotonic_s=time.perf_counter(),
+            scope="WORKER_CALL_BOUNDARY_AND_NEAR_SYNCHRONOUS_OBSERVER_NOT_PROCESS_TREE",
+        )
+
     started = time.perf_counter()
     hooks = (out / "hook-samples.jsonl").open("x", encoding="utf-8")
     try:
@@ -434,6 +458,8 @@ def main():
                 )
 
             def hook(backend, phase):
+                if phase == "before_audit":
+                    cpu_boundary("production_end_audit_start")
                 began = time.perf_counter()
                 fit()
                 base_hook(backend, phase)
@@ -466,7 +492,9 @@ def main():
             publish("INITIALIZED")
             stages["production_start_counter"] = time.perf_counter()
             stages["production_started_monotonic_s"] = stages["production_start_counter"]
+            cpu_boundary("production_start")
             result = original_run(engine, scenario, **kwargs)
+            cpu_boundary("audit_end")
             stages["audit_s"] = time.perf_counter() - stages["audit_start_counter"]
             atomic_json(
                 out / "timing-raw.json",
@@ -496,6 +524,7 @@ def main():
         report["error"] = traceback.format_exc()
     finally:
         hooks.close()
+        atomic_json(out / "cpu-boundaries.json", cpu_boundaries)
         atomic_json(out / "report.json", report)
         if app:
             gc.collect()
