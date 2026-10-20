@@ -40,7 +40,7 @@ S19A场景表现已完成限定验收，包含受限人物转向与脚步、36�
 | 计划稳定性 | 未来承诺保护、未开始动作的顺序/模式/班组变化、名义与实际开始偏差 | [S19](docs/steps/S19.md) |
 | 两种执行后端 | Python 离散事件执行；Isaac Sim 的 USD 运动学、障碍与状态读回 | [场景与映射](docs/sim/scene_mapping.md) |
 | 本地双语工作台 | 全黑方角、中央真实Kit；六项逻辑修复与测量修订已获接受及上传批准，剩余限制由负责人接受 | [最新验收及发布范围](docs/validation/S19B_publication_r2.md) · [工作台说明](desktop/s19b/README.md) |
-| 实验设计冻结 | S20 r3三项投影审计修复已限定验收并冻结；源码/隔离wheel各905项通过，636条正式设计仍未执行 | [S20冻结](docs/experiments/S20_freeze_r3.md) · [修复验证](docs/validation/S20_limited_repair_r1.md) · [发布范围](docs/validation/S20_publication_r3.md) |
+| 实验设计冻结 | S20 r3三项投影审计修复已限定验收并冻结；源码/隔离wheel各905项通过，636条正式设计仍未执行 | [S20冻结](docs/experiments/S20_freeze_r3.md) · [修复验证](docs/validation/S20_limited_repair_r1.md) · [发布范围](docs/validation/S20_publication_r4.md) |
 | 独立验证 | 执行轨迹审计、决策因果审计、候选重放、双后端严格比较 | [在线验证](docs/validation/S19_online_r2.md) |
 | 简化精确参照 | 与指定简化模型严格匹配的 CP-SAT 参照与完整小规模可行集合核对 | [CP-SAT 映射](docs/algorithms/cpsat_mapping.md) |
 

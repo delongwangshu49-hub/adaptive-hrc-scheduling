@@ -1,0 +1,61 @@
+{
+  "decision_id": "S20-PUBLISH-APPROVAL-002",
+  "authority": "PR196_EXISTING_EXPLICIT_PUBLICATION_AUTHORIZATION",
+  "date": "2026-10-20",
+  "packet_id": "S20-20261020-publication-r4",
+  "accepted_packet_id": "S20-20261020-limited-repair-r3",
+  "status": "APPROVED_CI_TIME_LIMIT_PUBLICATION_REVISION_PENDING_REMOTE_VERIFICATION",
+  "accepted": true,
+  "frozen": true,
+  "published": false,
+  "base": "3e9a4b1886787eb46baba3cf35e84d3be3cd6324",
+  "tag": "step-S20-r4",
+  "branch": "main",
+  "remote": "origin",
+  "publication_files": [
+    ".github/workflows/ci.yml",
+    "AGENTS.md",
+    "PROGRESS_LOG.md",
+    "PROMPT_LEDGER.md",
+    "docs/steps/S20.md",
+    "README.md",
+    "docs/validation/S20_publication_r4.json",
+    "docs/validation/S20_publication_r4.md"
+  ],
+  "ci_only_change": {
+    "ubuntu_job_timeout_minutes_before": 25,
+    "ubuntu_job_timeout_minutes_after": 40,
+    "windows_job_timeout_minutes_before": 40,
+    "windows_job_timeout_minutes_after": 40,
+    "shared_check_commands_unchanged": true,
+    "research_budgets_unchanged": true
+  },
+  "preceding_attempt": {
+    "commit": "3e9a4b1886787eb46baba3cf35e84d3be3cd6324",
+    "tag": "step-S20-r3",
+    "ci_run": 39375978411,
+    "ubuntu_job_id": 118474099751,
+    "ubuntu_conclusion": "cancelled",
+    "ubuntu_job_elapsed_seconds": 1515,
+    "source_tests_passed": 905,
+    "source_seconds": 815.053,
+    "isolated_wheel_test_suite_completed": false,
+    "assertion_failure_observed": false,
+    "inference": "Elapsed 25m15s at existing 25-minute limit and cancellation during wheel tests establish insufficient job time.",
+    "windows_result": "SEPARATE_ACTUAL_RECEIPT",
+    "retained_log_sha256": "32290875fbfbea3aa2c78ea4e79ceef1efb3dbced0b3f2fb5dec0d796d371c91"
+  },
+  "preservation": {
+    "runtime_source_files": 243,
+    "approved_archive_sha256": "1b5c1a8b9d6ef6360b4f25d527961b1192e02213cccf8bf3afb19d45c10380be",
+    "approved_index_sha256": "d698c6f10ff50928ed60df07577c92c4f48a067bd37b171180e211322797efcc",
+    "original_step_S20_r3_retained": true,
+    "frozen_research_inputs_unchanged": true
+  },
+  "formal_runs": 0,
+  "tune_runs": 0,
+  "new_kit_runs": 0,
+  "formal_execution_enabled": false,
+  "s21_started": false,
+  "actual_receipt": ".local/s20-publication-r4-20261020/publication-receipt.json"
+}
