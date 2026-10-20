@@ -27,10 +27,13 @@ from adaptive_hrc_scheduling.control.audit_cache import (
     clone,
 )
 from adaptive_hrc_scheduling.control.production_decisions import check_decisions, record
-from adaptive_hrc_scheduling.control.simulation_joint_policy import SimulationJointPolicy
+from adaptive_hrc_scheduling.control.simulation_joint_policy import Budget, SimulationJointPolicy
 from adaptive_hrc_scheduling.domain import production as m
 from adaptive_hrc_scheduling.planning.production import planning_input
 from adaptive_hrc_scheduling.production_checker import check_run
+from adaptive_hrc_scheduling.research_objective import WeightedObjective
+
+METHODS = ("ADAPTIVE_JOINT", "FIXED_H", "FIXED_HR", "NO_OBSERVATION_UPDATE")
 
 
 def uniform(seed, stream, entity, ordinal):
@@ -73,6 +76,64 @@ class ObservationSettings:
             and self.period_h == 0.25,
             "PROJECTION_SETTINGS",
         )
+
+
+@dataclass(frozen=True)
+class ProjectionContract:
+    """Caller-supplied run identity, independent of the saved evidence being checked."""
+
+    config_sha256: str
+    method: str
+    settings: ObservationSettings
+    budget: Budget
+    objective: WeightedObjective | None = None
+    version: str = "S20-PROJECTION-CONTRACT-r1"
+
+    @classmethod
+    def create(cls, config, budget, *, settings, method, objective=None):
+        require(type(budget) is Budget, "PROJECTION_CONTRACT_BUDGET")
+        result = cls(
+            digest(config),
+            method,
+            settings,
+            replace(budget, opportunities_h=tuple(budget.opportunities_h)),
+            objective,
+        )
+        result.validate(config)
+        return result
+
+    def validate(self, config):
+        require(
+            self.version == "S20-PROJECTION-CONTRACT-r1" and self.config_sha256 == digest(config),
+            "PROJECTION_CONTRACT_CONFIG",
+        )
+        require(self.method in METHODS, "PROJECTION_METHOD")
+        require(type(self.settings) is ObservationSettings, "PROJECTION_CONTRACT_SETTINGS")
+        require(type(self.budget) is Budget, "PROJECTION_CONTRACT_BUDGET")
+        self.settings.validate()
+        self.budget.validate()
+        require(
+            self.objective is None or type(self.objective) is WeightedObjective,
+            "PROJECTION_CONTRACT_OBJECTIVE",
+        )
+        if self.objective is not None:
+            self.objective.validate()
+
+
+def check_contract(config, expected, method, settings, budget):
+    require(type(expected) is ProjectionContract, "PROJECTION_TRUSTED_CONTRACT_REQUIRED")
+    expected.validate(config)
+    require(method in METHODS, "PROJECTION_METHOD")
+    require(method == expected.method, "PROJECTION_METHOD_BINDING")
+    settings.validate()
+    require(
+        fingerprint(asdict(settings)) == fingerprint(asdict(expected.settings)),
+        "PROJECTION_SETTINGS_BINDING",
+    )
+    require(
+        fingerprint(asdict(budget)) == fingerprint(asdict(expected.budget)),
+        "PROJECTION_BUDGET_BINDING",
+    )
 
 
 def restore_world(config, snapshot):
@@ -242,12 +303,50 @@ class ModelAnchor:
             rows += (record(terminal(self.config, world.observe())),)
         return world.observe(), world.snapshot(), rows
 
-    def problem(self, config, observation, prefix, **kwargs):
-        require(config is self.config, "PROJECTION_CONFIG_CONTEXT")
+    def check_prefix(self, observation, prefix, decisions):
+        """Replay only recorded nominal commands and endogenous time advancement."""
         require(
             tuple(prefix.events[: len(self.snapshot.events)]) == self.snapshot.events,
             "PROJECTION_MODEL_PREFIX",
         )
+        rows = tuple(decisions)
+        require(
+            rows[: len(self.source_rows)] == self.source_rows,
+            "PROJECTION_MODEL_SOURCE_DECISIONS",
+        )
+        world = restore_world(self.config, self.snapshot)
+        for row in rows[len(self.source_rows) :]:
+            at = row["sampled_h"]
+            require(
+                world.s.time_h <= at <= prefix.state.time_h,
+                "PROJECTION_NOMINAL_CLOCK",
+            )
+            if at > world.s.time_h:
+                world.advance(at)
+            obs = world.observe()
+            plan = decode_exact(m.Plan, row["plan"])
+            require(len(plan.commands) <= 1, "PROJECTION_NOMINAL_COMMAND_COUNT")
+            receipt = world.dispatch(plan.commands[0]) if plan.commands else None
+            replayed = record(
+                SimpleNamespace(
+                    observation=obs,
+                    plan=plan,
+                    rejected_parents=row["rejected_parents"],
+                    receipt_id=receipt.id if receipt else None,
+                )
+            )
+            require(replayed == row, "PROJECTION_NOMINAL_DECISION_REPLAY")
+        require(prefix.state.time_h >= world.s.time_h, "PROJECTION_NOMINAL_CLOCK")
+        if prefix.state.time_h > world.s.time_h:
+            world.advance(prefix.state.time_h)
+        require(
+            world.snapshot() == prefix and world.observe() == observation,
+            "PROJECTION_UNAUTHORIZED_MODEL_EVOLUTION",
+        )
+
+    def problem(self, config, observation, prefix, **kwargs):
+        require(config is self.config, "PROJECTION_CONFIG_CONTEXT")
+        self.check_prefix(observation, prefix, kwargs.get("decisions", ()))
         return SimulationJointProblem(
             config,
             observation,
@@ -263,6 +362,7 @@ class ModelAnchor:
             and problem.prefix.events[: len(self.snapshot.events)] == self.snapshot.events,
             "PROJECTION_CANDIDATE_CONTEXT",
         )
+        self.check_prefix(problem.observation, problem.prefix, problem.decisions)
         snapshot, rows = problem.preview(schedule)
         a = check_run(self.config, snapshot, checkpoint=self.execution.fork())
         b = check_decisions(self.config, snapshot, rows, checkpoint=self.causal.fork())
@@ -289,6 +389,9 @@ class ProjectedPolicy:
     ):
         settings.validate()
         self.config, self.settings, self.end_h, self.method = config, settings, end_h, method
+        self.contract = ProjectionContract.create(
+            config, budget, method=method, settings=settings, objective=objective
+        )
         self.inner = SimulationJointPolicy(
             config, budget, method=method, end_h=end_h, objective=objective
         )
@@ -410,11 +513,14 @@ class ProjectedPolicy:
 def audit_projection_history(config, snapshot, decisions, policy):
     """Independent source/delivery/nominal-candidate and unchanged-dispatch checks."""
     decisions = tuple(decisions)
+    check_contract(config, policy.contract, policy.method, policy.settings, policy.budget.declared)
     require(
         check_run(config, snapshot).status == "PASS"
         and check_decisions(config, snapshot, decisions).status == "PASS",
         "PROJECTION_ACTUAL_AUDIT",
     )
+    expected_count = math.floor((snapshot.state.time_h + 1e-9) / policy.settings.period_h) + 1
+    require(len(policy.frames) == expected_count, "PROJECTION_PUBLIC_SAMPLE_COVERAGE")
     for expected, frame in enumerate(policy.frames):
         require(
             frame.ordinal == expected
@@ -425,6 +531,14 @@ def audit_projection_history(config, snapshot, decisions, policy):
         )
         check_frame(config, frame, policy.settings, frame.received_h)
     by_id = {f.identity(): f for f in policy.frames}
+    anchors = {}
+
+    def rebuilt_anchor(frame):
+        identity = frame.identity()
+        if identity not in anchors:
+            anchors[identity] = ModelAnchor(config, frame, policy.settings, snapshot.state.time_h)
+        return anchors[identity]
+
     require(
         [entry["sequence"] for entry in policy.trace] == list(range(len(decisions))),
         "PROJECTION_MISSING_OR_DUPLICATE_DECISION_PROOF",
@@ -458,6 +572,11 @@ def audit_projection_history(config, snapshot, decisions, policy):
             eligible_frames[0] if policy.method == "NO_OBSERVATION_UPDATE" else eligible_frames[-1]
         )
         require(frame.identity() == expected_frame.identity(), "PROJECTION_WRONG_DELIVERED_FRAME")
+        model_observation, _, _ = rebuilt_anchor(frame).at(entry["time_h"])
+        require(
+            entry["model_observation_sha256"] == digest(model_observation),
+            "PROJECTION_MODEL_OBSERVATION_BINDING",
+        )
         nominal, actual = entry["proposal"], entry["actual_plan"]
         require(as_data(actual) == actual_row["plan"], "PROJECTION_ACTUAL_PLAN_BINDING")
         if nominal["commands"]:
@@ -528,10 +647,19 @@ def audit_projection_history(config, snapshot, decisions, policy):
     )
     for anchor, problem, schedule in policy.candidate_proofs:
         check_frame(config, anchor.frame, policy.settings, snapshot.state.time_h)
-        rebuilt = ModelAnchor(config, anchor.frame, policy.settings, snapshot.state.time_h)
+        rebuilt = rebuilt_anchor(anchor.frame)
         require(
             rebuilt.proof == anchor.proof and rebuilt.snapshot == anchor.snapshot,
             "PROJECTION_MODEL_PROOF_MUTATION",
+        )
+        expected_mode = {"FIXED_H": "H", "FIXED_HR": "HR-seq"}.get(policy.method)
+        require(problem.fixed_mode == expected_mode, "PROJECTION_FIXED_MODE_BINDING")
+        require(
+            fingerprint(asdict(problem.objective) if problem.objective else None)
+            == fingerprint(
+                asdict(policy.contract.objective) if policy.contract.objective else None
+            ),
+            "PROJECTION_OBJECTIVE_BINDING",
         )
         # Rebind immutable, content-checked event objects to the independent cache.
         events = problem.prefix.events[: len(rebuilt.snapshot.events)]
@@ -608,7 +736,8 @@ def decode_exact(kind, raw):
 
 def export_projection(policy):
     return dict(
-        version="S20-PROJECTION-EVIDENCE-r1",
+        version="S20-PROJECTION-EVIDENCE-r2",
+        contract=as_data(policy.contract),
         settings=asdict(policy.settings),
         method=policy.method,
         budget=policy.budget.report(),
@@ -639,12 +768,20 @@ def export_projection(policy):
     )
 
 
-def audit_saved_projection(config, snapshot, decisions, data):
+def audit_saved_projection(config, snapshot, decisions, data, *, expected):
     """Rebuild scoped model certificates from saved sources, with no new search."""
-    from adaptive_hrc_scheduling.research_objective import WeightedObjective
-
-    require(data["version"] == "S20-PROJECTION-EVIDENCE-r1", "PROJECTION_EVIDENCE_VERSION")
+    require(
+        data["version"] in ("S20-PROJECTION-EVIDENCE-r1", "S20-PROJECTION-EVIDENCE-r2"),
+        "PROJECTION_EVIDENCE_VERSION",
+    )
     settings = ObservationSettings(**data["settings"])
+    declared = Budget(**data["budget"]["declared"])
+    check_contract(config, expected, data["method"], settings, declared)
+    if data["version"] == "S20-PROJECTION-EVIDENCE-r2":
+        require(
+            fingerprint(data["contract"]) == fingerprint(as_data(expected)),
+            "PROJECTION_SAVED_CONTRACT_BINDING",
+        )
     frames = [
         ObservationFrame(
             decode_exact(m.ExecutionSnapshot, r["snapshot"]),
@@ -679,12 +816,13 @@ def audit_saved_projection(config, snapshot, decisions, data):
         candidates.append((problem, schedule))
         proofs.append((anchor, problem, schedule))
     policy = SimpleNamespace(
+        contract=expected,
         frames=frames,
         trace=data["trace"],
         settings=settings,
         method=data["method"],
         candidates=candidates,
         candidate_proofs=proofs,
-        budget=SimpleNamespace(declared=SimpleNamespace(**data["budget"]["declared"])),
+        budget=SimpleNamespace(declared=declared),
     )
     return audit_projection_history(config, snapshot, decisions, policy)

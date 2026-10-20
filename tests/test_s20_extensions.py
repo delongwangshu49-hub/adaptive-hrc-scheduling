@@ -286,11 +286,11 @@ class ObservationProjectionTests(unittest.TestCase):
     def test_saved_projection_round_trip_without_search(self):
         p, r, rows = self.results["ADAPTIVE_JOINT"]
         data = json.loads(json.dumps(export_projection(p)))
-        result = audit_saved_projection(self.config, r.snapshot, rows, data)
+        result = audit_saved_projection(self.config, r.snapshot, rows, data, expected=p.contract)
         self.assertEqual(result["status"], "PASS")
         data["candidates"][0]["proof"]["noise"][0]["epsilon"] = 0.99
         with self.assertRaisesRegex(ContractError, "SAVED_PROOF"):
-            audit_saved_projection(self.config, r.snapshot, rows, data)
+            audit_saved_projection(self.config, r.snapshot, rows, data, expected=p.contract)
 
     def test_missing_decision_or_candidate_proof_rejected(self):
         p, r, rows = self.results["ADAPTIVE_JOINT"]

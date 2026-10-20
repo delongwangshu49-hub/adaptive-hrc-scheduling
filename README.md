@@ -40,7 +40,7 @@ S19A场景表现已完成限定验收，包含受限人物转向与脚步、36�
 | 计划稳定性 | 未来承诺保护、未开始动作的顺序/模式/班组变化、名义与实际开始偏差 | [S19](docs/steps/S19.md) |
 | 两种执行后端 | Python 离散事件执行；Isaac Sim 的 USD 运动学、障碍与状态读回 | [场景与映射](docs/sim/scene_mapping.md) |
 | 本地双语工作台 | 全黑方角、中央真实Kit；六项逻辑修复与测量修订已获接受及上传批准，剩余限制由负责人接受 | [最新验收及发布范围](docs/validation/S19B_publication_r2.md) · [工作台说明](desktop/s19b/README.md) |
-| 实验设计冻结 | A/D/B/C正式设计636条已限定验收并冻结；CPU评分、观察投影与尾部审计就绪，正式运行尚未执行 | [S20冻结](docs/experiments/S20_freeze_r2.md) · [发布范围](docs/validation/S20_publication_r2.md) |
+| 实验设计冻结 | S20 r3三项投影审计修复已限定验收并冻结；源码/隔离wheel各905项通过，636条正式设计仍未执行 | [S20冻结](docs/experiments/S20_freeze_r3.md) · [修复验证](docs/validation/S20_limited_repair_r1.md) · [发布范围](docs/validation/S20_publication_r3.md) |
 | 独立验证 | 执行轨迹审计、决策因果审计、候选重放、双后端严格比较 | [在线验证](docs/validation/S19_online_r2.md) |
 | 简化精确参照 | 与指定简化模型严格匹配的 CP-SAT 参照与完整小规模可行集合核对 | [CP-SAT 映射](docs/algorithms/cpsat_mapping.md) |
 
@@ -163,7 +163,7 @@ docs/                   # 模型、方法、验证与步骤记录
 - **时限是协作式预算。** 单次 Python 调用不能被强制抢占；50 ms 不是硬实时保证。原 B+1 Kit 最大反馈时延约 5.972 s，不能用决策周期指标替代反馈指标。
 - **工业资格仍未建立。** 工业 G2 为 `OPEN / NOT_ESTABLISHED`；仿真中的符号焊接、合成质量和外部接收不构成工业工艺或安全认证。
 - **场景有明确抽象。** USD 运动学读回、共用落点和既有 GUI 限制保持；渲染更新不代表实机动力学或真实帧率认证。
-- **研究结论保持有限。** 正式方法优势、工业适用性和人因效应尚待后续研究。S19A按固定动作矩阵完成限定验收，转弯采用原尺寸内的视觉补偿；S19B有限修复已按披露限制接受并获上传批准；剩余启动卡顿、内存与关闭稳定性限制由负责人接受，本轮不再修复，正式性能仍OPEN；支承经负责人审阅没有问题、通过；S20—S28 尚未启动。
+- **研究结论保持有限。** 正式方法优势、工业适用性和人因效应尚待后续研究。S19A按固定动作矩阵完成限定验收，转弯采用原尺寸内的视觉补偿；S19B有限修复已按披露限制接受并获上传批准；剩余启动卡顿、内存与关闭稳定性限制由负责人接受，本轮不再修复，正式性能仍OPEN；支承经负责人审阅没有问题、通过；S20设计与有限开发验证已完成限定验收和冻结，三项投影审计问题已修复；636条正式设计尚未运行，S21—S28 尚未启动。
 
 <a id="docs"></a>
 
@@ -175,7 +175,7 @@ docs/                   # 模型、方法、验证与步骤记录
 | 产品、工艺和数据依据 | [钢结构规格](docs/model/selected_steel.md) · [证据台账](docs/research/production_evidence.md) |
 | 获批仿真假设与工业缺口 | [仿真研究范围](docs/model/S18_simulation_scope_proposal_r1.md) · [G2 证据结论](docs/research/S18_industrial_g2_evidence_r1.md) |
 | 算法与在线行为 | [规则](docs/algorithms/rule_baselines.md) · [CP-SAT](docs/algorithms/cpsat_mapping.md) · [在线策略](docs/algorithms/online_policy.md) |
-| 当前步骤和后续计划 | [S19A 步骤卡](docs/steps/S19A.md) · [动作与场景验证](docs/validation/S19A_completion_r2.md) · [路线图](docs/roadmap.md) |
+| 当前步骤和后续计划 | [S20步骤卡](docs/steps/S20.md) · [S20 r3冻结](docs/experiments/S20_freeze_r3.md) · [S19A动作与场景验证](docs/validation/S19A_completion_r2.md) · [路线图](docs/roadmap.md) |
 | 开发、检查与版本历史 | [开发说明](docs/development.md) · [进度日志](PROGRESS_LOG.md) · [规范化决策记录](PROMPT_LEDGER.md) |
 
 ## 贡献与许可

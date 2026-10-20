@@ -1,4 +1,4 @@
-"""S20 r2 input generation and checks, with all formal executions locked."""
+"""S20 r3 repair bindings, with the unchanged formal design still locked."""
 
 import argparse
 from dataclasses import asdict
@@ -18,7 +18,7 @@ from s20_design import (
 from adaptive_hrc_scheduling.control.research_projection import ObservationSettings
 from adaptive_hrc_scheduling.research_objective import WeightedObjective
 
-EXTENSIONS = "experiments/manifests/s20_extensions_r2.json"
+EXTENSIONS = "experiments/manifests/s20_extensions_r3.json"
 
 
 def extension_rows(catalog):
@@ -90,7 +90,7 @@ def extension_rows(catalog):
 
 def build():
     catalog, manifest, sources = generate()
-    catalog["candidate_revision"] = "r2"
+    catalog["candidate_revision"] = "r3"
     catalog["annexes"]["D"].update(
         status="IMPLEMENTED_PENDING_FREEZE",
         methods=["ADAPTIVE_JOINT"],
@@ -112,19 +112,20 @@ def build():
         "scripts/run_s20_extension_development.py",
         "tests/test_s20_design.py",
         "tests/test_s20_extensions.py",
+        "tests/test_s20_projection_repair.py",
     ]
     from s20_design import file_sha
 
     sources["files"].update({p: file_sha(ROOT / p) for p in additions})
-    sources["scope"] = "S20_R2_EXACT_IMPLEMENTATION_AND_INHERITED_ASSETS"
+    sources["scope"] = "S20_R3_LIMITED_PROJECTION_REPAIR_AND_INHERITED_ASSETS"
     manifest.update(
-        candidate_revision="r2",
+        candidate_revision="r3",
         config_catalog_sha256=fingerprint(catalog),
         source_catalog_sha256=fingerprint(sources),
         source_file_count=len(sources["files"]),
     )
     extensions = dict(
-        version="S20-EXTENSIONS-r2",
+        version="S20-EXTENSIONS-r3",
         status="PENDING_FREEZE",
         formal_execution_enabled=False,
         config_catalog_sha256=fingerprint(catalog),
@@ -134,6 +135,9 @@ def build():
         formal_runs=dict(A_C=64, D=12, B=560, total=636),
         development_runs=dict(D=3, B=20, total=23),
         baseline_revision_reason="B periodic sampling requires its own zero-perturbation baseline; A current-prefix baseline is not equivalent",
+        projection_evidence_version="S20-PROJECTION-EVIDENCE-r2",
+        projection_contract_version="S20-PROJECTION-CONTRACT-r1",
+        repair_scope="S20-AUDIT-01_02_03_NO_EXPERIMENT_PARAMETER_CHANGE",
     )
     return catalog, manifest, sources, extensions
 
@@ -143,10 +147,15 @@ def check():
     summary = validate_design(catalog, manifest, sources)
     extensions = read(ROOT / EXTENSIONS)
     require(
-        extensions["version"] == "S20-EXTENSIONS-r2"
+        extensions["version"] == "S20-EXTENSIONS-r3"
         and extensions["status"] == "PENDING_FREEZE"
         and extensions["formal_execution_enabled"] is False,
         "EXTENSION_EXECUTION_LOCK",
+    )
+    require(
+        extensions["projection_evidence_version"] == "S20-PROJECTION-EVIDENCE-r2"
+        and extensions["projection_contract_version"] == "S20-PROJECTION-CONTRACT-r1",
+        "EXTENSION_PROJECTION_VERSION",
     )
     require(
         extensions["config_catalog_sha256"] == fingerprint(catalog)

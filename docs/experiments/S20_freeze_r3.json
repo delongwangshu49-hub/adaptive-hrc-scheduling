@@ -1,0 +1,223 @@
+{
+  "decision_id": "S20-FREEZE-APPROVAL-002",
+  "decision_date": "2026-10-20",
+  "decision_timezone": "Asia/Hong_Kong",
+  "recorded_at_utc": "2026-10-20T05:32:41.617085+00:00",
+  "authority": "OWNER_EXPLICIT_APPROVAL_PR195",
+  "progress_record": "LOG269",
+  "owner_message": "批准",
+  "approval_semantics": "Owner accepts and freezes the submitted S20 r3 limited-repair candidate and its documented limits; publication and S21 remain separately authorized.",
+  "packet_id": "S20-20261020-limited-repair-r3",
+  "acceptance_status": "ACCEPTED_WITH_DOCUMENTED_LIMITS",
+  "freeze_status": "FROZEN",
+  "accepted": true,
+  "frozen": true,
+  "archive": ".local/s20-repair-20261020/S20-20261020-limited-repair-r3-review.zip",
+  "archive_sha256": "1b5c1a8b9d6ef6360b4f25d527961b1192e02213cccf8bf3afb19d45c10380be",
+  "archive_bytes": 496186,
+  "index": "docs/experiments/S20_candidate_files_r3.json",
+  "index_sha256": "d698c6f10ff50928ed60df07577c92c4f48a067bd37b171180e211322797efcc",
+  "approved_snapshot_files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "f15e6a19f82d8fdfcb7d25802be894eda4cd3ad6324c2ae36e8ed581f53492ac",
+      "bytes": 83587
+    },
+    {
+      "path": "PROGRESS_LOG.md",
+      "sha256": "18205180a4b2fcbfa0d35ea93e094486877cf5b34e3b6132525c14033d6782b0",
+      "bytes": 360992
+    },
+    {
+      "path": "PROMPT_LEDGER.md",
+      "sha256": "3243ee0220f35edd7f65e09d6fbb8e53bc969005f0d2516937bfa1f3409ce777",
+      "bytes": 232357
+    },
+    {
+      "path": "docs/experiments/S20_freeze_candidate_r3.md",
+      "sha256": "4fa89356d03cc5a1b8cb644e944ac8b7c5ffdc3f7529e713338dfb2ce30a1b31",
+      "bytes": 2271
+    },
+    {
+      "path": "docs/experiments/S20_limited_repair_protocol_r1.md",
+      "sha256": "c5a6aadca02c6715bddbed128f77df0bf0ec0e50f17362e801152f35918499e7",
+      "bytes": 2424
+    },
+    {
+      "path": "docs/experiments/S20_parameter_register_r3.md",
+      "sha256": "64ec757183602cc565474553782b53570a8d85471f38a27f10a5cc9d5e2b1342",
+      "bytes": 763
+    },
+    {
+      "path": "docs/experiments/analysis_plan_r3.md",
+      "sha256": "2dd47e8ff2758aa7905a1f7f262741f0af4899be7313dc9458427037e08732b5",
+      "bytes": 1243
+    },
+    {
+      "path": "docs/experiments/protocol_r3.md",
+      "sha256": "9963a2dd10ee8544aedd56478c4d45cbbf67856d0477c0261c993197acd49c52",
+      "bytes": 2567
+    },
+    {
+      "path": "docs/steps/S20.md",
+      "sha256": "6a33fb087e3feaca8653bba4e873893e293227919754e3cbe370a6a673373629",
+      "bytes": 9392
+    },
+    {
+      "path": "docs/validation/S20_limited_repair_r1.json",
+      "sha256": "0cc3493d609f91f76ecee4c22b4b8208223eec0a4a8e5872b8bdfa1f5ca3a58b",
+      "bytes": 127533
+    },
+    {
+      "path": "docs/validation/S20_limited_repair_r1.md",
+      "sha256": "48dd2f3d2fbfa7f54541ad79685956c2db8d783028cf5b0191b5545b7520637d",
+      "bytes": 5428
+    },
+    {
+      "path": "docs/validation/S20_post_release_audit_r1.json",
+      "sha256": "02e67ccf535f05c9696190d930a2899daab5458a55d65ce4024a588027f96b2e",
+      "bytes": 12439
+    },
+    {
+      "path": "docs/validation/S20_post_release_audit_r1.md",
+      "sha256": "6686fcc3a1f769564e7cb6ed1823a4abca85d2c2c8d0d5a03472eafa2dfe141d",
+      "bytes": 7911
+    },
+    {
+      "path": "experiments/configs/s20_r3.json",
+      "sha256": "295c8fe6cdcf05985aa1e072eaee9e1c624ee148b07c3678ae888dadc547935a",
+      "bytes": 1435712
+    },
+    {
+      "path": "experiments/manifests/s20_extensions_r3.json",
+      "sha256": "e26b789f96a9d29de3cc1d140df78b31df617fe69d3b0e1e73fbb911b1d152a4",
+      "bytes": 450631
+    },
+    {
+      "path": "experiments/manifests/s20_r3.json",
+      "sha256": "08eded0b84a2b5378895fb490ebc378e33e82ac0fbed1991310de8db8b171d79",
+      "bytes": 78076
+    },
+    {
+      "path": "experiments/manifests/s20_sources_r3.json",
+      "sha256": "8bb322628f740c8b175e135afbb9ac21e4a3e82a5952d0b9fa397b8e49897d9b",
+      "bytes": 28474
+    },
+    {
+      "path": "scripts/run_s20_extension_development.py",
+      "sha256": "0c77cab2eb2f9ba50e91283d1aa0e0cbfc1840e6a6172dd1a0c6c8ec2f680561",
+      "bytes": 5443
+    },
+    {
+      "path": "scripts/s20_design.py",
+      "sha256": "d854ebb28ef803ad6a69766d8e9feaf660904eb2de90dc9d4edd3307eefbb82d",
+      "bytes": 15885
+    },
+    {
+      "path": "scripts/s20_extension_design.py",
+      "sha256": "d90bec3be186f74a3876ee9d86feb39be1a8a620fe99909705ea71597638a8c9",
+      "bytes": 7469
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/control/research_projection.py",
+      "sha256": "257d3498889b82fdd1601d11ed6c5199a53c7ead13b53276343940c135bc6712",
+      "bytes": 33845
+    },
+    {
+      "path": "tests/test_s20_extensions.py",
+      "sha256": "d548a8920cf2c6608d7f7d6d1a17d62eb6d98d7fb26c408d8f27f1d2ccdac215",
+      "bytes": 14061
+    },
+    {
+      "path": "tests/test_s20_projection_repair.py",
+      "sha256": "c676620d9766071b522c86686a07fbce17f264404edec0a609af39b13bc96ebf",
+      "bytes": 9952
+    },
+    {
+      "path": "docs/experiments/S20_candidate_files_r3.json",
+      "sha256": "d698c6f10ff50928ed60df07577c92c4f48a067bd37b171180e211322797efcc",
+      "bytes": 4656
+    }
+  ],
+  "runtime_binding": {
+    "catalog": "experiments/manifests/s20_sources_r3.json",
+    "sha256": "8bb322628f740c8b175e135afbb9ac21e4a3e82a5952d0b9fa397b8e49897d9b",
+    "files": 243
+  },
+  "findings": [
+    {
+      "id": "S20-AUDIT-01",
+      "status": "OWNER_ACCEPTED_FIX_WITH_DOCUMENTED_VALIDATION_SCOPE"
+    },
+    {
+      "id": "S20-AUDIT-02",
+      "status": "OWNER_ACCEPTED_FIX_WITH_DOCUMENTED_VALIDATION_SCOPE"
+    },
+    {
+      "id": "S20-AUDIT-03",
+      "status": "OWNER_ACCEPTED_FIX_WITH_DOCUMENTED_VALIDATION_SCOPE"
+    }
+  ],
+  "accepted_scope": [
+    "Authorized nominal-prefix replay and model-observation digest reconstruction.",
+    "Complete public sampling-grid evidence including dropped frames and fractional early-stop semantics.",
+    "Independent trusted config/method/settings/objective/declared-budget contract and candidate fixed-mode binding.",
+    "Versioned r3 protocol/analysis/parameter/input/source bindings; inherited numeric design unchanged.",
+    "Documented CPU research implementation and finite development validation only."
+  ],
+  "validation_basis": {
+    "report": "docs/validation/S20_limited_repair_r1.json",
+    "sha256": "0cc3493d609f91f76ecee4c22b4b8208223eec0a4a8e5872b8bdfa1f5ca3a58b",
+    "source_tests": 905,
+    "isolated_wheel_tests": 905,
+    "old_saved_runs": 20,
+    "old_saved_candidates": 32,
+    "target_counterexamples_rejected": 7,
+    "saved_committed_prefix_cases": 2,
+    "new_extension_development_cases": 23,
+    "new_legacy_cases": 4,
+    "note": "Existing verified r3 evidence accepted; no new test or development runs during this governance action."
+  },
+  "freeze_identity_checks": {
+    "approved_files": 24,
+    "archive_crc": "PASS",
+    "runtime_source_files": 243,
+    "formal_rows_without_outcome": 636,
+    "tune_rows_without_outcome": 4,
+    "formal_execution_locks_disabled": true
+  },
+  "formal_design": {
+    "A_C": 64,
+    "D": 12,
+    "B": 560,
+    "total": 636
+  },
+  "formal_runs": 0,
+  "tune_runs": 0,
+  "new_kit_runs": 0,
+  "new_remote_ci_runs": 0,
+  "retained_limits": [
+    "CPU research and bounded development validation only; 636 formal rows unexecuted.",
+    "Old v1 evidence requires an independently supplied trusted contract; no self-authorization.",
+    "Used budget diagnostics are not independently certified measured runtime; existing eligibility checks remain separate.",
+    "Two committed-prefix cases reuse a derived 26h sample of a saved run; no new full production or Kit chain.",
+    "No new remote CI, Git writes, publication, industrial G2 qualification or S21 execution.",
+    "Historical S19B accepted limitations, support owner pass and all original failures remain unchanged."
+  ],
+  "historical_r2_acceptance_freeze_publication_retained": true,
+  "snapshot_status_rule": "Candidate, validation, manifest and packet pending-owner/pending-freeze fields retain their submission-time bytes. This separate owner decision establishes acceptance and freeze; four governance files append/prepend the decision without changing their original bytes.",
+  "target": {
+    "branch": "main",
+    "head": "154f5b413013b3e428a87d84dfd15a482702097b",
+    "new_tag": null
+  },
+  "published": false,
+  "publication_authorized": false,
+  "git_writes": false,
+  "formal_execution_authorized": false,
+  "formal_execution_enabled": false,
+  "s21_authorized": false,
+  "s21_started": false,
+  "remote_operations": [],
+  "receipt": ".local/s20-freeze-r3-20261020/receipt.json"
+}

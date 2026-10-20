@@ -23,9 +23,9 @@ from adaptive_hrc_scheduling.control.simulation_joint_policy import Budget  # no
 VERSION = "S20-DESIGN-r1"
 METHODS = ("ADAPTIVE_JOINT", "FIXED_H", "FIXED_HR", "NO_OBSERVATION_UPDATE")
 PATHS = (
-    "experiments/configs/s20_r2.json",
-    "experiments/manifests/s20_r2.json",
-    "experiments/manifests/s20_sources_r2.json",
+    "experiments/configs/s20_r3.json",
+    "experiments/manifests/s20_r3.json",
+    "experiments/manifests/s20_sources_r3.json",
 )
 
 
@@ -50,7 +50,9 @@ def read(path):
 def write(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
-        json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+        json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
 
 

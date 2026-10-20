@@ -1,0 +1,304 @@
+{
+  "review_id": "S20-POST-RELEASE-AUDIT-20261020-r1",
+  "date": "2026-10-20",
+  "authority": "PR193_OWNER_COMPLETENESS_AND_LOGIC_REVIEW_REQUEST",
+  "recorded_at_utc": "2026-10-20T04:27:04.578740+00:00",
+  "reviewed_commit": "154f5b413013b3e428a87d84dfd15a482702097b",
+  "reviewed_tag": "step-S20-r2",
+  "status": "DELIVERABLES_ACCEPTANCE_FREEZE_PUBLICATION_COMPLETE_WITH_NEW_REVIEW_FINDINGS_OPEN",
+  "historical_acceptance": "ACCEPTED_WITH_DOCUMENTED_LIMITS",
+  "historical_freeze": "FROZEN",
+  "historical_publication": "PUBLISHED_CI_SUCCESS",
+  "logic_review": "THREE_REPRODUCED_P2_FINDINGS_NOT_FIXED",
+  "scope": "S20 design and development validation; formal A/D/B/C execution belongs to later authorized steps.",
+  "completion_stages": [
+    {
+      "stage": 1,
+      "result": "DELIVERED",
+      "evidence": "docs/experiments/S20_preflight_r1.md"
+    },
+    {
+      "stage": 2,
+      "result": "DELIVERED",
+      "evidence": "docs/experiments/protocol_r2.md"
+    },
+    {
+      "stage": 3,
+      "result": "DELIVERED",
+      "evidence": "experiments/manifests/s20_extensions_r2.json"
+    },
+    {
+      "stage": 4,
+      "result": "DELIVERED",
+      "evidence": "docs/experiments/analysis_plan_r2.md"
+    },
+    {
+      "stage": 5,
+      "result": "ORIGINAL_VALIDATION_DELIVERED_B_ASSURANCE_REOPENED_BY_THIS_REVIEW",
+      "evidence": "docs/validation/S20_extension_validation_r2.json"
+    },
+    {
+      "stage": 6,
+      "result": "OWNER_ACCEPTED_AND_FROZEN_THEN_PUBLISHED",
+      "evidence": "docs/experiments/S20_freeze_r2.json"
+    }
+  ],
+  "checks": {
+    "approved_archive_files": 43,
+    "runtime_sources_unchanged": 242,
+    "current_design_validator": "PASS_636_FORMAL_ROWS_LOCKED",
+    "remote_main_and_tag_rechecked": true,
+    "remote_files_from_verified_publication_receipt": 872,
+    "existing_ci_tests_per_platform": {
+      "source": 895,
+      "isolated_wheel": 895
+    },
+    "new_full_test_runs": 0,
+    "saved_projection_cases": 9,
+    "positive_controls": 2,
+    "saved_negative_variants": 7,
+    "saved_negative_variants_accepted": 6,
+    "saved_negative_variants_rejected": 1,
+    "bounded_hypothetical_prefix_fixtures": [
+      "0.25h_to_0.5h",
+      "0.75h_to_1h"
+    ],
+    "new_actual_production_runs": 0,
+    "formal_runs": 0,
+    "tune_runs": 0,
+    "new_kit_runs": 0
+  },
+  "findings": [
+    {
+      "id": "S20-AUDIT-01",
+      "priority": "P2",
+      "status": "OPEN_NOT_FIXED",
+      "title": "候选前缀未验证是否仅由送达帧和受权内生演进产生",
+      "file": "src/adaptive_hrc_scheduling/control/research_projection.py",
+      "lines": [
+        245,
+        269,
+        664,
+        677
+      ],
+      "observation": "The restored candidate prefix is checked against the anchor root and ordinary scoped physical/causal checks, but its post-root world facts are not checked against the authorized observation evolution.",
+      "reproduction": "A candidate from a delivered 0h frame was extended to 0.75h and given an R1 FAILURE absent from the frame and actual run. Its candidate audit passed; adding this unused candidate to the saved evidence also passed the complete saved projection audit (5 frames, 10 decisions, 3 candidates).",
+      "impact": "The certificate does not establish the claimed exclusion of undelivered exogenous facts from every candidate. The demonstrated injected candidate was not actually dispatched; this does not establish leakage in the original runs or unsafe actual execution.",
+      "remedy": "Rebuild or validate every candidate prefix from its delivered frame, declared clock, authorized endogenous advance and permitted own nominal decisions; reject new unobserved FAILURE/REPAIR/ARRIVAL/QUALITY facts and bind the recorded model observation digest."
+    },
+    {
+      "id": "S20-AUDIT-02",
+      "priority": "P2",
+      "status": "OPEN_NOT_FIXED",
+      "title": "空采样帧集合绕过公共采样完整性及参数核验",
+      "file": "src/adaptive_hrc_scheduling/control/research_projection.py",
+      "lines": [
+        418,
+        427,
+        439,
+        449
+      ],
+      "observation": "The frame loop checks only supplied entries and never requires coverage of the public grid; the UNKNOWN branch infers absence of delivered packets from that potentially empty supplied list.",
+      "reproduction": "Removing all 5 frames from the original 1h full-loss development record still returned PASS. Changing missing_probability from 1 to 0 in that empty-frame evidence also returned PASS, despite five WAIT_UNKNOWN decisions and a zero-delay zero-loss configuration.",
+      "impact": "Lost evidence can be accepted as genuine packet loss, and a zero-loss case can be falsely certified as having no delivered observations. This undermines B packet counts and UNKNOWN/availability attribution.",
+      "remedy": "Validate settings before any frame loop, require all expected public sample ordinals up to the actual end (with explicit early-stop semantics), and distinguish a recorded dropped packet from a missing evidence entry."
+    },
+    {
+      "id": "S20-AUDIT-03",
+      "priority": "P2",
+      "status": "OPEN_NOT_FIXED",
+      "title": "保存方法标签未与候选固定模式及冻结方法行绑定",
+      "file": "src/adaptive_hrc_scheduling/control/research_projection.py",
+      "lines": [
+        457,
+        460,
+        674,
+        688
+      ],
+      "observation": "The saved method is copied into a namespace and only distinguishes NO_OBSERVATION_UPDATE from all other strings. Candidate fixed_mode is separately accepted from its saved field.",
+      "reproduction": "Changing only the ADAPTIVE_JOINT saved record method to FIXED_HR, while both candidates retained fixed_mode=None, returned PASS. NOT_A_REGISTERED_METHOD also returned PASS.",
+      "impact": "A physically valid adaptive run can be mislabeled as a fixed-method result while preserving a projection PASS; the current audit alone cannot certify method identity for B comparisons.",
+      "remedy": "Validate the method enumeration and bind method/settings/objective and candidate fixed_mode to a separately trusted frozen manifest row; verify own-anchor semantics for the no-update method."
+    }
+  ],
+  "saved_projection_probes": [
+    {
+      "case": "S20-r2-dev-SR-W1-N1-B-missing-1-B-DEV-00-ADAPTIVE_JOINT",
+      "mutation": "identity",
+      "status": "PASS",
+      "audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 5,
+        "candidates": 0
+      }
+    },
+    {
+      "case": "S20-r2-dev-SR-W1-N1-B-missing-1-B-DEV-00-ADAPTIVE_JOINT",
+      "mutation": "remove_all_frames",
+      "status": "PASS",
+      "audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 0,
+        "decisions": 5,
+        "candidates": 0
+      }
+    },
+    {
+      "case": "S20-r2-dev-SR-W1-N1-B-missing-1-B-DEV-00-ADAPTIVE_JOINT",
+      "mutation": "remove_frames_and_set_zero_missing",
+      "status": "PASS",
+      "audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 0,
+        "decisions": 5,
+        "candidates": 0
+      }
+    },
+    {
+      "case": "S20-r2-dev-SR-W1-N1-B-BASE-ADAPTIVE_JOINT",
+      "mutation": "identity",
+      "status": "PASS",
+      "audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      }
+    },
+    {
+      "case": "S20-r2-dev-SR-W1-N1-B-BASE-ADAPTIVE_JOINT",
+      "mutation": "remove_terminal_frame",
+      "status": "REJECTED",
+      "reason": "'eb041c17c7b95d258c2a29b19280af4bc88c0b62d6fd189f84c0e10d48136634'"
+    },
+    {
+      "case": "S20-r2-dev-SR-W1-N1-B-BASE-ADAPTIVE_JOINT",
+      "mutation": "alter_method",
+      "status": "PASS",
+      "audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      }
+    },
+    {
+      "case": "S20-r2-dev-SR-W1-N1-B-BASE-ADAPTIVE_JOINT",
+      "mutation": "invalid_method",
+      "status": "PASS",
+      "audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      }
+    },
+    {
+      "case": "S20-r2-dev-SR-W1-N1-B-BASE-ADAPTIVE_JOINT",
+      "mutation": "over_budget",
+      "status": "PASS",
+      "audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      }
+    },
+    {
+      "case": "S20-r2-dev-SR-W1-N1-B-BASE-ADAPTIVE_JOINT",
+      "mutation": "alter_model_observation_digest",
+      "status": "PASS",
+      "audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      }
+    }
+  ],
+  "supplementary_probe_interpretation": {
+    "over_budget": "Projection PASS alone is not budget eligibility. Protocol already separates budget overrun from physical audit; this is not counted as another independent production defect. Future result consumers must separately classify budget compliance.",
+    "alter_model_observation_digest": "Recorded digest is currently unused by the saved checker; addressed by the source/evolution binding concern in S20-AUDIT-01, not counted twice.",
+    "remove_terminal_frame": "Rejected; retained as a negative control showing that deleting a referenced frame is detected."
+  },
+  "evidence": [
+    {
+      "path": ".local/s20-audit-20261020/before.json",
+      "sha256": "baa2bc735bc6ec4d80b2b33fdc5d8187d167e7bf45912ca050b5a5dcf01457b7",
+      "bytes": 29931
+    },
+    {
+      "path": ".local/s20-audit-20261020/projection-probes.json",
+      "sha256": "b849961726b31bc5ef6b6c99eb5ca4ef325946391a7ec79dd332bc1a7c76fbee",
+      "bytes": 3030
+    },
+    {
+      "path": ".local/s20-audit-20261020/model-prefix-probe.json",
+      "sha256": "a30f5dfa1782dfaf0f40eba3956d316bf0b3fedbc07c2dc031ae1bc31a7ca435",
+      "bytes": 3632
+    },
+    {
+      "path": ".local/s20-audit-20261020/model-prefix-probe-initial.json",
+      "sha256": "bc2aa572145ada05e4917f95aa0f49c621309258241bd7179295ea7f41fee202",
+      "bytes": 3368
+    },
+    {
+      "path": ".local/s20-audit-20261020/probe_projection.py",
+      "sha256": "507f3cfc4e1c84ac1cfa57edd99dad62320adf6c1c4ec7dde0b70a7703b69255",
+      "bytes": 3258
+    },
+    {
+      "path": ".local/s20-audit-20261020/probe_model_prefix.py",
+      "sha256": "38efa363faf61167ecf5b0531aee3f68f822e0f2d6f7d7f10635966cd47a07c9",
+      "bytes": 3215
+    },
+    {
+      "path": ".local/s20-audit-20261020/design-check.log",
+      "sha256": "3e0ed362aa260b26f2e695465b4cb63db21ac49824e6662796987b83525c37cc",
+      "bytes": 263
+    },
+    {
+      "path": ".local/s20-audit-20261020/injected-unobserved-fact-projection.json.gz",
+      "sha256": "80159e9f54c3c6d1f99181fe92c9b80f8904d5eb6b207c4963cb52c19538f584",
+      "bytes": 795994
+    }
+  ],
+  "recommendation": "Close the three B projection evidence defects with a versioned limited repair and targeted positive/negative verification before using B projection PASS as formal comparative evidence. Preserve original acceptance, artifacts, failure records and tags.",
+  "implementation_modified": false,
+  "repairs_performed": false,
+  "git_writes": false,
+  "new_publication": false,
+  "s21_started": false,
+  "unchanged_limits": [
+    "S19B_ACCEPTED_LIMITS_RETAINED",
+    "SUPPORT_PASS_NO_FURTHER_INVESTIGATION",
+    "INDUSTRIAL_G2_OPEN_NOT_ESTABLISHED",
+    "CPU_ONLY_NEW_INTERFACES",
+    "FINITE_DESIGN_NO_POPULATION_INFERENCE"
+  ],
+  "appraisal_method_reference": {
+    "title": "Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents",
+    "authors": [
+      "Timothy Kassis",
+      "Vinayak Agarwal",
+      "Yuhuan He",
+      "Darshil Patel",
+      "Aubrey M. Brueckner"
+    ],
+    "year": 2026,
+    "record_checked": "2026-10-20",
+    "latest_record_revision": "2026-09-02 (v2)",
+    "url": "https://arxiv.org/abs/2609.00065",
+    "doi": "https://doi.org/10.48550/arXiv.2609.00065",
+    "role": "Appraisal procedure only; repository findings are supported by the local reproductions, not by this paper."
+  }
+}

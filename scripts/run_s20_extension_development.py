@@ -1,4 +1,4 @@
-"""Run only S20 r2 registered development rows and save reconstructible evidence."""
+"""Run the unchanged S20 development rows with r3 source/evidence bindings."""
 
 import argparse
 import gzip
@@ -95,7 +95,9 @@ def main():
                 json.dump(data, stream)
             with gzip.open(folder / "projection.json.gz", "rt", encoding="utf-8") as stream:
                 saved = json.load(stream)
-            saved_audit = audit_saved_projection(config, result.snapshot, records, saved)
+            saved_audit = audit_saved_projection(
+                config, result.snapshot, records, saved, expected=policy.contract
+            )
         summary = dict(
             row=row,
             elapsed_s=elapsed,
