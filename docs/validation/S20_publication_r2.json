@@ -1,0 +1,176 @@
+{
+  "decision_id": "S20-PUBLISH-APPROVAL-001",
+  "authority": "PR192_EXISTING_PUBLICATION_AUTHORIZATION",
+  "date": "2026-10-20",
+  "packet_id": "S20-20261020-publication-r2",
+  "status": "APPROVED_PUBLICATION_PACKAGING_REVISION_PENDING_REMOTE_VERIFICATION",
+  "accepted": true,
+  "frozen": true,
+  "published": false,
+  "scope_change": "NONE_RESEARCH_AND_ACCEPTED_BYTES_UNCHANGED",
+  "packaging_change": "Explicit CRLF checkout for 28 already bound files; 8 are runtime sources. No code or experiment input bytes changed.",
+  "first_commit": "f910ebbdb89d6e019d9fd2ecb091fe5667c1832e",
+  "first_tag": "step-S20-r1",
+  "first_ci_run": 39364174352,
+  "first_ci_result": "UBUNTU_SOURCE_895_TESTS_5_FAILURES_1_ERROR_SOURCE_DIGEST_WINDOWS_RESULT_RECORDED_SEPARATELY",
+  "branch": "main",
+  "base": "f910ebbdb89d6e019d9fd2ecb091fe5667c1832e",
+  "tag": "step-S20-r2",
+  "publication_files": [
+    ".gitattributes",
+    "AGENTS.md",
+    "PROGRESS_LOG.md",
+    "PROMPT_LEDGER.md",
+    "README.md",
+    "docs/steps/S20.md",
+    "docs/validation/S20_publication_r2.json",
+    "docs/validation/S20_publication_r2.md"
+  ],
+  "checkout_bindings": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "605df9f714704f220d2926ac2d09acf16ae590297903dce17bb475d4a3f6f493",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "PROGRESS_LOG.md",
+      "sha256": "414f9ae4a567f254fd64fb1cc67dc9feb135b9db32ab90942be19e7817c53b4e",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ae06180c187ec689e82711ca58693534f6d6b118d7be35139ccf136e1bb590d0",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "desktop/s19b/README.md",
+      "sha256": "c34d0ea0832b88a4147e1f692bc823997b63d75f5bd0a95c2c8489ac0ce9ce86",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "desktop/s19b/src/s19b_desktop/app.py",
+      "sha256": "a41961f082d5d96f14671bc6c0ebc4eaa7c19b8336c328d3234802c84f378d2b",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "docs/experiments/S20_candidate_files_r1.json",
+      "sha256": "d70c66d5377539b61856689c0e45b1ce21127d529ddd7ee18e28bffba65ccad9",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "docs/experiments/S20_candidate_files_r2.json",
+      "sha256": "9923e8a2bb6d68fa73b17de161664f66371b1b9347318f41ab624cab946f6dd4",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "docs/experiments/S20_extension_approval_r1.json",
+      "sha256": "f6c21364c08d37460cf4533ecf93a30ad42b3815505f27beb8dbe0677723c8fb",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "docs/experiments/S20_freeze_r2.json",
+      "sha256": "b5ab8c050fa4cb0c79db1a9bc996dff2fba6dc906da71798ce3f25fe2c6ab86d",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "docs/experiments/S20_freeze_r2.md",
+      "sha256": "c63c3997ab8db0ac574287cbefba05cf320ceec30ec4f25b62ef621a2ebf4568",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "docs/steps/S19B.md",
+      "sha256": "f102222ac9118c17a464e153a431801cf6c6aaa5fb711e14a71c5580509790dc",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "docs/validation/S20_design_validation_r1.json",
+      "sha256": "7e286055dd8e64fb3cf8e6eedf869a5e3b7b5b9cd4fb349cc3151defc68d034d",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "docs/validation/S20_extension_validation_r2.json",
+      "sha256": "38ee231ad1159a0a7050afdc3dc3486def9a3142f22e56317d4f479682a501a5",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "docs/validation/S20_publication_r1.json",
+      "sha256": "a9eece36c3f952dd3750901c5255ab0d8b3c66f44319c3f62b9d35e6ae81ade0",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "docs/validation/S20_publication_r1.md",
+      "sha256": "16af841f9e20d39bf18780c0f50c14f6a38929c59b2d6b5f25316be6c4967cbc",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "experiments/configs/s20_r1.json",
+      "sha256": "7c682a81dc29dae73f7315aceea07efc45aa52c0402e13571c02d0a2e4b1c911",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "experiments/configs/s20_r2.json",
+      "sha256": "69b0712da0f3bc0d4324c5d8dbec987ef23735d917c5ca3c66011f61c397c3de",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "experiments/manifests/s20_extensions_r2.json",
+      "sha256": "37cbeb96355fc922acab0f97ab368109ddbc3bc192532870efbf77cd05df5a21",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "experiments/manifests/s20_r1.json",
+      "sha256": "8816d559bc33eedaaa843b7591c0c58b56a82fc5853b982e77aa8b7b0044e440",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "experiments/manifests/s20_r2.json",
+      "sha256": "7d636408198ec856b2ef945adabcb852d3d65c0cf15d5a8388ff4c90e44e078a",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "experiments/manifests/s20_sources_r1.json",
+      "sha256": "7d2d3019869feb0494f5051e1dbf90befddf2985ec755125b000f12682760d53",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "experiments/manifests/s20_sources_r2.json",
+      "sha256": "bf71a3c8249f160551a4ff965a58010f1a04610c833fd41b1beb879fb23919bc",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "scripts/render_s19a_visual.py",
+      "sha256": "4298776a5d8df82a02900da1855989d63f2103a0ac7e53d6f641e644a3c25c79",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "scripts/review_limited_model_repair.py",
+      "sha256": "716125a3eb3c782c7d5fe532a55c85d59038a3100cb375853564b8b0c3f112fd",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "sim/isaac/scene/README.md",
+      "sha256": "9f65bfbdc3a1ebd48f64398f4031d4556b0951cace371c468613b99325a4f11c",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "sim/isaac/scene/production_port.py",
+      "sha256": "7f1b814cce792bf22aeff045b8f25b15854c79e15bf6d7b866cbac295de0db3b",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "sim/isaac/scene/scene_correction.py",
+      "sha256": "9dd287bbb4e04de2038fcee9a63e66c092aad7eb2a9b3eda952c8aef53b914d1",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/production_recipe.json",
+      "sha256": "cc7753f0d43ce0a45a5e521d0b283db337922de86ea81734a2605842ea9909b2",
+      "conversion": "LF_TO_CRLF_CHECKOUT_ONLY"
+    }
+  ],
+  "runtime_sources_unchanged": 242,
+  "formal_runs": 0,
+  "tune_runs": 0,
+  "formal_execution_enabled": false,
+  "s21_started": false
+}

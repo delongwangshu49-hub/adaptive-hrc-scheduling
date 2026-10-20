@@ -24,3 +24,34 @@ docs/model/S18_simulation_scope_proposal_r1.json -text
 docs/model/S18_simulation_scope_approval_r1.json -text
 src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_proposal_r1.json -text
 src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_approval_r1.json -text
+
+# Preserve exact approved S20 checkout bytes across Windows and Linux.
+# Git stores normalized blobs; these bound files must be checked out as CRLF.
+AGENTS.md text eol=crlf
+PROGRESS_LOG.md text eol=crlf
+README.md text eol=crlf
+desktop/s19b/README.md text eol=crlf
+desktop/s19b/src/s19b_desktop/app.py text eol=crlf
+docs/experiments/S20_candidate_files_r1.json text eol=crlf
+docs/experiments/S20_candidate_files_r2.json text eol=crlf
+docs/experiments/S20_extension_approval_r1.json text eol=crlf
+docs/experiments/S20_freeze_r2.json text eol=crlf
+docs/experiments/S20_freeze_r2.md text eol=crlf
+docs/steps/S19B.md text eol=crlf
+docs/validation/S20_design_validation_r1.json text eol=crlf
+docs/validation/S20_extension_validation_r2.json text eol=crlf
+docs/validation/S20_publication_r1.json text eol=crlf
+docs/validation/S20_publication_r1.md text eol=crlf
+experiments/configs/s20_r1.json text eol=crlf
+experiments/configs/s20_r2.json text eol=crlf
+experiments/manifests/s20_extensions_r2.json text eol=crlf
+experiments/manifests/s20_r1.json text eol=crlf
+experiments/manifests/s20_r2.json text eol=crlf
+experiments/manifests/s20_sources_r1.json text eol=crlf
+experiments/manifests/s20_sources_r2.json text eol=crlf
+scripts/render_s19a_visual.py text eol=crlf
+scripts/review_limited_model_repair.py text eol=crlf
+sim/isaac/scene/README.md text eol=crlf
+sim/isaac/scene/production_port.py text eol=crlf
+sim/isaac/scene/scene_correction.py text eol=crlf
+src/adaptive_hrc_scheduling/production_recipe.json text eol=crlf
