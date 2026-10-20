@@ -1,0 +1,306 @@
+{
+  "decision_id": "S20-FREEZE-APPROVAL-001",
+  "decision_date": "2026-10-20",
+  "decision_timezone": "Asia/Hong_Kong",
+  "recorded_at_utc": "2026-10-20T03:13:53.269789+00:00",
+  "authority": "OWNER_EXPLICIT_APPROVAL_PR191",
+  "progress_record": "LOG263",
+  "approval_semantics": "Owner approval of the submitted final S20 r2 candidate, including its documented limits; no publication or S21 authorization.",
+  "packet_id": "S20-20261019-design-r2",
+  "acceptance_status": "ACCEPTED_WITH_DOCUMENTED_LIMITS",
+  "freeze_status": "FROZEN",
+  "accepted": true,
+  "frozen": true,
+  "archive": ".local/s20-extension-20261019/S20-20261019-design-r2-review.zip",
+  "archive_sha256": "3302b7f6d054e3e8040ca426b4c60ec28d7b157dac1e2df89d2b46fe70883750",
+  "archive_bytes": 846403,
+  "index": "docs/experiments/S20_candidate_files_r2.json",
+  "index_sha256": "9923e8a2bb6d68fa73b17de161664f66371b1b9347318f41ab624cab946f6dd4",
+  "approved_snapshot_files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "cfb52ebe09cef26c71d389aaae6bf5223ddf9ced7f2ec0f196be2d7ed69f301e",
+      "bytes": 77908
+    },
+    {
+      "path": "PROGRESS_LOG.md",
+      "sha256": "db96f6ae8f6e1f6263ad4c3cbccd570edf042c57af0f082b1aa1fbaf7dde68d6",
+      "bytes": 352213
+    },
+    {
+      "path": "PROMPT_LEDGER.md",
+      "sha256": "9a582c5bef5842163a706dcb762194afb668543c2c0be8c4ca900ffaf5473b84",
+      "bytes": 225645
+    },
+    {
+      "path": "docs/experiments/S20_candidate_files_r1.json",
+      "sha256": "d70c66d5377539b61856689c0e45b1ce21127d529ddd7ee18e28bffba65ccad9",
+      "bytes": 3787
+    },
+    {
+      "path": "docs/experiments/S20_execution_plan_r1.md",
+      "sha256": "742a3bf48362dfcc9ab1682bfd8fcfb51972d5dc0ac2e284e81a4fd4a1ec84f1",
+      "bytes": 19593
+    },
+    {
+      "path": "docs/experiments/S20_extension_approval_r1.json",
+      "sha256": "f6c21364c08d37460cf4533ecf93a30ad42b3815505f27beb8dbe0677723c8fb",
+      "bytes": 785
+    },
+    {
+      "path": "docs/experiments/S20_extension_implementation_r2.md",
+      "sha256": "d0a76d4980d48a1bcec0dbf8061e8fab10058f5a5b5a536cf90de150573c8dfd",
+      "bytes": 4084
+    },
+    {
+      "path": "docs/experiments/S20_freeze_candidate_r1.md",
+      "sha256": "0d14a75d32228bf8d8b5d873bd845efda87ecd54464f08d0c9d7d49757914959",
+      "bytes": 4088
+    },
+    {
+      "path": "docs/experiments/S20_freeze_candidate_r2.md",
+      "sha256": "6c6cb482dec95418b62dbb4e66a71d613aa218a840eef19f59eb3fbeb99cd067",
+      "bytes": 3197
+    },
+    {
+      "path": "docs/experiments/S20_parameter_register_r1.md",
+      "sha256": "29d12ab4a6e13cd0697e2a1424d40003700475ddb3e3caa37c3257c94c259403",
+      "bytes": 4355
+    },
+    {
+      "path": "docs/experiments/S20_parameter_register_r2.md",
+      "sha256": "d1e3302286cdcbc26bf219f888168b05ed7d8679850292899243834506de4d71",
+      "bytes": 2185
+    },
+    {
+      "path": "docs/experiments/S20_preflight_r1.md",
+      "sha256": "e4b15865c6bc6919d742bc3bdb37e8ca3ec0990f8d160286c2cb409202470571",
+      "bytes": 5834
+    },
+    {
+      "path": "docs/experiments/S20_scope_decisions_r1.md",
+      "sha256": "129112cddc665d111b2313938b749fd4f7e746e72b71bf89930af61ec584bc5f",
+      "bytes": 6813
+    },
+    {
+      "path": "docs/experiments/S20_scope_decisions_r2.md",
+      "sha256": "a4c29ed475168c7b3121c6c2b1dd936cc100a724e1b509437f9bfbefec574369",
+      "bytes": 1681
+    },
+    {
+      "path": "docs/experiments/analysis_plan.md",
+      "sha256": "a2a38b9c883d676a48257f70a641abe22a96211606836140d3cc6abc6b4c6347",
+      "bytes": 8503
+    },
+    {
+      "path": "docs/experiments/analysis_plan_r2.md",
+      "sha256": "85be5a0833a743d79eaa2e1e4ad420f0e2eb6ed2dfb76f1727a72f7e480c09cb",
+      "bytes": 3417
+    },
+    {
+      "path": "docs/experiments/protocol.md",
+      "sha256": "b7238e2d4f538014c4a15369e119c55cd2047ded2d5ee7743563c6e9c3132bc1",
+      "bytes": 8108
+    },
+    {
+      "path": "docs/experiments/protocol_r2.md",
+      "sha256": "20a8be7c22614a4b5170322a47d002b2ba947c84554e4e1f88141d01cf235391",
+      "bytes": 6525
+    },
+    {
+      "path": "docs/steps/S20.md",
+      "sha256": "0141f926505b34a4d8db64b6c45de7a19bb1272d80143af6719dc430cb3777e1",
+      "bytes": 4002
+    },
+    {
+      "path": "docs/steps/S20_handoff.md",
+      "sha256": "b1035a5b5e97425ba31a98b96a3b38ea5feac46a92eb74b29e4ba534126f3a66",
+      "bytes": 4063
+    },
+    {
+      "path": "docs/validation/S20_design_validation_r1.json",
+      "sha256": "7e286055dd8e64fb3cf8e6eedf869a5e3b7b5b9cd4fb349cc3151defc68d034d",
+      "bytes": 13740
+    },
+    {
+      "path": "docs/validation/S20_design_validation_r1.md",
+      "sha256": "7eb246fc6c79c7fc3462f55604a028d9ce18a90797f8ac36b5c00525ce966a0b",
+      "bytes": 4129
+    },
+    {
+      "path": "docs/validation/S20_extension_validation_r2.json",
+      "sha256": "38ee231ad1159a0a7050afdc3dc3486def9a3142f22e56317d4f479682a501a5",
+      "bytes": 74328
+    },
+    {
+      "path": "docs/validation/S20_extension_validation_r2.md",
+      "sha256": "de60afb80eca9a2555c258aca9890da4237781e7e69af6829d7aaf63cd351c8a",
+      "bytes": 5341
+    },
+    {
+      "path": "experiments/configs/s20_r1.json",
+      "sha256": "7c682a81dc29dae73f7315aceea07efc45aa52c0402e13571c02d0a2e4b1c911",
+      "bytes": 1501156
+    },
+    {
+      "path": "experiments/configs/s20_r2.json",
+      "sha256": "69b0712da0f3bc0d4324c5d8dbec987ef23735d917c5ca3c66011f61c397c3de",
+      "bytes": 1501458
+    },
+    {
+      "path": "experiments/manifests/s20_extensions_r2.json",
+      "sha256": "37cbeb96355fc922acab0f97ab368109ddbc3bc192532870efbf77cd05df5a21",
+      "bytes": 464691
+    },
+    {
+      "path": "experiments/manifests/s20_r1.json",
+      "sha256": "8816d559bc33eedaaa843b7591c0c58b56a82fc5853b982e77aa8b7b0044e440",
+      "bytes": 80411
+    },
+    {
+      "path": "experiments/manifests/s20_r2.json",
+      "sha256": "7d636408198ec856b2ef945adabcb852d3d65c0cf15d5a8388ff4c90e44e078a",
+      "bytes": 80442
+    },
+    {
+      "path": "experiments/manifests/s20_sources_r1.json",
+      "sha256": "7d2d3019869feb0494f5051e1dbf90befddf2985ec755125b000f12682760d53",
+      "bytes": 27581
+    },
+    {
+      "path": "experiments/manifests/s20_sources_r2.json",
+      "sha256": "bf71a3c8249f160551a4ff965a58010f1a04610c833fd41b1beb879fb23919bc",
+      "bytes": 28606
+    },
+    {
+      "path": "scripts/run_s20_development.py",
+      "sha256": "767907bf4824d7bbfc0e5506541c3fdd7853a6ab22f9846068f4c5827340ee17",
+      "bytes": 4677
+    },
+    {
+      "path": "scripts/run_s20_extension_development.py",
+      "sha256": "8c9e5e2233ee750fc0f9dc3812e1fc362dd852f0594c1d966c29fef68cefc11d",
+      "bytes": 5393
+    },
+    {
+      "path": "scripts/s20_design.py",
+      "sha256": "6d28172d69d58cf111151824d530d38ed9ab7c66c67c4a1cb576feacb84ada6b",
+      "bytes": 15854
+    },
+    {
+      "path": "scripts/s20_extension_design.py",
+      "sha256": "a6e7112a0de1da2775bfb53e2a7d91c627289157ceae4291b994615b305bd481",
+      "bytes": 6983
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/algorithms/simulation_joint.py",
+      "sha256": "0e1dce9aee9f099f2e58586e6273b75b20e7c06dc9323486bfc1d02f8dae0bd4",
+      "bytes": 30085
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/control/research_projection.py",
+      "sha256": "e1386ee1de86a2f53cac5fa905a374d4a763dd553e392b49f87c4fe78906c50d",
+      "bytes": 28162
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/control/simulation_joint_policy.py",
+      "sha256": "7319a7342cbc4704a839b221815b1e4b7d73fa746318ca712023aa8c956fe367",
+      "bytes": 13803
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/research_objective.py",
+      "sha256": "e40acd6f89f21e474fe7740a599efb4ccca3dffc9bca7a5c703fd8191761f95d",
+      "bytes": 1841
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/research_tail.py",
+      "sha256": "d6d8631ebf376274bb9181a88b73961f2d142a3f95ca04252e7b40370aea90ca",
+      "bytes": 7615
+    },
+    {
+      "path": "tests/test_s20_design.py",
+      "sha256": "32340af4ede85c93f92cede059d667a5d0c0ce4e87b254bbadb9d8f8aa26dc8f",
+      "bytes": 5376
+    },
+    {
+      "path": "tests/test_s20_extensions.py",
+      "sha256": "0fec2b7768c84dac95cd3dadbff08705c7aabf225667903cfc0ad348f257cb78",
+      "bytes": 14019
+    },
+    {
+      "path": "docs/experiments/S20_candidate_files_r2.json",
+      "sha256": "9923e8a2bb6d68fa73b17de161664f66371b1b9347318f41ab624cab946f6dd4",
+      "bytes": 8062
+    }
+  ],
+  "runtime_binding": {
+    "catalog": "experiments/manifests/s20_sources_r2.json",
+    "sha256": "bf71a3c8249f160551a4ff965a58010f1a04610c833fd41b1beb879fb23919bc",
+    "file_count": 242,
+    "all_current_files_verified": true
+  },
+  "accepted_scope": [
+    "R2_PROTOCOL_PARAMETERS_ANALYSIS_AND_SIX_INHERITED_CONFIG_DESCRIPTORS",
+    "REGISTERED_A_D_B_C_INPUTS_AND_SOURCE_IDENTITIES",
+    "CPU_ONLY_D_WEIGHTED_R1_COMMON_WINDOW_TAIL_AND_AUTHORIZED_B_PROJECTION_CAUSAL_AUDIT",
+    "DOCUMENTED_LOCAL_DEVELOPMENT_VALIDATION_AND_RETAINED_FAILURES"
+  ],
+  "scope_limits": [
+    "CPU_ONLY_NEW_INTERFACES",
+    "FINITE_REGISTERED_DESIGN_NO_POPULATION_CI",
+    "LIMITED_DEVELOPMENT_NOT_FORMAL_METHOD_EFFECT",
+    "INDUSTRIAL_G2_OPEN_NOT_ESTABLISHED",
+    "S19B_ACCEPTED_LIMITS_RETAINED",
+    "NO_NEW_FULL_PRODUCTION_OR_KIT_CHAIN"
+  ],
+  "validation_basis": {
+    "report": "docs/validation/S20_extension_validation_r2.json",
+    "source_tests": 895,
+    "isolated_wheel_tests": 895,
+    "final_extension_development_cases": 23,
+    "legacy_comparison_cases": 4,
+    "note": "Existing r2 evidence accepted; this governance-only action does not rerun or broaden those tests.",
+    "freeze_identity_checks": {
+      "workspace_approved_files": 43,
+      "archive_files": 43,
+      "archive_crc": "PASS",
+      "runtime_sources": 242,
+      "formal_rows_without_outcome": 636,
+      "tune_rows_without_outcome": 4,
+      "execution_locks_disabled": true
+    }
+  },
+  "formal_design": {
+    "A_C": 64,
+    "D": 12,
+    "B": 560,
+    "total": 636
+  },
+  "formal_runs": 0,
+  "tune_runs": 0,
+  "new_kit_runs": 0,
+  "remote_ci_runs": 0,
+  "formal_execution_authorized": false,
+  "formal_execution_enabled": false,
+  "snapshot_status_rule": "PENDING_FREEZE and pending-owner fields in immutable candidate artifacts describe their original submission time. This separate owner decision establishes actual acceptance/freeze without rewriting those bytes. Disabled execution locks remain in force.",
+  "governance_followup": {
+    "files": [
+      "AGENTS.md",
+      "PROGRESS_LOG.md",
+      "PROMPT_LEDGER.md",
+      "docs/steps/S20.md"
+    ],
+    "allowed_change": "Only prepend or append the actual decision; preserve original bytes as a contiguous prefix or suffix. Approved governance originals remain in the bound archive."
+  },
+  "target": {
+    "branch": "main",
+    "baseline_commit": "c8c1f74aa26111c6747b87d99f5730a24497f071",
+    "tag": null
+  },
+  "git_writes": false,
+  "published": false,
+  "publication_authorized": false,
+  "s21_started": false,
+  "s21_authorized": false,
+  "remote_operations": []
+}

@@ -1,0 +1,18 @@
+{
+  "decision_id": "S20-EXTENSION-APPROVAL-001",
+  "date": "2026-10-19",
+  "authority": "PR190",
+  "status": "APPROVED_FOR_LOCAL_IMPLEMENTATION_AND_DEVELOPMENT_VALIDATION",
+  "reviewed_packet": "S20-20261019-design-r1",
+  "reviewed_packet_sha256": "0ebb46d2e59977ffa19d6a41dd860750a3736813511deea9558fc3cd18357b25",
+  "instruction_interpretation": "按候选推荐保留完整A/D/B/C目标并先补齐R2/R3，形成新版确切冻结候选。",
+  "approved_local_scope": [
+    "R1_LIMITED_CPU_FOUR_CHANNEL_DESIGN",
+    "R2_WEIGHTED_OBJECTIVE_AND_POST_RECEIPT_TAIL",
+    "R3_AUTHORIZED_OBSERVATION_AND_CAUSAL_AUDIT"
+  ],
+  "r2_B_baseline_revision": "PRESENTED_FOR_FINAL_FREEZE_REVIEW",
+  "final_freeze_decision": null,
+  "publication": false,
+  "s21_started": false
+}

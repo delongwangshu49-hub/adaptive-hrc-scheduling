@@ -1,0 +1,2328 @@
+{
+  "packet_id": "S20-20261019-design-r2",
+  "date": "2026-10-19",
+  "authority": "PR190",
+  "status": "IMPLEMENTATION_AND_DEVELOPMENT_VALIDATION_COMPLETE_WITH_LIMITS_OWNER_REVIEW_PENDING",
+  "accepted": false,
+  "frozen": false,
+  "published": false,
+  "s21_started": false,
+  "formal_design": {
+    "A_C": 64,
+    "D": 12,
+    "B": 560,
+    "total": 636,
+    "B_additional_zero_perturbation_baselines": 16,
+    "runtime_sources": 242,
+    "physical_configurations": 6,
+    "physical_configurations_equal_r1": true
+  },
+  "checks": {
+    "source_tests": 895,
+    "isolated_wheel_tests": 895,
+    "previous_design_tests": 14,
+    "extension_tests": 19,
+    "ruff": "PASS",
+    "format": "PASS",
+    "lock": "PASS",
+    "build": "PASS",
+    "dependency_checks": "PASS",
+    "generated_inputs": "PASS",
+    "remote_ci_runs": 0,
+    "platform": "LOCAL_WINDOWS_ONLY"
+  },
+  "external_final_development_cases": 23,
+  "legacy_compatibility_cases": 4,
+  "development_results": [
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-D-lambda-0-ADAPTIVE_JOINT",
+        "pair_id": "S20-r2-dev-SR-W1-N1-D-lambda-0",
+        "split": "dev",
+        "group": "D",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "ADAPTIVE_JOINT",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": {
+          "weight": 0,
+          "horizon_h": 720,
+          "version": "D_WEIGHTED_r1"
+        },
+        "observation": null,
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.6663375999778509,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 102,
+      "decisions": 11,
+      "projection_audit": null,
+      "saved_projection_audit": null,
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.43490409999503754,
+        "validation_calls": 6,
+        "validation_seconds": 0.2714665999810677,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.13433669999358244,
+            "validation_calls": 3,
+            "validation_seconds": 0.07339530001627281,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.13433669999358244,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.3005674000014551,
+            "validation_calls": 3,
+            "validation_seconds": 0.1980712999647949,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.43490409999503754,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-D-lambda-0.5-ADAPTIVE_JOINT",
+        "pair_id": "S20-r2-dev-SR-W1-N1-D-lambda-0.5",
+        "split": "dev",
+        "group": "D",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "ADAPTIVE_JOINT",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": {
+          "weight": 0.5,
+          "horizon_h": 720,
+          "version": "D_WEIGHTED_r1"
+        },
+        "observation": null,
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.5554744999972172,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 102,
+      "decisions": 11,
+      "projection_audit": null,
+      "saved_projection_audit": null,
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.41461240002536215,
+        "validation_calls": 6,
+        "validation_seconds": 0.2740009000117425,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.12522260000696406,
+            "validation_calls": 3,
+            "validation_seconds": 0.07404129998758435,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.12522260000696406,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.2893898000183981,
+            "validation_calls": 3,
+            "validation_seconds": 0.19995960002415814,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.41461240002536215,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-D-lambda-1-ADAPTIVE_JOINT",
+        "pair_id": "S20-r2-dev-SR-W1-N1-D-lambda-1",
+        "split": "dev",
+        "group": "D",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "ADAPTIVE_JOINT",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": {
+          "weight": 1,
+          "horizon_h": 720,
+          "version": "D_WEIGHTED_r1"
+        },
+        "observation": null,
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.5616677000070922,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 102,
+      "decisions": 11,
+      "projection_audit": null,
+      "saved_projection_audit": null,
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.417120199999772,
+        "validation_calls": 6,
+        "validation_seconds": 0.2793095000088215,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.12418179999804124,
+            "validation_calls": 3,
+            "validation_seconds": 0.0770011999993585,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.12418179999804124,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.29293840000173077,
+            "validation_calls": 3,
+            "validation_seconds": 0.20230830000946298,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.417120199999772,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-BASE-ADAPTIVE_JOINT",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-BASE",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "ADAPTIVE_JOINT",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 0,
+          "seed": "B-BASE-DETERMINISTIC",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.6536243000009563,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 98,
+      "decisions": 10,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.1781685999885667,
+        "validation_calls": 6,
+        "validation_seconds": 0.1137894999992568,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.11971410000114702,
+            "validation_calls": 3,
+            "validation_seconds": 0.07539249997353181,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.11971410000114702,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.058454499987419695,
+            "validation_calls": 3,
+            "validation_seconds": 0.03839700002572499,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.1781685999885667,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-BASE-FIXED_H",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-BASE",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "FIXED_H",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 0,
+          "seed": "B-BASE-DETERMINISTIC",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.8625533999875188,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 98,
+      "decisions": 10,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.3726565999968443,
+        "validation_calls": 6,
+        "validation_seconds": 0.12774560003890656,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.31543190000229515,
+            "validation_calls": 3,
+            "validation_seconds": 0.09029280001414008,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.31543190000229515,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.057224699994549155,
+            "validation_calls": 3,
+            "validation_seconds": 0.037452800024766475,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.3726565999968443,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-BASE-FIXED_HR",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-BASE",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "FIXED_HR",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 0,
+          "seed": "B-BASE-DETERMINISTIC",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.6471921999764163,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 98,
+      "decisions": 10,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.17669029999524355,
+        "validation_calls": 6,
+        "validation_seconds": 0.11327319999691099,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.11988519999431446,
+            "validation_calls": 3,
+            "validation_seconds": 0.07534389998181723,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.11988519999431446,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.05680510000092909,
+            "validation_calls": 3,
+            "validation_seconds": 0.03792930001509376,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.17669029999524355,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-BASE-NO_OBSERVATION_UPDATE",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-BASE",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "NO_OBSERVATION_UPDATE",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 0,
+          "seed": "B-BASE-DETERMINISTIC",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.25484439998399466,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 10,
+      "decisions": 8,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.1629139999859035,
+        "validation_calls": 6,
+        "validation_seconds": 0.08894159996998496,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.11979639998753555,
+            "validation_calls": 3,
+            "validation_seconds": 0.07496319996425882,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.11979639998753555,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.04311759999836795,
+            "validation_calls": 3,
+            "validation_seconds": 0.013978400005726144,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.1629139999859035,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-delay-0.25-ADAPTIVE_JOINT",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-delay-0.25",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "ADAPTIVE_JOINT",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0.25,
+          "fatigue_noise": 0,
+          "missing_probability": 0,
+          "seed": "B-DELAY-DETERMINISTIC",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.38253549998626113,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 10,
+      "decisions": 8,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.24581760002183728,
+        "validation_calls": 6,
+        "validation_seconds": 0.158555200061528,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.12644980000914074,
+            "validation_calls": 3,
+            "validation_seconds": 0.07888410004670732,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.12644980000914074,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.11936780001269653,
+            "validation_calls": 3,
+            "validation_seconds": 0.0796711000148207,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.24581760002183728,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-delay-0.25-FIXED_H",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-delay-0.25",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "FIXED_H",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0.25,
+          "fatigue_noise": 0,
+          "missing_probability": 0,
+          "seed": "B-DELAY-DETERMINISTIC",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.6699883000110276,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 12,
+      "decisions": 10,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.27058179999585263,
+        "validation_calls": 6,
+        "validation_seconds": 0.18133279992616735,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.1390895999793429,
+            "validation_calls": 3,
+            "validation_seconds": 0.09205049995216541,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.1390895999793429,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.13149220001650974,
+            "validation_calls": 3,
+            "validation_seconds": 0.08928229997400194,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.27058179999585263,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-delay-0.25-FIXED_HR",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-delay-0.25",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "FIXED_HR",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0.25,
+          "fatigue_noise": 0,
+          "missing_probability": 0,
+          "seed": "B-DELAY-DETERMINISTIC",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.38520010001957417,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 10,
+      "decisions": 8,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.24750629998743534,
+        "validation_calls": 6,
+        "validation_seconds": 0.1596486999769695,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.12435609998647124,
+            "validation_calls": 3,
+            "validation_seconds": 0.07685089996084571,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.12435609998647124,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.1231502000009641,
+            "validation_calls": 3,
+            "validation_seconds": 0.0827978000161238,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.24750629998743534,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-delay-0.25-NO_OBSERVATION_UPDATE",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-delay-0.25",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "NO_OBSERVATION_UPDATE",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0.25,
+          "fatigue_noise": 0,
+          "missing_probability": 0,
+          "seed": "B-DELAY-DETERMINISTIC",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.596773099998245,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 10,
+      "decisions": 8,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.5019451999978628,
+        "validation_calls": 6,
+        "validation_seconds": 0.1729882000363432,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.13464899998507462,
+            "validation_calls": 3,
+            "validation_seconds": 0.085248599993065,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.13464899998507462,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.3672962000127882,
+            "validation_calls": 3,
+            "validation_seconds": 0.08773960004327819,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.5019451999978628,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-noise-0.02-B-DEV-00-ADAPTIVE_JOINT",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-noise-0.02-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "ADAPTIVE_JOINT",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0.02,
+          "missing_probability": 0,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.6968920000072103,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 98,
+      "decisions": 10,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.19015859998762608,
+        "validation_calls": 6,
+        "validation_seconds": 0.12152699995203875,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.12878959998488426,
+            "validation_calls": 3,
+            "validation_seconds": 0.08117429999401793,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.12878959998488426,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.061369000002741814,
+            "validation_calls": 3,
+            "validation_seconds": 0.04035269995802082,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.19015859998762608,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-noise-0.02-B-DEV-00-FIXED_H",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-noise-0.02-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "FIXED_H",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0.02,
+          "missing_probability": 0,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.6867960999952629,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 98,
+      "decisions": 10,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.1901452000020072,
+        "validation_calls": 6,
+        "validation_seconds": 0.12324829996214248,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.13236680001136847,
+            "validation_calls": 3,
+            "validation_seconds": 0.08634859998710454,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.13236680001136847,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.05777839999063872,
+            "validation_calls": 3,
+            "validation_seconds": 0.03689969997503795,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.1901452000020072,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-noise-0.02-B-DEV-00-FIXED_HR",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-noise-0.02-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "FIXED_HR",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0.02,
+          "missing_probability": 0,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.9853591999853961,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 98,
+      "decisions": 10,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.5077283999999054,
+        "validation_calls": 6,
+        "validation_seconds": 0.11697379997349344,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.45111520000500605,
+            "validation_calls": 3,
+            "validation_seconds": 0.07943029998568818,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.45111520000500605,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.05661319999489933,
+            "validation_calls": 3,
+            "validation_seconds": 0.03754349998780526,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.5077283999999054,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-noise-0.02-B-DEV-00-NO_OBSERVATION_UPDATE",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-noise-0.02-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "NO_OBSERVATION_UPDATE",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0.02,
+          "missing_probability": 0,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.25847760000033304,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 10,
+      "decisions": 8,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.16700760001549497,
+        "validation_calls": 6,
+        "validation_seconds": 0.09055999995325692,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.12438500000280328,
+            "validation_calls": 3,
+            "validation_seconds": 0.0768491999770049,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.12438500000280328,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.04262260001269169,
+            "validation_calls": 3,
+            "validation_seconds": 0.01371079997625202,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.16700760001549497,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-missing-0.3-B-DEV-00-ADAPTIVE_JOINT",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-missing-0.3-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "ADAPTIVE_JOINT",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 0.3,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.42626920001930557,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 12,
+      "decisions": 10,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.2481462000287138,
+        "validation_calls": 6,
+        "validation_seconds": 0.1607621000148356,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.12378320001880638,
+            "validation_calls": 3,
+            "validation_seconds": 0.07642480000504293,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.12378320001880638,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.12436300000990741,
+            "validation_calls": 3,
+            "validation_seconds": 0.08433730000979267,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.2481462000287138,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-missing-0.3-B-DEV-00-FIXED_H",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-missing-0.3-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "FIXED_H",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 0.3,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.9626839999982622,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 98,
+      "decisions": 10,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.190597600012552,
+        "validation_calls": 6,
+        "validation_seconds": 0.12422940001124516,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.13092060000053607,
+            "validation_calls": 3,
+            "validation_seconds": 0.08527409998350777,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.13092060000053607,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.059677000012015924,
+            "validation_calls": 3,
+            "validation_seconds": 0.038955300027737394,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.190597600012552,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-missing-0.3-B-DEV-00-FIXED_HR",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-missing-0.3-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "FIXED_HR",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 0.3,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.4418811999785248,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 12,
+      "decisions": 10,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 10,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.2613811000192072,
+        "validation_calls": 6,
+        "validation_seconds": 0.16502369998488575,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.1271044000168331,
+            "validation_calls": 3,
+            "validation_seconds": 0.08008939999854192,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.1271044000168331,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.13427670000237413,
+            "validation_calls": 3,
+            "validation_seconds": 0.08493429998634383,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.2613811000192072,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-missing-0.3-B-DEV-00-NO_OBSERVATION_UPDATE",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-missing-0.3-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "NO_OBSERVATION_UPDATE",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 0.3,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.273810799990315,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 10,
+      "decisions": 8,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 8,
+        "candidates": 2
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 2,
+        "used_iterations": 2,
+        "used_repair_trials": 4,
+        "used_wall_seconds": 0.17243730000336654,
+        "validation_calls": 6,
+        "validation_seconds": 0.094890599953942,
+        "records": [
+          {
+            "call": 1,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.12772750001749955,
+            "validation_calls": 3,
+            "validation_seconds": 0.08089849996031262,
+            "cumulative_iterations": 1,
+            "cumulative_repair_trials": 2,
+            "cumulative_wall_seconds": 0.12772750001749955,
+            "within_budget": true
+          },
+          {
+            "call": 2,
+            "iterations": 1,
+            "repair_trials": 2,
+            "wall_seconds": 0.044709799985866994,
+            "validation_calls": 3,
+            "validation_seconds": 0.013992099993629381,
+            "cumulative_iterations": 2,
+            "cumulative_repair_trials": 4,
+            "cumulative_wall_seconds": 0.17243730000336654,
+            "within_budget": true
+          }
+        ]
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-missing-1-B-DEV-00-ADAPTIVE_JOINT",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-missing-1-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "ADAPTIVE_JOINT",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 1,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.05913650000002235,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 5,
+      "decisions": 5,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 5,
+        "candidates": 0
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 5,
+        "candidates": 0
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 0,
+        "used_iterations": 0,
+        "used_repair_trials": 0,
+        "used_wall_seconds": 0.0,
+        "validation_calls": 0,
+        "validation_seconds": 0.0,
+        "records": []
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-missing-1-B-DEV-00-FIXED_H",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-missing-1-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "FIXED_H",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 1,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.05530799998086877,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 5,
+      "decisions": 5,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 5,
+        "candidates": 0
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 5,
+        "candidates": 0
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 0,
+        "used_iterations": 0,
+        "used_repair_trials": 0,
+        "used_wall_seconds": 0.0,
+        "validation_calls": 0,
+        "validation_seconds": 0.0,
+        "records": []
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-missing-1-B-DEV-00-FIXED_HR",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-missing-1-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "FIXED_HR",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 1,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.058701900008600205,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 5,
+      "decisions": 5,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 5,
+        "candidates": 0
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 5,
+        "candidates": 0
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 0,
+        "used_iterations": 0,
+        "used_repair_trials": 0,
+        "used_wall_seconds": 0.0,
+        "validation_calls": 0,
+        "validation_seconds": 0.0,
+        "records": []
+      }
+    },
+    {
+      "row": {
+        "id": "S20-r2-dev-SR-W1-N1-B-missing-1-B-DEV-00-NO_OBSERVATION_UPDATE",
+        "pair_id": "S20-r2-dev-SR-W1-N1-B-missing-1-B-DEV-00",
+        "split": "dev",
+        "group": "B",
+        "config_id": "SR-W1-N1",
+        "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+        "method": "NO_OBSERVATION_UPDATE",
+        "end_h": 1,
+        "budget_id": "DEV",
+        "objective": null,
+        "observation": {
+          "delay_h": 0,
+          "fatigue_noise": 0,
+          "missing_probability": 1,
+          "seed": "B-DEV-00",
+          "period_h": 0.25,
+          "version": "S20-OBS-r1"
+        },
+        "scenario": "NORMAL",
+        "status": "PENDING_FREEZE",
+        "outcome": null,
+        "execution_authorization": "DEVELOPMENT_ONLY"
+      },
+      "elapsed_s": 0.0561052999983076,
+      "actual_audit": "PASS",
+      "causal_audit": "PASS",
+      "termination": "WINDOW_CENSORED",
+      "time_h": 1,
+      "events": 5,
+      "decisions": 5,
+      "projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 5,
+        "candidates": 0
+      },
+      "saved_projection_audit": {
+        "status": "PASS",
+        "scope": "S20_AUTHORIZED_PROJECTION_AND_REAL_EXECUTION",
+        "frames": 5,
+        "decisions": 5,
+        "candidates": 0
+      },
+      "tail_audit": "PASS",
+      "budget": {
+        "declared": {
+          "max_calls": 2,
+          "max_iterations": 2,
+          "max_repair_trials": 4,
+          "max_wall_seconds": 60,
+          "per_call_iterations": 1,
+          "per_call_trials": 1,
+          "per_call_wall_seconds": 30,
+          "opportunities_h": [
+            0.0,
+            0.5
+          ],
+          "future_window_h": 1
+        },
+        "used_calls": 0,
+        "used_iterations": 0,
+        "used_repair_trials": 0,
+        "used_wall_seconds": 0.0,
+        "validation_calls": 0,
+        "validation_seconds": 0.0,
+        "records": []
+      }
+    }
+  ],
+  "legacy_parity": {
+    "status": "PASS",
+    "scope": "FOUR_1H_LEGACY_DEVELOPMENT_TRACES_NOT_FULL_NEW_KIT_CHAIN",
+    "runs": [
+      {
+        "method": "ADAPTIVE_JOINT",
+        "files": {
+          "events.jsonl.gz": {
+            "before": "562948399dcf01e7d0e4cd1a4e227a50246698b899de33496e0c0ef891d59483",
+            "after": "562948399dcf01e7d0e4cd1a4e227a50246698b899de33496e0c0ef891d59483",
+            "equal": true
+          },
+          "decisions.jsonl.gz": {
+            "before": "bac3df38f4d69ed7129fdf3fca22462baa4882d483ed4d2d466135c01baa9e89",
+            "after": "bac3df38f4d69ed7129fdf3fca22462baa4882d483ed4d2d466135c01baa9e89",
+            "equal": true
+          }
+        }
+      },
+      {
+        "method": "FIXED_H",
+        "files": {
+          "events.jsonl.gz": {
+            "before": "44178117c5ad2c77c3942559359357e3306f32e71a4e15dc59bbe53e93fd8568",
+            "after": "44178117c5ad2c77c3942559359357e3306f32e71a4e15dc59bbe53e93fd8568",
+            "equal": true
+          },
+          "decisions.jsonl.gz": {
+            "before": "06d0a4cb2f7098db77431746998323e5a8472c041f5b32d06831c38a1e681c04",
+            "after": "06d0a4cb2f7098db77431746998323e5a8472c041f5b32d06831c38a1e681c04",
+            "equal": true
+          }
+        }
+      },
+      {
+        "method": "FIXED_HR",
+        "files": {
+          "events.jsonl.gz": {
+            "before": "562948399dcf01e7d0e4cd1a4e227a50246698b899de33496e0c0ef891d59483",
+            "after": "562948399dcf01e7d0e4cd1a4e227a50246698b899de33496e0c0ef891d59483",
+            "equal": true
+          },
+          "decisions.jsonl.gz": {
+            "before": "bac3df38f4d69ed7129fdf3fca22462baa4882d483ed4d2d466135c01baa9e89",
+            "after": "bac3df38f4d69ed7129fdf3fca22462baa4882d483ed4d2d466135c01baa9e89",
+            "equal": true
+          }
+        }
+      },
+      {
+        "method": "NO_OBSERVATION_UPDATE",
+        "files": {
+          "events.jsonl.gz": {
+            "before": "43aa6a673f7e03edf904a1155a84913e764abbcc435ad245d7308a6d3aeeb072",
+            "after": "43aa6a673f7e03edf904a1155a84913e764abbcc435ad245d7308a6d3aeeb072",
+            "equal": true
+          },
+          "decisions.jsonl.gz": {
+            "before": "fc839984eb84fca8597e50a76706e7f5745bca3e270a393fc309b5fa668429e2",
+            "after": "fc839984eb84fca8597e50a76706e7f5745bca3e270a393fc309b5fa668429e2",
+            "equal": true
+          }
+        }
+      }
+    ]
+  },
+  "D_candidate_evidence": {
+    "status": "PASS",
+    "recovered_searches": 6,
+    "saved_reverified_without_search": 6,
+    "negative_checks": 12
+  },
+  "B_evidence": {
+    "runtime_and_saved_audits": 20,
+    "nominal_candidates": 32,
+    "all_missing_cases_with_zero_search": 4
+  },
+  "committed_prefix_evidence": {
+    "status": "PASS",
+    "source_h": 25.94728222222222,
+    "derived_sample_h": 26,
+    "cases": 2,
+    "new_production_dispatches": 0
+  },
+  "tail_evidence": {
+    "status": "PASS",
+    "scope": "DERIVED_TAIL_ON_HASH_BOUND_PREVIOUSLY_AUDITED_STATE_NOT_NEW_PRODUCTION_OR_NEW_FULL_HISTORY_AUDIT",
+    "source_files": {
+      "configuration.json": "5b0a2716211f508b71e89e05de4070588c0759d754049c31e42dad12df133abc",
+      "state.json": "dddc684a471a72b97936ce2b9b9494fc77a6da9d259a9ec9590f2b1e80dff592",
+      "audit.json": "f57f5ca03cb81c0386208654990d04059cff4d72f022c23af61facb1ace70f4a",
+      "decision-audit.json": "b2a3e681cf37ed62fe9051cfff6d4b4943b95b7131a965ef4e7e4790d6097c7e",
+      "report.json": "ac8b42c030c107383bf0a2cfc2940240c850055611fe91e48722e1df8ac967f8"
+    },
+    "config_sha256": "ca57869ef98433ddc2dc1c5db3041eb80ffc5690ae1aa4008065483ff1af69a7",
+    "source_time_h": 272.35047973655236,
+    "end_h": 720,
+    "source_ready": 1,
+    "source_received": 1,
+    "people": 15,
+    "intervals": 1110,
+    "rest_intervals": 825,
+    "off_shift_intervals": 285,
+    "current_tail_source_sha256": "d6d8631ebf376274bb9181a88b73961f2d142a3f95ca04252e7b40370aea90ca"
+  },
+  "preservation": {
+    "status": "PASS",
+    "head": "c8c1f74aa26111c6747b87d99f5730a24497f071",
+    "branch": "main",
+    "baseline_files": 846,
+    "changed_only": [
+      "AGENTS.md",
+      "PROGRESS_LOG.md",
+      "PROMPT_LEDGER.md",
+      "docs/steps/S20.md",
+      "scripts/s20_design.py",
+      "src/adaptive_hrc_scheduling/algorithms/simulation_joint.py",
+      "src/adaptive_hrc_scheduling/control/simulation_joint_policy.py"
+    ],
+    "unchanged_baseline_files": 839,
+    "historical_18_raw_bytes_unchanged": true,
+    "old_archives_preserved": 22,
+    "r1_packet_sha256": "0ebb46d2e59977ffa19d6a41dd860750a3736813511deea9558fc3cd18357b25",
+    "r1_packet_unchanged": true,
+    "runtime_sources": 242,
+    "runtime_sources_unchanged_since_final_development": true,
+    "installed_package_files": 81,
+    "installed_package_matches_source": true,
+    "git_writes": false,
+    "published": false,
+    "s21_started": false
+  },
+  "evidence": [
+    {
+      "path": ".local/s20-extension-20261019/before.json",
+      "sha256": "1a30d7881909e6ee888d7b51be6768976eb8649a41d060458cb250a7ad976f73",
+      "bytes": 98171
+    },
+    {
+      "path": ".local/s20-extension-20261019/development-final/before.json",
+      "sha256": "815a04707fc7f58c3caa26c4bd4fdf78599623688c33c197738655611a1e6076",
+      "bytes": 46958
+    },
+    {
+      "path": ".local/s20-extension-20261019/development-final/summary.json",
+      "sha256": "968d2358fbd91134a3ec355de88c0a545a478a64ff8db9f1602f0c3966e737d5",
+      "bytes": 78534
+    },
+    {
+      "path": ".local/s20-extension-20261019/legacy-final/summary.json",
+      "sha256": "968b60fb8640ab9c83c05a2746d9b2838221003021adc5e1d9be7133088379be",
+      "bytes": 9871
+    },
+    {
+      "path": ".local/s20-extension-20261019/legacy-parity.json",
+      "sha256": "fb1111c6439dd3671ce46e12ec9194a4c7e8d60cd889b2c2f57ada962528164d",
+      "bytes": 2376
+    },
+    {
+      "path": ".local/s20-extension-20261019/full-checks-r2.log",
+      "sha256": "2c271f65296385b40130c0fb5ffc6b7a62e2631777b2bceb8949a90329980b8d",
+      "bytes": 274886
+    },
+    {
+      "path": ".local/s20-extension-20261019/d-candidate-audit.json",
+      "sha256": "7426de517da23e4fb8f4e0be829f68e9d7cafe395049fac9c7c24ae3fcb1ed6a",
+      "bytes": 3155
+    },
+    {
+      "path": ".local/s20-extension-20261019/d_saved_candidates.py",
+      "sha256": "55d894bfb06e38afa8a2a01e99ad51d65c6bd42757db3b141405eafbf483af29",
+      "bytes": 4657
+    },
+    {
+      "path": ".local/s20-extension-20261019/d-reconstructed-candidates.json.gz",
+      "sha256": "f87905f44b5c5f1edbf9b6191958eb7f9898e83b369fd733de7e86007f243ae2",
+      "bytes": 1291962
+    },
+    {
+      "path": ".local/s20-extension-20261019/committed-projection.json",
+      "sha256": "ecb71eec6d5118f29d1ba64ff77b4101ed4131e6670bb069f6cb632f09bcc478",
+      "bytes": 9965
+    },
+    {
+      "path": ".local/s20-extension-20261019/committed_projection.py",
+      "sha256": "9bf4d6f534b76e0bc984cfad67dcf4be5d7133048340a4a757ef0b2ee67b22f8",
+      "bytes": 3848
+    },
+    {
+      "path": ".local/s20-extension-20261019/tail-saved-r1.json",
+      "sha256": "e487634fa1eee9dd2539c957fbd9e80083d9099fc7f7f8449fc11ce1e6361c9c",
+      "bytes": 235103
+    },
+    {
+      "path": ".local/s20-extension-20261019/tail_saved.py",
+      "sha256": "cd5b2e9e2dd309bd8d31f47b720a2152e942c5ffd272d8d56c4690f741326924",
+      "bytes": 2797
+    },
+    {
+      "path": ".local/s20-extension-20261019/generated-inputs-final.log",
+      "sha256": "5f515700f4e486c968f37afcadcf9757db0621ddbc3fc67e389caf99e550362f",
+      "bytes": 42
+    },
+    {
+      "path": ".local/s20-extension-20261019/preservation.json",
+      "sha256": "24b6eb4f4eccd67d96803b5c5c718c08e5f858cf06e22738e914391cc7bed358",
+      "bytes": 893
+    }
+  ],
+  "formal_runs": 0,
+  "tune_runs": 0,
+  "new_kit_runs": 0,
+  "scope_limits": [
+    "CPU_ONLY_NEW_INTERFACES",
+    "FINITE_REGISTERED_DESIGN_NO_POPULATION_CI",
+    "LIMITED_DEVELOPMENT_NOT_FORMAL_METHOD_EFFECT",
+    "INDUSTRIAL_G2_OPEN_NOT_ESTABLISHED",
+    "S19B_ACCEPTED_LIMITS_RETAINED",
+    "NO_NEW_FULL_PRODUCTION_OR_KIT_CHAIN"
+  ],
+  "target": {
+    "repository": "existing_repository",
+    "branch": "main",
+    "tag": null,
+    "remote_operations": []
+  },
+  "actual_freeze_decision": null
+}

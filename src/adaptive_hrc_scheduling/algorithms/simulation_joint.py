@@ -81,6 +81,7 @@ class SimulationJointProblem:
         execution_checkpoint=None,
         decision_checkpoint=None,
         initial_action_only=False,
+        objective=None,
     ):
         self.checkpoint = checkpoint or (lambda: None)
         self.checkpoint()
@@ -156,6 +157,12 @@ class SimulationJointProblem:
         self._plan_reference = {}
         require(type(initial_action_only) is bool, "INITIAL_POLICY_TYPE")
         self.initial_action_only = initial_action_only
+        if objective is not None:
+            from adaptive_hrc_scheduling.research_objective import WeightedObjective
+
+            require(type(objective) is WeightedObjective, "S20_OBJECTIVE_TYPE")
+            objective.validate()
+        self.objective = objective
 
     @property
     def decisions(self):
@@ -681,6 +688,12 @@ class SimulationJointProblem:
                 sum(h.exposure for h in snapshot.state.humans),
                 max(h.exposure for h in snapshot.state.humans),
             )
+            if self.objective is not None:
+                from adaptive_hrc_scheduling.algorithms.lns import fingerprint
+
+                score = self.objective.score(
+                    self.config, -score[0], score[1], score[2], fingerprint(candidate)
+                )
             return Verification(True, score)
         except (
             ContractError,

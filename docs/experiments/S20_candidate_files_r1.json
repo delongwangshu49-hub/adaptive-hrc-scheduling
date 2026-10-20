@@ -1,0 +1,110 @@
+{
+  "packet_id": "S20-20261019-design-r1",
+  "status": "OWNER_REVIEW_PENDING_PENDING_FREEZE",
+  "baseline_commit": "c8c1f74aa26111c6747b87d99f5730a24497f071",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "176ecf9b7487e13c57d5d319322d9dc5b325b14e52e9d02bd923177ba14cab88",
+      "bytes": 76207
+    },
+    {
+      "path": "PROGRESS_LOG.md",
+      "sha256": "86118a14a815bb56708984558180b50b0fc706a782e9a4dfbee2739d3acca078",
+      "bytes": 350158
+    },
+    {
+      "path": "PROMPT_LEDGER.md",
+      "sha256": "666238e5e18780b1464363e6ad4bbbd2e63145e379d344122bd57e7d11ff8aad",
+      "bytes": 224833
+    },
+    {
+      "path": "docs/experiments/S20_execution_plan_r1.md",
+      "sha256": "742a3bf48362dfcc9ab1682bfd8fcfb51972d5dc0ac2e284e81a4fd4a1ec84f1",
+      "bytes": 19593
+    },
+    {
+      "path": "docs/experiments/S20_freeze_candidate_r1.md",
+      "sha256": "0d14a75d32228bf8d8b5d873bd845efda87ecd54464f08d0c9d7d49757914959",
+      "bytes": 4088
+    },
+    {
+      "path": "docs/experiments/S20_parameter_register_r1.md",
+      "sha256": "29d12ab4a6e13cd0697e2a1424d40003700475ddb3e3caa37c3257c94c259403",
+      "bytes": 4355
+    },
+    {
+      "path": "docs/experiments/S20_preflight_r1.md",
+      "sha256": "e4b15865c6bc6919d742bc3bdb37e8ca3ec0990f8d160286c2cb409202470571",
+      "bytes": 5834
+    },
+    {
+      "path": "docs/experiments/S20_scope_decisions_r1.md",
+      "sha256": "129112cddc665d111b2313938b749fd4f7e746e72b71bf89930af61ec584bc5f",
+      "bytes": 6813
+    },
+    {
+      "path": "docs/experiments/analysis_plan.md",
+      "sha256": "a2a38b9c883d676a48257f70a641abe22a96211606836140d3cc6abc6b4c6347",
+      "bytes": 8503
+    },
+    {
+      "path": "docs/experiments/protocol.md",
+      "sha256": "b7238e2d4f538014c4a15369e119c55cd2047ded2d5ee7743563c6e9c3132bc1",
+      "bytes": 8108
+    },
+    {
+      "path": "docs/steps/S20.md",
+      "sha256": "b108e29950f2670b931666a77921cdafa39abde06aaabd5e736fe67bd3d7bf5c",
+      "bytes": 2301
+    },
+    {
+      "path": "docs/steps/S20_handoff.md",
+      "sha256": "b1035a5b5e97425ba31a98b96a3b38ea5feac46a92eb74b29e4ba534126f3a66",
+      "bytes": 4063
+    },
+    {
+      "path": "docs/validation/S20_design_validation_r1.json",
+      "sha256": "7e286055dd8e64fb3cf8e6eedf869a5e3b7b5b9cd4fb349cc3151defc68d034d",
+      "bytes": 13740
+    },
+    {
+      "path": "docs/validation/S20_design_validation_r1.md",
+      "sha256": "7eb246fc6c79c7fc3462f55604a028d9ce18a90797f8ac36b5c00525ce966a0b",
+      "bytes": 4129
+    },
+    {
+      "path": "experiments/configs/s20_r1.json",
+      "sha256": "7c682a81dc29dae73f7315aceea07efc45aa52c0402e13571c02d0a2e4b1c911",
+      "bytes": 1501156
+    },
+    {
+      "path": "experiments/manifests/s20_r1.json",
+      "sha256": "8816d559bc33eedaaa843b7591c0c58b56a82fc5853b982e77aa8b7b0044e440",
+      "bytes": 80411
+    },
+    {
+      "path": "experiments/manifests/s20_sources_r1.json",
+      "sha256": "7d2d3019869feb0494f5051e1dbf90befddf2985ec755125b000f12682760d53",
+      "bytes": 27581
+    },
+    {
+      "path": "scripts/run_s20_development.py",
+      "sha256": "767907bf4824d7bbfc0e5506541c3fdd7853a6ab22f9846068f4c5827340ee17",
+      "bytes": 4677
+    },
+    {
+      "path": "scripts/s20_design.py",
+      "sha256": "1a10ca31a0447e6a98ac1aac5a6583fd028e472ee5b58ae4ba86ade6cf3a0f72",
+      "bytes": 15831
+    },
+    {
+      "path": "tests/test_s20_design.py",
+      "sha256": "32340af4ede85c93f92cede059d667a5d0c0ce4e87b254bbadb9d8f8aa26dc8f",
+      "bytes": 5376
+    }
+  ],
+  "self_hash_policy": "This index excludes itself; its independent digest is in the local packet receipt.",
+  "actual_freeze_decision": null,
+  "remote_operations": []
+}

@@ -133,7 +133,16 @@ class BudgetLedger:
 
 
 class SimulationJointPolicy:
-    def __init__(self, config, budget, *, method="ADAPTIVE_JOINT", end_h):
+    def __init__(
+        self,
+        config,
+        budget,
+        *,
+        method="ADAPTIVE_JOINT",
+        end_h,
+        objective=None,
+        problem_factory=SimulationJointProblem,
+    ):
         require(
             method in ("ADAPTIVE_JOINT", "FIXED_H", "FIXED_HR", "NO_OBSERVATION_UPDATE"),
             "SIM_METHOD",
@@ -149,6 +158,7 @@ class SimulationJointPolicy:
         self.next_opportunity = 0
         self.journal = []
         self.candidates = []
+        self.objective, self.problem_factory = objective, problem_factory
 
     def nominal_prefix(self, at_h):
         p = self.problem or self.anchor
@@ -208,7 +218,7 @@ class SimulationJointPolicy:
                         if nominal and self.anchor
                         else (current, prefix, tuple(decisions))
                     )
-                    problem = SimulationJointProblem(
+                    problem = self.problem_factory(
                         c,
                         obs,
                         base,
@@ -222,6 +232,7 @@ class SimulationJointPolicy:
                         else "HR-seq"
                         if self.method == "FIXED_HR"
                         else None,
+                        **({"objective": self.objective} if self.objective is not None else {}),
                     )
                     if self.anchor is None:
                         self.anchor = problem
@@ -253,6 +264,8 @@ class SimulationJointPolicy:
                     termination=result.termination if result else error,
                 )
             )
+            if self.objective is not None:
+                self.journal[-1]["objective"] = asdict(self.objective)
         while self.schedule is not None and self.next_step < len(self.schedule.steps):
             step = self.schedule.steps[self.next_step]
             if not step.plan.commands:
