@@ -1,0 +1,56 @@
+{
+  "status": "HISTORICAL_EVIDENCE_REUSED_NOT_NEW_RUN",
+  "source_baseline": "step-S20-r4 / 2d12e84b7160125cc3fe8e4b94715730a19bbac5",
+  "normal_chains": [
+    {
+      "evidence_id": "E19B-normal-light",
+      "run_id": "S19B-44b941683aaa47568e174fa8ea131477",
+      "source_identity": "adc7e49459663ff2c5092691a96992c679a51f5e33b4053e0fb09564dee3b491",
+      "elapsed_s": 81.33697770000435,
+      "loop_clock": "perf_counter_seconds",
+      "start_accepted_wall_s": 1792132337.710539,
+      "final_live_wall_s": 1792132420.0122259,
+      "accepted_to_final_live_s": 82.30168676376343,
+      "full_process_wall_s": null,
+      "events": 4402,
+      "decisions": 2072,
+      "completed_static_operations": 436,
+      "sim_h": 272.35047973655236,
+      "feedback_to_observation": {
+        "count": 4402,
+        "total_s": 23.24805670022033,
+        "max_s": 0.12398579996079206,
+        "p50_s": 0.0047145000426098704,
+        "p95_s": 0.009239700040780008
+      },
+      "actual_exit_code": 0,
+      "exit_confirmation": "QT_PROCESS_FINISHED_SIGNAL"
+    },
+    {
+      "evidence_id": "E19B-normal-isaac",
+      "run_id": "S19B-87675273bc75444d8a05fda44ddfc19d",
+      "source_identity": "adc7e49459663ff2c5092691a96992c679a51f5e33b4053e0fb09564dee3b491",
+      "elapsed_s": 382.83541010005865,
+      "loop_clock": "perf_counter_seconds",
+      "start_accepted_wall_s": 1792132421.8263474,
+      "final_live_wall_s": 1792132911.0283258,
+      "accepted_to_final_live_s": 489.2019784450531,
+      "full_process_wall_s": null,
+      "events": 4402,
+      "decisions": 2072,
+      "completed_static_operations": 436,
+      "sim_h": 272.35047973655236,
+      "feedback_to_observation": {
+        "count": 4402,
+        "total_s": 307.86871841398533,
+        "max_s": 2.075272500049323,
+        "p50_s": 0.03183819993864745,
+        "p95_s": 0.17873200005851686
+      },
+      "actual_exit_code": 0,
+      "exit_confirmation": "QT_PROCESS_FINISHED_SIGNAL"
+    }
+  ],
+  "local_originals": "CONTROLLED_NOT_INCLUDED",
+  "industrial_g2": "OPEN"
+}

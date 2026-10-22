@@ -1,0 +1,83 @@
+{
+  "identity": "P03.3-DESIGN-r2",
+  "scope": "R01_R05_LIMITED_REPAIR_DESIGN_ONLY",
+  "schema_identity": "P03.2-CONTRACT-r3_UNCHANGED",
+  "files": {
+    "e20_input_recipe.json": {
+      "path": "docs/public_delivery_r2/e20_input_recipe.json",
+      "sha256": "0839b64e607b5dbde848dcc95e33a8e3e9c6e073ee969bf86b9d6fb4d3b97d87",
+      "bytes": 12308,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    },
+    "timeline_source_spec.md": {
+      "path": "docs/public_delivery_r2/timeline_source_spec.md",
+      "sha256": "3e0307574d7f88f806d703a81e7665fa6fd6adf7abe9497b2c46e3255cb50ef3",
+      "bytes": 7097,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    },
+    "timeline_field_source_map.tsv": {
+      "path": "docs/public_delivery_r2/timeline_field_source_map.tsv",
+      "sha256": "68d621ed5ff13b36b63aebec7913b92cb1a9e6b42cb08f058f5d4f8915acf2c8",
+      "bytes": 14304,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    },
+    "interaction_case_protocol.md": {
+      "path": "docs/public_delivery_r2/interaction_case_protocol.md",
+      "sha256": "bf6f09fea93a954dc94b5e6f624f157574698d1ff989941ed5e7ff5646bb5b33",
+      "bytes": 10180,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    },
+    "interaction_case_protocol.tsv": {
+      "path": "docs/public_delivery_r2/interaction_case_protocol.tsv",
+      "sha256": "f58aeb9677a43211a29b84f2f92857e2be86f25033be88320a129c4542498894",
+      "bytes": 15548,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    },
+    "dual_view_layout_spec.md": {
+      "path": "docs/public_delivery_r2/dual_view_layout_spec.md",
+      "sha256": "8389d3c46f2f795143029c5b11804ddca4304a0d2cbda315c3ec15f70a962fc4",
+      "bytes": 6052,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    },
+    "capacity_estimate.md": {
+      "path": "docs/public_delivery_r2/capacity_estimate.md",
+      "sha256": "3cb06d52b45a57ed345502271ee7fb4de60127ade24d8b53c3b66099899279f6",
+      "bytes": 7628,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    },
+    "capacity_targets.tsv": {
+      "path": "docs/public_delivery_r2/capacity_targets.tsv",
+      "sha256": "2e0d89f799e3ad0f56f8ac651e9a16f35588ef3d8e7576564cf3734bb0d598ec",
+      "bytes": 1249,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    },
+    "p032_contract_schema_r3.json": {
+      "path": "docs/public_delivery_r2/p032_contract_schema_r3.json",
+      "sha256": "234ed0c1d7f27e771872bce3fcf1667b2d822f6f3d11b1ac329108ac22754d54",
+      "bytes": 236076,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    },
+    "p032_source_map.tsv": {
+      "path": "docs/public_delivery_r2/p032_source_map.tsv",
+      "sha256": "c69d257e9fb2d0467eb3d8236bc246e3b81c20036cefd6ed33fa75f93ba100ad",
+      "bytes": 3967,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    },
+    "interaction_cases_r2.tsv": {
+      "path": "docs/public_delivery_r2/interaction_cases_r2.tsv",
+      "sha256": "805fd073a3a76a901b2c8fba089220806a59de50c1c78322646da400a04117af",
+      "bytes": 5586,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    },
+    "interaction_requirements_r2.tsv": {
+      "path": "docs/public_delivery_r2/interaction_requirements_r2.tsv",
+      "sha256": "7a9ec7a325dff12ce060087418ff1fdc789cb79c242cd0ea271dca905e65efa2",
+      "bytes": 2168,
+      "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+    }
+  },
+  "checker": "scripts/verify_p033_design_r2.py",
+  "source_baseline": "step-S20-r4",
+  "supersedes_for_current_use": "P03.3-DESIGN-r1_RETAINED",
+  "historical_review_summary": "docs/public_delivery_r2/repair_summary.md"
+}

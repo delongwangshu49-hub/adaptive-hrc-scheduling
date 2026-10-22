@@ -1,0 +1,511 @@
+{
+  "identity": "P033-E20-PUBLIC-RECIPE-r2",
+  "status": "RESOLVABLE_DESIGN_NOT_RUNTIME_RUNSPEC",
+  "base_config": {
+    "path": "examples/production_simulation/SR-W1.json",
+    "sha256": "9f274387ad94ce12ae2e6846b1f26dec14cd6b24686420fca1e793150d1d5c34",
+    "bytes": 1507066,
+    "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+  },
+  "contract": {
+    "path": "docs/public_delivery_r2/p032_contract_schema_r3.json",
+    "sha256": "234ed0c1d7f27e771872bce3fcf1667b2d822f6f3d11b1ac329108ac22754d54",
+    "bytes": 236076,
+    "digest_basis": "LF_NORMALIZED_SOURCE_BYTES"
+  },
+  "run": {
+    "run_id_rule": "fresh P05-E20 UUID namespace",
+    "epoch": 0,
+    "mode": "INTERACTIVE_PRODUCTION",
+    "scenario": "INTERACTIVE",
+    "backend": "ISAAC",
+    "method": "ADAPTIVE"
+  },
+  "initial_orders": [
+    {
+      "order_id": "ORD-BASE",
+      "template_id": "SR-W1",
+      "template_revision": "v1",
+      "quantity": 1,
+      "due_sim_h": 2500,
+      "priority": "NORMAL"
+    }
+  ],
+  "initial_people": [
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "P1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "PREP",
+        "HOIST",
+        "FORK",
+        "SC-SUPPORT"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.08
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "W1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "WELD",
+        "CUT"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.15
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "W2",
+      "initial_f": 0.2,
+      "qualifications": [
+        "WELD"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.15
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "OP1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "ROBOT"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.04
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "AF1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "ASSEMBLE"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.12
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "AF2",
+      "initial_f": 0.2,
+      "qualifications": [
+        "ASSEMBLE"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.12
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "E1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "ELECTRIC",
+        "CART",
+        "SC-SUPPORT"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.1
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "PL1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "PLUMB"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.1
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "T1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "WET"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.12
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "T2",
+      "initial_f": 0.2,
+      "qualifications": [
+        "WET"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.12
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "C1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "COAT"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.12
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "QA1",
+      "initial_f": 0.2,
+      "qualifications": [
+        "QA",
+        "TOOL"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.08
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "Lop",
+      "initial_f": 0.2,
+      "qualifications": [
+        "CRANE"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.15
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "Lrig",
+      "initial_f": 0.2,
+      "qualifications": [
+        "RIG"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.15
+    },
+    {
+      "calendar": {
+        "period_h": 24,
+        "windows": [
+          {
+            "end_h": 4,
+            "start_h": 0
+          },
+          {
+            "end_h": 8.5,
+            "start_h": 4.5
+          }
+        ]
+      },
+      "id": "Lsig",
+      "initial_f": 0.2,
+      "qualifications": [
+        "SIGNAL"
+      ],
+      "recovery_rate": 0.2,
+      "valid_until_h": 10000,
+      "wait_rate": 0.02,
+      "work_rate": 0.15
+    }
+  ],
+  "new_orders": [
+    {
+      "order_id": "ORD-NORMAL",
+      "quantity": 2,
+      "priority": "NORMAL",
+      "template_id": "SR-W1",
+      "template_revision": "v1",
+      "due_rule": "2300h"
+    },
+    {
+      "order_id": "ORD-URGENT",
+      "quantity": 1,
+      "priority": "URGENT",
+      "template_id": "SR-W1",
+      "template_revision": "v1",
+      "due_rule": "verified_pre_submit_observation.sampled_sim_h+96h"
+    }
+  ],
+  "depart": {
+    "person_id": "W2",
+    "kind": "PERSON_DEPART",
+    "handover_policy": "SAFE_POINT_OR_VERIFIED_HANDOVER"
+  },
+  "arrive": {
+    "person_id": "W3",
+    "kind": "PERSON_ARRIVE",
+    "parameter_template_from": "W2",
+    "qualifications": [
+      "WELD"
+    ],
+    "valid_until_h": 10000,
+    "initial_f": 0.2,
+    "calendar_from": "W2",
+    "arrival_location": "CONTROL-W3",
+    "scene_reference": {
+      "domain_id": "W3",
+      "scene_entity_id": "PERSON-W3",
+      "prim_path": "/World/P05/People/W3",
+      "template_revision": "v1"
+    }
+  },
+  "capacity": {
+    "max_lifetime_products": 8,
+    "max_open_products": 8,
+    "max_queued_products": 8,
+    "max_wip_products": 3
+  },
+  "clock": {
+    "idle_policy": "ADVANCE_METERED",
+    "session_until_h": 3000,
+    "wall_budget_s": 14400,
+    "idle_step_h": 0.01,
+    "simulation_rate": 0.25,
+    "boundary_poll_wall_s": 0.1
+  },
+  "expiry_rule": "verified_pre_submit_observation.sampled_sim_h+24h",
+  "stage_order": [
+    "BASE_STARTED_WITH_ADJUSTABLE",
+    "NORMAL_CREATE",
+    "URGENT_CREATE_AND_EFFECT",
+    "DEPART_APPLIED",
+    "ARRIVE_NEW_PERSON",
+    "CLOSE_INPUT",
+    "ALL_RECEIVED_AND_EXIT"
+  ],
+  "preflight_resolver": [
+    "P04 supplies new runtime source/profile/registry hashes; bind full content, never synthetic a-hashes",
+    "derive parameter templates/calendars from C0 exact W2 values; register W3 qualification and scene capacity before run, without registering W3 as an initial person",
+    "register template SR-W1/v1 recipe/BOM/branches and material arrival plan for all four products; real inventory/places independently bound",
+    "bind unique finite nonnegative wage for every initial/allowed-new template; resource cost source=C0 initial_config_sha256",
+    "resolve arrival_location against newly registered entrance and verify actual Kit SceneBinding at application; client SceneReference has no catalog_version",
+    "resolve request versions from current verified handshake; fresh IDs/producer sequences, IMMEDIATE has no requested_sim_h",
+    "if any dependency/consumer/profile/capacity unavailable: PREFLIGHT_BLOCKED; revise recipe before formal witness, retain old revision",
+    "Materialize due/expiry from the verified PRE-SUBMIT observation before canonical hashing; actual receipt time is not the anchor and never changes request bytes."
+  ],
+  "formal_lock_step": "P04/P05 before formal witness; no production launched by this recipe",
+  "measured_supported_limit": null,
+  "supersedes_for_current_use": "P033-E20-INPUT-RECIPE-r1_RETAINED",
+  "time_materialization": {
+    "version": "P033-PRE-SUBMIT-ABSOLUTE-1",
+    "anchor": "latest verified delivered observation selected immediately before final confirmation",
+    "anchor_fields": [
+      "run_id",
+      "epoch",
+      "observation_id",
+      "event_count",
+      "event_prefix_hash",
+      "catalog_version",
+      "state_revision",
+      "sampled_sim_h"
+    ],
+    "values": {
+      "urgent_due_offset_h": 96,
+      "request_expiry_offset_h": 24,
+      "normal_due_sim_h": 2300
+    },
+    "wire": "Existing P03.2-CONTRACT-r3 numeric due_sim_h/expires_sim_h only; no new wire fields",
+    "order": [
+      "select/verify same-run observation",
+      "materialize absolute numeric fields and expected versions",
+      "display numeric values plus observation anchor for final confirmation",
+      "compute canonical immutable request digest",
+      "persist immutable request plus separate materialization record then send"
+    ],
+    "receipt": "Record actual received_sim_h separately; never rewrite payload/deadline after send. Later receipt reduces remaining margin; apply existing EXPIRED/DUE_PASSED rules.",
+    "retry": "Same accepted/unknown request uses same ID/content/digest. Only explicit terminal pre-admission rejection allows a new request ID/sequence and newly confirmed anchor; retain old rejection.",
+    "record": "Separate local evidence record binds anchor and request digest; do not add metadata to ChangeRequest schema."
+  }
+}

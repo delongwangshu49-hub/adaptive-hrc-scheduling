@@ -1,0 +1,11 @@
+metric	candidate	unit_or_scope	measurement	status	final_supported_limit
+input_echo_p95_s	0.2	UI本地输入到回显	monotonic同进程	PENDING_P04_P05_CALIBRATION	UNLOCKED
+accepted_receipt_p95_s	1	提交到持久ACCEPTED回执	握手/同源时钟；不含合法应用等待	PENDING_P04_P05_CALIBRATION	UNLOCKED
+projection_draw_p95_s	0.25	连续增量到绘制	生产不阻塞	PENDING_P04_P05_CALIBRATION	UNLOCKED
+refresh_target_hz	4	双图目标刷新频率	合并绘制但不丢业务账	PENDING_P04_P05_CALIBRATION	UNLOCKED
+display_age_p95_s	2	源采样/接收年龄界至渲染	跨进程计时不可直接相减	PENDING_P04_P05_CALIBRATION	UNLOCKED
+stale_after_s	5	断连/陈旧显示阈值	保留最后真快照	PENDING_P04_P05_CALIBRATION	UNLOCKED
+unknown_ack_after_s	3	确认未收到时显示UNKNOWN	查原ID不重发新业务	PENDING_P04_P05_CALIBRATION	UNLOCKED
+sustained_events_per_s	10	稳态至少60s且>=100样本	独立账零丢失	PENDING_P04_P05_CALIBRATION	UNLOCKED
+burst_events_per_s	50	10s有界突发	记录队列深度/恢复年龄	PENDING_P04_P05_CALIBRATION	UNLOCKED
+lost_persistent_events_or_receipts	0	业务事件/持久确认丢失	显示帧可合并，确认可丢传输但账不丢	PENDING_P04_P05_CALIBRATION	UNLOCKED

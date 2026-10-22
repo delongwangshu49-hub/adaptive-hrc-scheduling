@@ -1,0 +1,121 @@
+{
+  "identity": "G03-PUBLIC-DERIVATION-INDEX-r2",
+  "documents": {
+    "docs/public_delivery_r2/capacity_estimate.md": {
+      "source": "docs/delivery/capacity_estimate_r2.md",
+      "source_sha256": "1931b3bf631d740128090c1e0a31d2c278902cc29d51c9e5b1afb3038012a586",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/capacity_targets.tsv": {
+      "source": "docs/delivery/capacity_targets.tsv",
+      "source_sha256": "869635975a6097cbbcddbf26618c0cda97f28d6c0432bd18ab45835948c1470c",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/dual_view_layout_spec.md": {
+      "source": "docs/delivery/dual_view_layout_spec_r2.md",
+      "source_sha256": "f9633d2c3472745a3d126b492401565241451c687b675bcce661813acc2a928f",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/dynamic_catalog_contract_r2.md": {
+      "source": "docs/public_delivery/dynamic_catalog_contract_r2.md",
+      "source_sha256": "cf1411aa68faea2238eb63c87ebf5c03a53a5e5354a65eb8e128532748bac0c3",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/e20_input_recipe.json": {
+      "source": "docs/delivery/e20_input_recipe_r2.json",
+      "source_sha256": "bfd67169a76e4c452fa38d58dbb36eff2ac5005f41b4e7f071e2e130a1e8226d",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/historical_evidence_summary.json": {
+      "source": "docs/public_delivery/historical_evidence_summary.json",
+      "source_sha256": "f9abfc7852e49b614a185a0b4c429412955bdfac7f4b5f5ff5dbdb7f56f07fcc",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/interaction_cases_r2.tsv": {
+      "source": "docs/delivery/interaction_cases_r2.tsv",
+      "source_sha256": "805fd073a3a76a901b2c8fba089220806a59de50c1c78322646da400a04117af",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/interaction_case_protocol.md": {
+      "source": "docs/delivery/interaction_case_protocol_r2.md",
+      "source_sha256": "1f3e7edd0568850e5a0958b780a5bbd066a09dd4355df79a1a890c13e6f4b566",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/interaction_case_protocol.tsv": {
+      "source": "docs/delivery/interaction_case_protocol_r2.tsv",
+      "source_sha256": "134701dd028790cbcd089211b0e07fd5ecb145382ab1df6a32c5d3399b2cbd46",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/interaction_contract_r3.md": {
+      "source": "docs/public_delivery/interaction_contract_r3.md",
+      "source_sha256": "9550cbec0b4bb0fe0d34d369e3448ae8ef6d96a35399f23fd4266eb48b1d28f3",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/interaction_requirements_r2.tsv": {
+      "source": "docs/delivery/interaction_requirements_r2.tsv",
+      "source_sha256": "7a9ec7a325dff12ce060087418ff1fdc789cb79c242cd0ea271dca905e65efa2",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/model_summary.md": {
+      "source": "docs/public_delivery/model_summary.md",
+      "source_sha256": "41332d3c375becbafbbf1f4693e9ea867f1c81878e6d729d91955417cddfe285",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/p032_contract_schema_r3.json": {
+      "source": "docs/delivery/p032_contract_schema_r3.json",
+      "source_sha256": "affb6007bef50b585a7cbb2dda8d42a7ab501ea48159e382fd19daab206eec1a",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/p032_event_routes_r2.tsv": {
+      "source": "docs/public_delivery/p032_event_routes_r2.tsv",
+      "source_sha256": "984a09bec88aff3d6946100ffe8f4e887980197f2a7a96ca981b2766be4732f7",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/p032_field_consumer_map_r2.tsv": {
+      "source": "docs/public_delivery/p032_field_consumer_map_r2.tsv",
+      "source_sha256": "67811e4140e357240de0ec6aa88f55c34bf9f02d0788adde77a45c3499e7fc74",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/p032_source_map.tsv": {
+      "source": "docs/delivery/p032_source_map.tsv",
+      "source_sha256": "c69d257e9fb2d0467eb3d8236bc246e3b81c20036cefd6ed33fa75f93ba100ad",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/roadmap.md": {
+      "source": "docs/public_delivery/roadmap.md",
+      "source_sha256": "fc4aeb847f76b91dd0a769a6ee825e5f899162b648eae1192ec1c4ad5bb5c709",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/session_lifecycle_contract_r2.md": {
+      "source": "docs/public_delivery/session_lifecycle_contract_r2.md",
+      "source_sha256": "5043c03fe3253b84a9bd8c7aacf65a4f3e7e4bdca7c96a3798f7873ead755637",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/stage_summary.md": {
+      "source": "docs/public_delivery/stage_summary.md",
+      "source_sha256": "1c63451067aebe323ecc4b36009524d957d27cc7dac8f7cf5fb7aae3c0b36264",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/timeline_field_source_map.tsv": {
+      "source": "docs/delivery/timeline_field_source_map_r2.tsv",
+      "source_sha256": "0a6a287ad3a1cd9df10c51303dd091db55471887e85e7b0429eea44b0850ad49",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/timeline_source_spec.md": {
+      "source": "docs/delivery/timeline_source_spec_r2.md",
+      "source_sha256": "84028903be948ded70f5c166ab66cb86041305f6d3def3bdc00e16fc177563e8",
+      "treatment": "R2_TECHNICAL_DERIVATIVE_OR_INHERITED_SANITIZED_SUMMARY"
+    },
+    "docs/public_delivery_r2/p033_revision_r2.json": {
+      "source": "docs/delivery/p033_revision_r2.json",
+      "source_sha256": "e26d0b080a68ab6c4b7f34bfaccb0354197550b6dd79ea8f330a9b9c4b6e75b7",
+      "treatment": "PUBLIC_LOCAL_PATHS_AND_LF_DIGEST_BASIS"
+    },
+    "scripts/verify_p033_design_r2.py": {
+      "source": "scripts/verify_p033_design_r2.py",
+      "source_sha256": "e119845b2f6dc6a26d22fdf3d52386f80d4685f82b73e5bae6e644cdedf89659",
+      "treatment": "SAME_STANDALONE_CHECKER_CONTROLLED_OR_PUBLIC_INPUT_BINDING"
+    }
+  },
+  "note": "Controlled r1/r2 documents, original reviews, candidate bytes and failures retained. Public copies are technical derivatives, not original raw evidence."
+}

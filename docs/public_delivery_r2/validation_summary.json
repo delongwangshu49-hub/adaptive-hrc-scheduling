@@ -1,0 +1,39 @@
+{
+  "identity": "G03-DESIGN-VALIDATION-SUMMARY-r2",
+  "status": "LOCAL_DESIGN_COMPLETE_PUBLICATION_PENDING",
+  "P03_1": {
+    "review": "PASSED",
+    "normal_chains": "historical_evidence_summary.json",
+    "original_offline_checks": 30
+  },
+  "P03_2": {
+    "contract": "P03.2-CONTRACT-r3",
+    "records": 32,
+    "fields": 223,
+    "event_routes": 11,
+    "source_points": 20,
+    "closed_limited_findings": 6,
+    "baseline_checks": 417,
+    "targeted_checks": 47,
+    "independent_checks": 33,
+    "scope": "CONTRACT_ONLY"
+  },
+  "P03_3": {
+    "fields": 40,
+    "cases": 24,
+    "capacity_targets": 10,
+    "offline_checks": 161,
+    "synthetic_negatives": 24,
+    "independent_source_checks": 32,
+    "scope": "DESIGN_ONLY_LIMITED_REPAIR_VERIFIED",
+    "repair_targeted_conditions": 41,
+    "input_bindings": 12,
+    "closed_limited_findings": 5,
+    "owner_review": "PENDING"
+  },
+  "new_production_runs": 0,
+  "new_kit_runs": 0,
+  "P04_started": false,
+  "remote_CI": "NOT_RUN",
+  "owner_operation": "PENDING"
+}
