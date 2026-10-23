@@ -140,7 +140,9 @@ def restore_world(config, snapshot):
     # Same reconstruction as the existing problem, without creating a planner.
     from types import SimpleNamespace
 
-    return SimulationJointProblem.world(SimpleNamespace(config=config, prefix=snapshot))
+    return SimulationJointProblem.world(
+        SimpleNamespace(config=config, prefix=snapshot, catalog=None)
+    )
 
 
 @dataclass(frozen=True)

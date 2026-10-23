@@ -3,7 +3,9 @@
 import copy
 import math
 import sys
+import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
@@ -21,16 +23,36 @@ class S20DesignTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.design = load_design()
+        # The registered S20 design binds a historical source baseline. Keep
+        # checking those exact bytes without rebinding the old experiment to P04.
+        temporary = tempfile.TemporaryDirectory(prefix="s20-historical-sources-")
+        cls.addClassCleanup(temporary.cleanup)
+        cls.source_root = Path(temporary.name)
+        fixture = Path(__file__).parent / "fixtures" / "s20_sources_r3.zip"
+        with zipfile.ZipFile(fixture) as archive:
+            names = archive.namelist()
+            if len(names) != len(set(names)) or set(names) != set(cls.design[2]["files"]):
+                raise ValueError("HISTORICAL_SOURCE_COVERAGE")
+            for name in names:
+                target = (cls.source_root / name).resolve()
+                if not target.is_relative_to(cls.source_root.resolve()):
+                    raise ValueError("HISTORICAL_SOURCE_PATH")
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(archive.read(name))
 
     def altered(self, mutate, reason):
         design = copy.deepcopy(self.design)
         mutate(*design)
         with self.assertRaisesRegex(ValueError, reason):
-            validate_design(*design)
+            validate_design(*design, root=self.source_root)
 
     def test_registered_design_and_all_methods(self):
-        result = validate_design(*self.design)
+        result = validate_design(*self.design, root=self.source_root)
         self.assertEqual(result["splits"], {"dev": 4, "tune": 4, "test": 64})
+
+    def test_current_checkout_cannot_claim_historical_source_identity(self):
+        with self.assertRaisesRegex(ValueError, "SOURCE_DIGEST"):
+            validate_design(*self.design)
 
     def test_no_formal_execution(self):
         self.altered(
