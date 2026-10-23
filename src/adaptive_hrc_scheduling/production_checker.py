@@ -37,8 +37,15 @@ class Report:
     metrics: m.OfflineEvaluation | None
 
 
-def check_run(config, snapshot, *, checkpoint=None):
+def check_run(config, snapshot, *, checkpoint=None, catalog=None):
     try:
+        if config.schema_version in ("P042-PROD-1.0", "P043-PROD-1.0"):
+            require_catalog = catalog is not None and digest(config) in catalog.views
+            if not require_catalog:
+                return Report(
+                    "INCOMPLETE", (Finding("P042", "SNAPSHOT", "CATALOG_HISTORY_REQUIRED"),), None
+                )
+            return _check_run(config, snapshot, catalog=catalog)
         if checkpoint is not None:
             prior = checkpoint.reuse(config, snapshot)
             if prior is not None:
@@ -50,7 +57,7 @@ def check_run(config, snapshot, *, checkpoint=None):
         )
 
 
-def _check_run(config, snapshot, *, checkpoint=None):
+def _check_run(config, snapshot, *, checkpoint=None, catalog=None):
     findings = []
 
     def need(ok, rule, reason, event):
@@ -66,6 +73,9 @@ def _check_run(config, snapshot, *, checkpoint=None):
     except ContractError as exc:
         return Report("INVALID", (Finding("R18", "SNAPSHOT", str(exc)),), None)
     need(snapshot.config_sha256 == digest(config), "R18", "CONFIG_DIGEST", None)
+    if catalog is not None:
+        need(catalog.config_at(snapshot.events) == config, "P042", "FINAL_CATALOG_VIEW", None)
+        config = catalog.initial
     ops = {o.id: o for o in config.operations}
     people = {p.id: p for p in config.people}
     devices = {d.id: d for d in config.devices}
@@ -274,6 +284,67 @@ def _check_run(config, snapshot, *, checkpoint=None):
             world_ids,
         ) = (saved[k] for k in ledger_names)
     for ordinal, e in enumerate(islice(snapshot.events, offset, None), offset + 1):
+        if catalog is not None and e.id in catalog.by_event:
+            generation = catalog.by_event[e.id]
+            need(
+                e.world is not None
+                and e.world.kind == generation.get("workforce_kind", "CATALOG_REGISTER")
+                and e.world.entity_id
+                == (
+                    generation["target_id"]
+                    if generation.get("workforce_kind")
+                    else generation["payload"]["order_id"]
+                )
+                and e.occurred_sim_h == generation["sim_h"]
+                and generation["before_config_sha256"] == digest(config),
+                "P042",
+                "GENERATION_EVENT_BINDING",
+                e,
+            )
+            config = catalog.views[generation["config_sha256"]]
+            if generation.get("workforce_kind"):
+                for p in config.people:
+                    if p.id not in people:
+                        people[p.id] = p
+                        humans[p.id] = [p.initial_f, 0, p.initial_f]
+                        loc = next(
+                            x.location for x in config.person_positions if x.person_id == p.id
+                        )
+                        positions[p.id] = (loc, loc)
+            ops.update({x.id: x for x in config.operations})
+            routes.update({x.id: x for x in config.routes})
+            places = {x.id: x for x in config.places}
+            evidence = {x.id: x for x in config.evidence}
+            support_layouts = {x.id: x for x in config.support_layouts}
+            for x in config.lots:
+                if x.id not in lots:
+                    need(
+                        not (x.arrived or x.identified or x.released),
+                        "P042",
+                        "NEW_STOCK_NOT_EMPTY",
+                        e,
+                    )
+                    stock[x.id] = dict(
+                        available=0,
+                        consumed=0,
+                        converted=0,
+                        scrapped=0,
+                        returned=0,
+                        location=x.initial_location,
+                        arrived=False,
+                        identified=False,
+                        released=False,
+                    )
+                    positions[x.id] = (x.initial_location, x.initial_location)
+                    lots[x.id] = x
+            for x in config.entities:
+                if x.id not in entities:
+                    positions[x.id] = (x.initial_location, x.initial_location)
+                    masses[x.id] = 0
+                    entities[x.id] = x
+            for pid in generation.get("product_ids", []):
+                need(pid not in products, "P042", "PRODUCT_ID_REUSED", e)
+                products[pid] = dict(released=False, cancelled=False, ready_h=None, received_h=None)
         try:
             checked(e)
         except ContractError as exc:
@@ -294,6 +365,9 @@ def _check_run(config, snapshot, *, checkpoint=None):
             e,
         )
         c = e.command
+        command_config = catalog.command_config(c) if catalog is not None and c else config
+        if catalog is not None and c and e.kind in ("ACCEPTED", "STARTED", "REJECTED", "DEFERRED"):
+            need(c.config_sha256 == digest(config), "P042", "STALE_NEW_DISPATCH_VIEW", e)
         if c and c.service:
             try:
                 validate_service(config, c.service)
@@ -341,7 +415,13 @@ def _check_run(config, snapshot, *, checkpoint=None):
             need(c.mode_id == expected_mode, "R18", "COMMAND_MODE", e)
             need(
                 (c.run_id, c.epoch, c.config_sha256, c.product_id, c.activity_id)
-                == (snapshot.run_id, snapshot.epoch, digest(config), op.product_id, op.activity_id),
+                == (
+                    snapshot.run_id,
+                    snapshot.epoch,
+                    digest(command_config),
+                    op.product_id,
+                    op.activity_id,
+                ),
                 "R18",
                 "COMMAND_CONTEXT",
                 e,
@@ -396,6 +476,9 @@ def _check_run(config, snapshot, *, checkpoint=None):
                         )
                 for p in config.people:
                     cid, phase = busy.get(p.id, (None, calendar[p.id][0]))
+                    if config.schema_version == "P043-PROD-1.0" and p.id not in busy:
+                        if any("P043." + k + "." + p.id in failed for k in ("DEPARTED", "ABSENT")):
+                            phase = "OFF_SHIFT"
                     start_f, exposure, peak = humans[p.id]
                     rate = (
                         p.recovery_rate
@@ -568,6 +651,17 @@ def _check_run(config, snapshot, *, checkpoint=None):
                         )
             if op.branch:
                 prior_attempt = attempts.get(op.activity_id)
+                if config.schema_version == "P043-PROD-1.0" and prior_attempt:
+                    need(
+                        not any(
+                            "P043." + k + "." + r.person_id in failed
+                            for r in prior_attempt.crew
+                            for k in ("DEPARTED", "ABSENT", "ABSENT_HOLD", "DEPARTURE_PENDING")
+                        ),
+                        "P043",
+                        "PERSON_ATTEMPT_DISPATCH_DISABLED",
+                        e,
+                    )
                 need(
                     prior_attempt is None or prior_attempt.handover is None,
                     "R09",
@@ -575,9 +669,9 @@ def _check_run(config, snapshot, *, checkpoint=None):
                     e,
                 )
                 need(
-                    c.schema_version == config.schema_version
+                    c.schema_version == command_config.schema_version
                     and c.branch == op.branch
-                    and c.research == config.research,
+                    and c.research == command_config.research,
                     "R18",
                     "SIM_COMMAND_IDENTITY",
                     e,
@@ -597,7 +691,12 @@ def _check_run(config, snapshot, *, checkpoint=None):
                 )
                 if op.branch.phase == "ROBOT":
                     need(
-                        all(positions[p][0] != "J2" for p in people),
+                        all(
+                            positions[p][0] != "J2"
+                            or config.schema_version == "P043-PROD-1.0"
+                            and any("P043." + k + "." + p in failed for k in ("DEPARTED", "ABSENT"))
+                            for p in people
+                        ),
                         "R04",
                         "SIM_ISOLATION_EXIT_REQUIRED",
                         e,
@@ -796,6 +895,7 @@ def _check_run(config, snapshot, *, checkpoint=None):
                 or is_external(op)
             ):
                 geometry_state = SimpleNamespace(
+                    failed_resources=tuple(sorted(failed)),
                     running=tuple(running.values()),
                     motions=tuple(motions.values()),
                     supports=tuple(support_states.values()),
@@ -1023,6 +1123,17 @@ def _check_run(config, snapshot, *, checkpoint=None):
             duration = resume_durations.get(c.id, duration)
             for r in c.roles:
                 p = people[r.person_id]
+                if config.schema_version == "P043-PROD-1.0":
+                    disabled = any(
+                        "P043." + k + "." + p.id in failed
+                        for k in ("DEPARTED", "ABSENT", "ABSENT_HOLD", "DEPARTURE_PENDING")
+                    )
+                    service = (
+                        op.handover
+                        and op.handover.outgoing == p.id
+                        and "P043.DEPARTURE_PENDING." + p.id in failed
+                    )
+                    need(not disabled or service, "P043", "PERSON_DISPATCH_DISABLED", e)
                 phase = clock % p.calendar.period_h
                 need(
                     op.action == "REST"
@@ -1514,6 +1625,129 @@ def _check_run(config, snapshot, *, checkpoint=None):
                     e,
                 )
                 world_ids.add(w.id)
+                if w.kind.startswith("PERSON_"):
+                    need(
+                        catalog is not None and e.id in catalog.by_event,
+                        "P043",
+                        "UNBOUND_PERSON_EVENT",
+                        e,
+                    )
+                    pid = w.entity_id
+                    names = ("DEPARTED", "ABSENT", "ABSENT_HOLD", "DEPARTURE_PENDING")
+                    previous_status = next(
+                        (k for k in names if "P043." + k + "." + pid in failed), "PRESENT"
+                    )
+                    obligation = any(
+                        pid == r.person_id for x in running.values() for r in x.command.roles
+                    ) or any(
+                        a.state != "COMPLETE" and any(r.person_id == pid for r in a.crew)
+                        for a in attempts.values()
+                    )
+                    if w.kind == "PERSON_DEPART":
+                        need(previous_status == "PRESENT", "P043", "DEPART_STATE", e)
+                        new_status = "DEPARTURE_PENDING" if obligation else "DEPARTED"
+                    elif w.kind == "PERSON_ABSENT":
+                        need(
+                            previous_status in ("PRESENT", "DEPARTURE_PENDING"),
+                            "P043",
+                            "ABSENT_STATE",
+                            e,
+                        )
+                        affected_activities = {
+                            a.activity_id
+                            for a in attempts.values()
+                            if a.state != "COMPLETE" and any(r.person_id == pid for r in a.crew)
+                        }
+                        need(
+                            all(
+                                x.status == "EXCEPTION"
+                                for x in running.values()
+                                if any(r.person_id == pid for r in x.command.roles)
+                                or x.command.activity_id in affected_activities
+                            ),
+                            "P043",
+                            "ABSENCE_MUST_HOLD",
+                            e,
+                        )
+                        new_status = "ABSENT_HOLD" if obligation else "ABSENT"
+                    elif w.kind == "PERSON_RETURN":
+                        need(
+                            previous_status in ("DEPARTED", "ABSENT", "ABSENT_HOLD"),
+                            "P043",
+                            "RETURN_STATE",
+                            e,
+                        )
+                        loc = positions[pid][0]
+                        payload = catalog.by_event[e.id]["payload"]
+                        person = people[pid]
+                        phase = clock % person.calendar.period_h
+                        need(
+                            payload["arrival_location"] == loc
+                            and payload["scene_entity_id"] == pid
+                            and person.valid_until_h > clock
+                            and any(x.start_h <= phase < x.end_h for x in person.calendar.windows),
+                            "P043",
+                            "PERSON_RETURN_CONTEXT",
+                            e,
+                        )
+                        if previous_status in ("DEPARTED", "ABSENT"):
+                            point = standing_point(config, pid, loc)
+                            geometry_state = SimpleNamespace(
+                                failed_resources=tuple(failed),
+                                running=tuple(running.values()),
+                                motions=tuple(motions.values()),
+                                supports=tuple(support_states.values()),
+                                positions=tuple(m.Position(i, *p) for i, p in positions.items()),
+                                lots=tuple(
+                                    SimpleNamespace(id=i, available=s["available"])
+                                    for i, s in stock.items()
+                                ),
+                                reservations=tuple(
+                                    SimpleNamespace(lot_id=k[0], quantity=q)
+                                    for k, q in reserved.items()
+                                ),
+                            )
+                            blocker = walk_collision(
+                                config,
+                                geometry_state,
+                                SimpleNamespace(entity_id=pid, location=loc, target=loc),
+                                SimpleNamespace(points=(m.Point(*point), m.Point(*point))),
+                            )
+                            need(
+                                blocker is None, "P043", "PERSON_RETURN_OCCUPIED:" + str(blocker), e
+                            )
+                            need(
+                                loc != "J2"
+                                or not any(
+                                    ops[r.command.operation_id].branch
+                                    and ops[r.command.operation_id].branch.phase == "ROBOT"
+                                    for r in running.values()
+                                ),
+                                "P043",
+                                "PERSON_RETURN_ISOLATION",
+                                e,
+                            )
+                        new_status = "PRESENT"
+                    elif w.kind == "PERSON_LEFT":
+                        need(
+                            previous_status == "DEPARTURE_PENDING" and not obligation,
+                            "P043",
+                            "DEPART_UNSAFE",
+                            e,
+                        )
+                        new_status = "DEPARTED"
+                    else:
+                        new_status = "PRESENT"
+                    failed.difference_update("P043." + k + "." + pid for k in names)
+                    if new_status != "PRESENT":
+                        failed.add("P043." + new_status + "." + pid)
+                if w.kind == "CATALOG_REGISTER":
+                    need(
+                        catalog is not None and e.id in catalog.by_event,
+                        "P042",
+                        "UNBOUND_REGISTRATION",
+                        e,
+                    )
                 if w.kind in ("ARRIVAL", "IDENTIFY", "RELEASE"):
                     need(w.entity_id in stock, "R01", "UNKNOWN_LOT", e)
                     if w.entity_id in stock:

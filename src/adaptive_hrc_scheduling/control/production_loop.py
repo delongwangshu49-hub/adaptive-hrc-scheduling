@@ -71,7 +71,19 @@ def validate_scenario(config, scenario):
         require(0 < scenario.until_h <= 720, "FIXED_S15_WINDOW")
 
 
-def run(
+def run(*args, **kwargs):
+    """Persist failure without inventing application acknowledgements or exit codes."""
+    try:
+        return _run(*args, **kwargs)
+    except Exception:
+        session = kwargs.get("session")
+        life = getattr(session, "lifecycle", None)
+        if life is not None and not session.terminal:
+            life.finish("FAILED")
+        raise
+
+
+def _run(
     backend,
     scenario=Scenario(),
     *,
@@ -86,9 +98,16 @@ def run(
     fixed_mode=None,
     handover_after_setup=False,
     orderly_stop=None,
+    session=None,
 ):
+    life = getattr(session, "lifecycle", None)
     world = getattr(backend, "world", backend)
     isaac = hasattr(backend, "world")
+    if session is not None:
+        require(
+            session.backend is backend and scenario == session.scenario(), "SESSION_RUN_BINDING"
+        )
+        require(joint_policy is session.policy, "SESSION_POLICY_BINDING")
     if continuation:
         require(
             check_run(world.config, world.snapshot()).status == "PASS"
@@ -175,10 +194,87 @@ def run(
                 return False
         return True
 
+    if life is not None:
+        life.driver = dict(turn_limit=max_turns, turns_entered=0, checkpoint_reached=False)
     for sequence in range(len(decisions), len(decisions) + max_turns):
+        if life is not None:
+            life.driver["turns_entered"] += 1
         if execution_hook:
             execution_hook(backend, "before_decision")
-        if orderly_stop and orderly_stop(world):
+        if session is not None:
+            session.boundary()
+            session.refresh_capacity()
+            c = world.config
+            places = {p.id: p for p in c.places}
+            lots = {lot.id: lot for lot in c.lots}
+            incoming = {
+                lot.id: next(
+                    o for o in c.operations if o.entity_id == lot.id and o.action == "TRANSFER"
+                )
+                for lot in c.lots
+                if not lot.parent_ids
+            }
+            static_ids = {o.id for o in c.operations}
+        stop_requested = bool(
+            (session is not None and session.stopped) or (orderly_stop and orderly_stop(world))
+        )
+        if life is not None:
+            limit = life.limit()
+            if limit:
+                termination = limit
+                break
+            if life.clear() and not stop_requested:
+                if session.closed or not life.continuous:
+                    termination = "OPERATIONS_COMPLETE"
+                    break
+                life.change("WAITING_INPUT", "NO_OPEN_OBLIGATIONS")
+                observed = world.observe()
+                world.deliver()
+                session.bind_observation(observed)
+                session.projection.publish(observed)
+                blocked = life.advance(scenario.until_h, idle=True)
+                if blocked:
+                    termination = blocked
+                    break
+                continue
+            obligations = life.obligations()
+            if not stop_requested and not any(
+                obligations[k]
+                for k in (
+                    "open_products",
+                    "physical_residuals",
+                    "running",
+                    "holds",
+                    "reservations",
+                    "commitments",
+                )
+            ):
+                life.change(life.waiting_phase(), "PENDING_REQUESTS")
+                observed = world.observe()
+                world.deliver()
+                session.bind_observation(observed)
+                session.projection.publish(observed)
+                blocked = life.advance(scenario.until_h, idle=True)
+                if blocked:
+                    termination = blocked
+                    break
+                continue
+            life.change("DRAINING" if session.closed else "RUNNING_OPEN", "BOUNDARY")
+            if (
+                not stop_requested
+                and decisions
+                and decisions[-1].receipt_id is None
+                and decisions[-1].observation.event_ids == tuple(e.id for e in world.events)
+            ):
+                # A control-only receipt (or input wake) does not create a new
+                # execution observation. Retain the prior WAIT decision and
+                # meter to the next boundary instead of auditing it twice.
+                blocked = life.advance(scenario.until_h, idle=not world.s.running)
+                if blocked:
+                    termination = blocked
+                    break
+                continue
+        if stop_requested:
             # Control is outside planning. Admit no new production, world inputs,
             # or service dispatches; finish only already STARTED work using the
             # same execution/readback path. HOLDs and reservations stay factual.
@@ -191,12 +287,26 @@ def run(
                 "event_count_at_boundary": len(world.events),
                 "future_commitments": "PRESERVED_IN_JOURNAL_NOT_DISPATCHED",
             }
+            if life is not None:
+                life.stop_intake = True
+                life.stop_control = dict(
+                    stop_facts,
+                    source="REQUEST" if session.stopped else "WORKER_ORDERLY_STOP_CALLBACK",
+                )
             while pending := [r for r in world.s.running if r.status == "STARTED"]:
+                if life is not None:
+                    # Retry/query ingress is not an execution stall. The stop
+                    # fence rejects new business while preserving idempotency.
+                    session.boundary()
                 before = world.s.revision
                 tick = max(world.s.time_h, min(r.earliest_end_h for r in pending))
                 if execution_hook:
                     execution_hook(backend, "before_stop_advance")
-                if isaac:
+                if life is not None:
+                    blocked = life.limit() or life.advance(tick)
+                    if blocked:
+                        break
+                elif isaac:
                     backend.advance_to(tick)
                     backend.deliver()
                 else:
@@ -204,6 +314,8 @@ def run(
                 if execution_hook:
                     execution_hook(backend, "after_stop_advance")
                 if world.s.revision == before:
+                    if life is not None and life.last_advance == "INPUT_WAKE":
+                        continue
                     break
             if isaac:
                 backend.deliver()
@@ -224,6 +336,8 @@ def run(
             stop_facts["final_h"] = world.s.time_h
             break
         if stop_condition and stop_condition(world):
+            if life is not None:
+                life.driver["checkpoint_reached"] = True
             if isaac:
                 backend.deliver()
             observed = world.observe()
@@ -320,8 +434,20 @@ def run(
                 )
                 if triggered:
                     fact("CANCEL", product.id, product.id)
-        for ident, delivery in incoming.items():
+        delivery_order = list(incoming.items())
+        if session is not None and session.history.generations:
+            deadlines = {p.id: p.due_h for p in c.products}
+            delivery_order.sort(
+                key=lambda pair: (
+                    session.history.priorities.get(lots[pair[0]].product_id) != "URGENT",
+                    deadlines[lots[pair[0]].product_id],
+                    pair[0],
+                )
+            )
+        for ident, delivery in delivery_order:
             lot = lots[ident]
+            if session is not None and not session.material_ready(lot.product_id):
+                continue
             if not rework.active(c, world.s.gates, delivery):
                 continue
             if any(
@@ -438,6 +564,7 @@ def run(
             joint_policy.begin_cycle()
         observation = world.observe()
         require(observation in world.deliver(), "OBSERVATION_NOT_DELIVERED")
+        catalog_observation = session.bind_observation(observation) if session is not None else None
         if isaac:
             require(
                 backend.ledger.status == "CONTIGUOUS"
@@ -451,7 +578,13 @@ def run(
             operations=tuple(
                 o
                 for o in value.operations
-                if o.id not in rejected and (not warmup_only or not o.branch)
+                if o.id not in rejected
+                and (not warmup_only or not o.branch)
+                and (
+                    session is None
+                    or o.product_id in session.active_products
+                    or world._product(o.product_id).cancelled
+                )
             ),
         )
         plan = (
@@ -487,7 +620,11 @@ def run(
             if current != observation:
                 observation = current
                 require(observation in world.deliver(), "OBSERVATION_NOT_DELIVERED")
+        if life is not None:
+            session.projection.publish(observation, plan)
         receipt = backend.dispatch(plan.commands[0]) if plan.commands else None
+        if session is not None:
+            session.bind_dispatch(plan, receipt, catalog_observation)
         if joint_policy and hasattr(joint_policy, "end_cycle"):
             joint_policy.end_cycle(plan, receipt)
         decisions.append(
@@ -584,9 +721,10 @@ def run(
             for o in c.operations
             if rework.active(c, world.s.gates, o) and applicable(o, world.s.mode_attempts)
         ):
-            termination = "OPERATIONS_COMPLETE"
-            break
-        if plan.status == "NO_PLAN_FOUND":
+            if life is None:
+                termination = "OPERATIONS_COMPLETE"
+                break
+        if plan.status == "NO_PLAN_FOUND" and life is None:
             termination = "DECISION_BUDGET" if plan.reason == "DECISION_BUDGET" else "NO_PLAN_FOUND"
             break
         if world.s.time_h >= scenario.until_h:
@@ -595,6 +733,8 @@ def run(
         pending = [r.earliest_end_h for r in world.s.running if r.status == "STARTED"]
         if joint_policy:
             pending.append(joint_policy.next_tick(world.s.time_h))
+        if session is not None:
+            pending.extend(session.request_boundaries())
         pending += [
             t.time_h + o.wait_h
             for o in c.operations
@@ -614,11 +754,28 @@ def run(
             pending.append(repair_at)
         if "CALENDAR" in plan.reason or "HUMAN_CAP" in plan.reason:
             pending += [calendar_state(p, world.s.time_h)[1] for p in c.people]
+        if life is not None:
+            pending.append(scenario.until_h)
         if not pending:
             termination = "STALLED"
             break
         tick = min(scenario.until_h, min(pending))
+        if (
+            session is not None
+            and session.workforce_enabled
+            and tick <= world.s.time_h
+            and any(r.status == "EXCEPTION" for r in world.s.running)
+        ):
+            termination = "WORKFORCE_HOLD_PROTECTION"
+            break
         before = world.s.revision
+        if life is not None:
+            life.change(life.waiting_phase(), plan.reason)
+            blocked = life.advance(tick, idle=not world.s.running)
+            if blocked:
+                termination = blocked
+                break
+            continue
         if isaac:
             backend.advance_to(tick)
         else:
@@ -626,11 +783,32 @@ def run(
         if world.s.revision == before:
             termination = "NO_PROGRESS"
             break
+    if life is not None:
+        if isaac:
+            backend.deliver()
+        observed = world.observe()
+        world.deliver()
+        if not decisions or decisions[-1].observation.event_ids != observed.event_ids:
+            decisions.append(
+                Decision(
+                    observed,
+                    m.Plan(
+                        c.schema_version, c.id, observed.id, (), "WAIT", termination, c.research
+                    ),
+                    tuple(sorted(rejected)),
+                    None,
+                )
+            )
     snapshot = world.snapshot()
     if execution_hook:
         execution_hook(backend, "before_audit")
-    audit = check_run(c, snapshot)
-    decision_audit = check_decisions(c, snapshot, (record(d) for d in decisions))
+    dynamic = (
+        dict(catalog=session.history)
+        if session is not None and (session.history.generations or session.workforce_enabled)
+        else {}
+    )
+    audit = check_run(c, snapshot, **dynamic)
+    decision_audit = check_decisions(c, snapshot, (record(d) for d in decisions), **dynamic)
     manifest = {
         "protocol": "S15-PARITY-1",
         "scenario": scenario.__dict__,
@@ -671,4 +849,19 @@ def run(
         manifest["joint_journal"] = joint_policy.journal
     if stop_facts is not None:
         manifest["orderly_stop"] = stop_facts
+    if session is not None:
+        manifest["launch_binding"] = session.binding
+        manifest["catalog_version"] = session.version
+        if life is not None:
+            observed = world.observe()
+            world.deliver()
+            session.bind_observation(observed)
+            session.projection.publish(observed)
+            life.finish(
+                termination, "PASS" if audit.status == decision_audit.status == "PASS" else "FAIL"
+            )
+            manifest["session_final"] = life.final
+            manifest["lifecycle"] = life.data()
+        else:
+            session.persist()
     return Result(snapshot, tuple(decisions), manifest, audit, decision_audit)

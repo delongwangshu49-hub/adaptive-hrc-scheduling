@@ -1,0 +1,24 @@
+{
+  "identity": "P044-CONSUMERS-r2",
+  "run_spec": "P04.4-SESSION-r1",
+  "legacy_launch": "P03.2-CONTRACT-r3",
+  "entrypoints": [
+    "scripts/run_session.py",
+    "scripts/run_s19b_prototype.py",
+    "scripts/run_lifecycle_witness.py"
+  ],
+  "writer": "adaptive_hrc_scheduling.control.session.Session",
+  "lifecycle": "adaptive_hrc_scheduling.control.session_lifecycle.Lifecycle",
+  "projection": "adaptive_hrc_scheduling.timeline.TimelinePublisher",
+  "consumer": "adaptive_hrc_scheduling.timeline.TimelineConsumer",
+  "verifier": "scripts/verify_lifecycle_session.py",
+  "physical_model": "P043-PROD-1.0",
+  "persistence": "P043-WORKFORCE-2 plus P044-LIFECYCLE-2 sidecar",
+  "fixed_contract": "docs/public_delivery_r2/p032_contract_schema_r3.json",
+  "source_sha256": "0fbf9f215f21c93b72d24c4af83c34c579333f9ce554aa6e7aa01b061e6b6712",
+  "lifetime_state": "session-state.json:lifecycle",
+  "lifecycle_revision": "P044-LIFECYCLE-2",
+  "timeline_format": "P044-TIMELINE-2",
+  "independent_revision": "P044-INDEPENDENT-r2",
+  "compatibility": "P04.4-SESSION-r1 RunSpec retained. v1 timelines use independent saved-run review; the live consumer requires v2 evidence."
+}

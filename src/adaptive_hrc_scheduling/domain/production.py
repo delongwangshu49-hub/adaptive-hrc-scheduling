@@ -23,7 +23,7 @@ from adaptive_hrc_scheduling.domain.building import (
     RoleBinding,
 )
 
-Version = Literal["S15-PROD-1.0", "S18-PROD-2.0"]
+Version = Literal["S15-PROD-1.0", "S18-PROD-2.0", "P042-PROD-1.0", "P043-PROD-1.0"]
 Action = Literal[
     "WALK",
     "TRANSFER",
@@ -324,7 +324,9 @@ class BeamReadback:
 @dataclass(frozen=True)
 class Configuration:
     schema_version: Version
-    specification: Literal["S15-PROD-SPEC-1.0", "S18-PROD-SPEC-2.0"]
+    specification: Literal[
+        "S15-PROD-SPEC-1.0", "S18-PROD-SPEC-2.0", "P042-PROD-SPEC-1.0", "P043-PROD-SPEC-1.0"
+    ]
     layout_version: Literal["S15-RECIPE-LAYOUT-r1", "S15-RECIPE-LAYOUT-r2"]
     id: ID
     purpose: Literal["RESEARCH_BLOCKED", "SYNTHETIC_TEST_ONLY", "SIMULATION_RESEARCH_ONLY"]
@@ -605,6 +607,12 @@ class WorldEvent:
         "CANCEL",
         "ORDER_ARRIVAL",
         "RECEIVE_PERMIT",
+        "CATALOG_REGISTER",
+        "PERSON_ARRIVE",
+        "PERSON_DEPART",
+        "PERSON_ABSENT",
+        "PERSON_RETURN",
+        "PERSON_LEFT",
     ]
     entity_id: ID
     product_id: ID

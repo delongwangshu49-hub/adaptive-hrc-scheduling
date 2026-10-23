@@ -133,7 +133,7 @@ def validate_request(data):
     }
     if (
         not isinstance(data, dict)
-        or set(data) not in (required, required | {"control"})
+        or not required <= set(data) <= required | {"control", "session"}
         or data["protocol"] != PROTOCOL
     ):
         raise InputError("REQUEST_FIELDS")
@@ -147,6 +147,25 @@ def validate_request(data):
     if not isinstance(data["created_at"], str):
         raise InputError("CREATED_AT")
     Draft.from_data(data["draft"])
+    if "session" in data:
+        source = Path(__file__).resolve().parents[4] / "src"
+        if str(source) not in sys.path:
+            sys.path.insert(0, str(source))
+        from adaptive_hrc_scheduling.contracts.session import validate_bundle
+        from adaptive_hrc_scheduling.control.session_budget import load_profile
+
+        try:
+            bundle = validate_bundle(data["session"])
+        except ValueError as exc:
+            raise InputError(str(exc)) from exc
+        spec = bundle["spec"]
+        profile = load_profile(bundle["profile"])
+        if (
+            spec["run_id"] != data["run_id"]
+            or spec["profile_sha256"] != profile.sha256
+            or spec["backend"] != ("CPU" if data["backend"] == "light" else "ISAAC")
+        ):
+            raise InputError("SESSION_BUNDLE_BINDING")
     if "control" in data:
         from .control import validate_control
 

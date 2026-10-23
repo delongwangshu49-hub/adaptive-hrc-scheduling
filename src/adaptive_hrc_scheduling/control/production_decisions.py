@@ -152,7 +152,7 @@ def initial_visible_state(config):
     )
 
 
-def check_decisions(config, snapshot, records, *, checkpoint=None):
+def check_decisions(config, snapshot, records, *, checkpoint=None, catalog=None):
     findings = []
     incomplete = False
 
@@ -163,6 +163,13 @@ def check_decisions(config, snapshot, records, *, checkpoint=None):
             findings.append(Finding("R16", ident, reason))
 
     try:
+        if config.schema_version in ("P042-PROD-1.0", "P043-PROD-1.0"):
+            need(catalog is not None, "CATALOG_HISTORY_REQUIRED", "SNAPSHOT", missing=True)
+            if catalog is None:
+                return Report("INCOMPLETE", tuple(findings), None)
+            checkpoint = None
+            need(catalog.config_at(snapshot.events) == config, "FINAL_CATALOG_VIEW", "SNAPSHOT")
+            config = catalog.initial
         records = tuple(records)
         if checkpoint is not None:
             prior = checkpoint.reuse(config, snapshot, records)
@@ -190,14 +197,18 @@ def check_decisions(config, snapshot, records, *, checkpoint=None):
             )
 
         def consume(limit=None):
-            nonlocal next_event, state
+            nonlocal next_event, state, config, config_hash
             receipts, initiated = [], []
             while next_event is not None and (limit is None or len(prefix) < limit):
                 event = next_event
+                if catalog is not None:
+                    if event.id in catalog.by_event:
+                        config = catalog.views[catalog.by_event[event.id]["config_sha256"]]
+                        config_hash = digest(config)
                 need(event.sequence == len(prefix) + 1, "DECISION_EVENT_PREFIX_GAP", event.id)
                 need(
                     (event.run_id, event.epoch, event.config_id, event.config_sha256)
-                    == (snapshot.run_id, snapshot.epoch, config.id, snapshot.config_sha256),
+                    == (snapshot.run_id, snapshot.epoch, config.id, config_hash),
                     "DECISION_EVENT_CONTEXT",
                     event.id,
                 )

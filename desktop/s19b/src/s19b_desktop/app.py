@@ -145,13 +145,22 @@ def configure_application(app):
 
 
 class Workbench(QMainWindow):
-    def __init__(self, *, runs=None, settings=None, display_hold_s=300, control_mode=True):
+    def __init__(
+        self,
+        *,
+        runs=None,
+        settings=None,
+        display_hold_s=300,
+        control_mode=True,
+        session_bundle=None,
+    ):
         super().__init__()
         self.runs = Path(runs or ROOT / ".local/s19b-runs")
         self.settings_path = Path(settings or ROOT / ".local/s19b-desktop-settings.json")
         self.display_hold_s = display_hold_s
         self.pending_launch = None
         self.control_mode = control_mode
+        self.session_bundle = session_bundle
         self.control_request = None
         self.pending_control = None
         self.control_state = None
@@ -620,6 +629,8 @@ class Workbench(QMainWindow):
             return
         self.runs.mkdir(parents=True, exist_ok=True)
         self.run_id = "S19B-" + uuid.uuid4().hex
+        if self.session_bundle:
+            self.run_id = self.session_bundle["spec"]["run_id"]
         self.request_id = uuid.uuid4().hex
         self.run_directory = self.runs / self.run_id
         self.run_directory.mkdir()
@@ -632,6 +643,11 @@ class Workbench(QMainWindow):
             created_at=datetime.now(timezone.utc).isoformat(),
             display_hold_s=self.display_hold_s,
         )
+        if self.session_bundle:
+            from .model import validate_request
+
+            request["session"] = self.session_bundle
+            validate_request(request)
         if self.control_mode:
             request["control"] = confirmation(request, ROOT, self.run_directory)
             self.control_request = request
@@ -1529,10 +1545,15 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--runs", type=Path)
     parser.add_argument("--settings", type=Path)
+    parser.add_argument("--session-bundle", type=Path)
     args = parser.parse_args()
     app = QApplication(sys.argv[:1])
     configure_application(app)
-    window = Workbench(runs=args.runs, settings=args.settings)
+    window = Workbench(
+        runs=args.runs,
+        settings=args.settings,
+        session_bundle=read_json(args.session_bundle) if args.session_bundle else None,
+    )
     window.show()
     return app.exec()
 

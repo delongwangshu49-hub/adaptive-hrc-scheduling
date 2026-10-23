@@ -1,0 +1,694 @@
+{
+  "identity": "P03.2-DETERMINISTIC-EXAMPLES-r2",
+  "scope": "DECLARATIVE_CONTRACT_ONLY_NOT_PRODUCTION_OR_KIT",
+  "spec_cases": [
+    {
+      "id": "S01_valid_shared_RunSpec",
+      "spec": {
+        "schema_version": "P03.2-CONTRACT-r3",
+        "canonical_version": "P032-CANONICAL-1",
+        "run_id": "R032",
+        "epoch": 0,
+        "mode": "INTERACTIVE_PRODUCTION",
+        "scenario": "INTERACTIVE",
+        "backend": "ISAAC",
+        "method": "ADAPTIVE",
+        "budget_profile_id": "PROFILE-1",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "template_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "qualification_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_orders": [
+          {
+            "order_id": "ORD1",
+            "template_id": "SR-W1",
+            "template_revision": "v1",
+            "quantity": 3,
+            "due_sim_h": 100,
+            "priority": "NORMAL"
+          }
+        ],
+        "initial_people": [
+          {
+            "person_id": "W1",
+            "parameter_template_id": "HUMAN-1",
+            "calendar_id": "CAL-1",
+            "initial_f": 0.2,
+            "qualification_evidence_id": "QUAL-1"
+          }
+        ],
+        "clock": {
+          "idle_policy": "ADVANCE_METERED",
+          "session_until_h": 720,
+          "wall_budget_s": 3600,
+          "idle_step_h": 0.01,
+          "simulation_rate": 0.01,
+          "boundary_poll_wall_s": 0.1
+        },
+        "cost": {
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "currency": "MODEL_UNIT",
+          "rates": [
+            {
+              "template_id": "HUMAN-1",
+              "rate_per_h": 10
+            }
+          ],
+          "person_template_ids": [
+            "HUMAN-1"
+          ],
+          "legacy_resource_cost_source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "capacity": {
+          "max_lifetime_products": 20,
+          "max_open_products": 8,
+          "max_queued_products": 8,
+          "max_wip_products": 3
+        }
+      },
+      "expected": "VALID"
+    },
+    {
+      "id": "S02_fixed_requires_manifest",
+      "spec": {
+        "schema_version": "P03.2-CONTRACT-r3",
+        "canonical_version": "P032-CANONICAL-1",
+        "run_id": "R032",
+        "epoch": 0,
+        "mode": "FIXED_PROTOCOL",
+        "scenario": "INTERACTIVE",
+        "backend": "ISAAC",
+        "method": "ADAPTIVE",
+        "budget_profile_id": "PROFILE-1",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "template_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "qualification_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_orders": [
+          {
+            "order_id": "ORD1",
+            "template_id": "SR-W1",
+            "template_revision": "v1",
+            "quantity": 3,
+            "due_sim_h": 100,
+            "priority": "NORMAL"
+          }
+        ],
+        "initial_people": [
+          {
+            "person_id": "W1",
+            "parameter_template_id": "HUMAN-1",
+            "calendar_id": "CAL-1",
+            "initial_f": 0.2,
+            "qualification_evidence_id": "QUAL-1"
+          }
+        ],
+        "clock": {
+          "idle_policy": "ADVANCE_METERED",
+          "session_until_h": 720,
+          "wall_budget_s": 3600,
+          "idle_step_h": 0.01,
+          "simulation_rate": 0.01,
+          "boundary_poll_wall_s": 0.1
+        },
+        "cost": {
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "currency": "MODEL_UNIT",
+          "rates": [
+            {
+              "template_id": "HUMAN-1",
+              "rate_per_h": 10
+            }
+          ],
+          "person_template_ids": [
+            "HUMAN-1"
+          ],
+          "legacy_resource_cost_source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "capacity": {
+          "max_lifetime_products": 20,
+          "max_open_products": 8,
+          "max_queued_products": 8,
+          "max_wip_products": 3
+        }
+      },
+      "expected": "FIXED_MANIFEST_REQUIRED"
+    },
+    {
+      "id": "S03_replay_requires_source",
+      "spec": {
+        "schema_version": "P03.2-CONTRACT-r3",
+        "canonical_version": "P032-CANONICAL-1",
+        "run_id": "R032",
+        "epoch": 0,
+        "mode": "INTERACTIVE_REPLAY",
+        "scenario": "INTERACTIVE",
+        "backend": "ISAAC",
+        "method": "ADAPTIVE",
+        "budget_profile_id": "PROFILE-1",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "template_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "qualification_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_orders": [
+          {
+            "order_id": "ORD1",
+            "template_id": "SR-W1",
+            "template_revision": "v1",
+            "quantity": 3,
+            "due_sim_h": 100,
+            "priority": "NORMAL"
+          }
+        ],
+        "initial_people": [
+          {
+            "person_id": "W1",
+            "parameter_template_id": "HUMAN-1",
+            "calendar_id": "CAL-1",
+            "initial_f": 0.2,
+            "qualification_evidence_id": "QUAL-1"
+          }
+        ],
+        "clock": {
+          "idle_policy": "ADVANCE_METERED",
+          "session_until_h": 720,
+          "wall_budget_s": 3600,
+          "idle_step_h": 0.01,
+          "simulation_rate": 0.01,
+          "boundary_poll_wall_s": 0.1
+        },
+        "cost": {
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "currency": "MODEL_UNIT",
+          "rates": [
+            {
+              "template_id": "HUMAN-1",
+              "rate_per_h": 10
+            }
+          ],
+          "person_template_ids": [
+            "HUMAN-1"
+          ],
+          "legacy_resource_cost_source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "capacity": {
+          "max_lifetime_products": 20,
+          "max_open_products": 8,
+          "max_queued_products": 8,
+          "max_wip_products": 3
+        }
+      },
+      "expected": "REPLAY_SOURCE_REQUIRED"
+    },
+    {
+      "id": "S04_zero_clock_step",
+      "spec": {
+        "schema_version": "P03.2-CONTRACT-r3",
+        "canonical_version": "P032-CANONICAL-1",
+        "run_id": "R032",
+        "epoch": 0,
+        "mode": "INTERACTIVE_PRODUCTION",
+        "scenario": "INTERACTIVE",
+        "backend": "ISAAC",
+        "method": "ADAPTIVE",
+        "budget_profile_id": "PROFILE-1",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "template_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "qualification_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_orders": [
+          {
+            "order_id": "ORD1",
+            "template_id": "SR-W1",
+            "template_revision": "v1",
+            "quantity": 3,
+            "due_sim_h": 100,
+            "priority": "NORMAL"
+          }
+        ],
+        "initial_people": [
+          {
+            "person_id": "W1",
+            "parameter_template_id": "HUMAN-1",
+            "calendar_id": "CAL-1",
+            "initial_f": 0.2,
+            "qualification_evidence_id": "QUAL-1"
+          }
+        ],
+        "clock": {
+          "idle_policy": "ADVANCE_METERED",
+          "session_until_h": 720,
+          "wall_budget_s": 3600,
+          "idle_step_h": 0,
+          "simulation_rate": 0.01,
+          "boundary_poll_wall_s": 0.1
+        },
+        "cost": {
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "currency": "MODEL_UNIT",
+          "rates": [
+            {
+              "template_id": "HUMAN-1",
+              "rate_per_h": 10
+            }
+          ],
+          "person_template_ids": [
+            "HUMAN-1"
+          ],
+          "legacy_resource_cost_source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "capacity": {
+          "max_lifetime_products": 20,
+          "max_open_products": 8,
+          "max_queued_products": 8,
+          "max_wip_products": 3
+        }
+      },
+      "expected": "FIELD_INVALID"
+    },
+    {
+      "id": "S05_no_silent_cost_rate",
+      "spec": {
+        "schema_version": "P03.2-CONTRACT-r3",
+        "canonical_version": "P032-CANONICAL-1",
+        "run_id": "R032",
+        "epoch": 0,
+        "mode": "INTERACTIVE_PRODUCTION",
+        "scenario": "INTERACTIVE",
+        "backend": "ISAAC",
+        "method": "ADAPTIVE",
+        "budget_profile_id": "PROFILE-1",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "template_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "qualification_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_orders": [
+          {
+            "order_id": "ORD1",
+            "template_id": "SR-W1",
+            "template_revision": "v1",
+            "quantity": 3,
+            "due_sim_h": 100,
+            "priority": "NORMAL"
+          }
+        ],
+        "initial_people": [
+          {
+            "person_id": "W1",
+            "parameter_template_id": "HUMAN-1",
+            "calendar_id": "CAL-1",
+            "initial_f": 0.2,
+            "qualification_evidence_id": "QUAL-1"
+          }
+        ],
+        "clock": {
+          "idle_policy": "ADVANCE_METERED",
+          "session_until_h": 720,
+          "wall_budget_s": 3600,
+          "idle_step_h": 0.01,
+          "simulation_rate": 0.01,
+          "boundary_poll_wall_s": 0.1
+        },
+        "cost": {
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "currency": "MODEL_UNIT",
+          "rates": [
+            {
+              "template_id": "HUMAN-1"
+            }
+          ],
+          "person_template_ids": [
+            "HUMAN-1"
+          ],
+          "legacy_resource_cost_source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "capacity": {
+          "max_lifetime_products": 20,
+          "max_open_products": 8,
+          "max_queued_products": 8,
+          "max_wip_products": 3
+        }
+      },
+      "expected": "FIELD_REQUIRED"
+    },
+    {
+      "id": "S06_three_cumulative_cannot_final_delivery",
+      "spec": {
+        "schema_version": "P03.2-CONTRACT-r3",
+        "canonical_version": "P032-CANONICAL-1",
+        "run_id": "R032",
+        "epoch": 0,
+        "mode": "INTERACTIVE_PRODUCTION",
+        "scenario": "INTERACTIVE",
+        "backend": "ISAAC",
+        "method": "ADAPTIVE",
+        "budget_profile_id": "PROFILE-1",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "template_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "qualification_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_orders": [
+          {
+            "order_id": "ORD1",
+            "template_id": "SR-W1",
+            "template_revision": "v1",
+            "quantity": 3,
+            "due_sim_h": 100,
+            "priority": "NORMAL"
+          }
+        ],
+        "initial_people": [
+          {
+            "person_id": "W1",
+            "parameter_template_id": "HUMAN-1",
+            "calendar_id": "CAL-1",
+            "initial_f": 0.2,
+            "qualification_evidence_id": "QUAL-1"
+          }
+        ],
+        "clock": {
+          "idle_policy": "ADVANCE_METERED",
+          "session_until_h": 720,
+          "wall_budget_s": 3600,
+          "idle_step_h": 0.01,
+          "simulation_rate": 0.01,
+          "boundary_poll_wall_s": 0.1
+        },
+        "cost": {
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "currency": "MODEL_UNIT",
+          "rates": [
+            {
+              "template_id": "HUMAN-1",
+              "rate_per_h": 10
+            }
+          ],
+          "person_template_ids": [
+            "HUMAN-1"
+          ],
+          "legacy_resource_cost_source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "capacity": {
+          "max_lifetime_products": 3,
+          "max_open_products": 8,
+          "max_queued_products": 8,
+          "max_wip_products": 3
+        }
+      },
+      "expected": "LIFETIME_WITNESS_REQUIRED"
+    },
+    {
+      "id": "S07_unknown_method",
+      "spec": {
+        "schema_version": "P03.2-CONTRACT-r3",
+        "canonical_version": "P032-CANONICAL-1",
+        "run_id": "R032",
+        "epoch": 0,
+        "mode": "INTERACTIVE_PRODUCTION",
+        "scenario": "INTERACTIVE",
+        "backend": "ISAAC",
+        "method": "OTHER",
+        "budget_profile_id": "PROFILE-1",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "template_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "qualification_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_orders": [
+          {
+            "order_id": "ORD1",
+            "template_id": "SR-W1",
+            "template_revision": "v1",
+            "quantity": 3,
+            "due_sim_h": 100,
+            "priority": "NORMAL"
+          }
+        ],
+        "initial_people": [
+          {
+            "person_id": "W1",
+            "parameter_template_id": "HUMAN-1",
+            "calendar_id": "CAL-1",
+            "initial_f": 0.2,
+            "qualification_evidence_id": "QUAL-1"
+          }
+        ],
+        "clock": {
+          "idle_policy": "ADVANCE_METERED",
+          "session_until_h": 720,
+          "wall_budget_s": 3600,
+          "idle_step_h": 0.01,
+          "simulation_rate": 0.01,
+          "boundary_poll_wall_s": 0.1
+        },
+        "cost": {
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "currency": "MODEL_UNIT",
+          "rates": [
+            {
+              "template_id": "HUMAN-1",
+              "rate_per_h": 10
+            }
+          ],
+          "person_template_ids": [
+            "HUMAN-1"
+          ],
+          "legacy_resource_cost_source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "capacity": {
+          "max_lifetime_products": 20,
+          "max_open_products": 8,
+          "max_queued_products": 8,
+          "max_wip_products": 3
+        }
+      },
+      "expected": "FIELD_INVALID"
+    },
+    {
+      "id": "S08_initial_person_duplicate",
+      "spec": {
+        "schema_version": "P03.2-CONTRACT-r3",
+        "canonical_version": "P032-CANONICAL-1",
+        "run_id": "R032",
+        "epoch": 0,
+        "mode": "INTERACTIVE_PRODUCTION",
+        "scenario": "INTERACTIVE",
+        "backend": "ISAAC",
+        "method": "ADAPTIVE",
+        "budget_profile_id": "PROFILE-1",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "template_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "qualification_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_orders": [
+          {
+            "order_id": "ORD1",
+            "template_id": "SR-W1",
+            "template_revision": "v1",
+            "quantity": 3,
+            "due_sim_h": 100,
+            "priority": "NORMAL"
+          }
+        ],
+        "initial_people": [
+          {
+            "person_id": "W1",
+            "parameter_template_id": "HUMAN-1",
+            "calendar_id": "CAL-1",
+            "initial_f": 0.2,
+            "qualification_evidence_id": "QUAL-1"
+          },
+          {
+            "person_id": "W1",
+            "parameter_template_id": "HUMAN-1",
+            "calendar_id": "CAL-1",
+            "initial_f": 0.2,
+            "qualification_evidence_id": "QUAL-1"
+          }
+        ],
+        "clock": {
+          "idle_policy": "ADVANCE_METERED",
+          "session_until_h": 720,
+          "wall_budget_s": 3600,
+          "idle_step_h": 0.01,
+          "simulation_rate": 0.01,
+          "boundary_poll_wall_s": 0.1
+        },
+        "cost": {
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "currency": "MODEL_UNIT",
+          "rates": [
+            {
+              "template_id": "HUMAN-1",
+              "rate_per_h": 10
+            }
+          ],
+          "person_template_ids": [
+            "HUMAN-1"
+          ],
+          "legacy_resource_cost_source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "capacity": {
+          "max_lifetime_products": 20,
+          "max_open_products": 8,
+          "max_queued_products": 8,
+          "max_wip_products": 3
+        }
+      },
+      "expected": "DUPLICATE_INITIAL_ID"
+    },
+    {
+      "id": "S09_unknown_spec_field",
+      "spec": {
+        "schema_version": "P03.2-CONTRACT-r3",
+        "canonical_version": "P032-CANONICAL-1",
+        "run_id": "R032",
+        "epoch": 0,
+        "mode": "INTERACTIVE_PRODUCTION",
+        "scenario": "INTERACTIVE",
+        "backend": "ISAAC",
+        "method": "ADAPTIVE",
+        "budget_profile_id": "PROFILE-1",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "template_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "qualification_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_orders": [
+          {
+            "order_id": "ORD1",
+            "template_id": "SR-W1",
+            "template_revision": "v1",
+            "quantity": 3,
+            "due_sim_h": 100,
+            "priority": "NORMAL"
+          }
+        ],
+        "initial_people": [
+          {
+            "person_id": "W1",
+            "parameter_template_id": "HUMAN-1",
+            "calendar_id": "CAL-1",
+            "initial_f": 0.2,
+            "qualification_evidence_id": "QUAL-1"
+          }
+        ],
+        "clock": {
+          "idle_policy": "ADVANCE_METERED",
+          "session_until_h": 720,
+          "wall_budget_s": 3600,
+          "idle_step_h": 0.01,
+          "simulation_rate": 0.01,
+          "boundary_poll_wall_s": 0.1
+        },
+        "cost": {
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "currency": "MODEL_UNIT",
+          "rates": [
+            {
+              "template_id": "HUMAN-1",
+              "rate_per_h": 10
+            }
+          ],
+          "person_template_ids": [
+            "HUMAN-1"
+          ],
+          "legacy_resource_cost_source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "capacity": {
+          "max_lifetime_products": 20,
+          "max_open_products": 8,
+          "max_queued_products": 8,
+          "max_wip_products": 3
+        },
+        "extra": 1
+      },
+      "expected": "FIELD_UNKNOWN"
+    },
+    {
+      "id": "S10_fixed_valid_legacy_domain",
+      "spec": {
+        "schema_version": "P03.2-CONTRACT-r3",
+        "canonical_version": "P032-CANONICAL-1",
+        "run_id": "R032",
+        "epoch": 0,
+        "mode": "FIXED_PROTOCOL",
+        "scenario": "N",
+        "backend": "ISAAC",
+        "method": "ADAPTIVE",
+        "budget_profile_id": "PROFILE-1",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "template_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "qualification_registry_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "profile_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "initial_orders": [
+          {
+            "order_id": "ORD1",
+            "template_id": "SR-W1",
+            "template_revision": "v1",
+            "quantity": 3,
+            "due_sim_h": 100,
+            "priority": "NORMAL"
+          }
+        ],
+        "initial_people": [
+          {
+            "person_id": "W1",
+            "parameter_template_id": "HUMAN-1",
+            "calendar_id": "CAL-1",
+            "initial_f": 0.2,
+            "qualification_evidence_id": "QUAL-1"
+          }
+        ],
+        "clock": {
+          "idle_policy": "ADVANCE_METERED",
+          "session_until_h": 720,
+          "wall_budget_s": 3600,
+          "idle_step_h": 0.01,
+          "simulation_rate": 0.01,
+          "boundary_poll_wall_s": 0.1
+        },
+        "cost": {
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "currency": "MODEL_UNIT",
+          "rates": [
+            {
+              "template_id": "HUMAN-1",
+              "rate_per_h": 10
+            }
+          ],
+          "person_template_ids": [
+            "HUMAN-1"
+          ],
+          "legacy_resource_cost_source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "capacity": {
+          "max_lifetime_products": 20,
+          "max_open_products": 8,
+          "max_queued_products": 8,
+          "max_wip_products": 3
+        },
+        "fixed_event_manifest_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": "VALID"
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import json
 import math
 from types import SimpleNamespace
 
-from pxr import Gf, UsdGeom, UsdPhysics
+from pxr import Gf, Sdf, UsdGeom, UsdPhysics
 
 from adaptive_hrc_scheduling.contracts.codec import as_data, decode, require
 from adaptive_hrc_scheduling.domain import production as m
@@ -215,9 +215,177 @@ class USDProductionPort:
         require(bool(prim), "MISSING_USD_ENTITY:" + ident)
         return prim
 
+    def append_catalog(self, config, products, catalog_version):
+        """Incrementally prepare empty real USD loads; never rebuild the scene."""
+        from .scene_correction import presence
+
+        added = [x for x in (*config.lots, *config.entities) if x.product_id in products]
+        require(not any(x.id in self.mapping for x in added), "SCENE_ID_REUSED")
+        old_positions = {
+            i: self.position(i)
+            for i in self.mapping
+            if self.scene.stage.GetPrimAtPath(self.mapping[i])
+        }
+        rows, prepared = [], []
+        try:
+            for x in added:
+                path = "/World/S15/Loads/" + key(x.id)
+                require(not self.scene.stage.GetPrimAtPath(path), "SCENE_PATH_REUSED")
+                prepared.append((x.id, path))
+                self.scene.ident(x.id, path, (-30, 0, 0))
+                self.scene.shape(
+                    path + "/Envelope", (0, 0, x.size_m[2] / 2), x.size_m, "steel", collision=True
+                )
+                self.loads[x.id] = x
+                self.expected[x.id] = self.position(x.id)
+                if isinstance(x, m.Lot):
+                    self.quantities[x.id] = 0
+                    self.scene.attr(self.prim(x.id), "s15Quantity", 0)
+                presence(self, x.id, False)
+                prim = self.prim(x.id)
+                for k, v in dict(
+                    runId=self.run_id,
+                    epoch=self.epoch,
+                    catalogVersion=catalog_version,
+                    templateRevision="v1",
+                    productId=x.product_id,
+                ).items():
+                    self.scene.attr(prim, k, v)
+                visible = UsdGeom.Imageable(prim).ComputeVisibility() != "invisible"
+                require(not visible, "SCENE_PREPARATION_VISIBLE")
+                require(self.position(x.id) == (-30, 0, 0), "SCENE_PREPARATION_POSITION")
+                rows.append(
+                    dict(
+                        domain_id=x.id,
+                        scene_entity_id=x.id,
+                        prim_path=path,
+                        template_revision="v1",
+                        catalog_version=catalog_version,
+                        actual_position_m=list(self.position(x.id)),
+                        visible=visible,
+                        quantity=self.quantities.get(x.id),
+                        run_id=self.run_id,
+                        epoch=self.epoch,
+                    )
+                )
+            require(
+                all(self.position(i) == p for i, p in old_positions.items()), "OLD_SCENE_CHANGED"
+            )
+        except Exception:
+            for ident, path in prepared:
+                self.scene.stage.RemovePrim(path)
+                for mapping in (self.mapping, self.loads, self.expected, self.quantities):
+                    mapping.pop(ident, None)
+            raise
+        self.config = config
+        self.ops.update({o.id: o for o in config.operations})
+        self.routes.update({r.id: r for r in config.routes})
+        self.places.update({p.id: p.position for p in config.places})
+        self.variable_ports.update(
+            c.place_id for layout in config.support_layouts for c in layout.contacts
+        )
+        # Existing geometric support aliases cover identical approved positions.
+        by_point = {
+            tuple(p.position): self.support_aliases.get(p.id, p.id)
+            for p in config.places
+            if p.id in self.support_aliases
+        }
+        for place in config.places:
+            if place.parent is not None and place.id not in self.variable_ports:
+                if tuple(place.position) in by_point:
+                    self.support_aliases.setdefault(place.id, by_point[tuple(place.position)])
+        return rows
+
     def position(self, ident):
         self.prim(ident)
         return tuple(self.scene.world_position(self.mapping[ident]))
+
+    def append_person(self, config, person, payload, catalog_version):
+        path = payload["scene_reference"]["prim_path"]
+        require(
+            person.id not in self.mapping and not self.scene.stage.GetPrimAtPath(path),
+            "PERSON_SCENE_ID_USED",
+        )
+        previous_config = self.config
+        try:
+            return self._prepare_person(config, person, payload, catalog_version)
+        except Exception:
+            self.scene.stage.RemovePrim(path)
+            self.mapping.pop(person.id, None)
+            self.people.discard(person.id)
+            self.expected.pop(person.id, None)
+            self.config = previous_config
+            raise
+
+    def _prepare_person(self, config, person, payload, catalog_version):
+        """Copy the tested person body, then read its actual bound USD position."""
+        path = payload["scene_reference"]["prim_path"]
+        require(
+            person.id not in self.mapping and not self.scene.stage.GetPrimAtPath(path),
+            "PERSON_SCENE_ID_USED",
+        )
+        old = {i: self.position(i) for i in self.people}
+        source = payload["parameter_template_id"].removeprefix("P043-").removesuffix("-v1")
+        self.scene.stage.DefinePrim("/World/P043/People", "Xform")
+        require(
+            Sdf.CopySpec(
+                self.scene.stage.GetRootLayer(),
+                self.mapping[source],
+                self.scene.stage.GetRootLayer(),
+                path,
+            ),
+            "PERSON_BODY_COPY",
+        )
+        self.mapping[person.id] = path
+        self.people.add(person.id)
+        self.config = config
+        self.put(person.id, standing_point(config, person.id, payload["arrival_location"]))
+        self.scene.attr(self.prim(person.id), "domainId", person.id)
+        for name, value in (
+            ("sceneId", person.id),
+            ("runId", self.run_id),
+            ("epoch", self.epoch),
+            ("catalogVersion", catalog_version),
+            ("templateRevision", "v1"),
+        ):
+            self.scene.attr(self.prim(person.id), name, value)
+        self.scene.stage.RemovePrim(path + "/Role")
+        self.scene.label(path + "/Role", person.id, (-0.3, -0.7, 0.03), 0.2, "yellow")
+        self.scene.attr(self.prim(person.id), "p043Template", payload["parameter_template_id"])
+        self.scene.attr(self.prim(person.id), "p043CatalogVersion", catalog_version)
+        require(all(self.position(i) == v for i, v in old.items()), "OLD_PERSON_SCENE_CHANGED")
+        return self.person_readback(person.id, payload["arrival_location"], catalog_version)
+
+    def person_readback(self, pid, location, catalog_version):
+        actual = self.position(pid)
+        expected = (
+            self.expected[pid]
+            if location == "IN_TRANSIT"
+            else standing_point(self.config, pid, location)
+        )
+        require(close(actual, expected), "PERSON_ACTUAL_LOCATION")
+        require(
+            bool(self.scene.stage.GetPrimAtPath(self.mapping[pid] + "/Occupancy")),
+            "PERSON_COLLISION_PROXY",
+        )
+        return dict(
+            domain_id=pid,
+            scene_entity_id=pid,
+            prim_path=self.mapping[pid],
+            template_revision="v1",
+            catalog_version=catalog_version,
+            actual_location=location,
+            actual_position_m=list(actual),
+            ready=True,
+            source="ISAAC_USD",
+            run_id=self.run_id,
+            epoch=self.epoch,
+        )
+
+    def hold_person(self, command_id):
+        # Freeze the current kinematic sample; attachment/expected positions stay.
+        require(command_id in self.running, "PERSON_HOLD_UNKNOWN_COMMAND")
+        self.scene.attr(self.scene.stage.GetPrimAtPath("/World"), "p043HeldCommand", command_id)
 
     def put(self, ident, point):
         self.prim(ident)
@@ -652,6 +820,24 @@ class USDProductionPort:
             self.attached.add(run.command.id)
 
     def world_event(self, event):
+        if event.kind.startswith("PERSON_"):
+            from adaptive_hrc_scheduling.dynamic_workforce import status
+
+            person_status = status(self.workforce_world.s, event.entity_id)
+            self.scene.attr(self.prim(event.entity_id), "p043Presence", person_status)
+            body = UsdGeom.Imageable(self.prim(event.entity_id))
+            departed = person_status in ("DEPARTED", "ABSENT")
+            body.CreateVisibilityAttr(
+                UsdGeom.Tokens.invisible if departed else UsdGeom.Tokens.inherited
+            )
+            proxy = self.scene.stage.GetPrimAtPath(self.mapping[event.entity_id] + "/Occupancy")
+            UsdPhysics.CollisionAPI(proxy).CreateCollisionEnabledAttr(not departed)
+            self.scene.attr(self.prim(event.entity_id), "p043LastEvent", event.kind)
+            self.scene.attr(
+                self.prim(event.entity_id),
+                "s15Available",
+                event.kind in ("PERSON_ARRIVE", "PERSON_RETURN"),
+            )
         if event.kind == "ARRIVAL":
             self.put(event.entity_id, self.places[event.evidence_id])
             self.quantities[event.entity_id] = self.loads[event.entity_id].quantity

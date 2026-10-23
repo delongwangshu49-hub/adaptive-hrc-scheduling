@@ -10,6 +10,7 @@ from adaptive_hrc_scheduling.building_human import calendar_state
 from adaptive_hrc_scheduling.contracts.codec import ContractError
 from adaptive_hrc_scheduling.contracts.production import mode_for, validate
 from adaptive_hrc_scheduling.domain import production as m
+from adaptive_hrc_scheduling.dynamic_workforce import control_location, eligible, off_shift
 from adaptive_hrc_scheduling.production_admission import applicable, completed_activity
 from adaptive_hrc_scheduling.production_backend import ProductionBackend
 from adaptive_hrc_scheduling.production_geometry import route, standing_point, transport_sweeps
@@ -104,6 +105,25 @@ def choose(
             for role in op.roles:
                 requested = crews.get(op.activity_id + ":" + role.id) if config.research else None
                 person = requested or role.id
+                if (
+                    config.schema_version == "P043-PROD-1.0"
+                    and not requested
+                    and not eligible(obs.state, person)
+                ):
+                    alternatives = [
+                        p
+                        for p in config.people
+                        if role.qualification in p.qualifications and eligible(obs.state, p.id)
+                    ]
+                    if alternatives:
+                        person = min(
+                            alternatives,
+                            key=lambda p: (
+                                p.id in busy,
+                                next(h.fatigue for h in obs.state.humans if h.person_id == p.id),
+                                p.id,
+                            ),
+                        ).id
                 chosen.append(m.RoleBinding(role.id, person))
             return tuple(chosen)
         attempt = next(
@@ -122,6 +142,9 @@ def choose(
                         and (op.activity_id not in crews or p.id == crews[op.activity_id])
                     ),
                     key=lambda p: (
+                        not eligible(obs.state, p.id)
+                        if config.schema_version == "P043-PROD-1.0"
+                        else False,
                         p.id in busy,
                         next(h.fatigue for h in obs.state.humans if h.person_id == p.id),
                         p.id,
@@ -132,7 +155,12 @@ def choose(
         )
 
     def command(op, service=None, held=None):
-        service = service or cancel_services.get(op.id) or handover_services.get(op.id)
+        service = (
+            service
+            or (held.command.service if held else None)
+            or cancel_services.get(op.id)
+            or handover_services.get(op.id)
+        )
         return m.DispatchCommand(
             config.schema_version,
             config.id,
@@ -329,7 +357,7 @@ def choose(
         if parent is None:
             continue
         for person in rack.clearance_people:
-            cleared = service_for(parent, person, "CONTROL-" + person)
+            cleared = service_for(parent, person, control_location(config, person))
             if cleared:
                 return plan(
                     config.schema_version,
@@ -403,6 +431,25 @@ def choose(
             ):
                 continue
             desired = crews.get(a.activity_id)
+            if (
+                config.schema_version == "P043-PROD-1.0"
+                and a.crew
+                and not eligible(obs.state, a.crew[0].person_id)
+            ):
+                replacements = [
+                    p
+                    for p in config.people
+                    if "WELD" in p.qualifications and eligible(obs.state, p.id)
+                ]
+                if replacements:
+                    desired = min(
+                        replacements,
+                        key=lambda p: (
+                            positions[p.id] != "J2",
+                            next(h.fatigue for h in obs.state.humans if h.person_id == p.id),
+                            p.id,
+                        ),
+                    ).id
             if a.handover is not None:
                 change = replace(a.handover, phase="RESTORE")
             elif desired is not None and desired != a.crew[0].person_id:
@@ -436,9 +483,50 @@ def choose(
             or any(r.command.operation_id == o.id for r in obs.state.running)
         ]
         + [s.operation for s in cancel_services.values()]
-        + [s.operation for s in handover_services.values()],
+        + [s.operation for s in handover_services.values()]
+        + (
+            [
+                r.command.service.operation
+                for r in obs.state.running
+                if r.status == "EXCEPTION" and r.command.service
+            ]
+            if config.schema_version == "P043-PROD-1.0"
+            else []
+        ),
+        # P043 interrupted services retain their original operation/route and
+        # resume identity; they are not part of the frozen static operation list.
         key=priority,
     )
+
+    if config.schema_version in ("P042-PROD-1.0", "P043-PROD-1.0"):
+        # New raw stock cannot enter an occupied receiving lane. When the
+        # previous delivery leaves an empty carrier there, physically clear it
+        # using the ordinary, fully admitted walking/empty-return service.
+        fork_location = positions["FORK-01"]
+        root = world.places.get(fork_location)
+        waiting = next(
+            (
+                o
+                for o in candidates
+                if o.action == "TRANSFER"
+                and o.entity_id in world.lots
+                and world.lots[o.entity_id].material == "STEEL"
+                and not world.lots[o.entity_id].parent_ids
+                and not world._lot(o.entity_id).arrived
+            ),
+            None,
+        )
+        if waiting is not None and root is not None and (root.parent or root.id) == "RECEIVE":
+            clearance = service_for(waiting, "FORK-01", "FORK-PARK")
+            if clearance:
+                return plan(
+                    config.schema_version,
+                    config.id,
+                    obs.id,
+                    (clearance,),
+                    "CANDIDATE",
+                    "P042:INGRESS_CLEARANCE:" + waiting.product_id,
+                )
 
     def traffic_clearance(op):
         if op.route_id and world.routes[op.route_id].device_id in ("FORK-01", "CART-01", "TEST1"):
@@ -561,8 +649,10 @@ def choose(
         cmd = command(op, held=held)
         if op.branch and op.branch.phase == "ROBOT":
             for person in config.people:
-                if positions[person.id] == "J2":
-                    prepared = service_for(op, person.id, "CONTROL-" + person.id)
+                if positions[person.id] == "J2" and not (
+                    config.schema_version == "P043-PROD-1.0" and off_shift(obs.state, person.id)
+                ):
+                    prepared = service_for(op, person.id, control_location(config, person.id))
                     if prepared:
                         return plan(
                             config.schema_version,

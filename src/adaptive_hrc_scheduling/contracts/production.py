@@ -592,6 +592,18 @@ def production_schema(kind, *, simulation=False):
         props = definition.get("properties", {})
         if "schema_version" in props:
             props["schema_version"] = {"enum": ["S18-PROD-2.0" if simulation else "S15-PROD-1.0"]}
+        if name == "WorldEvent":
+            props["kind"]["enum"] = [
+                x
+                for x in props["kind"]["enum"]
+                if x != "CATALOG_REGISTER" and not x.startswith("PERSON_")
+            ]
+        if name == "Configuration":
+            props["specification"]["enum"] = [
+                x
+                for x in props["specification"]["enum"]
+                if x not in ("P042-PROD-SPEC-1.0", "P043-PROD-SPEC-1.0")
+            ]
         if not simulation:
             for field in additions.get(name, ()):
                 props.pop(field, None)

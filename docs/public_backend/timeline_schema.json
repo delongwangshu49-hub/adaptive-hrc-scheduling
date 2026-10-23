@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "P044-TIMELINE-2",
+  "type": "object",
+  "required": [
+    "format",
+    "sequence",
+    "previous_packet_sha256",
+    "packet_sha256",
+    "envelope",
+    "upserts",
+    "removed",
+    "events",
+    "receipts",
+    "catalog",
+    "orders",
+    "people",
+    "devices",
+    "failed_resources",
+    "workforce_statistics",
+    "business_results",
+    "scene_bindings",
+    "cache_transitions",
+    "plan",
+    "source_basis",
+    "source"
+  ],
+  "properties": {
+    "format": {
+      "const": "P044-TIMELINE-2"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "previous_packet_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "packet_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "envelope": {
+      "type": "object",
+      "required": [
+        "run_id",
+        "epoch",
+        "run_spec_sha256",
+        "initial_config_sha256",
+        "catalog_version",
+        "catalog_hash",
+        "materialized_catalog_sha256",
+        "state_revision",
+        "observation_id",
+        "event_count",
+        "event_prefix_hash",
+        "plan_version",
+        "sampled_sim_h",
+        "received_sim_h",
+        "sampled_monotonic_s",
+        "source_status",
+        "format"
+      ],
+      "properties": {
+        "format": {
+          "const": "P044-TIMELINE-2"
+        }
+      }
+    },
+    "upserts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "row_id",
+          "row_kind",
+          "schedule_state"
+        ],
+        "properties": {
+          "schedule_state": {
+            "enum": [
+              "ACTUAL",
+              "COMMITTED",
+              "TENTATIVE",
+              "UNSCHEDULED"
+            ]
+          },
+          "proposal_state": {
+            "enum": [
+              "CANDIDATE",
+              "ADOPTED",
+              "SUPERSEDED"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "row_kind": {
+                  "const": "PERSON_INTERVAL"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "person_id",
+                "start_h",
+                "end_h",
+                "presence",
+                "availability",
+                "labour_cost"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "row_kind": {
+                  "const": "FACT_PREFIX"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "command_id",
+                "product_id",
+                "order_id",
+                "operation_id",
+                "activity_id",
+                "attempt",
+                "mode",
+                "roles",
+                "equipment",
+                "operation_sha256",
+                "admitted_catalog_version",
+                "admitted_catalog_hash",
+                "start_h",
+                "start_event_id",
+                "start_event_sequence",
+                "end_status"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "removed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "events": {
+      "type": "array"
+    },
+    "receipts": {
+      "type": "array"
+    },
+    "source_basis": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "spec",
+        "configuration"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "observation",
+        "generations",
+        "deltas",
+        "command_bindings",
+        "intervals",
+        "plans"
+      ]
+    },
+    "orders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "order_id",
+          "due_h",
+          "priority"
+        ],
+        "properties": {
+          "priority": {
+            "enum": [
+              "NORMAL",
+              "URGENT"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "$comment": "Shape is insufficient: consumer and independent raw-prefix checks are mandatory."
+}

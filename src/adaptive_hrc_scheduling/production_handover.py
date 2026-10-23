@@ -12,7 +12,15 @@ def operation(config, change, ident):
     require(
         scope is not None
         and change.definition_id == scope.h_definition
-        and {change.outgoing, change.incoming} == {"W1", "W2"},
+        and (
+            {change.outgoing, change.incoming} == {"W1", "W2"}
+            or config.schema_version == "P043-PROD-1.0"
+            and change.outgoing != change.incoming
+            and all(
+                any(p.id == pid and "WELD" in p.qualifications for p in config.people)
+                for pid in (change.outgoing, change.incoming)
+            )
+        ),
         "HANDOVER_SCOPE_OR_PEOPLE",
     )
     mode = next(

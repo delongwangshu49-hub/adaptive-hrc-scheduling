@@ -20,7 +20,10 @@ class EventLedger:
         self.state = None
 
     def accept(self, event, *, received_sim_h, wall_elapsed_s):
-        validate(event, config=self.config)
+        if hasattr(self, "catalog"):
+            self.catalog.validate_event(event)
+        else:
+            validate(event, config=self.config)
         require(
             math.isfinite(received_sim_h)
             and math.isfinite(wall_elapsed_s)

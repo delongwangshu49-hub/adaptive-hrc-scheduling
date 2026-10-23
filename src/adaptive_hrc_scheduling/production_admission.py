@@ -83,6 +83,14 @@ def profile(config):
 
 
 def validate_admission(config):
+    if config.schema_version == "P043-PROD-1.0":
+        from adaptive_hrc_scheduling.dynamic_workforce import validate_configuration
+
+        return validate_configuration(config)
+    if config.schema_version == "P042-PROD-1.0":
+        from adaptive_hrc_scheduling.dynamic_orders import validate_dynamic_configuration
+
+        return validate_dynamic_configuration(config)
     new = config.schema_version == VERSION
     require(new == (config.purpose == "SIMULATION_RESEARCH_ONLY"), "SIM_VERSION_PURPOSE")
     if not new:

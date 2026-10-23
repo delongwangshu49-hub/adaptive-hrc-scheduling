@@ -47,6 +47,10 @@ def _geometry_context(config):
 
 
 def boxes(config, state, excluded=()):
+    if config.schema_version == "P043-PROD-1.0":
+        from adaptive_hrc_scheduling.dynamic_workforce import off_shift
+
+        excluded = (*excluded, *(p.id for p in config.people if off_shift(state, p.id)))
     return list(
         _boxes_cached(
             _geometry_context(config),

@@ -432,6 +432,8 @@ class TargetScene(BuildingScene):
                 path == p or path.startswith(p + "/") for p in ignored
             ):
                 continue
+            if UsdPhysics.CollisionAPI(prim).GetCollisionEnabledAttr().Get() is False:
+                continue
             bounds = cache.ComputeWorldBound(prim).ComputeAlignedRange()
             tag = prim.GetAttribute("s13:obstacleId")
             result.append(

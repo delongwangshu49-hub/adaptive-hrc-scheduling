@@ -82,7 +82,10 @@ class SimulationJointProblem:
         decision_checkpoint=None,
         initial_action_only=False,
         objective=None,
+        catalog=None,
     ):
+        self.catalog = catalog
+        dynamic = {"catalog": catalog} if catalog is not None else {}
         self.checkpoint = checkpoint or (lambda: None)
         self.checkpoint()
         validate(config)
@@ -100,7 +103,7 @@ class SimulationJointProblem:
             "COMMON_WINDOW_OR_MODE",
         )
         require(
-            check_run(config, prefix, checkpoint=execution_checkpoint).status == "PASS",
+            check_run(config, prefix, checkpoint=execution_checkpoint, **dynamic).status == "PASS",
             "INVALID_EXECUTION_PREFIX",
         )
         self.execution_checkpoint = (
@@ -122,7 +125,9 @@ class SimulationJointProblem:
         )
         closed = supplied if already_closed else supplied + (terminal_row,)
         require(
-            check_decisions(config, prefix, closed, checkpoint=decision_checkpoint).status
+            check_decisions(
+                config, prefix, closed, checkpoint=decision_checkpoint, **dynamic
+            ).status
             == "PASS",
             "INVALID_CAUSAL_PREFIX",
         )
@@ -182,7 +187,18 @@ class SimulationJointProblem:
             return m.PlanningInput(
                 self.config.schema_version, self.config.id, w.observe(), (), budget_ms
             )
-        return planning_input(self.config, w.observe(), budget_ms)
+        value = planning_input(self.config, w.observe(), budget_ms)
+        if self.catalog is not None:
+            value = replace(
+                value,
+                operations=tuple(
+                    o
+                    for o in value.operations
+                    if o.product_id in self.catalog.active_products
+                    or w._product(o.product_id).cancelled
+                ),
+            )
+        return value
 
     def planned(self, w, value, genes, rejected, rests, index):
         key = (value.observation, value.operations, genes, tuple(sorted(rejected)), tuple(rests))
@@ -233,6 +249,15 @@ class SimulationJointProblem:
                 id=f"LOCKED-{w.s.revision}-{index}-{head.operation_id}",
                 expected_revision=w.s.revision,
                 issued_sim_h=obs.sampled_h,
+                **(
+                    dict(
+                        schema_version=self.config.schema_version,
+                        config_sha256=obs.config_sha256,
+                        research=self.config.research,
+                    )
+                    if self.catalog is not None
+                    else {}
+                ),
             )
             return m.Plan(
                 self.config.schema_version,
@@ -252,13 +277,15 @@ class SimulationJointProblem:
             excluded_operations=rejected,
             mode_choices=genes.modes,
             crew_choices=genes.crews,
-            order_bias=genes.order,
+            order_bias=tuple(genes.order) + (self.catalog.priority_bias() if self.catalog else ()),
             start_slots=genes.slots,
             rest_people=tuple(rests),
         )
 
     def world(self):
         w = ProductionBackend(self.config, run_id=self.prefix.run_id, epoch=self.prefix.epoch)
+        if self.catalog is not None:
+            w.dispatch_products = self.catalog.active_products
         w.s, w.events = self.prefix.state, list(self.prefix.events)
         for e in self.prefix.events:
             if e.command:
@@ -303,11 +330,22 @@ class SimulationJointProblem:
                     else "HR-seq"
                 )
             )
+            welders = tuple(p.id for p in self.config.people if "WELD" in p.qualifications)
+            operators = tuple(p.id for p in self.config.people if "ROBOT" in p.qualifications)
+            if self.config.schema_version == "P043-PROD-1.0":
+                from adaptive_hrc_scheduling.dynamic_workforce import eligible
+
+                welders = (
+                    tuple(p for p in welders if eligible(self.observation.state, p)) or welders
+                )
+                operators = (
+                    tuple(p for p in operators if eligible(self.observation.state, p)) or operators
+                )
             who = (
                 held.handover.incoming
                 if held and held.handover
                 else (
-                    rng.choice(("W1", "W2"))
+                    rng.choice(welders)
                     if rng
                     and mode == "H"
                     and held.completed_units
@@ -317,9 +355,9 @@ class SimulationJointProblem:
                     else held.crew[0].person_id
                 )
                 if held and held.crew
-                else "OP1"
+                else (rng.choice(operators) if rng else operators[0])
                 if mode == "HR-seq"
-                else (rng.choice(("W1", "W2")) if rng else "W1")
+                else (rng.choice(welders) if rng else welders[0])
             )
             modes.append((aid, mode))
             crews.append((aid, who))
@@ -343,8 +381,15 @@ class SimulationJointProblem:
                 for p in self.config.people
                 if qualification in p.qualifications and p.id not in used[aid]
             ]
+            if self.config.schema_version == "P043-PROD-1.0":
+                available = [pid for pid in candidates if eligible(self.observation.state, pid)]
+                candidates = available or candidates
             who = committed.get(aid, {}).get(default) or (
-                rng.choice(candidates) if rng else default
+                rng.choice(candidates)
+                if rng
+                else default
+                if default in candidates
+                else candidates[0]
             )
             crews.append((key, who))
             used[aid].add(who)
@@ -501,7 +546,14 @@ class SimulationJointProblem:
         modes, crews = dict(candidate.genes.modes), dict(candidate.genes.crews)
         require(all(v in ("H", "HR-seq") for v in modes.values()), "CANDIDATE_GENE_MODE")
         require(
-            all(crews[a] in (("W1", "W2") if modes[a] == "H" else ("OP1",)) for a in self.scope),
+            all(
+                any(
+                    p.id == crews[a]
+                    and ("WELD" if modes[a] == "H" else "ROBOT") in p.qualifications
+                    for p in self.config.people
+                )
+                for a in self.scope
+            ),
             "CANDIDATE_GENE_CREW",
         )
         people = {p.id: p for p in self.config.people}
@@ -664,6 +716,7 @@ class SimulationJointProblem:
                 checkpoint=self.execution_checkpoint.fork()
                 if self.execution_checkpoint is not None
                 else None,
+                **({"catalog": self.catalog} if self.catalog is not None else {}),
             )
             self.checkpoint()
             require(audit.status == "PASS", "S10:" + ";".join(f.reason for f in audit.findings))
@@ -674,6 +727,7 @@ class SimulationJointProblem:
                 checkpoint=self.decision_checkpoint.fork()
                 if self.decision_checkpoint is not None
                 else None,
+                **({"catalog": self.catalog} if self.catalog is not None else {}),
             )
             self.checkpoint()
             require(causal.status == "PASS", "CAUSE:" + ";".join(f.reason for f in causal.findings))
@@ -694,6 +748,8 @@ class SimulationJointProblem:
                 score = self.objective.score(
                     self.config, -score[0], score[1], score[2], fingerprint(candidate)
                 )
+            if self.catalog is not None:
+                score = self.catalog.score(snapshot.state, self.prefix.state)
             return Verification(True, score)
         except (
             ContractError,

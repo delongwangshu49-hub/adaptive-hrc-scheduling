@@ -58,9 +58,23 @@ def run(request, output, app=None, control=None):
             replace(p, release_h=t) for p, t in zip(config.products, draft["release_times"])
         ),
     )
+    if "session" in request and request["session"]["spec"]["initial_config_sha256"] != digest(
+        config
+    ):
+        from adaptive_hrc_scheduling.workforce_session import (
+            configuration as workforce_configuration,
+        )
+
+        candidate = workforce_configuration(config)
+        if request["session"]["spec"]["initial_config_sha256"] == digest(candidate):
+            config = candidate
     validate(config)
     atomic_json(output / "configuration.json", as_data(config))
-    limits_data = read_json(ROOT / "examples/online/limits.json")
+    limits_data = (
+        request["session"]["profile"]["limits"]
+        if "session" in request
+        else read_json(ROOT / "examples/online/limits.json")
+    )
     atomic_json(output / "predeclared-online-limits.json", limits_data)
     engine = ProductionBackend(config, run_id=request["run_id"], epoch=0)
     viewport = None
@@ -161,7 +175,30 @@ def run(request, output, app=None, control=None):
         viewport.fill_frame = True
         viewport.camera_path = display_camera
     world = getattr(engine, "world", engine)
-    policy = OnlinePolicy(config, Limits(**limits_data), end_h=720)
+    session = None
+    scenario = Scenario(id="NORMAL", until_h=720)
+    if "session" in request:
+        from adaptive_hrc_scheduling.contracts.session import validate_bundle
+        from adaptive_hrc_scheduling.control.session import Session
+        from adaptive_hrc_scheduling.control.session_budget import load_profile
+
+        bundle = validate_bundle(request["session"])
+        session = Session(
+            bundle["spec"],
+            engine,
+            load_profile(bundle["profile"]),
+            output / "session",
+            source="GUI",
+            fixed_requests=bundle["fixed_requests"],
+            replay_source=bundle.get("replay_source"),
+        )
+        scenario = session.scenario()
+        for change in bundle["fixed_requests"] + bundle.get("replay_source", {}).get(
+            "requests", []
+        ):
+            if not (session.lifecycle and session.replay_source):
+                session.submit(change)
+    policy = session.policy if session else OnlinePolicy(config, Limits(**limits_data), end_h=720)
     timing = OnlineTiming(engine, policy)
     sequence = 0
     view_sequence = -1
@@ -408,11 +445,21 @@ def run(request, output, app=None, control=None):
 
     result = production_run(
         engine,
-        Scenario(id="NORMAL", until_h=720),
+        scenario,
         joint_policy=policy,
         execution_hook=progress,
-        stop_condition=None if control else lambda w: w.s.time_h >= 1.0,
-        orderly_stop=(lambda w: control.poll()) if control else None,
+        stop_condition=None
+        if control or (session and session.lifecycle)
+        else lambda w: w.s.time_h >= 1.0,
+        orderly_stop=(
+            lambda w: (
+                (session is not None and session.stopped)
+                or (control is not None and control.poll())
+            )
+        )
+        if control or session
+        else None,
+        session=session,
     )
     manifest = dict(result.manifest)
     manifest.pop("joint_journal", None)
@@ -437,6 +484,10 @@ def run(request, output, app=None, control=None):
         in (("ORDERLY_STOPPED", "OPERATIONS_COMPLETE") if control else ("DECLARED_CHECKPOINT",))
         else "FAILED"
     )
+    if session and session.lifecycle:
+        report["scope"] = "P044_BOUNDED_CONTINUOUS_SESSION"
+        report["session_final"] = session.lifecycle.final
+        report["status"] = "PASS" if session.lifecycle.final["audit_status"] == "PASS" else "FAILED"
     atomic_json(output / "state.json", as_data(result.snapshot.state))
     atomic_json(output / "audit.json", as_data(result.audit))
     atomic_json(output / "decision-audit.json", as_data(result.decision_audit))
@@ -605,6 +656,7 @@ def main():
         ROOT / "examples/online/limits.json",
         ROOT / "examples/building_contracts/configuration.json",
         ROOT / "src/adaptive_hrc_scheduling/production_recipe.json",
+        ROOT / "src/adaptive_hrc_scheduling/contracts/session_schema.json",
         ROOT / "sim/isaac/s19b_viewport.kit",
         ROOT / "desktop/s19b/uv.lock",
         ROOT / "desktop/s19b/pyproject.toml",

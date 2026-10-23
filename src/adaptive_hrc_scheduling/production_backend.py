@@ -12,6 +12,7 @@ from adaptive_hrc_scheduling.building_human import calendar_state, can_work
 from adaptive_hrc_scheduling.contracts.codec import ContractError, require
 from adaptive_hrc_scheduling.contracts.production import digest, qualified, validate
 from adaptive_hrc_scheduling.domain import production as m
+from adaptive_hrc_scheduling.dynamic_workforce import off_shift as workforce_off_shift
 from adaptive_hrc_scheduling.logistics_geometry import interpolate, motion_fraction
 from adaptive_hrc_scheduling.production_admission import attempt_owner, completed_activity
 from adaptive_hrc_scheduling.production_geometry import standing_point
@@ -362,6 +363,11 @@ class ProductionBackend:
         return duration * (1 + op.kappa * maximum)
 
     def _admit(self, c):
+        if hasattr(self, "dispatch_products"):
+            require(
+                c.product_id in self.dispatch_products or self._product(c.product_id).cancelled,
+                "WAITING_SPACE",
+            )
         op = self.operations[c.operation_id]
         if self.config.research and op.action == "WALK" and op.target == "J2":
             require(
@@ -436,6 +442,13 @@ class ProductionBackend:
                         "HANDOVER_RESTORE_PROTECTION",
                     )
         if op.branch:
+            if self.config.schema_version == "P043-PROD-1.0" and attempt:
+                from adaptive_hrc_scheduling.dynamic_workforce import eligible
+
+                require(
+                    all(eligible(self.s, r.person_id) for r in attempt.crew),
+                    "PERSON_ATTEMPT_DISPATCH_DISABLED",
+                )
             require(attempt is None or attempt.handover is None, "SIM_RESTORE_REQUIRED")
             require(not c.resume_of, "SIM_INTERRUPTED_ATTEMPT_HOLD")
             require(
@@ -453,7 +466,12 @@ class ProductionBackend:
             )
             if op.branch.phase == "ROBOT":
                 require(
-                    all(self._position(p.id).location != "J2" for p in self.people.values()),
+                    all(
+                        self._position(p.id).location != "J2"
+                        or self.config.schema_version == "P043-PROD-1.0"
+                        and workforce_off_shift(self.s, p.id)
+                        for p in self.people.values()
+                    ),
                     "SIM_ISOLATION_EXIT_REQUIRED",
                 )
                 require(
@@ -605,6 +623,17 @@ class ProductionBackend:
             duration = self._duration(op, c) - self._verified_support_elapsed(resumed)
         for binding in c.roles:
             person = self.people[binding.person_id]
+            if self.config.schema_version == "P043-PROD-1.0":
+                from adaptive_hrc_scheduling.dynamic_workforce import eligible, status
+
+                departure_service = (
+                    op.handover
+                    and op.handover.outgoing == person.id
+                    and status(self.s, person.id) == "DEPARTURE_PENDING"
+                )
+                require(
+                    eligible(self.s, person.id) or departure_service, "PERSON_DISPATCH_DISABLED"
+                )
             require(
                 qualifications[binding.role_id] in person.qualifications, "PERSON_QUALIFICATION"
             )
@@ -950,6 +979,11 @@ class ProductionBackend:
             for person in self.config.people:
                 old = next(x for x in self.s.humans if x.person_id == person.id)
                 command_id, phase = busy.get(person.id, (None, calendar_state(person, start)[0]))
+                if self.config.schema_version == "P043-PROD-1.0":
+                    from adaptive_hrc_scheduling.dynamic_workforce import off_shift
+
+                    if off_shift(self.s, person.id) and person.id not in busy:
+                        phase = "OFF_SHIFT"
                 recovering = phase in ("REST", "OFF_SHIFT")
                 rate = (
                     person.recovery_rate
@@ -1721,7 +1755,18 @@ class ProductionBackend:
         return receipt
 
     def _world(self, e):
-        if e.kind in ("ARRIVAL", "IDENTIFY", "RELEASE"):
+        if e.kind.startswith("PERSON_"):
+            from adaptive_hrc_scheduling.dynamic_workforce import apply_status
+
+            require(self.config.schema_version == "P043-PROD-1.0", "WORKFORCE_FAMILY_REQUIRED")
+            require(e.entity_id in self.people, "UNKNOWN_PERSON")
+            self.s = apply_status(self.s, e.kind, e.entity_id)
+        elif e.kind == "CATALOG_REGISTER":
+            require(
+                self.config.schema_version in ("P042-PROD-1.0", "P043-PROD-1.0"),
+                "DYNAMIC_FAMILY_REQUIRED",
+            )
+        elif e.kind in ("ARRIVAL", "IDENTIFY", "RELEASE"):
             require(
                 e.entity_id in self.lots and self.lots[e.entity_id].product_id == e.product_id,
                 "FOREIGN_LOT",

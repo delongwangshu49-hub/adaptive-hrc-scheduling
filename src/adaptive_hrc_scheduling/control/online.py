@@ -123,13 +123,22 @@ def plan_change(before, after):
 class OnlinePolicy:
     method = "S19_ONLINE_JOINT"
 
-    def __init__(self, config, limits=Limits(), *, end_h, problem_factory=SimulationJointProblem):
+    def __init__(
+        self,
+        config,
+        limits=Limits(),
+        *,
+        end_h,
+        problem_factory=SimulationJointProblem,
+        budget_account=None,
+    ):
         validate(config)
         require(config.research is not None, "SIMULATION_ONLINE_ADMISSION_REQUIRED")
         limits.validate()
         require(math.isfinite(end_h) and end_h > 0, "ONLINE_END")
         self.config, self.limits, self.end_h = config, limits, end_h
         self.problem_factory = problem_factory
+        self.budget_account = budget_account
         self.budget = self  # production-loop manifest protocol
         self.journal, self.candidates = [], []
         self.pending = ()
@@ -146,6 +155,85 @@ class OnlinePolicy:
         self._force_trigger = None
         self._execution_checkpoint = ExecutionCheckpoint()
         self._decision_checkpoint = DecisionCheckpoint()
+        self._catalog_event_ids = set()
+        self.catalog_context = None
+
+    def catalog_changed(self, affected_ids, operations, event_ids=(), protected_commands=()):
+        """Invalidate dependency-related uncommitted suffixes without changing run identity."""
+        affected = set(affected_ids)
+        # Historical service operations remain in the executor registry, but
+        # their private routes need not be part of a current cache dependency.
+        indexed = {op.id: op for op in self.config.operations}
+        indexed.update({c.operation_id: c.service.operation for c in self.pending if c.service})
+        routes = {r.id: r for r in self.config.routes}
+        routes.update(
+            {
+                c.service.route.id: c.service.route
+                for c in self.pending
+                if c.service and c.service.route
+            }
+        )
+
+        def dependencies(op):
+            deps = {op.id, op.product_id, *op.equipment}
+            if op.route_id:
+                route = routes[op.route_id]
+                deps.update((route.id, route.device_id, *route.segments))
+            return deps
+
+        affected_operations = {op.id for op in indexed.values() if affected & dependencies(op)}
+        while True:
+            expanded = affected_operations | {
+                op.id for op in indexed.values() if set(op.prerequisites) & affected_operations
+            }
+            if expanded == affected_operations:
+                break
+            affected_operations = expanded
+        locked = {(c.operation_id, c.attempt) for c in (*self.committed, *protected_commands)}
+        removed = []
+        survivors = []
+        for command in self.pending:
+            op = command.service.operation if command.service else operations[command.operation_id]
+            deps = {
+                command.product_id,
+                command.operation_id,
+                *(r.person_id for r in command.roles),
+                *op.equipment,
+            }
+            if op.route_id:
+                deps.add(op.route_id)
+                deps.update(
+                    r
+                    for route in self.config.routes
+                    if route.id == op.route_id
+                    for r in route.segments
+                )
+            key = (command.operation_id, command.attempt)
+            if key not in locked and (affected & deps or op.id in affected_operations):
+                removed.append(command.id)
+            else:
+                survivors.append(command)
+        self.pending = tuple(survivors)
+        self._force_trigger = "CATALOG_CHANGED"
+        self._catalog_event_ids.update(event_ids)
+        # Normal WORLD invalidation is intentionally conservative. All protected
+        # promises still survive; unused surviving keys are never called reused.
+        return removed
+
+    def _search_allowed(self, trigger):
+        if (
+            self.budget_account is not None
+            and self.budget_account.profile.objective == "P042_URGENCY_DUE_PROGRESS_EXPOSURE-r1"
+            and self.catalog_context is not None
+            and not self.catalog_context.generations
+        ):
+            # This profile reserves complete search for the dynamic-order domain.
+            return False
+        return (
+            self.budget_account.can_search(trigger)
+            if self.budget_account
+            else self.calls < self.limits.max_search_calls
+        ) and self.limits.search_seconds > 0
 
     def pause(self):
         self.paused = True
@@ -167,6 +255,14 @@ class OnlinePolicy:
         return m.Plan(c.schema_version, c.id, obs.id, (), "WAIT", "S19:" + reason, c.research)
 
     def _admit(self, command, obs, rejected):
+        if self.catalog_context is not None and self.catalog_context.generations:
+            require(
+                command.product_id in self.catalog_context.active_products
+                or next(
+                    p.cancelled for p in obs.state.products if p.product_id == command.product_id
+                ),
+                "WAITING_SPACE",
+            )
         require(
             (command.run_id, command.epoch, command.config_sha256)
             == (obs.run_id, obs.epoch, obs.config_sha256),
@@ -254,6 +350,16 @@ class OnlinePolicy:
                 end_h=min(self.end_h, obs.sampled_h + self.limits.horizon_h),
                 rejected=tuple(rejected),
                 checkpoint=checkpoint,
+                **(
+                    {"catalog": self.catalog_context.fork()}
+                    if self.catalog_context is not None
+                    and (
+                        self.catalog_context.generations
+                        or self.config.schema_version == "P043-PROD-1.0"
+                    )
+                    and self.problem_factory is SimulationJointProblem
+                    else {}
+                ),
                 **(
                     {
                         "execution_checkpoint": self._execution_checkpoint,
@@ -343,7 +449,14 @@ class OnlinePolicy:
         self._proposal_version = current_version
         self._deadline = deadline
         self._rejected = tuple(rejected)
-        identity = (obs.config_sha256, obs.run_id, obs.epoch)
+        dynamic = self.catalog_context is not None and (
+            bool(self.catalog_context.generations) or self.config.schema_version == "P043-PROD-1.0"
+        )
+        identity = (
+            digest(self.catalog_context.initial) if dynamic else obs.config_sha256,
+            obs.run_id,
+            obs.epoch,
+        )
         require(obs.config_sha256 == digest(self.config), "ONLINE_CONFIGURATION")
         require(
             obs.state == replace(prefix.state, intervals=())
@@ -388,6 +501,10 @@ class OnlinePolicy:
         )
         self._force_trigger = None
         self.last_event_count = len(prefix.events)
+        if self.budget_account:
+            # Ordinary cycles cannot consume reserved change-search wall time.
+            deadline = min(deadline, began + self.budget_account.allowance(trigger))
+            self._deadline = deadline
         row = dict(
             sequence=sequence,
             event_count=len(obs.event_ids),
@@ -422,16 +539,20 @@ class OnlinePolicy:
             ],
         )
         self.journal.append(row)
-        if disruptive:
+        if disruptive and any(
+            e.kind in ("WORLD", "EXCEPTION", "REJECTED") and e.id not in self._catalog_event_ids
+            for e in facts
+        ):
             # A changed feasibility domain invalidates the whole old suffix.
             self.pending = self.committed
             row["cache_invalidated"] = bool(old)
+        self._catalog_event_ids.clear()
         ingest_failure = False
         if (
             not self.paused
             and not self.cancelled
             and perf_counter() < deadline
-            and self.calls < self.limits.max_search_calls
+            and self._search_allowed(trigger)
             and self.limits.search_seconds > 0
             and self.problem_factory is SimulationJointProblem
         ):
@@ -446,12 +567,23 @@ class OnlinePolicy:
                     and not closed[-1]["plan"]["commands"]
                 ):
                     closed += (record(terminal(self.config, obs)),)
+                if dynamic:
+                    from adaptive_hrc_scheduling.control.production_decisions import check_decisions
+                    from adaptive_hrc_scheduling.production_checker import check_run
+
+                    execution_report = check_run(self.config, prefix, catalog=self.catalog_context)
+                    decision_report = check_decisions(
+                        self.config, prefix, closed, catalog=self.catalog_context
+                    )
+                else:
+                    execution_report = self._execution_checkpoint.verify(self.config, prefix)
+                    decision_report = self._decision_checkpoint.verify(self.config, prefix, closed)
                 require(
-                    self._execution_checkpoint.verify(self.config, prefix).status == "PASS",
+                    execution_report.status == "PASS",
                     "INVALID_EXECUTION_PREFIX",
                 )
                 require(
-                    self._decision_checkpoint.verify(self.config, prefix, closed).status == "PASS",
+                    decision_report.status == "PASS",
                     "INVALID_CAUSAL_PREFIX",
                 )
             except ContractError as exc:
@@ -473,7 +605,7 @@ class OnlinePolicy:
         else:
             if trigger:
                 self.last_search_h = obs.sampled_h
-                if self.calls < self.limits.max_search_calls and self.limits.search_seconds > 0:
+                if self._search_allowed(trigger):
                     candidate = self._search(
                         obs,
                         prefix,
@@ -544,6 +676,15 @@ class OnlinePolicy:
                         id=f"PLAN-{obs.state.revision}-{sequence}-{head.operation_id}",
                         issued_sim_h=obs.sampled_h,
                         expected_revision=obs.state.revision,
+                        **(
+                            dict(
+                                schema_version=self.config.schema_version,
+                                config_sha256=obs.config_sha256,
+                                research=self.config.research,
+                            )
+                            if dynamic
+                            else {}
+                        ),
                     )
                     try:
                         self._admit(head, obs, rejected)
@@ -580,6 +721,9 @@ class OnlinePolicy:
                         replace(value, budget_ms=max(0.000001, (deadline - perf_counter()) * 1000)),
                         sequence=sequence,
                         excluded_operations=rejected,
+                        **(
+                            dict(order_bias=self.catalog_context.priority_bias()) if dynamic else {}
+                        ),
                     )
                     if plan.status == "NO_PLAN_FOUND":
                         plan = self.wait(obs, plan.reason)
@@ -661,7 +805,11 @@ class OnlinePolicy:
         # Once the declared search allowance is exhausted, ordinary execution
         # and external events drive rule fallback. Deadline WAIT still retries.
         if (
-            self.calls < self.limits.max_search_calls
+            (
+                self._search_allowed("PERIODIC")
+                if self.budget_account
+                else self.calls < self.limits.max_search_calls
+            )
             and self.limits.search_seconds > 0
             or self.paused
             or self.cancelled
@@ -682,6 +830,8 @@ class OnlinePolicy:
             final_reason=plan.reason,
         )
         row["cycle_budget_exceeded"] = row["cycle_seconds"] > self.limits.decision_seconds
+        if self.budget_account:
+            self.budget_account.charge(row)
         proposal = row.get("selected_proposal")
         row["actual_start"] = (
             dict(
@@ -697,6 +847,7 @@ class OnlinePolicy:
 
     def report(self):
         return dict(
+            total_budget=self.budget_account.report() if self.budget_account else None,
             declared=asdict(self.limits),
             used_calls=self.calls,
             decision_count=len(self.journal),

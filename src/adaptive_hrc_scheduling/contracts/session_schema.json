@@ -1,0 +1,956 @@
+{
+  "RunSpec": {
+    "schema_version": {
+      "type": "enum:P03.2-CONTRACT-r3",
+      "required": true
+    },
+    "canonical_version": {
+      "type": "enum:P032-CANONICAL-1",
+      "required": true
+    },
+    "run_id": {
+      "type": "id",
+      "required": true
+    },
+    "epoch": {
+      "type": "index",
+      "required": true
+    },
+    "mode": {
+      "type": "enum:FIXED_PROTOCOL,INTERACTIVE_PRODUCTION,INTERACTIVE_REPLAY",
+      "required": true
+    },
+    "scenario": {
+      "type": "enum:N,H,F,U,C,INTERACTIVE",
+      "required": true
+    },
+    "backend": {
+      "type": "enum:CPU,ISAAC",
+      "required": true
+    },
+    "method": {
+      "type": "enum:EDD,ADAPTIVE",
+      "required": true
+    },
+    "budget_profile_id": {
+      "type": "id",
+      "required": true
+    },
+    "source_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "initial_config_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "template_registry_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "qualification_registry_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "profile_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "initial_orders": {
+      "type": "InitialOrder[]",
+      "required": true
+    },
+    "initial_people": {
+      "type": "InitialPerson[]",
+      "required": true
+    },
+    "fixed_event_manifest_sha256": {
+      "type": "hash",
+      "required": false
+    },
+    "replay_source_sha256": {
+      "type": "hash",
+      "required": false
+    },
+    "clock": {
+      "type": "ClockPolicy",
+      "required": true
+    },
+    "cost": {
+      "type": "CostPolicy",
+      "required": true
+    },
+    "capacity": {
+      "type": "CapacityPolicy",
+      "required": true
+    }
+  },
+  "ClockPolicy": {
+    "idle_policy": {
+      "type": "enum:ADVANCE_METERED",
+      "required": true
+    },
+    "session_until_h": {
+      "type": "positive",
+      "required": true
+    },
+    "wall_budget_s": {
+      "type": "positive",
+      "required": true
+    },
+    "idle_step_h": {
+      "type": "positive",
+      "required": true
+    },
+    "simulation_rate": {
+      "type": "positive",
+      "required": true
+    },
+    "boundary_poll_wall_s": {
+      "type": "positive",
+      "required": true
+    }
+  },
+  "CostPolicy": {
+    "policy_id": {
+      "type": "enum:PRESENCE_LABOUR-r2",
+      "required": true
+    },
+    "policy_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "currency": {
+      "type": "id",
+      "required": true
+    },
+    "rates": {
+      "type": "CostRate[]",
+      "required": true
+    },
+    "person_template_ids": {
+      "type": "id[]",
+      "required": true
+    },
+    "legacy_resource_cost_source_sha256": {
+      "type": "hash",
+      "required": true
+    }
+  },
+  "CostRate": {
+    "template_id": {
+      "type": "id",
+      "required": true
+    },
+    "rate_per_h": {
+      "type": "nonnegative",
+      "required": true
+    }
+  },
+  "CapacityPolicy": {
+    "max_lifetime_products": {
+      "type": "count",
+      "required": true
+    },
+    "max_open_products": {
+      "type": "count",
+      "required": true
+    },
+    "max_queued_products": {
+      "type": "count",
+      "required": true
+    },
+    "max_wip_products": {
+      "type": "count",
+      "required": true
+    }
+  },
+  "InitialOrder": {
+    "order_id": {
+      "type": "id",
+      "required": true
+    },
+    "template_id": {
+      "type": "enum:SR-W1,SR-W2",
+      "required": true
+    },
+    "template_revision": {
+      "type": "enum:v1",
+      "required": true
+    },
+    "quantity": {
+      "type": "count",
+      "required": true
+    },
+    "due_sim_h": {
+      "type": "positive",
+      "required": true
+    },
+    "priority": {
+      "type": "enum:NORMAL,URGENT",
+      "required": true
+    }
+  },
+  "InitialPerson": {
+    "person_id": {
+      "type": "id",
+      "required": true
+    },
+    "parameter_template_id": {
+      "type": "id",
+      "required": true
+    },
+    "calendar_id": {
+      "type": "id",
+      "required": true
+    },
+    "initial_f": {
+      "type": "fraction",
+      "required": true
+    },
+    "qualification_evidence_id": {
+      "type": "id",
+      "required": true
+    }
+  },
+  "ChangeRequest": {
+    "run_id": {
+      "type": "id",
+      "required": true
+    },
+    "epoch": {
+      "type": "index",
+      "required": true
+    },
+    "request_id": {
+      "type": "id",
+      "required": true
+    },
+    "producer_id": {
+      "type": "id",
+      "required": true
+    },
+    "client_sequence": {
+      "type": "count",
+      "required": true
+    },
+    "source": {
+      "type": "enum:GUI,CLI,FIXED_MANIFEST,REPLAY",
+      "required": true
+    },
+    "kind": {
+      "type": "enum:ORDER_CREATE,PERSON_ARRIVE,PERSON_DEPART,PERSON_ABSENT,PERSON_RETURN,REST_REQUEST,DEVICE_FAIL,DEVICE_REPAIR,ORDER_CANCEL,CLOSE_INPUT,STOP_REQUEST",
+      "required": true
+    },
+    "target_id": {
+      "type": "id",
+      "required": true
+    },
+    "payload": {
+      "type": "event_payload",
+      "required": true
+    },
+    "expected_catalog_version": {
+      "type": "index",
+      "required": true
+    },
+    "expected_state_revision": {
+      "type": "index",
+      "required": true
+    },
+    "expected_target_revision": {
+      "type": "index",
+      "required": true
+    },
+    "time_rule": {
+      "type": "enum:IMMEDIATE,AT_SIM_H",
+      "required": true
+    },
+    "requested_sim_h": {
+      "type": "nonnegative",
+      "required": false
+    },
+    "expires_sim_h": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "submitted_at_utc": {
+      "type": "utc",
+      "required": true
+    },
+    "request_digest": {
+      "type": "hash",
+      "required": true
+    }
+  },
+  "ORDER_CREATE": {
+    "order_id": {
+      "type": "id",
+      "required": true
+    },
+    "template_id": {
+      "type": "enum:SR-W1,SR-W2",
+      "required": true
+    },
+    "template_revision": {
+      "type": "enum:v1",
+      "required": true
+    },
+    "template_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "quantity": {
+      "type": "count",
+      "required": true
+    },
+    "due_sim_h": {
+      "type": "positive",
+      "required": true
+    },
+    "priority": {
+      "type": "enum:NORMAL,URGENT",
+      "required": true
+    },
+    "material_plan_id": {
+      "type": "id",
+      "required": true
+    },
+    "arrival_rule": {
+      "type": "enum:REQUEST_EFFECTIVE_TIME",
+      "required": true
+    }
+  },
+  "PERSON_ARRIVE": {
+    "person_id": {
+      "type": "id",
+      "required": true
+    },
+    "qualification_evidence_id": {
+      "type": "id",
+      "required": true
+    },
+    "qualifications": {
+      "type": "id[]",
+      "required": true
+    },
+    "valid_until_h": {
+      "type": "positive",
+      "required": true
+    },
+    "parameter_template_id": {
+      "type": "id",
+      "required": true
+    },
+    "parameter_template_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "calendar_id": {
+      "type": "id",
+      "required": true
+    },
+    "calendar_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "initial_f": {
+      "type": "fraction",
+      "required": true
+    },
+    "arrival_location": {
+      "type": "id",
+      "required": true
+    },
+    "scene_reference": {
+      "type": "SceneReference",
+      "required": true
+    }
+  },
+  "SceneBinding": {
+    "domain_id": {
+      "type": "id",
+      "required": true
+    },
+    "scene_entity_id": {
+      "type": "id",
+      "required": true
+    },
+    "prim_path": {
+      "type": "path",
+      "required": true
+    },
+    "template_revision": {
+      "type": "id",
+      "required": true
+    },
+    "catalog_version": {
+      "type": "index",
+      "required": true
+    }
+  },
+  "PERSON_DEPART": {
+    "reason": {
+      "type": "id",
+      "required": true
+    },
+    "handover_policy": {
+      "type": "enum:SAFE_POINT_OR_VERIFIED_HANDOVER",
+      "required": true
+    }
+  },
+  "PERSON_ABSENT": {
+    "reason": {
+      "type": "id",
+      "required": true
+    },
+    "safety_policy": {
+      "type": "enum:HOLD_AND_VERIFY",
+      "required": true
+    }
+  },
+  "PERSON_RETURN": {
+    "arrival_location": {
+      "type": "id",
+      "required": true
+    },
+    "scene_entity_id": {
+      "type": "id",
+      "required": true
+    }
+  },
+  "REST_REQUEST": {
+    "duration_h": {
+      "type": "positive",
+      "required": true
+    }
+  },
+  "DEVICE_FAIL": {
+    "reason": {
+      "type": "id",
+      "required": true
+    }
+  },
+  "DEVICE_REPAIR": {
+    "repair_evidence_id": {
+      "type": "id",
+      "required": true
+    }
+  },
+  "ORDER_CANCEL": {
+    "reason": {
+      "type": "id",
+      "required": true
+    }
+  },
+  "CLOSE_INPUT": {},
+  "STOP_REQUEST": {},
+  "CatalogDelta": {
+    "delta_id": {
+      "type": "id",
+      "required": true
+    },
+    "request_id": {
+      "type": "id",
+      "required": true
+    },
+    "request_digest": {
+      "type": "hash",
+      "required": true
+    },
+    "kind": {
+      "type": "id",
+      "required": true
+    },
+    "accept_sequence": {
+      "type": "count",
+      "required": true
+    },
+    "old_version": {
+      "type": "index",
+      "required": true
+    },
+    "new_version": {
+      "type": "count",
+      "required": true
+    },
+    "old_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "new_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "materialized_catalog_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "actual_sim_h": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "read_set_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "state_revision_before": {
+      "type": "index",
+      "required": true
+    },
+    "state_revision_after": {
+      "type": "count",
+      "required": true
+    },
+    "object_ids": {
+      "type": "id[]",
+      "required": true
+    },
+    "generation_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "commit_event_id": {
+      "type": "id",
+      "required": true
+    }
+  },
+  "Receipt": {
+    "receipt_id": {
+      "type": "id",
+      "required": true
+    },
+    "receipt_sequence": {
+      "type": "count",
+      "required": true
+    },
+    "request_id": {
+      "type": "id",
+      "required": true
+    },
+    "request_digest": {
+      "type": "hash",
+      "required": true
+    },
+    "status": {
+      "type": "enum:ACCEPTED,WAITING_BOUNDARY,APPLIED,REJECTED",
+      "required": true
+    },
+    "accept_sequence": {
+      "type": "count",
+      "required": false
+    },
+    "sim_h": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "at_utc": {
+      "type": "utc",
+      "required": true
+    },
+    "actual_applied_sim_h": {
+      "type": "nonnegative",
+      "required": false
+    },
+    "reason": {
+      "type": "id",
+      "required": true
+    },
+    "catalog_version_before": {
+      "type": "index",
+      "required": true
+    },
+    "catalog_version_after": {
+      "type": "index",
+      "required": true
+    },
+    "state_revision": {
+      "type": "index",
+      "required": true
+    },
+    "event_id": {
+      "type": "id",
+      "required": false
+    },
+    "previous_receipt_hash": {
+      "type": "hash",
+      "required": true
+    }
+  },
+  "VersionedObservation": {
+    "run_id": {
+      "type": "id",
+      "required": true
+    },
+    "epoch": {
+      "type": "index",
+      "required": true
+    },
+    "observation_id": {
+      "type": "id",
+      "required": true
+    },
+    "catalog_version": {
+      "type": "index",
+      "required": true
+    },
+    "catalog_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "state_revision": {
+      "type": "index",
+      "required": true
+    },
+    "event_count": {
+      "type": "index",
+      "required": true
+    },
+    "event_prefix_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "sampled_sim_h": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "received_sim_h": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "wall_age_s": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "plan_version": {
+      "type": "id",
+      "required": false
+    }
+  },
+  "BusinessResult": {
+    "target_id": {
+      "type": "id",
+      "required": true
+    },
+    "result_kind": {
+      "type": "enum:REGISTERED,WAITING_MATERIAL,WAITING_SCENE,WAITING_SPACE,READY,STARTED,COMPLETED,RECEIVED,DEPARTURE_PENDING,DEPARTED,EXCEPTION,HOLD,RECOVERED,CANCEL_CLEANUP,CANCELLED_WITH_RESIDUAL",
+      "required": true
+    },
+    "event_id": {
+      "type": "id",
+      "required": true
+    },
+    "observation_id": {
+      "type": "id",
+      "required": false
+    },
+    "command_id": {
+      "type": "id",
+      "required": false
+    },
+    "readback_id": {
+      "type": "id",
+      "required": false
+    },
+    "actual_sim_h": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "catalog_version": {
+      "type": "index",
+      "required": true
+    }
+  },
+  "PersonInterval": {
+    "person_id": {
+      "type": "id",
+      "required": true
+    },
+    "start_sim_h": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "end_sim_h": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "presence": {
+      "type": "bool",
+      "required": true
+    },
+    "available": {
+      "type": "bool",
+      "required": true
+    },
+    "activity": {
+      "type": "enum:WORK,WAIT,REST,OFF_SHIFT,HOLD",
+      "required": true
+    },
+    "fatigue_start": {
+      "type": "fraction",
+      "required": true
+    },
+    "fatigue_end": {
+      "type": "fraction",
+      "required": true
+    },
+    "exposure_increment": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "cost_increment": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "qualification_revision": {
+      "type": "index",
+      "required": true
+    }
+  },
+  "SessionFinal": {
+    "phase": {
+      "type": "enum:COMPLETED,STOPPED,STOP_BLOCKED,WINDOW_CENSORED,WALL_CENSORED,DRAIN_BLOCKED,FAILED",
+      "required": true
+    },
+    "intake_closed": {
+      "type": "bool",
+      "required": true
+    },
+    "pending_requests": {
+      "type": "index",
+      "required": true
+    },
+    "open_obligations": {
+      "type": "index",
+      "required": true
+    },
+    "running": {
+      "type": "index",
+      "required": true
+    },
+    "holds": {
+      "type": "index",
+      "required": true
+    },
+    "expected_receipts_complete": {
+      "type": "bool",
+      "required": true
+    },
+    "audit_status": {
+      "type": "enum:PASS,FAIL,UNKNOWN",
+      "required": true
+    },
+    "save_status": {
+      "type": "enum:COMPLETE,FAILED,UNKNOWN",
+      "required": true
+    },
+    "process_exit_code": {
+      "type": "integer",
+      "required": false
+    },
+    "catalog_version": {
+      "type": "index",
+      "required": true
+    },
+    "last_prefix_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "run_id": {
+      "type": "id",
+      "required": true
+    },
+    "epoch": {
+      "type": "index",
+      "required": true
+    },
+    "run_spec_sha256": {
+      "type": "hash",
+      "required": true
+    }
+  },
+  "AdmissionRecord": {
+    "request_id": {
+      "type": "id",
+      "required": true
+    },
+    "request_digest": {
+      "type": "hash",
+      "required": true
+    },
+    "accept_sequence": {
+      "type": "count",
+      "required": true
+    },
+    "received_sim_h": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "received_at_utc": {
+      "type": "utc",
+      "required": true
+    },
+    "accepted_catalog_version": {
+      "type": "index",
+      "required": true
+    },
+    "accepted_state_revision": {
+      "type": "index",
+      "required": true
+    },
+    "read_set": {
+      "type": "DependencyBinding[]",
+      "required": true
+    },
+    "read_set_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "resolved_due_sim_h": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "commit_status": {
+      "type": "enum:PREPARED,COMMITTED,ABORTED",
+      "required": true
+    }
+  },
+  "DependencyBinding": {
+    "object_id": {
+      "type": "id",
+      "required": true
+    },
+    "revision": {
+      "type": "index",
+      "required": true
+    },
+    "content_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "dependency_kind": {
+      "type": "enum:TARGET,TEMPLATE,QUALIFICATION,RESOURCE,CALENDAR",
+      "required": true
+    }
+  },
+  "CommandVersionBinding": {
+    "command_id": {
+      "type": "id",
+      "required": true
+    },
+    "initial_config_sha256": {
+      "type": "hash",
+      "required": true
+    },
+    "admitted_catalog_version": {
+      "type": "index",
+      "required": true
+    },
+    "admitted_catalog_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "observed_prefix_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "dependency_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "state_revision": {
+      "type": "index",
+      "required": true
+    }
+  },
+  "CacheTransition": {
+    "old_catalog_version": {
+      "type": "index",
+      "required": true
+    },
+    "new_catalog_version": {
+      "type": "index",
+      "required": true
+    },
+    "affected_object_ids": {
+      "type": "id[]",
+      "required": true
+    },
+    "invalidated_keys": {
+      "type": "id[]",
+      "required": true
+    },
+    "revalidated_keys": {
+      "type": "id[]",
+      "required": true
+    },
+    "protected_before_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "protected_after_hash": {
+      "type": "hash",
+      "required": true
+    },
+    "reason_event_ids": {
+      "type": "id[]",
+      "required": true
+    },
+    "reused_keys": {
+      "type": "id[]",
+      "required": true
+    }
+  },
+  "SessionControlState": {
+    "phase": {
+      "type": "enum:STARTING,RUNNING_OPEN,WAITING_INPUT,WAITING_BOUNDARY,DRAINING",
+      "required": true
+    },
+    "intake_open": {
+      "type": "bool",
+      "required": true
+    },
+    "close_accept_sequence": {
+      "type": "count",
+      "required": false
+    },
+    "idle_sim_h": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "idle_wall_s": {
+      "type": "nonnegative",
+      "required": true
+    },
+    "pending_request_ids": {
+      "type": "id[]",
+      "required": true
+    },
+    "remaining_obligation_ids": {
+      "type": "id[]",
+      "required": true
+    },
+    "terminal_reason": {
+      "type": "id",
+      "required": false
+    }
+  },
+  "SceneReference": {
+    "domain_id": {
+      "type": "id",
+      "required": true
+    },
+    "scene_entity_id": {
+      "type": "id",
+      "required": true
+    },
+    "prim_path": {
+      "type": "path",
+      "required": true
+    },
+    "template_revision": {
+      "type": "id",
+      "required": true
+    }
+  }
+}
