@@ -58,6 +58,10 @@ def run(request, output, app=None, control=None):
             replace(p, release_h=t) for p, t in zip(config.products, draft["release_times"])
         ),
     )
+    if request["run_id"].startswith("P051-E20-"):
+        from adaptive_hrc_scheduling.p052_witness import configuration as witness_configuration
+
+        config = witness_configuration(config)
     if "session" in request and request["session"]["spec"]["initial_config_sha256"] != digest(
         config
     ):
@@ -66,6 +70,12 @@ def run(request, output, app=None, control=None):
         )
 
         candidate = workforce_configuration(config)
+        if request["run_id"].startswith("P051-"):
+            from adaptive_hrc_scheduling.full_schedule import configuration as fixed_configuration
+
+            fixed_candidate = fixed_configuration(candidate)
+            if request["session"]["spec"]["initial_config_sha256"] == digest(fixed_candidate):
+                candidate = fixed_candidate
         if request["session"]["spec"]["initial_config_sha256"] == digest(candidate):
             config = candidate
     validate(config)
@@ -129,6 +139,12 @@ def run(request, output, app=None, control=None):
         # Let Kit use the actual embedded UI frame, including after DPI/resize changes.
         viewport.fill_frame = True
         viewport.resolution_scale = 1.0
+        if request["run_id"].startswith("P051-"):
+            # P05.1 exposes camera/selection only; prim transformation is never
+            # a production command. Preserve all other historical launch paths.
+            carb.settings.get_settings().set(
+                "/exts/omni.kit.manipulator.prim.core/tools/enabled", False
+            )
         UsdGeom.Scope.Define(scene.stage, "/S19B")
         display_camera = "/S19B/ReviewCamera"
         Sdf.CopySpec(
@@ -204,6 +220,11 @@ def run(request, output, app=None, control=None):
     view_sequence = -1
     display_errors = []
     current_display_error = None
+    native_publisher = None
+    if viewport is not None and request["run_id"].startswith("P051-"):
+        from p051_native_telemetry import NativeFramePublisher
+
+        native_publisher = NativeFramePublisher(output)
 
     def record_display_error(error):
         nonlocal current_display_error
@@ -278,9 +299,25 @@ def run(request, output, app=None, control=None):
             reason=reason_fact(policy.journal),
             camera=str(viewport.camera_path) if viewport else None,
             display_error=current_display_error,
+            full_schedule=policy.reference() if hasattr(policy, "reference") else None,
             **extra,
         )
         atomic_json(output / "live.json", value)
+        if native_publisher is not None:
+            native_publisher.publish(
+                dict(
+                    run_id=request["run_id"],
+                    epoch=0,
+                    frame_number=viewport.frame_info.get("frame_number"),
+                    render_resolution=list(viewport.resolution),
+                    camera_path=str(viewport.camera_path),
+                    source_state_revision=world.s.revision,
+                    sampled_sim_h=world.s.time_h,
+                    full_schedule=policy.reference() if hasattr(policy, "reference") else None,
+                    published_monotonic_s=time.monotonic(),
+                    scope="DISPLAY_TELEMETRY_NOT_A_TRANSACTION_OR_READBACK",
+                ),
+            )
 
     def view_request():
         nonlocal view_sequence, current_display_error
@@ -442,6 +479,11 @@ def run(request, output, app=None, control=None):
             if control and control.state["stop"]
             else "RUNNING"
         )
+
+        if phase == "before_decision" and session and request["run_id"].startswith("P051-"):
+            from adaptive_hrc_scheduling.control.gui_confirmation import bind_pending
+
+            bind_pending(session)
 
     result = production_run(
         engine,
@@ -661,6 +703,8 @@ def main():
         ROOT / "desktop/s19b/uv.lock",
         ROOT / "desktop/s19b/pyproject.toml",
     ]
+    if request["run_id"].startswith("P051-"):
+        sources.append(ROOT / "scripts/p051_native_telemetry.py")
     atomic_json(
         output / "sources.json",
         {

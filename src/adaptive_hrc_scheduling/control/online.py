@@ -334,6 +334,9 @@ class OnlinePolicy:
                     [k for k in by_key if k in locked] == list(locked), "FUTURE_COMMITMENT_ORDER"
                 )
                 best, score = candidate, report.score
+                checked = getattr(problem, "last_verified_display", None)
+                if checked is not None and checked[0] == candidate:
+                    problem.best_verified_display = checked
                 row.setdefault("candidate_acceptance_seconds", []).append(perf_counter() - began)
             elif not report.valid:
                 row["failures"].extend(report.reasons)

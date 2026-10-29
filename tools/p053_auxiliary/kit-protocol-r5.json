@@ -1,0 +1,10 @@
+{
+  "identity": "P053-AUXILIARY-FAILURE-REPAIR-r5",
+  "execution_enabled": false,
+  "purpose": "source repair and isolated checks only; no new Kit run prepared or authorized",
+  "based_on_sha256": "e9fa8003c13c214983e669ad5178369cbc140f261f4fc11592d028430f2608e8",
+  "rows": [],
+  "sources": {},
+  "requires_fresh_run_and_input_binding_before_execution": true,
+  "based_on_identity": "P053-KIT-PREFIXES-r4"
+}

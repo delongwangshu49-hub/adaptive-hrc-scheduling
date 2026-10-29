@@ -9,7 +9,7 @@ import hashlib
 import math
 import os
 from copy import deepcopy
-from dataclasses import asdict, replace
+from dataclasses import asdict, fields, replace
 from datetime import datetime, timezone
 from pathlib import Path
 from queue import Empty, Queue
@@ -26,6 +26,7 @@ from adaptive_hrc_scheduling.contracts.session import (
     validate_request,
     validate_spec,
 )
+from adaptive_hrc_scheduling.contracts.session_stream import FrozenEventArray, write_canonical
 from adaptive_hrc_scheduling.control.online import OnlinePolicy
 from adaptive_hrc_scheduling.control.production_loop import Scenario
 from adaptive_hrc_scheduling.control.session_budget import BudgetAccount
@@ -57,7 +58,7 @@ def registries(config):
 def save_atomic(path, data):
     temp = path.with_suffix(".tmp")
     with temp.open("wb") as stream:
-        stream.write(canonical(data))
+        write_canonical(stream, data)
         stream.flush()
         os.fsync(stream.fileno())
     temp.replace(path)
@@ -173,6 +174,10 @@ class Session:
         self.backend = backend
         self.world = getattr(backend, "world", backend)
         c = self.world.config
+        from adaptive_hrc_scheduling.full_schedule import is_fixed
+
+        if is_fixed(c):
+            self.capabilities = (*self.capabilities, "ORDER_UPDATE")
         self.workforce_enabled = c.schema_version == "P043-PROD-1.0"
         if self.workforce_enabled and hasattr(backend, "world"):
             backend.port.workforce_world = self.world
@@ -257,7 +262,12 @@ class Session:
         self.queue = Queue()
         self.source = source
         self.account = BudgetAccount(profile)
-        self.policy = OnlinePolicy(
+        policy_type = OnlinePolicy
+        if c.schema_version == "P053-PROD-1.0":
+            from adaptive_hrc_scheduling.research_initial import ResearchOnlinePolicy
+
+            policy_type = ResearchOnlinePolicy
+        self.policy = policy_type(
             c, profile.limits, end_h=spec["clock"]["session_until_h"], budget_account=self.account
         )
         if spec["method"] == "EDD":
@@ -365,6 +375,10 @@ class Session:
             }
             require(digest(source_files) == spec["source_sha256"], "LAUNCH_SOURCE_CHANGED")
             save_atomic(self.output / "launch-sources.json", source_files)
+        from adaptive_hrc_scheduling.full_schedule import FullSchedulePolicy, is_fixed
+
+        if is_fixed(c):
+            self.policy = FullSchedulePolicy(self)
         self.persist()
 
     @property
@@ -374,6 +388,8 @@ class Session:
     def persist(self):
         # Every durable checkpoint includes a current capacity projection.
         self.refresh_capacity()
+        if hasattr(self.policy, "reference"):
+            save_atomic(self.output / "full-schedule-state.json", self.policy.report())
         workforce = {}
         if self.workforce_enabled:
             from adaptive_hrc_scheduling.workforce_metrics import project
@@ -382,6 +398,12 @@ class Session:
                 workforce_results=self.workforce_results,
                 workforce_statistics=project(self.spec, self.history, self.world.snapshot()),
             )
+        snapshot = self.world.snapshot()
+        if not hasattr(self, "_saved_events"):
+            self._saved_events = FrozenEventArray(self.output)
+        self._saved_events.append(snapshot.events)
+        execution = {field.name: getattr(snapshot, field.name) for field in fields(snapshot)}
+        execution["events"] = self._saved_events
         save_atomic(
             self.output / "session-state.json",
             dict(
@@ -405,7 +427,7 @@ class Session:
                 close_accept_sequence=self.close_sequence,
                 stopped=self.stopped,
                 terminal=self.terminal,
-                execution=as_data(self.world.snapshot()),
+                execution=execution,
                 ingress_seen=self.ingress_seen,
                 protocol_errors=self.protocol_errors,
                 budget=self.account.report(),
@@ -511,6 +533,10 @@ class Session:
                 require(target is None, "ORDER_ID_USED")
                 require(req["target_id"] == req["payload"]["order_id"], "TARGET_PAYLOAD_MISMATCH")
                 self.check_order(req["payload"])
+            elif req["kind"] == "ORDER_UPDATE":
+                from adaptive_hrc_scheduling.schedule_order_update import check
+
+                check(self, req)
             elif req["kind"].startswith("PERSON_"):
                 from adaptive_hrc_scheduling.workforce_session import check_request
 
@@ -985,6 +1011,10 @@ class Session:
             return apply_request(self, req, admission)
         if kind == "ORDER_CREATE":
             return self.create_order(req, admission)
+        if kind == "ORDER_UPDATE":
+            from adaptive_hrc_scheduling.schedule_order_update import apply
+
+            return apply(self, req, admission)
         if kind in ("CLOSE_INPUT", "STOP_REQUEST"):
             if kind == "CLOSE_INPUT":
                 if not self.closed:
@@ -1166,6 +1196,8 @@ class Session:
             observation_id=observation["observation_id"],
             receipt_id=receipt.id,
         )
+        if hasattr(self.policy, "reference"):
+            self.command_bindings[command.id]["full_schedule"] = self.policy.reference()
         # The current head was admitted and actually STARTED. Record only keys
         # adopted from the same surviving candidate, including the ID rebase.
         journal = self.policy.journal[-1] if self.policy.journal else {}
@@ -1215,7 +1247,11 @@ class Session:
             )
         if case == "U":
             require(
-                any(r["priority"] == "URGENT" for r in self.spec["initial_orders"]),
+                any(r["priority"] == "URGENT" for r in self.spec["initial_orders"])
+                or any(
+                    r["kind"] == "ORDER_CREATE" and r["payload"]["priority"] == "URGENT"
+                    for r in self.fixed_requests
+                ),
                 "SCENARIO_FIXTURE_NOT_BOUND",
             )
         return Scenario(id=self.spec["scenario"], until_h=self.spec["clock"]["session_until_h"])

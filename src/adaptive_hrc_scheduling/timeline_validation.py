@@ -4,7 +4,6 @@ The packet transport must originate from the selected run. Hashes provide integr
 not sender authentication. Historical v1 streams need independent saved-run review.
 """
 
-from copy import deepcopy
 from dataclasses import replace
 
 from .contracts.codec import as_data, decode, require
@@ -13,12 +12,28 @@ from .contracts.session import digest
 from .domain import production as m
 from .dynamic_workforce import WorkforceHistory, status
 from .production_backend import ProductionBackend
+from .timeline_memory import share_record
 from .workforce_metrics import project
 
 
-def validate(packet, events, rows, basis):
+def validate(packet, events, rows, basis, *, prefix_hashes=None, cache=None):
+    """Revalidate all semantic obligations; cache only exact immutable decodes.
+
+    The optional cache belongs to one consumer and is committed only after the
+    complete validation succeeds. The default path remains an uncached oracle.
+    No audit, row comparison, catalog check or packet hash is omitted.
+    """
+    memo = cache if cache is not None else {}
+    basis_key = digest(basis)
     spec = basis["spec"]
-    initial = decode(m.Configuration, basis["configuration"])
+    initial = memo.get("initial") if memo.get("basis_key") == basis_key else None
+    if initial is None:
+        initial = decode(m.Configuration, basis["configuration"])
+        initial_snapshot = ProductionBackend(
+            initial, run_id=spec["run_id"], epoch=spec["epoch"]
+        ).snapshot()
+    else:
+        initial_snapshot = memo["initial_snapshot"]
     e, source = packet["envelope"], packet["source"]
     require(digest(spec) == e["run_spec_sha256"], "TIMELINE_FROZEN_SPEC")
     require(
@@ -32,10 +47,32 @@ def validate(packet, events, rows, basis):
     require(
         all(x["event_id"] in event_ids for x in source["generations"]), "TIMELINE_FUTURE_GENERATION"
     )
-    history = WorkforceHistory(initial, source["generations"])
+    generations_key = digest(source["generations"])
+    history = (
+        memo.get("history")
+        if memo.get("basis_key") == basis_key and memo.get("generations_key") == generations_key
+        else None
+    )
+    if history is None:
+        history = WorkforceHistory(initial, source["generations"])
     cfg = history.current
-    decoded = tuple(decode(m.ExecutionEvent, x) for x in events)
-    initial_state = ProductionBackend(initial, run_id=spec["run_id"], epoch=spec["epoch"]).s
+    old_events = memo.get("event_rows", ()) if memo.get("basis_key") == basis_key else ()
+    event_offset = (
+        len(old_events)
+        if len(events) >= len(old_events) and events[: len(old_events)] == list(old_events)
+        else 0
+    )
+    prior_decoded = memo["decoded_events"] if event_offset else ()
+    appended = []
+    previous_state = prior_decoded[-1].state if prior_decoded else None
+    for raw_event in events[event_offset:]:
+        event = decode(m.ExecutionEvent, raw_event)
+        if previous_state is not None:
+            event = replace(event, state=share_record(event.state, previous_state))
+        appended.append(event)
+        previous_state = event.state
+    decoded = prior_decoded + tuple(appended)
+    initial_state = initial_snapshot.state
     raw = events[-1]["state"] if events else as_data(initial_state)
     obs = source["observation"]
     require(obs["state"] == dict(raw, intervals=[]), "TIMELINE_OBSERVED_STATE")
@@ -106,6 +143,17 @@ def validate(packet, events, rows, basis):
             catalog["objects"][generation["payload"]["order_id"]] = dict(
                 revision=0, kind="order", available=True, product_ids=generation["product_ids"]
             )
+        elif kind == "ORDER_UPDATE":
+            require(
+                generation is not None and generation.get("order_update"),
+                "TIMELINE_ORDER_UPDATE_SOURCE",
+            )
+            obj = catalog["objects"][generation["payload"]["order_id"]]
+            obj.update(
+                revision=obj["revision"] + 1,
+                due_sim_h=generation["payload"]["due_sim_h"],
+                priority=generation["payload"]["priority"],
+            )
         elif kind.startswith("PERSON_"):
             require(generation is not None, "TIMELINE_PERSON_SOURCE")
             target = generation["target_id"]
@@ -157,7 +205,12 @@ def validate(packet, events, rows, basis):
         require(
             plan["plan_version"] == i
             and plan["event_count"] <= len(events)
-            and plan["event_prefix_hash"] == digest(events[: plan["event_count"]]),
+            and plan["event_prefix_hash"]
+            == (
+                prefix_hashes[plan["event_count"]]
+                if prefix_hashes is not None
+                else digest(events[: plan["event_count"]])
+            ),
             "TIMELINE_PLAN_PREFIX",
         )
         for cmd in plan["plan"]["commands"]:
@@ -272,16 +325,36 @@ def validate(packet, events, rows, basis):
                 kind=event["world"]["kind"] if event["world"] else event["kind"],
                 target_id=event["world"]["entity_id"] if event["world"] else event["command_id"],
             )
-    state = decode(m.State, dict(raw, intervals=source["intervals"]))
+    old_intervals = memo.get("interval_rows", ()) if memo.get("basis_key") == basis_key else ()
+    interval_offset = (
+        len(old_intervals)
+        if len(source["intervals"]) >= len(old_intervals)
+        and source["intervals"][: len(old_intervals)] == list(old_intervals)
+        else 0
+    )
+    decoded_intervals = (memo["decoded_intervals"] if interval_offset else ()) + tuple(
+        decode(m.HumanInterval, x) for x in source["intervals"][interval_offset:]
+    )
+    state = replace(decode(m.State, dict(raw, intervals=[])), intervals=decoded_intervals)
     snapshot = replace(
-        ProductionBackend(initial, run_id=spec["run_id"], epoch=spec["epoch"]).snapshot(),
+        initial_snapshot,
         state=state,
         events=decoded,
         config_sha256=configuration_digest(cfg),
     )
+    from .control.audit_cache import ExecutionCheckpoint
     from .production_checker import check_run
 
-    audit = check_run(cfg, snapshot, catalog=history)
+    checkpoint = (
+        memo["checkpoint"].fork() if memo.get("checkpoint") is not None else ExecutionCheckpoint()
+    )
+    audit = check_run(
+        cfg,
+        snapshot,
+        catalog=history,
+        checkpoint=checkpoint if cache is not None else None,
+        catalog_checkpoint=cache is not None,
+    )
     require(audit.status == "PASS", "TIMELINE_EXECUTION_SOURCE:" + str(audit.findings))
     metrics = project(spec, history, snapshot)
     require(packet["workforce_statistics"] == metrics, "TIMELINE_METRICS")
@@ -304,7 +377,8 @@ def validate(packet, events, rows, basis):
             if flags["presence"]
             else 0,
         )
-    actual = {k: deepcopy(v) for k, v in rows.items() if v["row_kind"] != "PLAN"}
+    # Only the top-level observation bound is removed; nested values stay read-only.
+    actual = {k: dict(v) for k, v in rows.items() if v["row_kind"] != "PLAN"}
     for key, row in actual.items():
         observed = row.pop("observed_until_h", None)
         if row.get("end_status") == "OPEN":
@@ -329,3 +403,16 @@ def validate(packet, events, rows, basis):
     require(
         {k: v for k, v in rows.items() if v["row_kind"] == "PLAN"} == planned, "TIMELINE_PLAN_ROWS"
     )
+    if cache is not None:
+        cache.update(
+            basis_key=basis_key,
+            initial=initial,
+            initial_snapshot=initial_snapshot,
+            generations_key=generations_key,
+            history=history,
+            event_rows=tuple(events),
+            decoded_events=decoded,
+            interval_rows=tuple(source["intervals"]),
+            decoded_intervals=decoded_intervals,
+            checkpoint=checkpoint,
+        )

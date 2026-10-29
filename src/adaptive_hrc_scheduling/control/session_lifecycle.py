@@ -7,6 +7,7 @@ from time import sleep
 from adaptive_hrc_scheduling.building_human import calendar_state
 from adaptive_hrc_scheduling.contracts.codec import as_data, require
 from adaptive_hrc_scheduling.contracts.session import digest, validate_record
+from adaptive_hrc_scheduling.contracts.session_stream import file_sha256
 
 IDENTITY = "P04.4-SESSION-r1"
 
@@ -174,7 +175,8 @@ class Lifecycle:
                     times.append(max(start, math.nextafter(contact, start)))
         if times:
             end = min(end, min(times))
-        if end <= start + 1e-12:
+        accepted_boundary = any(s.admissions[key]["due_h"] == end for key in self.pending())
+        if end <= start or (end <= start + 1e-12 and not accepted_boundary):
             return "DRAIN_BLOCKED"  # protected HOLD, never clip F or cross a cap
         remaining = c["wall_budget_s"] - (monotonic() - self.started)
         delay = (end - start) / c["simulation_rate"] if self.continuous else 0
@@ -277,18 +279,14 @@ class Lifecycle:
         # A commit record binds the saved final state. Process exit is external.
         self.final["save_status"] = "COMPLETE"
         s.persist()
-        import hashlib
-
         save_atomic(
             s.output / "final-commit.json",
             dict(
                 final=self.final,
                 reason=reason,
-                session_state_sha256=hashlib.sha256(
-                    (s.output / "session-state.json").read_bytes()
-                ).hexdigest(),
+                session_state_sha256=file_sha256(s.output / "session-state.json"),
                 projection_files={
-                    name: hashlib.sha256((s.output / name).read_bytes()).hexdigest()
+                    name: file_sha256(s.output / name)
                     for name in ("timeline.jsonl", "timeline-latest.json")
                     if phase != "FAILED" or (s.output / name).is_file()
                 },

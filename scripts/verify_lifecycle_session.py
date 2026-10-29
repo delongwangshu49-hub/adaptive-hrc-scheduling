@@ -173,7 +173,21 @@ def verify(directory):
         decode(m.Configuration, read("configuration.json")), state["generations"]
     )
     journal = read("online-journal.json")
-    choices = journal[-1]["commitments_after"] if journal else []
+    from adaptive_hrc_scheduling.full_schedule import is_fixed
+
+    full_schedule = is_fixed(history.initial)
+    if full_schedule:
+        check(
+            all(
+                r.get("phase") == "FULL_PLAN_BUILD"
+                or r.get("selected_source") == "VERIFIED_FULL_PLAN"
+                for r in journal
+            ),
+            "FULL_PLAN_JOURNAL_SOURCE",
+        )
+        choices = []  # Full future plan is revisable; it is not the old protected cache.
+    else:
+        choices = journal[-1]["commitments_after"] if journal else []
     commands = life.get("commitments", [])
     normalized = [
         dict(
@@ -293,6 +307,7 @@ def verify(directory):
     prefix = []
     previous = "0" * 64
     plan_versions = []
+    transport_state = {}
     with gzip.open(root / "decisions.jsonl.gz", "rt", encoding="utf-8") as stream:
         decision_plans = [json.loads(line)["plan"] for line in stream if line.strip()]
     for n, line in enumerate((root / "timeline.jsonl").read_text(encoding="utf-8").splitlines(), 1):
@@ -303,6 +318,11 @@ def verify(directory):
         )
         previous = sha({k: v for k, v in packet.items() if k != "packet_sha256"})
         check(previous == packet["packet_sha256"], "PACKET_HASH:" + str(n))
+        if packet.get("progress_delta"):
+            from adaptive_hrc_scheduling.timeline_transport import unpack
+
+            check(full_schedule, "FULL_PROGRESS_SCENARIO")
+            transport_state = unpack(packet, transport_state)
         prefix += packet["events"]
         e = packet["envelope"]
         if packet["plan"] is not None and (

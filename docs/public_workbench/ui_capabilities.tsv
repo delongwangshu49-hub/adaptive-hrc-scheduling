@@ -1,0 +1,27 @@
+capability	implementation	actual_verification	status
+B路线承载	原生Kit+React/WebEngine；旧KitHost不改	r4/r5原生像素、PID/几何、退出	VERIFIED_LOCAL_BOUNDED
+左右同权双图	all audited sizes left/right equal outer panels, independent name column	approved p051_horizontal_layout_r2; live-r6/r7 actual size/DPR evidence	VERIFIED_APPROVED_LAYOUT_R2
+500x160专用宿主	有效Qt/布局/原生最小尺寸门控	原五尺寸原语+本轮真Kit横排	VERIFIED_LOCAL_CONDITIONS
+分栏/对称全屏/恢复	双侧尺寸预提交门控	r5拖动693/653及恢复673/673	VERIFIED_LOCAL
+中英与上下文	语言/草稿/选择/筛选/缩放/相机状态	r3/r4/r5切换与恢复	VERIFIED_LOCAL
+黑灰菜单与弹窗	中性CSS和Qt调色板/无彩色问号	r2人员菜单、r4相机/导出、r8灰阶弹窗	VERIFIED_LOCAL_AND_QT_FIXTURE
+普通单/急单	完整实际参数预览和两段确认	r3各一次ORDER_REGISTERED	VERIFIED_APPLIED_NOT_ORDER_COMPLETE
+新人员到岗	注册资格/日历模板、初始F、位置	r3初始目录外W3实际PRESENT	VERIFIED_APPLIED_LOCAL
+计划减员	保留安全交接策略和原ID	r4/r5 W2实际DEPARTED	VERIFIED_APPLIED_LOCAL
+缺勤/返回/休息/故障/维修/取消	typed fault/repair/cancel/absence/return forms; manual REST_REQUEST disabled and marked unimplemented	P051 limited repair R01/R02/R05; current P053 fixed mechanisms separate	VERIFIED_SCOPED_MANUAL_REST_UNIMPLEMENTED
+请求/生效/业务分列	不把ACCEPTED或APPLIED写成订单完成	r3注册结果；r5人员DEPARTED分列	VERIFIED_LOCAL
+安全停止/关闭	原Controller，等待退出才释放原生窗	五局部会话STOPPED/exit0；r5关闭取消；r8共享灰阶确认助手	VERIFIED_LOCAL_LIMITED
+工序/资源甘特	已验证投影与独立状态/提案过滤	r4/r5实际操作；9 Web逻辑检查	VERIFIED_LOCAL_AND_LOGIC
+稳定颜色/冲突	全关系扫描、稳定工作编号、共享command归属	定向检查+共享占用/人员片段身份测试+实际资源视图	VERIFIED_TARGETED
+共享选择/只读定位	现有USD prim选择，不改世界/USD	r4location-confirmation accepted及前后摘要相等	VERIFIED_LOCAL
+缩放/平移/筛选/折叠/滚动	数值时间控件/虚拟行/内容折叠	r5实际/资源筛选、1h跨度与0.1h起点；r8行高重算	VERIFIED_LOCAL_AND_QT_FIXTURE
+导出	最后已验证前缀与选择上下文	r4导出JSON读回7901行、英文、work_key	VERIFIED_LOCAL
+断连/陈旧/损坏	冻结最后验证帧、5s禁写、原ID查询	r3超限失败关闭；r4/r5断连/实际renderer故障恢复无重放	VERIFIED_FAIL_CLOSED
+投影负载	精确前缀缓存、行增量、128MB有界读取	r3原440包/8662行完整读回；r4/r5帧龄P95<5s	VERIFIED_BOUNDED_WITH_RECORDED_STALE_PEAKS
+4Hz	250ms轮询计划	新包验证P95约1.08s；没有持续4Hz吞吐声明	NOT_A_SUSTAINED_4HZ_CLAIM
+原生帧版本年龄	帧计数推进+发布年龄，两版本分列	r4/r5实际遥测；异步非交易读回	VERIFIED_TELEMETRY_ONLY
+DPI/显存	实际DPR1.5及进程DPR1.0；80显存采样	最大4497/12227MiB；其他系统DPI未测	VERIFIED_SAMPLED_CONDITIONS
+独立保存	原执行/因果/动态人员核验	r3=12306，r5=12280 PASS；旧寿命首次目录调用失败保持	VERIFIED_DECLARED_SCOPE
+独立USD文件	工作台没有导出workforce-scene.usda	额外读取失败原件保留，不冒称通过	NOT_VERIFIED_FILE_ABSENT
+Figma	沿用批准r2/r3与本轮横排覆盖	Starter限制与原PNG上传拒绝保持，无新Figma操作	EXISTING_TOOL_LIMIT_RETAINED
+P05.2/P05.3/G05	P052 approved split scope; P053 research coverage and case index; actual publication pending	p052 acceptance amendment; p053 coverage; original E20 all-received NOT_MET	P053_LOCAL_RESULT_SEPARATE_FROM_G05_P06

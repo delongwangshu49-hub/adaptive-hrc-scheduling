@@ -37,7 +37,7 @@ class Report:
     metrics: m.OfflineEvaluation | None
 
 
-def check_run(config, snapshot, *, checkpoint=None, catalog=None):
+def check_run(config, snapshot, *, checkpoint=None, catalog=None, catalog_checkpoint=False):
     try:
         if config.schema_version in ("P042-PROD-1.0", "P043-PROD-1.0"):
             require_catalog = catalog is not None and digest(config) in catalog.views
@@ -45,6 +45,20 @@ def check_run(config, snapshot, *, checkpoint=None, catalog=None):
                 return Report(
                     "INCOMPLETE", (Finding("P042", "SNAPSHOT", "CATALOG_HISTORY_REQUIRED"),), None
                 )
+            if catalog_checkpoint and checkpoint is not None:
+                from adaptive_hrc_scheduling.control.audit_cache import clone, exact_equal
+
+                # Dynamic histories are mutable at their owner. Reuse requires
+                # the exact checked generation proof, not merely equal C0/hash.
+                if getattr(
+                    checkpoint, "_catalog_initial", None
+                ) is not catalog.initial or not exact_equal(
+                    getattr(checkpoint, "_catalog_generations", None), catalog.generations
+                ):
+                    checkpoint.__init__()
+                checkpoint._catalog_initial = catalog.initial
+                checkpoint._catalog_generations = clone(catalog.generations)
+                return _check_run(config, snapshot, catalog=catalog, checkpoint=checkpoint)
             return _check_run(config, snapshot, catalog=catalog)
         if checkpoint is not None:
             prior = checkpoint.reuse(config, snapshot)
@@ -59,6 +73,7 @@ def check_run(config, snapshot, *, checkpoint=None, catalog=None):
 
 def _check_run(config, snapshot, *, checkpoint=None, catalog=None):
     findings = []
+    final_config = config
 
     def need(ok, rule, reason, event):
         if not ok:
@@ -250,8 +265,18 @@ def _check_run(config, snapshot, *, checkpoint=None, catalog=None):
         "command_hashes",
         "world_ids",
     )
-    offset, saved = checkpoint.restore(config, snapshot) if checkpoint is not None else (0, None)
+    offset, saved = (
+        checkpoint.restore(final_config, snapshot) if checkpoint is not None else (0, None)
+    )
     if saved is not None:
+        config = final_config
+        people = {p.id: p for p in config.people}
+        devices = {d.id: d for d in config.devices}
+        places = {p.id: p for p in config.places}
+        lots = {x.id: x for x in config.lots}
+        entities = {x.id: x for x in config.entities}
+        evidence = {x.id: x for x in config.evidence}
+        support_layouts = {x.id: x for x in config.support_layouts}
         (
             ops,
             routes,
@@ -343,6 +368,9 @@ def _check_run(config, snapshot, *, checkpoint=None, catalog=None):
                     masses[x.id] = 0
                     entities[x.id] = x
             for pid in generation.get("product_ids", []):
+                if generation.get("order_update"):
+                    need(pid in products, "P051", "UPDATED_PRODUCT_UNKNOWN", e)
+                    continue
                 need(pid not in products, "P042", "PRODUCT_ID_REUSED", e)
                 products[pid] = dict(released=False, cancelled=False, ready_h=None, received_h=None)
         try:
@@ -1119,7 +1147,12 @@ def _check_run(config, snapshot, *, checkpoint=None, catalog=None):
                 )
                 if op.action in ("TRANSFER", "DEPLOY_TOOL", "RETRIEVE_TOOL"):
                     duration += config.setup_h + config.load_h + config.unload_h
-            duration *= 1 + op.kappa * max((humans[r.person_id][0] for r in c.roles), default=0)
+            # The independently reconstructed configuration declares this scenario;
+            # historical fatigue-scaled inputs retain their original arithmetic.
+            from .full_schedule import is_fixed
+
+            if not is_fixed(config):
+                duration *= 1 + op.kappa * max((humans[r.person_id][0] for r in c.roles), default=0)
             duration = resume_durations.get(c.id, duration)
             for r in c.roles:
                 p = people[r.person_id]

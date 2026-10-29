@@ -193,7 +193,12 @@ class CatalogHistory:
 
     def append(self, row):
         require(row["before_config_sha256"] == digest(self.current), "GENERATION_PREVIOUS_VIEW")
-        config, products = generate(self.current, row["payload"], row["sim_h"])
+        if row.get("order_update"):
+            from .schedule_order_update import configuration
+
+            config, products = configuration(self.current, row["payload"], row["sim_h"])
+        else:
+            config, products = generate(self.current, row["payload"], row["sim_h"])
         require(
             list(products) == row["product_ids"] and digest(config) == row["config_sha256"],
             "GENERATION_RECONSTRUCTION",

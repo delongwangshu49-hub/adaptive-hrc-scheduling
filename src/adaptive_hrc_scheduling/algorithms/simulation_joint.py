@@ -750,6 +750,9 @@ class SimulationJointProblem:
                 )
             if self.catalog is not None:
                 score = self.catalog.score(snapshot.state, self.prefix.state)
+            # Retain the already audited result for a read-only display export.
+            # This is not another rollout and never alters the candidate or score.
+            self.last_verified_display = (candidate, snapshot, rows)
             return Verification(True, score)
         except (
             ContractError,

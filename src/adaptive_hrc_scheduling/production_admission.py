@@ -83,6 +83,10 @@ def profile(config):
 
 
 def validate_admission(config):
+    if config.schema_version == "P053-PROD-1.0":
+        from adaptive_hrc_scheduling.research_initial import validate_configuration
+
+        return validate_configuration(config)
     if config.schema_version == "P043-PROD-1.0":
         from adaptive_hrc_scheduling.dynamic_workforce import validate_configuration
 

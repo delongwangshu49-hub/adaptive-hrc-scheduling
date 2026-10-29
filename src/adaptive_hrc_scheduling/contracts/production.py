@@ -602,7 +602,7 @@ def production_schema(kind, *, simulation=False):
             props["specification"]["enum"] = [
                 x
                 for x in props["specification"]["enum"]
-                if x not in ("P042-PROD-SPEC-1.0", "P043-PROD-SPEC-1.0")
+                if x not in ("P042-PROD-SPEC-1.0", "P043-PROD-SPEC-1.0", "P053-PROD-SPEC-1.0")
             ]
         if not simulation:
             for field in additions.get(name, ()):

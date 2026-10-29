@@ -112,7 +112,12 @@ class ExecutionCheckpoint:
 
     def save(self, config, snapshot, ledger):
         offset = len(self._events) if self.matches(config, snapshot) else 0
-        if _checked(type(config), config, "$ ")[1] and all(
+        # A saved config has already passed the complete immutable-tree check.
+        # Retaining that exact object keeps the proof alive after codec eviction.
+        immutable_config = (self._config is config and self._ledger is not None) or _checked(
+            type(config), config, "$ "
+        )[1]
+        if immutable_config and all(
             _checked(type(e), e, "$ ")[1] for e in snapshot.events[offset:]
         ):
             self._config = config
@@ -127,6 +132,9 @@ class ExecutionCheckpoint:
         # a mutable copy. Forks may share this immutable-by-ownership checkpoint.
         other._ledger = self._ledger
         other._certified, other._report = self._certified, self._report
+        if hasattr(self, "_catalog_initial"):
+            other._catalog_initial = self._catalog_initial
+            other._catalog_generations = clone(self._catalog_generations)
         return other
 
     def verify(self, config, snapshot):

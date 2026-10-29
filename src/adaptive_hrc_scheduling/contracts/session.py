@@ -10,6 +10,7 @@ from importlib.resources import files
 from .codec import require
 
 SCHEMA = json.loads(files(__package__).joinpath("session_schema.json").read_text())
+P051_EXTENSION = json.loads(files(__package__).joinpath("p051_session_extension.json").read_text())
 
 
 def canonical(value):
@@ -50,7 +51,9 @@ def loads(raw):
 
 def validate_record(name, value, kind=None):
     require(type(value) is dict, "FIELD_INVALID")
-    fields = SCHEMA[name]
+    fields = P051_EXTENSION[name] if name in P051_EXTENSION else SCHEMA[name]
+    if name == "ChangeRequest" and value.get("kind") == "ORDER_UPDATE":
+        fields = {**fields, "kind": {"type": "enum:ORDER_UPDATE", "required": True}}
     if name == "RunSpec" and value.get("schema_version") == "P04.4-SESSION-r1":
         fields = {**fields, "schema_version": {"type": "enum:P04.4-SESSION-r1", "required": True}}
     require(set(value) <= fields.keys(), "FIELD_UNKNOWN")
@@ -69,10 +72,10 @@ def validate_type(typ, v, kind):
             validate_type(typ[:-2], x, kind)
         if typ == "id[]":
             require(len(v) == len(set(v)), "DUPLICATE_ID")
-    elif typ in SCHEMA:
+    elif typ in SCHEMA or typ in P051_EXTENSION:
         validate_record(typ, v, kind)
     elif typ == "event_payload":
-        require(kind in SCHEMA, "REQUEST_KIND")
+        require(kind in SCHEMA or kind in P051_EXTENSION, "REQUEST_KIND")
         validate_record(kind, v)
     elif typ.startswith("enum:"):
         require(type(v) is str and v in typ[5:].split(","), "FIELD_INVALID")

@@ -1,0 +1,45 @@
+{
+  "identity": "G05-SOURCE-RECORDS-r1",
+  "records": [
+    {
+      "identity": "P050 actual approval",
+      "sha256": "eb18cc869e51d06b9069eac87f2525349007d93e3acc22ba0d0cc0445f21ad77",
+      "availability": "controlled original; sanitized public summary here"
+    },
+    {
+      "identity": "P051 local completion",
+      "sha256": "6ea6edfc1f445ef4f9fc6d42eb9f71e437236b42a434c9a4e3acfabe8eac19cf",
+      "availability": "controlled original; sanitized public summary here"
+    },
+    {
+      "identity": "P051 repair",
+      "sha256": "f21b5f34140829658d28fdc175b57025047666ba7f7c79357c2b8c79dcd22ba9",
+      "availability": "controlled original; sanitized public summary here"
+    },
+    {
+      "identity": "P052 approved scope",
+      "sha256": "43eaf9c5153401234e23b499fae1f635db83e76891819eab36933e8b2c213d27",
+      "availability": "controlled original; sanitized public summary here"
+    },
+    {
+      "identity": "P053 completion",
+      "sha256": "eb4bdc8dc690eef5092feade0e6638a5769d856621a4181dd6ffded9dcca22e3",
+      "availability": "controlled original; sanitized public summary here"
+    },
+    {
+      "identity": "P053 review",
+      "sha256": "efe3b34c0cb668dd61fc5932e8023c00e4e302669e1005f635ca99a353ecac80",
+      "availability": "controlled original; sanitized public summary here"
+    },
+    {
+      "identity": "P053 repair",
+      "sha256": "4faeb517cf78a7accb0d577b2f08a146b3ddc873bf8aaa64b0290d59242f4b18",
+      "availability": "controlled original; sanitized public summary here"
+    },
+    {
+      "identity": "P053 full manifest",
+      "sha256": "021258952a53f176bf7e41bdb627cf61a2c7cb206231e54cece91d4e8eee6fa2",
+      "availability": "controlled original; sanitized public summary here"
+    }
+  ]
+}

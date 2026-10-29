@@ -22,7 +22,10 @@ from adaptive_hrc_scheduling.contracts.session import (  # noqa: E402
     validate_spec,
 )
 from adaptive_hrc_scheduling.contracts.session import digest as sha  # noqa: E402
-from adaptive_hrc_scheduling.control.production_decisions import check_decisions  # noqa: E402
+from adaptive_hrc_scheduling.control.production_decisions import (  # noqa: E402
+    check_decisions,
+    initial_visible_state,
+)
 from adaptive_hrc_scheduling.domain import production as m  # noqa: E402
 from adaptive_hrc_scheduling.dynamic_orders import MATERIAL_PLANS
 from adaptive_hrc_scheduling.dynamic_workforce import (
@@ -297,6 +300,47 @@ def verify(directory, *, evidence_directory=None, require_decisions=True):
                 revision=0, kind="order", available=True, product_ids=ids
             )
             check(delta["object_ids"] == [request["target_id"], *ids], f"GENERATED_OBJECTS:{i}")
+        elif delta["kind"] == "ORDER_UPDATE":
+            from dataclasses import replace
+
+            from adaptive_hrc_scheduling.contracts.codec import as_data
+
+            g = generations[event.id]
+            prior = (
+                events[event.sequence - 2].state
+                if event.sequence > 1
+                else initial_visible_state(initial)
+            )
+            check(
+                g.get("order_update")
+                and g["payload"] == request["payload"]
+                and sha(g) == delta["generation_sha256"]
+                and g["catalog_version"] == i
+                and g["before_event_count"] == event.sequence - 1
+                and g["before_prefix_sha256"] == prefix_hashes[event.sequence - 1],
+                f"ORDER_UPDATE_SOURCE:{i}",
+            )
+            check(
+                event.world.kind == "CATALOG_REGISTER"
+                and event.world.entity_id == request["target_id"] == g["payload"]["order_id"]
+                and request["payload"]["due_sim_h"] > event.occurred_sim_h
+                and event.state.revision == delta["state_revision_after"]
+                and replace(event.state, revision=prior.revision) == prior
+                and g["protected_state_sha256"] == sha(as_data(prior)),
+                f"ORDER_UPDATE_PROTECTED:{i}",
+            )
+            obj = catalog["objects"][request["target_id"]]
+            check(
+                obj["kind"] == "order"
+                and obj["available"]
+                and delta["object_ids"] == [request["target_id"]],
+                f"ORDER_UPDATE_TARGET:{i}",
+            )
+            obj.update(
+                revision=obj["revision"] + 1,
+                due_sim_h=request["payload"]["due_sim_h"],
+                priority=request["payload"]["priority"],
+            )
         elif delta["kind"].startswith("PERSON_"):
             g = generations[event.id]
             check(
@@ -430,7 +474,7 @@ def verify(directory, *, evidence_directory=None, require_decisions=True):
     }
     check(set(scene) == expected, "DYNAMIC_SCENE_COVERAGE")
     for g in saved["generations"]:
-        if g.get("workforce_kind"):
+        if g.get("workforce_kind") or g.get("order_update"):
             continue
         view = history.views[g["config_sha256"]]
         for x in (*view.lots, *view.entities):

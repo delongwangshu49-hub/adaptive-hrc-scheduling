@@ -14,7 +14,13 @@ from adaptive_hrc_scheduling.dynamic_workforce import control_location, eligible
 from adaptive_hrc_scheduling.production_admission import applicable, completed_activity
 from adaptive_hrc_scheduling.production_backend import ProductionBackend
 from adaptive_hrc_scheduling.production_geometry import route, standing_point, transport_sweeps
-from adaptive_hrc_scheduling.production_navigation import clear_segment, ingress_groups, walk
+from adaptive_hrc_scheduling.production_navigation import (
+    clear_segment,
+    ingress_groups,
+    walk,
+    walk_blocker,
+    walk_obstacles,
+)
 from adaptive_hrc_scheduling.production_rework import active
 
 
@@ -43,6 +49,56 @@ def planning_input(config, observation, budget_ms=100):
     )
     validate(value, config=config)
     return value
+
+
+def _static_bindings(config, state, operation, crews, busy):
+    """Keep nominal/research assignments and match unavailable roles distinctly."""
+    requested = {
+        r.id: crews.get(operation.activity_id + ":" + r.id) if config.research else None
+        for r in operation.roles
+    }
+    nominal = {r.id: requested[r.id] or r.id for r in operation.roles}
+    assigned = dict(nominal)
+    if config.schema_version == "P043-PROD-1.0":
+        missing = [
+            r for r in operation.roles if not requested[r.id] and not eligible(state, nominal[r.id])
+        ]
+        missing_ids = {r.id for r in missing}
+        used = {p for role_id, p in nominal.items() if role_id not in missing_ids}
+        fatigue = {h.person_id: h.fatigue for h in state.humans}
+        options = {
+            r.id: sorted(
+                (
+                    p.id
+                    for p in config.people
+                    if r.qualification in p.qualifications
+                    and eligible(state, p.id)
+                    and p.id not in used
+                ),
+                key=lambda pid: (pid in busy, fatigue[pid], pid),
+            )
+            for r in missing
+        }
+
+        def match(index):
+            if index == len(missing):
+                return True
+            role = missing[index]
+            for person in options[role.id]:
+                if person in used:
+                    continue
+                assigned[role.id] = person
+                used.add(person)
+                if match(index + 1):
+                    return True
+                used.remove(person)
+            return False
+
+        if not match(0):
+            # No distinct crew exists. Preserve nominal unavailable people so
+            # the original personnel admission guard explains the wait.
+            assigned = nominal
+    return tuple(m.RoleBinding(r.id, assigned[r.id]) for r in operation.roles)
 
 
 def choose(
@@ -93,6 +149,25 @@ def choose(
             world.routes[item.route.id] = item.route
 
     handover_services = {}
+    endpoint_blocked = {}
+
+    def fixed_endpoint_blocked(person, op, role):
+        if config.schema_version != "P043-PROD-1.0" or len(config.people) <= 15:
+            return False
+        destination = next((p.location for p in op.role_locations if p.person_id == role.id), None)
+        if destination is None:
+            return False
+        key = (person.id, destination)
+        if key not in endpoint_blocked:
+            point = standing_point(config, person.id, destination)
+            obstacles = walk_obstacles(
+                config, obs.state, person.id, positions[person.id], destination
+            )
+            # People may clear through ordinary admitted walking services.
+            # A machine or load cannot be ignored to make a crew reachable.
+            fixed = [box for box in obstacles if box[0] not in world.people]
+            endpoint_blocked[key] = not clear_segment(point, point, fixed)
+        return endpoint_blocked[key]
 
     def bindings_for(op):
         if not op.branch:
@@ -101,31 +176,7 @@ def choose(
             )
             if committed is not None:
                 return committed
-            chosen = []
-            for role in op.roles:
-                requested = crews.get(op.activity_id + ":" + role.id) if config.research else None
-                person = requested or role.id
-                if (
-                    config.schema_version == "P043-PROD-1.0"
-                    and not requested
-                    and not eligible(obs.state, person)
-                ):
-                    alternatives = [
-                        p
-                        for p in config.people
-                        if role.qualification in p.qualifications and eligible(obs.state, p.id)
-                    ]
-                    if alternatives:
-                        person = min(
-                            alternatives,
-                            key=lambda p: (
-                                p.id in busy,
-                                next(h.fatigue for h in obs.state.humans if h.person_id == p.id),
-                                p.id,
-                            ),
-                        ).id
-                chosen.append(m.RoleBinding(role.id, person))
-            return tuple(chosen)
+            return _static_bindings(config, obs.state, op, crews, busy)
         attempt = next(
             (a for a in obs.state.mode_attempts if a.activity_id == op.activity_id), None
         )
@@ -145,6 +196,7 @@ def choose(
                         not eligible(obs.state, p.id)
                         if config.schema_version == "P043-PROD-1.0"
                         else False,
+                        fixed_endpoint_blocked(p, op, r),
                         p.id in busy,
                         next(h.fatigue for h in obs.state.humans if h.person_id == p.id),
                         p.id,
@@ -196,7 +248,56 @@ def choose(
         except ContractError as exc:
             return str(exc)
 
-    def service_for(parent, entity, destination=None, rest=False):
+    def clear_person(parent, blocker, clearing=()):
+        if config.schema_version != "P043-PROD-1.0":
+            return None
+        newcomers = {p.id for p in config.people[15:]}
+        if blocker not in newcomers and not newcomers.intersection(clearing):
+            # Keep the original traffic ordering for the initial workforce.
+            # This extension only resolves access involving added people.
+            return None
+        protected = {b.person_id for b in bindings_for(parent)}
+        if (
+            blocker not in world.people
+            or blocker in clearing
+            or blocker in protected
+            or blocker in busy
+            or not eligible(obs.state, blocker)
+            or any(
+                a.state != "COMPLETE" and any(b.person_id == blocker for b in a.crew)
+                for a in obs.state.mode_attempts
+            )
+            or any(
+                any(b.person_id == blocker for b in a.roles)
+                and any(
+                    o.activity_id == a.activity_id
+                    and o.roles
+                    and not o.branch
+                    and not o.handover
+                    and o.id not in done
+                    for o in config.operations
+                )
+                for a in obs.state.activity_crews
+            )
+        ):
+            return None
+        parks = [control_location(config, blocker)]
+        parks.extend(
+            control_location(config, p.id) for p in config.people if off_shift(obs.state, p.id)
+        )
+        if blocker == "Lsig":
+            parks.append("CONTROL-PARK-Lsig")
+        # Keep the existing signal-person refuge free. Vacated control places
+        # are only candidates: routes, occupancy and return gates still apply.
+        for park in dict.fromkeys(parks):
+            if park not in world.places or positions[blocker] == park:
+                continue
+            cleared = service_for(parent, blocker, park, clearing=(*clearing, blocker))
+            if cleared:
+                return cleared
+        return None
+
+    def service_for(parent, entity, destination=None, rest=False, clearing=()):
         source = positions[entity]
         if source not in world.places or entity in busy or "ENTITY:" + entity in busy:
             return None
@@ -254,6 +355,38 @@ def choose(
                 )
             except ContractError as exc:
                 reasons.append(ident + ":" + str(exc))
+                if (
+                    config.schema_version == "P043-PROD-1.0"
+                    and str(exc) == "NO_LEGAL_PERSON_ACCESS"
+                ):
+                    for location in (source, destination):
+                        point = standing_point(config, entity, location)
+                        blocker = walk_blocker(
+                            config, obs.state, entity, source, destination, (point, point)
+                        )
+                        cleared = clear_person(parent, blocker, (*clearing, entity))
+                        if cleared:
+                            return cleared
+                    home = control_location(config, entity)
+                    if (
+                        entity in {p.id for p in config.people[15:]}
+                        and source
+                        in {
+                            control_location(config, p.id)
+                            for p in config.people
+                            if off_shift(obs.state, p.id)
+                        }
+                        and source != home
+                        and destination != home
+                    ):
+                        # A newcomer can itself occupy the only vacated place
+                        # needed by its blocker. First leave through a normal
+                        # admitted walk; never swap or teleport the people.
+                        repositioned = service_for(
+                            parent, entity, home, clearing=(*clearing, entity)
+                        )
+                        if repositioned:
+                            return repositioned
                 return None
         op = m.Operation(
             ident,
@@ -292,6 +425,10 @@ def choose(
         reason = admissible(cmd)
         if reason:
             reasons.append(ident + ":" + reason)
+        if reason and reason.startswith("TRANSPORT_COLLISION:"):
+            cleared = clear_person(parent, reason.split(":", 1)[1], (*clearing, entity))
+            if cleared:
+                return cleared
         if reason == "HUMAN_CAP" and not rest:
             for role in roles:
                 rested = service_for(parent, role.id, rest=True)
@@ -498,7 +635,7 @@ def choose(
         key=priority,
     )
 
-    if config.schema_version in ("P042-PROD-1.0", "P043-PROD-1.0"):
+    if config.schema_version in ("P042-PROD-1.0", "P043-PROD-1.0", "P053-PROD-1.0"):
         # New raw stock cannot enter an occupied receiving lane. When the
         # previous delivery leaves an empty carrier there, physically clear it
         # using the ordinary, fully admitted walking/empty-return service.
@@ -516,7 +653,19 @@ def choose(
             ),
             None,
         )
-        if waiting is not None and root is not None and (root.parent or root.id) == "RECEIVE":
+        occupied_receiving = any(
+            lot.arrived
+            and world._mass(lot.id) > 1e-9
+            and lot.location in world.places
+            and (world.places[lot.location].parent or lot.location) == "RECEIVE"
+            for lot in obs.state.lots
+        )
+        if (
+            waiting is not None
+            and root is not None
+            and (root.parent or root.id) == "RECEIVE"
+            and not occupied_receiving
+        ):
             clearance = service_for(waiting, "FORK-01", "FORK-PARK")
             if clearance:
                 return plan(
@@ -676,6 +825,17 @@ def choose(
                 )
             return plan(config.schema_version, config.id, obs.id, (cmd,), "CANDIDATE", rule)
         reasons.append(op.id + ":" + reason)
+        if reason.startswith("TRANSPORT_COLLISION:"):
+            cleared = clear_person(op, reason.split(":", 1)[1])
+            if cleared:
+                return plan(
+                    config.schema_version,
+                    config.id,
+                    obs.id,
+                    (cleared,),
+                    "CANDIDATE",
+                    "PREPARE:" + op.id,
+                )
         if reason == "TRANSPORT_COLLISION:Lsig":
             clear = traffic_clearance(op)
             if clear:
@@ -726,6 +886,17 @@ def choose(
         try:
             probe._admit(cmd)
         except ContractError as exc:
+            if str(exc).startswith("TRANSPORT_COLLISION:"):
+                cleared = clear_person(op, str(exc).split(":", 1)[1])
+                if cleared:
+                    return plan(
+                        config.schema_version,
+                        config.id,
+                        obs.id,
+                        (cleared,),
+                        "CANDIDATE",
+                        "PREPARE:" + op.id,
+                    )
             if str(exc) == "TRANSPORT_COLLISION:Lsig":
                 clear = traffic_clearance(op)
                 if clear:

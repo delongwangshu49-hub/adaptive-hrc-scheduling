@@ -360,7 +360,9 @@ class ProductionBackend:
             ),
             default=0,
         )
-        return duration * (1 + op.kappa * maximum)
+        from adaptive_hrc_scheduling.full_schedule import is_fixed
+
+        return duration if is_fixed(self.config) else duration * (1 + op.kappa * maximum)
 
     def _admit(self, c):
         if hasattr(self, "dispatch_products"):

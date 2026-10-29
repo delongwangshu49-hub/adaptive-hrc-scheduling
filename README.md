@@ -4,8 +4,8 @@
 
 **面向模块化建筑工厂的人机协作自适应调度研究**
 
-从人员、设备与物料状态出发，联合选择协作模式与作业顺序，
-在离散事件和 Isaac Sim 中执行，再用独立审计核对每一次决策。
+联合选择协作模式、任务顺序与资源安排，
+在 CPU 与 Isaac Sim 中执行，并独立核对决策、状态和实际读回。
 
 [![CPU checks](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml/badge.svg)](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml)
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](pyproject.toml)
@@ -20,46 +20,45 @@
 
 ## 项目概览
 
-本项目研究完整建筑模块制造中的自适应人机协同调度。系统把任务前序、人员资格与疲劳、机器人和设备、物料与空间约束纳入统一生产模型，通过离散事件与Isaac Sim执行反馈，在线调整尚未执行的任务、协作模式和资源安排，并保存可独立核验的运行依据。生产流程贯通结构制造、MEP、内装、质量放行与出厂接收。
+本项目研究建筑模块制造中的自适应人机协同调度，覆盖结构、MEP、内装、质量放行与外部接收。任务前序、人员资格与疲劳、设备、物料、空间和在制占用进入同一合法域；调度器依据已交付观察调整未执行安排，保留在制段、承诺、载荷和人员历史。
 
-当前交付围绕模型、协作模式、疲劳、故障、订单变化、真实执行环境、闭环算法、评价与报告推进，并加入运行中真新订单/人员变更、实时甘特及同权双视图要求。成果属于 **S18-SIM-A1 仿真研究域**，工业G2仍为OPEN。
+Windows 工作台采用原生 Isaac 视口与 React/WebEngine 甘特及表单相邻承载，运行中可提交新订单和人员变更。模型、执行、界面、研究结果及负责人操作分别验收。成果属于 **S18-SIM-A1 仿真研究域**，工业 G2 仍为 OPEN。
 
 <a id="status"></a>
 
 ## 当前阶段
 
-**P04四关口后端已在本地有限范围完成；G04确切候选供审阅，上传待一次性授权。** 本地设计完成、负责人审阅、实现、生产验收及实际发布分别记录。下表描述本次候选内容，未预记新提交、标签或CI成功。
+**本阶段包覆盖 P05.0–P05.3：工作台、完整计划与实时甘特、限定连续生产证据、19 格研究覆盖及审阅后的有限修复。** P05 已完成本地限定范围验收，G05 的提交、标签与 CPU CI 分别核对。P06、正式统计图表及 P08/P09 最终联合验收不由阶段发布替代。
 
-| 阶段 | 已完成范围 | 后续边界 |
+| 范围 | 已有交付 | 保持的边界 |
 | --- | --- | --- |
-| P00–P02 | 需求/报告骨架、资产与版本选择、P01-INDEX-r2、P02-MODEL-r2及有限修订 | 最终整体技术/负责人验收另记 |
-| P03.1 | 两条正常CPU/真实Kit完整历史链承接、资源/反馈映射及影响证明，审阅通过 | 历史充分部分未机械重跑 |
-| P03.2 | 共用运行/事件、动态目录和连续会话契约；六项问题在离线范围修复 | 契约由P04后端承接，历史离线证据保留 |
-| P03.3 | 同权双图布局、40展示字段来源、24案例协议、容量/工时设计；r2有限修复核验完成 | GUI/Kit新界面未执行；动态后端见P04 |
-| P04.1–P04.4 | 共享入口、动态新单/人员、目录审计、有限持续会话与时间线数据本地完成 | 确切发布待批准；不是五情景最终验收 |
-| P05–P09 | 同权双图、连续生产最终验收、独立核验、结果/报告与联合验收 | P05.0未启动；初选须先审阅 |
+| P00–P04 | 模型、契约、动态订单/人员、持续会话与投影后端；历史阶段已发布 | 历史结果保留原版本与用途 |
+| P05.0 | B 混合路线与克制黑灰风格获得实际预审批准 | 设计批准不等于每项操作已实现 |
+| P05.1 | 同权双图、完整计划、实际/当前/旧计划区分、双语表单、资源甘特与安全停止 | 已审尺寸采用左右等外面板；手动 REST 未实现 |
+| P05.2 | 真新普通单/急单、W2 离岗和 W3 到岗派工的实际 Kit 前缀；另有派生完成性及容量证据 | 原同 Kit 全部接收仍 **NOT_MET**，不同运行不拼接 |
+| P05.3 | 五情景 CPU 覆盖、历史/局部 Kit 见证与四机制，共 19 格；16 份独立检查 | C 正向范围为 STOCK；WIP 剩余完成未建立 |
+| P06–P09 | 后续独立复现、统计报告及负责人操作/最终验收 | 本阶段包不预记通过 |
 
-G04候选覆盖P04.1–P04.4累计后端实现、必要专项和公开摘要；基点为G03已发布的 `a01e49c`。当前为本地候选，尚未批准或发布；详见[后端使用与边界](docs/public_backend/README.md)、[投影接口](docs/public_backend/timeline.md)和[验证摘要](docs/public_backend/evidence.json)。历史P03设计见[阶段摘要](docs/public_delivery_r2/stage_summary.md)。
+[P05 摘要](docs/public_workbench/README.md)、[19 格覆盖](docs/public_workbench/coverage.tsv)、[交互案例](docs/public_workbench/interaction_cases.tsv)和[结构化证据](docs/public_workbench/evidence_summary.json)是当前公开入口。完整原始轨迹、受限资料和大日志在受控本地保留。
 
 ## 能力与成熟度
 
-| 能力 | 当前状态 | 说明 |
-| --- | --- | --- |
-| 多资源生产模型 | 已有受测实现 | 前序、人员/资格/疲劳、设备/工装、物料、空间、在制与外部接收 |
-| 规则与联合调度 | 已有受测实现 | 合法EDD等规则、LNS、在线预算/核验/缓存/回退；新五情景比较未全部完成 |
-| CPU与Isaac闭环 | 已有受测实现/历史完整证据 | 命令接纳、真实读回、观察交付、决定与后续执行可追 |
-| 独立核验 | 已有受测实现 | 执行/因果审计、候选重放、双后端比较；动态扩展另验 |
-| 本地双语Qt/Kit工作台 | 已有历史原型 | S19B接受的启动/内存/关闭/覆盖限制保持；支承已通过 |
-| 真新订单/人员、连续会话 | 后端本地实现与有限验证完成 | 共用RunSpec、动态目录、连续F/E与费用、异步接单、关闭排空、停止及终态；新界面待P05 |
-| 实时甘特与同权布局 | 设计完成 | 默认三维/甘特同时可见1:1，稳定ID联动与数据年龄；待P05实现 |
+| 能力 | 当前受测范围 |
+| --- | --- |
+| 规则与联合调度 | 共用合法域、执行/因果检查、预算和回退；保留相同、较差与失败结果 |
+| CPU / Isaac 闭环 | 命令、事件、读回、观察和决定有身份绑定；完整历史链与新局部前缀分列 |
+| 完整计划与甘特 | 完整计划先覆盖已知订单；实际填充、当前轮廓、旧版和阻塞状态分开 |
+| 运行中业务 | 新普通单/急单和具名人员变更使用共享契约；受理、生效、执行与接收分开 |
+| 只读显示与失效处理 | 稳定工作颜色、筛选/导出、陈旧禁写、断连和安全关闭 |
+| 性能与人工验收 | 有界负载、尺寸/DPR及原生取证；持续 4Hz 和 P08 负责人操作未建立 |
 
-三维与实时甘特**同等重要，默认同时可见、绘图区1:1（各45%–55%）**。宽屏左右、窄屏上下，支持分隔拖动、对称放大和恢复等分，运行中新普通单/急单、人员增减入口始终可达。后续E20在同一真实Kit会话验证原单执行→新普通单→真新急单→减员→含新人员增员→关闭接单→全部受理单完成接收/正常退出。当前是已批准方向及完成的技术设计，尚无新界面实际截图或生产通过结论。
+当前获准布局在已审尺寸下默认横排、左右外面板等宽、名称栏独立，支持分隔拖动、对称放大与恢复等分。这已替代早期“所有尺寸绘图区严格1:1、窄屏上下”的设计规则；未测系统 DPI 不作保证。首页保持文字和架构图，没有自动恢复旧截图或加入新效果图。
 
 <a id="quickstart"></a>
 
 ## 快速开始
 
-CPU路径无需Isaac Sim或GPU。Python **3.12.13** 与 uv **0.12.3** 由项目固定；Windows使用 **PowerShell 7**。环境隔离详见[安装说明](docs/setup.md)。
+CPU 路径不需要 Isaac Sim 或 GPU。项目固定 Python **3.12.13**、uv **0.12.3**；Windows 开发命令使用 **PowerShell 7**。
 
 ```powershell
 git clone https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling.git
@@ -69,29 +68,33 @@ uv sync --locked --link-mode copy
 uv run --locked python -I -m adaptive_hrc_scheduling
 ```
 
-安装入口只输出包元数据；基础wheel没有运行依赖，生产/桌面入口需要完整源码仓库。以下是有效历史正常单件入口，新输出目录不可复用：
+安装入口输出包元数据；生产工具和桌面入口需要完整源码仓库。[环境隔离](docs/setup.md)说明 CPU、桌面与 Kit 的独立依赖。
+
+### CPU 正常生产
 
 ```powershell
 uv run --locked python scripts/verify_production_chain.py --output .local/new-normal-cpu --backend light --simulation --products 1 --variant SR-W1 --scenario NORMAL --until-h 720
 ```
 
-该命令运行默认正常生产，不能代表新动态接口或新的自适应五情景协议。查看输出中的`report.json`、事件/决定记录和审计；完整订单需完成/接收/退出证据，1小时检查点不能替代。该历史命令与P04新增局部寿命见证分别记录。
+这是已有正常单件入口，需新输出目录。查看 report、事件/决定、双审计和真实退出；局部检查点不等于订单完成，该命令也不代表全部 P05 成对研究。
 
-已有双语工作台入口为`./scripts/start_s19b.ps1`，独立依赖、Kit连接及历史限制见[工作台说明](desktop/s19b/README.md)。真实Kit须使用独立安装的包装器及[环境隔离说明](docs/setup.md#isaac-sim-独立入口)，不能用CPU结果替代Kit。运行中新单/人员已接通共用后端；新双图界面待P05交付。
-
-检查离线设计包（只检查设计/人工夹具，不启动生产或GUI）：
+### P05 Windows 工作台
 
 ```powershell
-uv run --locked python scripts/verify_p033_design_r2.py --output .local/new-p033-design-check
+uv sync --locked --project desktop/p051
+& ./desktop/p051/.venv/Scripts/python.exe ./scripts/run_p051_workbench.py --help
+& ./desktop/p051/.venv/Scripts/python.exe ./scripts/run_p051_workbench.py
 ```
 
-完整CPU CI入口仍为：
+发布树含受测 Web 构建资产。当前原生 Kit 启动适配沿用受测 Windows 环境，默认安装位置为 D:/Dev/tools/isaac-sim-6.1；其他安装布局需适配。CPU CI 不证明其他环境的原生桌面可用。[工作台指南](docs/public_workbench/usage.md)提供操作与重建说明。
+
+### CPU 检查
 
 ```powershell
 uv run --locked --no-cache --no-editable --reinstall-package adaptive-hrc-scheduling python scripts/check.py
 ```
 
-它检查源码并构建分发包，在隔离wheel环境重复测试；CPU CI不包含Kit或负责人操作。本候选没有触发新远端CI。
+共享检查包含锁、Ruff/格式、源码测试、构建，以及全新隔离 wheel 环境中的测试和依赖核对。GitHub Ubuntu/Windows 作业上限为 **120 分钟**，完整检查命令不缩减。上次约42–52分钟的双轮耗时仅作历史参考；本次结果须绑定具体提交和 Actions 运行。
 
 <a id="architecture"></a>
 
@@ -99,41 +102,45 @@ uv run --locked --no-cache --no-editable --reinstall-package adaptive-hrc-schedu
 
 ```mermaid
 flowchart LR
-    I[配置与工艺] --> O[已交付状态观察]
+    I[配置与已受理请求] --> O[已交付状态观察]
     O --> P[规则 / 联合计划]
     P --> V[候选核验与承诺保护]
-    V --> E[CPU / Isaac执行]
-    E -->|实际反馈| O
-    P --> A[独立因果/执行审计]
+    V --> E[CPU / Isaac实际执行]
+    E -->|读回与事件| O
+    E --> T[只读时间线与完整计划附件]
+    T --> U[原生三维 / React甘特]
+    P --> A[独立因果与执行核验]
     E --> A
 ```
 
-调度器只使用已经交付的事实；候选、实际采用、命令和执行读回分别记录。无合法动作或预算不足时明确等待/回退，已发生载荷、占位和承诺保持。新动态目录已与冻结C0分开绑定，旧命令按接纳版本核验；版本化增量投影及只读消费者已在P04接通，双图界面留待P05。
+固定研究与交互来源分开。动态目录保留 C0 和版本历史，旧命令按接纳版本核验。显示消费已交付事实，未来计划、实际与陈旧/未知状态分开；显示故障不自动重启业务或重放请求。
 
 ```text
-src/adaptive_hrc_scheduling/  领域、契约、算法、规划与闭环
-scripts/                      运行、审计与离线核验
-sim/                          Isaac场景、接收与读回适配
-desktop/s19b/                 已有Qt/Kit工作台
-examples/                     配方、输入与预算
-docs/public_delivery_r2/         当前公开候选的路线、契约、设计和证据摘要
+src/adaptive_hrc_scheduling/   领域、契约、计划、执行及投影
+scripts/                       运行、审计与桌面入口
+desktop/p051/                 P05 Qt / React工作台及受测Web资产
+desktop/s19b/                 原生宿主和历史工作台
+sim/                           Isaac场景与读回适配
+docs/public_workbench/        P05公开摘要、覆盖与使用说明
+tools/p053_auxiliary/         辅助取证修复源与隔离检查
 ```
 
 <a id="validation"></a>
 
 ## 验证与边界
 
-运行来源基线step-S20-r4的历史双平台源码/隔离wheel各905项通过，见[该次发布记录](docs/validation/S20_publication_r4.md)；这是历史版本结果。当前G04候选的新远端CI尚未运行，首页徽章显示目标分支工作流状态，不能视为此候选已通过。
-
-| 本次承接/核对 | 结果与来源 |
+| 证据 | 结论及用途 |
 | --- | --- |
-| P03.1正常CPU/真实Kit历史链 | 各4402事件/2072决策、436有效工序、READY/RECEIVED各1、真实QT exit0；[历史摘要](docs/public_delivery_r2/historical_evidence_summary.json) |
-| P03.2当前契约有限核验 | 417基线、47定向及33独立检查；六项问题在契约范围关闭 |
-| P03.3离线设计 | 修订161项检查（含原24损坏夹具、41定向条件及12输入绑定），另32独立契约/来源核对；无新生产/Kit/Qt运行 |
+| P05.1 实现及有限修复 | 计划/实际绑定、双语、窗口、投影和局部 Kit 见证；不替代负责人验收 |
+| P05.2 限定收口 | r14 真实前缀、r9 派生完成性与 E21 独立容量分项接受；原 E20 全链 NOT_MET 保持 |
+| P05.3 覆盖 | 19 格按声明用途满足；16 份独立检查为8份 Session、8份执行/因果，检查集合不同 |
+| 四个新 Kit 见证 | F/U/H/C 四个新鲜局部前缀共一个真实 exit0；外层约510秒，非整单或新 GUI 验收 |
+| 取消 | STOCK 剩余 PRODUCT-2 接收；两次 WIP/J3 HOLD 及首 N/U 失败保留 |
+| 有限修复 | 异常取证校验当前行和实际配置，8项隔离 CPU 检查通过；失败索引修正，r5 未启动新 Kit |
 
-[验证摘要](docs/public_delivery_r2/validation_summary.json)按历史/本地设计/未来实际验收分列；五项有限修复及其边界见[修复摘要](docs/public_delivery_r2/repair_summary.md)，负责人复审待定。P04新增寿命与投影保存重建已作有限验证；E01–E24最终验收、完整同会话生产链、窗口/DPI/负载与负责人操作仍待后续。局部吞吐/投影规模见后端摘要，双图负载与响应阈值在P05继续验证；历史单件计时不能作为新双图性能保证。
+[证据摘要](docs/public_workbench/evidence_summary.json)和[失败与修复](docs/public_workbench/failures_and_repairs.md)说明数值、身份及可获得性。新源码双平台/隔离 wheel CI 以当前提交的 [Actions](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml) 为准，不把历史测试数写成新提交结果。
 
-S19B接受的限制、支承通过、S18-SIM-A1及工业G2 OPEN保持。USD运动学读回不等于工业动力学/安全认证；正式方法优势尚未建立。历史失败、截尾、未完成研究及未知退出保留，不为新路线补造成功。完整原始日志、私有配置和原始参考材料受控保存。
+手动 REST_REQUEST 未实现；持续4Hz、任意规模/系统DPI、同Kit全单完成及P08负责人操作不在已成立结论内。USD运动学读回不等于工业动力学或安全认证，正式方法优势和最终联合验收尚未建立。公开摘要不表示完整原始轨迹已公开。
 
 <a id="docs"></a>
 
@@ -141,21 +148,15 @@ S19B接受的限制、支承通过、S18-SIM-A1及工业G2 OPEN保持。USD运�
 
 | 内容 | 入口 |
 | --- | --- |
-| 当前阶段与后续路线 | [阶段摘要](docs/public_delivery_r2/stage_summary.md) · [路线](docs/public_delivery_r2/roadmap.md) |
-| 交互要求及验收协议 | [I01–I08](docs/public_delivery_r2/interaction_requirements_r2.tsv) · [E01–E24](docs/public_delivery_r2/interaction_case_protocol.md) |
-| 模型与方法 | [模型承接](docs/public_delivery_r2/model_summary.md) · [生产规范](docs/model/specification.md) · [在线策略](docs/algorithms/online_policy.md) |
-| 动态契约 | [共用](docs/public_delivery_r2/interaction_contract_r3.md) · [目录](docs/public_delivery_r2/dynamic_catalog_contract_r2.md) · [会话](docs/public_delivery_r2/session_lifecycle_contract_r2.md) |
-| 双图与容量设计 | [布局](docs/public_delivery_r2/dual_view_layout_spec.md) · [时间线来源](docs/public_delivery_r2/timeline_source_spec.md) · [容量](docs/public_delivery_r2/capacity_estimate.md) |
-| 历史来源与研究边界 | [S20-r4发布](docs/validation/S20_publication_r4.md) · [仿真范围](docs/model/S18_simulation_scope_proposal_r1.md) · [工业G2](docs/research/S18_industrial_g2_evidence_r1.md) |
+| 当前范围与设计批准 | [P05摘要](docs/public_workbench/README.md) · [设计与批准](docs/public_workbench/design_and_approval.md) |
+| 使用与构建 | [工作台指南](docs/public_workbench/usage.md) · [环境隔离](docs/setup.md) |
+| 覆盖与交互 | [19格](docs/public_workbench/coverage.tsv) · [24案例](docs/public_workbench/interaction_cases.tsv) · [UI能力](docs/public_workbench/ui_capabilities.tsv) |
+| 证据与失败 | [结构化摘要](docs/public_workbench/evidence_summary.json) · [失败/修复](docs/public_workbench/failures_and_repairs.md) |
+| 已发布后端与契约 | [P04后端](docs/public_backend/README.md) · [P03契约](docs/public_delivery_r2/interaction_contract_r3.md) |
+| 模型与研究边界 | [生产规范](docs/model/specification.md) · [仿真范围](docs/model/S18_simulation_scope_proposal_r1.md) · [工业G2](docs/research/S18_industrial_g2_evidence_r1.md) |
 
 ## 贡献与许可
 
-欢迎通过[Issues](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/issues)提供版本、复现步骤、预期/实际结果和脱敏错误摘要。代码、来源核查、实验及文档中的AI辅助按实际记录，不代替负责人操作或最终验收。
+通过 [Issues](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/issues)提供版本、复现步骤、预期/实际结果与脱敏错误摘要。AI辅助开发和自动化验证不替代负责人操作或最终验收。
 
-自有代码采用[MIT License](LICENSE)。第三方软件/资产遵循各自许可，来源见[资产登记](docs/sim/asset_register.tsv)。发布每次绑定经审阅的确切成果包，另行取得一次性上传授权。
-
-## P04连续会话与投影
-
-有限CPU排空/停止复现、RunSpec与异步文件入口、保存核验和只读投影消费者见[后端说明](docs/public_backend/README.md)。本地337个不同测试（含24项修复回归）通过，原15及审阅11个保存损坏副本拒绝。修订实现的CPU排空/停止/运行中关闭和桌面共用CPU回放有实际exit0及独立核验；原CPU/Kit档案按原身份重解释，本轮无新Kit。暂空、取消结清和新人员见证不等于E20全部受理单完成接收，双图布局及五情景最终验收仍待后续。
-
-修订入口采用P044-LIFECYCLE-2、P044-TIMELINE-2及P044-INDEPENDENT-r2，保留原RunSpec兼容。修复回放、停止重试、终态/义务、投影语义、初始停止、有效优先级及寿命状态文件名；旧版本和失败记录保留。
+自有代码采用 [MIT License](LICENSE)。第三方软件和资产按各自许可，来源见[资产登记](docs/sim/asset_register.tsv)。阶段包绑定具体提交与标签，保留历史版本及失败，不代表项目最终冻结。

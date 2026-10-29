@@ -277,6 +277,8 @@ class USDProductionPort:
                 for mapping in (self.mapping, self.loads, self.expected, self.quantities):
                     mapping.pop(ident, None)
             raise
+        self.support_port.config = config
+        self.support_port.layouts.update({x.id: x for x in config.support_layouts})
         self.config = config
         self.ops.update({o.id: o for o in config.operations})
         self.routes.update({r.id: r for r in config.routes})

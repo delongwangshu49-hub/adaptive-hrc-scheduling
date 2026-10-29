@@ -1,8 +1,21 @@
 """Presence labour projection; legacy resource costs keep their original source."""
 
+from dataclasses import fields
+
 from .building_human import calendar_state
 from .contracts.codec import as_data, require
 from .contracts.session import digest
+from .domain.production import HumanInterval
+
+_INTERVAL_FIELDS = tuple(f.name for f in fields(HumanInterval))
+
+
+def _interval_data(row):
+    # HumanInterval's contract fields are all JSON scalars. Keep fresh output
+    # dictionaries, without recursively inspecting each scalar at every sample.
+    if type(row) is HumanInterval:
+        return {name: getattr(row, name) for name in _INTERVAL_FIELDS}
+    return as_data(row)
 
 
 def project(spec, history, snapshot):
@@ -40,7 +53,7 @@ def project(spec, history, snapshot):
                 presence.append([row.start_h, row.end_h])
             if present and available and until > row.start_h:
                 availability.append([row.start_h, until])
-            activity.append(dict(as_data(row), presence=present, availability=available))
+            activity.append(dict(_interval_data(row), presence=present, availability=available))
         h = next(x for x in snapshot.state.humans if x.person_id == p.id)
         presence_h = sum(b - a for a, b in presence)
         out[p.id] = dict(

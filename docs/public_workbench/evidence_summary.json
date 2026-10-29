@@ -1,0 +1,119 @@
+{
+  "identity": "G05-P05-PUBLIC-EVIDENCE-r1",
+  "scope": "P05.0-P05.3 scoped stage package; not final project or P06/P08 acceptance",
+  "coverage_count": 19,
+  "coverage_file": "coverage.tsv",
+  "interaction_count": 24,
+  "ui_capabilities": 26,
+  "source_versions": {
+    "c1": "N/H/F/M production before ingress-gate repair",
+    "c2": "U, STOCK C and four new physical prefixes; older runs not relabeled"
+  },
+  "independent_checks": {
+    "count": 16,
+    "scope_counts": {
+      "execution_causal": 8,
+      "Session": 8
+    },
+    "elapsed_s": 4011.7269095001975
+  },
+  "kit": {
+    "processes": 1,
+    "fresh_prefixes": 4,
+    "shared_exit_code": 0,
+    "outer_elapsed_s": 510.0070536,
+    "inner_elapsed_s": 508.86954230000265,
+    "budget_s": 13200,
+    "not_full_production": true,
+    "not_new_GUI": true
+  },
+  "Kit_targets": [
+    {
+      "unit": "F-KIT-ADAPTIVE-r3",
+      "sim_h": 0.9276758333333334,
+      "target_complete": true
+    },
+    {
+      "unit": "U-KIT-ADAPTIVE-r3",
+      "sim_h": 26.49089078333333,
+      "target_complete": true
+    },
+    {
+      "unit": "H-KIT-ADAPTIVE-r3",
+      "sim_h": 49.452576666666666,
+      "target_complete": true
+    },
+    {
+      "unit": "C-KIT-ADAPTIVE-r3",
+      "sim_h": 6.024589016666663,
+      "target_complete": true
+    }
+  ],
+  "failures": [
+    {
+      "unit": "N-CPU-EDD",
+      "exit_code": 1,
+      "termination": "WINDOW_CENSORED",
+      "time_h": 720,
+      "received": 1,
+      "audit": "PASS",
+      "decision_audit": "PASS",
+      "result_sha256": "c9344a22ed6059f677d5c67c4d5ee6466e9d0050f0086f475d6ae381aee495e0",
+      "availability": "controlled original, not distributed"
+    },
+    {
+      "unit": "C-CPU-EDD",
+      "exit_code": 1,
+      "termination": "WINDOW_CENSORED",
+      "time_h": 720,
+      "received": 0,
+      "audit": "PASS",
+      "decision_audit": "PASS",
+      "result_sha256": "64a741be0e9a5788879e299d167155e87bebe7ada3d8642eca9f74139e6027b5",
+      "availability": "controlled original, not distributed"
+    },
+    {
+      "unit": "C-CPU-EDD-r3",
+      "exit_code": 1,
+      "termination": "WINDOW_CENSORED",
+      "time_h": 720,
+      "received": 0,
+      "audit": "PASS",
+      "decision_audit": "PASS",
+      "result_sha256": "11d9efd3acd4e9c04c61e35ca298ea83f97ff95b958bc8bd5ea3415f32de46a8",
+      "availability": "controlled original, not distributed"
+    },
+    {
+      "unit": "U-CPU-EDD",
+      "exit_code": 1,
+      "termination": "PREPARATION_BUDGET",
+      "time_h": 3.2035647222222075,
+      "received": 0,
+      "audit": "PASS",
+      "decision_audit": "INCOMPLETE",
+      "result_sha256": "0f41ab209b3dfee8366901c7a647bbdc37fd7c51bc8c2cca038bb23d49b8a4fc",
+      "availability": "controlled original, not distributed"
+    }
+  ],
+  "C_positive_scope": "STOCK: PRODUCT-1 cancelled, PRODUCT-2 received at291.858972667h in both methods; WINDOW_CENSORED at720h retained, not two received",
+  "C_negative_scope": "WIP: original two failures/J3 HOLD retained; remainder not complete",
+  "E20": "owner-approved split acceptance; original full same-Kit all-received NOT_MET",
+  "P052": {
+    "r14": "actual GUI/new-order/personnel prefix,STOPPED387.732463333h,one received/three open",
+    "r9": "separate derived continuation:1744 effective static operations/1012.437466667h; not fresh Kit or whole-backend equivalence",
+    "E21": "separate WIP3 capacity witness,13468 lifetime conditions/14 index"
+  },
+  "P053_repair": {
+    "R1": "source/context repair validated by8 isolated CPU checks; no new Kit",
+    "R2": "references corrected; unsupported environment-failure claim UNKNOWN",
+    "physical_r5_validation": "NOT_RUN_NOT_CLAIMED"
+  },
+  "known_limits": [
+    "manual REST_REQUEST unimplemented",
+    "sustained4Hz not established",
+    "P08 owner operation pending",
+    "industrialG2 OPEN",
+    "P06 not started",
+    "raw large logs and restricted source material not distributed"
+  ]
+}

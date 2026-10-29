@@ -37,7 +37,7 @@ def verify_capacity(spec, saved, history, snapshot, check):
     generation_ends = {
         g["before_event_count"] + 1 + len(g["product_ids"])
         for g in history.generations
-        if not g.get("workforce_kind")
+        if not g.get("workforce_kind") and not g.get("order_update")
     }
     view = history.initial
     final_counts = None
@@ -48,7 +48,9 @@ def verify_capacity(spec, saved, history, snapshot, check):
             prior_open = {
                 p.product_id for p in prior.products if not p.cancelled and p.received_h is None
             }
-            quantity = len(generation.get("product_ids", []))
+            quantity = (
+                0 if generation.get("order_update") else len(generation.get("product_ids", []))
+            )
             check(
                 len(prior.products) + quantity <= cap["max_lifetime_products"]
                 and len(prior_open) + quantity <= cap["max_open_products"]

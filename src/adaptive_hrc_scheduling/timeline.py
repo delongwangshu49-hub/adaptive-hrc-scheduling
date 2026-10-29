@@ -1,6 +1,7 @@
 """P044 delivered-prefix timeline packets and a read-only, fail-closed consumer."""
 
 from copy import deepcopy
+from hashlib import sha256
 from time import monotonic
 
 from .contracts.codec import as_data, require
@@ -22,11 +23,16 @@ class TimelinePublisher:
         self.last_plan = None
         self.receipt_cursor = 0
         self.interval_cursor = 0
+        self.transport_state = {}
 
     def publish(self, observation, plan=None):
         from .control.session import save_atomic
 
         s, w = self.session, self.session.world
+        if hasattr(s.policy, "reference"):
+            # The full artifact owns future intervals. Ordinary frames only
+            # project actual progress, rather than creating a new plan per frame.
+            plan = None
         require(observation.event_ids == tuple(e.id for e in w.events), "PROJECTION_PREFIX")
         before = deepcopy(self.rows)
         events = w.events[self.event_cursor :]
@@ -205,6 +211,11 @@ class TimelinePublisher:
                 else 0,
             )
         self.interval_cursor = len(w.s.intervals)
+        display_schedule = None
+        if s.spec["run_id"].startswith("P051-"):
+            from .gantt_schedule import publish as publish_schedule
+
+            display_schedule = publish_schedule(s)
         envelope = dict(
             format=FORMAT,
             run_id=s.spec["run_id"],
@@ -272,6 +283,13 @@ class TimelinePublisher:
                 plans=deepcopy(self.plans),
             ),
         )
+        if display_schedule is not None:
+            packet["display_schedule"] = display_schedule
+        if hasattr(s.policy, "reference"):
+            packet["full_schedule"] = s.policy.reference()
+            from .timeline_transport import pack
+
+            self.transport_state = pack(packet, self.transport_state)
         packet["packet_sha256"] = digest(packet)
         with (s.output / "timeline.jsonl").open("ab") as stream:
             stream.write(canonical(packet) + b"\n")
@@ -305,6 +323,11 @@ class TimelineConsumer:
         self.received_local = None
         self.basis = None
         self.orders = []
+        self._event_hasher = sha256(b"[")
+        self._prefix_hashes = {0: digest([])}
+        self._validation_cache = {}
+        self.transport_state = {}
+        self.materialized_packet = None
 
     def consume(self, packet):
         p = deepcopy(packet)
@@ -330,10 +353,29 @@ class TimelineConsumer:
                 "TIMELINE_GAP",
             )
             events = self.events + p["events"]
+            event_hasher = self._event_hasher.copy()
+            prefix_hashes = dict(self._prefix_hashes)
+            for index, event in enumerate(p["events"], len(self.events)):
+                if index:
+                    event_hasher.update(b",")
+                event_hasher.update(canonical(event))
+                closed = event_hasher.copy()
+                closed.update(b"]")
+                prefix_hashes[index + 1] = closed.hexdigest()
             require(
-                len(events) == e["event_count"] and digest(events) == e["event_prefix_hash"],
+                len(events) == e["event_count"]
+                and prefix_hashes[len(events)] == e["event_prefix_hash"],
                 "TIMELINE_PREFIX",
             )
+            # Hash the exact delivered bytes first. Only then share equal state
+            # storage inside the already-private packet copy; keep every event.
+            from .timeline_memory import share_json
+
+            previous_state = self.events[-1]["state"] if self.events else None
+            for event in p["events"]:
+                if previous_state is not None:
+                    event["state"] = share_json(event["state"], previous_state)
+                previous_state = event["state"]
             require(digest(p["catalog"]) == e["materialized_catalog_sha256"], "TIMELINE_CATALOG")
             require(
                 self.envelope is None or e["sampled_sim_h"] >= self.envelope["sampled_sim_h"],
@@ -390,13 +432,24 @@ class TimelineConsumer:
 
             basis = p["source_basis"] if self.sequence == 0 else self.basis
             require(self.sequence == 0 or p["source_basis"] is None, "TIMELINE_BASIS_CHANGE")
-            validate(p, events, rows, basis)
+            transport_state = self.transport_state
+            if "progress_delta" in p:
+                from .timeline_transport import unpack
+
+                require("full_schedule" in p, "PROGRESS_REQUIRES_FULL_SCHEDULE")
+                transport_state = unpack(p, self.transport_state)
+            validation_cache = dict(self._validation_cache)
+            validate(p, events, rows, basis, prefix_hashes=prefix_hashes, cache=validation_cache)
         except (KeyError, TypeError, ValueError, IndexError, StopIteration, AttributeError):
             self.status = "STALE_CORRUPT"
             raise
         self.rows, self.events, self.envelope = rows, events, e
+        self.transport_state = transport_state
+        self.materialized_packet = p
         self.basis, self.orders = basis, p["orders"]
         self.sequence, self.previous = p["sequence"], p["packet_sha256"]
+        self._event_hasher, self._prefix_hashes = event_hasher, prefix_hashes
+        self._validation_cache = validation_cache
         self.received_local = monotonic()
         self.status = "VERIFIED"
         return True

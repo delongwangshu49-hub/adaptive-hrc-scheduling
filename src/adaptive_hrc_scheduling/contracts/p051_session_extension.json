@@ -1,0 +1,16 @@
+{
+  "ORDER_UPDATE": {
+    "order_id": {
+      "type": "id",
+      "required": true
+    },
+    "due_sim_h": {
+      "type": "positive",
+      "required": true
+    },
+    "priority": {
+      "type": "enum:NORMAL,URGENT",
+      "required": true
+    }
+  }
+}

@@ -59,7 +59,13 @@ def validate_scenario(config, scenario):
         <= 1,
         "ONE_FAILURE_INTERVENTION_PER_SCENARIO",
     )
-    if scenario.id == "B2_SUPPLEMENTAL_960" or scenario.until_h > 720:
+    if config.id.startswith("P051-FIXED-r1:P052-E20-r1:"):
+        require(
+            scenario == Scenario(id="INTERACTIVE", until_h=scenario.until_h)
+            and 0 < scenario.until_h <= 3000,
+            "E20_EXACT_SCENARIO_REQUIRED",
+        )
+    elif scenario.id == "B2_SUPPLEMENTAL_960" or scenario.until_h > 720:
         require(
             scenario == Scenario(id="B2_SUPPLEMENTAL_960", until_h=960, receive_after_h=840)
             and config.rework_enabled
@@ -99,6 +105,7 @@ def _run(
     handover_after_setup=False,
     orderly_stop=None,
     session=None,
+    planning_preview=False,
 ):
     life = getattr(session, "lifecycle", None)
     world = getattr(backend, "world", backend)
@@ -109,12 +116,19 @@ def _run(
         )
         require(joint_policy is session.policy, "SESSION_POLICY_BINDING")
     if continuation:
+        history = dict(catalog=session.history) if session is not None else {}
         require(
-            check_run(world.config, world.snapshot()).status == "PASS"
-            and check_decisions(
-                world.config, world.snapshot(), tuple(record(d) for d in prefix_decisions)
-            ).status
-            == "PASS",
+            check_run(world.config, world.snapshot(), **history).status == "PASS"
+            and (
+                planning_preview
+                or check_decisions(
+                    world.config,
+                    world.snapshot(),
+                    tuple(record(d) for d in prefix_decisions),
+                    **history,
+                ).status
+                == "PASS"
+            ),
             "VERIFIED_CONTINUATION_PREFIX_REQUIRED",
         )
     else:
@@ -374,27 +388,22 @@ def _run(
         if world.s.revision != last_revision:
             # Keep actual rejections through the current decision epoch. A clock
             # or completion can release the rejected constraint.
-            if any(
-                e.kind == "WORLD"
-                or e.kind == "COMPLETED"
-                and (
-                    not e.command.service
-                    or e.command.service.operation.action in ("TRANSFER", "RETURN")
-                )
-                for e in world.events[last_changed:]
-            ):
-                rejected.clear()
-                preparation_steps = 0
-            else:
-                preparation_steps += sum(
-                    e.kind == "COMPLETED" and e.command.service is not None
-                    for e in world.events[last_changed:]
-                )
-            rejected.update(
-                e.command.operation_id
-                for e in world.events[last_changed:]
-                if e.kind == "EXCEPTION" and e.command
-            )
+            # Replay changes in order: a repair/return after an exception must
+            # clear that exception too when a continuation reads a whole prefix.
+            for event in world.events[last_changed:]:
+                if event.kind == "WORLD" or (
+                    event.kind == "COMPLETED"
+                    and (
+                        not event.command.service
+                        or event.command.service.operation.action in ("TRANSFER", "RETURN")
+                    )
+                ):
+                    rejected.clear()
+                    preparation_steps = 0
+                elif event.kind == "COMPLETED" and event.command.service is not None:
+                    preparation_steps += 1
+                if event.kind == "EXCEPTION" and event.command:
+                    rejected.add(event.command.operation_id)
             last_revision = world.s.revision
             last_changed = len(world.events)
         if preparation_steps >= 128:
@@ -560,6 +569,45 @@ def _run(
             if seen_preparation_states[cycle_key] > 3:
                 termination = "DECISION_CYCLE"
                 break
+        if joint_policy and hasattr(joint_policy, "ensure_schedule"):
+            if joint_policy.failure:
+                # Waiting for a business/resource correction is not a repeated
+                # preparation decision; preserve the paused failure boundary.
+                seen_preparation_states.clear()
+            if execution_hook and joint_policy.dirty:
+                from concurrent.futures import ThreadPoolExecutor
+                from time import sleep
+
+                with ThreadPoolExecutor(max_workers=1, thread_name_prefix="full-schedule") as pool:
+                    future = pool.submit(joint_policy.ensure_schedule, tuple(decisions))
+                    while not future.done():
+                        execution_hook(backend, "planning")
+                        sleep(0.05)
+                    future.result()
+            else:
+                joint_policy.ensure_schedule(tuple(decisions))
+            if joint_policy.failure:
+                if life is None:
+                    termination = "FULL_PLAN_BLOCKED"
+                    break
+                from time import sleep
+
+                life.change("WAITING_BOUNDARY", "FULL_PLAN_BLOCKED:" + joint_policy.failure[:200])
+                observed = world.observe()
+                world.deliver()
+                session.bind_observation(observed)
+                session.projection.publish(observed)
+                recovery = joint_policy.recovery_boundary()
+                if recovery is not None:
+                    # Solve time is paused. Once infeasibility is established,
+                    # meter safely to an accepted recovery event without dispatch.
+                    blocked = life.advance(recovery, idle=not world.s.running)
+                    if blocked:
+                        termination = blocked
+                        break
+                    continue
+                sleep(0.1)
+                continue
         if joint_policy and hasattr(joint_policy, "begin_cycle"):
             joint_policy.begin_cycle()
         observation = world.observe()
@@ -630,6 +678,8 @@ def _run(
         decisions.append(
             Decision(observation, plan, tuple(sorted(rejected)), receipt.id if receipt else None)
         )
+        if getattr(joint_policy, "dirty", None):
+            continue
         if receipt:
             op = world.operations[receipt.command.operation_id]
             if (
@@ -783,7 +833,7 @@ def _run(
         if world.s.revision == before:
             termination = "NO_PROGRESS"
             break
-    if life is not None:
+    if life is not None or planning_preview or hasattr(joint_policy, "ensure_schedule"):
         if isaac:
             backend.deliver()
         observed = world.observe()

@@ -1,0 +1,1 @@
+{"change_reserve_calls":3,"id":"P041-FULL-JOINT-r1","limits":{"decision_seconds":30,"future_commitment_h":0,"horizon_h":0.5,"iterations":1,"max_search_calls":2,"period_h":1,"repair_trials":1,"search_seconds":25},"objective":"S18_PROGRESS_THEN_EXPOSURE_LEXICOGRAPHIC","total_seconds":180}
