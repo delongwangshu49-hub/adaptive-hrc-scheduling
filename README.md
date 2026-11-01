@@ -32,9 +32,9 @@ Windows 工作台将原生 Isaac 视口与 React/WebEngine 甘特相邻承载，
 
 ### 双图工作台
 
-<img src="docs/assets/readme/workbench-layout-composite.png" alt="双图工作台布局合成示意：左侧嵌入Isaac工厂场景，右侧显示资源甘特" width="100%">
+<img src="docs/assets/readme/workbench-native-p051.jpg" alt="P05.1真实原生窗口截图：Isaac场景嵌入左侧，右侧显示计划v2实时甘特" width="100%">
 
-左侧嵌入 Isaac 三维场景，右侧查看实时甘特，下方提供详情与回执。上图为两张既有运行截图的**布局合成示意**，素材来自独立运行，用于说明界面布局。
+P05.1 真实运行截图（计划 v2）：左侧是嵌入的 Isaac 三维场景，右侧是实时甘特，下方提供详情与回执。[截图来源](docs/public_validation/visual_provenance.json)。
 
 <details>
 <summary>查看原始运行截图、动态案例与图像来源</summary>
@@ -104,19 +104,34 @@ uv sync --locked --project desktop/p051
 
 ## 工作原理
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/architecture-flow-dark.svg">
-  <img src="docs/assets/readme/architecture-flow.svg" alt="生产约束、协作安排、执行读回与独立核验；回环表示状态反馈" width="520">
-</picture>
+```mermaid
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#f2f2f2","primaryTextColor":"#171717","primaryBorderColor":"#777777","secondaryColor":"#f2f2f2","tertiaryColor":"#f2f2f2","lineColor":"#7a7a7a","edgeLabelBackground":"#ffffff","fontSize":"18px"},"flowchart":{"htmlLabels":false,"useMaxWidth":true,"wrappingWidth":180},"htmlLabels":false,"look":"classic"}}%%
+flowchart TB
+    I["配置 / 已受理请求"] --> P["规则 / 联合安排"]
+    P --> V["合法域核验 / 承诺保护"]
+    V --> E["CPU / Isaac 执行与读回"]
+    E --> O["已交付观察"]
+    O -. 状态反馈 .-> P
+    E --> F["封存事件 / 目录 / 计划"]
+    F --> A["独立审计 / 双域重建"]
+    classDef default fill:#f2f2f2,stroke:#777777,color:#171717
+    linkStyle default stroke:#7a7a7a
+```
 
 固定研究与交互来源分开。动态目录保留 C0 和版本历史，旧命令按接纳版本核验；未来计划、实际执行、旧版/阻塞与未知状态分别呈现。显示故障不自动重启业务或重放请求，归档读取不刷新生产者源龄。
 
 ### 从执行记录到可复现结果
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/reproduction-flow-dark.svg">
-  <img src="docs/assets/readme/reproduction-flow.svg" alt="从锁定包、执行记录到独立核验与双域重建的复现流程" width="520">
-</picture>
+```mermaid
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#f2f2f2","primaryTextColor":"#171717","primaryBorderColor":"#777777","secondaryColor":"#f2f2f2","tertiaryColor":"#f2f2f2","lineColor":"#7a7a7a","edgeLabelBackground":"#ffffff","fontSize":"18px"},"flowchart":{"htmlLabels":false,"useMaxWidth":true,"wrappingWidth":300},"htmlLabels":false,"look":"classic"}}%%
+flowchart TB
+    I["锁定包与合成配置"] --> X["正常完整链 / 动态案例"]
+    X --> B["事件、目录、计划与保存摘要"]
+    B --> K["独立执行 / 因果 / 引用核验"]
+    K --> D["同观察甘特与场景域数据"]
+    classDef default fill:#f2f2f2,stroke:#777777,color:#171717
+    linkStyle default stroke:#7a7a7a
+```
 
 重建要求相同证据恢复相同目录、事件与业务显示数据；精确颜色/W编号外观还需显式保存的显示缓存。完整预测计划的未来区间与实际派发、实际完成分别绑定。重新运行时的墙钟和搜索结果不要求逐字节相同。
 

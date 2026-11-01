@@ -46,6 +46,26 @@
       "scope": "ACTUAL_QT_WEB_ARCHIVED_READ_ONLY_RENDER_PARTIAL_DYNAMIC_CASE",
       "transformation": "NONE_EXACT_ORIGINAL_BYTES",
       "synchronized_with_other_images": false
+    },
+    {
+      "file": "docs/assets/readme/workbench-native-p051.jpg",
+      "sha256": "adcb92a995a70451551ee85cec0bd2141f52c4a1a2e436cd9806065b041d2f85",
+      "bytes": 123502,
+      "pixels": [
+        1283,
+        751
+      ],
+      "source_artifact_name": "native-v2-running.png",
+      "source_run": "P051-e5bfd354c8f249d995c6c8f5755f764b",
+      "source_stage": "P05.1 full schedule live-r5",
+      "full_plan_version": 2,
+      "scope": "ACTUAL_WINDOWS_NATIVE_WORKBENCH_SCREENSHOT_WITH_EMBEDDED_ISAAC_AND_GANTT",
+      "transformation": "NONE_EXACT_ORIGINAL_BYTES",
+      "composition": false,
+      "source_manifest_sha256": "ce355d1afddb0e766966b255398e5324de64f9e776a89b3f4365835c4606523f",
+      "source_pin_sha256": "adcb92a995a70451551ee85cec0bd2141f52c4a1a2e436cd9806065b041d2f85",
+      "scope_note": "Historical actual live window showing plan v2; not a new P06 performance/full-completion claim",
+      "encoding": "JPEG original bytes; original capture filename used .png extension"
     }
   ],
   "illustrations": [
@@ -54,33 +74,9 @@
       "sha256": "95caf12d87691b7ad974f2d2f525873304dca719220baf7d2dd5e6788195aec3",
       "scope": "Original explanatory vector branding; not a screenshot or numerical result",
       "palette": "MONOCHROME"
-    },
-    {
-      "file": "docs/assets/readme/architecture-flow.svg",
-      "sha256": "3bb8cf28f7d26370344ac48aa3ee12fba28b6e3e6d08527520ce702253f5de46",
-      "scope": "Code-native explanatory diagram, fixed monochrome text/background for light or dark mode",
-      "palette": "MONOCHROME"
-    },
-    {
-      "file": "docs/assets/readme/architecture-flow-dark.svg",
-      "sha256": "dff61d5f8fe1e9fc156d0f7b1ab86845c3a6cf68d2eaea6a9bcd48a53bfbd631",
-      "scope": "Code-native explanatory diagram, fixed monochrome text/background for light or dark mode",
-      "palette": "MONOCHROME"
-    },
-    {
-      "file": "docs/assets/readme/reproduction-flow.svg",
-      "sha256": "1f5d44428d7abb0d1273292ddf88382646bfaccd7187efbcdaf41b20d68a3bf4",
-      "scope": "Code-native explanatory diagram, fixed monochrome text/background for light or dark mode",
-      "palette": "MONOCHROME"
-    },
-    {
-      "file": "docs/assets/readme/reproduction-flow-dark.svg",
-      "sha256": "90deb7264f3925f5d7e6888efe4ab8cf6904c3e6bfc3c00f3b52d8a18a2d5b70",
-      "scope": "Code-native explanatory diagram, fixed monochrome text/background for light or dark mode",
-      "palette": "MONOCHROME"
     }
   ],
-  "capture_note": "Three existing originals unchanged; an explicitly labeled layout composite explains viewport placement. Different source runs and asynchronous sampling remain separate; no new GUI/Kit or production run.",
+  "capture_note": "Four unchanged genuine screenshot copies. Main showcase uses an existing actual Windows native window capture with embedded Isaac and Gantt; no composition or new production/Kit. Qt grab omits cross-process child windows, as recorded by the original P05.1 report.",
   "native_sampling": {
     "source_state_revision": 329,
     "frame_number": 885,
@@ -93,46 +89,13 @@
   },
   "UI_readonly_status": "STALE/DISCONNECTED retained in archived screenshots",
   "SDK_attribution": "Native scene captured using NVIDIA Isaac Sim; third-party software/asset terms remain applicable",
-  "composites": [
-    {
-      "file": "docs/assets/readme/workbench-layout-composite.png",
-      "sha256": "3d90ec5d0a5c8d0446be569b2b2284a4ba26df72baa9bb94609cacb0a76388e9",
-      "pixels": [
-        2049,
-        1152
-      ],
-      "scope": "ILLUSTRATIVE_LAYOUT_COMPOSITE_NOT_SYNCHRONIZED_CAPTURE",
-      "transformation": "Original Isaac PNG placed in left viewport of original archived Qt PNG; all other UI/Gantt pixels identical",
-      "sources": [
-        {
-          "file": "docs\\assets\\readme\\cpu-normal-resources-p063.png",
-          "sha256": "28e77b770980e8b7f93da31b44726837f05fbdb914824136b3ac8a574d3daf98"
-        },
-        {
-          "file": "docs\\assets\\readme\\native-factory-p062.png",
-          "sha256": "bda72fa5f4a6d7a37c84f2072edc9964d4b8b418e1388910f99f333859baa9fa"
-        }
-      ],
-      "viewport": [
-        18,
-        339,
-        1001,
-        663
-      ],
-      "native_placement": [
-        18,
-        416,
-        1001,
-        510
-      ],
-      "source_runs": [
-        "P051-5c420551c468461b832db49e9c88074f",
-        "P063-NORMAL"
-      ],
-      "synchronized": false,
-      "new_business_or_performance_evidence": false,
-      "generative_reconstruction": false
-    }
-  ],
-  "README_visual_revision": "Owner requested viewport composition and restrained grayscale diagrams; explicit light/dark SVG variants replace theme-dependent Mermaid styles."
+  "composites": [],
+  "README_visual_revision": "Owner correction: restore two native Mermaid fenced blocks and their GitHub interactive viewer; grayscale palette, SVG text labels rather than HTML-label theme overrides. Remove all composite and static flowchart assets.",
+  "diagrams": {
+    "format": "NATIVE_MERMAID_FENCED_CODE",
+    "count": 2,
+    "palette": "MONOCHROME",
+    "htmlLabels": false,
+    "static_image_replacement": false
+  }
 }
