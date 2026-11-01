@@ -8,7 +8,7 @@
 | P06.2 | 最终普通入口Kit实际关闭true、原生/Qt退出0；173包329事件，两版完整计划 | STOPPED、29义务、0接收，不是整单完成；性能未达/不足保持 |
 | P06.3 | 干净核心环境正常链436项静态工序、1/1实际接收；一个动态ORDER_UPDATE及完整保存重建 | CPU正常完整链与局部Kit分列，颜色/W编号外观需要显式保存缓存 |
 
-[结构化摘要](evidence_summary.json)、[复现操作](reproduction.md)、[失败与修复](failures_and_repairs.md)、[来源摘要](provenance.json)和[本包验证](validation_summary.json)组成公开入口。完整原始日志、受限资料和私有大档案保留在受控本地。本包按负责人本次授权公开三张既有真实截图的逐字节副本，运行、采样范围与摘要见[图像来源](visual_provenance.json)；不以私有目录作为使用入口。
+[结构化摘要](evidence_summary.json)、[复现操作](reproduction.md)、[失败与修复](failures_and_repairs.md)、[来源摘要](provenance.json)和[本包验证](validation_summary.json)组成公开入口。完整原始日志、受限资料和私有大档案保留在受控本地。本包按负责人本次授权公开三张既有真实截图的逐字节副本；另有明确标注的工作台布局合成图和黑白灰说明图。运行、采样范围与摘要见[图像来源](visual_provenance.json)；不以私有目录作为使用入口。
 
 新审阅P063-R1已按交付计划引用绑定范围修复：原三个重签名坏副本均非零拒绝；原三组档案全部2332引用及相应完整计划行通过。新增检查在计划缓存使用前执行，原生命周期与完整计划证明检查器及其断言保持。
 

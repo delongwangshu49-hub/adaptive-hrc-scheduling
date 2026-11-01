@@ -8,7 +8,7 @@
 
 联合选择协作模式、任务顺序和资源安排，在 CPU / Isaac Sim 中执行，保存可独立核验的决策与读回。
 
-[![CPU checks](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml) [![Python](https://img.shields.io/badge/Python-3.12.13-3776AB?logo=python&logoColor=white)](pyproject.toml) [![License](https://img.shields.io/badge/License-MIT-22A06B)](LICENSE) [![Research scope](https://img.shields.io/badge/Scope-Simulation_research-5662D3)](docs/model/S18_simulation_scope_proposal_r1.md)
+[![CPU checks](https://img.shields.io/github/actions/workflow/status/delongwangshu49-hub/adaptive-hrc-scheduling/ci.yml?branch=main&label=CPU%20checks&color=555&labelColor=222)](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml) [![Python](https://img.shields.io/badge/Python-3.12.13-555?logo=python&logoColor=white&labelColor=222)](pyproject.toml) [![License](https://img.shields.io/badge/License-MIT-555?labelColor=222)](LICENSE) [![Research scope](https://img.shields.io/badge/Scope-Simulation_research-555?labelColor=222)](docs/model/S18_simulation_scope_proposal_r1.md)
 
 [项目概览](#overview) · [运行画面](#showcase) · [快速开始](#quickstart) · [工作原理](#architecture) · [验证与边界](#validation) · [文档](#docs)
 
@@ -30,24 +30,32 @@ Windows 工作台将原生 Isaac 视口与 React/WebEngine 甘特相邻承载，
 
 ## 运行画面
 
-### 原生工厂场景
+### 双图工作台
 
-<img src="docs/assets/readme/native-factory-p062.png" alt="Isaac Sim实际工厂场景：工位、龙门吊、运输通道及人员，P06.2局部运行原生捕获" width="100%">
+<img src="docs/assets/readme/workbench-layout-composite.png" alt="双图工作台布局合成示意：左侧嵌入Isaac工厂场景，右侧显示资源甘特" width="100%">
 
-*最终常规入口 Kit 的原生捕获：计划 v2、状态 revision 329、模拟时刻 0.850075 h。该运行以 STOPPED/COMPLETE 保存，实际原生退出 0；仍有 29 项义务、1 件未接收。此图展示局部场景，不代表整单完成。*
-
-### 完整 CPU 链的资源甘特
-
-<img src="docs/assets/readme/cpu-normal-resources-p063.png" alt="完整CPU链的Qt/Web归档资源甘特，时间范围0至312.980小时，实际接收终点272.157小时；原生面板保持未连接" width="100%">
-
-*真实 Qt/Web 归档重建：`P063-NORMAL` 实际接收 1/1，436 项有效静态工序完成，终点 272.156822 h。归档保留“陈旧/只读”，左侧原生面板保持未连接。它与上方 Kit 图来自不同运行和采样，不是同步合成帧。*
+左侧嵌入 Isaac 三维场景，右侧查看实时甘特，下方提供详情与回执。上图为两张既有运行截图的**布局合成示意**，素材来自独立运行，用于说明界面布局。
 
 <details>
-<summary>查看动态变更案例与图像来源</summary>
+<summary>查看原始运行截图、动态案例与图像来源</summary>
+
+**完整 CPU 链的资源甘特**
+
+<img src="docs/assets/readme/cpu-normal-resources-p063.png" alt="完整CPU链的原始Qt/Web归档资源甘特，左侧原生面板未连接" width="100%">
+
+`P063-NORMAL` 实际接收 1/1，436 项有效静态工序完成，终点 272.156822 h。此原始归档保留“陈旧/只读”和未连接面板。
+
+**原生工厂场景**
+
+<img src="docs/assets/readme/native-factory-p062.png" alt="最终常规入口Kit的原始Isaac场景截图，模拟时刻0.850075小时" width="100%">
+
+最终常规入口 Kit：计划 v2、revision 329、0.850075 h，STOPPED/COMPLETE，原生退出 0；仍有 29 项义务、1 件未接收。
+
+**动态变更案例**
 
 <img src="docs/assets/readme/dynamic-plan-p063.png" alt="动态订单变更后的Qt/Web工序甘特归档：目录v1、完整计划v2、实际时刻0.541264小时" width="100%">
 
-`P063-DYNAMIC-r2` 中一次 ORDER_UPDATE 获得同 ID 的 ACCEPTED/APPLIED，目录 v1 / 完整计划 v2，随后按原 STOP 保存。该局部案例与正常完整链分别评价。三张 PNG 均为原始证据的逐字节副本；来源、摘要和采样范围见[图像来源](docs/public_validation/visual_provenance.json)。
+`P063-DYNAMIC-r2` 中一次 ORDER_UPDATE 获得同 ID 的 ACCEPTED/APPLIED，目录 v1 / 完整计划 v2，随后按原 STOP 保存。该局部案例与正常完整链分别评价。本折叠区内三张 PNG 均为原始证据的逐字节副本；来源、摘要和采样范围见[图像来源](docs/public_validation/visual_provenance.json)。
 
 </details>
 
@@ -96,39 +104,19 @@ uv sync --locked --project desktop/p051
 
 ## 工作原理
 
-```mermaid
-flowchart TB
-    I["配置 / 已受理请求"] --> P["规则 / 联合安排"]
-    P --> V["合法域核验<br/>承诺保护"]
-    V --> E["CPU / Isaac执行<br/>命令与读回"]
-    E --> O["已交付观察"]
-    O -. 状态反馈 .-> P
-    E --> F["封存事件 / 目录 / 计划"]
-    F --> A["独立审计 / 双域重建"]
-    classDef data fill:#e9eff4,stroke:#637b91,color:#17212b
-    classDef plan fill:#eee9df,stroke:#9b8259,color:#352d21
-    classDef audit fill:#e8eee6,stroke:#768c6d,color:#253621
-    class I,O,F data
-    class P,V,E plan
-    class A audit
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/architecture-flow-dark.svg">
+  <img src="docs/assets/readme/architecture-flow.svg" alt="生产约束、协作安排、执行读回与独立核验；回环表示状态反馈" width="520">
+</picture>
 
 固定研究与交互来源分开。动态目录保留 C0 和版本历史，旧命令按接纳版本核验；未来计划、实际执行、旧版/阻塞与未知状态分别呈现。显示故障不自动重启业务或重放请求，归档读取不刷新生产者源龄。
 
 ### 从执行记录到可复现结果
 
-```mermaid
-flowchart TB
-    I["锁定包 + 合成配置"] --> X["正常完整链 / 动态案例"]
-    X --> B["事件、目录、计划与保存摘要"]
-    B --> K["独立执行 / 因果 / 引用核验"]
-    K --> D["同观察甘特与场景域数据"]
-    style I fill:#e9eff4,stroke:#637b91
-    style X fill:#eee9df,stroke:#9b8259
-    style B fill:#eee9df,stroke:#9b8259
-    style K fill:#e8eee6,stroke:#768c6d
-    style D fill:#e8eee6,stroke:#768c6d
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/reproduction-flow-dark.svg">
+  <img src="docs/assets/readme/reproduction-flow.svg" alt="从锁定包、执行记录到独立核验与双域重建的复现流程" width="520">
+</picture>
 
 重建要求相同证据恢复相同目录、事件与业务显示数据；精确颜色/W编号外观还需显式保存的显示缓存。完整预测计划的未来区间与实际派发、实际完成分别绑定。重新运行时的墙钟和搜索结果不要求逐字节相同。
 
