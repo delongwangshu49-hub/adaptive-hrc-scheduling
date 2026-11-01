@@ -21,6 +21,7 @@ from adaptive_hrc_scheduling.workforce_session import arrival_payload
 
 from .gantt import ScheduleReader, enrich
 from .projection import WorkColors, person_results
+from .write_fence import WriteFence
 
 
 class Client:
@@ -34,6 +35,7 @@ class Client:
         ):
             self.directory = self.directory / "session"
         self.spec = loads((self.directory / "run-spec.json").read_bytes())
+        self.write_fence = WriteFence(self.directory, self.spec)
         self.consumer = TimelineConsumer(self.spec["run_id"], self.spec["epoch"], digest(self.spec))
         self.colors = WorkColors(self.spec["run_id"], self.spec["epoch"])
         self.offset = 0
@@ -162,7 +164,12 @@ class Client:
             elif age > 5 and view["status"] == "VERIFIED":
                 view["status"] = "STALE"
         view["forecast_audit_pending"] = len(self.schedules.pending)
-        view.update(error=self.error, writable=self.writable and view["status"] == "VERIFIED")
+        blocked = self.write_fence.reason()
+        view.update(
+            error=self.error,
+            write_block_reason=blocked,
+            writable=self.writable and view["status"] == "VERIFIED" and blocked is None,
+        )
         return view
 
     def project_snapshot(self):
@@ -195,10 +202,12 @@ class Client:
         view = self.colors.project(view, config)
         from adaptive_hrc_scheduling.dynamic_workforce import registry
 
+        blocked = self.write_fence.reason()
         return dict(
             view,
             error=self.error,
-            writable=self.writable and view["status"] == "VERIFIED",
+            writable=self.writable and view["status"] == "VERIFIED" and blocked is None,
+            write_block_reason=blocked,
             receipts=list(self.receipts.values()),
             submitted=list(self.journal["requests"].values()),
             business_results=deepcopy(self.packet["business_results"])
@@ -311,6 +320,8 @@ class Client:
         submitted["expected_catalog_version"] = view["envelope"]["catalog_version"]
         submitted["expected_state_revision"] = view["envelope"]["state_revision"]
         submitted["request_digest"] = request_digest(submitted)
+        if self.write_fence.reason():
+            raise ValueError("READ_ONLY_OR_TERMINAL")
         self.journal.setdefault("confirmation_bindings", {})[request["request_id"]] = dict(
             preview_digest=request["request_digest"],
             submitted_digest=submitted["request_digest"],

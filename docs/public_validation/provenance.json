@@ -1,0 +1,73 @@
+{
+  "format": "P06-PUBLIC-PROVENANCE-1",
+  "records": [
+    {
+      "logical_id": "p061_review_resolution_r1.json",
+      "sha256": "1b7a26577ae77480ab34c9a8a583a8e11c14cd1dec12e189125a4622881dbb74",
+      "bytes": 2647,
+      "availability": "CONTROLLED_LOCAL_ORIGINAL; hash locator, not a public file link"
+    },
+    {
+      "logical_id": "p062_limited_scope_completion_r1.json",
+      "sha256": "364a9bb14e3a55e080ff49af1efec6f0fbaaa2f4fa7bd22b4c4237ebeaf77d40",
+      "bytes": 53573,
+      "availability": "CONTROLLED_LOCAL_ORIGINAL; hash locator, not a public file link"
+    },
+    {
+      "logical_id": "p062_full_review_r2.json",
+      "sha256": "41bf97eda6074886e998609a9e9198c60eb01cb072786706174962ba1b22f16c",
+      "bytes": 5672,
+      "availability": "CONTROLLED_LOCAL_ORIGINAL; hash locator, not a public file link"
+    },
+    {
+      "logical_id": "p062_native_close_resolution_r1.json",
+      "sha256": "dbf8c648b0189df0402e3da80f17cfb8b3c2c35360fc5dd32e6371019e36decc",
+      "bytes": 5286,
+      "availability": "CONTROLLED_LOCAL_ORIGINAL; hash locator, not a public file link"
+    },
+    {
+      "logical_id": "p063_reproduction_r1.json",
+      "sha256": "a33f81c67d99dd63b45e66890f847136ebcc75835fcafdd755ff8cae7f6e513b",
+      "bytes": 20653,
+      "availability": "CONTROLLED_LOCAL_ORIGINAL; hash locator, not a public file link"
+    },
+    {
+      "logical_id": "p063_full_review_r1.json",
+      "sha256": "5247c5ff846fc12712a46c837f8934c6cfd5535ae511fbbc80935cfa8c8fc9c8",
+      "bytes": 20640,
+      "availability": "CONTROLLED_LOCAL_ORIGINAL; hash locator, not a public file link"
+    },
+    {
+      "logical_id": "p063_review_findings_r1.json",
+      "sha256": "5262d9b7ceac01cdb0b64e3efda441ce34ce0d8c58409bcbbdc27cb705ef3508",
+      "bytes": 4550,
+      "availability": "CONTROLLED_LOCAL_ORIGINAL; hash locator, not a public file link"
+    },
+    {
+      "logical_id": "saved-binding-positive-result.json",
+      "sha256": "07a05500208df0f2acc55d0997d7e51b5ee9ccfaeac2d3ebb36345d536b5b6ee",
+      "bytes": 2586,
+      "availability": "CONTROLLED_LOCAL_ORIGINAL; hash locator, not a public file link"
+    },
+    {
+      "logical_id": "cli-case-results.json",
+      "sha256": "4f2366643a021323ea6f1846b26bebc21e725fa6a6d83ba99348b4e0b3aaa97e",
+      "bytes": 2938,
+      "availability": "CONTROLLED_LOCAL_ORIGINAL; hash locator, not a public file link"
+    },
+    {
+      "logical_id": "p063_review_resolution_r1.json",
+      "sha256": "cde269351a7ab018be1c8d1c616aa7601a2446b9090ef4d9ba161e94ec6a671f",
+      "bytes": 9924,
+      "availability": "CONTROLLED_LOCAL_ORIGINAL; scoped resolution after immutable OPEN review"
+    },
+    {
+      "logical_id": "P06_3_limited_repair_r1.md",
+      "sha256": "dda6bb6c7eb1481b696dbcf0a572d34eb70567112c5665b323501ea287e81fbc",
+      "bytes": 2372,
+      "availability": "CONTROLLED_LOCAL_ORIGINAL; scoped resolution after immutable OPEN review"
+    }
+  ],
+  "public_entry": "README.md and reproduction.md in this directory",
+  "note": "Original OPEN reviews, failures and completion records remain immutable; new resolution is a separate scoped receipt. No private path is a reader entry point."
+}

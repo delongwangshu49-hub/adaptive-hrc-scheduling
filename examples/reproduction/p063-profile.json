@@ -1,0 +1,1 @@
+{"change_reserve_calls":4,"id":"P051-FULL-JOINT-r1","limits":{"decision_seconds":5,"future_commitment_h":0,"horizon_h":2,"iterations":1,"max_search_calls":4,"period_h":0.25,"repair_trials":1,"search_seconds":1},"objective":"P042_URGENCY_DUE_PROGRESS_EXPOSURE-r1","total_seconds":3600}

@@ -38,6 +38,32 @@ from s19b_desktop.review import (  # noqa: E402
 )
 
 
+def capture_swapchain_complete(
+    app, fit_viewport, path, renderer_capture, *, notify=None, timeout_s=30
+):
+    """Drain the SDK capture request before renderer/window teardown."""
+    notify = notify or (lambda phase: None)
+    notify("REQUESTED")
+    renderer_capture.capture_next_frame_swapchain(str(path))
+    deadline = time.monotonic() + timeout_s
+    while time.monotonic() < deadline:
+        fit_viewport()
+        app.update()
+        try:
+            complete = path.read_bytes().endswith(b"IEND\xaeB`\x82")
+        except (FileNotFoundError, PermissionError):
+            continue
+        if complete:
+            break
+    else:
+        raise RuntimeError("KIT_SWAPCHAIN_CAPTURE_TIMEOUT")
+    notify("PNG_COMPLETE")
+    # A completed PNG is file evidence; the SDK barrier owns asynchronous
+    # capture completion. Drain it while the renderer and its window are alive.
+    renderer_capture.wait_async_capture()
+    notify("ASYNC_COMPLETE")
+
+
 def run(request, output, app=None, control=None):
     from build_simulation_production import configuration
 
@@ -576,20 +602,23 @@ def run(request, output, app=None, control=None):
         for _ in range(10):
             fit_viewport()
             app.update()
-        acquire_renderer_capture_interface().capture_next_frame_swapchain(
-            str(output / "kit-ui-frame.png")
+        renderer_capture = acquire_renderer_capture_interface()
+        capture_swapchain_complete(
+            app,
+            fit_viewport,
+            output / "kit-ui-frame.png",
+            renderer_capture,
+            notify=lambda phase: atomic_json(
+                output / "capture-completion.json",
+                dict(
+                    run_id=request["run_id"],
+                    request_id=request["request_id"],
+                    phase=phase,
+                    artifact="kit-ui-frame.png",
+                    scope="CAPTURE_LIFECYCLE_NOT_BUSINESS_PROGRESS",
+                ),
+            ),
         )
-        deadline = time.monotonic() + 30
-        while time.monotonic() < deadline:
-            fit_viewport()
-            app.update()
-            try:
-                if (output / "kit-ui-frame.png").read_bytes().endswith(b"IEND\xaeB`\x82"):
-                    break
-            except (FileNotFoundError, PermissionError):
-                pass
-        else:
-            raise RuntimeError("KIT_SWAPCHAIN_CAPTURE_TIMEOUT")
     atomic_json(output / "report.json", report)
     if control:
         phase = {

@@ -4,10 +4,44 @@ References only share equal source objects; no state fields, events or intervals
 are omitted. The reader reconstructs the same domain records before auditing.
 """
 
+import json
 from dataclasses import fields, is_dataclass
 
 from .contracts.codec import require
 from .domain import production as m
+
+
+def dump(proof, stream):
+    """Write the same compact JSON bytes with one C-encoded record per chunk.
+
+    The standard streaming encoder writes every scalar token separately. Proof
+    graphs already provide natural record boundaries, so retain streaming across
+    nodes/decisions without materializing a second full serialized proof string.
+    """
+
+    def array(rows):
+        stream.write("[")
+        for i, row in enumerate(rows):
+            if i:
+                stream.write(",")
+            stream.write(json.dumps(row, separators=(",", ":")))
+        stream.write("]")
+
+    def mapping(value, graph=False):
+        stream.write("{")
+        for i, (key, item) in enumerate(value.items()):
+            if i:
+                stream.write(",")
+            stream.write(json.dumps(key) + ":")
+            if key == "snapshot_graph" and not graph:
+                mapping(item, graph=True)
+            elif type(item) is list:
+                array(item)
+            else:
+                stream.write(json.dumps(item, separators=(",", ":")))
+        stream.write("}")
+
+    mapping(proof)
 
 
 def encode(value):

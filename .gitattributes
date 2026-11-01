@@ -55,3 +55,17 @@ sim/isaac/scene/README.md text eol=crlf
 sim/isaac/scene/production_port.py text eol=crlf
 sim/isaac/scene/scene_correction.py text eol=crlf
 src/adaptive_hrc_scheduling/production_recipe.json text eol=crlf
+
+# Preserve the exact reviewed P06 core wheel bytes in checkout and source ZIP.
+src/adaptive_hrc_scheduling/contracts/p051_session_extension.json -text
+src/adaptive_hrc_scheduling/contracts/session.py -text
+src/adaptive_hrc_scheduling/contracts/session_schema.json -text
+src/adaptive_hrc_scheduling/control/production_loop.py -text
+src/adaptive_hrc_scheduling/control/session.py -text
+src/adaptive_hrc_scheduling/control/session_lifecycle.py -text
+src/adaptive_hrc_scheduling/gantt_schedule.py -text
+src/adaptive_hrc_scheduling/production_recipe.json -text
+src/adaptive_hrc_scheduling/simulation_inputs/P042_templates_v1.json -text
+src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_approval_r1.json -text
+src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_proposal_r1.json -text
+src/adaptive_hrc_scheduling/timeline.py -text

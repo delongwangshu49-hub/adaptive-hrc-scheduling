@@ -1,0 +1,71 @@
+{
+  "format": "G06-README-VISUAL-PROVENANCE-1",
+  "owner_authorized": true,
+  "screenshots": [
+    {
+      "file": "docs/assets/readme/native-factory-p062.png",
+      "sha256": "bda72fa5f4a6d7a37c84f2072edc9964d4b8b418e1388910f99f333859baa9fa",
+      "bytes": 408899,
+      "pixels": [
+        1001,
+        510
+      ],
+      "source_artifact_name": "kit-ui-frame.png",
+      "source_run": "P051-5c420551c468461b832db49e9c88074f",
+      "full_plan_version": 2,
+      "scope": "ACTUAL_NATIVE_CAPTURE_PARTIAL_STOPPED_0.850075H",
+      "transformation": "NONE_EXACT_ORIGINAL_BYTES",
+      "synchronized_with_other_images": false
+    },
+    {
+      "file": "docs/assets/readme/cpu-normal-resources-p063.png",
+      "sha256": "28e77b770980e8b7f93da31b44726837f05fbdb914824136b3ac8a574d3daf98",
+      "bytes": 125056,
+      "pixels": [
+        2049,
+        1152
+      ],
+      "source_artifact_name": "normal-resource.png",
+      "source_run": "P063-NORMAL",
+      "full_plan_version": 1,
+      "scope": "ACTUAL_QT_WEB_ARCHIVED_READ_ONLY_RENDER_COMPLETE_CPU_CHAIN",
+      "transformation": "NONE_EXACT_ORIGINAL_BYTES",
+      "synchronized_with_other_images": false
+    },
+    {
+      "file": "docs/assets/readme/dynamic-plan-p063.png",
+      "sha256": "2de7b99d371da87bdfec2e72966338d2e2f915c1548f50748c5488c1a6a3b2b2",
+      "bytes": 138920,
+      "pixels": [
+        2049,
+        1152
+      ],
+      "source_artifact_name": "dynamic-operation.png",
+      "source_run": "P063-DYNAMIC-r2",
+      "full_plan_version": 2,
+      "scope": "ACTUAL_QT_WEB_ARCHIVED_READ_ONLY_RENDER_PARTIAL_DYNAMIC_CASE",
+      "transformation": "NONE_EXACT_ORIGINAL_BYTES",
+      "synchronized_with_other_images": false
+    }
+  ],
+  "illustrations": [
+    {
+      "file": "docs/assets/readme/project-banner.svg",
+      "sha256": "d53d0f18c0eae2e9d0a0166baf7c89bb53fc68ea90a8fdf55bd64c72788d5646",
+      "scope": "Original explanatory vector branding; not a screenshot or numerical result"
+    }
+  ],
+  "capture_note": "Existing originals unchanged; different runs/asynchronous sampling explicitly labeled; no new GUI/Kit or production run",
+  "native_sampling": {
+    "source_state_revision": 329,
+    "frame_number": 885,
+    "sampled_sim_h": 0.8500749999999999,
+    "render_resolution": [
+      667,
+      340
+    ],
+    "scope": "Native display telemetry, not a business transaction/readback"
+  },
+  "UI_readonly_status": "STALE/DISCONNECTED retained in archived screenshots",
+  "SDK_attribution": "Native scene captured using NVIDIA Isaac Sim; third-party software/asset terms remain applicable"
+}

@@ -32,7 +32,9 @@ from s19b_desktop.model import atomic_json, read_json  # noqa: E402
 
 from .client import Client, prepare_launch  # noqa: E402
 from .delta import ProjectionDelta  # noqa: E402
+from .exit_status import completion_status  # noqa: E402
 from .geometry import accepts_host, plan  # noqa: E402
+from .write_fence import BLOCKED_PHASES, control_phase  # noqa: E402
 
 
 def configure_application(app):
@@ -171,6 +173,7 @@ class Workbench(QWidget):
         self.launch = None
         self.worker_log = None
         self.worker_exit = None
+        self.worker_completion = None
         self.phase = "DISCONNECTED"
         self.detached = False
         self.display_error = None
@@ -353,6 +356,9 @@ class Workbench(QWidget):
                 self.phase = "SAVED_READ_ONLY"
             return dict(directory=directory, writable=False)
         if action in ("preview", "submit"):
+            blocked = self.enforce_write_fence()
+            if blocked:
+                raise ValueError("READ_ONLY: " + blocked)
             if (
                 action == "preview"
                 and data.get("kind") == "STOP_REQUEST"
@@ -455,6 +461,7 @@ class Workbench(QWidget):
         self.writable = True
         self.worker_exit = None
         self.frame_identity = self.frame_changed_at = None
+        self.worker_completion = None
         env = os.environ.copy()
         for name in ("PYTHONHOME", "PYTHONPATH", "VIRTUAL_ENV", "PYTHONEXE"):
             env.pop(name, None)
@@ -531,8 +538,32 @@ class Workbench(QWidget):
         if hasattr(self, "recovery"):
             self.recovery.setGeometry(12, self.height() - 180, self.width() - 24, 148)
 
+    def enforce_write_fence(self):
+        blocked = None
+        if self.worker_exit is not None or (self.worker and self.worker.poll() is not None):
+            blocked = "WORKER_EXITED"
+        if self.directory and self.launch:
+            phase = control_phase(self.directory, self.launch)
+            if phase in BLOCKED_PHASES:
+                blocked = "CONTROL_" + phase
+                if phase != "UNKNOWN":
+                    self.phase = phase
+        if self.client:
+            blocked = self.client.write_fence.reason() or blocked
+        if blocked:
+            self.writable = False
+            if self.client:
+                self.client.writable = False
+            if self.snapshot.get("writable"):
+                self.snapshot = dict(self.snapshot, writable=False, write_block_reason=blocked)
+                self.emit("projection", self.delta.encode(self.snapshot))
+        return blocked or ("READ_ONLY" if self.launch and not self.writable else None)
+
     def poll(self):
         try:
+            # A completed poll may predate the terminal save. Fence before it
+            # can restore writable UI state or release a queued confirmation.
+            self.enforce_write_fence()
             if self.future and self.future.done():
                 future, task = self.future, self.outstanding
                 self.future = self.outstanding = None
@@ -540,10 +571,13 @@ class Workbench(QWidget):
                 if task == "launch":
                     self.start_worker(*result)
                 elif task == "poll":
+                    if self.worker_exit is not None or not self.writable:
+                        result = dict(result, writable=False)
                     self.snapshot = result
                     if (
                         self.worker
                         and self.worker.poll() is None
+                        and self.writable
                         and result.get("status") == "VERIFIED"
                         and not self.display_error
                     ):
@@ -562,6 +596,8 @@ class Workbench(QWidget):
                         len(result.get("submitted", [])),
                         self.detached,
                         self.display_error,
+                        shown.get("writable"),
+                        shown.get("write_block_reason"),
                     )
                     if projection_key != self.last_projection_key:
                         self.emit("projection", self.delta.encode(shown))
@@ -576,17 +612,31 @@ class Workbench(QWidget):
                 code = self.worker.poll()
                 if code is not None and self.worker_exit is None:
                     self.worker_exit = code
-                    self.phase = "EXITED" if code == 0 else "FAILED"
+                    self.worker_completion = completion_status(self.directory, self.launch, code)
+                    self.phase = (
+                        "EXITED"
+                        if self.worker_completion["status"] == "SAVED_COMPLETION_RECORDED"
+                        else "FAILED"
+                    )
+                    self.writable = False
+                    if self.client:
+                        self.client.writable = False
+                    self.snapshot = dict(self.snapshot, writable=False)
+                    self.emit("projection", self.delta.encode(self.snapshot))
                     self.native.release()
                     self.native.hide()
                     self.hud.hide()
                     if self.worker_log:
                         self.worker_log.close()
-                    self.emit("worker_exit", dict(code=code))
+                    self.emit("worker_exit", dict(code=code, completion=self.worker_completion))
                     if self.audit:
                         atomic_json(
                             self.audit / "worker-exit.json",
-                            dict(code=code, directory=str(self.directory)),
+                            dict(
+                                code=code,
+                                directory=str(self.directory),
+                                completion=self.worker_completion,
+                            ),
                         )
             if self.directory:
                 if (
@@ -637,20 +687,6 @@ class Workbench(QWidget):
                         and frame["counter_age_s"] is not None
                         and frame["counter_age_s"] < 5
                     )
-            if (
-                self.directory
-                and self.launch
-                and (self.directory / "control-state.json").exists()
-                and self.worker_exit is None
-            ):
-                control = read_json(self.directory / "control-state.json", 32_000_000)
-                if control.get("run_id") == self.launch["run_id"] and control.get("phase") in (
-                    "STOPPING",
-                    "STOPPED",
-                    "STOP_BLOCKED",
-                    "FAILED",
-                ):
-                    self.phase = control["phase"]
             self.emit(
                 "status",
                 dict(

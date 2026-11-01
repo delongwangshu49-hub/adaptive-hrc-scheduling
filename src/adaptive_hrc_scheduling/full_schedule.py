@@ -423,9 +423,9 @@ class FullSchedulePolicy(RulePolicy):
                 folder / (checksum + ".proof.json.gz"), "wt", encoding="utf-8", compresslevel=1
             ) as stream:
                 from .control.production_decisions import record
-                from .schedule_proof import encode
+                from .schedule_proof import dump, encode
 
-                json.dump(
+                dump(
                     dict(
                         scope="HYPOTHETICAL_FULL_REPLAY",
                         configuration=as_data(w.config),
@@ -435,7 +435,6 @@ class FullSchedulePolicy(RulePolicy):
                         decisions=[record(d) for d in chosen.decisions],
                     ),
                     stream,
-                    separators=(",", ":"),
                 )
             self.plan, self.version, self.queue = plan, version, planned
             self.cache_hash = checksum

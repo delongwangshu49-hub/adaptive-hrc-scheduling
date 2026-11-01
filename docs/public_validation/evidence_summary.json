@@ -1,0 +1,105 @@
+{
+  "format": "P06-PUBLIC-VALIDATION-1",
+  "technical_scope": "P06.1 local complete; P06.2 owner-approved limited functional scope complete; P06.3 local reproduction with R1 closed within metadata/display binding scope",
+  "project_all_targets_complete": false,
+  "publication": "Exact commit/tag and remote CI are separate receipts, not implied by these local facts",
+  "p061": {
+    "cases": 24,
+    "coverage_cells": 19,
+    "selected_tests": 190,
+    "corrupt_saved_cases": 35,
+    "complete_candidates": 11,
+    "truncated_candidates_rejected": 11,
+    "actual_adoptions_bound": 17,
+    "review_R1_R2": "CLOSED_WITHIN_SCOPE",
+    "raw_evidence": "CONTROLLED_LOCAL_NOT_INCLUDED"
+  },
+  "p062": {
+    "status": "P06_2_LIMITED_SCOPE_COMPLETE",
+    "original_all_targets_complete": false,
+    "final_native_exit": 0,
+    "closed": true,
+    "async_capture": "ASYNC_COMPLETE",
+    "Qt_exit": 0,
+    "run_id": "P051-5c420551c468461b832db49e9c88074f",
+    "phase": "STOPPED",
+    "save_status": "COMPLETE",
+    "received": 0,
+    "open_obligations": 29,
+    "packets": 173,
+    "events": 329,
+    "saved_bytes": 30294416,
+    "source_regression": 1281,
+    "wheel_regression": 1281,
+    "regression_scope": "Original exact private final snapshot, not current public-tree/CI results",
+    "review_R1_R2_R3_K02": "CLOSED_WITHIN_SCOPE",
+    "historical_K01": "OPEN"
+  },
+  "p063": {
+    "normal": {
+      "phase": "COMPLETED",
+      "save_status": "COMPLETE",
+      "received": 1,
+      "products": 1,
+      "active_static_operations": 436,
+      "completed_static_operations": 436,
+      "time_h": 272.15682222222216,
+      "packets": 2149,
+      "events": 4473,
+      "actual_starts": 1023,
+      "actual_completions": 1023
+    },
+    "dynamic": {
+      "phase": "STOPPED",
+      "save_status": "COMPLETE",
+      "catalog_version": 1,
+      "full_schedule_version": 2,
+      "ORDER_UPDATE": "SAME_ID_ACCEPTED_APPLIED",
+      "STOP": "SAME_ID_ACCEPTED_APPLIED",
+      "packets": 10,
+      "events": 106,
+      "received": 0,
+      "open_obligations": 29
+    },
+    "current_cpu_Kit_comparison": "7 physical records before ORDER_UPDATE only; six historical full pairs retain their source identities",
+    "lifecycle_checks_normal": 19262110,
+    "base_checks_normal": 39768,
+    "display": "Same-observation domain state and Gantt/resource/workforce data; no new native render",
+    "exact_Kit_appearance": "Requires explicit saved color/work-number cache; raw business rows agree without it",
+    "repair": {
+      "finding": "P063-R1",
+      "scope": "Delivered full-reference identity/visible anchor and final plan-row coverage",
+      "status": "CLOSED_WITHIN_SCOPE",
+      "unit_tests": 10,
+      "three_original_corrupt_copies": "REJECTED_WITH_NONZERO_EXIT",
+      "unchanged_dynamic_CLI": "PASS_EXIT_0",
+      "original_saved_reference_count": 2332
+    }
+  },
+  "limitations": [
+    "Source age 2s NOT_MET",
+    "Continuous 4Hz NOT_ESTABLISHED",
+    "Stable segment INSUFFICIENT",
+    "10/s and 50/s qualification NOT_ESTABLISHED",
+    "621.01 K01 historical root cause OPEN",
+    "E20 same-Kit full reception NOT_MET; approved amendment retained",
+    "WIP/J3 HOLD remaining NOT_MET",
+    "Manual REST not implemented; P08 owner operation pending; G2 OPEN"
+  ],
+  "public_inputs": [
+    "examples/reproduction/p063-configuration.json",
+    "examples/reproduction/p063-profile.json",
+    "tests/fixtures/p053/legacy-session"
+  ],
+  "new_pictures_or_video_included": true,
+  "private_raw_evidence_included": false,
+  "toolchain_audit": {
+    "vite_version": "8.0.0",
+    "high_dependency_items": 1,
+    "status": "OPEN_LOCKED_TOOLCHAIN",
+    "dev_server_started": false,
+    "dependency_updated": false
+  },
+  "visual_scope": "Three existing original screenshot byte copies plus one explanatory SVG banner authorized for README; no new capture or synchronized composite",
+  "new_capture_created": false
+}

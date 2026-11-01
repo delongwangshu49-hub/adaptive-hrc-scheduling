@@ -1,0 +1,56 @@
+{
+  "format": "G06-LOCAL-CANDIDATE-VALIDATION-1",
+  "status": "LOCAL_CANDIDATE_CHECKS_PASS_WITH_DECLARED_LIMITATIONS",
+  "source_tests": 1251,
+  "source_seconds": 883.3,
+  "isolated_wheel_tests": 1251,
+  "wheel_seconds": 1107.418,
+  "shared_entry_exit": 0,
+  "shared_elapsed_s": 2017.1979348000023,
+  "published_G05_1209_tests_retained": true,
+  "unpublished_nonP06_40_tests_excluded": true,
+  "new_binding_tests": 10,
+  "frontend_tests": 23,
+  "auxiliary_tests": 8,
+  "software_transaction_checks": 878,
+  "software_transaction_dispatches": 0,
+  "clean_install": {
+    "status": "PASS",
+    "wheel": {
+      "file": "adaptive_hrc_scheduling-0.1.0-py3-none-any.whl",
+      "sha256": "c8c65c6c4ebdc00e28cadfdda6611362189fa49b31cc77abd20bcba827a336e0",
+      "bytes": 589363,
+      "CRC": "PASS"
+    },
+    "sdist": {
+      "file": "adaptive_hrc_scheduling-0.1.0.tar.gz",
+      "sha256": "366a7f99048a0725f50eb964b3f8dd875cdfcdfe2cf8106c5271f7cc9e3e7cb6",
+      "bytes": 529040
+    },
+    "core_members": 110,
+    "sdist_core_members": 110,
+    "original_P06_core_bytes_exact": true,
+    "archive_identity": "New distribution metadata contains proposed README; archive hashes are separate from original P06 wheel"
+  },
+  "candidate_clean_wheel_CLI": {
+    "original_bad_copies_rejected": 3,
+    "unchanged_dynamic_exit": 0,
+    "core_members_exact": 110
+  },
+  "historical_private_regression": {
+    "source": 1281,
+    "wheel": 1281,
+    "scope": "Different retained private input/test tree; not relabeled as this public candidate"
+  },
+  "remote_CI": "Use current commit-bound Actions; not inferred from local evidence",
+  "publication": "Separate actual commit/tag receipt; this file records pre-publication local code checks",
+  "toolchain_audit": {
+    "vite": "8.0.0",
+    "high_dependency_items": 1,
+    "status": "OPEN",
+    "dev_server_started": false,
+    "dependency_upgraded": false
+  },
+  "performance": "Original NOT_MET/INSUFFICIENT and historical K01 OPEN retained",
+  "illustrated_readme_change": "README/assets/provenance only after original full local 1251/1251; runtime and tests byte-identical. Final docs/visuals checked separately, archive metadata rebuilt."
+}

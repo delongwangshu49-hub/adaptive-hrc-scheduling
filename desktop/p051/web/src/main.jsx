@@ -37,7 +37,7 @@ const statusNames={VERIFIED:'fresh',STALE:'stale',STALE_CORRUPT:'warning',UNKNOW
 const kindNames={ORDER_UPDATE:'updateOrder',ORDER_CREATE:'normal',PERSON_ARRIVE:'arrive',PERSON_DEPART:'depart',PERSON_ABSENT:'absent',PERSON_RETURN:'return',REST_REQUEST:'rest',DEVICE_FAIL:'failure',DEVICE_REPAIR:'repaired',ORDER_CANCEL:'cancelOrder',CLOSE_INPUT:'fence',STOP_REQUEST:'stop'};
 const defaults={kind:'ORDER_CREATE',target_id:'',template_id:'SR-W1',quantity:'1',due_sim_h:'720',priority:'NORMAL',person_template:'P043-W1-v1',arrival_location:'F1',initial_f:'0.1',reason:'OPERATOR_REQUEST',duration_h:'0.1',repair_evidence_id:'',material_plan_id:'TEMPLATE-JIT-v1',time_rule:'IMMEDIATE',requested_sim_h:'0',expires_sim_h:'720'};
 function Field({label,children,width=160}){return <label className="field" style={{width}}><span>{label}</span>{children}</label>}
-function Button({children,onClick,disabled,className='',title}){return <button type="button" className={className} onClick={onClick} disabled={disabled} title={title}>{children}</button>}
+function Button({children,onClick,disabled,className='',title,...props}){return <button type="button" className={className} onClick={onClick} disabled={disabled} title={title} {...props}>{children}</button>}
 
 function App(){
   const [language,setLanguage]=useState(savedContext.language||'zh'),[layout,setLayout]=useState(null),[view,setView]=useState({}),[native,setNative]=useState({}),[phase,setPhase]=useState('DISCONNECTED');
@@ -46,6 +46,10 @@ function App(){
   const [setup,setSetup]=useState({variant:'SR-W1',products:1,method:'ADAPTIVE',backend:'isaac',simulation_rate:.01});
   const [camera,setCamera]=useState(savedContext.camera||'Overview');
   const [detached,setDetached]=useState(false);
+  const menuTrigger=useRef(null),formTrigger=useRef(null);
+  const restoreFocus=element=>requestAnimationFrame(()=>element?.isConnected&&element.focus());
+  const toggleMenu=(name,event)=>{menuTrigger.current=event.currentTarget;setMenu(menu===name?null:name);};
+  useEffect(()=>{if(menu)requestAnimationFrame(()=>document.querySelector('[role="menu"] button:not(:disabled)')?.focus());},[menu]);
   const t=key=>words[language][key]||key;
   useEffect(()=>{sessionStorage.setItem('p051-view',JSON.stringify({language,form,drafts,selection,details,settings,camera}))},[language,form,drafts,selection,details,settings,camera]);
   const onError=e=>{setError(e.message||String(e));setBusy(false);};
@@ -66,8 +70,12 @@ function App(){
       rpc('initialize').then(r=>{setLayout(r.layout);setLanguage(r.language);setPhase(r.phase);rpc('layout',{form_open:!!savedContext.form||!!savedContext.details}).catch(onError);}).catch(onError);
     });return()=>{alive=false};
   },[]);
-  const openForm=(kind,priority)=>{setForm(kind);setPreview(null);setError('');setMenu(null);if(priority)setDrafts(s=>({...s,[kind]:{...defaults,...s[kind],priority}}));rpc('layout',{form_open:true}).catch(onError);};
-  const closeForm=()=>{setForm(null);setPreview(null);rpc('layout',{form_open:false}).catch(onError);};
+  const openForm=(kind,priority)=>{formTrigger.current=menu?menuTrigger.current:document.activeElement;setForm(kind);setPreview(null);setError('');setMenu(null);if(priority)setDrafts(s=>({...s,[kind]:{...defaults,...s[kind],priority}}));rpc('layout',{form_open:true}).catch(onError);};
+  const closeForm=()=>{setForm(null);setPreview(null);rpc('layout',{form_open:false}).catch(onError);restoreFocus(formTrigger.current);};
+  const keyboard=e=>{
+    if(e.key==='Escape'&&(menu||form)){e.preventDefault();e.stopPropagation();if(menu){setMenu(null);restoreFocus(menuTrigger.current);}else closeForm();return;}
+    if(menu&&['ArrowDown','ArrowUp','Home','End'].includes(e.key)){const items=[...document.querySelectorAll('[role="menu"] button:not(:disabled)')];if(!items.length)return;e.preventDefault();const i=items.indexOf(document.activeElement),next=e.key==='Home'?0:e.key==='End'?items.length-1:(i+(e.key==='ArrowDown'?1:-1)+items.length)%items.length;items[next].focus();}
+  };
   const d={...defaults,...drafts[form],kind:form};
   const change=(key,value)=>{setDrafts(s=>({...s,[form]:{...defaults,...s[form],[key]:value}}));setPreview(null);};
   const field=(key,label,type='text',width=160)=> <Field key={key} label={t(label)} width={width}><input value={d[key]} type={type} onChange={e=>change(key,e.target.value)} step="any" required/></Field>;
@@ -93,15 +101,15 @@ function App(){
   const auxHeight=profile==='wide'?(expanded?200:72):profile==='narrow'?48:(expanded?144:32);
   const footerHeight=profile==='wide'?32:profile==='narrow'?24:20;
   const auxY=(layout?.client[1]||768)-pad-footerHeight-gap-auxHeight;
-  return <main lang={language==='zh'?'zh-CN':'en'} className={profile} onClick={()=>menu&&setMenu(null)}>
+  return <main lang={language==='zh'?'zh-CN':'en'} className={profile} onKeyDown={keyboard} onClick={()=>menu&&setMenu(null)}>
     <header style={{left:pad,top:pad,right:pad,height:mast}}><div><h1>{t('title')}</h1><span className="phase">{t(statusNames[view.status]||'disconnected')} · {planFailure?(phase==='RUNNING'?blockedLabel:phase+' · '+blockedLabel):fullPlanning?(language==='zh'?'排程中 · 模拟时钟暂停':'Planning · simulation paused'):phase}</span></div><div className="clock">{Number.isFinite(view.envelope?.sampled_sim_h)?view.envelope.sampled_sim_h.toFixed(4)+' h':'—'}<small>{t('time')} · {view.clock?.simulation_rate??'—'} h/s</small></div></header>
     <div className="identity-strip" style={{left:pad,right:pad,top:pad+mast+gap,height:identityHeight}}><span>{view.envelope?.run_id||t('waiting')}</span><span>{view.backend||'—'} · {language==='zh'?'目录':'Catalog'} v{view.envelope?.catalog_version??'—'} · {language==='zh'?'完整计划':'Full plan'} v{view.full_schedule?.version??'—'} · {t('age')} {view.source_age_s==null?'—':view.source_age_s.toFixed(1)+'s'} · {t('selection')}: {picked?.work_number||'—'}</span></div>
     <nav style={{left:pad,right:pad,top:actionsY,height:44}}>
       <Button onClick={()=>openForm('setup')} disabled={runBusy}>{t('start')}</Button><Button onClick={()=>rpc('open').catch(onError)} disabled={runBusy}>{t('open')}</Button>
       <Button onClick={()=>rpc('connection',{detached:!detached}).then(r=>setDetached(r.detached)).catch(onError)}>{t(detached?'reconnect':'disconnect')}</Button>
       <Button className="primary" onClick={()=>openForm('ORDER_CREATE','NORMAL')} disabled={!canWrite}>{t('normal')}</Button><Button onClick={()=>openForm('ORDER_CREATE','URGENT')} disabled={!canWrite}>{t('urgent')}</Button>
-      <div className="menu-root"><Button onClick={()=>setMenu(menu==='people'?null:'people')} disabled={!canWrite}>{t('people')}</Button>{menu==='people'&&<div className="menu" role="menu">{['PERSON_ARRIVE','PERSON_DEPART','PERSON_ABSENT','PERSON_RETURN','REST_REQUEST'].map(k=><button role="menuitem" key={k} disabled={k==='REST_REQUEST'} title={k==='REST_REQUEST'?(language==='zh'?'手动休息尚未实现；自动排程休息不受影响':'Manual rest is unavailable; scheduled rest remains active'):undefined} onClick={()=>openForm(k)}>{t(kindNames[k])}{k==='REST_REQUEST'?(language==='zh'?'（未实现）':' (unavailable)'):''}</button>)}</div>}</div>
-      <div className="menu-root"><Button onClick={()=>setMenu(menu==='events'?null:'events')} disabled={!canWrite}>{t('more')}</Button>{menu==='events'&&<div className="menu" role="menu">{['ORDER_UPDATE','DEVICE_FAIL','DEVICE_REPAIR','ORDER_CANCEL'].map(k=><button role="menuitem" key={k} disabled={k==='REST_REQUEST'} title={k==='REST_REQUEST'?(language==='zh'?'手动休息尚未实现；自动排程休息不受影响':'Manual rest is unavailable; scheduled rest remains active'):undefined} onClick={()=>openForm(k)}>{t(kindNames[k])}{k==='REST_REQUEST'?(language==='zh'?'（未实现）':' (unavailable)'):''}</button>)}</div>}</div>
+      <div className="menu-root"><Button onClick={e=>toggleMenu('people',e)} aria-haspopup="menu" aria-expanded={menu==='people'} disabled={!canWrite}>{t('people')}</Button>{menu==='people'&&<div className="menu" role="menu">{['PERSON_ARRIVE','PERSON_DEPART','PERSON_ABSENT','PERSON_RETURN','REST_REQUEST'].map(k=><button role="menuitem" key={k} disabled={k==='REST_REQUEST'} title={k==='REST_REQUEST'?(language==='zh'?'手动休息尚未实现；自动排程休息不受影响':'Manual rest is unavailable; scheduled rest remains active'):undefined} onClick={()=>openForm(k)}>{t(kindNames[k])}{k==='REST_REQUEST'?(language==='zh'?'（未实现）':' (unavailable)'):''}</button>)}</div>}</div>
+      <div className="menu-root"><Button onClick={e=>toggleMenu('events',e)} aria-haspopup="menu" aria-expanded={menu==='events'} disabled={!canWrite}>{t('more')}</Button>{menu==='events'&&<div className="menu" role="menu">{['ORDER_UPDATE','DEVICE_FAIL','DEVICE_REPAIR','ORDER_CANCEL'].map(k=><button role="menuitem" key={k} disabled={k==='REST_REQUEST'} title={k==='REST_REQUEST'?(language==='zh'?'手动休息尚未实现；自动排程休息不受影响':'Manual rest is unavailable; scheduled rest remains active'):undefined} onClick={()=>openForm(k)}>{t(kindNames[k])}{k==='REST_REQUEST'?(language==='zh'?'（未实现）':' (unavailable)'):''}</button>)}</div>}</div>
       <Button onClick={()=>openForm('CLOSE_INPUT')} disabled={!canWrite}>{t('close')}</Button><Button className="stop" onClick={()=>openForm('STOP_REQUEST')} disabled={!runBusy}>{t('stop')}</Button>
       <Button onClick={()=>{rpc('restore').catch(onError)}}>{t('restore')}</Button><Button onClick={()=>{const l=language==='zh'?'en':'zh';setLanguage(l);rpc('language',{language:l}).catch(onError)}}>{t('language')}</Button>
     </nav>

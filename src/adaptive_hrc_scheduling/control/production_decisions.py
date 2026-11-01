@@ -9,6 +9,7 @@ import hashlib
 import json
 from dataclasses import replace
 from itertools import islice
+from threading import local as _thread_local
 
 from adaptive_hrc_scheduling import production_supports as supports
 from adaptive_hrc_scheduling.contracts.codec import (
@@ -40,12 +41,43 @@ FIELDS = {
     "receipt_id",
 }
 DISPATCH_KINDS = {"ACCEPTED", "STARTED", "REJECTED", "DEFERRED"}
+_string_prefix_state = _thread_local()
 
 
 def fingerprint(value):
     if isinstance(value, m.State):
         return _state_fingerprint(value)
+    if type(value) is tuple and all(type(x) is str for x in value):
+        return _string_prefix_fingerprint(value)
     return _fingerprint(value)
+
+
+def _string_prefix_fingerprint(value):
+    """Exact JSON-array hash; only reuse a checked prefix in this thread.
+
+    Decision observations repeatedly contain growing immutable event-ID tuples.
+    Keep one prefix, not a digest cache for every historical observation. A fork,
+    replacement or truncation resets the hash; caller-owned values never change.
+    """
+    previous = getattr(_string_prefix_state, "value", ())
+    if value is previous and hasattr(_string_prefix_state, "digest"):
+        return _string_prefix_state.digest
+    if len(value) >= len(previous) and value[: len(previous)] == previous:
+        checksum = getattr(_string_prefix_state, "checksum", hashlib.sha256(b"[")).copy()
+        offset = len(previous)
+    else:
+        checksum, offset = hashlib.sha256(b"["), 0
+    for i in range(offset, len(value)):
+        if i:
+            checksum.update(b",")
+        checksum.update(json.dumps(value[i], allow_nan=False).encode())
+    final = checksum.copy()
+    final.update(b"]")
+    result = final.hexdigest()
+    _string_prefix_state.value = value
+    _string_prefix_state.checksum = checksum
+    _string_prefix_state.digest = result
+    return result
 
 
 def _state_fingerprint(value):
