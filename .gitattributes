@@ -69,3 +69,21 @@ src/adaptive_hrc_scheduling/simulation_inputs/P042_templates_v1.json -text
 src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_approval_r1.json -text
 src/adaptive_hrc_scheduling/simulation_inputs/S18_simulation_scope_proposal_r1.json -text
 src/adaptive_hrc_scheduling/timeline.py -text
+
+# P07 evidence binds exact reviewed bytes, including line endings.
+# Keep replay references, frozen extractor and result/source SHA checks valid
+# in Git checkouts and Git-generated archives on every supported platform.
+analysis/p07/** -text
+examples/reproduction/p07/** -text
+results/p07/r3/** -text
+figures/p07/r3/** -text
+docs/public_results/** -text
+docs/delivery/p07_*.json -text
+docs/delivery/claim_evidence_r3.tsv -text
+docs/delivery/feedback_metric_binding_r3.json -text
+docs/metrics/p07_metrics_definition_r3.md -text
+docs/validation/P07*.md -text
+docs/delivery/requirements.tsv -text
+docs/delivery/interaction_requirements_r2.tsv -text
+docs/delivery/p061_interaction_validation_r2.tsv -text
+docs/delivery/p063_reproduction_r1.json -text
