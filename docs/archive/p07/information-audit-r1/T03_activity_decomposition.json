@@ -1,0 +1,178 @@
+[
+  {
+    "unit": "N-CPU-EDD",
+    "phase": "DRIVE",
+    "person_h": 43.959241111111076,
+    "all_lifecycle_person_h_share_percent": 0.551013750765616,
+    "calendar_eligible_person_h": 43.959241111111076,
+    "available_person_h_share_percent": 1.6293966492877696,
+    "exposure_F_h": 8.75770366165316,
+    "actual_lifecycle_E_share_percent": 3.6315295804969296,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "phase": "OFF_SHIFT",
+    "person_h": 5115.0,
+    "all_lifecycle_person_h_share_percent": 64.11474047157155,
+    "calendar_eligible_person_h": 0.0,
+    "available_person_h_share_percent": 0.0,
+    "exposure_F_h": 25.353753911566283,
+    "actual_lifecycle_E_share_percent": 10.513361819907985,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "phase": "PUSH",
+    "person_h": 29.563333333332444,
+    "all_lifecycle_person_h_share_percent": 0.37056606923581037,
+    "calendar_eligible_person_h": 29.563333333332444,
+    "available_person_h_share_percent": 1.0957968121732162,
+    "exposure_F_h": 5.952123147657941,
+    "actual_lifecycle_E_share_percent": 2.4681482855061647,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "phase": "REST",
+    "person_h": 165.0,
+    "all_lifecycle_person_h_share_percent": 2.068217434566824,
+    "calendar_eligible_person_h": 0.0,
+    "available_person_h_share_percent": 0.0,
+    "exposure_F_h": 11.45399710320084,
+    "actual_lifecycle_E_share_percent": 4.749593147040574,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "phase": "SETUP",
+    "person_h": 56.59632084444498,
+    "all_lifecycle_person_h_share_percent": 0.7094151363807205,
+    "calendar_eligible_person_h": 56.59632084444498,
+    "available_person_h_share_percent": 2.0978036293407563,
+    "exposure_F_h": 7.090430029379626,
+    "actual_lifecycle_E_share_percent": 2.9401664391639466,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "phase": "WAIT",
+    "person_h": 2456.5806060067766,
+    "all_lifecycle_person_h_share_percent": 30.792380840981515,
+    "calendar_eligible_person_h": 2456.580606006723,
+    "available_person_h_share_percent": 91.05580776554729,
+    "exposure_F_h": 166.3397135718667,
+    "actual_lifecycle_E_share_percent": 68.975568663349,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "phase": "WALK",
+    "person_h": 5.316322222222859,
+    "all_lifecycle_person_h_share_percent": 0.0666382442895537,
+    "calendar_eligible_person_h": 5.316322222222859,
+    "available_person_h_share_percent": 0.19705521288525019,
+    "exposure_F_h": 0.6680432695399845,
+    "actual_lifecycle_E_share_percent": 0.27701541272845337,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "phase": "WORK",
+    "person_h": 105.86876648211198,
+    "all_lifecycle_person_h_share_percent": 1.327028052208411,
+    "calendar_eligible_person_h": 105.86876648211201,
+    "available_person_h_share_percent": 3.9241399307637552,
+    "exposure_F_h": 15.54167234451054,
+    "actual_lifecycle_E_share_percent": 6.444616651807,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "phase": "DRIVE",
+    "person_h": 43.98561444444447,
+    "all_lifecycle_person_h_share_percent": 0.5513443312977843,
+    "calendar_eligible_person_h": 43.98561444444447,
+    "available_person_h_share_percent": 1.6303742053118915,
+    "exposure_F_h": 9.738500777879166,
+    "actual_lifecycle_E_share_percent": 3.1933316898510844,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "phase": "OFF_SHIFT",
+    "person_h": 5115.0,
+    "all_lifecycle_person_h_share_percent": 64.11474047157155,
+    "calendar_eligible_person_h": 0.0,
+    "available_person_h_share_percent": 0.0,
+    "exposure_F_h": 38.965171943216625,
+    "actual_lifecycle_E_share_percent": 12.77698910795465,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "phase": "PUSH",
+    "person_h": 29.502888888887973,
+    "all_lifecycle_person_h_share_percent": 0.3698084192126421,
+    "calendar_eligible_person_h": 29.502888888887973,
+    "available_person_h_share_percent": 1.0935563736952876,
+    "exposure_F_h": 5.9927310540358025,
+    "actual_lifecycle_E_share_percent": 1.9650640709580343,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "phase": "REST",
+    "person_h": 166.25,
+    "all_lifecycle_person_h_share_percent": 2.083885748465058,
+    "calendar_eligible_person_h": 1.2500000000000009,
+    "available_person_h_share_percent": 0.046332597199793525,
+    "exposure_F_h": 15.376527634087825,
+    "actual_lifecycle_E_share_percent": 5.0420854394075425,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "phase": "SETUP",
+    "person_h": 56.59249045833384,
+    "all_lifecycle_person_h_share_percent": 0.7093671238271678,
+    "calendar_eligible_person_h": 56.59249045833384,
+    "available_person_h_share_percent": 2.097661651951311,
+    "exposure_F_h": 6.943556339542126,
+    "actual_lifecycle_E_share_percent": 2.276847227829157,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "phase": "WAIT",
+    "person_h": 2454.9867926299257,
+    "all_lifecycle_person_h_share_percent": 30.772402946354553,
+    "calendar_eligible_person_h": 2454.986792629869,
+    "available_person_h_share_percent": 90.99673135498614,
+    "exposure_F_h": 210.61283026795476,
+    "actual_lifecycle_E_share_percent": 69.06161846919889,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "phase": "WALK",
+    "person_h": 5.320611111111728,
+    "all_lifecycle_person_h_share_percent": 0.06669200401546205,
+    "calendar_eligible_person_h": 5.320611111111728,
+    "available_person_h_share_percent": 0.19721418517430833,
+    "exposure_F_h": 0.6526092787364938,
+    "actual_lifecycle_E_share_percent": 0.2139957616077692,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "phase": "WORK",
+    "person_h": 106.24619246729598,
+    "all_lifecycle_person_h_share_percent": 1.3317589552557816,
+    "calendar_eligible_person_h": 106.24619246729603,
+    "available_person_h_share_percent": 3.9381296316791685,
+    "exposure_F_h": 16.68171956997206,
+    "actual_lifecycle_E_share_percent": 5.47006823319286,
+    "scope": "MODEL_ACTIVITY_ATTRIBUTION_NOT_REAL_PHYSIOLOGICAL_MEASUREMENT"
+  }
+]

@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "tables": 9,
+  "rows": 290,
+  "source_semantics": "NO_NEW_EXECUTION; FIXED_CASES_NOT_RANDOM_REPLICATES; TIMING_AND_EXPOSURE_WINDOWS_DISTINCT",
+  "source_data": [
+    {
+      "path": "results/p07/r3/summary.json",
+      "bytes": 20494,
+      "sha256": "6689c62ae5a2d86a15e828e50b308eff4f7c278ae36084f59a5944392981e66c"
+    },
+    {
+      "path": "results/p07/r3/costs.json",
+      "bytes": 15282,
+      "sha256": "bc46560955846bff15a0c1f4bde0e4cfbaee36bbcbfdcab4ea62f01767898ea4"
+    },
+    {
+      "path": "results/p07/r3/mechanisms.json",
+      "bytes": 1601,
+      "sha256": "d951b77422e740d9f215c0cc120d8ffd9cfe2410c38b0b69a635d40c25262245"
+    },
+    {
+      "path": "results/p07/r3/products.csv",
+      "bytes": 5514,
+      "sha256": "6897fb5766e872f32e92bc6f19673ed5ce8749e6b43f835324a71e15c1baf0fc"
+    },
+    {
+      "path": "results/p07/r3/activity.csv",
+      "bytes": 57845,
+      "sha256": "dc542f4de72b50cb90f864546df9a576e378e2ccc11a288de8b70cbba17ee323"
+    },
+    {
+      "path": "results/p07/r3/e20.json",
+      "bytes": 8616,
+      "sha256": "4c7a366519c74760979bfa94d7de364969f5a75efecb96c950f3e8470964dbd9"
+    },
+    {
+      "path": "results/p07/r3/e20_orders.csv",
+      "bytes": 1910,
+      "sha256": "b40596db668ca11cb3475d4e38d5132d07e8f966566b84202e62b10430c18e7d"
+    },
+    {
+      "path": "results/p07/r3/dynamic_people.json",
+      "bytes": 8984214,
+      "sha256": "b9a06c9728169aa3303f048fe406eb2dd2212dd959e64ccf3c3e348da247efce"
+    },
+    {
+      "path": "results/p07/r3/cancellation_accounts.csv",
+      "bytes": 1635,
+      "sha256": "0581bf2f5dedb278e0d33b8d91e619d11ff5f23f6e1dcfc69b7a18690e078d48"
+    },
+    {
+      "path": "results/p07/r3/cancellation_materials.csv",
+      "bytes": 1295,
+      "sha256": "205f8f305a5f9aca8d0908b6256e6c83ae68c23b4803413f96c91f0a4ab58c96"
+    },
+    {
+      "path": "results/p07/r3/computed/N-CPU-EDD.json",
+      "bytes": 15060076,
+      "sha256": "425ba251cbee760822d77d49efe7e4f11a53d7b4cd7778ed9ace183df4b1a003"
+    },
+    {
+      "path": "results/p07/r3/computed/H-CPU-EDD.json",
+      "bytes": 15090653,
+      "sha256": "e6c337bbae1de9f6a26441990c2e056ad4bcbe33a59d3778667ef80396e13e1b"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/presentation_data.py",
+    "bytes": 16959,
+    "sha256": "80fddc7b8e7dec1e326a2785057fbe1acd3cbc079626f301a9bf9be68c07560c"
+  }
+}

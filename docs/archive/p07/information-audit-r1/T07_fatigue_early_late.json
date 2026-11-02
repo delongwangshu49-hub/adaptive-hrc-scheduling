@@ -1,0 +1,212 @@
+[
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "P1",
+    "first_24h_E": 4.926987820100527,
+    "later_actual_E": 26.181808300226436,
+    "whole_actual_E": 31.10879612032696
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "W1",
+    "first_24h_E": 2.736963697091683,
+    "later_actual_E": 10.806923175890873,
+    "whole_actual_E": 13.543886872982556
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "W2",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 12.448869427915152,
+    "whole_actual_E": 14.572869427915153
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "OP1",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 7.771726822018702,
+    "whole_actual_E": 9.895726822018702
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "AF1",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 20.71404064185112,
+    "whole_actual_E": 22.83804064185112
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "AF2",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 13.752392297277726,
+    "whole_actual_E": 15.876392297277727
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "E1",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 33.195041451383986,
+    "whole_actual_E": 35.31904145138399
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "PL1",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 12.769683750713877,
+    "whole_actual_E": 14.893683750713876
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "T1",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 12.904619880327981,
+    "whole_actual_E": 15.028619880327982
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "T2",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 9.770569624781317,
+    "whole_actual_E": 11.894569624781315
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "C1",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 10.253881239364588,
+    "whole_actual_E": 12.377881239364589
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "QA1",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 10.344643951118645,
+    "whole_actual_E": 12.468643951118645
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "Lop",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 8.317407760014607,
+    "whole_actual_E": 10.441407760014608
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "Lrig",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 8.317407760014607,
+    "whole_actual_E": 10.441407760014608
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "person_id": "Lsig",
+    "first_24h_E": 2.1239999999999997,
+    "later_actual_E": 8.332469439283102,
+    "whole_actual_E": 10.456469439283103
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "P1",
+    "first_24h_E": 7.6471193742854435,
+    "later_actual_E": 27.623469556149757,
+    "whole_actual_E": 35.2705889304352
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "W1",
+    "first_24h_E": 7.034584247455248,
+    "later_actual_E": 10.750954900144498,
+    "whole_actual_E": 17.785539147599746
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "W2",
+    "first_24h_E": 6.444,
+    "later_actual_E": 12.239084044024011,
+    "whole_actual_E": 18.68308404402401
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "OP1",
+    "first_24h_E": 6.444,
+    "later_actual_E": 7.813571305179743,
+    "whole_actual_E": 14.257571305179743
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "AF1",
+    "first_24h_E": 6.444,
+    "later_actual_E": 20.480969611419297,
+    "whole_actual_E": 26.924969611419296
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "AF2",
+    "first_24h_E": 6.444,
+    "later_actual_E": 13.761357518456286,
+    "whole_actual_E": 20.205357518456285
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "E1",
+    "first_24h_E": 6.444,
+    "later_actual_E": 33.05691961519614,
+    "whole_actual_E": 39.500919615196146
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "PL1",
+    "first_24h_E": 6.444,
+    "later_actual_E": 12.443854036332414,
+    "whole_actual_E": 18.887854036332413
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "T1",
+    "first_24h_E": 6.444,
+    "later_actual_E": 12.915496706738221,
+    "whole_actual_E": 19.35949670673822
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "T2",
+    "first_24h_E": 6.444,
+    "later_actual_E": 9.770569624781281,
+    "whole_actual_E": 16.21456962478128
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "C1",
+    "first_24h_E": 6.444,
+    "later_actual_E": 10.081990037669264,
+    "whole_actual_E": 16.525990037669263
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "QA1",
+    "first_24h_E": 6.444,
+    "later_actual_E": 10.123186924471003,
+    "whole_actual_E": 16.567186924471002
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "Lop",
+    "first_24h_E": 6.444,
+    "later_actual_E": 8.478726566029533,
+    "whole_actual_E": 14.922726566029533
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "Lrig",
+    "first_24h_E": 6.444,
+    "later_actual_E": 8.478726566029533,
+    "whole_actual_E": 14.922726566029533
+  },
+  {
+    "unit": "H-CPU-EDD",
+    "person_id": "Lsig",
+    "first_24h_E": 6.444,
+    "later_actual_E": 8.491066231063211,
+    "whole_actual_E": 14.935066231063212
+  }
+]

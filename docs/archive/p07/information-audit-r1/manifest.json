@@ -1,0 +1,150 @@
+{
+  "status": "BYTE_EXACT_RELOCATION",
+  "scope": "Historical audit evidence; not additional current presentation tables or independent samples",
+  "files": [
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T01_method_tradeoff.csv",
+      "path": "docs/archive/p07/information-audit-r1/T01_method_tradeoff.csv",
+      "bytes": 1376,
+      "sha256": "c369f1f97920adf26bea4d090b7d94d8823e2a22b341e20e913d08550fa4b0d9"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T01_method_tradeoff.json",
+      "path": "docs/archive/p07/information-audit-r1/T01_method_tradeoff.json",
+      "bytes": 3171,
+      "sha256": "3ade0fdf8f0af94eb109a14d1266e7bf7ace756a3593bc2f79a20fbe70c586b4"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T02_H_vs_HR.csv",
+      "path": "docs/archive/p07/information-audit-r1/T02_H_vs_HR.csv",
+      "bytes": 895,
+      "sha256": "8323ace2fab6f0a48a40be188cbf6cbf24a486e27a8de1152fcffacfb33343b8"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T02_H_vs_HR.json",
+      "path": "docs/archive/p07/information-audit-r1/T02_H_vs_HR.json",
+      "bytes": 1485,
+      "sha256": "4bca25f055608b59ce7d23d9c58b3d29e523650af048da577acebb624f823cd3"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T02b_branch_phases.csv",
+      "path": "docs/archive/p07/information-audit-r1/T02b_branch_phases.csv",
+      "bytes": 574,
+      "sha256": "2c6ce55b3efb1dbb99e1aaf4450159a87a61996b802840d6e38515a8d8290a47"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T02b_branch_phases.json",
+      "path": "docs/archive/p07/information-audit-r1/T02b_branch_phases.json",
+      "bytes": 1777,
+      "sha256": "9b54433bacefa7ba40e2a66338dbf6d8ce45684e008825dedc826f5883ab517d"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T03_activity_decomposition.csv",
+      "path": "docs/archive/p07/information-audit-r1/T03_activity_decomposition.csv",
+      "bytes": 3083,
+      "sha256": "c25cd7c37779d9d226c8dec16f70c343ab8dadb13df4106f9546066dd294c4db"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T03_activity_decomposition.json",
+      "path": "docs/archive/p07/information-audit-r1/T03_activity_decomposition.json",
+      "bytes": 7155,
+      "sha256": "18de26ae4186692832d992056abc2fcd0b4a2cc4d5ce7e0c238a2b41eec31ebf"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T04_E20_order_response.csv",
+      "path": "docs/archive/p07/information-audit-r1/T04_E20_order_response.csv",
+      "bytes": 1301,
+      "sha256": "48921e30043daa511511172f41a4771179392e982b8a6114b278216513689ab1"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T04_E20_order_response.json",
+      "path": "docs/archive/p07/information-audit-r1/T04_E20_order_response.json",
+      "bytes": 2596,
+      "sha256": "c875b192714485061b5e1a0bb54428c90611c72a1d2544bd6ed7423c20d256cd"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T05_dynamic_denominator_groups.csv",
+      "path": "docs/archive/p07/information-audit-r1/T05_dynamic_denominator_groups.csv",
+      "bytes": 1427,
+      "sha256": "7b7c5b86932e6c0e06c8e5ead3d26ce1b996ad51b92d11180a31d71667ace993"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T05_dynamic_denominator_groups.json",
+      "path": "docs/archive/p07/information-audit-r1/T05_dynamic_denominator_groups.json",
+      "bytes": 2980,
+      "sha256": "695e2413a18d899c9ee1c678ff99f489ca32d0a25366e7a6a280e6103d915fa2"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T06_cancellation_sunk_resources.csv",
+      "path": "docs/archive/p07/information-audit-r1/T06_cancellation_sunk_resources.csv",
+      "bytes": 632,
+      "sha256": "8889c600f11480ff9e1e305e841cce524640cfe4527db66b9df55b12e0b9eb56"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T06_cancellation_sunk_resources.json",
+      "path": "docs/archive/p07/information-audit-r1/T06_cancellation_sunk_resources.json",
+      "bytes": 1216,
+      "sha256": "bf5deda8c755cde0ee70436deb89a2d6702583e4b5be9f2911485738f5ca3da5"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T07_fatigue_early_late.csv",
+      "path": "docs/archive/p07/information-audit-r1/T07_fatigue_early_late.csv",
+      "bytes": 2018,
+      "sha256": "72045d30bdc5630aabd347961a75049ffe5371154e1707b3b9f91c9dfb9c898f"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T07_fatigue_early_late.json",
+      "path": "docs/archive/p07/information-audit-r1/T07_fatigue_early_late.json",
+      "bytes": 5412,
+      "sha256": "6c4a6fa7f096070a5da25ef0b9d8f47b51006e4c8aa0a1ab0096defd60273655"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T08_device_ownership.csv",
+      "path": "docs/archive/p07/information-audit-r1/T08_device_ownership.csv",
+      "bytes": 3605,
+      "sha256": "316f4228157b40800bbf642d9763365e906d38231eef57237e526190c69742d6"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T08_device_ownership.json",
+      "path": "docs/archive/p07/information-audit-r1/T08_device_ownership.json",
+      "bytes": 7764,
+      "sha256": "bf0532a6cc708ed216eccb38ee433e7e6283468c811081b157dcb1a4fd4e3471"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T09_delivery_lateness.csv",
+      "path": "docs/archive/p07/information-audit-r1/T09_delivery_lateness.csv",
+      "bytes": 2373,
+      "sha256": "9e9d9cf7b4ff1c53cce55c2b6d22c05adc11975865a02e723cb485e8dadfdd81"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/tables/T09_delivery_lateness.json",
+      "path": "docs/archive/p07/information-audit-r1/T09_delivery_lateness.json",
+      "bytes": 4439,
+      "sha256": "ea8d90b6140dd6bb588464ed349f848dccdf3cf0ed7e36c3a60dd8f301af751f"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/curated_tables.md",
+      "path": "docs/archive/p07/information-audit-r1/curated_tables.md",
+      "bytes": 8295,
+      "sha256": "73b2ed15d4ef030f317843d3ac335c0fa1ef66d2a724255b6f5225de81f0c9b8"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/csv_profiles.json",
+      "path": "docs/archive/p07/information-audit-r1/csv_profiles.json",
+      "bytes": 237529,
+      "sha256": "12a19c8c336daeff4e5d1b777911863a580ab54ac5a96bced638fce0027e18e0"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/deep_pair_comparison.json",
+      "path": "docs/archive/p07/information-audit-r1/deep_pair_comparison.json",
+      "bytes": 5837,
+      "sha256": "77982ef3d7df99d515455afc720d57f2a74e608800a26cb30dfa7a2f4f3f881d"
+    },
+    {
+      "original_path": ".local/p07-information-audit-20261102-r1/table_selection_registry.json",
+      "path": "docs/archive/p07/information-audit-r1/table_selection_registry.json",
+      "bytes": 10631,
+      "sha256": "e5290ba5118970860d777e7da236c741347d05a43c2641d67a019631ab0c4184"
+    }
+  ]
+}

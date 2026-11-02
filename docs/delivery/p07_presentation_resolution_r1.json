@@ -1,0 +1,92 @@
+{
+  "status": "PRESENTATION_FINDINGS_RESOLVED_WITHIN_SCOPE",
+  "original_audit": {
+    "path": "docs/delivery/p07_information_value_audit_r1.json",
+    "bytes": 17847,
+    "sha256": "83eb3deb8cfb002240a58ac40192751aeb5d33a7ade872c41f71a903dd1ba7ca"
+  },
+  "original_findings_unchanged": true,
+  "presentation": {
+    "path": "docs/delivery/p07_presentation_r1.json",
+    "bytes": 12873,
+    "sha256": "b9ed0308075b1a73fd07fc7db44ed5e7814c762245fc9a57647027f3165c6a76"
+  },
+  "public_reading_copy": {
+    "path": "docs/public_results/information_audit.md",
+    "bytes": 16083,
+    "sha256": "0fca1e71564002d75975c93c0f4a706f940bb4e094809ea3907becd46e20efcf"
+  },
+  "relocated_audit_evidence_manifest": {
+    "path": "docs/archive/p07/information-audit-r1/manifest.json",
+    "bytes": 7324,
+    "sha256": "e110ee4c0fd9d811d21f42c9ac4b7b664657d0c54e2d809ca5cd6a64eeaf6ad2"
+  },
+  "findings": [
+    {
+      "id": "IV01",
+      "status": "RESOLVED_WITHIN_PRESENTATION_SCOPE",
+      "artifacts": [
+        "README.md",
+        "results/p07/presentation-r1/method_tradeoff.csv",
+        "results/p07/presentation-r1/delivery_lateness.csv"
+      ]
+    },
+    {
+      "id": "IV02",
+      "status": "RESOLVED_WITHIN_PRESENTATION_SCOPE",
+      "artifacts": [
+        "results/p07/presentation-r1/method_tradeoff.csv"
+      ]
+    },
+    {
+      "id": "IV03",
+      "status": "RESOLVED_WITHIN_PRESENTATION_SCOPE",
+      "artifacts": [
+        "figures/p07/r4/P07-R4-02-order-event-chain.png",
+        "results/p07/presentation-r1/e20_response.csv"
+      ]
+    },
+    {
+      "id": "IV04",
+      "status": "RESOLVED_WITHIN_PRESENTATION_SCOPE",
+      "artifacts": [
+        "figures/p07/r4/P07-R4-04-initial-fatigue-window.png",
+        "results/p07/presentation-r1/dynamic_denominators.csv"
+      ]
+    },
+    {
+      "id": "IV05",
+      "status": "RESOLVED_WITHIN_PRESENTATION_SCOPE",
+      "artifacts": [
+        "results/p07/presentation-r1/cancellation_resources.csv",
+        "docs/public_results/README.md"
+      ]
+    },
+    {
+      "id": "IV06",
+      "status": "RESOLVED_WITHIN_PRESENTATION_SCOPE",
+      "artifacts": [
+        "figures/p07/r4/P07-R4-01-mechanism-contrast.png",
+        "results/p07/presentation-r1/mechanism_contrasts.csv"
+      ]
+    },
+    {
+      "id": "IV07",
+      "status": "RESOLVED_WITHIN_PRESENTATION_SCOPE",
+      "artifacts": [
+        "docs/public_results/README.md"
+      ]
+    },
+    {
+      "id": "IV08",
+      "status": "RESOLVED_WITHIN_PRESENTATION_SCOPE",
+      "artifacts": [
+        "docs/public_results/status.md",
+        "docs/public_results/package_scope.json"
+      ]
+    }
+  ],
+  "original_numeric_results_and_business_limits_unchanged": true,
+  "old_figures_retained_as_history": true,
+  "publication_authorized": false
+}

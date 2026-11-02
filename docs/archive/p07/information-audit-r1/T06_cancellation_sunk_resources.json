@@ -1,0 +1,50 @@
+[
+  {
+    "item": "STEEL returned",
+    "value": 3.318,
+    "unit": "t",
+    "evidence": "28 returned lots; per original run"
+  },
+  {
+    "item": "Command-linked labour",
+    "value": 0.7473424999999999,
+    "unit": "person h",
+    "evidence": "WORK+DRIVE+WALK; excludes unassigned WAIT/REST"
+  },
+  {
+    "item": "Labour WALK",
+    "value": 0.02326388888888888,
+    "unit": "person h",
+    "evidence": "Constituent of command-linked labour; do not add again"
+  },
+  {
+    "item": "Labour DRIVE",
+    "value": 0.17338888888888881,
+    "unit": "person h",
+    "evidence": "Constituent of command-linked labour; do not add again"
+  },
+  {
+    "item": "Labour WORK",
+    "value": 0.5506897222222222,
+    "unit": "person h",
+    "evidence": "Constituent of command-linked labour; do not add again"
+  },
+  {
+    "item": "Actual transport",
+    "value": 96.1,
+    "unit": "m",
+    "evidence": "Per original run"
+  },
+  {
+    "item": "Empty return",
+    "value": 61.3,
+    "unit": "m",
+    "evidence": "Subset of transport; do not add again"
+  },
+  {
+    "item": "Walking",
+    "value": 83.74999999999997,
+    "unit": "m",
+    "evidence": "Separate routed movement"
+  }
+]

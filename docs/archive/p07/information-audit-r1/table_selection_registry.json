@@ -1,0 +1,341 @@
+[
+  {
+    "path": "results/p07/r3/activity.csv",
+    "rows": 1008,
+    "role": "T03时间/暴露构成支撑",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/attempts.csv",
+    "rows": 4,
+    "role": "原失败/截尾必须保留的审计表",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/cancellation_accounts.csv",
+    "rows": 2,
+    "role": "两方法同值按每运行合并展示，保留两个身份",
+    "fully_zero_numeric_columns": [
+      "epoch",
+      "residual_available_lots",
+      "installed_mass_t",
+      "active_resource_holders",
+      "running_commands",
+      "material_reservations"
+    ],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/cancellation_lots.csv",
+    "rows": 240,
+    "role": "240lot审计底表，不做240根柱",
+    "fully_zero_numeric_columns": [
+      "available",
+      "consumed",
+      "converted",
+      "scrapped"
+    ],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/cancellation_materials.csv",
+    "rows": 20,
+    "role": "主文只突出非零退回和零残留结论，完整物料类型仍归档",
+    "fully_zero_numeric_columns": [
+      "available",
+      "consumed",
+      "converted",
+      "scrapped"
+    ],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/costs.csv",
+    "rows": 12,
+    "role": "T01的计算投入来源；缺测CPU/内存不能补0",
+    "fully_zero_numeric_columns": [
+      "budget_overrun_rows"
+    ],
+    "nonmissing_zero_but_partly_missing": [
+      "cache_invalidations",
+      "maximum_overrun_s"
+    ]
+  },
+  {
+    "path": "results/p07/r3/dynamic_activity.csv",
+    "rows": 74,
+    "role": "动态人员活动归属附表",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/dynamic_intervals.csv",
+    "rows": 3008,
+    "role": "动态积分/日历底表",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/dynamic_people.csv",
+    "rows": 32,
+    "role": "T05分母分组；人员风险量仍逐人保存",
+    "fully_zero_numeric_columns": [
+      "defined_from_h"
+    ],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/dynamic_people_events.csv",
+    "rows": 14,
+    "role": "T05例外的因果时间顺序证据",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/e20_order_summary.csv",
+    "rows": 3,
+    "role": "不同订单粒度摘要，不能代替逐产品截止状态",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/e20_orders.csv",
+    "rows": 4,
+    "role": "T04同运行产品响应主表候选",
+    "fully_zero_numeric_columns": [
+      "epoch"
+    ],
+    "nonmissing_zero_but_partly_missing": [
+      "ready_tardiness_h",
+      "received_tardiness_h"
+    ]
+  },
+  {
+    "path": "results/p07/r3/e20_plan_changes.csv",
+    "rows": 5,
+    "role": "采用/失败事实，不能当作实际完工",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/e20_requests.csv",
+    "rows": 10,
+    "role": "请求及回执追踪附表",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/e20_timeline.csv",
+    "rows": 7,
+    "role": "E20事件链来源",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/exports/dynamic/devices.csv",
+    "rows": 10,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/exports/dynamic/gantt-rows.csv",
+    "rows": 2676,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": [
+      "attempt"
+    ]
+  },
+  {
+    "path": "results/p07/r3/exports/dynamic/orders.csv",
+    "rows": 1,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [
+      "release_h"
+    ],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/exports/dynamic/people.csv",
+    "rows": 15,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/exports/kit/devices.csv",
+    "rows": 10,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/exports/kit/gantt-rows.csv",
+    "rows": 5241,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": [
+      "attempt"
+    ]
+  },
+  {
+    "path": "results/p07/r3/exports/kit/orders.csv",
+    "rows": 1,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [
+      "release_h"
+    ],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/exports/kit/people.csv",
+    "rows": 15,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/exports/normal/devices.csv",
+    "rows": 10,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/exports/normal/gantt-rows.csv",
+    "rows": 24680,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": [
+      "admitted_catalog_version",
+      "attempt"
+    ]
+  },
+  {
+    "path": "results/p07/r3/exports/normal/orders.csv",
+    "rows": 1,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [
+      "release_h"
+    ],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/exports/normal/people.csv",
+    "rows": 15,
+    "role": "双域重建接口明细，展示行数不作科研样本量或计划工序数",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/human_intervals.csv",
+    "rows": 347220,
+    "role": "积分与局部窗口重建底表，不是逐行发表的主表",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/mechanisms.csv",
+    "rows": 4,
+    "role": "T02主文候选；标出HR别名",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/milestones.csv",
+    "rows": 6280,
+    "role": "事件定位底表，按问题选取真实局部窗",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/mode_attempts.csv",
+    "rows": 44,
+    "role": "模式实际尝试/失败诊断附表",
+    "fully_zero_numeric_columns": [
+      "attempt"
+    ],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/orders.csv",
+    "rows": 24,
+    "role": "订单身份/交期底表，避免与产品数混淆",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/pairs.csv",
+    "rows": 45,
+    "role": "45指标单元审计附表；主文保留负结论和唯一微小例外",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/people.csv",
+    "rows": 180,
+    "role": "逐人分布/公平性核查，完整明细附录",
+    "fully_zero_numeric_columns": [
+      "defined_from_h"
+    ],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/products.csv",
+    "rows": 24,
+    "role": "T09逐产品迟交；取消与缺失分开",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/resources.csv",
+    "rows": 12968,
+    "role": "资源所有权/空间明细；保留归档，不直接证明瓶颈",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/stages.csv",
+    "rows": 156,
+    "role": "T02b机制解释支撑",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/summary.csv",
+    "rows": 12,
+    "role": "完整来源汇总；主文按T01裁剪，常量口径移表注",
+    "fully_zero_numeric_columns": [
+      "epoch",
+      "on_time_received_fraction_all_released",
+      "on_time_ready_fraction_all_released",
+      "on_time_received_fraction_noncancelled",
+      "original_actual_exit_code"
+    ],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/transport.csv",
+    "rows": 12,
+    "role": "物流构成候选；同方法数值重复时不画双柱",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/transport_chains.csv",
+    "rows": 19197,
+    "role": "root/resume去重底表",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  },
+  {
+    "path": "results/p07/r3/transport_commands.csv",
+    "rows": 22494,
+    "role": "运输归属底表",
+    "fully_zero_numeric_columns": [],
+    "nonmissing_zero_but_partly_missing": []
+  }
+]

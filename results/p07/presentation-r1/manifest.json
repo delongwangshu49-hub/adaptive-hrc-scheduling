@@ -1,0 +1,66 @@
+{
+  "format": "P07-PRESENTATION-DATA-1",
+  "artifacts": [
+    {
+      "path": "results/p07/presentation-r1/tables.json",
+      "bytes": 52571,
+      "sha256": "eb9832b901fbe2041cf54b0ef7d27120c32e6476fc6ca615dfe284b7b7794774"
+    },
+    {
+      "path": "results/p07/presentation-r1/method_tradeoff.csv",
+      "bytes": 746,
+      "sha256": "8306983d41716f2616af4f8f11a19497e01daf7ed3b07d6d7fec0de868e6d889"
+    },
+    {
+      "path": "results/p07/presentation-r1/mechanism_contrasts.csv",
+      "bytes": 732,
+      "sha256": "88a0640883797e78c0402aa3a70085f0cc74c47a8e244af3f2541ed3f34f9cfa"
+    },
+    {
+      "path": "results/p07/presentation-r1/delivery_lateness.csv",
+      "bytes": 741,
+      "sha256": "1b617979aa0cd9842593d671468b3248bba05371f8b9226feae2ceecb196cebf"
+    },
+    {
+      "path": "results/p07/presentation-r1/e20_response.csv",
+      "bytes": 894,
+      "sha256": "d9199f4bd0b09cdba8d5b12c6940b9106bece9fa362ae910bb659cb423d89bc4"
+    },
+    {
+      "path": "results/p07/presentation-r1/activity_decomposition.csv",
+      "bytes": 2705,
+      "sha256": "591ee3a0aac0c519542439613d1fe6dec3e2145dc67807c0f9185908fc510f92"
+    },
+    {
+      "path": "results/p07/presentation-r1/fatigue_windows.csv",
+      "bytes": 322,
+      "sha256": "2cd8a8c0d5905df507404487cdfd507c3311080667336a5764012740b82e1f19"
+    },
+    {
+      "path": "results/p07/presentation-r1/fatigue_first_day.csv",
+      "bytes": 13186,
+      "sha256": "39143724a3995527e77f75571d799e656cd71ca8d77e44c127fb4de122b3dbf7"
+    },
+    {
+      "path": "results/p07/presentation-r1/dynamic_denominators.csv",
+      "bytes": 750,
+      "sha256": "5728a2b4ef6a6bbf4636d1e946b7e20c0a668404975d0c4bd80c94481d8a73f6"
+    },
+    {
+      "path": "results/p07/presentation-r1/cancellation_resources.csv",
+      "bytes": 479,
+      "sha256": "40e0f740f86cbe3151546e6f3a240d6bddb0989b8a341d9498e53817767a8033"
+    }
+  ],
+  "validation": {
+    "path": "results/p07/presentation-r1/validation.json",
+    "bytes": 2446,
+    "sha256": "af056ae5b75292cad8da52d2efe69f3dd36156cef74b929f8443b14d91cf7a6e"
+  },
+  "source_numerical_validation": {
+    "path": "results/p07/r3/validation.json",
+    "bytes": 22403,
+    "sha256": "2ec0db41831de52255c94a1b7d873d6b9837f0f318e98c48f29a8d278e1eb8f6"
+  },
+  "private_original_archives_required": false
+}

@@ -1,0 +1,22 @@
+{
+  "format": "G07-PRESENTATION-PUBLICATION-SCOPE-1",
+  "authority": "Owner explicitly requested publication on 2026-11-02",
+  "base": "4158ba0a43ce1acda349bd431d291b9b70a52a04",
+  "release_tag": "step-P07-r3",
+  "approved_candidate": {
+    "path": ".local/g07-presentation-preparation-20261102-r2/result.json",
+    "bytes": 19140,
+    "sha256": "31dffddf823709803a8c85f4976c81c5bcc5c80428d8dd7f76be5553230f349a"
+  },
+  "approved_candidate_tree": "2d4425ed2ab9bad771f42c1d50fa11063156ddb3",
+  "finalization": "Publication status wording and versioned byte contracts only; all numerical data, figures, runtime and dependencies unchanged",
+  "CI_policy": "Only the actual push workflow associated with the release commit establishes current CI; no success is pre-recorded",
+  "old_tags_retained": [
+    "step-P06-r1",
+    "step-P07-r1",
+    "step-P07-r2"
+  ],
+  "new_production": 0,
+  "new_kit": 0,
+  "new_research_solver_runs": 0
+}

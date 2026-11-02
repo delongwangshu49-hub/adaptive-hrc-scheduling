@@ -1,0 +1,62 @@
+{
+  "status": "LOCAL_BILINGUAL_CANDIDATE_NOT_PUBLISHED",
+  "base": "4158ba0a43ce1acda349bd431d291b9b70a52a04",
+  "proposed_tag": "step-P07-r3",
+  "previous_candidate": "docs/delivery/g07_presentation_candidate_r1.json",
+  "presentation": "docs/delivery/p07_presentation_r2.json",
+  "languages": [
+    "en",
+    "zh-CN"
+  ],
+  "default_language": "en",
+  "scope": "README, public explanation, historical document snapshots and byte-contract extension only",
+  "previous_full_shared_checks": {
+    "source_count": 1276,
+    "source_seconds": 890.86,
+    "isolated_wheel_count": 1276,
+    "isolated_wheel_seconds": 1142.352,
+    "all_prior_1273_identities_retained": true,
+    "fresh_environment_replay": "PASS; 12 original units, nine tables and four figures",
+    "fresh_replay_all_tables_and_12_graphics_bytes_exact": true,
+    "README_four_browser_layouts": "PASS",
+    "final_distribution": "PASS; 110 core members unchanged, sdist rebuild exact, isolated CLI 0",
+    "final_presentation_field_rename": "After full shared checks; two field names only, no numerical change; final replay and targeted gates apply"
+  },
+  "this_revision_full_shared_runs": 0,
+  "local_validation_receipt": ".local/g07-presentation-preparation-20261102-r2/result.json",
+  "report": "docs/validation/README_bilingual_revision_r1.md",
+  "publication_authorized": false,
+  "published": false,
+  "remote_CI_started": false,
+  "at": "2026-11-02T11:47:07.213831+00:00",
+  "this_revision_validation": {
+    "exported_source_p07": {
+      "count": 25,
+      "seconds": 1.226
+    },
+    "isolated_wheel_p07": {
+      "count": 25,
+      "seconds": 1.231
+    },
+    "two_mutated_README_controls": "NONZERO_REJECTION_PASS",
+    "browser_layouts": 8,
+    "local_images_per_language": 9,
+    "native_mermaid_per_language": 2,
+    "tables_per_language": 7,
+    "minimum_node_text_contrast": 8.93367477024568,
+    "original_core_members": 110,
+    "sdist_rebuild_wheel_exact": true,
+    "isolated_CLI_exit": 0,
+    "final_serialization_and_ZIP_checks": "See external sealed result.json"
+  },
+  "previous_candidate_preserved": {
+    "path": ".local/g07-presentation-preparation-20261102-r1/result.json",
+    "bytes": 9913,
+    "sha256": "cbc7db21f30edacc6995e15325adc5257ea3dd5a3cbe8709ced3f9512a92773e"
+  },
+  "previous_presentation": {
+    "path": "docs/delivery/p07_presentation_r1.json",
+    "bytes": 12873,
+    "sha256": "b9ed0308075b1a73fd07fc7db44ed5e7814c762245fc9a57647027f3165c6a76"
+  }
+}

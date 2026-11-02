@@ -1,0 +1,42 @@
+{
+  "id": "P07-R4-01-mechanism-contrast",
+  "question": "Do branch savings reach the whole production outcome?",
+  "finding": "Branch person-hours fall about 68%; normal receipt is unchanged and higher-fatigue receipt is 22.071h earlier.",
+  "scope": "H/HR mechanism comparison; four reused existing cells; no independent replication added",
+  "files": [
+    {
+      "path": "figures/p07/r4/P07-R4-01-mechanism-contrast.png",
+      "bytes": 331001,
+      "sha256": "a2d0246d49fd92f01d2c32f21825606df7f9e2c3a3e82a4438f8d90b64b5d632"
+    },
+    {
+      "path": "figures/p07/r4/P07-R4-01-mechanism-contrast.svg",
+      "bytes": 31520,
+      "sha256": "596c662b0ba682c8777c5b2337b00a764004ca0cbc253a20506b5bbcccba1866"
+    },
+    {
+      "path": "figures/p07/r4/P07-R4-01-mechanism-contrast.pdf",
+      "bytes": 24710,
+      "sha256": "be7d1ffad0368314421ba2255afc941fe6c4d9f7c78bfeb817e80ce7cd7c3ab4"
+    }
+  ],
+  "source_data": [
+    {
+      "path": "results/p07/presentation-r1/tables.json",
+      "bytes": 52571,
+      "sha256": "eb9832b901fbe2041cf54b0ef7d27120c32e6476fc6ca615dfe284b7b7794774"
+    },
+    {
+      "path": "results/p07/presentation-r1/validation.json",
+      "bytes": 2446,
+      "sha256": "af056ae5b75292cad8da52d2efe69f3dd36156cef74b929f8443b14d91cf7a6e"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/presentation_figures.py",
+    "bytes": 17679,
+    "sha256": "2c2427ae71609426bcecab145083bb1271ba139152163241619e8f6574601b52"
+  },
+  "transformations": "Explicit table derivations; no smoothing; no new execution or sampling inference",
+  "publisher_target": "GENERAL_PROJECT_DOCUMENTATION; NO_JOURNAL_CERTIFICATION"
+}

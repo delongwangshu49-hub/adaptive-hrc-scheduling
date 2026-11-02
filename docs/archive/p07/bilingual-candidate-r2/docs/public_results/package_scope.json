@@ -1,0 +1,29 @@
+{
+  "status": "LOCAL_BILINGUAL_README_CANDIDATE_NOT_PUBLISHED",
+  "base": "4158ba0a43ce1acda349bd431d291b9b70a52a04",
+  "proposed_tag": "step-P07-r3",
+  "published_baseline_tag": "step-P07-r2",
+  "published_baseline_CI": {
+    "run": 41407810409,
+    "status": "SUCCESS",
+    "tests_per_round": 1273,
+    "rounds": 4
+  },
+  "local_candidate_validation": "See docs/delivery/g07_presentation_candidate_r2.json",
+  "core_package_members_unchanged": 110,
+  "remote_CI": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+  "formats": "Full source ZIP, exact delta ZIP, core wheel and sdist, external manifests and SHA256SUMS",
+  "core_wheel_scope": "Core runtime only; analysis code, derived inputs and figures are in the full source bundle",
+  "dependencies": "analysis/p07/requirements.txt",
+  "replay_entry": "analysis/p07/presentation.py replay",
+  "presentation_tables": 9,
+  "presentation_figures": 4,
+  "publication_authorized": false,
+  "new_formal_production_runs": 0,
+  "new_kit_runs": 0,
+  "README_languages": [
+    "en",
+    "zh-CN"
+  ],
+  "default_README_language": "en"
+}

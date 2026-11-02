@@ -1,0 +1,242 @@
+[
+  {
+    "unit": "N-CPU-EDD",
+    "device": "CUT1",
+    "held_union_h": 2.151606865243049,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 0.40454462100266775,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "device": "WELD-J2",
+    "held_union_h": 0,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 0.0,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "device": "WELD-J3",
+    "held_union_h": 4.19023512198946,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 0.7878470303848041,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "device": "R1",
+    "held_union_h": 29.51012027777784,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 5.548485932242191,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "device": "CR1",
+    "held_union_h": 1.8282222222221236,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 0.3437419158420272,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "device": "TEST1",
+    "held_union_h": 29.435110208333754,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 5.534382556479253,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "device": "FORK-01",
+    "held_union_h": 38.20899888888888,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 7.184047059940399,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "device": "CART-01",
+    "held_union_h": 24.11888888888818,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 4.534827863852599,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "device": "FIX-J2",
+    "held_union_h": 29.51012027777784,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 5.548485932242191,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "N-CPU-EDD",
+    "device": "FIX-J3",
+    "held_union_h": 4.19023512198946,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 0.7878470303848041,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "F-CPU-EDD",
+    "device": "CUT1",
+    "held_union_h": 2.153909964687493,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 0.40497764922308055,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "F-CPU-EDD",
+    "device": "WELD-J2",
+    "held_union_h": 0,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 0.0,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "F-CPU-EDD",
+    "device": "WELD-J3",
+    "held_union_h": 4.19023512198946,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 0.7878470303848041,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "F-CPU-EDD",
+    "device": "R1",
+    "held_union_h": 29.27276472222228,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 5.5038583960429825,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "F-CPU-EDD",
+    "device": "CR1",
+    "held_union_h": 1.8282222222221236,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 0.3437419158420272,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "F-CPU-EDD",
+    "device": "TEST1",
+    "held_union_h": 29.435110208333754,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 5.534382556479253,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "F-CPU-EDD",
+    "device": "FORK-01",
+    "held_union_h": 38.458998888888885,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 7.231052001635101,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "F-CPU-EDD",
+    "device": "CART-01",
+    "held_union_h": 24.11888888888818,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 4.534827863852599,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "F-CPU-EDD",
+    "device": "FIX-J2",
+    "held_union_h": 29.27276472222228,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 5.5038583960429825,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "F-CPU-EDD",
+    "device": "FIX-J3",
+    "held_union_h": 4.19023512198946,
+    "observation_h": 531.8589726666667,
+    "ownership_fraction_percent": 0.7878470303848041,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "C-STOCK-CPU-EDD-r4",
+    "device": "CUT1",
+    "held_union_h": 1.0386427463888879,
+    "observation_h": 720,
+    "ownership_fraction_percent": 0.14425593699845665,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "C-STOCK-CPU-EDD-r4",
+    "device": "WELD-J2",
+    "held_union_h": 0,
+    "observation_h": 720,
+    "ownership_fraction_percent": 0.0,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "C-STOCK-CPU-EDD-r4",
+    "device": "WELD-J3",
+    "held_union_h": 2.110745556286723,
+    "observation_h": 720,
+    "ownership_fraction_percent": 0.2931591050398226,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "C-STOCK-CPU-EDD-r4",
+    "device": "R1",
+    "held_union_h": 19.022865277777772,
+    "observation_h": 720,
+    "ownership_fraction_percent": 2.6420646219135797,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "C-STOCK-CPU-EDD-r4",
+    "device": "CR1",
+    "held_union_h": 0.891888888888861,
+    "observation_h": 720,
+    "ownership_fraction_percent": 0.12387345679011957,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "C-STOCK-CPU-EDD-r4",
+    "device": "TEST1",
+    "held_union_h": 8.244757430555552,
+    "observation_h": 720,
+    "ownership_fraction_percent": 1.1451051986882712,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "C-STOCK-CPU-EDD-r4",
+    "device": "FORK-01",
+    "held_union_h": 19.315550000000066,
+    "observation_h": 720,
+    "ownership_fraction_percent": 2.682715277777787,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "C-STOCK-CPU-EDD-r4",
+    "device": "CART-01",
+    "held_union_h": 11.95488888888876,
+    "observation_h": 720,
+    "ownership_fraction_percent": 1.6604012345678834,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "C-STOCK-CPU-EDD-r4",
+    "device": "FIX-J2",
+    "held_union_h": 19.022865277777772,
+    "observation_h": 720,
+    "ownership_fraction_percent": 2.6420646219135797,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  },
+  {
+    "unit": "C-STOCK-CPU-EDD-r4",
+    "device": "FIX-J3",
+    "held_union_h": 2.110745556286723,
+    "observation_h": 720,
+    "ownership_fraction_percent": 0.2931591050398226,
+    "scope": "OWNERSHIP_NOT_BUSY_PROCESSING_OR_BOTTLENECK_PROOF"
+  }
+]

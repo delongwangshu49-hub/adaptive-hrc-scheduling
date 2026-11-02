@@ -1,0 +1,122 @@
+[
+  {
+    "scenario": "N",
+    "product_id": "PRODUCT-1",
+    "order_id": "ORDER-1",
+    "due_h": 168.0,
+    "received_h": 313.91884722222215,
+    "received_tardiness_h": 145.91884722222215,
+    "cancelled": "False",
+    "source_unit": "N-CPU-EDD",
+    "methods": "EDD_AND_ADAPTIVE_IDENTICAL_FOR_THESE_OUTCOMES",
+    "scope": "CONTINUOUS_LATENESS_SUPPLEMENTS_PRESPECIFIED_ZERO_ON_TIME_RATE; NOT_ALL_ACTIVE_PRODUCTS_OF_C_ARE_TWO"
+  },
+  {
+    "scenario": "N",
+    "product_id": "PRODUCT-2",
+    "order_id": "ORDER-2",
+    "due_h": 168.0,
+    "received_h": 531.8589726666667,
+    "received_tardiness_h": 363.85897266666666,
+    "cancelled": "False",
+    "source_unit": "N-CPU-EDD",
+    "methods": "EDD_AND_ADAPTIVE_IDENTICAL_FOR_THESE_OUTCOMES",
+    "scope": "CONTINUOUS_LATENESS_SUPPLEMENTS_PRESPECIFIED_ZERO_ON_TIME_RATE; NOT_ALL_ACTIVE_PRODUCTS_OF_C_ARE_TWO"
+  },
+  {
+    "scenario": "H",
+    "product_id": "PRODUCT-1",
+    "order_id": "ORDER-1",
+    "due_h": 168.0,
+    "received_h": 313.91884722222215,
+    "received_tardiness_h": 145.91884722222215,
+    "cancelled": "False",
+    "source_unit": "H-CPU-EDD",
+    "methods": "EDD_AND_ADAPTIVE_IDENTICAL_FOR_THESE_OUTCOMES",
+    "scope": "CONTINUOUS_LATENESS_SUPPLEMENTS_PRESPECIFIED_ZERO_ON_TIME_RATE; NOT_ALL_ACTIVE_PRODUCTS_OF_C_ARE_TWO"
+  },
+  {
+    "scenario": "H",
+    "product_id": "PRODUCT-2",
+    "order_id": "ORDER-2",
+    "due_h": 168.0,
+    "received_h": 531.8589726666667,
+    "received_tardiness_h": 363.85897266666666,
+    "cancelled": "False",
+    "source_unit": "H-CPU-EDD",
+    "methods": "EDD_AND_ADAPTIVE_IDENTICAL_FOR_THESE_OUTCOMES",
+    "scope": "CONTINUOUS_LATENESS_SUPPLEMENTS_PRESPECIFIED_ZERO_ON_TIME_RATE; NOT_ALL_ACTIVE_PRODUCTS_OF_C_ARE_TWO"
+  },
+  {
+    "scenario": "F",
+    "product_id": "PRODUCT-1",
+    "order_id": "ORDER-1",
+    "due_h": 168.0,
+    "received_h": 313.91884722222215,
+    "received_tardiness_h": 145.91884722222215,
+    "cancelled": "False",
+    "source_unit": "F-CPU-EDD",
+    "methods": "EDD_AND_ADAPTIVE_IDENTICAL_FOR_THESE_OUTCOMES",
+    "scope": "CONTINUOUS_LATENESS_SUPPLEMENTS_PRESPECIFIED_ZERO_ON_TIME_RATE; NOT_ALL_ACTIVE_PRODUCTS_OF_C_ARE_TWO"
+  },
+  {
+    "scenario": "F",
+    "product_id": "PRODUCT-2",
+    "order_id": "ORDER-2",
+    "due_h": 168.0,
+    "received_h": 531.8589726666667,
+    "received_tardiness_h": 363.85897266666666,
+    "cancelled": "False",
+    "source_unit": "F-CPU-EDD",
+    "methods": "EDD_AND_ADAPTIVE_IDENTICAL_FOR_THESE_OUTCOMES",
+    "scope": "CONTINUOUS_LATENESS_SUPPLEMENTS_PRESPECIFIED_ZERO_ON_TIME_RATE; NOT_ALL_ACTIVE_PRODUCTS_OF_C_ARE_TWO"
+  },
+  {
+    "scenario": "U",
+    "product_id": "PRODUCT-1",
+    "order_id": "ORDER-1",
+    "due_h": 168.0,
+    "received_h": 317.13579211111096,
+    "received_tardiness_h": 149.13579211111096,
+    "cancelled": "False",
+    "source_unit": "U-CPU-EDD-r3",
+    "methods": "EDD_AND_ADAPTIVE_IDENTICAL_FOR_THESE_OUTCOMES",
+    "scope": "CONTINUOUS_LATENESS_SUPPLEMENTS_PRESPECIFIED_ZERO_ON_TIME_RATE; NOT_ALL_ACTIVE_PRODUCTS_OF_C_ARE_TWO"
+  },
+  {
+    "scenario": "U",
+    "product_id": "PRODUCT-2",
+    "order_id": "P053-URGENT",
+    "due_h": 300.0,
+    "received_h": 531.8756393333333,
+    "received_tardiness_h": 231.8756393333333,
+    "cancelled": "False",
+    "source_unit": "U-CPU-EDD-r3",
+    "methods": "EDD_AND_ADAPTIVE_IDENTICAL_FOR_THESE_OUTCOMES",
+    "scope": "CONTINUOUS_LATENESS_SUPPLEMENTS_PRESPECIFIED_ZERO_ON_TIME_RATE; NOT_ALL_ACTIVE_PRODUCTS_OF_C_ARE_TWO"
+  },
+  {
+    "scenario": "C",
+    "product_id": "PRODUCT-1",
+    "order_id": "ORDER-1",
+    "due_h": 168.0,
+    "received_h": null,
+    "received_tardiness_h": null,
+    "cancelled": "True",
+    "source_unit": "C-STOCK-CPU-EDD-r4",
+    "methods": "EDD_AND_ADAPTIVE_IDENTICAL_FOR_THESE_OUTCOMES",
+    "scope": "CONTINUOUS_LATENESS_SUPPLEMENTS_PRESPECIFIED_ZERO_ON_TIME_RATE; NOT_ALL_ACTIVE_PRODUCTS_OF_C_ARE_TWO"
+  },
+  {
+    "scenario": "C",
+    "product_id": "PRODUCT-2",
+    "order_id": "ORDER-2",
+    "due_h": 168.0,
+    "received_h": 291.85897266666655,
+    "received_tardiness_h": 123.85897266666655,
+    "cancelled": "False",
+    "source_unit": "C-STOCK-CPU-EDD-r4",
+    "methods": "EDD_AND_ADAPTIVE_IDENTICAL_FOR_THESE_OUTCOMES",
+    "scope": "CONTINUOUS_LATENESS_SUPPLEMENTS_PRESPECIFIED_ZERO_ON_TIME_RATE; NOT_ALL_ACTIVE_PRODUCTS_OF_C_ARE_TWO"
+  }
+]

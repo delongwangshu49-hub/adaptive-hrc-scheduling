@@ -1,0 +1,9 @@
+﻿item,value,unit,evidence
+STEEL returned,3.318,t,28 returned lots; per original run
+Command-linked labour,0.7473424999999999,person h,WORK+DRIVE+WALK; excludes unassigned WAIT/REST
+Labour WALK,0.02326388888888888,person h,Constituent of command-linked labour; do not add again
+Labour DRIVE,0.17338888888888881,person h,Constituent of command-linked labour; do not add again
+Labour WORK,0.5506897222222222,person h,Constituent of command-linked labour; do not add again
+Actual transport,96.1,m,Per original run
+Empty return,61.3,m,Subset of transport; do not add again
+Walking,83.74999999999997,m,Separate routed movement

@@ -1,0 +1,38 @@
+[
+  {
+    "initial_fatigue": "N",
+    "H_branch_person_h": 12.754662950470554,
+    "HR_branch_person_h": 4.03632084444444,
+    "branch_person_h_change_percent": -68.35415518137602,
+    "H_branch_E": 2.80764741877736,
+    "HR_branch_E": 0.17810815206225283,
+    "branch_E_change_percent": -93.6563205596587,
+    "H_last_receipt_h": 531.8589726666667,
+    "HR_last_receipt_h": 531.8589726666667,
+    "receipt_change_h": 0.0,
+    "H_all_person_E": 250.2843842428642,
+    "HR_all_person_E": 241.56411052900708,
+    "all_person_E_change_percent": -3.4841461404940794,
+    "H_source": "M-H-N",
+    "HR_source": "N-CPU-EDD",
+    "scope": "FOUR_CELLS_FOUR_EXISTING_RUNS; HR_ALIASES_N_H_EDD; NOT_ADDITIONAL_REPLICATION"
+  },
+  {
+    "initial_fatigue": "H",
+    "H_branch_person_h": 12.719375711372205,
+    "HR_branch_person_h": 4.032490458333328,
+    "branch_person_h_change_percent": -68.29647500130106,
+    "H_branch_E": 2.8732690220173756,
+    "HR_branch_E": 0.14979479655688827,
+    "branch_E_change_percent": -94.78660733091694,
+    "H_last_receipt_h": 553.9299583333333,
+    "HR_last_receipt_h": 531.8589726666667,
+    "receipt_change_h": -22.070985666666616,
+    "H_all_person_E": 320.1180123474397,
+    "HR_all_person_E": 305.370320355057,
+    "all_person_E_change_percent": -4.60695475529077,
+    "H_source": "M-H-H",
+    "HR_source": "H-CPU-EDD",
+    "scope": "FOUR_CELLS_FOUR_EXISTING_RUNS; HR_ALIASES_N_H_EDD; NOT_ADDITIONAL_REPLICATION"
+  }
+]

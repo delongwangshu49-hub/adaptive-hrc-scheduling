@@ -49,9 +49,82 @@ class P07DeliveryBytesTests(unittest.TestCase):
             "claims",
             "figures",
             "portable_inputs",
-            "README",
         ):
             add(completion[key])
+        # r3's completion describes its original README. Retain that exact
+        # document while the current README advances under its own contract.
+        presentation = load("docs/delivery/p07_presentation_r1.json")
+        historical = presentation["historical_README"]
+        self.assertEqual(completion["README"]["path"], "README.md")
+        self.assertEqual(historical["sha256"], completion["README"]["sha256"])
+        self.assertEqual(historical["path"], "docs/archive/p07/r3/README.md")
+        add(historical)
+        self.assertIn("README.md", [row["path"] for row in presentation["current_artifacts"]])
+        current = load("docs/delivery/p07_presentation_r2.json")
+        add(current["previous_presentation"])
+        self.assertEqual(
+            current["previous_presentation"]["path"], "docs/delivery/p07_presentation_r1.json"
+        )
+        relocations = {
+            row["original_path"]: row for row in current["previous_artifact_relocations"]
+        }
+        self.assertEqual(len(relocations), len(current["previous_artifact_relocations"]))
+        self.assertEqual(
+            set(relocations),
+            {
+                "README.md",
+                "tests/test_p07_delivery_bytes.py",
+                "docs/public_results/README.md",
+                "docs/public_results/status.md",
+                "docs/public_results/package_scope.json",
+            },
+        )
+        for row in presentation["current_artifacts"]:
+            if row["path"] in relocations:
+                moved = relocations[row["path"]]
+                self.assertEqual(moved["sha256"], row["sha256"])
+                self.assertEqual(moved["path"], "docs/archive/p07/presentation-r1/" + row["path"])
+                add(moved)
+            else:
+                add(row)
+        current_paths = [row["path"] for row in current["current_artifacts"]]
+        self.assertIn("README.md", current_paths)
+        self.assertIn("README.zh-CN.md", current_paths)
+        released = load("docs/delivery/p07_presentation_r3.json")
+        add(released["previous_presentation"])
+        self.assertEqual(
+            released["previous_presentation"]["path"], "docs/delivery/p07_presentation_r2.json"
+        )
+        final_moves = {
+            row["original_path"]: row for row in released["previous_artifact_relocations"]
+        }
+        self.assertEqual(len(final_moves), len(released["previous_artifact_relocations"]))
+        self.assertEqual(
+            set(final_moves),
+            {
+                "README.md",
+                "README.zh-CN.md",
+                "tests/test_p07_delivery_bytes.py",
+                "docs/public_results/README.md",
+                "docs/public_results/status.md",
+                "docs/public_results/package_scope.json",
+            },
+        )
+        for row in current["current_artifacts"]:
+            if row["path"] in final_moves:
+                moved = final_moves[row["path"]]
+                self.assertEqual(moved["sha256"], row["sha256"])
+                self.assertEqual(
+                    moved["path"], "docs/archive/p07/bilingual-candidate-r2/" + row["path"]
+                )
+                add(moved)
+            else:
+                add(row)
+        released_paths = [row["path"] for row in released["current_artifacts"]]
+        self.assertIn("README.md", released_paths)
+        self.assertIn("README.zh-CN.md", released_paths)
+        for row in released["current_artifacts"]:
+            add(row)
         binding = load("docs/delivery/feedback_metric_binding_r3.json")
         for row in binding["upstream_contracts"]:
             add(row)

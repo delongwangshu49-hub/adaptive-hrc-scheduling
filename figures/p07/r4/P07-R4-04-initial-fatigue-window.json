@@ -1,0 +1,42 @@
+{
+  "id": "P07-R4-04-initial-fatigue-window",
+  "question": "When does the initial-fatigue difference contribute to the accumulated exposure difference?",
+  "finding": "First-day difference is 63.178 F h, later difference 0.628 F h: 99.02% of 63.806 F h falls in the first day.",
+  "scope": "N/H EDD actual lifecycle; exact clipped interval integration; unequal windows; fixed model conditions",
+  "files": [
+    {
+      "path": "figures/p07/r4/P07-R4-04-initial-fatigue-window.png",
+      "bytes": 263858,
+      "sha256": "d2dfe8a2365ff6b070f90b52ba095214e2d63b2c386f6d12a09333436708af54"
+    },
+    {
+      "path": "figures/p07/r4/P07-R4-04-initial-fatigue-window.svg",
+      "bytes": 19499,
+      "sha256": "232d2c144aaf1ffd261ad916128a4d7a8b104dd8ba903e016843b20528c9f57f"
+    },
+    {
+      "path": "figures/p07/r4/P07-R4-04-initial-fatigue-window.pdf",
+      "bytes": 21042,
+      "sha256": "8133b12381ff84ade1f352607de9ee11709678f33300e5c97e4f25bce96d9ffb"
+    }
+  ],
+  "source_data": [
+    {
+      "path": "results/p07/presentation-r1/tables.json",
+      "bytes": 52571,
+      "sha256": "eb9832b901fbe2041cf54b0ef7d27120c32e6476fc6ca615dfe284b7b7794774"
+    },
+    {
+      "path": "results/p07/presentation-r1/validation.json",
+      "bytes": 2446,
+      "sha256": "af056ae5b75292cad8da52d2efe69f3dd36156cef74b929f8443b14d91cf7a6e"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/presentation_figures.py",
+    "bytes": 17679,
+    "sha256": "2c2427ae71609426bcecab145083bb1271ba139152163241619e8f6574601b52"
+  },
+  "transformations": "Explicit table derivations; no smoothing; no new execution or sampling inference",
+  "publisher_target": "GENERAL_PROJECT_DOCUMENTATION; NO_JOURNAL_CERTIFICATION"
+}

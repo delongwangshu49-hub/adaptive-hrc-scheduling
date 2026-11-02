@@ -1,0 +1,445 @@
+{
+  "at": "2026-11-02T09:23:12.987840+00:00",
+  "status": "INFORMATION_AUDIT_COMPLETE_PRESENTATION_REDESIGN_REQUIRED",
+  "scope": {
+    "active_static_figures": 8,
+    "panels": 36,
+    "csv_files": 41,
+    "csv_rows": 445778,
+    "all_primary_csv": 29,
+    "domain_export_csv": 12,
+    "counts_not_independent_samples": true
+  },
+  "HEAD": "4158ba0a43ce1acda349bd431d291b9b70a52a04",
+  "findings": [
+    {
+      "id": "IV01",
+      "priority": "P2",
+      "topic": "全零/近重复比较占据主图",
+      "location": "figures/p07/r3/P07-02-scenario-values.png; README.md研究结果",
+      "evidence": "18/20面板内配对严格相等、1浮点噪声；10个准时率值全0",
+      "action": "撤下当前比较主图，保留负结果，用T01/T09解释投入和迟交程度"
+    },
+    {
+      "id": "IV02",
+      "priority": "P2",
+      "topic": "计算投入与生产收益脱节",
+      "location": "figures/p07/r3/P07-05b-computation.png",
+      "evidence": "缓存实际STARTED占比1.03%–2.25%；U记录墙钟+57.29%，总暴露仅−0.00041865%",
+      "action": "合并为结果—原墙钟—实际采用份额表；不宣称因果开销或低占比证明了无收益原因"
+    },
+    {
+      "id": "IV03",
+      "priority": "P2",
+      "topic": "事件图没有串接实际结果",
+      "location": "figures/p07/r3/P07-04-response-timelines.png",
+      "evidence": "E20有采用安排与长启动等待并存，3产品到387.732463h未接收",
+      "action": "按同一运行逐产品串接登记/首实际动作/接收或右删失，区分交期"
+    },
+    {
+      "id": "IV04",
+      "priority": "P2",
+      "topic": "全员覆盖代替了重点表达",
+      "location": "P07-03b/P07-03c",
+      "evidence": "疲劳差99.02%位于首24h；各动态案例13/16人分母相同",
+      "action": "完整轨迹附录；分母8组例外表，首日与后续分解"
+    },
+    {
+      "id": "IV05",
+      "priority": "P2",
+      "topic": "取消信息未体现实物与已耗资源",
+      "location": "P07-04b",
+      "evidence": "2个取消时点/少量结果占两面板；每运行3.318t退回及0.7473425人时未进入图",
+      "action": "每运行一份实物/资源账并声明两方法一致"
+    },
+    {
+      "id": "IV06",
+      "priority": "P2",
+      "topic": "机制对照缺少局部—全局判断",
+      "location": "P07-05a",
+      "evidence": "支路人时约−68%，正常整单无改善、高疲劳末次接收−22.071h",
+      "action": "保留研究问题和原值，以T02或直接标注配对图揭示局部/全局，不混同算法收益"
+    },
+    {
+      "id": "IV07",
+      "priority": "P3",
+      "topic": "资源所有权图缺少明确问题",
+      "location": "P07-03a",
+      "evidence": "资源持有并集/全生命周期分母不是加工利用率，也没有瓶颈等待归因",
+      "action": "移附录或为具体冲突选局部事件窗；当前数据不足以给瓶颈命名"
+    },
+    {
+      "id": "IV08",
+      "priority": "P3",
+      "topic": "公开结果入口状态过时",
+      "location": "docs/public_results/README.md首段",
+      "evidence": "已发布提交仍写当前为本地G07候选尚未发布",
+      "action": "下次本地呈现修订同步更新状态；本轮不改原发布件"
+    }
+  ],
+  "figure_decisions": [
+    {
+      "id": "P07-02-scenario-values",
+      "panels": 4,
+      "action": "REPLACE_WITH_COMPACT_TABLE",
+      "question": "自适应相对EDD带来了什么结果，付出了什么计算投入？",
+      "observation": "20个面板内方法配对中18个严格相同，另1个仅浮点噪声；准时率10个值全零。跨情景C只接收1个非取消产品，不能把较早接收画成整单加速。",
+      "replacement": "T01方法投入产出+T09逐产品迟交；零准时率保留为一句明确负结果。"
+    },
+    {
+      "id": "P07-03a-resource-gantt",
+      "panels": 3,
+      "action": "APPENDIX",
+      "question": "具体资源在事件前后怎样被占用？",
+      "observation": "531–720h横轴压缩短时事件，设备所有权不等于加工利用率；三个代表图没有明确要检验的资源冲突。",
+      "replacement": "保留完整追溯；只有解释明确事件时才截取并声明局部窗。T08可查占用，不据此命名瓶颈。"
+    },
+    {
+      "id": "P07-03b-all-person-fatigue",
+      "panels": 15,
+      "action": "APPENDIX_WITH_NEW_QUESTION",
+      "question": "高初始疲劳的新增暴露发生在何时、哪些人员？",
+      "observation": "15人长窗叠线掩盖首日重点；正常/高初始疲劳暴露差的99.02%集中于首24h。",
+      "replacement": "全员原轨迹留附录；主文优先首24h+后续窗分解，必要时展示全员而非挑选有利人员。"
+    },
+    {
+      "id": "P07-03c-dynamic-denominators",
+      "panels": 2,
+      "action": "REPLACE_WITH_GROUPED_TABLE",
+      "question": "离返岗/待离岗到底改变了谁的分母？",
+      "observation": "每案例13/16人的两个分母相同，大量重复柱淹没OP1/W3待离岗和P1短暂缺勤。",
+      "replacement": "T05按案例合并相同分母为8组，显式列出3类例外及事件；不是把不同人员的疲劳也合并。"
+    },
+    {
+      "id": "P07-04-response-timelines",
+      "panels": 4,
+      "action": "REBUILD_EVENT_CHAIN",
+      "question": "受理、采用计划、首次实际动作和最终接收之间隔了多久？",
+      "observation": "四个稀疏面板混放F/U/E20，E20只看前60h变化与采用，遗漏最有价值的产品等待和截止状态。",
+      "replacement": "T04按同一r14的4产品串接真实事件，保留截止/交期；连接线不能冒称连续加工时段。F/U各自保留来源。"
+    },
+    {
+      "id": "P07-04b-stock-cancellation",
+      "panels": 2,
+      "action": "REPLACE_WITH_RESOURCE_ACCOUNT",
+      "question": "取消后已经投入什么、回收什么、还剩什么？",
+      "observation": "少量散点占两个面板，没有呈现3.318t退回及已耗人员/搬运资源；两方法实物账相同。",
+      "replacement": "T06单份每运行账+两运行一致说明；零残留写状态，成本未知保留未知，尾段完成不改称清理完成。"
+    },
+    {
+      "id": "P07-05a-four-mechanisms",
+      "panels": 3,
+      "action": "RETAIN_QUESTION_REFINE_COMPARISON",
+      "question": "支路节省是否传递到整单接收和全员暴露？",
+      "observation": "这里有真实且较大支路差异，值得保留研究问题；原三组原值柱没有直接突出局部/全局反差。",
+      "replacement": "T02按正常/高初始疲劳分别H→HR对照，补T02b阶段归属；可改成直接标注的配对点图。HR两格是既有N/H别名。"
+    },
+    {
+      "id": "P07-05b-computation",
+      "panels": 3,
+      "action": "MERGE_INTO_TRADEOFF_TABLE",
+      "question": "搜索和缓存方案实际参与多少派发，换来什么结果？",
+      "observation": "EDD搜索/缓存为结构性0；绝对缓存次数21–29并未说明在1066–2043次实际派发中仅占约1%–2%。",
+      "replacement": "并入T01，结果/记录墙钟/缓存参与率一起读；各时间字段可能嵌套，不做相加分解或因果加速结论。"
+    }
+  ],
+  "paired_audit": {
+    "total": 45,
+    "exact_zero": 43,
+    "floating_noise": [
+      {
+        "scenario": "U",
+        "metric": "common_window_max_E",
+        "adaptive": 39.18491953949683,
+        "edd": 39.184919539496825,
+        "delta_adaptive_minus_edd": 7.105427357601002e-15,
+        "status": "EVALUABLE"
+      }
+    ],
+    "resolved_nonzero": [
+      {
+        "scenario": "U",
+        "metric": "common_window_sum_E",
+        "adaptive": 241.9535464835128,
+        "edd": 241.95455942726284,
+        "delta_adaptive_minus_edd": -0.0010129437500268068,
+        "status": "EVALUABLE"
+      }
+    ],
+    "tolerance": {
+      "relative": 1e-12,
+      "absolute": 1e-10
+    },
+    "tolerance_role": "CLASSIFICATION_ONLY_ORIGINAL_VALUES_UNCHANGED"
+  },
+  "new_findings": {
+    "WAIT_available_person_hours_percent": 91.05580776554729,
+    "WAIT_actual_exposure_percent": 68.975568663349,
+    "initial_fatigue_difference_first_24h_percent": 99.01505241697511,
+    "noncancelled_late_products_per_method": 9
+  },
+  "curated_tables": [
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T01_method_tradeoff.csv",
+      "bytes": 1376,
+      "sha256": "c369f1f97920adf26bea4d090b7d94d8823e2a22b341e20e913d08550fa4b0d9"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T01_method_tradeoff.json",
+      "bytes": 3171,
+      "sha256": "3ade0fdf8f0af94eb109a14d1266e7bf7ace756a3593bc2f79a20fbe70c586b4"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T02_H_vs_HR.csv",
+      "bytes": 895,
+      "sha256": "8323ace2fab6f0a48a40be188cbf6cbf24a486e27a8de1152fcffacfb33343b8"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T02_H_vs_HR.json",
+      "bytes": 1485,
+      "sha256": "4bca25f055608b59ce7d23d9c58b3d29e523650af048da577acebb624f823cd3"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T02b_branch_phases.csv",
+      "bytes": 574,
+      "sha256": "2c6ce55b3efb1dbb99e1aaf4450159a87a61996b802840d6e38515a8d8290a47"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T02b_branch_phases.json",
+      "bytes": 1777,
+      "sha256": "9b54433bacefa7ba40e2a66338dbf6d8ce45684e008825dedc826f5883ab517d"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T03_activity_decomposition.csv",
+      "bytes": 3083,
+      "sha256": "c25cd7c37779d9d226c8dec16f70c343ab8dadb13df4106f9546066dd294c4db"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T03_activity_decomposition.json",
+      "bytes": 7155,
+      "sha256": "18de26ae4186692832d992056abc2fcd0b4a2cc4d5ce7e0c238a2b41eec31ebf"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T04_E20_order_response.csv",
+      "bytes": 1301,
+      "sha256": "48921e30043daa511511172f41a4771179392e982b8a6114b278216513689ab1"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T04_E20_order_response.json",
+      "bytes": 2596,
+      "sha256": "c875b192714485061b5e1a0bb54428c90611c72a1d2544bd6ed7423c20d256cd"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T05_dynamic_denominator_groups.csv",
+      "bytes": 1427,
+      "sha256": "7b7c5b86932e6c0e06c8e5ead3d26ce1b996ad51b92d11180a31d71667ace993"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T05_dynamic_denominator_groups.json",
+      "bytes": 2980,
+      "sha256": "695e2413a18d899c9ee1c678ff99f489ca32d0a25366e7a6a280e6103d915fa2"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T06_cancellation_sunk_resources.csv",
+      "bytes": 632,
+      "sha256": "8889c600f11480ff9e1e305e841cce524640cfe4527db66b9df55b12e0b9eb56"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T06_cancellation_sunk_resources.json",
+      "bytes": 1216,
+      "sha256": "bf5deda8c755cde0ee70436deb89a2d6702583e4b5be9f2911485738f5ca3da5"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T07_fatigue_early_late.csv",
+      "bytes": 2018,
+      "sha256": "72045d30bdc5630aabd347961a75049ffe5371154e1707b3b9f91c9dfb9c898f"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T07_fatigue_early_late.json",
+      "bytes": 5412,
+      "sha256": "6c4a6fa7f096070a5da25ef0b9d8f47b51006e4c8aa0a1ab0096defd60273655"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T08_device_ownership.csv",
+      "bytes": 3605,
+      "sha256": "316f4228157b40800bbf642d9763365e906d38231eef57237e526190c69742d6"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T08_device_ownership.json",
+      "bytes": 7764,
+      "sha256": "bf0532a6cc708ed216eccb38ee433e7e6283468c811081b157dcb1a4fd4e3471"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T09_delivery_lateness.csv",
+      "bytes": 2373,
+      "sha256": "9e9d9cf7b4ff1c53cce55c2b6d22c05adc11975865a02e723cb485e8dadfdd81"
+    },
+    {
+      "path": ".local/p07-information-audit-20261102-r1/tables/T09_delivery_lateness.json",
+      "bytes": 4439,
+      "sha256": "ea8d90b6140dd6bb588464ed349f848dccdf3cf0ed7e36c3a60dd8f301af751f"
+    }
+  ],
+  "reader_tables": {
+    "path": ".local/p07-information-audit-20261102-r1/curated_tables.md",
+    "bytes": 8295,
+    "sha256": "73b2ed15d4ef030f317843d3ac335c0fa1ef66d2a724255b6f5225de81f0c9b8"
+  },
+  "report": {
+    "path": "docs/validation/P07_information_value_audit_r1.md",
+    "bytes": 15902,
+    "sha256": "e172cd39408a8e6e413e38a56002e1cc6aa3b87d2eab5be8ce298818116b5934"
+  },
+  "checks": [
+    "All before-pinned published P07 data, figures, source, README and Git bytes unchanged",
+    "247 original core pins unchanged",
+    "Activity time/exposure denominators and clipped-window integrals close to original summaries for N/H",
+    "Branch-phase labour closes to four original mechanism cells; HR aliases retained",
+    "Eight denominator groups preserve all 32 person-case identities and weighted availability",
+    "Product-level same-method outcomes explicitly checked; nine noncancelled received products per method are all late",
+    "E20 timestamps retain three censored products and one actual receipt; no null-to-zero conversion",
+    "Ten original journals independently confirm cache/RULE STARTED counts with zero overlap/unclassified rows"
+  ],
+  "source_comparability": [
+    {
+      "a": "N-CPU-EDD",
+      "b": "H-CPU-EDD",
+      "configuration_differences": [
+        {
+          "path": "/people/0/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/1/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/2/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/3/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/4/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/5/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/6/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/7/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/8/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/9/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/10/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/11/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/12/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/13/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        },
+        {
+          "path": "/people/14/initial_f",
+          "a": 0.2,
+          "b": 0.6
+        }
+      ]
+    },
+    {
+      "a": "N-CPU-EDD",
+      "b": "M-H-N",
+      "configuration_differences": []
+    },
+    {
+      "a": "H-CPU-EDD",
+      "b": "M-H-H",
+      "configuration_differences": []
+    }
+  ],
+  "table_registry": {
+    "path": ".local/p07-information-audit-20261102-r1/table_selection_registry.json",
+    "bytes": 10631,
+    "sha256": "e5290ba5118970860d777e7da236c741347d05a43c2641d67a019631ab0c4184"
+  },
+  "source_profiles": {
+    "path": ".local/p07-information-audit-20261102-r1/csv_profiles.json",
+    "bytes": 237529,
+    "sha256": "12a19c8c336daeff4e5d1b777911863a580ab54ac5a96bced638fce0027e18e0"
+  },
+  "deep_pair_comparison": {
+    "path": ".local/p07-information-audit-20261102-r1/deep_pair_comparison.json",
+    "bytes": 5837,
+    "sha256": "77982ef3d7df99d515455afc720d57f2a74e608800a26cb30dfa7a2f4f3f881d"
+  },
+  "new_formal_figures": 0,
+  "new_formal_production": 0,
+  "new_kit": 0,
+  "new_solver_runs": 0,
+  "original_publication_and_numeric_repairs_retained": true,
+  "original_pins_before_governance": "MATCH",
+  "original_core_pins": 247,
+  "original_governance_suffixes_retained": true,
+  "Git_writes": false,
+  "branches": false,
+  "worktrees": false,
+  "subagents": false,
+  "published_presentation_replaced": false,
+  "remote_CI_started": false,
+  "script_failure_preserved": [
+    "analysis.log: recovery rate magnitude needs phase direction",
+    "report.log: H extra REST occurs in calendar eligible hours; use per-interval availability; original assertions retained"
+  ],
+  "software_reference": {
+    "url": "https://arxiv.org/abs/2609.00065",
+    "version_checked": "v2",
+    "checked_date": "2026-11-02"
+  },
+  "additional_verification": {
+    "published_byte_contract_existing_test": {
+      "count": 1,
+      "status": "PASS",
+      "seconds": 0.199
+    },
+    "csv_exact_duplicate_whole_rows": 0,
+    "calendar_eligible_hours_partition": "PER_INTERVAL_availability_h; H contains 1.25 person-h REST within calendar eligible window",
+    "helper_import_failure_preserved": "report-r2.log",
+    "undefined_name_check": "RUFF F821 F822 F823 PASS"
+  }
+}

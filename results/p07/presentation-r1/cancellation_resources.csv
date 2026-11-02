@@ -1,0 +1,9 @@
+item,value,unit,relation
+returned_steel,3.318,t,per run; 28 returned lots
+command_linked_labour,0.7473424999999999,person h,total WORK+DRIVE+WALK
+labour_DRIVE,0.17338888888888881,person h,component; do not add again
+labour_WALK,0.02326388888888888,person h,component; do not add again
+labour_WORK,0.5506897222222222,person h,component; do not add again
+transport,96.1,m,per run
+empty_return,61.3,m,subset of transport
+walking,83.74999999999997,m,separate from transport

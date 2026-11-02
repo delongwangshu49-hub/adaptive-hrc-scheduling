@@ -1,0 +1,42 @@
+{
+  "id": "P07-R4-03-time-and-exposure",
+  "question": "Which activities account for calendar capacity and accumulated exposure?",
+  "finding": "WAIT occupies 91.06% of eligible person-hours and accounts for 68.98% of actual model exposure.",
+  "scope": "Normal EDD only; actual lifecycle; calendar capacity and activity are distinct; all activity exposure retained",
+  "files": [
+    {
+      "path": "figures/p07/r4/P07-R4-03-time-and-exposure.png",
+      "bytes": 367548,
+      "sha256": "0c10d131ff47dcc62df2141033f9ad715850db50bcc405fecc97a72b3c231874"
+    },
+    {
+      "path": "figures/p07/r4/P07-R4-03-time-and-exposure.svg",
+      "bytes": 23800,
+      "sha256": "785a48174d3de02e140936cd6b41476333ff0ac6cc17152e91002f2b1edea4b5"
+    },
+    {
+      "path": "figures/p07/r4/P07-R4-03-time-and-exposure.pdf",
+      "bytes": 19527,
+      "sha256": "8a53ea0d65d179c92342f9a8c42caa3dca8da17669f2cfcd577e460381ef2a61"
+    }
+  ],
+  "source_data": [
+    {
+      "path": "results/p07/presentation-r1/tables.json",
+      "bytes": 52571,
+      "sha256": "eb9832b901fbe2041cf54b0ef7d27120c32e6476fc6ca615dfe284b7b7794774"
+    },
+    {
+      "path": "results/p07/presentation-r1/validation.json",
+      "bytes": 2446,
+      "sha256": "af056ae5b75292cad8da52d2efe69f3dd36156cef74b929f8443b14d91cf7a6e"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/presentation_figures.py",
+    "bytes": 17679,
+    "sha256": "2c2427ae71609426bcecab145083bb1271ba139152163241619e8f6574601b52"
+  },
+  "transformations": "Explicit table derivations; no smoothing; no new execution or sampling inference",
+  "publisher_target": "GENERAL_PROJECT_DOCUMENTATION; NO_JOURNAL_CERTIFICATION"
+}

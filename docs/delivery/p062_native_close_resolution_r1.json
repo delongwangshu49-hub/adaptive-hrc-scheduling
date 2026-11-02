@@ -1,0 +1,112 @@
+{
+  "format": "P062-NATIVE-CLOSE-RESOLUTION-1",
+  "at": "2026-10-31T19:42:09.546262+08:00",
+  "finding": "P062-FINAL-K02",
+  "status": "CLOSED_WITHIN_SCOPE",
+  "previous_failure_preserved": [
+    {
+      "path": "docs/validation/P06_2_final_closeout_attempt_r1.md",
+      "sha256": "c2cab9fdc9aefc16af69a2b733e89dd8074910ef7f8302c102aefad1c196457b"
+    },
+    {
+      "path": "docs/delivery/p062_final_closeout_attempt_r1.json",
+      "sha256": "f3cb28bc50c13cc9deb745158bbc6e00c629522d14f59901783f39c0c00df6eb"
+    },
+    {
+      "path": ".local/p062-final-execution-20261031-r1/result.json",
+      "sha256": "0b207d2fba7aa0b2a945c83eef55a2b0985a9ab8e2a3b9ab9bd89319eefd31d3"
+    }
+  ],
+  "blocking_call": "IRendererCapture.shutdown called during full SimulationApp.close",
+  "repair": "Wait for SDK async swapchain capture completion after complete PNG and before full Kit close",
+  "internal_native_wait_root_cause": "NOT_PROVEN",
+  "historical_62101_K01_root_cause": "OPEN",
+  "source": "scripts/run_s19b_prototype.py",
+  "tests": "tests/test_p062_capture_completion.py",
+  "original_main_AST_unchanged": true,
+  "full_close_return_required": true,
+  "control_native_exit": 0,
+  "final_regular_entry_native_exit": 0,
+  "repaired_runs_force_terminated": false,
+  "old_saved_run_cleanup_exit": 1,
+  "old_run_closed": false,
+  "SDK_driver_unchanged": true,
+  "evidence": [
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/freeze.json",
+      "sha256": "a6c4b75cf2f8c0db4f316b1b8a5f12b5ea512dce3a54c7d19299eb8dd6686ce6"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/candidate-regression-validation.json",
+      "sha256": "53f0a98b66b5b2bee660e5fef3001d824ea2b9bb5be9ccfcd331b8c69198f1e8"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/candidate-controls.log",
+      "sha256": "9c6126fe80586d92c33cc0a2aa5679a69563b2c10d327ef74343a8f25c401b1f"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/capture-control-1/result.json",
+      "sha256": "7a21e756a9aa0dfae97a5e0120786de1fd93fe205c0cfc7caa45fbf6e849a363"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/owner-native-override.json",
+      "sha256": "fa1a9b5320611e56f657575442b484df6397276493273d3db452d62fd9d5cd5f"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/blocking-call-evidence.json",
+      "sha256": "f86e4991350e778c6944cf9d443d7b88a21258ed99eff083870d8e9ef80bad21"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/old-run-cleanup-outcome.json",
+      "sha256": "f59ae5623f9755da92e32212275ae7b865d1939b565a1ed672d10dfbd6948e08"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/post-helper-correction.json",
+      "sha256": "4a06f17e063156865cfafdafb492346031d89256f23b4fcae50c8e19295c5501"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/kit-fixed-r1/independent-and-save-result.json",
+      "sha256": "3e660a89e7a8be445921c353d4819a95871dee1184dfba704e077e80266e4776"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/kit-fixed-r1/independent-and-save-result.json.first-failure",
+      "sha256": "8e9628c0c63ba163292780e6eaa8a9bfd4e27224eb444b7e31b6e9cdb02e876e"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/kit-fixed-r1/lifecycle-independent.json",
+      "sha256": "19019af621a142fc4a906614fd7618584d2a05d4545ed83abf2c529e37c920bd"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/kit-fixed-r1/full-plans-independent.json",
+      "sha256": "45aaa64330f843bc6aca5375135700c13909b97a3f5a1987ba4799fa2760bc59"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/kit-fixed-r1/lifecycle-layout-binding.json",
+      "sha256": "1562b6c8d8247dacff9fe5d0c511f99b3253fe5f5c93e0c07287a17c124dde8c"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/kit-fixed-r1/qt-result.json",
+      "sha256": "fd5617616426208564687376a3261d1bb11b6986ac2d6e91f3610ef1b9958648"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/kit-fixed-r1/runs/P051-5c420551c468461b832db49e9c88074f/worker-native-exit.json",
+      "sha256": "54c683a4acae59b8d87464849cd749497934c3d8ca33041a107df9ffacef1149"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/kit-fixed-r1/runs/P051-5c420551c468461b832db49e9c88074f/report.json",
+      "sha256": "077bf2158033e92cbf8ac371b4865aaf3ab2943a7623e3bcdb9e076014c85d9f"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/kit-fixed-r1/runs/P051-5c420551c468461b832db49e9c88074f/capture-completion.json",
+      "sha256": "2da7e6150c5f32a4cde9b7e3d599dca67d7c7fbd761c68cfc91f97d27b15cb50"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/kit-fixed-r1/runs/P051-5c420551c468461b832db49e9c88074f/session/final-commit.json",
+      "sha256": "49b65d2c315900ffea9915c29e36035c79a5838fbe5021b31d223f090d2c8ff6"
+    },
+    {
+      "path": ".local/p062-native-close-resume-20261031-r1/pre-completion-integrity.json",
+      "sha256": "acc776acd8955085f0e1de67e495386ff869aa46ef2dc0b906430864cd78b51d"
+    }
+  ]
+}

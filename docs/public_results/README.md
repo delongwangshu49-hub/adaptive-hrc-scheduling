@@ -1,45 +1,132 @@
-# 研究结果与再生
+# 研究结果与图表
 
-这组材料包含固定情景的比较结果、动态人员与订单记录、取消物料账和同观察双域导出。运行身份、来源版本、实际生命周期及评价窗口分别保留。当前为本地 G07 候选，尚未发布；克隆命令适用于包含本目录的候选源码或后续经批准发布的版本。
+项目入口：[English README](../../README.md) · [简体中文 README](../../README.zh-CN.md)。
 
-## 重算结果
-
-从项目根目录运行，使用Python3.12.13、uv0.12.3；PowerShell7示例：
-
-```powershell
-uv venv --python 3.12.13 .local/results-env
-uv pip install --python .local/results-env/Scripts/python.exe -r analysis/p07/requirements.txt
-& .local/results-env/Scripts/python.exe analysis/p07/reproduce.py replay --figures --output .local/results-demo
-```
-
-输出目录须不存在或为空。12份压缩输入来自已保存运行的测量特征；再生会重算固定指标、配对、动态人员分母/费用、取消物料/已耗资源账和图表，并使用与正式分析相同的数值门禁。原E20已提取链按独立来源参考核对，双域保存件按摘要与同观察契约核验；它不重新执行原生产或Kit过程。
-
-复现过程禁止打开原私有`.local`档案，只允许指定输出目录与当前解释器环境。历史路径仅作来源定位。分析工具使用独立的纯算术模块，函数与原运输/占位实现的AST一致，不依赖未随包分发的历史研究脚本。
+本页按问题组织 P07 的既有执行数据。新版四幅图和九张数据表由冻结的 r3 数值重新提取；未新增生产、Kit 或研究求解。不同方法、机制格和复用运行保留各自身份，不能合并为随机重复样本。
 
 ## 图表与数据
 
-| 内容 | 查看图表 | 对应数据 |
+| 要回答的问题 | 主展示 | 可复算的数据 |
 | --- | --- | --- |
-| 反馈与证据链 | [原生Mermaid架构](../../figures/p07/r3/P07-01-feedback.md) | [来源注册表](../delivery/p07_source_registry_r3.json) |
-| 五情景、两方法 | [原值图](../../figures/p07/r3/P07-02-scenario-values.png) | [原值](../../results/p07/r3/summary.csv) · [45行配对指标](../../results/p07/r3/pairs.csv) |
-| 资源与人员 | [资源甘特](../../figures/p07/r3/P07-03a-resource-gantt.png) · [全员疲劳](../../figures/p07/r3/P07-03b-all-person-fatigue.png) · [动态分母](../../figures/p07/r3/P07-03c-dynamic-denominators.png) | [逐人](../../results/p07/r3/people.csv) · [活动](../../results/p07/r3/activity.csv) · [动态人员](../../results/p07/r3/dynamic_people.csv) |
-| 故障、急单与取消 | [响应时间线](../../figures/p07/r3/P07-04-response-timelines.png) · [取消尾段](../../figures/p07/r3/P07-04b-stock-cancellation.png) | [E20订单](../../results/p07/r3/e20_orders.csv) · [采用变化](../../results/p07/r3/e20_plan_changes.csv) · [取消账](../../results/p07/r3/cancellation_accounts.csv) · [物料去向](../../results/p07/r3/cancellation_materials.csv) |
-| 四机制与计算账 | [四机制](../../figures/p07/r3/P07-05a-four-mechanisms.png) · [计算成本](../../figures/p07/r3/P07-05b-computation.png) | [阶段](../../results/p07/r3/stages.csv) · [机制](../../results/p07/r3/mechanisms.csv) · [计算账](../../results/p07/r3/costs.csv) |
-| 甘特与场景域 | [三组导出清单](../../results/p07/r3/exports/manifest.json) | 各组目录包含gantt/scene-domain JSON、行/人员/设备CSV及原显示缓存 |
+| 策略是否改善交付，代价是多少？ | 策略与交付表 | [方法代价](../../results/p07/presentation-r1/method_tradeoff.csv)、[逐产品迟交](../../results/p07/presentation-r1/delivery_lateness.csv) |
+| 协作分支节省能否传递到整单？ | [机制对照图](../../figures/p07/r4/P07-R4-01-mechanism-contrast.png) | [机制原值](../../results/p07/presentation-r1/mechanism_contrasts.csv) |
+| 新订单何时真正开始、何时接收？ | [订单事件链](../../figures/p07/r4/P07-R4-02-order-event-chain.png) | [同一 r14 事件表](../../results/p07/presentation-r1/e20_response.csv) |
+| 时间用在何处，暴露来自何处？ | [活动构成图](../../figures/p07/r4/P07-R4-03-time-and-exposure.png) | [两种分母的活动账](../../results/p07/presentation-r1/activity_decomposition.csv) |
+| 初始疲劳差异是否一直持续？ | [首日轨迹与贡献](../../figures/p07/r4/P07-R4-04-initial-fatigue-window.png) | [首日全部折点](../../results/p07/presentation-r1/fatigue_first_day.csv)、[窗口积分](../../results/p07/presentation-r1/fatigue_windows.csv) |
+| 动态人员与取消有哪些例外？ | 人员分母、资源账 | [人员分组](../../results/p07/presentation-r1/dynamic_denominators.csv)、[取消资源](../../results/p07/presentation-r1/cancellation_resources.csv) |
 
-静态图同时提供300dpi PNG、可编辑SVG、PDF和来源sidecar，见[图表清单](../../figures/p07/r3/manifest.json)。资源图按预先选定的N/F/C代表制图，完整统计仍覆盖12单元。疲劳图显式保留恢复至0的折点，并核对图线积分与相同窗口E。
+每图提供 PNG、SVG、PDF 和来源 JSON，见[图清单](../../figures/p07/r4/manifest.json)。全部九表、验证和原数据摘要见[数据清单](../../results/p07/presentation-r1/manifest.json)。
 
-当前五情景的末次非取消产品接收时刻在两方法间相同；多数配对没有收益，U的共同窗总暴露差约−0.001013F·h，不能推断普遍优势。四机制中的两个HR格引用N/H的EDD运行，不增加独立样本。P043两个人员检查点窗口不同，不作跨案例方法效果。完整数字及单位见[指标定义](../metrics/p07_metrics_definition_r3.md)。
+## 策略与交付
 
-取消STOCK账按物料类型和单位列available/consumed/converted/scrapped/returned，保留原720h截尾。已耗人时仅统计命令可归属的实际人员区间，搬运按实际root/resume链去重；未分配的等待/休息不摊给取消单。没有原货币策略时金额仍为UNKNOWN。末态清理核对不制造精确清理完成时刻，也不替代原WIP/J3剩余完成问题。
+五情景的末次实际接收时刻均未因 ADAPTIVE 改变。45 个配对指标中 43 个精确为零，一个为约 7.1×10⁻¹⁵ 的浮点量级，另一个为 U 的累计暴露差 −0.00101294375 F·h（−0.00041865%）。逐产品结果和搬运量也未形成策略改善，重复并排画出相同数值不能增加信息。
+
+| 情景 | EDD → ADAPTIVE 原单次墙钟（s） | 变化 | 缓存来源 STARTED / 全部已分类 STARTED |
+| --- | ---: | ---: | ---: |
+| N | 603.92 → 640.04 | +5.98% | 24 / 2031 |
+| H | 599.60 → 646.48 | +7.82% | 24 / 2036 |
+| F | 357.80 → 384.37 | +7.43% | 21 / 2032 |
+| U | 594.99 → 935.85 | +57.29% | 29 / 2043 |
+| C | 134.84 → 137.79 | +2.19% | 24 / 1066 |
+
+这是各一条原运行记录，不能推断一般性能或因果关系。决策、搜索等嵌套耗时不能再与总墙钟相加；缓存来源比例不是候选采用率。
+
+| 情景 | 产品 | 实际接收（h） | 交期（h） | 迟交（h） |
+| --- | --- | ---: | ---: | ---: |
+| N / H / F（各运行分别相同） | P1 | 313.919 | 168 | 145.919 |
+| N / H / F（各运行分别相同） | P2 | 531.859 | 168 | 363.859 |
+| U | 普通 P1 | 317.136 | 168 | 149.136 |
+| U | 急单 P2 | 531.876 | 300 | 231.876 |
+| C | 未取消 P2 | 291.859 | 168 | 123.859 |
+
+每方法九个未取消且已接收的产品全部迟交。C 的 P1 取消，不纳入迟交分母；原 720 h 截尾保留，不能将剩余产品较早接收解释为完整任务更快结束。
+
+## 协作机制
+
+![分支人时、全员暴露和末次实际接收的机制对照](../../figures/p07/r4/P07-R4-01-mechanism-contrast.png)
+
+H 为人工机制，HR 为顺序人机机制。对应分支人时减少 68.35% / 68.30%，分支暴露减少约 93.66% / 94.79%；全员共同 720 h 窗口暴露只减少 3.48% / 4.61%。末次实际接收在普通初始疲劳下不变，在较高初始疲劳下提前 22.071 h。
+
+局部劳动、全员暴露和交付分别评价。这里的全员暴露采用共同 720 h 评价窗，含生命周期结束后的派生恢复尾段；接收时刻来自实际事件。HR 复用 N/H 的 EDD 运行；这是四个既有确定性机制格，不是 ADAPTIVE 对 EDD 的优势。接收图为显式标注 500–565 h 的点图；人时和暴露轴从零开始。
+
+## 订单响应
+
+![同一E20运行的产品事件链与右截尾](../../figures/p07/r4/P07-R4-02-order-event-chain.png)
+
+| 产品 | 注册（h） | 首次非服务 STARTED（h） | 注册后等待（h） | 停止观察时的接收状态 |
+| --- | ---: | ---: | ---: | --- |
+| P1 原订单 | 0 | 0.034 | 0.034 | 318.218 h 接收 |
+| P2 普通新增 | 1.001 | 53.972 | 52.971 | 未接收 |
+| P3 普通新增 | 1.001 | 121.880 | 120.879 | 未接收 |
+| P4 急单 | 1.460 | 25.838 | 24.378 | 未接收；迟交下界 290.732 h |
+
+全部来自同一 E20 r14 原连续 Kit 运行，观察终点 387.732 h。急单交期 97.001 h，其他交期在观察终点之后。首次非服务 STARTED 可以包含搬运，不表示持续加工；虚线只连接观察事件。计划采用与注册共享仿真时间戳，不能据此说现实响应延迟为零。未接收产品按右截尾处理，不填写零完成时间，也不使用其他运行补齐尾段。
+
+## 人员时间与暴露
+
+![日历可用人时和累计暴露的不同构成](../../figures/p07/r4/P07-R4-03-time-and-exposure.png)
+
+普通 EDD 的实际终点 531.858973 h、15 人，生命周期共 7977.88459 人时，其中日历可用 2697.88459 人时。WAIT 为 2456.58061 人时，占可用容量 91.0558%；WAIT 暴露 166.33971 F·h，占实际总暴露 241.15744 F·h 的约 68.98%。
+
+可用容量按逐区间日历交集求和，不能把实际 REST 全部扣掉：H 中有 1.25 人时实际 REST 落在日历可用时段。暴露分母包含 REST/OFF_SHIFT 的实际恢复阶段。WAIT 累积率 +0.02 F/h、REST/OFF_SHIFT 恢复率 0.2 F/h 是模型假设；图展示模型活动归因，不是生理测量，也不能独自证明瓶颈。
+
+![初始疲劳差异的首日轨迹与后续暴露贡献](../../figures/p07/r4/P07-R4-04-initial-fatigue-window.png)
+
+| 实际窗口 | 普通初始疲劳 ΣE（F·h） | 较高初始疲劳 ΣE（F·h） | 新增暴露（F·h） | 新增量占比 |
+| --- | ---: | ---: | ---: | ---: |
+| 首 24 h | 35.27595 | 98.45370 | 63.17775 | 99.02% |
+| 24–531.858973 h | 205.88149 | 206.50994 | 0.62846 | 0.98% |
+
+两种 EDD 配置仅初始 F 从 0.2 改为 0.6。曲线按全部 15 人的区间端点与恢复至零折点求均值；均值曲线积分 ×15 与首日逐人积分相符。两个窗口长度不同，比较总贡献而非单位时间率。使用实际生命周期，不混入共同 720 h 窗口的派生尾段。
+
+## 动态人员分母
+
+每个检查点均有 16 个历史人员身份；13 人分母相同，合并展示仍在 CSV 保留全部身份。
+
+| 检查点 | 人员组 | 人数 | 每人在场（h） | 每人可用（h） | 例外 |
+| --- | --- | ---: | ---: | ---: | --- |
+| CPU，终点 6.199011 h | 普通组 | 13 | 6.199011 | 5.699011 | 共同日历 |
+| CPU | OP1 | 1 | 6.199011 | 5.449011 | pending 0.25 h |
+| CPU | P1 | 1 | 6.199011 | 5.689011 | 缺席 0.01 h |
+| CPU | W1 | 1 | 0.259708 | 0.259708 | 离岗与返回 |
+| Kit，终点 6.480402 h | 普通组 | 13 | 6.480402 | 5.980402 | 共同日历 |
+| Kit | P1 | 1 | 6.480402 | 5.970402 | 缺席 0.01 h |
+| Kit | W1 | 1 | 0.541099 | 0.541099 | 离岗与返回 |
+| Kit | W3 | 1 | 6.480402 | 5.449011 | pending 0.531391 h |
+
+可用量对应原 `availability_h`，取在场∩日历∩资格有效期∩可派发人员状态；它不等于未占用的空闲工时。新版 CSV 字段为 `availability_h_per_person`。这些人员均从 t=0 有定义，材料不能证明晚到的新人员效果。两检查点观察窗不同，不能以分母绝对值直接排名人员表现。
+
+## 取消后的资源账
+
+两方法原取消运行以下数值相同，合并列一份，每项均为**单运行**：
+
+| 项目 | 数量 | 关系与范围 |
+| --- | ---: | --- |
+| 退回 STEEL | 3.318 t，28 lot | 原 120 lot 记录中的退回部分；物料账无记录末端残留 |
+| 已耗命令关联人时 | 0.7473425 人时 | WORK 0.5506897 + DRIVE 0.1733889 + WALK 0.0232639 |
+| 实际搬运 | 96.10 m | 包含空返 61.30 m，不能二次相加 |
+| 实际步行 | 83.75 m | 与搬运分列 |
+| 货币成本 | UNKNOWN | 缺少所需货币策略参数，不能写成 0 |
+
+取消事件至最后一条已记录取消命令完成相差 4.762711 h，不是已证明的完整清理耗时。原生命周期 720 h 截尾保持。
+
+## 再生
+
+按根目录 [README 快速开始](../../README.zh-CN.md#快速开始) 安装分析依赖，然后执行：
+
+```powershell
+& .local/results-env/Scripts/python.exe analysis/p07/presentation.py replay --output .local/results-demo
+```
+
+先调用原 r3 公开离线重算链，核对全部 12 单元，再生成九表与四图。仅依赖随源码包提供的派生输入，私有档案读取守卫保持。原 r3 结果、来源与图文件不覆盖；原八图可由 `analysis/p07/reproduce.py replay --figures` 重建，仅用于历史核对。
+
+原详细曲线与资源甘特留作附录：[15 人疲劳曲线](../../figures/p07/r3/P07-03b-all-person-fatigue.png)、[资源占用甘特](../../figures/p07/r3/P07-03a-resource-gantt.png)。占用不等于持续加工，不能据其宽度直接识别瓶颈。其他旧重复/稀疏展示退出当前图库，文件保留为历史证据。
 
 ## 来源与验证
 
-- [输入与来源](../delivery/p07_source_registry_r3.json)、[结论索引](../delivery/claim_evidence_r3.tsv)、[需求绑定](../delivery/feedback_metric_binding_r3.json)连接运行、配置、目录、窗口、数值和图表。
-- [正式数值核验](../../results/p07/r3/validation.json)检查独立区间积分、图线面积、动态分母扫描、汇总/配对、原E20参考、取消物料守恒、CSV/JSON及双域行分类。
-- [最小输入清单](../../examples/reproduction/p07/r3/manifest.json)记录每项输入摘要。输入是可审的派生测量材料，不是原完整执行档案。
-- [原失败与截尾](../../results/p07/r3/attempts.json)保留原四次尝试；[有限修复报告](../validation/P07_limited_repair_r1.md)保留本次修复及坏副本拒绝证据。
+- [信息价值核查（公开阅读版）](information_audit.md)与[机器核查结果](../delivery/p07_information_value_audit_r1.json)：说明重新选择图表的依据。
+- [新版展示契约](../delivery/p07_presentation_r3.json)：绑定当前说明、代码、九表与四图；[旧 README](../archive/p07/r3/README.md) 保留旧 r3 完成契约的原字节。
+- [原数值验证](../../results/p07/r3/validation.json)、[结论索引](../delivery/claim_evidence_r3.tsv)、[来源注册](../delivery/p07_source_registry_r3.json)、[指标定义](../metrics/p07_metrics_definition_r3.md)：原分析结果保持。
+- [状态与适用范围](status.md)、[分发范围](package_scope.json)：区分已发布基线与当前本地候选。
 
-总甘特展示行为24680/2676/5241，其中完整计划展示行为1023/2046/2046，其余是实际事实、人员区间、标记或未安排记录。三维文件为保存的场景域数据，不表示新增原生渲染或同步截图。
-
-软件与程序性方法参考：Timothy Kassis等（2026），[Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents](https://doi.org/10.48550/arXiv.2609.00065)。该引用用于工作流说明，项目结果由上述实际数据支持。
+本次制图采用 scientific-visualization 工作流，按问题选编码、声明分母与窗口、保留不利结果。所属技能库的说明见 Kassis 等（2026），[Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents](https://doi.org/10.48550/arXiv.2609.00065)。这项参考用于工作流归属，数值证据来自本项目随包数据。

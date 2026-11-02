@@ -1,0 +1,42 @@
+{
+  "id": "P07-R4-02-order-event-chain",
+  "question": "Where is the delay between registration, planning, first action and receipt?",
+  "finding": "Urgent first start follows registration by 24.378h; urgent receipt remains censored with a 290.732h tardiness lower bound.",
+  "scope": "One original real-Kit r14 prefix; non-service STARTED may include transport; three right-censored products",
+  "files": [
+    {
+      "path": "figures/p07/r4/P07-R4-02-order-event-chain.png",
+      "bytes": 273298,
+      "sha256": "cd30c2be7817047a025b9ba88ccc2032b4b5afe34e681d3b7ad9d98fcb479abd"
+    },
+    {
+      "path": "figures/p07/r4/P07-R4-02-order-event-chain.svg",
+      "bytes": 16116,
+      "sha256": "d25ad4c2ad23be3a4634ec119322f0042bc58055c8f748275340df9a3dbc281d"
+    },
+    {
+      "path": "figures/p07/r4/P07-R4-02-order-event-chain.pdf",
+      "bytes": 21461,
+      "sha256": "2319d437e0c34680b6091cbff22be3165212193caf021d64c0dac07a75d4d734"
+    }
+  ],
+  "source_data": [
+    {
+      "path": "results/p07/presentation-r1/tables.json",
+      "bytes": 52571,
+      "sha256": "eb9832b901fbe2041cf54b0ef7d27120c32e6476fc6ca615dfe284b7b7794774"
+    },
+    {
+      "path": "results/p07/presentation-r1/validation.json",
+      "bytes": 2446,
+      "sha256": "af056ae5b75292cad8da52d2efe69f3dd36156cef74b929f8443b14d91cf7a6e"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/presentation_figures.py",
+    "bytes": 17679,
+    "sha256": "2c2427ae71609426bcecab145083bb1271ba139152163241619e8f6574601b52"
+  },
+  "transformations": "Explicit table derivations; no smoothing; no new execution or sampling inference",
+  "publisher_target": "GENERAL_PROJECT_DOCUMENTATION; NO_JOURNAL_CERTIFICATION"
+}

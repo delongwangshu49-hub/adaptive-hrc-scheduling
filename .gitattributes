@@ -87,3 +87,24 @@ docs/delivery/requirements.tsv -text
 docs/delivery/interaction_requirements_r2.tsv -text
 docs/delivery/p061_interaction_validation_r2.tsv -text
 docs/delivery/p063_reproduction_r1.json -text
+
+# Immutable historical README and question-led P07 presentation byte contracts.
+docs/archive/p07/r3/** -text
+results/p07/presentation-r1/** -text
+figures/p07/r4/** -text
+docs/archive/p07/information-audit-r1/** -text
+
+# Bilingual README and exact previous presentation snapshots.
+README.zh-CN.md text eol=crlf
+docs/archive/p07/presentation-r1/** -text
+
+# Preserve original historical evidence linked by the bilingual README.
+docs/validation/P06_2_limited_scope_completion_r1.md -text
+docs/validation/P06_2_final_closeout_attempt_r1.md -text
+docs/validation/G07_publication_r1.md -text
+docs/delivery/g07_publication_r1.json -text
+docs/delivery/p062_limited_scope_completion_r1.json -text
+docs/delivery/p062_native_close_resolution_r1.json -text
+
+# Retain the approved bilingual candidate while finalizing release status.
+docs/archive/p07/bilingual-candidate-r2/** -text

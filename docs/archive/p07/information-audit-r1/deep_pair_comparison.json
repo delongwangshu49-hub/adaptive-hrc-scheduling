@@ -1,0 +1,265 @@
+[
+  {
+    "table": "products",
+    "scenario": "N",
+    "matched_rows": 2,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "products",
+    "scenario": "H",
+    "matched_rows": 2,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "products",
+    "scenario": "F",
+    "matched_rows": 2,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "products",
+    "scenario": "U",
+    "matched_rows": 2,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "products",
+    "scenario": "C",
+    "matched_rows": 2,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "people",
+    "scenario": "N",
+    "matched_rows": 15,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "people",
+    "scenario": "H",
+    "matched_rows": 15,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "people",
+    "scenario": "F",
+    "matched_rows": 15,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "people",
+    "scenario": "U",
+    "matched_rows": 15,
+    "nonnoise_numeric_changes": [
+      {
+        "key": [
+          "Lop"
+        ],
+        "field": "exposure_F_h",
+        "edd": 10.46499634086467,
+        "adaptive": 10.464658692948001,
+        "delta": -0.0003376479166679047
+      },
+      {
+        "key": [
+          "Lop"
+        ],
+        "field": "presence_exposure_F_h",
+        "edd": 10.46499634086469,
+        "adaptive": 10.464658692948023,
+        "delta": -0.0003376479166679047
+      },
+      {
+        "key": [
+          "Lop"
+        ],
+        "field": "common_exposure_F_h",
+        "edd": 10.495512149342883,
+        "adaptive": 10.495174501426215,
+        "delta": -0.0003376479166679047
+      },
+      {
+        "key": [
+          "Lrig"
+        ],
+        "field": "exposure_F_h",
+        "edd": 10.46499634086467,
+        "adaptive": 10.464658692948001,
+        "delta": -0.0003376479166679047
+      },
+      {
+        "key": [
+          "Lrig"
+        ],
+        "field": "presence_exposure_F_h",
+        "edd": 10.46499634086469,
+        "adaptive": 10.464658692948023,
+        "delta": -0.0003376479166679047
+      },
+      {
+        "key": [
+          "Lrig"
+        ],
+        "field": "common_exposure_F_h",
+        "edd": 10.495512149342883,
+        "adaptive": 10.495174501426215,
+        "delta": -0.0003376479166679047
+      },
+      {
+        "key": [
+          "Lsig"
+        ],
+        "field": "exposure_F_h",
+        "edd": 10.470868622238738,
+        "adaptive": 10.47053097432207,
+        "delta": -0.0003376479166679047
+      },
+      {
+        "key": [
+          "Lsig"
+        ],
+        "field": "presence_exposure_F_h",
+        "edd": 10.47086862223876,
+        "adaptive": 10.470530974322092,
+        "delta": -0.0003376479166679047
+      },
+      {
+        "key": [
+          "Lsig"
+        ],
+        "field": "common_exposure_F_h",
+        "edd": 10.501624278328807,
+        "adaptive": 10.501286630412137,
+        "delta": -0.0003376479166696811
+      }
+    ]
+  },
+  {
+    "table": "people",
+    "scenario": "C",
+    "matched_rows": 15,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "activity",
+    "scenario": "N",
+    "matched_rows": 84,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "activity",
+    "scenario": "H",
+    "matched_rows": 84,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "activity",
+    "scenario": "F",
+    "matched_rows": 85,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "activity",
+    "scenario": "U",
+    "matched_rows": 84,
+    "nonnoise_numeric_changes": [
+      {
+        "key": [
+          "Lop",
+          "WAIT"
+        ],
+        "field": "exposure_F_h",
+        "edd": 9.255897224186786,
+        "adaptive": 9.255507630436785,
+        "delta": -0.00038959375000047203
+      },
+      {
+        "key": [
+          "Lop",
+          "WORK"
+        ],
+        "field": "exposure_F_h",
+        "edd": 0.12230011584995949,
+        "adaptive": 0.12235206168329286,
+        "delta": 5.1945833333372216e-05
+      },
+      {
+        "key": [
+          "Lrig",
+          "WAIT"
+        ],
+        "field": "exposure_F_h",
+        "edd": 9.255897224186786,
+        "adaptive": 9.255507630436785,
+        "delta": -0.00038959375000047203
+      },
+      {
+        "key": [
+          "Lrig",
+          "WORK"
+        ],
+        "field": "exposure_F_h",
+        "edd": 0.12230011584995949,
+        "adaptive": 0.12235206168329286,
+        "delta": 5.1945833333372216e-05
+      },
+      {
+        "key": [
+          "Lsig",
+          "WAIT"
+        ],
+        "field": "exposure_F_h",
+        "edd": 9.260018469546045,
+        "adaptive": 9.259628875796045,
+        "delta": -0.00038959375000047203
+      },
+      {
+        "key": [
+          "Lsig",
+          "WORK"
+        ],
+        "field": "exposure_F_h",
+        "edd": 0.12256119918329256,
+        "adaptive": 0.12261314501662593,
+        "delta": 5.1945833333372216e-05
+      }
+    ]
+  },
+  {
+    "table": "activity",
+    "scenario": "C",
+    "matched_rows": 84,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "transport",
+    "scenario": "N",
+    "matched_rows": 1,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "transport",
+    "scenario": "H",
+    "matched_rows": 1,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "transport",
+    "scenario": "F",
+    "matched_rows": 1,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "transport",
+    "scenario": "U",
+    "matched_rows": 1,
+    "nonnoise_numeric_changes": []
+  },
+  {
+    "table": "transport",
+    "scenario": "C",
+    "matched_rows": 1,
+    "nonnoise_numeric_changes": []
+  }
+]

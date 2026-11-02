@@ -1,0 +1,36 @@
+{
+  "status": "LOCAL_PRESENTATION_CANDIDATE_NOT_PUBLISHED",
+  "base": "4158ba0a43ce1acda349bd431d291b9b70a52a04",
+  "proposed_tag": "step-P07-r3",
+  "purpose": "Question-led figures, README narrative and supporting explanation",
+  "checks": {
+    "source_count": 1276,
+    "source_seconds": 890.86,
+    "isolated_wheel_count": 1276,
+    "isolated_wheel_seconds": 1142.352,
+    "all_prior_1273_identities_retained": true,
+    "fresh_environment_replay": "PASS; 12 original units, nine tables and four figures",
+    "fresh_replay_all_tables_and_12_graphics_bytes_exact": true,
+    "README_four_browser_layouts": "PASS",
+    "final_distribution": "PASS; 110 core members unchanged, sdist rebuild exact, isolated CLI 0",
+    "final_presentation_field_rename": "After full shared checks; two field names only, no numerical change; final replay and targeted gates apply"
+  },
+  "source_contract": "docs/delivery/p07_presentation_r1.json",
+  "resolution": "docs/delivery/p07_presentation_resolution_r1.json",
+  "external_seal": ".local/g07-presentation-preparation-20261102-r1/result.json",
+  "bundle_files": [
+    "g07-presentation-source-r1.zip",
+    "g07-presentation-delta-r1.zip",
+    "dist/adaptive_hrc_scheduling-0.1.0-py3-none-any.whl",
+    "dist/adaptive_hrc_scheduling-0.1.0.tar.gz",
+    "candidate-manifest.json",
+    "candidate-delta.json",
+    "SHA256SUMS.txt"
+  ],
+  "remote_CI": "NOT_EXECUTED_FOR_THIS_CANDIDATE",
+  "publication_authorized": false,
+  "published": false,
+  "new_production": 0,
+  "new_kit": 0,
+  "new_research_solver_runs": 0
+}

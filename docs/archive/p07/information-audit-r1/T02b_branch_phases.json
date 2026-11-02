@@ -1,0 +1,86 @@
+[
+  {
+    "mechanism": "M-H-N",
+    "phase": "SETUP",
+    "records": 4,
+    "person_h": 2.021232506153794,
+    "exposure_F_h": 0.11989721834166435
+  },
+  {
+    "mechanism": "M-H-N",
+    "phase": "UNLOAD",
+    "records": 4,
+    "person_h": 2.0,
+    "exposure_F_h": 0.6969355993934907
+  },
+  {
+    "mechanism": "M-H-N",
+    "phase": "WORK",
+    "records": 16,
+    "person_h": 8.73343044431676,
+    "exposure_F_h": 1.9908146010422052
+  },
+  {
+    "mechanism": "M-H-H",
+    "phase": "SETUP",
+    "records": 4,
+    "person_h": 2.017486007529861,
+    "exposure_F_h": 0.11244844445932753
+  },
+  {
+    "mechanism": "M-H-H",
+    "phase": "UNLOAD",
+    "records": 4,
+    "person_h": 2.0,
+    "exposure_F_h": 0.8413512798715087
+  },
+  {
+    "mechanism": "M-H-H",
+    "phase": "WORK",
+    "records": 16,
+    "person_h": 8.701889703842344,
+    "exposure_F_h": 1.919469297686539
+  },
+  {
+    "mechanism": "M-HR-N",
+    "phase": "ROBOT",
+    "records": 4,
+    "person_h": 0.0,
+    "exposure_F_h": 0.0
+  },
+  {
+    "mechanism": "M-HR-N",
+    "phase": "SETUP",
+    "records": 4,
+    "person_h": 2.0363208444444396,
+    "exposure_F_h": 0.09483318539558575
+  },
+  {
+    "mechanism": "M-HR-N",
+    "phase": "UNLOAD",
+    "records": 4,
+    "person_h": 2.0,
+    "exposure_F_h": 0.08327496666666709
+  },
+  {
+    "mechanism": "M-HR-H",
+    "phase": "ROBOT",
+    "records": 4,
+    "person_h": 0.0,
+    "exposure_F_h": 0.0
+  },
+  {
+    "mechanism": "M-HR-H",
+    "phase": "SETUP",
+    "records": 4,
+    "person_h": 2.032490458333328,
+    "exposure_F_h": 0.0877322132235551
+  },
+  {
+    "mechanism": "M-HR-H",
+    "phase": "UNLOAD",
+    "records": 4,
+    "person_h": 2.0,
+    "exposure_F_h": 0.06206258333333317
+  }
+]
