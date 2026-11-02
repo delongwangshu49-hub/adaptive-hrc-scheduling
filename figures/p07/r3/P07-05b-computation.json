@@ -1,0 +1,52 @@
+{
+  "id": "P07-05b-computation",
+  "group": 5,
+  "caption": "原机器/原顺序的总墙钟、搜索诊断和实际缓存计划派发；各计时字段可能嵌套，不合计成分项总成本；CPU时间和峰内存未测，不补0。候选检查不等于实际采用。",
+  "alt": "原机器/原顺序的总墙钟、搜索诊断和实际缓存计划派发；各计时字段可能嵌套，不合计成分项总成本；CPU时间和峰内存未测，不补0。候选检查不等于实际采用。",
+  "source_data": [
+    {
+      "path": "results/p07/r3/costs.json",
+      "bytes": 15282,
+      "sha256": "bc46560955846bff15a0c1f4bde0e4cfbaee36bbcbfdcab4ea62f01767898ea4"
+    },
+    {
+      "path": "results/p07/r3/summary.json",
+      "bytes": 20494,
+      "sha256": "6689c62ae5a2d86a15e828e50b308eff4f7c278ae36084f59a5944392981e66c"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/figures.py",
+    "bytes": 18474,
+    "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+  },
+  "format": "P07-FIGURE-PROVENANCE-1",
+  "files": [
+    {
+      "path": "figures/p07/r3/P07-05b-computation.png",
+      "bytes": 179793,
+      "sha256": "66adec82f196f6b71d4300059924a659db237f96ea48c0c70662ba2ceabfe35d"
+    },
+    {
+      "path": "figures/p07/r3/P07-05b-computation.svg",
+      "bytes": 31830,
+      "sha256": "7387d301c906e4f2a7c4c60e28da999ac88c1f001d747ef85e65045be68411b8"
+    },
+    {
+      "path": "figures/p07/r3/P07-05b-computation.pdf",
+      "bytes": 16641,
+      "sha256": "29ec5913b68be0e026a93ac172c3087e3c723a6bf10537c18aa1e7272004b7b3"
+    }
+  ],
+  "width_inches": 12.0,
+  "height_inches": 4.8,
+  "raster_dpi": 300,
+  "font_family": "DejaVu Sans",
+  "matplotlib": "3.11.2",
+  "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+  "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+  "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+  "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+  "smoothing": "NONE",
+  "publisher_compliance_claim": false
+}

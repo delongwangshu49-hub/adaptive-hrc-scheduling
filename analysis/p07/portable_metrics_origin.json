@@ -1,0 +1,14 @@
+{
+  "original_source": {
+    "path": "analysis/a_final_results.py",
+    "bytes": 15292,
+    "sha256": "da688e2ceecb991ddcf1e0a95177fc3d68ed4eac82724ec723fd174f7c2a810b"
+  },
+  "functions": [
+    "actual_arc",
+    "occupancy",
+    "transport",
+    "disturbance"
+  ],
+  "policy": "Function ASTs preserved; import-only extraction removes unpublished legacy script dependencies; original file unchanged"
+}

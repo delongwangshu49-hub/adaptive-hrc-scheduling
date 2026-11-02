@@ -1,0 +1,62 @@
+{
+  "id": "P07-04-response-timelines",
+  "group": 4,
+  "caption": "故障实际里程碑、急单实际结果及r14前60h变化/采用安排。r14最终387.732h STOPPED，仅1接收3未接收；计划采用不表示实际完成；8h追平单值未评价。",
+  "alt": "故障实际里程碑、急单实际结果及r14前60h变化/采用安排。r14最终387.732h STOPPED，仅1接收3未接收；计划采用不表示实际完成；8h追平单值未评价。",
+  "source_data": [
+    {
+      "path": "results/p07/r3/milestones.csv",
+      "bytes": 547415,
+      "sha256": "35ae525166852331e24862c3d9911b8b5b58bf273f094685179aca794ef5f446"
+    },
+    {
+      "path": "results/p07/r3/products.csv",
+      "bytes": 5514,
+      "sha256": "6897fb5766e872f32e92bc6f19673ed5ce8749e6b43f835324a71e15c1baf0fc"
+    },
+    {
+      "path": "results/p07/r3/e20_order_details.json",
+      "bytes": 13509,
+      "sha256": "b612bf21314d52f19336216793274c395712917b7ce38d6851bfb11a26a1a97d"
+    },
+    {
+      "path": "results/p07/r3/e20_orders.csv",
+      "bytes": 1910,
+      "sha256": "b40596db668ca11cb3475d4e38d5132d07e8f966566b84202e62b10430c18e7d"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/figures.py",
+    "bytes": 18474,
+    "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+  },
+  "format": "P07-FIGURE-PROVENANCE-1",
+  "files": [
+    {
+      "path": "figures/p07/r3/P07-04-response-timelines.png",
+      "bytes": 214557,
+      "sha256": "14cbce902cf69fc1d5023e537a87233aa0ea06311d15c76be1b0bef503db64ca"
+    },
+    {
+      "path": "figures/p07/r3/P07-04-response-timelines.svg",
+      "bytes": 26014,
+      "sha256": "cc55f9ef5b0bcd2576443725f1c0561700661b31ce2edd06c75a49b9d91c944a"
+    },
+    {
+      "path": "figures/p07/r3/P07-04-response-timelines.pdf",
+      "bytes": 23865,
+      "sha256": "f54baf3d87297747e30fd395b356966651a71ffda9e2b81fd888c783889af914"
+    }
+  ],
+  "width_inches": 12.0,
+  "height_inches": 8.0,
+  "raster_dpi": 300,
+  "font_family": "DejaVu Sans",
+  "matplotlib": "3.11.2",
+  "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+  "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+  "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+  "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+  "smoothing": "NONE",
+  "publisher_compliance_claim": false
+}

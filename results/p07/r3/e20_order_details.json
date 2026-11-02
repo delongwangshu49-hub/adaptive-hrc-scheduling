@@ -1,0 +1,363 @@
+{
+  "products": [
+    {
+      "product_id": "PRODUCT-1",
+      "order_id": "ORD-BASE",
+      "due_h": 2500.0,
+      "release_h": 0.0,
+      "released": true,
+      "cancelled": false,
+      "ready_h": 314.02725833333324,
+      "received_h": 318.21809722222207,
+      "ready_tardiness_h": 0,
+      "received_tardiness_h": 0,
+      "ready_delay_lower_bound_h": 0,
+      "received_delay_lower_bound_h": 0,
+      "incomplete": false,
+      "on_time_ready": true,
+      "on_time_received": true,
+      "status": "RECEIVED",
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "epoch": 0,
+      "scope": "ORIGINAL_R14_REAL_KIT_STOPPED_PREFIX_NOT_ALL_RECEIVED",
+      "initial_or_new": "INITIAL",
+      "request_id": null,
+      "accepted_sim_h": null,
+      "accepted_wall_utc": null,
+      "registration_applied_h": 0,
+      "actual_arrival_h": 0.02770833333333333,
+      "first_observed_decision_h": 0.02770833333333333,
+      "first_adopted_arrangement_h": 0,
+      "first_actual_production_h": 0.034486111111111106
+    },
+    {
+      "product_id": "PRODUCT-2",
+      "order_id": "ORD-NORMAL",
+      "due_h": 2300,
+      "release_h": 1.000897222222222,
+      "released": true,
+      "cancelled": false,
+      "ready_h": null,
+      "received_h": null,
+      "ready_tardiness_h": null,
+      "received_tardiness_h": null,
+      "ready_delay_lower_bound_h": 0,
+      "received_delay_lower_bound_h": 0,
+      "incomplete": true,
+      "on_time_ready": false,
+      "on_time_received": false,
+      "status": "RIGHT_CENSORED",
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "epoch": 0,
+      "scope": "ORIGINAL_R14_REAL_KIT_STOPPED_PREFIX_NOT_ALL_RECEIVED",
+      "initial_or_new": "DYNAMIC_NEW",
+      "request_id": "P051-9eeddc4f0c0f4a3f9b56a6f5027c3450",
+      "accepted_sim_h": 1.000897222222222,
+      "accepted_wall_utc": "2026-10-27T06:01:31.385300+00:00",
+      "registration_applied_h": 1.000897222222222,
+      "actual_arrival_h": 1.000897222222222,
+      "first_observed_decision_h": 1.000897222222222,
+      "first_adopted_arrangement_h": 1.000897222222222,
+      "first_actual_production_h": 53.97172333333333
+    },
+    {
+      "product_id": "PRODUCT-3",
+      "order_id": "ORD-NORMAL",
+      "due_h": 2300,
+      "release_h": 1.000897222222222,
+      "released": true,
+      "cancelled": false,
+      "ready_h": null,
+      "received_h": null,
+      "ready_tardiness_h": null,
+      "received_tardiness_h": null,
+      "ready_delay_lower_bound_h": 0,
+      "received_delay_lower_bound_h": 0,
+      "incomplete": true,
+      "on_time_ready": false,
+      "on_time_received": false,
+      "status": "RIGHT_CENSORED",
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "epoch": 0,
+      "scope": "ORIGINAL_R14_REAL_KIT_STOPPED_PREFIX_NOT_ALL_RECEIVED",
+      "initial_or_new": "DYNAMIC_NEW",
+      "request_id": "P051-9eeddc4f0c0f4a3f9b56a6f5027c3450",
+      "accepted_sim_h": 1.000897222222222,
+      "accepted_wall_utc": "2026-10-27T06:01:31.385300+00:00",
+      "registration_applied_h": 1.000897222222222,
+      "actual_arrival_h": 1.000897222222222,
+      "first_observed_decision_h": 1.000897222222222,
+      "first_adopted_arrangement_h": 1.000897222222222,
+      "first_actual_production_h": 121.87997888888889
+    },
+    {
+      "product_id": "PRODUCT-4",
+      "order_id": "ORD-URGENT",
+      "due_h": 97.00089722222222,
+      "release_h": 1.4596772222222223,
+      "released": true,
+      "cancelled": false,
+      "ready_h": null,
+      "received_h": null,
+      "ready_tardiness_h": null,
+      "received_tardiness_h": null,
+      "ready_delay_lower_bound_h": 290.7315661111112,
+      "received_delay_lower_bound_h": 290.7315661111112,
+      "incomplete": true,
+      "on_time_ready": false,
+      "on_time_received": false,
+      "status": "RIGHT_CENSORED",
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "epoch": 0,
+      "scope": "ORIGINAL_R14_REAL_KIT_STOPPED_PREFIX_NOT_ALL_RECEIVED",
+      "initial_or_new": "DYNAMIC_NEW",
+      "request_id": "P051-b904639d36914878adc2524e04af9075",
+      "accepted_sim_h": 1.4596772222222223,
+      "accepted_wall_utc": "2026-10-27T06:16:42.085357+00:00",
+      "registration_applied_h": 1.4596772222222223,
+      "actual_arrival_h": 1.4596772222222223,
+      "first_observed_decision_h": 1.4596772222222223,
+      "first_adopted_arrangement_h": 1.4596772222222223,
+      "first_actual_production_h": 25.83750333333333
+    }
+  ],
+  "plan_changes": [
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "at_h": 0,
+      "status": "ADOPTED",
+      "version": 1,
+      "reason": "INITIAL",
+      "predicted_finish_h": 272.15682222222216,
+      "product_ids": [
+        "PRODUCT-1"
+      ],
+      "scope": "ADOPTED_HYPOTHETICAL_FULL_PLAN_NOT_ACTUAL_COMPLETION"
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "at_h": 1.000897222222222,
+      "status": "ADOPTED",
+      "version": 2,
+      "reason": "CATALOG_CHANGE",
+      "predicted_finish_h": 723.9041333333331,
+      "product_ids": [
+        "PRODUCT-1",
+        "PRODUCT-2",
+        "PRODUCT-3"
+      ],
+      "scope": "ADOPTED_HYPOTHETICAL_FULL_PLAN_NOT_ACTUAL_COMPLETION"
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "at_h": 1.4596772222222223,
+      "status": "ADOPTED",
+      "version": 3,
+      "reason": "CATALOG_CHANGE",
+      "predicted_finish_h": 988.4428138888887,
+      "product_ids": [
+        "PRODUCT-1",
+        "PRODUCT-2",
+        "PRODUCT-3",
+        "PRODUCT-4"
+      ],
+      "scope": "ADOPTED_HYPOTHETICAL_FULL_PLAN_NOT_ACTUAL_COMPLETION"
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "at_h": 25.85325333333333,
+      "status": "NO_FEASIBLE_PLAN",
+      "version": null,
+      "reason": "CATALOG_CHANGE",
+      "predicted_finish_h": null,
+      "product_ids": [],
+      "scope": "ADOPTED_HYPOTHETICAL_FULL_PLAN_NOT_ACTUAL_COMPLETION"
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "at_h": 25.85325333333333,
+      "status": "ADOPTED",
+      "version": 4,
+      "reason": "CATALOG_CHANGE",
+      "predicted_finish_h": 988.4428138888887,
+      "product_ids": [
+        "PRODUCT-1",
+        "PRODUCT-2",
+        "PRODUCT-3",
+        "PRODUCT-4"
+      ],
+      "scope": "ADOPTED_HYPOTHETICAL_FULL_PLAN_NOT_ACTUAL_COMPLETION"
+    }
+  ],
+  "timeline": [
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "ORIGINAL_R14_SAME_RUN",
+      "request_id": "P051-44a17c7332ad42d49f619d3442f3e860",
+      "kind": "CLOSE_INPUT",
+      "target": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "phase": "ACCEPTED",
+      "sim_h": 54.49757888888888,
+      "actual_applied_sim_h": null,
+      "event_id": null,
+      "catalog_version": 4
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "ORIGINAL_R14_SAME_RUN",
+      "request_id": "P051-44a17c7332ad42d49f619d3442f3e860",
+      "kind": "CLOSE_INPUT",
+      "target": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "phase": "APPLIED",
+      "sim_h": 54.49757888888888,
+      "actual_applied_sim_h": 54.49757888888888,
+      "event_id": null,
+      "catalog_version": 4
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "ORIGINAL_R14_SAME_RUN",
+      "request_id": "P051-8676e9a19aa74d8e85dea74172e1cdb3",
+      "kind": "PERSON_DEPART",
+      "target": "W2",
+      "phase": "ACCEPTED",
+      "sim_h": 25.85325333333333,
+      "actual_applied_sim_h": null,
+      "event_id": null,
+      "catalog_version": 2
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "ORIGINAL_R14_SAME_RUN",
+      "request_id": "P051-8676e9a19aa74d8e85dea74172e1cdb3",
+      "kind": "PERSON_DEPART",
+      "target": "W2",
+      "phase": "APPLIED",
+      "sim_h": 25.85325333333333,
+      "actual_applied_sim_h": 25.85325333333333,
+      "event_id": "EV-870",
+      "catalog_version": 3
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "ORIGINAL_R14_SAME_RUN",
+      "request_id": "P051-9eeddc4f0c0f4a3f9b56a6f5027c3450",
+      "kind": "ORDER_CREATE",
+      "target": "ORD-NORMAL",
+      "phase": "ACCEPTED",
+      "sim_h": 1.000897222222222,
+      "actual_applied_sim_h": null,
+      "event_id": null,
+      "catalog_version": 0
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "ORIGINAL_R14_SAME_RUN",
+      "request_id": "P051-9eeddc4f0c0f4a3f9b56a6f5027c3450",
+      "kind": "ORDER_CREATE",
+      "target": "ORD-NORMAL",
+      "phase": "APPLIED",
+      "sim_h": 1.000897222222222,
+      "actual_applied_sim_h": 1.000897222222222,
+      "event_id": "EV-142",
+      "catalog_version": 1
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "ORIGINAL_R14_SAME_RUN",
+      "request_id": "P051-b904639d36914878adc2524e04af9075",
+      "kind": "ORDER_CREATE",
+      "target": "ORD-URGENT",
+      "phase": "ACCEPTED",
+      "sim_h": 1.4596772222222223,
+      "actual_applied_sim_h": null,
+      "event_id": null,
+      "catalog_version": 1
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "ORIGINAL_R14_SAME_RUN",
+      "request_id": "P051-b904639d36914878adc2524e04af9075",
+      "kind": "ORDER_CREATE",
+      "target": "ORD-URGENT",
+      "phase": "APPLIED",
+      "sim_h": 1.4596772222222223,
+      "actual_applied_sim_h": 1.4596772222222223,
+      "event_id": "EV-183",
+      "catalog_version": 2
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "ORIGINAL_R14_SAME_RUN",
+      "request_id": "P051-e5da6602829e4f5ea064c7d98de23004",
+      "kind": "PERSON_ARRIVE",
+      "target": "W3",
+      "phase": "ACCEPTED",
+      "sim_h": 25.85325333333333,
+      "actual_applied_sim_h": null,
+      "event_id": null,
+      "catalog_version": 3
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "ORIGINAL_R14_SAME_RUN",
+      "request_id": "P051-e5da6602829e4f5ea064c7d98de23004",
+      "kind": "PERSON_ARRIVE",
+      "target": "W3",
+      "phase": "APPLIED",
+      "sim_h": 25.85325333333333,
+      "actual_applied_sim_h": 25.85325333333333,
+      "event_id": "EV-871",
+      "catalog_version": 4
+    }
+  ],
+  "inputs": [
+    {
+      "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/session-state.json",
+      "bytes": 2353510108,
+      "sha256": "a6b4761fe78afde3e931e3bd3fc3a93f027d270c24eb0f35127f7d4499d994b6"
+    },
+    {
+      "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/configuration.json",
+      "bytes": 878350,
+      "sha256": "11302f5d7b2fd272fbc8955b6c1a5fbceda06f60f64e8c240172dff65af0e8b1"
+    },
+    {
+      "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/full-schedule-state.json",
+      "bytes": 477312,
+      "sha256": "405df43c92e010b2423463eacaea2605d664f17494fe7767a076adae1c4be067"
+    },
+    {
+      "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/full-schedules/dd1c52eb20519519af5a73148cd2687cd3de9e9ef763e871be825da9e55b9f0e.json",
+      "bytes": 3705809,
+      "sha256": "dd1c52eb20519519af5a73148cd2687cd3de9e9ef763e871be825da9e55b9f0e"
+    },
+    {
+      "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/full-schedules/9e97006ee2ae35295b0bc3c40ea6dab79baf7f2571bdce93f9bd5323f7012a0d.json",
+      "bytes": 15495343,
+      "sha256": "9e97006ee2ae35295b0bc3c40ea6dab79baf7f2571bdce93f9bd5323f7012a0d"
+    },
+    {
+      "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/full-schedules/9cd4416d12127bb1343fd89269856d2af4cd67506c696cdc68f03aec399f71de.json",
+      "bytes": 23847996,
+      "sha256": "9cd4416d12127bb1343fd89269856d2af4cd67506c696cdc68f03aec399f71de"
+    },
+    {
+      "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/full-schedules/6230cebfb25cf7e3504afaf740656809a39c6f772899f731ecb55c645a3cf75d.json",
+      "bytes": 23992649,
+      "sha256": "6230cebfb25cf7e3504afaf740656809a39c6f772899f731ecb55c645a3cf75d"
+    },
+    {
+      "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/events.jsonl.gz",
+      "bytes": 217377941,
+      "sha256": "0597d342d121729e6d0e294db88be70621bbaee504717b95e1fa63cb18fc3db3"
+    },
+    {
+      "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/decisions.jsonl.gz",
+      "bytes": 1038036,
+      "sha256": "8241b31a49d03c45ed70d051b8f88c8d968056214ccabd5f854aa773acbd2f84"
+    }
+  ],
+  "gap_fill_reason": "Existing chain summary lacks ACCEPTED timestamps and per-product first adopted arrangement/actual start; targeted original saved fields and events used",
+  "status": "SOURCE_HASH_BOUND_TIMINGS_EXTRACTED_NO_NEW_EXECUTION"
+}

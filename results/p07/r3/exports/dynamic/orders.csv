@@ -1,0 +1,2 @@
+bom,due_h,id,mass_t,order_id,priority,release_h,revision,rigging_t,variant
+"[{""id"": ""B-ST"", ""quantity"": 1, ""unit"": ""set""}, {""id"": ""B-FL"", ""quantity"": 18, ""unit"": ""m2""}, {""id"": ""B-EN"", ""quantity"": 1, ""unit"": ""set""}, {""id"": ""B-WT"", ""quantity"": 1, ""unit"": ""set""}, {""id"": ""B-ME"", ""quantity"": 1, ""unit"": ""set""}, {""id"": ""B-FI"", ""quantity"": 1, ""unit"": ""set""}, {""id"": ""B-PR"", ""quantity"": 1, ""unit"": ""set""}]",200,PRODUCT-1,8,ORDER-1,URGENT,0,v1,1,SR-W1

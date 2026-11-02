@@ -1,0 +1,67 @@
+{
+  "id": "P07-03a-resource-gantt",
+  "group": 3,
+  "caption": "预先指定N/F/C三个EDD代表的全部10项设备/工装所有权区间；同设备直接锁和ENTITY锁取并集。空行表示该运行无对应持有区间，完整资源表与全行双域导出保留。横条不是预测计划。",
+  "alt": "预先指定N/F/C三个EDD代表的全部10项设备/工装所有权区间；同设备直接锁和ENTITY锁取并集。空行表示该运行无对应持有区间，完整资源表与全行双域导出保留。横条不是预测计划。",
+  "source_data": [
+    {
+      "path": "results/p07/r3/resources.csv",
+      "bytes": 1167816,
+      "sha256": "f1c762c3675dfa49d5f26cfe77d95a47d35890eb5ff12276cc77e0b2e0b5b92b"
+    },
+    {
+      "path": "results/p07/r3/summary.json",
+      "bytes": 20494,
+      "sha256": "6689c62ae5a2d86a15e828e50b308eff4f7c278ae36084f59a5944392981e66c"
+    },
+    {
+      "path": "results/p07/r3/computed/N-CPU-EDD.json",
+      "bytes": 15060076,
+      "sha256": "425ba251cbee760822d77d49efe7e4f11a53d7b4cd7778ed9ace183df4b1a003"
+    },
+    {
+      "path": "results/p07/r3/computed/F-CPU-EDD.json",
+      "bytes": 15069287,
+      "sha256": "401b205127a1fd6808c0edef25e5f8471bba6706d3c8565490ecf9d3ea26c4f2"
+    },
+    {
+      "path": "results/p07/r3/computed/C-STOCK-CPU-EDD-r4.json",
+      "bytes": 8225123,
+      "sha256": "215b62d33d870faab8d382003ad337d6d40f6bb55b1f2c7b07314288eb60babf"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/figures.py",
+    "bytes": 18474,
+    "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+  },
+  "format": "P07-FIGURE-PROVENANCE-1",
+  "files": [
+    {
+      "path": "figures/p07/r3/P07-03a-resource-gantt.png",
+      "bytes": 168229,
+      "sha256": "7c39f56baf33ee48371beb6f1bf0309e49c438fea90741c7adf223b5be20fb71"
+    },
+    {
+      "path": "figures/p07/r3/P07-03a-resource-gantt.svg",
+      "bytes": 114165,
+      "sha256": "f99d71f0b73a4e5512daf3affe898d26dc2f29a89f74cb541debb92a35712890"
+    },
+    {
+      "path": "figures/p07/r3/P07-03a-resource-gantt.pdf",
+      "bytes": 21941,
+      "sha256": "a72f9316e8b4fb4075254184686fd68d60b2d0e989abf29161e7510251fe9cc0"
+    }
+  ],
+  "width_inches": 12.0,
+  "height_inches": 9.0,
+  "raster_dpi": 300,
+  "font_family": "DejaVu Sans",
+  "matplotlib": "3.11.2",
+  "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+  "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+  "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+  "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+  "smoothing": "NONE",
+  "publisher_compliance_claim": false
+}

@@ -1,0 +1,100 @@
+{
+  "identity": "P07-LOCAL-COMPLETION-r3",
+  "at": "2026-11-02T07:15:29.233553+00:00",
+  "status": "P07_LOCAL_COMPLETE_R1_R4_CLOSED_WITHIN_SCOPE",
+  "original_completion_preserved": {
+    "path": "docs/delivery/p07_completion_r2.json",
+    "bytes": 4687,
+    "sha256": "c4ad3852345dc38fbebabfa26785a4e61d76e79c36fd0c9737fede7b278c5e54"
+  },
+  "original_review_preserved": {
+    "path": "docs/delivery/p07_review_findings_r1.json",
+    "bytes": 8726,
+    "sha256": "c20789dfed50999cb6fbf8fcdc1d6ed854e024b3d80671e7cc0260283be6d2fc"
+  },
+  "resolution": {
+    "path": "docs/delivery/p07_review_resolution_r1.json",
+    "bytes": 8060,
+    "sha256": "2eccd1b4bd3d24afa917bf01e9056db349e6e2ab38e66a8fa1a7caceaa71e305"
+  },
+  "validation": {
+    "path": "results/p07/r3/validation.json",
+    "bytes": 22403,
+    "sha256": "2ec0db41831de52255c94a1b7d873d6b9837f0f318e98c48f29a8d278e1eb8f6"
+  },
+  "report": {
+    "path": "docs/validation/P07_limited_repair_r1.md",
+    "bytes": 5966,
+    "sha256": "a0a9ee8212111a056326e04abfa427208b651516128a840b7c312fcdbf553bb4"
+  },
+  "source_registry": {
+    "path": "docs/delivery/p07_source_registry_r3.json",
+    "bytes": 92537,
+    "sha256": "521ad362b4d1dcc1a129668cf43d827d8072c9b321e6e10ee4acb8685a6e4e5e"
+  },
+  "claims": {
+    "path": "docs/delivery/claim_evidence_r3.tsv",
+    "bytes": 92479,
+    "sha256": "8e8994a3b375b09eafac038ccd8cf5ce6a7809ba38c0dacdd27d679774313ed4"
+  },
+  "figures": {
+    "path": "figures/p07/r3/manifest.json",
+    "bytes": 20843,
+    "sha256": "7e73a24046a3b85a5c7341bcefe10f6b5757ea688d28ac6751ac253cbaef8626"
+  },
+  "portable_inputs": {
+    "path": "examples/reproduction/p07/r3/manifest.json",
+    "bytes": 7747,
+    "sha256": "3602407ba5f229e65ece34cf91cfc354154557da3a1665e36dd2700f40ca97ed"
+  },
+  "README": {
+    "path": "README.md",
+    "bytes": 10468,
+    "sha256": "e5ff2092933b8943e3d9fe0ddb48def561d650f6d07469462c983131eead1355"
+  },
+  "fixed_units": 12,
+  "method_rows": 10,
+  "paired_metrics": 45,
+  "mechanism_cells": 4,
+  "dynamic_people_per_case": 16,
+  "dynamic_cases": 2,
+  "cancellation_accounts": 2,
+  "cancellation_lots": 240,
+  "claim_rows": 189,
+  "csv_consistency_checks": 41,
+  "total_gantt_rows": [
+    24680,
+    2676,
+    5241
+  ],
+  "planned_full_schedule_rows": [
+    1023,
+    2046,
+    2046
+  ],
+  "targeted_tests": 21,
+  "shared_source_tests": 1272,
+  "shared_wheel_tests": 1272,
+  "prior_1251_identities_retained": true,
+  "G07_preparation_authorized": true,
+  "G07_publication_authorized": false,
+  "new_formal_production_runs": 0,
+  "new_kit_runs": 0,
+  "original_core_247_exact": true,
+  "new_branch": false,
+  "new_worktree": false,
+  "subagents": 0,
+  "owner_final_acceptance": "NOT_RECORDED",
+  "preserved_open": [
+    "2s source age NOT_MET",
+    "4Hz NOT_ESTABLISHED",
+    "steady/10/50 INSUFFICIENT",
+    "historical 621.01 K01 OPEN",
+    "same Kit E20 all-received NOT_MET",
+    "WIP/J3 HOLD",
+    "manual REST",
+    "P08 owner operation",
+    "industrial G2",
+    "Vite existing high OPEN"
+  ]
+}

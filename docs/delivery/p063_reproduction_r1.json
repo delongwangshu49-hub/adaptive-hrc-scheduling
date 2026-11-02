@@ -1,0 +1,546 @@
+{
+  "format": "P063-REPRODUCTION-1",
+  "at": "2026-11-01T15:27:35.372445+08:00",
+  "status": "P06_3_LOCAL_COMPLETE",
+  "stage_complete": true,
+  "Git_preservation": {
+    "before": {
+      ".git/HEAD": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80",
+      ".git/refs/heads/main": "8e374463083ed9798922486ca4c397de6a10441e719dfdf91d6cccf2d2c98166",
+      ".git/index": "924b359ef79d04cd11bc70d136cea5682c0e330336b8083fb4cf31c2237779bc"
+    },
+    "observed_after": {
+      ".git/HEAD": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80",
+      ".git/refs/heads/main": "8e374463083ed9798922486ca4c397de6a10441e719dfdf91d6cccf2d2c98166",
+      ".git/index": "924b359ef79d04cd11bc70d136cea5682c0e330336b8083fb4cf31c2237779bc"
+    },
+    "index_byte_changed": false,
+    "index_variance_cause": "UNKNOWN_HISTORICAL_AND_ANY_NEW_VARIANCE_NOT_ATTRIBUTED",
+    "staged_diff_empty": true,
+    "index_reset_or_rewritten_by_agent": false
+  },
+  "P06_original_targets_fully_met": false,
+  "P06_2_status": "P06_2_LIMITED_SCOPE_COMPLETE",
+  "received_at": "2026-11-01T12:59:52.650328+08:00",
+  "wall_from_received_receipt_s": 8862.722117,
+  "effective_work_seconds": null,
+  "effort_note": "Machine work overlaps analysis; effective work and pure waiting were not separately metered. Initial entry reading precedes the received receipt; do not reinterpret the 3–4h estimate as actual effort.",
+  "owner_approval_wait_s": 0,
+  "old_P062_deadline_inherited": false,
+  "core_source_count": 247,
+  "core_sources_unchanged": true,
+  "normal": {
+    "case": "normal",
+    "catalog_version": 0,
+    "completed_operations": 1023,
+    "configuration_operations": 448,
+    "decision_audit": "PASS",
+    "elapsed_s": 1476.4112988999987,
+    "events": 4473,
+    "execution_audit": "PASS",
+    "final": {
+      "audit_status": "PASS",
+      "catalog_version": 0,
+      "epoch": 0,
+      "expected_receipts_complete": true,
+      "holds": 0,
+      "intake_closed": true,
+      "last_prefix_hash": "cb3afbb66ef546b7de78a0cf407ba72da497ddeed1732a68857846a0b3e92f87",
+      "open_obligations": 0,
+      "pending_requests": 0,
+      "phase": "COMPLETED",
+      "run_id": "P063-NORMAL",
+      "run_spec_sha256": "c42214c250266e2580b717f75a049617ab21eaa6222e8dc745a6e6768de75f39",
+      "running": 0,
+      "save_status": "COMPLETE"
+    },
+    "full_schedule_version": 1,
+    "products": 1,
+    "python_version": "3.12.13",
+    "received": 1,
+    "script_sha256": "172cb9be10caa78253fe1f0291622131668fefb0b34d92fbccf5dd2908af46b8",
+    "status": "PASS",
+    "termination": "OPERATIONS_COMPLETE"
+  },
+  "normal_helper_applicability": {
+    "status": "PASS",
+    "old_sha256": "172cb9be10caa78253fe1f0291622131668fefb0b34d92fbccf5dd2908af46b8",
+    "new_sha256": "885bc796da578c83e00c6d96d350fa50ad8d6d66f6119d8cb9acbd2df26d02e3",
+    "normal_actual_run_kept": true,
+    "core_candidate_unchanged": true,
+    "normal_execute_AST_equal_after_excluding_dynamic_only_hook_and_else": true,
+    "new_run_id_default_None_evaluates_same_normal_identity": true,
+    "change": "Empty STOP payload and required own STOP ACCEPTED/APPLIED plus zero protocol errors in dynamic branch; optional explicit attempt ID"
+  },
+  "normal_completed_static_operations": 436,
+  "normal_independent": {
+    "lifecycle_checks": 19262110,
+    "base_checks": 39768,
+    "plans": {
+      "status": "PASS",
+      "scope": "COMPLETE_PLAN_REPLAY_AND_ACTUAL_DISPATCH_BINDING",
+      "checks": 1024,
+      "versions": 1,
+      "actual_starts": 1023,
+      "actual_completions": 1023,
+      "solve_calls": 1
+    },
+    "packets": 2149,
+    "events": 4473,
+    "rows": 24680,
+    "full_plan_rows": 1023,
+    "archive_status": "STALE",
+    "writable": false,
+    "dual_view_relation": "SAME_OBSERVATION",
+    "loaded_final_package_modules": 49
+  },
+  "dynamic": {
+    "case": "dynamic",
+    "catalog_version": 1,
+    "completed_operations": 5,
+    "configuration_operations": 448,
+    "decision_audit": "PASS",
+    "elapsed_s": 88.86523570001009,
+    "events": 106,
+    "execution_audit": "PASS",
+    "final": {
+      "audit_status": "PASS",
+      "catalog_version": 1,
+      "epoch": 0,
+      "expected_receipts_complete": false,
+      "holds": 0,
+      "intake_closed": false,
+      "last_prefix_hash": "0cd0093e67494042b8441f50a5ef7c568adc1b5bb9f9a226da0972ca3f15a6eb",
+      "open_obligations": 29,
+      "pending_requests": 0,
+      "phase": "STOPPED",
+      "run_id": "P063-DYNAMIC-r2",
+      "run_spec_sha256": "965db51ccbd6fdf2a91443349a2ee132bc834800ab3069a36b2117a500086354",
+      "running": 0,
+      "save_status": "COMPLETE"
+    },
+    "full_schedule_version": 2,
+    "products": 1,
+    "python_version": "3.12.13",
+    "received": 0,
+    "script_sha256": "885bc796da578c83e00c6d96d350fa50ad8d6d66f6119d8cb9acbd2df26d02e3",
+    "status": "PASS",
+    "termination": "ORDERLY_STOPPED"
+  },
+  "dynamic_independent": {
+    "lifecycle_checks": 1305,
+    "base_checks": 547,
+    "plans": {
+      "status": "PASS",
+      "scope": "COMPLETE_PLAN_REPLAY_AND_ACTUAL_DISPATCH_BINDING",
+      "checks": 7,
+      "versions": 2,
+      "actual_starts": 5,
+      "actual_completions": 5,
+      "solve_calls": 2
+    },
+    "packets": 10,
+    "events": 106,
+    "rows": 2676,
+    "full_plan_rows": 2046,
+    "archive_status": "STALE",
+    "writable": false,
+    "dual_view_relation": "SAME_OBSERVATION",
+    "loaded_final_package_modules": 50
+  },
+  "saved_final_Kit_reconstruction": {
+    "lifecycle_checks": 221922,
+    "base_checks": 4234,
+    "plans": {
+      "status": "PASS",
+      "scope": "COMPLETE_PLAN_REPLAY_AND_ACTUAL_DISPATCH_BINDING",
+      "checks": 13,
+      "versions": 2,
+      "actual_starts": 11,
+      "actual_completions": 11,
+      "solve_calls": 2
+    },
+    "packets": 173,
+    "events": 329,
+    "rows": 5241,
+    "full_plan_rows": 2046,
+    "archive_status": "STALE",
+    "writable": false,
+    "dual_view_relation": "SAME_OBSERVATION",
+    "loaded_final_package_modules": 49
+  },
+  "saved_final_Kit_scope": "Original 0.850075h STOPPED remains partial, not full-chain completion",
+  "discarded_dynamic_helper_attempt": {
+    "run_id": "P063-DYNAMIC",
+    "process_exit": 0,
+    "classification": "FAILED_HELPER_ATTEMPT_PRESERVED_NOT_SELECTED",
+    "original_result_file_unchanged": true,
+    "reason": "FIELD_UNKNOWN STOP payload and external orderly stop; final selected r2 has own dual receipts and zero protocol errors"
+  },
+  "presentation_cache": {
+    "business_rows_identical_without_cache": true,
+    "exact_original_visual_attributes_require_saved_cache": true,
+    "cache_sha256": "56c1b8c39ed52c53bb9540febed64d09a89d01f4c5662319db054f0230850048",
+    "empty_cache_changed_fields": [
+      "color",
+      "color_collision",
+      "color_slot",
+      "work_number"
+    ]
+  },
+  "current_common_prefix": {
+    "status": "PASS",
+    "scope": "FINAL_SAME_CONFIGURATION_COMMON_LEGAL_PHYSICAL_PREFIX_ONLY",
+    "full_chain_Kit_claim": false,
+    "normal_CPU_run": "P063-NORMAL",
+    "saved_Kit_run": "P051-5c420551c468461b832db49e9c88074f",
+    "cut_before_ORDER_UPDATE_h": 0.36948611111111135,
+    "physical_records": 7,
+    "starts": 4,
+    "completions": 3,
+    "compared_state_fields": [
+      "positions",
+      "masses",
+      "completed",
+      "owners",
+      "reservations",
+      "humans",
+      "products"
+    ],
+    "maximum_differences": {
+      "geometry_m": 0,
+      "time_h": 0,
+      "other_numeric": 2.7755575615628914e-17
+    },
+    "exclusions": [
+      "Administrative CLOSE_INPUT versus open intake and CLOCK sampling are not same-input event streams",
+      "Run identity mapped bijectively",
+      "expected_revision checked by each original audit; administrative close adds one world revision",
+      "Native readback producer/evidence identity checked in original native audit, not compared to CPU producer"
+    ],
+    "comparator_sha256": "843b1a65c2655cdf0cb4d770220a6a2323d150351fdd1e772323286d2d48c048",
+    "configuration_semantically_equal": true,
+    "configuration_serialization": "Canonical CPU versus indented Kit; both raw input hashes retained"
+  },
+  "independent_process_business_display_reconstruction_equal": true,
+  "display_repeat": {
+    "status": "PASS",
+    "scope": "Two independent processes reconstruct identical business data; exact presentation is conditional on the saved cache",
+    "cases": [
+      {
+        "case": "normal",
+        "status": "PASS",
+        "business_display_sha256": "13e91176fe9d6e5ab12cdad3ab558bd700ab908a0db8e86076734855dfc805f7",
+        "raw_full_display_hash_equal": true,
+        "exact_rows_with_saved_presentation_cache": true,
+        "cache_envelope_sha256": "bf16a05a3bbaed70d45f9a84b2275ecc08db0f887969d187c9d55396088adbc0",
+        "presentation_difference_fields": [],
+        "selected_full_display_sha256": "f3d7428d7c85f45e022b72b801774ce02eb7675fc25f046622e0a22f00756a6d",
+        "independent_full_display_sha256": "f3d7428d7c85f45e022b72b801774ce02eb7675fc25f046622e0a22f00756a6d"
+      },
+      {
+        "case": "dynamic",
+        "status": "PASS",
+        "business_display_sha256": "71405ffeabe4d2c23b5429dffeb5553dae42d75bdbe2e6f7a14f8c1a51f93dc6",
+        "raw_full_display_hash_equal": true,
+        "exact_rows_with_saved_presentation_cache": true,
+        "cache_envelope_sha256": "d3a7e51e90448aff5da7d25f0b8ce375de4f1e672cda2bcefd3ecc8e7aa294ef",
+        "presentation_difference_fields": [],
+        "selected_full_display_sha256": "48b01c52fa3e0910515ed8bb9ec788d38629a97059cf6ed1f9e4d7242ea8d375",
+        "independent_full_display_sha256": "48b01c52fa3e0910515ed8bb9ec788d38629a97059cf6ed1f9e4d7242ea8d375"
+      }
+    ]
+  },
+  "historical_full_pairs_reused": 6,
+  "historical_pairs_reclassified_as_final_source": false,
+  "distribution": {
+    "at": "2026-11-01T13:04:06.329096+08:00",
+    "status": "PASS",
+    "wheel_sha256": "042f2a1e60c33947a4b5566047c965127638b23602a174746be354554693df02",
+    "wheel_members": 110,
+    "sdist_members": 110,
+    "sdist_sha256": "814fd2bcfce788669c3c5cb4e8d1a163b39042ede8a56c7179597979e9f32e35",
+    "historical_full_regression": "REUSED_NOT_RERUN",
+    "historical_CI": "G05_ONLY_NOT_CURRENT_P06"
+  },
+  "installed_package_files_exact": 110,
+  "desktop_applicability": {
+    "status": "PASS",
+    "mode": "EXISTING_LOCKED_DESKTOP_ENVIRONMENT_REUSED; fresh core/reference environment separately tested",
+    "versions": {
+      "PySide6": "6.12.0",
+      "WebEngine": "6.12.0.140",
+      "Qt": "6.12.0"
+    },
+    "source_and_lock_pins": [
+      {
+        "path": "desktop/p051/pyproject.toml",
+        "sha256": "20e8d2e30c62ee15e4c866780bf8e6496f4ecd2dff8afd55432014597a0570bd"
+      },
+      {
+        "path": "desktop/p051/uv.lock",
+        "sha256": "827a9666aa79a0ec8fcb858019731702fb6db5bcda9a93280cd779c493fea61a"
+      },
+      {
+        "path": "desktop/p051/web/package.json",
+        "sha256": "9c78606499c2c0947004654001287adf1ab50b348deba536890a0dfef67876dd"
+      },
+      {
+        "path": "desktop/p051/web/package-lock.json",
+        "sha256": "16b8dd986ca771cb0eaeef1ef587e132f9232c2259c00c28ddb369a753c1c937"
+      }
+    ],
+    "dependency_check_exit": 0,
+    "initial_default_cache_access": "Denied before checking; retried read-only check using task-local cache"
+  },
+  "sdist_rebuilt_wheel": {
+    "status": "PASS",
+    "member_names_equal": true,
+    "all_member_bytes_equal": true,
+    "original_sha256": "042f2a1e60c33947a4b5566047c965127638b23602a174746be354554693df02",
+    "rebuilt_sha256": "042f2a1e60c33947a4b5566047c965127638b23602a174746be354554693df02"
+  },
+  "exact_audit_cache_oracles": {
+    "status": "PASS",
+    "normal_events_original_canonical_and_decode_oracles": 4473,
+    "original_prefix_sizes": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      10,
+      31,
+      64,
+      127,
+      329,
+      1000,
+      2000,
+      4473
+    ],
+    "negative_fork_truncate_replace_controls": 17,
+    "entire_pristine_dynamic_equal": true,
+    "dynamic_checks": 1305,
+    "original_module_globals_unchanged": true,
+    "cache_stats": {
+      "decode_hits": 502,
+      "decode_misses": 106,
+      "prefix_calls": 11,
+      "encoded_events": 212
+    },
+    "elapsed_s": 125.8848673000175,
+    "pristine_verifier_sha256": "b8972cfee5e9e5d7e692544d9009c6d5bd2d1e0bd98b8c1c9e47f267bfbb494d",
+    "cache_source_sha256": "c3aaf639477999f412bdeee3d1c7d072935e7cbbb71c7a13f2eb3e734a016282",
+    "scope": "Pinned read-only original verifier; per-invocation private raw event dictionaries are never mutated by that function"
+  },
+  "readonly_uncached_attempts": "CANCELLED_INCOMPLETE_AND_PRESERVED; no production/Kit process terminated",
+  "regression": {
+    "source": 1281,
+    "wheel": 1281,
+    "original_shared_exit": 0,
+    "mode": "FINAL_UNCHANGED_PACKAGE_REUSED_NOT_RERUN",
+    "retained_original_regression_inputs": {
+      "status": "PASS",
+      "scope": "Retained final candidate regression snapshot, not a new test execution",
+      "count": 1282,
+      "bytes": 2600409097,
+      "elapsed_s": 4.230775000003632,
+      "mismatches": []
+    },
+    "new_helpers": "End-to-end normal/dynamic generation and original independent reconstruction; Ruff and CLI help passed"
+  },
+  "current_remote_CI_executed": false,
+  "historical_CI": "G05 Ubuntu/Windows, separate prior release",
+  "render": {
+    "status": "PASS",
+    "scope": "Six actual Qt/Web archived read-only chart renders; no new native rendering, physical DPI qualification or performance pass",
+    "captures": [
+      {
+        "case": "kit",
+        "mode": "operation",
+        "actual_Qt_Web_render": true,
+        "no_native_Kit": true,
+        "source_status": "STALE",
+        "writable": false,
+        "canvas_count": 1,
+        "recorded_data_bars": 14,
+        "pixel_dimensions": [
+          2049,
+          1152
+        ],
+        "image": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/kit-operation.png",
+          "sha256": "0faa7efb489fff8a3c917dd828d66d108f7f9d56461e69dfe21e694eeb463459"
+        },
+        "dom": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/kit-operation-dom.json",
+          "sha256": "4e4ee395e6edd419ae078c82912aeb9d7746c60a25ac1f2bb2cad6630b2c8f7a"
+        }
+      },
+      {
+        "case": "kit",
+        "mode": "resource",
+        "actual_Qt_Web_render": true,
+        "no_native_Kit": true,
+        "source_status": "STALE",
+        "writable": false,
+        "canvas_count": 1,
+        "recorded_data_bars": 2863,
+        "pixel_dimensions": [
+          2049,
+          1152
+        ],
+        "image": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/kit-resource.png",
+          "sha256": "92524f49f798aa4250601f89a5a994fe11b479e1a73a1fb1f9c2f7875006e9aa"
+        },
+        "dom": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/kit-resource-dom.json",
+          "sha256": "8ae03f1f6e4ea5457c334b793d96cf14948393f73ebf1e615df95e10af01ad61"
+        }
+      },
+      {
+        "case": "normal",
+        "mode": "operation",
+        "actual_Qt_Web_render": true,
+        "no_native_Kit": true,
+        "source_status": "STALE",
+        "writable": false,
+        "canvas_count": 1,
+        "recorded_data_bars": 3106,
+        "pixel_dimensions": [
+          2049,
+          1152
+        ],
+        "image": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/normal-operation.png",
+          "sha256": "e9c4cd7b3c40dfa8e19dc46622535789e47800f2fcd217a61233d961f7ded347"
+        },
+        "dom": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/normal-operation-dom.json",
+          "sha256": "2e9647b68e807e556c11e8c11bba5022b3c2a612406a5eec26ac5d16dbe77e27"
+        }
+      },
+      {
+        "case": "normal",
+        "mode": "resource",
+        "actual_Qt_Web_render": true,
+        "no_native_Kit": true,
+        "source_status": "STALE",
+        "writable": false,
+        "canvas_count": 1,
+        "recorded_data_bars": 3225,
+        "pixel_dimensions": [
+          2049,
+          1152
+        ],
+        "image": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/normal-resource.png",
+          "sha256": "8105b2c2d912556027e07d653e597e3deacbf3244de8275b077bc6595b238f3b"
+        },
+        "dom": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/normal-resource-dom.json",
+          "sha256": "b9f264d1285b1751a1202b746a407aa5501c4bdc0418b80e17150fe4d8bdd2b9"
+        }
+      },
+      {
+        "case": "dynamic",
+        "mode": "operation",
+        "actual_Qt_Web_render": true,
+        "no_native_Kit": true,
+        "source_status": "STALE",
+        "writable": false,
+        "canvas_count": 1,
+        "recorded_data_bars": 450,
+        "pixel_dimensions": [
+          2049,
+          1152
+        ],
+        "image": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/dynamic-operation.png",
+          "sha256": "2de7b99d371da87bdfec2e72966338d2e2f915c1548f50748c5488c1a6a3b2b2"
+        },
+        "dom": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/dynamic-operation-dom.json",
+          "sha256": "4cee1e66c42bfbcb9aa5005d247bbb31f6c73a2c22f9684598606c5cda712381"
+        }
+      },
+      {
+        "case": "dynamic",
+        "mode": "resource",
+        "actual_Qt_Web_render": true,
+        "no_native_Kit": true,
+        "source_status": "STALE",
+        "writable": false,
+        "canvas_count": 1,
+        "recorded_data_bars": 325,
+        "pixel_dimensions": [
+          2049,
+          1152
+        ],
+        "image": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/dynamic-resource.png",
+          "sha256": "350ef5c08f6aa145daf975514e93928a60c40e29faf04af567a180ca09778d15"
+        },
+        "dom": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections/dynamic-resource-dom.json",
+          "sha256": "70f45f712c64f2856c21ea547b0fff0c4470d505c4dddb0797da934aba69b510"
+        }
+      }
+    ],
+    "Qt_exit": 0,
+    "private_desktop_exit": 0,
+    "input_desktop": "Default",
+    "no_worker": true
+  },
+  "normal_full_range_render": {
+    "status": "PASS",
+    "scope": "Supplemental actual Qt/Web full-time-range normal charts; archived read-only, no native render",
+    "captures": [
+      {
+        "mode": "operation",
+        "start_h": 0,
+        "span_h": 312.98034555555546,
+        "image": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections-full-normal/normal-operation.png",
+          "sha256": "e676e07ee3cd417a59e7599d21329b313e511e2ac1cfe1da5b1efa4051fed069"
+        },
+        "dom": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections-full-normal/normal-operation-dom.json",
+          "sha256": "09b0cc5cc1affc9382d98bab24bfabc8219bb5ddfa96d1e7ee5838b028af1842"
+        }
+      },
+      {
+        "mode": "resource",
+        "start_h": 0,
+        "span_h": 312.98034555555546,
+        "image": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections-full-normal/normal-resource.png",
+          "sha256": "28e77b770980e8b7f93da31b44726837f05fbdb914824136b3ac8a574d3daf98"
+        },
+        "dom": {
+          "path": ".local/p063-execution-20261101-r1/rendered-projections-full-normal/normal-resource-dom.json",
+          "sha256": "5bfc8aad35ca77baace3ef1a919cdfb30ba4d0709eaa8442e35206734be22c30"
+        }
+      }
+    ]
+  },
+  "limitations": [
+    "Source age 2s NOT_MET",
+    "Continuous 4Hz NOT_ESTABLISHED",
+    "Stable segment INSUFFICIENT",
+    "10/s and 50/s qualification NOT_ESTABLISHED",
+    "621.01 K01 historical root cause OPEN",
+    "E20 same-Kit full reception NOT_MET; approved amendment retained",
+    "WIP/J3 HOLD remaining NOT_MET",
+    "Manual REST not implemented; P08 owner operation pending; G2 OPEN"
+  ],
+  "G06_started": false,
+  "G06_publication_authorized": false,
+  "P07_started": false,
+  "Git_writes": false,
+  "README_updated": false,
+  "upload": false,
+  "automation_wakeup": false,
+  "technical_verified_at": "2026-11-01T15:27:33.473914+08:00"
+}

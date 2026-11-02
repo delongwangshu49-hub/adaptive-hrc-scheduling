@@ -1,0 +1,228 @@
+{
+  "identity": "P07-REVIEW-RESOLUTION-r1",
+  "status": "P07_R1_R4_CLOSED_WITHIN_OFFLINE_SCOPE",
+  "original_open_record": {
+    "path": "docs/delivery/p07_review_findings_r1.json",
+    "bytes": 8726,
+    "sha256": "c20789dfed50999cb6fbf8fcdc1d6ed854e024b3d80671e7cc0260283be6d2fc"
+  },
+  "resolutions": [
+    {
+      "id": "P07-R1",
+      "status": "CLOSED_WITHIN_SCOPE",
+      "evidence": "Exact zero-crossing polylines and independent curve integrals",
+      "curves": 30,
+      "max_absolute_area_error": 5.3290705182007514e-14
+    },
+    {
+      "id": "P07-R2",
+      "status": "CLOSED_WITHIN_SCOPE",
+      "evidence": "Unmodified actual validator CLI accepts control and rejects all six changed result copies",
+      "outcomes": [
+        {
+          "case": "control",
+          "actual_exit_code": 0,
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "case": "bad_fatigue",
+          "actual_exit_code": 1,
+          "status": "FAIL",
+          "reason": "NUMBER:summary.lifecycle_sum_E"
+        },
+        {
+          "case": "bad_pair",
+          "actual_exit_code": 1,
+          "status": "FAIL",
+          "reason": "NUMBER:paired_values_and_deltas[0].delta_adaptive_minus_edd"
+        },
+        {
+          "case": "bad_denominator",
+          "actual_exit_code": 1,
+          "status": "FAIL",
+          "reason": "NUMBER:dynamic.P1.availability_h"
+        },
+        {
+          "case": "bad_E20",
+          "actual_exit_code": 1,
+          "status": "FAIL",
+          "reason": "NUMBER:E20_SOURCE_BOUND_REFERENCE.products[0].first_actual_production_h"
+        },
+        {
+          "case": "bad_row_label",
+          "actual_exit_code": 1,
+          "status": "FAIL",
+          "reason": "NUMBER:dual.planned_rows"
+        },
+        {
+          "case": "bad_cancel",
+          "actual_exit_code": 1,
+          "status": "FAIL",
+          "reason": "NUMBER:cancellation.lots[0].returned"
+        }
+      ]
+    },
+    {
+      "id": "P07-R3",
+      "status": "CLOSED_WITHIN_SCOPE",
+      "source_input": {
+        "path": "results/p07/r3/cancellation_inputs.json",
+        "bytes": 504389,
+        "sha256": "41e90f27a13af64468f4d77a01e99a332325d0cdd600417e66213cfaf5ced422"
+      },
+      "result": {
+        "path": "results/p07/r3/cancellation.json",
+        "bytes": 101655,
+        "sha256": "a1dda1df1620d88cb433efbfb61100f21393039e44aa68e18094bcd5251c5cf1"
+      },
+      "accounts": [
+        {
+          "unit": "C-STOCK-CPU-EDD-r4",
+          "run_id": "P053-r2-C-STOCK-CPU-EDD-r4",
+          "epoch": 0,
+          "product_id": "PRODUCT-1",
+          "cancelled_at_h": 0.6776758333333334,
+          "observed_end_h": 720,
+          "final_product_status": "CANCELLED_WITH_HISTORY",
+          "original_termination": "WINDOW_CENSORED",
+          "material_lot_records": 120,
+          "returned_lots": 28,
+          "residual_available_lots": 0,
+          "installed_mass_t": 0,
+          "active_resource_holders": 0,
+          "running_commands": 0,
+          "material_reservations": 0,
+          "command_linked_person_h": 0.7473424999999999,
+          "command_linked_phase_h": {
+            "WALK": 0.02326388888888888,
+            "DRIVE": 0.17338888888888881,
+            "WORK": 0.5506897222222222
+          },
+          "command_linked_exposure_F_h": 0.1746924333070648,
+          "actual_transport_m": 96.1,
+          "actual_empty_return_m": 61.3,
+          "actual_walk_m": 83.74999999999997,
+          "presence_labour_cost": null,
+          "monetary_status": "UNKNOWN_NO_DECLARED_COST_POLICY_FOR_THIS_DIRECT_LOOP",
+          "attribution": "RECORDED_COMMAND_LINKED_PERSON_INTERVALS_AND_ROUTE_CHAINS; UNASSIGNED_WAIT_REST_OFF_SHIFT_NOT_ALLOCATED",
+          "cleanup_time_h": null,
+          "cleanup_time_status": "FINAL_STATE_CHECKED; LAST_COMMAND_COMPLETION_IS_NOT_A_CLEANUP_TIMESTAMP",
+          "observed_cleanup_status": "NO_RECORDED_MATERIAL_OR_INSTALLED_RESIDUE"
+        },
+        {
+          "unit": "C-STOCK-CPU-ADAPTIVE-r4",
+          "run_id": "P053-r2-C-STOCK-CPU-ADAPTIVE-r4",
+          "epoch": 0,
+          "product_id": "PRODUCT-1",
+          "cancelled_at_h": 0.6776758333333334,
+          "observed_end_h": 720,
+          "final_product_status": "CANCELLED_WITH_HISTORY",
+          "original_termination": "WINDOW_CENSORED",
+          "material_lot_records": 120,
+          "returned_lots": 28,
+          "residual_available_lots": 0,
+          "installed_mass_t": 0,
+          "active_resource_holders": 0,
+          "running_commands": 0,
+          "material_reservations": 0,
+          "command_linked_person_h": 0.7473424999999999,
+          "command_linked_phase_h": {
+            "WALK": 0.02326388888888888,
+            "DRIVE": 0.17338888888888881,
+            "WORK": 0.5506897222222222
+          },
+          "command_linked_exposure_F_h": 0.1746924333070648,
+          "actual_transport_m": 96.1,
+          "actual_empty_return_m": 61.3,
+          "actual_walk_m": 83.74999999999997,
+          "presence_labour_cost": null,
+          "monetary_status": "UNKNOWN_NO_DECLARED_COST_POLICY_FOR_THIS_DIRECT_LOOP",
+          "attribution": "RECORDED_COMMAND_LINKED_PERSON_INTERVALS_AND_ROUTE_CHAINS; UNASSIGNED_WAIT_REST_OFF_SHIFT_NOT_ALLOCATED",
+          "cleanup_time_h": null,
+          "cleanup_time_status": "FINAL_STATE_CHECKED; LAST_COMMAND_COMPLETION_IS_NOT_A_CLEANUP_TIMESTAMP",
+          "observed_cleanup_status": "NO_RECORDED_MATERIAL_OR_INSTALLED_RESIDUE"
+        }
+      ],
+      "material_records": 240
+    },
+    {
+      "id": "P07-R4",
+      "status": "CLOSED_WITHIN_SCOPE",
+      "counts": [
+        {
+          "case": "normal",
+          "total_gantt_rows": 24680,
+          "planned_full_schedule_rows": 1023
+        },
+        {
+          "case": "dynamic",
+          "total_gantt_rows": 2676,
+          "planned_full_schedule_rows": 2046
+        },
+        {
+          "case": "kit",
+          "total_gantt_rows": 5241,
+          "planned_full_schedule_rows": 2046
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "path": "results/p07/r3/validation.json",
+    "bytes": 22403,
+    "sha256": "2ec0db41831de52255c94a1b7d873d6b9837f0f318e98c48f29a8d278e1eb8f6"
+  },
+  "code": [
+    {
+      "path": "analysis/p07/adapters.py",
+      "bytes": 10332,
+      "sha256": "865b4e353aded41874cf7623628a4ba3d5c385ea7f849c0de6fcec121d7477b7"
+    },
+    {
+      "path": "analysis/p07/checks.py",
+      "bytes": 10627,
+      "sha256": "4ffdb2ba0275cd8eed323aead12ffc8b3136c0bb612d2a8cbd5d51dca7f52db0"
+    },
+    {
+      "path": "analysis/p07/validation_engine.py",
+      "bytes": 9943,
+      "sha256": "9c7c36adbd5e58e093ee5fbb617813fac21866e50a647bc29e2063122055949e"
+    },
+    {
+      "path": "analysis/p07/tables.py",
+      "bytes": 5386,
+      "sha256": "34d04e1e1f6dff6b2cc9092cb7308f47b47524b6f1d633c9aa4a7d36cb860e08"
+    },
+    {
+      "path": "analysis/p07/cancellation.py",
+      "bytes": 8105,
+      "sha256": "e5b4e39d6b67bec5d541350e43c892cff69bd203456fd415f8457f829cf0414c"
+    },
+    {
+      "path": "analysis/p07/portable_metrics.py",
+      "bytes": 7727,
+      "sha256": "faa3cfaf00814d03e2f51f2727f17d8aa70d8e751152cbacd59de46ebb41a884"
+    },
+    {
+      "path": "analysis/p07/figures.py",
+      "bytes": 18474,
+      "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+    },
+    {
+      "path": "analysis/p07/export.py",
+      "bytes": 4897,
+      "sha256": "d5fc4fb15a770dace67ece6c3c8e7ffdf0c34a1f96aa9fa29240652d895ed4f4"
+    },
+    {
+      "path": "analysis/p07/deliver.py",
+      "bytes": 16297,
+      "sha256": "25b66e88a25a4e38d04e9b53178f8cb8bb01363122f7d0d12d248dcad1762451"
+    }
+  ],
+  "original_business_core_changed": false,
+  "old_r2_data_and_figures_preserved": true,
+  "new_formal_production_runs": 0,
+  "new_kit_runs": 0,
+  "publication_authorized": false
+}

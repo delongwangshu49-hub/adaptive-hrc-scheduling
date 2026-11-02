@@ -1,0 +1,264 @@
+{
+  "requirements": [
+    {
+      "id": "Q01",
+      "requirements": [
+        "T05",
+        "T09",
+        "I03",
+        "I05"
+      ],
+      "artifacts": [
+        "orders.csv",
+        "products.csv",
+        "e20_orders.csv",
+        "e20_requests.csv"
+      ],
+      "scope": "Dynamic catalog and actual request/observation/adoption/execution times; order and product counts separate",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q02",
+      "requirements": [
+        "T05",
+        "T09"
+      ],
+      "artifacts": [
+        "products.csv",
+        "attempts.json",
+        "cancellation_accounts.csv",
+        "cancellation_lots.csv",
+        "cancellation_materials.csv"
+      ],
+      "scope": "Cancellation, receipt, right censoring, typed material balances and command-linked sunk resources retained; STOCK is not WIP/J3",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q03",
+      "requirements": [
+        "T01",
+        "T09"
+      ],
+      "artifacts": [
+        "resources.csv",
+        "summary.csv"
+      ],
+      "scope": "Per-revision peaks, time area and resource unions; WAIT causes not uniquely inferred",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q04",
+      "requirements": [
+        "T01",
+        "T04",
+        "T09"
+      ],
+      "artifacts": [
+        "transport.csv",
+        "transport_commands.csv",
+        "transport_chains.csv"
+      ],
+      "scope": "Actual command/root/resume chain segments; WALK and empty return separate",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q05",
+      "requirements": [
+        "T03",
+        "I06"
+      ],
+      "artifacts": [
+        "dynamic_people.csv",
+        "dynamic_people_events.csv",
+        "dynamic_intervals.csv"
+      ],
+      "scope": "All historical IDs, newcomer defined time, return continuity and eligibility",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q06",
+      "requirements": [
+        "T03",
+        "T09",
+        "I06"
+      ],
+      "artifacts": [
+        "people.csv",
+        "activity.csv",
+        "dynamic_people.json"
+      ],
+      "scope": "Actual lifecycle vs common 720h; recorded presence labour rates only, frozen resource fees separate",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q07",
+      "requirements": [
+        "T09"
+      ],
+      "artifacts": [
+        "summary.csv",
+        "pairs.csv"
+      ],
+      "scope": "Five within-scenario pairs, nine paired metrics each; no pooled effect or significance inference",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q08",
+      "requirements": [
+        "T02",
+        "T03",
+        "T09"
+      ],
+      "artifacts": [
+        "mechanisms.csv",
+        "stages.csv",
+        "mode_attempts.csv"
+      ],
+      "scope": "Four mechanism cells, two HR aliases; only 12 distinct research executions",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q09",
+      "requirements": [
+        "T08",
+        "T09"
+      ],
+      "artifacts": [
+        "costs.csv"
+      ],
+      "scope": "Original timings and actual dispatch source; nested fields not summed; CPU/peak memory unmeasured",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q10",
+      "requirements": [
+        "T04",
+        "T05",
+        "T07",
+        "T09"
+      ],
+      "artifacts": [
+        "milestones.csv",
+        "e20_orders.csv"
+      ],
+      "scope": "Actual failure/repair/resume and order outcomes; un-frozen 8h catch-up not evaluated",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q11",
+      "requirements": [
+        "T07",
+        "T08",
+        "I03",
+        "I05",
+        "E20"
+      ],
+      "artifacts": [
+        "e20_timeline.csv",
+        "e20_plan_changes.csv",
+        "e20_order_details.json"
+      ],
+      "scope": "r14 same-run four products, five attempts and adopted schedules; 1 received / 3 incomplete",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q12",
+      "requirements": [
+        "T06",
+        "T07",
+        "I07",
+        "E18",
+        "E22"
+      ],
+      "artifacts": [
+        "exports/manifest.json"
+      ],
+      "scope": "Three same-observation domain pairs, original presentation caches; no new native render",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q13",
+      "requirements": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "I03",
+        "I05",
+        "I06",
+        "I07",
+        "E18",
+        "E20",
+        "E22"
+      ],
+      "artifacts": [
+        "p07_source_registry_r3.json",
+        "claim_evidence_r3.tsv",
+        "feedback_metric_binding_r3.json"
+      ],
+      "scope": "Source hashes, windows and scope plus independent portable derived-data replay",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q14",
+      "requirements": [
+        "G07"
+      ],
+      "artifacts": [
+        "p07_completion_r3.json"
+      ],
+      "scope": "Local technical exit and exact G07 candidate; preparation authorized, actual publication awaits its own authorization",
+      "status": "G07_CANDIDATE_PREPARATION_AUTHORIZED_ACTUAL_PUBLICATION_NOT_AUTHORIZED"
+    }
+  ],
+  "claims": {
+    "path": "docs/delivery/claim_evidence_r3.tsv",
+    "bytes": 92479,
+    "sha256": "8e8994a3b375b09eafac038ccd8cf5ce6a7809ba38c0dacdd27d679774313ed4"
+  },
+  "source_registry": {
+    "path": "docs/delivery/p07_source_registry_r3.json",
+    "bytes": 92537,
+    "sha256": "521ad362b4d1dcc1a129668cf43d827d8072c9b321e6e10ee4acb8685a6e4e5e"
+  },
+  "validation": {
+    "path": "results/p07/r3/validation.json",
+    "bytes": 22403,
+    "sha256": "2ec0db41831de52255c94a1b7d873d6b9837f0f318e98c48f29a8d278e1eb8f6"
+  },
+  "figures": {
+    "path": "figures/p07/r3/manifest.json",
+    "bytes": 20843,
+    "sha256": "7e73a24046a3b85a5c7341bcefe10f6b5757ea688d28ac6751ac253cbaef8626"
+  },
+  "metric_definition": "docs/metrics/p07_metrics_definition_r3.md",
+  "real_time_semantics": "P07 offline adapters do not alter GUI, backend or online metric semantics",
+  "upstream_contracts": [
+    {
+      "path": "docs/delivery/requirements.tsv",
+      "bytes": 6370,
+      "sha256": "9fa564afd117dd6d413abf649d1598198b76c880a0ffc7f5c1bdb72a7a4782a1"
+    },
+    {
+      "path": "docs/delivery/interaction_requirements_r2.tsv",
+      "bytes": 2168,
+      "sha256": "7a9ec7a325dff12ce060087418ff1fdc789cb79c242cd0ea271dca905e65efa2"
+    },
+    {
+      "path": "docs/delivery/p061_interaction_validation_r2.tsv",
+      "bytes": 6305,
+      "sha256": "5986d5d8b2d0cb01d7e9e0aa2be83a9147a2a3ea56174aff213fa41ab1b732b8"
+    },
+    {
+      "path": "docs/delivery/p063_reproduction_r1.json",
+      "bytes": 20653,
+      "sha256": "a33f81c67d99dd63b45e66890f847136ebcc75835fcafdd755ff8cae7f6e513b"
+    }
+  ],
+  "actual_vs_planned": "original execution facts, adopted schedule, forecast and derived REST tails remain separate"
+}

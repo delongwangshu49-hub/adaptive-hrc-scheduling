@@ -1,0 +1,362 @@
+[
+  {
+    "scenario": "C",
+    "metric": "on_time_received_fraction_all_released",
+    "adaptive": 0.0,
+    "edd": 0.0,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "F",
+    "metric": "on_time_received_fraction_all_released",
+    "adaptive": 0.0,
+    "edd": 0.0,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "H",
+    "metric": "on_time_received_fraction_all_released",
+    "adaptive": 0.0,
+    "edd": 0.0,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "N",
+    "metric": "on_time_received_fraction_all_released",
+    "adaptive": 0.0,
+    "edd": 0.0,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "U",
+    "metric": "on_time_received_fraction_all_released",
+    "adaptive": 0.0,
+    "edd": 0.0,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "C",
+    "metric": "on_time_ready_fraction_all_released",
+    "adaptive": 0.0,
+    "edd": 0.0,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "F",
+    "metric": "on_time_ready_fraction_all_released",
+    "adaptive": 0.0,
+    "edd": 0.0,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "H",
+    "metric": "on_time_ready_fraction_all_released",
+    "adaptive": 0.0,
+    "edd": 0.0,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "N",
+    "metric": "on_time_ready_fraction_all_released",
+    "adaptive": 0.0,
+    "edd": 0.0,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "U",
+    "metric": "on_time_ready_fraction_all_released",
+    "adaptive": 0.0,
+    "edd": 0.0,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "C",
+    "metric": "last_received_h",
+    "adaptive": 291.85897266666655,
+    "edd": 291.85897266666655,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "F",
+    "metric": "last_received_h",
+    "adaptive": 531.8589726666667,
+    "edd": 531.8589726666667,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "H",
+    "metric": "last_received_h",
+    "adaptive": 531.8589726666667,
+    "edd": 531.8589726666667,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "N",
+    "metric": "last_received_h",
+    "adaptive": 531.8589726666667,
+    "edd": 531.8589726666667,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "U",
+    "metric": "last_received_h",
+    "adaptive": 531.8756393333333,
+    "edd": 531.8756393333333,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "C",
+    "metric": "common_window_sum_E",
+    "adaptive": 232.97673725023623,
+    "edd": 232.97673725023623,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "F",
+    "metric": "common_window_sum_E",
+    "adaptive": 241.65423528732512,
+    "edd": 241.65423528732512,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "H",
+    "metric": "common_window_sum_E",
+    "adaptive": 305.370320355057,
+    "edd": 305.370320355057,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "N",
+    "metric": "common_window_sum_E",
+    "adaptive": 241.56411052900708,
+    "edd": 241.56411052900708,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "U",
+    "metric": "common_window_sum_E",
+    "adaptive": 241.9535464835128,
+    "edd": 241.95455942726284,
+    "delta_adaptive_minus_edd": -0.0010129437500268068,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "C",
+    "metric": "common_window_max_E",
+    "adaptive": 26.519840650397885,
+    "edd": 26.519840650397885,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "F",
+    "metric": "common_window_max_E",
+    "adaptive": 35.37405705553961,
+    "edd": 35.37405705553961,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "H",
+    "metric": "common_window_max_E",
+    "adaptive": 39.55593521935177,
+    "edd": 39.55593521935177,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "N",
+    "metric": "common_window_max_E",
+    "adaptive": 35.37405705553961,
+    "edd": 35.37405705553961,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "U",
+    "metric": "common_window_max_E",
+    "adaptive": 39.18491953949683,
+    "edd": 39.184919539496825,
+    "delta_adaptive_minus_edd": 7.105427357601002e-15,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "C",
+    "metric": "transport_m",
+    "adaptive": 20903.38999999996,
+    "edd": 20903.38999999996,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "F",
+    "metric": "transport_m",
+    "adaptive": 41935.39799999998,
+    "edd": 41935.39799999998,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "H",
+    "metric": "transport_m",
+    "adaptive": 41874.069999999985,
+    "edd": 41874.069999999985,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "N",
+    "metric": "transport_m",
+    "adaptive": 41935.39799999998,
+    "edd": 41935.39799999998,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "U",
+    "metric": "transport_m",
+    "adaptive": 41774.44999999997,
+    "edd": 41774.44999999997,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "C",
+    "metric": "empty_transport_ratio",
+    "adaptive": 0.33524581419568844,
+    "edd": 0.33524581419568844,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "F",
+    "metric": "empty_transport_ratio",
+    "adaptive": 0.33894434482295865,
+    "edd": 0.33894434482295865,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "H",
+    "metric": "empty_transport_ratio",
+    "adaptive": 0.33797617475444847,
+    "edd": 0.33797617475444847,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "N",
+    "metric": "empty_transport_ratio",
+    "adaptive": 0.33894434482295865,
+    "edd": 0.33894434482295865,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "U",
+    "metric": "empty_transport_ratio",
+    "adaptive": 0.33639743910452485,
+    "edd": 0.33639743910452485,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "C",
+    "metric": "wip_area_product_h",
+    "adaptive": 1005.0187662777777,
+    "edd": 1005.0187662777777,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "F",
+    "metric": "wip_area_product_h",
+    "adaptive": 765.4654226666655,
+    "edd": 765.4654226666655,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "H",
+    "metric": "wip_area_product_h",
+    "adaptive": 764.5951726666653,
+    "edd": 764.5951726666653,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "N",
+    "metric": "wip_area_product_h",
+    "adaptive": 765.4654226666655,
+    "edd": 765.4654226666655,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "U",
+    "metric": "wip_area_product_h",
+    "adaptive": 819.0650381111104,
+    "edd": 819.0650381111104,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "C",
+    "metric": "available_person_h",
+    "adaptive": 3600.0,
+    "edd": 3600.0,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "F",
+    "metric": "available_person_h",
+    "adaptive": 2697.8845899999997,
+    "edd": 2697.8845899999997,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "H",
+    "metric": "available_person_h",
+    "adaptive": 2697.8845899999997,
+    "edd": 2697.8845899999997,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "N",
+    "metric": "available_person_h",
+    "adaptive": 2697.8845899999997,
+    "edd": 2697.8845899999997,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  },
+  {
+    "scenario": "U",
+    "metric": "available_person_h",
+    "adaptive": 2698.1345899999997,
+    "edd": 2698.1345899999997,
+    "delta_adaptive_minus_edd": 0.0,
+    "status": "EVALUABLE"
+  }
+]

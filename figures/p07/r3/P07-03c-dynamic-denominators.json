@@ -1,0 +1,52 @@
+{
+  "id": "P07-03c-dynamic-denominators",
+  "group": 3,
+  "caption": "两个原局部动态案例各16人的真实在岗与可用人时；离岗者仍保留，新人到岗前不补零。两个案例窗口/方法不同，图不作成对方法效应比较。",
+  "alt": "两个原局部动态案例各16人的真实在岗与可用人时；离岗者仍保留，新人到岗前不补零。两个案例窗口/方法不同，图不作成对方法效应比较。",
+  "source_data": [
+    {
+      "path": "results/p07/r3/dynamic_people.csv",
+      "bytes": 9230,
+      "sha256": "f5bb646f11d4a50faa8840a6ae8da7a07c48982999b97f29159175f1a53f4239"
+    },
+    {
+      "path": "results/p07/r3/dynamic_people.json",
+      "bytes": 8984214,
+      "sha256": "b9a06c9728169aa3303f048fe406eb2dd2212dd959e64ccf3c3e348da247efce"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/figures.py",
+    "bytes": 18474,
+    "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+  },
+  "format": "P07-FIGURE-PROVENANCE-1",
+  "files": [
+    {
+      "path": "figures/p07/r3/P07-03c-dynamic-denominators.png",
+      "bytes": 229427,
+      "sha256": "4d5033ce8389332ea44b46b74a69c0d2283569e6b9d8c9ba214b2f66372bda45"
+    },
+    {
+      "path": "figures/p07/r3/P07-03c-dynamic-denominators.svg",
+      "bytes": 44048,
+      "sha256": "9b5c668ae87d56eb1db97b3c6ac4bb5fd92698f400c07ad544059fbb6902437b"
+    },
+    {
+      "path": "figures/p07/r3/P07-03c-dynamic-denominators.pdf",
+      "bytes": 17586,
+      "sha256": "e3723733ca92d3831e57d841073c11c283dfe106398856a06d90a8219497983e"
+    }
+  ],
+  "width_inches": 12.0,
+  "height_inches": 7.0,
+  "raster_dpi": 300,
+  "font_family": "DejaVu Sans",
+  "matplotlib": "3.11.2",
+  "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+  "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+  "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+  "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+  "smoothing": "NONE",
+  "publisher_compliance_claim": false
+}

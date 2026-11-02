@@ -1,7 +1,7 @@
 [project]
 name = "adaptive-hrc-scheduling"
 version = "0.1.0"
-description = "Adaptive human-robot scheduling research: environment scaffold"
+description = "Dynamic human-robot collaborative scheduling and production simulation"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 license = "MIT"

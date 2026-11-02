@@ -1,96 +1,71 @@
-<div align="center">
-
-<img src="docs/assets/readme/project-banner.svg" alt="Adaptive HRC Scheduling：生产约束、协作调度与可核验执行" width="100%">
-
 # Adaptive HRC Scheduling
 
-**面向模块化建筑工厂的人机协作自适应调度研究**
+**面向模块化建筑制造的动态人机协作调度与执行仿真。**
 
-联合选择协作模式、任务顺序和资源安排，在 CPU / Isaac Sim 中执行，保存可独立核验的决策与读回。
+将任务前序、人员疲劳、协作模式、设备、物料和空间约束放进同一生产模型，根据执行反馈调整后续安排，并保存可独立核验的运行记录。
 
-[![CPU checks](https://img.shields.io/github/actions/workflow/status/delongwangshu49-hub/adaptive-hrc-scheduling/ci.yml?branch=main&label=CPU%20checks&color=555&labelColor=222)](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml) [![Python](https://img.shields.io/badge/Python-3.12.13-555?logo=python&logoColor=white&labelColor=222)](pyproject.toml) [![License](https://img.shields.io/badge/License-MIT-555?labelColor=222)](LICENSE) [![Research scope](https://img.shields.io/badge/Scope-Simulation_research-555?labelColor=222)](docs/model/S18_simulation_scope_proposal_r1.md)
+[![Python](https://img.shields.io/badge/Python-3.12.13-555?labelColor=222)](pyproject.toml)
+[![License](https://img.shields.io/badge/License-MIT-555?labelColor=222)](LICENSE)
+[![CPU checks](https://img.shields.io/github/actions/workflow/status/delongwangshu49-hub/adaptive-hrc-scheduling/ci.yml?branch=main&label=CPU%20checks&color=555&labelColor=222)](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml)
 
-[项目概览](#overview) · [运行画面](#showcase) · [快速开始](#quickstart) · [工作原理](#architecture) · [验证与边界](#validation) · [文档](#docs)
-
-</div>
+[快速开始](#快速开始) · [工作台](#工作台) · [系统架构](#系统架构) · [研究结果](#研究结果) · [文档](#文档)
 
 <a id="overview"></a>
 
-## 把生产约束、协作安排和执行证据接起来
+## 可以用它做什么
 
-模块制造中的安排需要同时满足前序、人员资格与疲劳、设备、物料、空间和在制占用。本项目将这些约束放入统一合法域，根据已交付的状态观察，调整尚未执行的任务、协作模式和资源安排，并保留在制段、承诺、载荷与人员历史。
+- **描述生产系统。** 定义产品工序、人员资格与日历、疲劳累积和恢复，以及设备、物料、搬运路线和占位约束。
+- **比较调度策略。** 在同一合法域中运行规则基线和自适应策略，区分候选安排、实际采用、执行结果及计算预算。
+- **处理运行中变化。** 通过共享会话提交普通单、急单、取消、设备故障与维修、人员到离岗和返回，跟踪受理、生效与业务结果。
+- **查看执行过程。** 使用 CPU 后端或 Isaac Sim，在工作台中对照三维场景、实际工序和未来计划。
+- **复现分析。** 从保存的事件和状态生成逐产品、人员、资源及成本统计，核对图表、双域导出和结论的来源。
 
-- **生产模型：** 结构、MEP、内装、质量放行与外部接收，共享人员、设备、材料和空间约束。
-- **自适应闭环：** 规则与联合安排共用合法域、预算和回退，动态订单及人员变更经同一会话契约受理。
-- **可复核证据：** 命令、事件、读回、目录和计划绑定身份与摘要，保存后独立重建实际轨迹及显示数据。
+<a id="status"></a>
 
-Windows 工作台将原生 Isaac 视口与 React/WebEngine 甘特相邻承载，提供普通单、急单、人员变更、只读重建和安全停止入口。模型、执行、界面与负责人操作分别验收，当前成果属于 **S18-SIM-A1 仿真研究域**。
-
-<a id="showcase"></a>
-
-## 运行画面
-
-### 双图工作台
-
-<img src="docs/assets/readme/workbench-native-p051.jpg" alt="P05.1真实原生窗口截图：Isaac场景嵌入左侧，右侧显示计划v2实时甘特" width="100%">
-
-P05.1 真实运行截图（计划 v2）：左侧是嵌入的 Isaac 三维场景，右侧是实时甘特，下方提供详情与回执。[截图来源](docs/public_validation/visual_provenance.json)。
-
-<details>
-<summary>查看原始运行截图、动态案例与图像来源</summary>
-
-**完整 CPU 链的资源甘特**
-
-<img src="docs/assets/readme/cpu-normal-resources-p063.png" alt="完整CPU链的原始Qt/Web归档资源甘特，左侧原生面板未连接" width="100%">
-
-`P063-NORMAL` 实际接收 1/1，436 项有效静态工序完成，终点 272.156822 h。此原始归档保留“陈旧/只读”和未连接面板。
-
-**原生工厂场景**
-
-<img src="docs/assets/readme/native-factory-p062.png" alt="最终常规入口Kit的原始Isaac场景截图，模拟时刻0.850075小时" width="100%">
-
-最终常规入口 Kit：计划 v2、revision 329、0.850075 h，STOPPED/COMPLETE，原生退出 0；仍有 29 项义务、1 件未接收。
-
-**动态变更案例**
-
-<img src="docs/assets/readme/dynamic-plan-p063.png" alt="动态订单变更后的Qt/Web工序甘特归档：目录v1、完整计划v2、实际时刻0.541264小时" width="100%">
-
-`P063-DYNAMIC-r2` 中一次 ORDER_UPDATE 获得同 ID 的 ACCEPTED/APPLIED，目录 v1 / 完整计划 v2，随后按原 STOP 保存。该局部案例与正常完整链分别评价。本折叠区内三张 PNG 均为原始证据的逐字节副本；来源、摘要和采样范围见[图像来源](docs/public_validation/visual_provenance.json)。
-
-</details>
+当前模型用于 **S18-SIM-A1 仿真研究**。CPU 分析与可选的 Windows / Isaac 工作台分开安装；应用范围和仍未达到的目标见[项目状态](docs/public_results/status.md)。
 
 <a id="quickstart"></a>
 
 ## 快速开始
 
-CPU 路径不需要 Isaac Sim 或 GPU。固定使用 **Python 3.12.13**、**uv 0.12.3**；Windows 命令使用 **PowerShell 7**。
+先用已保存的测量数据重算研究结果：无需 GPU、Isaac Sim 或重新运行生产。使用 **Python 3.12.13**、**uv 0.12.3**；下面是 PowerShell 7 命令。
 
 ```powershell
 git clone https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling.git
 cd adaptive-hrc-scheduling
 uv python install 3.12.13
-uv sync --locked --link-mode copy
-uv run --locked python -I -m adaptive_hrc_scheduling
+uv venv --python 3.12.13 .local/results-env
+uv pip install --python .local/results-env/Scripts/python.exe -r analysis/p07/requirements.txt
+& .local/results-env/Scripts/python.exe analysis/p07/reproduce.py replay --figures --output .local/results-demo
 ```
 
-最后一条命令输出包元数据。生产工具、复现脚本和桌面入口使用完整源码仓库；核心 wheel 与桌面/Isaac 依赖分别安装。
+成功后，`.local/results-demo` 中包含统计 JSON/CSV、验证结果、双域导出和图表。入口会核对输入摘要、独立检查积分与人员分母，并拒绝读取原私有运行档案。输出目录请选择新目录。Linux/macOS 的环境解释器路径为 `.local/results-env/bin/python`。
 
-### 选择一条运行路径
+| 接下来想做什么 | 入口 |
+| --- | --- |
+| 理解数据、指标和比较方法 | [研究结果与再生指南](docs/public_results/README.md) |
+| 执行新的正常 CPU 生产案例 | [安装与生产复现](docs/public_validation/reproduction.md) |
+| 使用 Isaac Sim 双图工作台 | [工作台安装与操作](docs/public_workbench/usage.md) |
+| 检查保存件、目录及计划引用 | [保存重建与独立核验](docs/public_validation/reproduction.md#执行及重建) |
 
-| 目标 | 入口 | 输出与范围 |
-| --- | --- | --- |
-| 执行正常单件 CPU 生产 | 下方正常生产命令 | report、事件、决定、执行/因果审计；以真实接收和终态判断完成 |
-| 复现最终安装包与保存件 | [安装、执行与重建指南](docs/public_validation/reproduction.md) | 干净安装、正常完整链、动态案例、计划引用与双域投影核验 |
-| 使用 Windows 双图工作台 | 下方桌面命令及[工作台指南](docs/public_workbench/usage.md) | Qt/WebEngine 与原生 Kit；已审环境的交互路径 |
-| 核验开发改动 | [完整共享检查](#checks) | 锁、格式、源码测试、构建、隔离 wheel 测试和依赖核对 |
+新的生产运行使用完整源码仓库和核心环境：
 
 ```powershell
+uv sync --locked --link-mode copy
 uv run --locked python scripts/verify_production_chain.py --output .local/new-normal-cpu --backend light --simulation --products 1 --variant SR-W1 --scenario NORMAL --until-h 720
 ```
 
-输出目录须尚不存在。观察 report、实际接收、双审计与真实退出；局部检查点不等于整单完成。
+该命令执行完整案例；结束状态、实际产品接收和独立审计共同决定结果。核心 wheel、分析材料和桌面依赖的分发范围见[安装说明](docs/public_validation/reproduction.md)。
 
-### Windows 工作台
+<a id="showcase"></a>
+
+## 工作台
+
+<img src="docs/assets/readme/workbench-native-p051.jpg" alt="真实工作台运行截图：左侧为嵌入的Isaac三维场景，右侧为实时工序甘特，下方显示详情与回执" width="100%">
+
+实际运行的原生窗口：左侧 Isaac 场景与右侧甘特共同呈现执行状态。截图的运行身份、版本和采样范围见[图像来源](docs/public_validation/visual_provenance.json)。
+
+工作台提供参数配置、运行中请求、回执查看、停止保存和只读重建。Windows 环境使用 PySide6 / Qt WebEngine 和受测 Web 静态资产，Isaac Sim 单独配置：
 
 ```powershell
 uv sync --locked --project desktop/p051
@@ -98,117 +73,107 @@ uv sync --locked --project desktop/p051
 & ./desktop/p051/.venv/Scripts/python.exe ./scripts/run_p051_workbench.py
 ```
 
-仓库包含受测 Web 构建文件。Kit 启动适配沿用已审 Windows 环境和默认安装位置 `D:/Dev/tools/isaac-sim-6.1`；其他安装布局需适配。普通/急单和人员变更先预览、确认，再经共享契约提交；受理、生效、执行和接收分别记录。
-
-<a id="architecture"></a>
-
-## 工作原理
-
-```mermaid
-%%{init: {"theme":"base","themeVariables":{"primaryColor":"#f2f2f2","primaryTextColor":"#171717","primaryBorderColor":"#777777","secondaryColor":"#f2f2f2","tertiaryColor":"#f2f2f2","lineColor":"#7a7a7a","edgeLabelBackground":"#ffffff","fontSize":"18px"},"flowchart":{"htmlLabels":false,"useMaxWidth":true,"wrappingWidth":180},"htmlLabels":false,"look":"classic"}}%%
-flowchart TB
-    I["配置 / 已受理请求"] --> P["规则 / 联合安排"]
-    P --> V["合法域核验 / 承诺保护"]
-    V --> E["CPU / Isaac 执行与读回"]
-    E --> O["已交付观察"]
-    O -. 状态反馈 .-> P
-    E --> F["封存事件 / 目录 / 计划"]
-    F --> A["独立审计 / 双域重建"]
-    classDef default fill:#f2f2f2,stroke:#777777,color:#171717
-    linkStyle default stroke:#7a7a7a
-```
-
-固定研究与交互来源分开。动态目录保留 C0 和版本历史，旧命令按接纳版本核验；未来计划、实际执行、旧版/阻塞与未知状态分别呈现。显示故障不自动重启业务或重放请求，归档读取不刷新生产者源龄。
-
-### 从执行记录到可复现结果
-
-```mermaid
-%%{init: {"theme":"base","themeVariables":{"primaryColor":"#f2f2f2","primaryTextColor":"#171717","primaryBorderColor":"#777777","secondaryColor":"#f2f2f2","tertiaryColor":"#f2f2f2","lineColor":"#7a7a7a","edgeLabelBackground":"#ffffff","fontSize":"18px"},"flowchart":{"htmlLabels":false,"useMaxWidth":true,"wrappingWidth":300},"htmlLabels":false,"look":"classic"}}%%
-flowchart TB
-    I["锁定包与合成配置"] --> X["正常完整链 / 动态案例"]
-    X --> B["事件、目录、计划与保存摘要"]
-    B --> K["独立执行 / 因果 / 引用核验"]
-    K --> D["同观察甘特与场景域数据"]
-    classDef default fill:#f2f2f2,stroke:#777777,color:#171717
-    linkStyle default stroke:#7a7a7a
-```
-
-重建要求相同证据恢复相同目录、事件与业务显示数据；精确颜色/W编号外观还需显式保存的显示缓存。完整预测计划的未来区间与实际派发、实际完成分别绑定。重新运行时的墙钟和搜索结果不要求逐字节相同。
-
-<a id="validation"></a>
-
-## 验证与当前范围
-
-| 证据 | 已成立事实 | 使用范围 |
-| --- | --- | --- |
-| 正常完整 CPU 链 | 436/436 有效静态工序、实际接收 1/1；COMPLETED/COMPLETE；1023 次实际开始/完成 | 最终核心包的完整单产品 SR-W1 合成案例 |
-| 动态变更与保存 | ORDER_UPDATE 同 ID 接纳/应用，目录 v1 / 完整计划 v2；原三组档案 2332 个计划引用绑定 | 动态案例和局部 Kit 的 STOPPED 不替代完整链 |
-| 独立审阅及有限修复 | 完整候选/实际采用、终态禁写、真实退出和交付计划引用分别核验；保留全部原失败 | 按各修复的明确范围关闭，不等同于零遗留 |
-| 本地发布候选 | 原完整共享入口退出 0；源码与隔离 wheel 各 1251 项；前端 23 项、辅助 8 项 | 保留 G05 全部 1209 项身份；历史私有 1281 项集合单列 |
-| 原生与负责人验收 | 已审环境的 Qt/Kit/窗口及局部真实读回 | CPU CI 不替代原生硬件或 P08 负责人操作 |
-
-[结构化证据](docs/public_validation/evidence_summary.json)、[本地验证回执](docs/public_validation/validation_summary.json)、[失败与修复](docs/public_validation/failures_and_repairs.md)及[来源摘要](docs/public_validation/provenance.json)提供具体范围。当前提交的 Ubuntu / Windows CPU CI 以 [Actions](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml) 为准；顶部徽章跟随 main，不把历史 CI 写成本次提交结果。
-
-### 保留的边界
-
-- **性能：** 源龄 2 秒 NOT_MET，持续 4 Hz 未建立，稳段不足，10/s 与 50/s 资格未得。
-- **连续生产与人工：** E20 原同 Kit 全接收、WIP/J3 HOLD 剩余完成、手动 REST 和 P08 负责人操作仍保留原未达/待办状态。
-- **原生与研究：** 历史 621.01 K01 根因 OPEN，工业 G2 OPEN；USD 运动学读回不等于工业动力学或安全认证。正式方法优势和最终联合验收尚未建立。
-- **工具链：** 锁定 Vite 8.0.0 的 npm 审计仍有高等级告警，见[工具链审计](docs/public_validation/toolchain_advisories.md)；本包使用静态构建文件，未自动升级该依赖。
-
-<a id="status"></a>
-
 <details>
-<summary>查看阶段状态与历史成果</summary>
+<summary>查看正常生产与动态变更的归档画面</summary>
 
-| 范围 | 当前状态 |
-| --- | --- |
-| P00–P04 | 需求/模型/契约、动态订单与人员、持续会话与投影后端，按原版本保留 |
-| P05 | 工作台、完整计划与实时甘特、限定连续生产及19格研究覆盖，见[P05历史摘要](docs/public_workbench/README.md) |
-| P06.1 | 动态独立核验本地完成；原R1/R2限定关闭 |
-| P06.2 | 负责人批准的有限功能范围完成；原性能目标未全部达到 |
-| P06.3 | 正常完整CPU链、动态复现及保存重建本地完成；P063-R1按引用/显示绑定范围关闭 |
-| P07–P09 | 统计、负责人操作和最终验收按后续实际授权推进，本包不预记通过 |
+![正常完整CPU案例的甘特归档](docs/assets/readme/cpu-normal-resources-p063.png)
 
-原始大轨迹、受限资料和私有治理保留在受控本地；公开入口提供可获得的合成输入、生成工具、摘要和身份绑定。
+正常单产品 CPU 案例完成436项静态工序并实际接收产品。图为已保存的只读甘特。
+
+![运行中更新订单后的甘特归档](docs/assets/readme/dynamic-plan-p063.png)
+
+动态案例展示订单变更后的目录与完整计划，并按原停止操作保存。局部检查点与完整生产终点分开评价。两图均保留原始字节，来源见[图像记录](docs/public_validation/visual_provenance.json)。
 
 </details>
 
+<a id="architecture"></a>
+
+## 系统架构
+
+同一生产契约连接模型、调度、后端和工作台。调度只消费已交付观察；动态目录保留初始配置和版本历史，实际命令按接纳时的版本核验。
+
+```mermaid
+%%{init: {"theme":"base","htmlLabels":false,"themeVariables":{"primaryColor":"#f2f2f2","primaryTextColor":"#171717","primaryBorderColor":"#777777","lineColor":"#777777","fontSize":"16px"},"flowchart":{"htmlLabels":false,"useMaxWidth":true}}}%%
+flowchart TB
+    C[配置与运行中请求] --> S[规则基线 / 自适应候选]
+    S --> V[合法域核验与承诺保护]
+    V --> E[CPU / Isaac 执行与读回]
+    E --> O[已交付观察与目录版本]
+    O --> S
+    O --> W[三维场景与工序甘特]
+    E --> A[事件、决策与采用计划归档]
+    classDef default fill:#f2f2f2,stroke:#777777,color:#171717
+    linkStyle default stroke:#777777
+```
+
+实际执行、已采用但尚未执行的计划、未安排任务和未知状态分别显示。显示故障不自动重放业务请求，归档读取保留原观察的时效语义。
+
+```mermaid
+%%{init: {"theme":"base","htmlLabels":false,"themeVariables":{"primaryColor":"#f2f2f2","primaryTextColor":"#171717","primaryBorderColor":"#777777","lineColor":"#777777","fontSize":"16px"},"flowchart":{"htmlLabels":false,"useMaxWidth":true}}}%%
+flowchart LR
+    A[保存的执行证据] --> B[独立审计与来源绑定]
+    B --> C[逐产品 / 人员 / 资源统计]
+    C --> D[数值与图表一致性核验]
+    D --> E[CSV、图表与双域导出]
+    E --> F[可追溯结论与再生输入]
+    classDef default fill:#f2f2f2,stroke:#777777,color:#171717
+    linkStyle default stroke:#777777
+```
+
+图表消费经过核验的测量数据。疲劳曲线保留恢复至零的折点；实际生命周期与共同评价窗口分列；甘特总展示行与完整计划行分别计数。
+
+<a id="validation"></a>
+
+## 研究结果
+
+当前提供 N/H/F/U/C 五情景的两方法原值、45行配对指标和四机制格，以及动态人员、订单响应、取消实物账和计算成本。固定研究、动态交互案例及真实 Kit 记录保留各自运行身份和窗口。
+
+<img src="figures/p07/r3/P07-02-scenario-values.png" alt="五个固定情景的两方法原值：准时接收比例、末次接收时刻、共同窗口总暴露与最大个人暴露" width="100%">
+
+现有固定情景中，多数配对结果相同；急单情景的共同窗总暴露差约为 −0.001013 F·h。该研究集没有建立自适应方法的普遍优势。取消案例保持原截尾状态，E20原连续Kit案例仍为1件接收、3件未接收。
+
+[浏览全部图表](docs/public_results/README.md#图表与数据) · [指标定义](docs/metrics/p07_metrics_definition_r3.md) · [来源与结论索引](docs/public_results/README.md#来源与验证)
+
+<a id="docs"></a>
+
+## 文档
+
+| 主题 | 文档 |
+| --- | --- |
+| 入门与环境 | [安装](docs/setup.md) · [CPU生产与保存重建](docs/public_validation/reproduction.md) |
+| 工作台与交互 | [操作指南](docs/public_workbench/usage.md) · [交互案例](docs/public_workbench/interaction_cases.tsv) |
+| 模型与执行 | [生产规范](docs/model/specification.md) · [动态后端](docs/public_backend/README.md) · [共享契约](docs/public_delivery_r2/interaction_contract_r3.md) |
+| 数据、图表与研究复现 | [结果指南](docs/public_results/README.md) · [指标定义](docs/metrics/p07_metrics_definition_r3.md) · [派生输入](examples/reproduction/p07/r3/manifest.json) |
+| 验证与使用边界 | [当前状态](docs/public_results/status.md) · [既有执行证据](docs/public_validation/evidence_summary.json) · [失败与修复](docs/public_validation/failures_and_repairs.md) |
+
 <a id="checks"></a>
 
-## 开发与完整检查
+## 开发与贡献
+
+完整 CPU 检查使用与 CI 相同的入口：
 
 ```powershell
 uv run --locked --no-cache --no-editable --reinstall-package adaptive-hrc-scheduling python scripts/check.py
 ```
 
-共享入口包含锁、Ruff/格式、源码测试、构建，以及全新隔离 wheel 环境中的完整测试和依赖核对。GitHub Ubuntu/Windows 每作业上限为120分钟；检查命令和断言不缩减。前端构建使用独立的 `desktop/p051/web` 锁文件，说明见[工作台指南](docs/public_workbench/usage.md)。
+分析工具还可独立运行定向测试：
 
-```text
-src/adaptive_hrc_scheduling/   领域、契约、计划、执行与投影
-scripts/                     生产、独立审计、复现与桌面入口
-desktop/p051/                Qt / React 工作台及受测 Web 资产
-sim/                         Isaac 场景与读回适配
-examples/reproduction/        公开合成配置与预算输入
-tests/                       CPU 检查与可分发夹具
-docs/public_validation/       P06证据、复现、限制与来源
+```powershell
+uv run --locked python -m unittest discover -s tests -p 'test_p07*.py' -v
 ```
 
-<a id="docs"></a>
+```text
+src/adaptive_hrc_scheduling/   模型、契约、调度与执行
+scripts/                     生产、核验与桌面入口
+desktop/p051/                Qt / React 工作台
+sim/                         Isaac 场景与读回适配
+analysis/p07/                离线分析、验证与图表
+examples/reproduction/        合成配置与派生测量输入
+docs/                        指南、模型与证据
+```
 
-## 文档导航
+问题反馈请附最小复现步骤、版本、实际状态和相关日志；改动应保留已有断言、失败记录及来源范围。通过 [GitHub Issues](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/issues) 讨论问题与改进，再提交附有验证结果的变更。
 
-| 想了解什么 | 从这里开始 |
-| --- | --- |
-| 当前能力、数字与限制 | [P06概览](docs/public_validation/README.md) · [结构化证据](docs/public_validation/evidence_summary.json) |
-| 安装包、执行与保存重建 | [复现指南](docs/public_validation/reproduction.md) · [环境隔离](docs/setup.md) |
-| 工作台与交互 | [操作与构建](docs/public_workbench/usage.md) · [24案例](docs/public_workbench/interaction_cases.tsv) · [UI能力](docs/public_workbench/ui_capabilities.tsv) |
-| 模型与闭环 | [生产规范](docs/model/specification.md) · [动态后端](docs/public_backend/README.md) · [共享契约](docs/public_delivery_r2/interaction_contract_r3.md) |
-| 失败、修复与图像来源 | [修复索引](docs/public_validation/failures_and_repairs.md) · [图像身份](docs/public_validation/visual_provenance.json) |
-| 历史研究与设计 | [P05研究覆盖](docs/public_workbench/coverage.tsv) · [设计及批准](docs/public_workbench/design_and_approval.md) · [仿真范围](docs/model/S18_simulation_scope_proposal_r1.md) |
+## 许可
 
-## 贡献与许可
-
-欢迎通过 [Issues](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/issues)提交可复现问题：版本、命令、预期/实际结果和脱敏证据有助于定位。AI辅助开发和自动化验证与负责人实际操作分别记录。
-
-自有代码采用 [MIT License](LICENSE)。第三方软件与资产按各自条款使用，来源见[资产登记](docs/sim/asset_register.tsv)。阶段提交与标签保留历史版本及失败，最终联合验收另行进行。
+代码采用 [MIT License](LICENSE)。模型假设、图像来源和数据适用范围随对应文档提供。

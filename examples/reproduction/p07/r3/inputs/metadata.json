@@ -1,0 +1,590 @@
+{
+  "N-CPU-EDD": {
+    "source": {
+      "path": ".local/p053-execution-20261028-r2/runs/N-CPU-EDD/run-spec.json",
+      "bytes": 4032,
+      "sha256": "31fb5793a580988f1a0e1294c9ffe194d9ad1e504700c3f1db20a33666f4c84f"
+    },
+    "run_id": "P053-r2-N-CPU-EDD",
+    "cost": {
+      "currency": "MODEL_UNIT",
+      "legacy_resource_cost_source_sha256": "65466b0c720d5903699695cae27ed55e104cc58a90f4234a44428fc841e04452",
+      "person_template_ids": [
+        "P1",
+        "W1",
+        "W2",
+        "OP1",
+        "AF1",
+        "AF2",
+        "E1",
+        "PL1",
+        "T1",
+        "T2",
+        "C1",
+        "QA1",
+        "Lop",
+        "Lrig",
+        "Lsig"
+      ],
+      "policy_id": "PRESENCE_LABOUR-r2",
+      "policy_sha256": "f5ec941ff699c568fa0b2c2257d080b7408a4519563beb77b8c24d4f9511d8b5",
+      "rates": [
+        {
+          "rate_per_h": 10,
+          "template_id": "P1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "OP1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "E1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "PL1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "C1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "QA1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lop"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lrig"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lsig"
+        }
+      ]
+    },
+    "status": "RECORDED_RUN_POLICY"
+  },
+  "N-CPU-ADAPTIVE": {
+    "source": {
+      "path": ".local/p053-execution-20261028-r2/runs/N-CPU-ADAPTIVE/run-spec.json",
+      "bytes": 4042,
+      "sha256": "9e6ff047a3b3569c494b05da06560c958f593df0e00b28b7b74154abf076ffde"
+    },
+    "run_id": "P053-r2-N-CPU-ADAPTIVE",
+    "cost": {
+      "currency": "MODEL_UNIT",
+      "legacy_resource_cost_source_sha256": "65466b0c720d5903699695cae27ed55e104cc58a90f4234a44428fc841e04452",
+      "person_template_ids": [
+        "P1",
+        "W1",
+        "W2",
+        "OP1",
+        "AF1",
+        "AF2",
+        "E1",
+        "PL1",
+        "T1",
+        "T2",
+        "C1",
+        "QA1",
+        "Lop",
+        "Lrig",
+        "Lsig"
+      ],
+      "policy_id": "PRESENCE_LABOUR-r2",
+      "policy_sha256": "f5ec941ff699c568fa0b2c2257d080b7408a4519563beb77b8c24d4f9511d8b5",
+      "rates": [
+        {
+          "rate_per_h": 10,
+          "template_id": "P1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "OP1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "E1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "PL1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "C1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "QA1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lop"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lrig"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lsig"
+        }
+      ]
+    },
+    "status": "RECORDED_RUN_POLICY"
+  },
+  "H-CPU-EDD": {
+    "source": {
+      "path": ".local/p053-execution-20261028-r2/runs/H-CPU-EDD/run-spec.json",
+      "bytes": 4032,
+      "sha256": "8508a7f26585ec9e2b9c15ada378824231857a1ef6f3b7fae2f42518fa057c52"
+    },
+    "run_id": "P053-r2-H-CPU-EDD",
+    "cost": {
+      "currency": "MODEL_UNIT",
+      "legacy_resource_cost_source_sha256": "40a610e36b75dfb732658afcd0856f3e3e6515f7fed2c6dcfc9d8c23baee6199",
+      "person_template_ids": [
+        "P1",
+        "W1",
+        "W2",
+        "OP1",
+        "AF1",
+        "AF2",
+        "E1",
+        "PL1",
+        "T1",
+        "T2",
+        "C1",
+        "QA1",
+        "Lop",
+        "Lrig",
+        "Lsig"
+      ],
+      "policy_id": "PRESENCE_LABOUR-r2",
+      "policy_sha256": "6d961cee643dbd89547767b1d1b2679c8ecc6c3044975f1ec538144902b967c6",
+      "rates": [
+        {
+          "rate_per_h": 10,
+          "template_id": "P1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "OP1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "E1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "PL1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "C1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "QA1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lop"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lrig"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lsig"
+        }
+      ]
+    },
+    "status": "RECORDED_RUN_POLICY"
+  },
+  "H-CPU-ADAPTIVE": {
+    "source": {
+      "path": ".local/p053-execution-20261028-r2/runs/H-CPU-ADAPTIVE/run-spec.json",
+      "bytes": 4042,
+      "sha256": "daad4bcbec2edf6cdde7864a7b858a516d26da873e9e96b2290ae6a5f1e74907"
+    },
+    "run_id": "P053-r2-H-CPU-ADAPTIVE",
+    "cost": {
+      "currency": "MODEL_UNIT",
+      "legacy_resource_cost_source_sha256": "40a610e36b75dfb732658afcd0856f3e3e6515f7fed2c6dcfc9d8c23baee6199",
+      "person_template_ids": [
+        "P1",
+        "W1",
+        "W2",
+        "OP1",
+        "AF1",
+        "AF2",
+        "E1",
+        "PL1",
+        "T1",
+        "T2",
+        "C1",
+        "QA1",
+        "Lop",
+        "Lrig",
+        "Lsig"
+      ],
+      "policy_id": "PRESENCE_LABOUR-r2",
+      "policy_sha256": "6d961cee643dbd89547767b1d1b2679c8ecc6c3044975f1ec538144902b967c6",
+      "rates": [
+        {
+          "rate_per_h": 10,
+          "template_id": "P1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "OP1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "E1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "PL1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "C1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "QA1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lop"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lrig"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lsig"
+        }
+      ]
+    },
+    "status": "RECORDED_RUN_POLICY"
+  },
+  "F-CPU-EDD": {
+    "cost": null,
+    "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+  },
+  "F-CPU-ADAPTIVE": {
+    "cost": null,
+    "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+  },
+  "U-CPU-EDD-r3": {
+    "source": {
+      "path": ".local/p053-execution-20261028-r2/runs/U-CPU-EDD-r3/run-spec.json",
+      "bytes": 3915,
+      "sha256": "b59d3fc4cd683beb29dc9563ed4e6bdd4f8062b797f32e4a5519b6ade8d8515c"
+    },
+    "run_id": "P053-r3-U-CPU-EDD-r3",
+    "cost": {
+      "currency": "MODEL_UNIT",
+      "legacy_resource_cost_source_sha256": "3706fd36ff519bd8297493186a591e248def0ee7d687f8afa89085e34bd49093",
+      "person_template_ids": [
+        "P1",
+        "W1",
+        "W2",
+        "OP1",
+        "AF1",
+        "AF2",
+        "E1",
+        "PL1",
+        "T1",
+        "T2",
+        "C1",
+        "QA1",
+        "Lop",
+        "Lrig",
+        "Lsig"
+      ],
+      "policy_id": "PRESENCE_LABOUR-r2",
+      "policy_sha256": "3af7bd534f777d8f2333b8a160b7c0cbdac95d439bb66fbd7cdd6fff26d490b1",
+      "rates": [
+        {
+          "rate_per_h": 10,
+          "template_id": "P1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "OP1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "E1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "PL1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "C1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "QA1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lop"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lrig"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lsig"
+        }
+      ]
+    },
+    "status": "RECORDED_RUN_POLICY"
+  },
+  "U-CPU-ADAPTIVE-r3": {
+    "source": {
+      "path": ".local/p053-execution-20261028-r2/runs/U-CPU-ADAPTIVE-r3/run-spec.json",
+      "bytes": 3925,
+      "sha256": "acc6e8e733567f6eba3b58ea8c71065f8e2ba52eae5e5b4a995461209ca88c0b"
+    },
+    "run_id": "P053-r3-U-CPU-ADAPTIVE-r3",
+    "cost": {
+      "currency": "MODEL_UNIT",
+      "legacy_resource_cost_source_sha256": "3706fd36ff519bd8297493186a591e248def0ee7d687f8afa89085e34bd49093",
+      "person_template_ids": [
+        "P1",
+        "W1",
+        "W2",
+        "OP1",
+        "AF1",
+        "AF2",
+        "E1",
+        "PL1",
+        "T1",
+        "T2",
+        "C1",
+        "QA1",
+        "Lop",
+        "Lrig",
+        "Lsig"
+      ],
+      "policy_id": "PRESENCE_LABOUR-r2",
+      "policy_sha256": "3af7bd534f777d8f2333b8a160b7c0cbdac95d439bb66fbd7cdd6fff26d490b1",
+      "rates": [
+        {
+          "rate_per_h": 10,
+          "template_id": "P1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "W2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "OP1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "AF2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "E1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "PL1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "T2"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "C1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "QA1"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lop"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lrig"
+        },
+        {
+          "rate_per_h": 10,
+          "template_id": "Lsig"
+        }
+      ]
+    },
+    "status": "RECORDED_RUN_POLICY"
+  },
+  "C-STOCK-CPU-EDD-r4": {
+    "cost": null,
+    "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+  },
+  "C-STOCK-CPU-ADAPTIVE-r4": {
+    "cost": null,
+    "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+  },
+  "M-H-N": {
+    "cost": null,
+    "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+  },
+  "M-H-H": {
+    "cost": null,
+    "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+  }
+}

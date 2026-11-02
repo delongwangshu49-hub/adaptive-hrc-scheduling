@@ -1,0 +1,273 @@
+{
+  "timeline": [
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "REAL_R14_SAME_RUN_PREFIX",
+      "request_id": "P051-9eeddc4f0c0f4a3f9b56a6f5027c3450",
+      "kind": "ORDER_CREATE",
+      "target": "ORD-NORMAL",
+      "phase": "APPLIED",
+      "sim_h": 1.000897222222222,
+      "actual_applied_sim_h": 1.000897222222222,
+      "event_id": "EV-142",
+      "catalog_version": 1
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "REAL_R14_SAME_RUN_PREFIX",
+      "request_id": "P051-b904639d36914878adc2524e04af9075",
+      "kind": "ORDER_CREATE",
+      "target": "ORD-URGENT",
+      "phase": "APPLIED",
+      "sim_h": 1.4596772222222223,
+      "actual_applied_sim_h": 1.4596772222222223,
+      "event_id": "EV-183",
+      "catalog_version": 2
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "REAL_R14_SAME_RUN_PREFIX",
+      "request_id": "P051-8676e9a19aa74d8e85dea74172e1cdb3",
+      "kind": "PERSON_DEPART",
+      "target": "W2",
+      "phase": "APPLIED",
+      "sim_h": 25.85325333333333,
+      "actual_applied_sim_h": 25.85325333333333,
+      "event_id": "EV-870",
+      "catalog_version": 3
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "REAL_R14_SAME_RUN_PREFIX",
+      "request_id": "P051-e5da6602829e4f5ea064c7d98de23004",
+      "kind": "PERSON_ARRIVE",
+      "target": "W3",
+      "phase": "APPLIED",
+      "sim_h": 25.85325333333333,
+      "actual_applied_sim_h": 25.85325333333333,
+      "event_id": "EV-871",
+      "catalog_version": 4
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "REAL_R14_SAME_RUN_PREFIX",
+      "request_id": "P051-44a17c7332ad42d49f619d3442f3e860",
+      "kind": "CLOSE_INPUT",
+      "target": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "phase": "APPLIED",
+      "sim_h": 54.49757888888888,
+      "actual_applied_sim_h": 54.49757888888888,
+      "event_id": null,
+      "catalog_version": 4
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "REAL_R14_SAME_RUN_PREFIX",
+      "kind": "FIRST_W3_PRODUCTION",
+      "phase": "STARTED",
+      "sim_h": 53.99757888888888,
+      "event_id": "EV-1767"
+    },
+    {
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "scope": "REAL_R14_SAME_RUN_PREFIX",
+      "kind": "FINAL",
+      "phase": "STOPPED",
+      "sim_h": 387.7324633333334,
+      "received": 1,
+      "unreceived": 3,
+      "open_obligations": 20
+    }
+  ],
+  "products": [
+    {
+      "cancelled": false,
+      "product_id": "PRODUCT-1",
+      "ready_h": 314.02725833333324,
+      "received_h": 318.21809722222207,
+      "released": true
+    },
+    {
+      "cancelled": false,
+      "product_id": "PRODUCT-2",
+      "ready_h": null,
+      "received_h": null,
+      "released": true
+    },
+    {
+      "cancelled": false,
+      "product_id": "PRODUCT-3",
+      "ready_h": null,
+      "received_h": null,
+      "released": true
+    },
+    {
+      "cancelled": false,
+      "product_id": "PRODUCT-4",
+      "ready_h": null,
+      "received_h": null,
+      "released": true
+    }
+  ],
+  "r14_final": {
+    "final": {
+      "audit_status": "PASS",
+      "catalog_version": 4,
+      "epoch": 0,
+      "expected_receipts_complete": false,
+      "holds": 0,
+      "intake_closed": true,
+      "last_prefix_hash": "a063401347d9fb101ffc1ae781b7fcc292fc0afe465a4d745de818f9e3f9b129",
+      "open_obligations": 20,
+      "pending_requests": 0,
+      "phase": "STOPPED",
+      "run_id": "P051-E20-866d7cd0e9594603b92f6463dc5bb0a4",
+      "run_spec_sha256": "cab98314472a0b07719023149af0a03c21c272820f34eed652a45f07506d9975",
+      "running": 0,
+      "save_status": "COMPLETE"
+    },
+    "final_sim_h": 387.7324633333334,
+    "final_wall_s": 28443.447436899994,
+    "obligations": {
+      "commitments": [],
+      "expected_receipts_complete": false,
+      "holds": [],
+      "open_products": [
+        "PRODUCT-2",
+        "PRODUCT-3",
+        "PRODUCT-4"
+      ],
+      "pending_requests": [],
+      "physical_residuals": [
+        "PRODUCT-4.EN-L.02",
+        "PRODUCT-4.EN-L.03",
+        "PRODUCT-4.EN-L.04",
+        "PRODUCT-4.FI-C.01",
+        "PRODUCT-4.FI-C.02",
+        "PRODUCT-4.FI-C.03",
+        "PRODUCT-2",
+        "PRODUCT-3.BOTTOM",
+        "PRODUCT-3.TOP",
+        "PRODUCT-3.COLUMNS",
+        "PRODUCT-4"
+      ],
+      "reservations": [
+        {
+          "activity_id": "PRODUCT-4.LINING",
+          "attempt": 0,
+          "lot_id": "PRODUCT-4.EN-L.02",
+          "product_id": "PRODUCT-4",
+          "quantity": 0.13
+        },
+        {
+          "activity_id": "PRODUCT-4.LINING",
+          "attempt": 0,
+          "lot_id": "PRODUCT-4.EN-L.03",
+          "product_id": "PRODUCT-4",
+          "quantity": 0.13
+        },
+        {
+          "activity_id": "PRODUCT-4.LINING",
+          "attempt": 0,
+          "lot_id": "PRODUCT-4.EN-L.04",
+          "product_id": "PRODUCT-4",
+          "quantity": 0.13
+        },
+        {
+          "activity_id": "PRODUCT-4.LINING",
+          "attempt": 0,
+          "lot_id": "PRODUCT-4.FI-C.01",
+          "product_id": "PRODUCT-4",
+          "quantity": 0.05
+        },
+        {
+          "activity_id": "PRODUCT-4.LINING",
+          "attempt": 0,
+          "lot_id": "PRODUCT-4.FI-C.02",
+          "product_id": "PRODUCT-4",
+          "quantity": 0.05
+        },
+        {
+          "activity_id": "PRODUCT-4.LINING",
+          "attempt": 0,
+          "lot_id": "PRODUCT-4.FI-C.03",
+          "product_id": "PRODUCT-4",
+          "quantity": 0.05
+        }
+      ],
+      "running": []
+    },
+    "process_exit": "UNKNOWN",
+    "projection_files": {
+      "timeline-latest.json": "b54c5a1334762b299619d9b588fdca19d48a45f5409459b630b39ffc7010e649",
+      "timeline.jsonl": "b84b22521d52d62b59b5f2747080005cc416b3e358ff01eecc1c6c76804745b8"
+    },
+    "reason": "ORDERLY_STOPPED",
+    "session_state_sha256": "a6b4761fe78afde3e931e3bd3fc3a93f027d270c24eb0f35127f7d4499d994b6"
+  },
+  "plan_binding": {
+    "status": "PASS",
+    "scope": "COMPLETE_PLAN_REPLAY_AND_ACTUAL_DISPATCH_BINDING",
+    "checks": 1965,
+    "versions": 4,
+    "actual_starts": 1961,
+    "actual_completions": 1961,
+    "solve_calls": 5
+  },
+  "separate_r9": {
+    "scope": "OFFLINE_DERIVED_CONTINUATION_NOT_E20",
+    "run_id": "P051-E20-5e8e917821864c259ddaa0e64b02850b",
+    "original_exit": {
+      "exec_session_id": 82053,
+      "exit_code": 0,
+      "observed": "functions.write_stdin"
+    },
+    "source": ".local/p052-execution-20261025-r1/cpu-role-repair-r9",
+    "no_new_full_semantic_audit": true,
+    "metrics": {
+      "cancelled_count": 0,
+      "config_id": "P051-FIXED-r1:P052-E20-r1:S18-SIM-1-SR-W1",
+      "incomplete_count": 0,
+      "internal_finished_count": 0,
+      "max_exposure": 73.49915174304567,
+      "ready_count": 4,
+      "received_count": 4,
+      "schema_version": "P043-PROD-1.0",
+      "scope": "INDEPENDENT_EVENT_RECONSTRUCTION",
+      "total_exposure": 442.0333818099784,
+      "window_h": 1012.4374666666665
+    },
+    "source_run_id": "P051-E20-5e8e917821864c259ddaa0e64b02850b",
+    "epoch": 0,
+    "source_state_sha256": "1e9eb0885733d6ddfbe60376cf3b040f17f5472b57fbe9965a485755f9948d7f",
+    "not_a_new_run": true
+  },
+  "separate_e21": {
+    "scope": "SEPARATE_REAL_KIT_WIP3_CAPACITY_BOUNDARY_NOT_GUI_NOT_ALL_RECEIVED",
+    "run_id": "P051-E21-b977408983d4489988ee2fe65cabfc35",
+    "checks": 14,
+    "lifecycle_checks": 13468,
+    "source_identity": {
+      "sha256": "b3df66cacf6c970cfae58919c28c7c3ef5dc2764ba71cf1f7c85c799e522f0df",
+      "bytes": 95215
+    }
+  },
+  "scope": "APPROVED_SPLIT_EVIDENCE_WITH_ORIGINAL_SAME_KIT_FULL_RECEIPT_NOT_MET",
+  "inputs": [
+    {
+      "path": "docs/delivery/p061_event_chain_trace_r1.json",
+      "bytes": 41366,
+      "sha256": "678c7b237abc3408a122bfe2a4c1b9dbc4853351f370e9d88eb2cb16080da186"
+    },
+    {
+      "path": ".local/p052-closeout-20261028-r2/closeout-evidence/r14-audit/chain.json",
+      "bytes": 9406,
+      "sha256": "13b46ac86e8e2ce06386395cd0df4307e50a262100c6d8d9cb3056ce1d8e2c08"
+    },
+    {
+      "path": ".local/p052-closeout-20261028-r2/closeout-evidence/r14-audit/mechanism-facts.json",
+      "bytes": 4902,
+      "sha256": "295f481a7b1cd5820e78e38acf84dfe1c3bbc9aa4a9458622608c6b5a71cf239"
+    }
+  ]
+}

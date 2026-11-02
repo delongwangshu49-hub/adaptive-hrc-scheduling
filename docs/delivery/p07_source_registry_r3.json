@@ -1,0 +1,2487 @@
+{
+  "format": "P07-SOURCE-REGISTRY-r3",
+  "created_at": "2026-11-02T06:57:36.822776+00:00",
+  "fixed_research": [
+    {
+      "unit": "N-CPU-EDD",
+      "identity": {
+        "unit": "N-CPU-EDD",
+        "scenario": "N",
+        "method": "EDD",
+        "run_id": "P053-r2-N-CPU-EDD",
+        "epoch": 0,
+        "source_family": "P053-c1",
+        "input_configuration_sha256": "65466b0c720d5903699695cae27ed55e104cc58a90f4234a44428fc841e04452",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 531.8589726666667,
+        "lifecycle_sum_E": 241.15743703937494,
+        "lifecycle_max_E": 35.31904145138399,
+        "peak_F": 0.666123083333333,
+        "common_window_sum_E": 241.56411052900708,
+        "common_window_max_E": 35.37405705553961,
+        "common_window_status": "PASS_DERIVED_REST_EVALUATION",
+        "people_count": 15,
+        "presence_person_h": 7977.88459,
+        "available_person_h": 2697.8845899999997,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 2,
+        "cancelled_products": 0,
+        "received_products": 2,
+        "ready_products": 2,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 531.8589726666667,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 2.667222222222165,
+        "wip_peak": 2,
+        "wip_area_product_h": 765.4654226666655,
+        "transport_m": 41935.39799999998,
+        "empty_transport_m": 14213.766000000003,
+        "walk_m": 19138.76000000002,
+        "empty_transport_ratio": 0.33894434482295865,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": 79778.8459,
+        "labour_currency": "MODEL_UNIT"
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/N-CPU-EDD/session-state.json",
+          "sha256": "133eb2711a440da6bfdb1f01d2bc6327c9c8ea91edcd0e7e32c3f70040522e1b"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/N-CPU-EDD-analysis.json",
+          "bytes": 126831,
+          "sha256": "d12c80b5851951188fcd493bf7cbb12595853573884047bd7597a9d7c33d49ca"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/N-CPU-EDD-independent-r2.json",
+          "bytes": 1375530,
+          "sha256": "7250615a52a61072881f39e04401767797bc705a96b7cdcbc3cee94016cbfe4d"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/N-CPU-EDD/configuration.json",
+          "bytes": 1742532,
+          "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/N-CPU-EDD/events.jsonl.gz",
+          "bytes": 195505833,
+          "sha256": "a88e1fc428170e0bcb3a03ef3cb87581834e97f619db71b81d9a16ba222050f3",
+          "format": "JSONL_GZIP"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/N-CPU-EDD.json",
+        "bytes": 15060076,
+        "sha256": "425ba251cbee760822d77d49efe7e4f11a53d7b4cd7778ed9ace183df4b1a003"
+      },
+      "labour_policy": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/N-CPU-EDD/run-spec.json",
+          "bytes": 4032,
+          "sha256": "31fb5793a580988f1a0e1294c9ffe194d9ad1e504700c3f1db20a33666f4c84f"
+        },
+        "run_id": "P053-r2-N-CPU-EDD",
+        "cost": {
+          "currency": "MODEL_UNIT",
+          "legacy_resource_cost_source_sha256": "65466b0c720d5903699695cae27ed55e104cc58a90f4234a44428fc841e04452",
+          "person_template_ids": [
+            "P1",
+            "W1",
+            "W2",
+            "OP1",
+            "AF1",
+            "AF2",
+            "E1",
+            "PL1",
+            "T1",
+            "T2",
+            "C1",
+            "QA1",
+            "Lop",
+            "Lrig",
+            "Lsig"
+          ],
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "f5ec941ff699c568fa0b2c2257d080b7408a4519563beb77b8c24d4f9511d8b5",
+          "rates": [
+            {
+              "rate_per_h": 10,
+              "template_id": "P1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "OP1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "E1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "PL1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "C1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "QA1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lop"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lrig"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lsig"
+            }
+          ]
+        },
+        "status": "RECORDED_RUN_POLICY"
+      }
+    },
+    {
+      "unit": "N-CPU-ADAPTIVE",
+      "identity": {
+        "unit": "N-CPU-ADAPTIVE",
+        "scenario": "N",
+        "method": "ADAPTIVE",
+        "run_id": "P053-r2-N-CPU-ADAPTIVE",
+        "epoch": 0,
+        "source_family": "P053-c1",
+        "input_configuration_sha256": "65466b0c720d5903699695cae27ed55e104cc58a90f4234a44428fc841e04452",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 531.8589726666667,
+        "lifecycle_sum_E": 241.15743703937494,
+        "lifecycle_max_E": 35.31904145138399,
+        "peak_F": 0.666123083333333,
+        "common_window_sum_E": 241.56411052900708,
+        "common_window_max_E": 35.37405705553961,
+        "common_window_status": "PASS_DERIVED_REST_EVALUATION",
+        "people_count": 15,
+        "presence_person_h": 7977.88459,
+        "available_person_h": 2697.8845899999997,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 2,
+        "cancelled_products": 0,
+        "received_products": 2,
+        "ready_products": 2,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 531.8589726666667,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 2.667222222222165,
+        "wip_peak": 2,
+        "wip_area_product_h": 765.4654226666655,
+        "transport_m": 41935.39799999998,
+        "empty_transport_m": 14213.766000000003,
+        "walk_m": 19138.76000000002,
+        "empty_transport_ratio": 0.33894434482295865,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": 79778.8459,
+        "labour_currency": "MODEL_UNIT"
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/N-CPU-ADAPTIVE/session-state.json",
+          "sha256": "e3a35238160f1034c4c26b0dee24705b2c502d05c637aca7ee7d3200ae13651f"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/N-CPU-ADAPTIVE-analysis.json",
+          "bytes": 126846,
+          "sha256": "864f382f348a214b378e8bc3ed741888638fb9cf59eb7e0e8a908a2549d27f57"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/N-CPU-ADAPTIVE-independent-r2.json",
+          "bytes": 1375529,
+          "sha256": "8103487701de4c3276c636f19ba30a2c3a4b79541180ed59751559c2b3bd8442"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/N-CPU-ADAPTIVE/configuration.json",
+          "bytes": 1742532,
+          "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/N-CPU-ADAPTIVE/events.jsonl.gz",
+          "bytes": 195553218,
+          "sha256": "88e92c7ef18162993e7d6f36f396dbf7a7c57c6a8362779773c3662d745edb63",
+          "format": "JSONL_GZIP"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/N-CPU-ADAPTIVE.json",
+        "bytes": 15060305,
+        "sha256": "353390115eb416e7bc7c31c9552c51cffdf9d8c9d614bd00ee1b61818665b0ab"
+      },
+      "labour_policy": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/N-CPU-ADAPTIVE/run-spec.json",
+          "bytes": 4042,
+          "sha256": "9e6ff047a3b3569c494b05da06560c958f593df0e00b28b7b74154abf076ffde"
+        },
+        "run_id": "P053-r2-N-CPU-ADAPTIVE",
+        "cost": {
+          "currency": "MODEL_UNIT",
+          "legacy_resource_cost_source_sha256": "65466b0c720d5903699695cae27ed55e104cc58a90f4234a44428fc841e04452",
+          "person_template_ids": [
+            "P1",
+            "W1",
+            "W2",
+            "OP1",
+            "AF1",
+            "AF2",
+            "E1",
+            "PL1",
+            "T1",
+            "T2",
+            "C1",
+            "QA1",
+            "Lop",
+            "Lrig",
+            "Lsig"
+          ],
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "f5ec941ff699c568fa0b2c2257d080b7408a4519563beb77b8c24d4f9511d8b5",
+          "rates": [
+            {
+              "rate_per_h": 10,
+              "template_id": "P1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "OP1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "E1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "PL1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "C1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "QA1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lop"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lrig"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lsig"
+            }
+          ]
+        },
+        "status": "RECORDED_RUN_POLICY"
+      }
+    },
+    {
+      "unit": "H-CPU-EDD",
+      "identity": {
+        "unit": "H-CPU-EDD",
+        "scenario": "H",
+        "method": "EDD",
+        "run_id": "P053-r2-H-CPU-EDD",
+        "epoch": 0,
+        "source_family": "P053-c1",
+        "input_configuration_sha256": "40a610e36b75dfb732658afcd0856f3e3e6515f7fed2c6dcfc9d8c23baee6199",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 531.8589726666667,
+        "lifecycle_sum_E": 304.9636468654249,
+        "lifecycle_max_E": 39.500919615196146,
+        "peak_F": 0.7907676837611106,
+        "common_window_sum_E": 305.370320355057,
+        "common_window_max_E": 39.55593521935177,
+        "common_window_status": "PASS_DERIVED_REST_EVALUATION",
+        "people_count": 15,
+        "presence_person_h": 7977.88459,
+        "available_person_h": 2697.8845899999997,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 2,
+        "cancelled_products": 0,
+        "received_products": 2,
+        "ready_products": 2,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 531.8589726666667,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 2.667222222222165,
+        "wip_peak": 2,
+        "wip_area_product_h": 764.5951726666653,
+        "transport_m": 41874.069999999985,
+        "empty_transport_m": 14152.438000000004,
+        "walk_m": 19154.20000000002,
+        "empty_transport_ratio": 0.33797617475444847,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": 79778.8459,
+        "labour_currency": "MODEL_UNIT"
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/H-CPU-EDD/session-state.json",
+          "sha256": "4b028c6b5761dbf68056857a641f2b95aaae6c22bff744cb6c8552819d154ab1"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/H-CPU-EDD-analysis.json",
+          "bytes": 126716,
+          "sha256": "f7f05deb7e09fc3651a4d26dc55f930098be943d6447b80463be6093173d093f"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/H-CPU-EDD-independent-r2.json",
+          "bytes": 1378410,
+          "sha256": "820078748a1a535487eafe3fdd37ca0f64c12b70075b31df64bb733bdb949166"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/H-CPU-EDD/configuration.json",
+          "bytes": 1742532,
+          "sha256": "56ac61474b6bce4a79b0a2ed93d189aaa42ee574e7e6929aade63b897425c02f"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/H-CPU-EDD/events.jsonl.gz",
+          "bytes": 195551365,
+          "sha256": "50ef928b87db8b2398ef09fd5ce73e0a15d08a443261be2bf774eb125d217872",
+          "format": "JSONL_GZIP"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/H-CPU-EDD.json",
+        "bytes": 15090653,
+        "sha256": "e6c337bbae1de9f6a26441990c2e056ad4bcbe33a59d3778667ef80396e13e1b"
+      },
+      "labour_policy": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/H-CPU-EDD/run-spec.json",
+          "bytes": 4032,
+          "sha256": "8508a7f26585ec9e2b9c15ada378824231857a1ef6f3b7fae2f42518fa057c52"
+        },
+        "run_id": "P053-r2-H-CPU-EDD",
+        "cost": {
+          "currency": "MODEL_UNIT",
+          "legacy_resource_cost_source_sha256": "40a610e36b75dfb732658afcd0856f3e3e6515f7fed2c6dcfc9d8c23baee6199",
+          "person_template_ids": [
+            "P1",
+            "W1",
+            "W2",
+            "OP1",
+            "AF1",
+            "AF2",
+            "E1",
+            "PL1",
+            "T1",
+            "T2",
+            "C1",
+            "QA1",
+            "Lop",
+            "Lrig",
+            "Lsig"
+          ],
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "6d961cee643dbd89547767b1d1b2679c8ecc6c3044975f1ec538144902b967c6",
+          "rates": [
+            {
+              "rate_per_h": 10,
+              "template_id": "P1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "OP1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "E1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "PL1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "C1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "QA1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lop"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lrig"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lsig"
+            }
+          ]
+        },
+        "status": "RECORDED_RUN_POLICY"
+      }
+    },
+    {
+      "unit": "H-CPU-ADAPTIVE",
+      "identity": {
+        "unit": "H-CPU-ADAPTIVE",
+        "scenario": "H",
+        "method": "ADAPTIVE",
+        "run_id": "P053-r2-H-CPU-ADAPTIVE",
+        "epoch": 0,
+        "source_family": "P053-c1",
+        "input_configuration_sha256": "40a610e36b75dfb732658afcd0856f3e3e6515f7fed2c6dcfc9d8c23baee6199",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 531.8589726666667,
+        "lifecycle_sum_E": 304.9636468654249,
+        "lifecycle_max_E": 39.500919615196146,
+        "peak_F": 0.7907676837611106,
+        "common_window_sum_E": 305.370320355057,
+        "common_window_max_E": 39.55593521935177,
+        "common_window_status": "PASS_DERIVED_REST_EVALUATION",
+        "people_count": 15,
+        "presence_person_h": 7977.88459,
+        "available_person_h": 2697.8845899999997,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 2,
+        "cancelled_products": 0,
+        "received_products": 2,
+        "ready_products": 2,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 531.8589726666667,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 2.667222222222165,
+        "wip_peak": 2,
+        "wip_area_product_h": 764.5951726666653,
+        "transport_m": 41874.069999999985,
+        "empty_transport_m": 14152.438000000004,
+        "walk_m": 19154.20000000002,
+        "empty_transport_ratio": 0.33797617475444847,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": 79778.8459,
+        "labour_currency": "MODEL_UNIT"
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/H-CPU-ADAPTIVE/session-state.json",
+          "sha256": "3876526a50b495d8b9d67c30d06dddddffa1719be2e0673d448ce0338512b0fb"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/H-CPU-ADAPTIVE-analysis.json",
+          "bytes": 126731,
+          "sha256": "1964179097af0f1ffb726c61c7955c8d8ac988925cb50eff9702e0829e27b27c"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/H-CPU-ADAPTIVE-independent-r2.json",
+          "bytes": 1378409,
+          "sha256": "2369764674fb5fb197fd71e19bba55a6f6d59228bdaecb7a5eb631608ef0203b"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/H-CPU-ADAPTIVE/configuration.json",
+          "bytes": 1742532,
+          "sha256": "56ac61474b6bce4a79b0a2ed93d189aaa42ee574e7e6929aade63b897425c02f"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/H-CPU-ADAPTIVE/events.jsonl.gz",
+          "bytes": 195594686,
+          "sha256": "db6f90b33c2f1e9a822149d2205df400697f91b6a056c28acc4fdb64cdebf1a9",
+          "format": "JSONL_GZIP"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/H-CPU-ADAPTIVE.json",
+        "bytes": 15090887,
+        "sha256": "79cd0320332316fbb359818f88b35a3721cc3606e6d58ba0a20b2e3040ab0c67"
+      },
+      "labour_policy": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/H-CPU-ADAPTIVE/run-spec.json",
+          "bytes": 4042,
+          "sha256": "daad4bcbec2edf6cdde7864a7b858a516d26da873e9e96b2290ae6a5f1e74907"
+        },
+        "run_id": "P053-r2-H-CPU-ADAPTIVE",
+        "cost": {
+          "currency": "MODEL_UNIT",
+          "legacy_resource_cost_source_sha256": "40a610e36b75dfb732658afcd0856f3e3e6515f7fed2c6dcfc9d8c23baee6199",
+          "person_template_ids": [
+            "P1",
+            "W1",
+            "W2",
+            "OP1",
+            "AF1",
+            "AF2",
+            "E1",
+            "PL1",
+            "T1",
+            "T2",
+            "C1",
+            "QA1",
+            "Lop",
+            "Lrig",
+            "Lsig"
+          ],
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "6d961cee643dbd89547767b1d1b2679c8ecc6c3044975f1ec538144902b967c6",
+          "rates": [
+            {
+              "rate_per_h": 10,
+              "template_id": "P1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "OP1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "E1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "PL1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "C1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "QA1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lop"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lrig"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lsig"
+            }
+          ]
+        },
+        "status": "RECORDED_RUN_POLICY"
+      }
+    },
+    {
+      "unit": "F-CPU-EDD",
+      "identity": {
+        "unit": "F-CPU-EDD",
+        "scenario": "F",
+        "method": "EDD",
+        "run_id": "P053-r2-F-CPU-EDD",
+        "epoch": 0,
+        "source_family": "P053-c1",
+        "input_configuration_sha256": "65466b0c720d5903699695cae27ed55e104cc58a90f4234a44428fc841e04452",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 531.8589726666667,
+        "lifecycle_sum_E": 241.24756179769298,
+        "lifecycle_max_E": 35.31904145138399,
+        "peak_F": 0.66688175,
+        "common_window_sum_E": 241.65423528732512,
+        "common_window_max_E": 35.37405705553961,
+        "common_window_status": "PASS_DERIVED_REST_EVALUATION",
+        "people_count": 15,
+        "presence_person_h": 7977.88459,
+        "available_person_h": 2697.8845899999997,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 2,
+        "cancelled_products": 0,
+        "received_products": 2,
+        "ready_products": 2,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 531.8589726666667,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 2.667222222222165,
+        "wip_peak": 2,
+        "wip_area_product_h": 765.4654226666655,
+        "transport_m": 41935.39799999998,
+        "empty_transport_m": 14213.766000000003,
+        "walk_m": 19138.76000000002,
+        "empty_transport_ratio": 0.33894434482295865,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": null,
+        "labour_currency": null
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/F-CPU-EDD/snapshot.json",
+          "sha256": "fdba819f61a99ac466fde0aef5643f4e368c969238cf2257346746ff28000db8"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/F-CPU-EDD-analysis.json",
+          "bytes": 126815,
+          "sha256": "c40d2d4da29d95d80c257df3d46a7a92ca38afcc68b71d2811b30b914c086de8"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/F-CPU-EDD-independent-r2.json",
+          "bytes": 365,
+          "sha256": "4f5b2efee622f9a8c7abe70f5c0d2df02bb2054b1bdff98bd35085c3bbfac142"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/F-CPU-EDD/configuration.json",
+          "bytes": 1742532,
+          "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/F-CPU-EDD/snapshot.json",
+          "bytes": 1695672316,
+          "sha256": "fdba819f61a99ac466fde0aef5643f4e368c969238cf2257346746ff28000db8",
+          "format": "SNAPSHOT_EVENTS_ARRAY"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/F-CPU-EDD.json",
+        "bytes": 15069287,
+        "sha256": "401b205127a1fd6808c0edef25e5f8471bba6706d3c8565490ecf9d3ea26c4f2"
+      },
+      "labour_policy": {
+        "cost": null,
+        "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+      }
+    },
+    {
+      "unit": "F-CPU-ADAPTIVE",
+      "identity": {
+        "unit": "F-CPU-ADAPTIVE",
+        "scenario": "F",
+        "method": "ADAPTIVE",
+        "run_id": "P053-r2-F-CPU-ADAPTIVE",
+        "epoch": 0,
+        "source_family": "P053-c1",
+        "input_configuration_sha256": "65466b0c720d5903699695cae27ed55e104cc58a90f4234a44428fc841e04452",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 531.8589726666667,
+        "lifecycle_sum_E": 241.24756179769298,
+        "lifecycle_max_E": 35.31904145138399,
+        "peak_F": 0.66688175,
+        "common_window_sum_E": 241.65423528732512,
+        "common_window_max_E": 35.37405705553961,
+        "common_window_status": "PASS_DERIVED_REST_EVALUATION",
+        "people_count": 15,
+        "presence_person_h": 7977.88459,
+        "available_person_h": 2697.8845899999997,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 2,
+        "cancelled_products": 0,
+        "received_products": 2,
+        "ready_products": 2,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 531.8589726666667,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 2.667222222222165,
+        "wip_peak": 2,
+        "wip_area_product_h": 765.4654226666655,
+        "transport_m": 41935.39799999998,
+        "empty_transport_m": 14213.766000000003,
+        "walk_m": 19138.76000000002,
+        "empty_transport_ratio": 0.33894434482295865,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": null,
+        "labour_currency": null
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/F-CPU-ADAPTIVE/snapshot.json",
+          "sha256": "20f3ab1eada2ff40d267b679c86b1b4f6b84dbaa989015b962505c11ca8fc1e6"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/F-CPU-ADAPTIVE-analysis.json",
+          "bytes": 126830,
+          "sha256": "32469331ad78350c14d8c55c45e4998ce0a7a6e4cfde115710ca3587502f6ffe"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/F-CPU-ADAPTIVE-independent-r2.json",
+          "bytes": 366,
+          "sha256": "afe9b290bf998729ac9d2e11adf49e4e885392bc7c58523c3dd36df784d01106"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/F-CPU-ADAPTIVE/configuration.json",
+          "bytes": 1742532,
+          "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/F-CPU-ADAPTIVE/snapshot.json",
+          "bytes": 1695782536,
+          "sha256": "20f3ab1eada2ff40d267b679c86b1b4f6b84dbaa989015b962505c11ca8fc1e6",
+          "format": "SNAPSHOT_EVENTS_ARRAY"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/F-CPU-ADAPTIVE.json",
+        "bytes": 15069509,
+        "sha256": "35318bd8913992d39c5d220731aeddb72fe5f7d9b60173621ea83282efb3f782"
+      },
+      "labour_policy": {
+        "cost": null,
+        "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+      }
+    },
+    {
+      "unit": "U-CPU-EDD-r3",
+      "identity": {
+        "unit": "U-CPU-EDD-r3",
+        "scenario": "U",
+        "method": "EDD",
+        "run_id": "P053-r3-U-CPU-EDD-r3",
+        "epoch": 0,
+        "source_family": "P053-c2",
+        "input_configuration_sha256": "3706fd36ff519bd8297493186a591e248def0ee7d687f8afa89085e34bd49093",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 531.8756393333333,
+        "lifecycle_sum_E": 241.54181731107514,
+        "lifecycle_max_E": 39.12965641588195,
+        "peak_F": 0.666931083333333,
+        "common_window_sum_E": 241.95455942726284,
+        "common_window_max_E": 39.184919539496825,
+        "common_window_status": "PASS_DERIVED_REST_EVALUATION",
+        "people_count": 15,
+        "presence_person_h": 7978.13459,
+        "available_person_h": 2698.1345899999997,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 2,
+        "cancelled_products": 0,
+        "received_products": 2,
+        "ready_products": 2,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 531.8756393333333,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 3.9551527777776982,
+        "wip_peak": 2,
+        "wip_area_product_h": 819.0650381111104,
+        "transport_m": 41774.44999999997,
+        "empty_transport_m": 14052.818000000008,
+        "walk_m": 19327.690000000017,
+        "empty_transport_ratio": 0.33639743910452485,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": 79781.3459,
+        "labour_currency": "MODEL_UNIT"
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/U-CPU-EDD-r3/session-state.json",
+          "sha256": "c738e34a638e53daae5e7ca8a05a0e4315dbeeeed8046de156b915a794d39de4"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/U-CPU-EDD-r3-analysis.json",
+          "bytes": 126767,
+          "sha256": "c1b519d6b0be4a165eeae805656a803253e6dd4fc91900528831cb8182f26e53"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/U-CPU-EDD-r3-independent-r2.json",
+          "bytes": 2044300,
+          "sha256": "db09cae6de0cd78a280cfcd2e2185731d8b0ff94438f6840e8cd8ac2cd677779"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/U-CPU-EDD-r3/configuration.json",
+          "bytes": 878339,
+          "sha256": "c643bf5cf97bbf36c25e0a5a4433de92ffdc5bdca1271e6c16bf0f43552daf0e"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/U-CPU-EDD-r3/events.jsonl.gz",
+          "bytes": 198041622,
+          "sha256": "78f8530e2a3d0c109bfbae22ba43a5609a90f65ca6c916c8f9cb07bc70ce1654",
+          "format": "JSONL_GZIP"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/U-CPU-EDD-r3.json",
+        "bytes": 15167829,
+        "sha256": "a6c1aeb563af5e37e776ed3e806bacb5a70521e2904c3189d3dd7cae71ae81f4"
+      },
+      "labour_policy": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/U-CPU-EDD-r3/run-spec.json",
+          "bytes": 3915,
+          "sha256": "b59d3fc4cd683beb29dc9563ed4e6bdd4f8062b797f32e4a5519b6ade8d8515c"
+        },
+        "run_id": "P053-r3-U-CPU-EDD-r3",
+        "cost": {
+          "currency": "MODEL_UNIT",
+          "legacy_resource_cost_source_sha256": "3706fd36ff519bd8297493186a591e248def0ee7d687f8afa89085e34bd49093",
+          "person_template_ids": [
+            "P1",
+            "W1",
+            "W2",
+            "OP1",
+            "AF1",
+            "AF2",
+            "E1",
+            "PL1",
+            "T1",
+            "T2",
+            "C1",
+            "QA1",
+            "Lop",
+            "Lrig",
+            "Lsig"
+          ],
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "3af7bd534f777d8f2333b8a160b7c0cbdac95d439bb66fbd7cdd6fff26d490b1",
+          "rates": [
+            {
+              "rate_per_h": 10,
+              "template_id": "P1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "OP1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "E1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "PL1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "C1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "QA1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lop"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lrig"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lsig"
+            }
+          ]
+        },
+        "status": "RECORDED_RUN_POLICY"
+      }
+    },
+    {
+      "unit": "U-CPU-ADAPTIVE-r3",
+      "identity": {
+        "unit": "U-CPU-ADAPTIVE-r3",
+        "scenario": "U",
+        "method": "ADAPTIVE",
+        "run_id": "P053-r3-U-CPU-ADAPTIVE-r3",
+        "epoch": 0,
+        "source_family": "P053-c2",
+        "input_configuration_sha256": "3706fd36ff519bd8297493186a591e248def0ee7d687f8afa89085e34bd49093",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 531.8756393333333,
+        "lifecycle_sum_E": 241.54080436732514,
+        "lifecycle_max_E": 39.12965641588196,
+        "peak_F": 0.666931083333333,
+        "common_window_sum_E": 241.9535464835128,
+        "common_window_max_E": 39.18491953949683,
+        "common_window_status": "PASS_DERIVED_REST_EVALUATION",
+        "people_count": 15,
+        "presence_person_h": 7978.13459,
+        "available_person_h": 2698.1345899999997,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 2,
+        "cancelled_products": 0,
+        "received_products": 2,
+        "ready_products": 2,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 531.8756393333333,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 3.9551527777776982,
+        "wip_peak": 2,
+        "wip_area_product_h": 819.0650381111104,
+        "transport_m": 41774.44999999997,
+        "empty_transport_m": 14052.818000000008,
+        "walk_m": 19327.690000000017,
+        "empty_transport_ratio": 0.33639743910452485,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": 79781.3459,
+        "labour_currency": "MODEL_UNIT"
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/U-CPU-ADAPTIVE-r3/session-state.json",
+          "sha256": "2e3829ed1a73a63f3ecfe81e25269f17f2eba05bda5b543d7c81bc48cb645287"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/U-CPU-ADAPTIVE-r3-analysis.json",
+          "bytes": 126780,
+          "sha256": "b08a1e582de723089cf63a6a247b6b0b15fcecf91b80c973fcb5d23c8f6ce3f0"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/U-CPU-ADAPTIVE-r3-independent-r2.json",
+          "bytes": 2044403,
+          "sha256": "8440a765919ea824cf27705c86348df57dd6bd93de794fa4015487ec4b120fc4"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/U-CPU-ADAPTIVE-r3/configuration.json",
+          "bytes": 878339,
+          "sha256": "c643bf5cf97bbf36c25e0a5a4433de92ffdc5bdca1271e6c16bf0f43552daf0e"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/U-CPU-ADAPTIVE-r3/events.jsonl.gz",
+          "bytes": 198097480,
+          "sha256": "499bd6c459969040f1cedc13b3c548bc9fa1364e0d77e65926d286f934240eb6",
+          "format": "JSONL_GZIP"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/U-CPU-ADAPTIVE-r3.json",
+        "bytes": 15167680,
+        "sha256": "406f1b7bbd6970d3a45eedb089457404332eda5f58bf46b118cab719705309bf"
+      },
+      "labour_policy": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/U-CPU-ADAPTIVE-r3/run-spec.json",
+          "bytes": 3925,
+          "sha256": "acc6e8e733567f6eba3b58ea8c71065f8e2ba52eae5e5b4a995461209ca88c0b"
+        },
+        "run_id": "P053-r3-U-CPU-ADAPTIVE-r3",
+        "cost": {
+          "currency": "MODEL_UNIT",
+          "legacy_resource_cost_source_sha256": "3706fd36ff519bd8297493186a591e248def0ee7d687f8afa89085e34bd49093",
+          "person_template_ids": [
+            "P1",
+            "W1",
+            "W2",
+            "OP1",
+            "AF1",
+            "AF2",
+            "E1",
+            "PL1",
+            "T1",
+            "T2",
+            "C1",
+            "QA1",
+            "Lop",
+            "Lrig",
+            "Lsig"
+          ],
+          "policy_id": "PRESENCE_LABOUR-r2",
+          "policy_sha256": "3af7bd534f777d8f2333b8a160b7c0cbdac95d439bb66fbd7cdd6fff26d490b1",
+          "rates": [
+            {
+              "rate_per_h": 10,
+              "template_id": "P1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "W2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "OP1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "AF2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "E1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "PL1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "T2"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "C1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "QA1"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lop"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lrig"
+            },
+            {
+              "rate_per_h": 10,
+              "template_id": "Lsig"
+            }
+          ]
+        },
+        "status": "RECORDED_RUN_POLICY"
+      }
+    },
+    {
+      "unit": "C-STOCK-CPU-EDD-r4",
+      "identity": {
+        "unit": "C-STOCK-CPU-EDD-r4",
+        "scenario": "C",
+        "method": "EDD",
+        "run_id": "P053-r2-C-STOCK-CPU-EDD-r4",
+        "epoch": 0,
+        "source_family": "P053-c2",
+        "input_configuration_sha256": "65466b0c720d5903699695cae27ed55e104cc58a90f4234a44428fc841e04452",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 720,
+        "lifecycle_sum_E": 232.97673725023623,
+        "lifecycle_max_E": 26.519840650397885,
+        "peak_F": 0.5294647194405889,
+        "common_window_sum_E": 232.97673725023623,
+        "common_window_max_E": 26.519840650397885,
+        "common_window_status": "ACTUAL_COMMON_WINDOW",
+        "people_count": 15,
+        "presence_person_h": 10800,
+        "available_person_h": 3600.0,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 1,
+        "cancelled_products": 1,
+        "received_products": 1,
+        "ready_products": 1,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 291.85897266666655,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 1.3424999999999727,
+        "wip_peak": 2,
+        "wip_area_product_h": 1005.0187662777777,
+        "transport_m": 20903.38999999996,
+        "empty_transport_m": 7007.7739999999985,
+        "walk_m": 10200.940000000004,
+        "empty_transport_ratio": 0.33524581419568844,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": null,
+        "labour_currency": null
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-EDD-r4/snapshot.json",
+          "sha256": "c971c8c8567e8a24aa3e810a8c9f2e0e9b5558422eff5eebe82303633fecd9cd"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/C-STOCK-CPU-EDD-r4-analysis.json",
+          "bytes": 12057,
+          "sha256": "4e264b6d4facf09523d8b40f06e3b4c2ff27fb42e11f3967c56078d44a9f044d"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/C-STOCK-CPU-EDD-r4-independent-r2.json",
+          "bytes": 367,
+          "sha256": "78316509fc52344006bef8e3fa5f46078116c5e8d053f49d5f832406f42e3dd3"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-EDD-r4/configuration.json",
+          "bytes": 1742532,
+          "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-EDD-r4/snapshot.json",
+          "bytes": 646322651,
+          "sha256": "c971c8c8567e8a24aa3e810a8c9f2e0e9b5558422eff5eebe82303633fecd9cd",
+          "format": "SNAPSHOT_EVENTS_ARRAY"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/C-STOCK-CPU-EDD-r4.json",
+        "bytes": 8225123,
+        "sha256": "215b62d33d870faab8d382003ad337d6d40f6bb55b1f2c7b07314288eb60babf"
+      },
+      "labour_policy": {
+        "cost": null,
+        "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+      }
+    },
+    {
+      "unit": "C-STOCK-CPU-ADAPTIVE-r4",
+      "identity": {
+        "unit": "C-STOCK-CPU-ADAPTIVE-r4",
+        "scenario": "C",
+        "method": "ADAPTIVE",
+        "run_id": "P053-r2-C-STOCK-CPU-ADAPTIVE-r4",
+        "epoch": 0,
+        "source_family": "P053-c2",
+        "input_configuration_sha256": "65466b0c720d5903699695cae27ed55e104cc58a90f4234a44428fc841e04452",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 720,
+        "lifecycle_sum_E": 232.97673725023623,
+        "lifecycle_max_E": 26.519840650397885,
+        "peak_F": 0.5294647194405889,
+        "common_window_sum_E": 232.97673725023623,
+        "common_window_max_E": 26.519840650397885,
+        "common_window_status": "ACTUAL_COMMON_WINDOW",
+        "people_count": 15,
+        "presence_person_h": 10800,
+        "available_person_h": 3600.0,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 1,
+        "cancelled_products": 1,
+        "received_products": 1,
+        "ready_products": 1,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 291.85897266666655,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 1.3424999999999727,
+        "wip_peak": 2,
+        "wip_area_product_h": 1005.0187662777777,
+        "transport_m": 20903.38999999996,
+        "empty_transport_m": 7007.7739999999985,
+        "walk_m": 10200.940000000004,
+        "empty_transport_ratio": 0.33524581419568844,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": null,
+        "labour_currency": null
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-ADAPTIVE-r4/snapshot.json",
+          "sha256": "8601d8724db0e372b88fae19dbf97ee831f97959632616ffb840e2fb9a0ba4b6"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/C-STOCK-CPU-ADAPTIVE-r4-analysis.json",
+          "bytes": 12072,
+          "sha256": "5372720e20a289c47a13ae7cb6198d7d91e90b3edbb3a70e2c3ae47a65ff2f19"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/C-STOCK-CPU-ADAPTIVE-r4-independent-r2.json",
+          "bytes": 367,
+          "sha256": "4fb9790dc77e09d15e3ae36c6b7d0195c3dcaf142eca15cb9356bbc319fbfafb"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-ADAPTIVE-r4/configuration.json",
+          "bytes": 1742532,
+          "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-ADAPTIVE-r4/snapshot.json",
+          "bytes": 646379701,
+          "sha256": "8601d8724db0e372b88fae19dbf97ee831f97959632616ffb840e2fb9a0ba4b6",
+          "format": "SNAPSHOT_EVENTS_ARRAY"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/C-STOCK-CPU-ADAPTIVE-r4.json",
+        "bytes": 8225328,
+        "sha256": "6ed8e803c2aaec641bac2a25c3348d3dde207ff96a1cf17a089625bd777129eb"
+      },
+      "labour_policy": {
+        "cost": null,
+        "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+      }
+    },
+    {
+      "unit": "M-H-N",
+      "identity": {
+        "unit": "M-H-N",
+        "scenario": "MECHANISM",
+        "method": "H",
+        "run_id": "P053-r2-M-H-N",
+        "epoch": 0,
+        "source_family": "P053-c1",
+        "input_configuration_sha256": "65466b0c720d5903699695cae27ed55e104cc58a90f4234a44428fc841e04452",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 531.8589726666667,
+        "lifecycle_sum_E": 249.87771075323207,
+        "lifecycle_max_E": 35.07743784652016,
+        "peak_F": 0.666123083333333,
+        "common_window_sum_E": 250.2843842428642,
+        "common_window_max_E": 35.13245345067578,
+        "common_window_status": "PASS_DERIVED_REST_EVALUATION",
+        "people_count": 15,
+        "presence_person_h": 7977.88459,
+        "available_person_h": 2697.8845899999997,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 2,
+        "cancelled_products": 0,
+        "received_products": 2,
+        "ready_products": 2,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 531.8589726666667,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 2.667222222222165,
+        "wip_peak": 2,
+        "wip_area_product_h": 764.5951726666649,
+        "transport_m": 41874.06999999998,
+        "empty_transport_m": 14152.438000000004,
+        "walk_m": 18753.220000000023,
+        "empty_transport_ratio": 0.3379761747544485,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": null,
+        "labour_currency": null
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/M-H-N/snapshot.json",
+          "sha256": "e0bfecfe6f53ff196e33a85122fa460a7708b942f48a829549ace9faa14df31a"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/M-H-N-analysis.json",
+          "bytes": 135956,
+          "sha256": "bcc786f0dd2c78c840326cf463924569eecfb00dcfb76c0c8afa57b681255e82"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/M-H-N-independent-r2.json",
+          "bytes": 367,
+          "sha256": "d5cbf925cf1d1e21df3e4c013143bdbd16a65174f8dedb8c11a2504229f35189"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/M-H-N/configuration.json",
+          "bytes": 1742532,
+          "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/M-H-N/snapshot.json",
+          "bytes": 1706671236,
+          "sha256": "e0bfecfe6f53ff196e33a85122fa460a7708b942f48a829549ace9faa14df31a",
+          "format": "SNAPSHOT_EVENTS_ARRAY"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/M-H-N.json",
+        "bytes": 15117696,
+        "sha256": "fd5594f903d9bb29791bf28f21cb15627cde46aa931656e955f314f7d7efeeff"
+      },
+      "labour_policy": {
+        "cost": null,
+        "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+      }
+    },
+    {
+      "unit": "M-H-H",
+      "identity": {
+        "unit": "M-H-H",
+        "scenario": "MECHANISM",
+        "method": "H",
+        "run_id": "P053-r2-M-H-H",
+        "epoch": 0,
+        "source_family": "P053-c1",
+        "input_configuration_sha256": "40a610e36b75dfb732658afcd0856f3e3e6515f7fed2c6dcfc9d8c23baee6199",
+        "evaluation_window_h": 720,
+        "actual_lifecycle_end_h": 553.9299583333333,
+        "lifecycle_sum_E": 320.028932198707,
+        "lifecycle_max_E": 41.94127859074331,
+        "peak_F": 0.7907676837611106,
+        "common_window_sum_E": 320.1180123474397,
+        "common_window_max_E": 41.945003329911714,
+        "common_window_status": "PASS_DERIVED_REST_EVALUATION",
+        "people_count": 15,
+        "presence_person_h": 8308.949374999998,
+        "available_person_h": 2788.9493749999992,
+        "registered_products": 2,
+        "released_products": 2,
+        "noncancelled_released_products": 2,
+        "cancelled_products": 0,
+        "received_products": 2,
+        "ready_products": 2,
+        "on_time_received_fraction_all_released": 0.0,
+        "on_time_ready_fraction_all_released": 0.0,
+        "on_time_received_fraction_noncancelled": 0.0,
+        "last_received_h": 553.9299583333333,
+        "internal_finished_peak": 1,
+        "internal_finished_area_product_h": 2.667222222222165,
+        "wip_peak": 2,
+        "wip_area_product_h": 769.0951726666653,
+        "transport_m": 41531.02799999998,
+        "empty_transport_m": 13809.396,
+        "walk_m": 18744.410000000018,
+        "empty_transport_ratio": 0.3325079263629113,
+        "original_actual_exit_code": 0,
+        "scope": "ORIGINAL_FIXED_PROTOCOL_EXECUTION_PLUS_NEW_OFFLINE_ANALYSIS",
+        "status": "METRICS_COMPUTED_VALIDATION_RECORDED_SEPARATELY",
+        "presence_labour_cost": null,
+        "labour_currency": null
+      },
+      "original_inputs": {
+        "source": {
+          "path": ".local/p053-execution-20261028-r2/runs/M-H-H/snapshot.json",
+          "sha256": "c3ccea84bb7ac1cdfc49716dc53913732ed39554fbf2ae58f3315e34890d3e98"
+        },
+        "analysis": {
+          "path": ".local/p053-execution-20261028-r2/M-H-H-analysis.json",
+          "bytes": 121439,
+          "sha256": "4ee9ac1c1e4c01d68bc53d04d78891a4c2b26a6b532c54a655e02a392aa3e009"
+        },
+        "independent": {
+          "path": ".local/p053-execution-20261028-r2/M-H-H-independent-r2.json",
+          "bytes": 366,
+          "sha256": "7f201986296e7bbb26bca7f88224748f27385677a8c7db6a0deb57f3e179655e"
+        },
+        "configuration": {
+          "path": ".local/p053-execution-20261028-r2/runs/M-H-H/configuration.json",
+          "bytes": 1742532,
+          "sha256": "56ac61474b6bce4a79b0a2ed93d189aaa42ee574e7e6929aade63b897425c02f"
+        },
+        "events": {
+          "path": ".local/p053-execution-20261028-r2/runs/M-H-H/snapshot.json",
+          "bytes": 1707552051,
+          "sha256": "c3ccea84bb7ac1cdfc49716dc53913732ed39554fbf2ae58f3315e34890d3e98",
+          "format": "SNAPSHOT_EVENTS_ARRAY"
+        },
+        "extractor": {
+          "path": "analysis/p07/extract.py",
+          "bytes": 10447,
+          "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+        }
+      },
+      "derived_result": {
+        "path": "results/p07/r3/computed/M-H-H.json",
+        "bytes": 15119239,
+        "sha256": "5ee7f850c91d2a78341845981f47fd1ecab5f9117ceb7e15efe3f4a69d330982"
+      },
+      "labour_policy": {
+        "cost": null,
+        "status": "UNKNOWN_NO_RUN_SPEC_COST_POLICY_DIRECT_LOOP"
+      }
+    }
+  ],
+  "dynamic_people": [
+    {
+      "case": "cpu-formal-r2",
+      "run_id": "P043-CPU-FORMAL-R2",
+      "inputs": [
+        {
+          "path": ".local/p043-20261023/cpu-formal-r2/session-state.json",
+          "bytes": 24864009,
+          "sha256": "92067755235ef9b5f82163e827daa1496523aa00db8d29d1f3ae868c31f3356d"
+        },
+        {
+          "path": ".local/p043-20261023/cpu-formal-r2/configuration.json",
+          "bytes": 878322,
+          "sha256": "650c77bcad3fe4f4b7c02bed37d80e07735341363097c9f7bc13a121c2e227fe"
+        },
+        {
+          "path": ".local/p043-20261023/cpu-formal-r2/run-spec.json",
+          "bytes": 4016,
+          "sha256": "973702a139adee7bad40a0e4fc6a6870da6bf346436fd098e7ef7eb13942cb0a"
+        }
+      ],
+      "scope": "INDEPENDENT_ARITHMETIC_AND_SAVED_STATISTICS_MATCH"
+    },
+    {
+      "case": "kit-formal-r3",
+      "run_id": "P043-KIT-FORMAL-R3",
+      "inputs": [
+        {
+          "path": ".local/p043-20261023/kit-formal-r3/session-state.json",
+          "bytes": 24702835,
+          "sha256": "ff37468149f1bf2d0a7cd02a11ff00765841e6a72511773d7a209fed59bf59a0"
+        },
+        {
+          "path": ".local/p043-20261023/kit-formal-r3/configuration.json",
+          "bytes": 878322,
+          "sha256": "650c77bcad3fe4f4b7c02bed37d80e07735341363097c9f7bc13a121c2e227fe"
+        },
+        {
+          "path": ".local/p043-20261023/kit-formal-r3/run-spec.json",
+          "bytes": 4013,
+          "sha256": "1207135835a787811aab1fc041274f3f4f559d1c4739d5c45efd8defb12f0681"
+        }
+      ],
+      "scope": "INDEPENDENT_ARITHMETIC_AND_SAVED_STATISTICS_MATCH"
+    }
+  ],
+  "dynamic_orders": {
+    "inputs": [
+      {
+        "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/session-state.json",
+        "bytes": 2353510108,
+        "sha256": "a6b4761fe78afde3e931e3bd3fc3a93f027d270c24eb0f35127f7d4499d994b6"
+      },
+      {
+        "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/configuration.json",
+        "bytes": 878350,
+        "sha256": "11302f5d7b2fd272fbc8955b6c1a5fbceda06f60f64e8c240172dff65af0e8b1"
+      },
+      {
+        "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/full-schedule-state.json",
+        "bytes": 477312,
+        "sha256": "405df43c92e010b2423463eacaea2605d664f17494fe7767a076adae1c4be067"
+      },
+      {
+        "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/full-schedules/dd1c52eb20519519af5a73148cd2687cd3de9e9ef763e871be825da9e55b9f0e.json",
+        "bytes": 3705809,
+        "sha256": "dd1c52eb20519519af5a73148cd2687cd3de9e9ef763e871be825da9e55b9f0e"
+      },
+      {
+        "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/full-schedules/9e97006ee2ae35295b0bc3c40ea6dab79baf7f2571bdce93f9bd5323f7012a0d.json",
+        "bytes": 15495343,
+        "sha256": "9e97006ee2ae35295b0bc3c40ea6dab79baf7f2571bdce93f9bd5323f7012a0d"
+      },
+      {
+        "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/full-schedules/9cd4416d12127bb1343fd89269856d2af4cd67506c696cdc68f03aec399f71de.json",
+        "bytes": 23847996,
+        "sha256": "9cd4416d12127bb1343fd89269856d2af4cd67506c696cdc68f03aec399f71de"
+      },
+      {
+        "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/session/full-schedules/6230cebfb25cf7e3504afaf740656809a39c6f772899f731ecb55c645a3cf75d.json",
+        "bytes": 23992649,
+        "sha256": "6230cebfb25cf7e3504afaf740656809a39c6f772899f731ecb55c645a3cf75d"
+      },
+      {
+        "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/events.jsonl.gz",
+        "bytes": 217377941,
+        "sha256": "0597d342d121729e6d0e294db88be70621bbaee504717b95e1fa63cb18fc3db3"
+      },
+      {
+        "path": ".local/p052-execution-20261025-r1/kit-r14/runs/P051-E20-866d7cd0e9594603b92f6463dc5bb0a4/decisions.jsonl.gz",
+        "bytes": 1038036,
+        "sha256": "8241b31a49d03c45ed70d051b8f88c8d968056214ccabd5f854aa773acbd2f84"
+      }
+    ],
+    "result": {
+      "path": "results/p07/r3/e20_order_details.json",
+      "bytes": 13509,
+      "sha256": "b612bf21314d52f19336216793274c395712917b7ce38d6851bfb11a26a1a97d"
+    }
+  },
+  "cancellation": {
+    "input": {
+      "path": "results/p07/r3/cancellation_inputs.json",
+      "bytes": 504389,
+      "sha256": "41e90f27a13af64468f4d77a01e99a332325d0cdd600417e66213cfaf5ced422"
+    },
+    "result": {
+      "path": "results/p07/r3/cancellation.json",
+      "bytes": 101655,
+      "sha256": "a1dda1df1620d88cb433efbfb61100f21393039e44aa68e18094bcd5251c5cf1"
+    }
+  },
+  "exports": {
+    "format": "P07-DUAL-DOMAIN-EXPORT-1",
+    "cases": [
+      {
+        "case": "normal",
+        "identity": {
+          "run_id": "P063-NORMAL",
+          "epoch": 0,
+          "run_spec_sha256": "c42214c250266e2580b717f75a049617ab21eaa6222e8dc745a6e6768de75f39",
+          "initial_config_sha256": "2105c1670829e5fdc250e72ef3ee886cb7ef34a453be6b32f29536b41124d071",
+          "catalog_hash": "314f53e81e6507560a02e8e05944a99c481c5b6a1c3a220ad450270363fbfec2",
+          "catalog_version": 0,
+          "state_revision": 4473,
+          "observation_id": "OBS-4473",
+          "event_count": 4473,
+          "event_prefix_hash": "cb3afbb66ef546b7de78a0cf407ba72da497ddeed1732a68857846a0b3e92f87"
+        },
+        "rows": 24680,
+        "total_gantt_rows": 24680,
+        "planned_full_schedule_rows": 1023,
+        "row_counts_by_state": {
+          "ACTUAL": 23645,
+          "UNSCHEDULED": 12,
+          "PLANNED": 1023
+        },
+        "row_counts_by_kind": {
+          "MARKER": 277,
+          "PLAN": 12,
+          "RESOURCE_FACT": 5470,
+          "FACT_PREFIX": 1023,
+          "PERSON_INTERVAL": 16875,
+          "FULL_PLAN": 1023
+        },
+        "status": "EXACT_SOURCE_COPY_AND_SAME_OBSERVATION",
+        "legacy_order_binding": "DIRECT_ORDER_PAYLOAD",
+        "scope": "COMPLETE_NORMAL_CPU",
+        "native_render_created": false,
+        "age_semantics": "ORIGINAL_STALE_READ_ONLY_PRESERVED",
+        "files": [
+          {
+            "original": {
+              "path": ".local/p063-execution-20261101-r1/audits/normal/desktop-view.json",
+              "bytes": 20888821,
+              "sha256": "12eeac540588f2185b16ad739af92c5e3f26b336ab2ce5f73e42f60098a03b35"
+            },
+            "export": {
+              "path": "results/p07/r3/exports/normal/gantt.json",
+              "bytes": 20888821,
+              "sha256": "12eeac540588f2185b16ad739af92c5e3f26b336ab2ce5f73e42f60098a03b35"
+            }
+          },
+          {
+            "original": {
+              "path": ".local/p063-execution-20261101-r1/audits/normal/scene-domain-projection.json",
+              "bytes": 205596,
+              "sha256": "2614143e297a5bcbf4bb1c0a267e9ae1f8bd690f9e68c0f78c6af341597b6697"
+            },
+            "export": {
+              "path": "results/p07/r3/exports/normal/scene-domain.json",
+              "bytes": 205596,
+              "sha256": "2614143e297a5bcbf4bb1c0a267e9ae1f8bd690f9e68c0f78c6af341597b6697"
+            }
+          },
+          {
+            "original": {
+              "path": ".local/p063-execution-20261101-r1/audits/normal/presentation-cache.json",
+              "bytes": 136471,
+              "sha256": "f29572ab82743e3f8fc47c5058e248f0cf95d2ce2a78fab6d9035db8bb15ec59"
+            },
+            "export": {
+              "path": "results/p07/r3/exports/normal/presentation-cache.json",
+              "bytes": 136471,
+              "sha256": "f29572ab82743e3f8fc47c5058e248f0cf95d2ce2a78fab6d9035db8bb15ec59"
+            }
+          }
+        ]
+      },
+      {
+        "case": "dynamic",
+        "identity": {
+          "run_id": "P063-DYNAMIC-r2",
+          "epoch": 0,
+          "run_spec_sha256": "965db51ccbd6fdf2a91443349a2ee132bc834800ab3069a36b2117a500086354",
+          "initial_config_sha256": "2105c1670829e5fdc250e72ef3ee886cb7ef34a453be6b32f29536b41124d071",
+          "catalog_hash": "61d72ee6b9d6d8ed3bdff859d8057f9dd4efae462e15485c69ca5a51e8e01e35",
+          "catalog_version": 1,
+          "state_revision": 106,
+          "observation_id": "OBS-106",
+          "event_count": 106,
+          "event_prefix_hash": "0cd0093e67494042b8441f50a5ef7c568adc1b5bb9f9a226da0972ca3f15a6eb"
+        },
+        "rows": 2676,
+        "total_gantt_rows": 2676,
+        "planned_full_schedule_rows": 2046,
+        "row_counts_by_state": {
+          "ACTUAL": 183,
+          "UNSCHEDULED": 447,
+          "PLANNED": 2046
+        },
+        "row_counts_by_kind": {
+          "MARKER": 86,
+          "PLAN": 447,
+          "RESOURCE_FACT": 17,
+          "FACT_PREFIX": 5,
+          "PERSON_INTERVAL": 75,
+          "FULL_PLAN": 2046
+        },
+        "status": "EXACT_SOURCE_COPY_AND_SAME_OBSERVATION",
+        "legacy_order_binding": "DIRECT_ORDER_PAYLOAD",
+        "scope": "LOCAL_STOPPED_ARCHIVE",
+        "native_render_created": false,
+        "age_semantics": "ORIGINAL_STALE_READ_ONLY_PRESERVED",
+        "files": [
+          {
+            "original": {
+              "path": ".local/p063-execution-20261101-r1/audits/dynamic/desktop-view.json",
+              "bytes": 2504894,
+              "sha256": "552f1f4adb57dab7ccd860e806d59c2e4c2daad8bab36f12600619324d05cf4c"
+            },
+            "export": {
+              "path": "results/p07/r3/exports/dynamic/gantt.json",
+              "bytes": 2504894,
+              "sha256": "552f1f4adb57dab7ccd860e806d59c2e4c2daad8bab36f12600619324d05cf4c"
+            }
+          },
+          {
+            "original": {
+              "path": ".local/p063-execution-20261101-r1/audits/dynamic/scene-domain-projection.json",
+              "bytes": 50464,
+              "sha256": "393d247b6a617f7fb3d66f10d709c3f66fed698812baf566601bda4bbf986e23"
+            },
+            "export": {
+              "path": "results/p07/r3/exports/dynamic/scene-domain.json",
+              "bytes": 50464,
+              "sha256": "393d247b6a617f7fb3d66f10d709c3f66fed698812baf566601bda4bbf986e23"
+            }
+          },
+          {
+            "original": {
+              "path": ".local/p063-execution-20261101-r1/audits/dynamic/presentation-cache.json",
+              "bytes": 198607,
+              "sha256": "359a140d07af0433bf82006b2cf47b3ff28abf619960ea772e1b4c60fd3453cc"
+            },
+            "export": {
+              "path": "results/p07/r3/exports/dynamic/presentation-cache.json",
+              "bytes": 198607,
+              "sha256": "359a140d07af0433bf82006b2cf47b3ff28abf619960ea772e1b4c60fd3453cc"
+            }
+          }
+        ]
+      },
+      {
+        "case": "kit",
+        "identity": {
+          "run_id": "P051-5c420551c468461b832db49e9c88074f",
+          "epoch": 0,
+          "run_spec_sha256": "ceb3a029875f26a44db05c1ecbc2aeec4205f6b26a6db826ced0a85140f8a7c3",
+          "initial_config_sha256": "2105c1670829e5fdc250e72ef3ee886cb7ef34a453be6b32f29536b41124d071",
+          "catalog_hash": "b032baa3d99d6169eb329afca0965b75acbdbc74371a89c3d498075349782e97",
+          "catalog_version": 1,
+          "state_revision": 329,
+          "observation_id": "OBS-329",
+          "event_count": 329,
+          "event_prefix_hash": "9a41d1c255909066273ecfecc155c1bec9e730900ac56d4b05ecae31f91e6eb4"
+        },
+        "rows": 5241,
+        "total_gantt_rows": 5241,
+        "planned_full_schedule_rows": 2046,
+        "row_counts_by_state": {
+          "ACTUAL": 2752,
+          "UNSCHEDULED": 443,
+          "PLANNED": 2046
+        },
+        "row_counts_by_kind": {
+          "MARKER": 86,
+          "PLAN": 443,
+          "RESOURCE_FACT": 45,
+          "FACT_PREFIX": 11,
+          "PERSON_INTERVAL": 2610,
+          "FULL_PLAN": 2046
+        },
+        "status": "EXACT_SOURCE_COPY_AND_SAME_OBSERVATION",
+        "legacy_order_binding": "OBSERVATION_PRODUCT_IDENTITIES; ORDER_DEFINITIONS_IN_COMPANION_GANTT",
+        "scope": "LOCAL_STOPPED_ARCHIVE",
+        "native_render_created": false,
+        "age_semantics": "ORIGINAL_STALE_READ_ONLY_PRESERVED",
+        "files": [
+          {
+            "original": {
+              "path": ".local/p063-execution-20261101-r1/audits/kit/desktop-view.json",
+              "bytes": 5041199,
+              "sha256": "085b0933edf6505c480ad1b048086c5c1a6d3f3074b4557d4d0d93dfeebb54c6"
+            },
+            "export": {
+              "path": "results/p07/r3/exports/kit/gantt.json",
+              "bytes": 5041199,
+              "sha256": "085b0933edf6505c480ad1b048086c5c1a6d3f3074b4557d4d0d93dfeebb54c6"
+            }
+          },
+          {
+            "original": {
+              "path": ".local/p063-execution-20261101-r1/audits/kit/scene-domain-projection.json",
+              "bytes": 52791,
+              "sha256": "a19da93a1ba54048651ed881822ffa3a77a56848df17e300f67ca7ee286470c3"
+            },
+            "export": {
+              "path": "results/p07/r3/exports/kit/scene-domain.json",
+              "bytes": 52791,
+              "sha256": "a19da93a1ba54048651ed881822ffa3a77a56848df17e300f67ca7ee286470c3"
+            }
+          },
+          {
+            "original": {
+              "path": ".local/p063-execution-20261101-r1/audits/kit/saved-presentation-cache.json",
+              "bytes": 269126,
+              "sha256": "9367300991aa370e1151451cdcddc4aa72037383541beb4c6698013d7cf6ae53"
+            },
+            "export": {
+              "path": "results/p07/r3/exports/kit/presentation-cache.json",
+              "bytes": 269126,
+              "sha256": "9367300991aa370e1151451cdcddc4aa72037383541beb4c6698013d7cf6ae53"
+            }
+          }
+        ]
+      }
+    ],
+    "source_code": {
+      "path": "analysis/p07/export.py",
+      "bytes": 4871,
+      "sha256": "397c42695baa7a8e810fa9f6d1f2f39e0d1e4d02525e6ce07c9464779339e7e2"
+    },
+    "new_kit_runs": 0,
+    "synchronized_native_screenshot_claim": false
+  },
+  "original_failed_attempts": {
+    "source": {
+      "path": "docs/delivery/p053_failure_index_r2.json",
+      "bytes": 8015,
+      "sha256": "2652a9fce3c5cdee482627fe43232d1d14f979c490df2df18879d736ed2f9b7d"
+    },
+    "full_original_index": {
+      "production_failed_or_censored": [
+        {
+          "unit": "N-CPU-EDD",
+          "root": ".local/p053-execution-20261028-r1",
+          "exit": {
+            "pid": 130692,
+            "exit_code": 1,
+            "elapsed_s": 425.1619209999917,
+            "at": "2026-10-28T12:00:49.651283+00:00"
+          },
+          "summary": {
+            "termination": "WINDOW_CENSORED",
+            "time_h": 720,
+            "received": 1,
+            "audit": "PASS",
+            "decision_audit": "PASS"
+          },
+          "result": ".local/p053-execution-20261028-r1/N-CPU-EDD-result.json",
+          "scope": "retained original failed/censored attempt; not rerun"
+        },
+        {
+          "unit": "C-CPU-EDD",
+          "root": ".local/p053-execution-20261028-r2",
+          "exit": {
+            "pid": 121224,
+            "exit_code": 1,
+            "elapsed_s": 15.127961999969557,
+            "at": "2026-10-28T13:42:01.624659+00:00"
+          },
+          "summary": {
+            "termination": "WINDOW_CENSORED",
+            "time_h": 720,
+            "received": 0,
+            "audit": "PASS",
+            "decision_audit": "PASS"
+          },
+          "result": ".local/p053-execution-20261028-r2/C-CPU-EDD-result.json",
+          "scope": "retained original failed/censored attempt; not rerun"
+        },
+        {
+          "unit": "C-CPU-EDD-r3",
+          "root": ".local/p053-execution-20261028-r2",
+          "exit": {
+            "pid": 93040,
+            "exit_code": 1,
+            "elapsed_s": 34.388764600036666,
+            "at": "2026-10-28T14:20:43.777508+00:00"
+          },
+          "summary": {
+            "termination": "WINDOW_CENSORED",
+            "time_h": 720,
+            "received": 0,
+            "audit": "PASS",
+            "decision_audit": "PASS"
+          },
+          "result": ".local/p053-execution-20261028-r2/C-CPU-EDD-r3-result.json",
+          "scope": "retained original failed/censored attempt; not rerun"
+        },
+        {
+          "unit": "U-CPU-EDD",
+          "root": ".local/p053-execution-20261028-r2",
+          "exit": {
+            "pid": 134560,
+            "exit_code": 1,
+            "elapsed_s": 15.689054099959321,
+            "at": "2026-10-28T14:11:42.395860+00:00"
+          },
+          "summary": {
+            "termination": "PREPARATION_BUDGET",
+            "time_h": 3.2035647222222075,
+            "received": 0,
+            "audit": "PASS",
+            "decision_audit": "INCOMPLETE"
+          },
+          "result": ".local/p053-execution-20261028-r2/U-CPU-EDD-result.json",
+          "scope": "retained original failed/censored attempt; not rerun"
+        }
+      ],
+      "C_STOCK_window_termination": "both new C-STOCK runs retain WINDOW_CENSORED at720h with remaining_products_complete=true; PRODUCT-1 cancelled and PRODUCT-2 received; not two received or an OPERATIONS_COMPLETE terminal",
+      "WIP": "both actual WIP failures remain; J3 HOLD remainder not established",
+      "partial_kit_tools": "prepared and frozen; not invoked because shared r4 all-pass route succeeded",
+      "identity": "P053-FAILURE-INDEX-r2",
+      "at": "2026-10-29T09:08:50.630892+00:00",
+      "reference_amendment_of": {
+        "path": "docs/delivery/p053_failure_index_r1.json",
+        "sha256": "4ace5cdcd96082834d72dcc5ad9e91ad004529cd0be3c2d08ffdf9ebe1fe53e2",
+        "bytes": 3465
+      },
+      "auxiliary_attempts": [
+        {
+          "attempt_id": "AUX-N-EDD-FIRST-AUDIT-CANCEL-REQUEST",
+          "category": "AUXILIARY_AUDIT",
+          "state": "AUXILIARY_AUDIT_CANCEL_REQUESTED_QUADRATIC_PREFIX_COST",
+          "code_path": ".local/p053-execution-20261028-r2/independent.py",
+          "actual_evidence": [
+            {
+              "path": ".local/p053-execution-20261028-r2/N-CPU-EDD-independent-first-cancel.json",
+              "sha256": "ac22581676895b778ed5a19e5871f40345166298585033c34b404452d2332344",
+              "bytes": 471
+            }
+          ],
+          "actual_evidence_fields": [
+            "state",
+            "pid",
+            "cpu_s",
+            "started_at",
+            "at",
+            "reason"
+          ],
+          "cpu_s": 912.03125,
+          "request_after_start_wall_s": 934.574251,
+          "actual_exit_code": null,
+          "actual_exit_status": "UNKNOWN_NOT_ESTABLISHED_BY_CANCEL_REQUEST",
+          "production_failure": false
+        },
+        {
+          "attempt_id": "PREP-S18-F0-REJECTED",
+          "category": "PREPARATION_ADMISSION_REJECTION",
+          "state": "PREPARATION_REJECTED_NO_PRODUCTION",
+          "reason": "SIM_PRESERVED_PARAMETER:people",
+          "code_path": ".local/p053-execution-20261028-r1/prepare-failed-r1.py",
+          "actual_evidence": [
+            {
+              "path": ".local/p053-execution-20261028-r1/preflight-failure.json",
+              "sha256": "3ee2fcb5eb592ea6c2266a2c3261fa2791f940382226299f0d58710211588213",
+              "bytes": 145
+            }
+          ],
+          "actual_evidence_fields": [
+            "state",
+            "reason",
+            "original_guard_unchanged",
+            "production_started"
+          ],
+          "actual_exit_code": null,
+          "actual_exit_status": "NOT_RECORDED_IN_THIS_RECEIPT",
+          "production_started": 0,
+          "production_failure": false
+        },
+        {
+          "attempt_id": "INITIAL-INTERFACE-ASSERTION",
+          "category": "HISTORICAL_TEST_FAILURE",
+          "state": "FAILED_LOG_RETAINED",
+          "reason": "serialized typed equality assertion differs; not an environment/import failure",
+          "code_path": "tests/test_research_initial.py",
+          "code_path_scope": "current related test path; not a historical-source identity claim",
+          "actual_evidence": [
+            {
+              "path": ".local/p053-execution-20261028-r1/initial-interface-tests-r1.log",
+              "sha256": "1b3521bd18c1f96a5d2da272cda013e976272522322097f6aba5348450200442",
+              "bytes": 1309
+            }
+          ],
+          "actual_exit_code": null,
+          "actual_exit_status": "NOT_RECORDED_BY_UNITTEST_LOG",
+          "later_pass_evidence": [
+            {
+              "path": ".local/p053-execution-20261028-r1/initial-interface-tests-r2.log",
+              "sha256": "03f04fd88a6b526c118774e6447c2a6a7a7449873d8f7934ce2b9dd5ec2bd63d",
+              "bytes": 629
+            }
+          ],
+          "production_failure": false
+        },
+        {
+          "attempt_id": "RESEARCH-INTERFACE-MISSING-END-H",
+          "category": "HISTORICAL_TEST_FAILURE",
+          "state": "FAILED_LOG_RETAINED",
+          "reason": "OnlinePolicy.__init__ missing required keyword-only end_h; not an environment/import failure",
+          "code_path": "tests/test_research_initial.py",
+          "code_path_scope": "current related test path; not a historical-source identity claim",
+          "actual_evidence": [
+            {
+              "path": ".local/p053-execution-20261028-r1/research-interface-tests-r3.log",
+              "sha256": "7fe7b32afc312e22f697501bcabcc3df035e5f12ebda8073f4340f21ecdd7ca1",
+              "bytes": 1444
+            }
+          ],
+          "actual_exit_code": null,
+          "actual_exit_status": "NOT_RECORDED_BY_UNITTEST_LOG",
+          "later_pass_evidence": [
+            {
+              "path": ".local/p053-execution-20261028-r1/research-interface-tests-r4.log",
+              "sha256": "7a7c9f1a0cf7a172e0c4bb1376ea9fc00f7943efcd856350982975d907cdfef5",
+              "bytes": 797
+            }
+          ],
+          "production_failure": false
+        }
+      ],
+      "unverified_legacy_notes": [
+        {
+          "legacy_claim": "wrong initial test environment attempt retained; later original66 log is authoritative",
+          "state": "UNKNOWN_NO_MATCHING_FAILURE_EVIDENCE_LOCATED",
+          "actual_evidence": [],
+          "incorrect_old_target": ".local/p053-execution-20261028-r3/targeted-tests.log",
+          "old_target_role": "66-test PASS validation log, not evidence of an earlier environment failure",
+          "counted_as_confirmed_attempt": false
+        }
+      ],
+      "validation_logs": [
+        {
+          "role": "original66 targeted tests PASS; never a failed-environment receipt",
+          "evidence": {
+            "path": ".local/p053-execution-20261028-r3/targeted-tests.log",
+            "sha256": "6c787e9e5ae603a6147486ce8659f549446ad04313aaccdd9e2f3b9e708465fb",
+            "bytes": 172
+          }
+        }
+      ],
+      "scope": "reference and taxonomy correction only; real four production failures unchanged; no new run/test attempt counted here"
+    }
+  },
+  "original_frozen_extractor": {
+    "path": "examples/reproduction/p07/provenance/extractor-r4.py.txt",
+    "bytes": 10447,
+    "sha256": "7d9292d197cef3b0f205090ea2895525662a708f654736a2b696687f0494696f"
+  },
+  "current_analysis_source": [
+    {
+      "path": "analysis/p07/__init__.py",
+      "bytes": 77,
+      "sha256": "78f2bbb7b2e1943461d8e35fc09bb4018620e85899379c2b1520b128ba534c7d"
+    },
+    {
+      "path": "analysis/p07/adapters.py",
+      "bytes": 10332,
+      "sha256": "865b4e353aded41874cf7623628a4ba3d5c385ea7f849c0de6fcec121d7477b7"
+    },
+    {
+      "path": "analysis/p07/build_results.py",
+      "bytes": 15778,
+      "sha256": "7d43317d4d3e3c243f29dc2d952a01c7b2cf884b1f1e63ef2c646dcc68a26e3f"
+    },
+    {
+      "path": "analysis/p07/cancellation.py",
+      "bytes": 8105,
+      "sha256": "e5b4e39d6b67bec5d541350e43c892cff69bd203456fd415f8457f829cf0414c"
+    },
+    {
+      "path": "analysis/p07/checks.py",
+      "bytes": 10627,
+      "sha256": "4ffdb2ba0275cd8eed323aead12ffc8b3136c0bb612d2a8cbd5d51dca7f52db0"
+    },
+    {
+      "path": "analysis/p07/deliver.py",
+      "bytes": 16297,
+      "sha256": "25b66e88a25a4e38d04e9b53178f8cb8bb01363122f7d0d12d248dcad1762451"
+    },
+    {
+      "path": "analysis/p07/dynamic.py",
+      "bytes": 9905,
+      "sha256": "c2314ff44850aa7fe1dfde8709bc1785b1725849b3de0fbe9b796bc1300d51dd"
+    },
+    {
+      "path": "analysis/p07/e20_details.py",
+      "bytes": 7858,
+      "sha256": "02564eabca391bb681d985a5321f8f5227f2138725e21d52bc2fe67e4785d7fc"
+    },
+    {
+      "path": "analysis/p07/export.py",
+      "bytes": 4897,
+      "sha256": "d5fc4fb15a770dace67ece6c3c8e7ffdf0c34a1f96aa9fa29240652d895ed4f4"
+    },
+    {
+      "path": "analysis/p07/extract.py",
+      "bytes": 11570,
+      "sha256": "5a857db54b9b4b5a619a0e3938cbd4a6716f0a3c9e68565eb5ea101ad0c464b0"
+    },
+    {
+      "path": "analysis/p07/figures.py",
+      "bytes": 18474,
+      "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+    },
+    {
+      "path": "analysis/p07/load.py",
+      "bytes": 6786,
+      "sha256": "9ef0abb268c7cdc30e7288230fcb991bd28a5545fd5b10641adc3b783e25dce8"
+    },
+    {
+      "path": "analysis/p07/portable_metrics.py",
+      "bytes": 7727,
+      "sha256": "faa3cfaf00814d03e2f51f2727f17d8aa70d8e751152cbacd59de46ebb41a884"
+    },
+    {
+      "path": "analysis/p07/reproduce.py",
+      "bytes": 9272,
+      "sha256": "c849ae5326d10feb523f1ad96fa82167dda9fb4ac228543ad2f76dda17ec8977"
+    },
+    {
+      "path": "analysis/p07/tables.py",
+      "bytes": 5386,
+      "sha256": "34d04e1e1f6dff6b2cc9092cb7308f47b47524b6f1d633c9aa4a7d36cb860e08"
+    },
+    {
+      "path": "analysis/p07/validate.py",
+      "bytes": 2063,
+      "sha256": "bdad6fee3cb6b404c68a9f3e59781cd0fce1cdb5ae03ab94122783b35723896d"
+    },
+    {
+      "path": "analysis/p07/validation_engine.py",
+      "bytes": 9943,
+      "sha256": "9c7c36adbd5e58e093ee5fbb617813fac21866e50a647bc29e2063122055949e"
+    }
+  ],
+  "reused_algorithms": [
+    {
+      "path": "analysis/p07/portable_metrics.py",
+      "bytes": 7727,
+      "sha256": "faa3cfaf00814d03e2f51f2727f17d8aa70d8e751152cbacd59de46ebb41a884"
+    },
+    {
+      "path": "analysis/p07/portable_metrics_origin.json",
+      "bytes": 416,
+      "sha256": "135573e3d023c7f6d8b1e4e9e03faf31fb3e3fcc9e0ee11c79e0a57b4a8bf94c"
+    }
+  ],
+  "portable_inputs": {
+    "path": "examples/reproduction/p07/r3/manifest.json",
+    "bytes": 7747,
+    "sha256": "3602407ba5f229e65ece34cf91cfc354154557da3a1665e36dd2700f40ca97ed"
+  },
+  "requirements": [
+    {
+      "id": "Q01",
+      "requirements": [
+        "T05",
+        "T09",
+        "I03",
+        "I05"
+      ],
+      "artifacts": [
+        "orders.csv",
+        "products.csv",
+        "e20_orders.csv",
+        "e20_requests.csv"
+      ],
+      "scope": "Dynamic catalog and actual request/observation/adoption/execution times; order and product counts separate",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q02",
+      "requirements": [
+        "T05",
+        "T09"
+      ],
+      "artifacts": [
+        "products.csv",
+        "attempts.json",
+        "cancellation_accounts.csv",
+        "cancellation_lots.csv",
+        "cancellation_materials.csv"
+      ],
+      "scope": "Cancellation, receipt, right censoring, typed material balances and command-linked sunk resources retained; STOCK is not WIP/J3",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q03",
+      "requirements": [
+        "T01",
+        "T09"
+      ],
+      "artifacts": [
+        "resources.csv",
+        "summary.csv"
+      ],
+      "scope": "Per-revision peaks, time area and resource unions; WAIT causes not uniquely inferred",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q04",
+      "requirements": [
+        "T01",
+        "T04",
+        "T09"
+      ],
+      "artifacts": [
+        "transport.csv",
+        "transport_commands.csv",
+        "transport_chains.csv"
+      ],
+      "scope": "Actual command/root/resume chain segments; WALK and empty return separate",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q05",
+      "requirements": [
+        "T03",
+        "I06"
+      ],
+      "artifacts": [
+        "dynamic_people.csv",
+        "dynamic_people_events.csv",
+        "dynamic_intervals.csv"
+      ],
+      "scope": "All historical IDs, newcomer defined time, return continuity and eligibility",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q06",
+      "requirements": [
+        "T03",
+        "T09",
+        "I06"
+      ],
+      "artifacts": [
+        "people.csv",
+        "activity.csv",
+        "dynamic_people.json"
+      ],
+      "scope": "Actual lifecycle vs common 720h; recorded presence labour rates only, frozen resource fees separate",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q07",
+      "requirements": [
+        "T09"
+      ],
+      "artifacts": [
+        "summary.csv",
+        "pairs.csv"
+      ],
+      "scope": "Five within-scenario pairs, nine paired metrics each; no pooled effect or significance inference",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q08",
+      "requirements": [
+        "T02",
+        "T03",
+        "T09"
+      ],
+      "artifacts": [
+        "mechanisms.csv",
+        "stages.csv",
+        "mode_attempts.csv"
+      ],
+      "scope": "Four mechanism cells, two HR aliases; only 12 distinct research executions",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q09",
+      "requirements": [
+        "T08",
+        "T09"
+      ],
+      "artifacts": [
+        "costs.csv"
+      ],
+      "scope": "Original timings and actual dispatch source; nested fields not summed; CPU/peak memory unmeasured",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q10",
+      "requirements": [
+        "T04",
+        "T05",
+        "T07",
+        "T09"
+      ],
+      "artifacts": [
+        "milestones.csv",
+        "e20_orders.csv"
+      ],
+      "scope": "Actual failure/repair/resume and order outcomes; un-frozen 8h catch-up not evaluated",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q11",
+      "requirements": [
+        "T07",
+        "T08",
+        "I03",
+        "I05",
+        "E20"
+      ],
+      "artifacts": [
+        "e20_timeline.csv",
+        "e20_plan_changes.csv",
+        "e20_order_details.json"
+      ],
+      "scope": "r14 same-run four products, five attempts and adopted schedules; 1 received / 3 incomplete",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q12",
+      "requirements": [
+        "T06",
+        "T07",
+        "I07",
+        "E18",
+        "E22"
+      ],
+      "artifacts": [
+        "exports/manifest.json"
+      ],
+      "scope": "Three same-observation domain pairs, original presentation caches; no new native render",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q13",
+      "requirements": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "I03",
+        "I05",
+        "I06",
+        "I07",
+        "E18",
+        "E20",
+        "E22"
+      ],
+      "artifacts": [
+        "p07_source_registry_r3.json",
+        "claim_evidence_r3.tsv",
+        "feedback_metric_binding_r3.json"
+      ],
+      "scope": "Source hashes, windows and scope plus independent portable derived-data replay",
+      "status": "LOCAL_TECHNICAL_COMPLETE"
+    },
+    {
+      "id": "Q14",
+      "requirements": [
+        "G07"
+      ],
+      "artifacts": [
+        "p07_completion_r3.json"
+      ],
+      "scope": "Local technical exit and exact G07 candidate; preparation authorized, actual publication awaits its own authorization",
+      "status": "G07_CANDIDATE_PREPARATION_AUTHORIZED_ACTUAL_PUBLICATION_NOT_AUTHORIZED"
+    }
+  ],
+  "fixed_source_policy": "c1 N/H/F; c2 U/C; mechanism HR aliases do not add independent samples",
+  "private_path_policy": "Historical .local locators are evidence identities, never the portable replay entry point",
+  "new_production_runs": 0,
+  "new_kit_runs": 0,
+  "new_solve_runs": 0
+}

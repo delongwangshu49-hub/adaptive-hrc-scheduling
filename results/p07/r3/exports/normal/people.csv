@@ -1,0 +1,16 @@
+calendar,id,initial_f,qualifications,recovery_rate,valid_until_h,wait_rate,work_rate
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",P1,0.2,"[""PREP"", ""HOIST"", ""FORK"", ""SC-SUPPORT""]",0.2,10000,0.02,0.08
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",W1,0.2,"[""WELD"", ""CUT""]",0.2,10000,0.02,0.15
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",W2,0.2,"[""WELD""]",0.2,10000,0.02,0.15
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",OP1,0.2,"[""ROBOT""]",0.2,10000,0.02,0.04
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",AF1,0.2,"[""ASSEMBLE""]",0.2,10000,0.02,0.12
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",AF2,0.2,"[""ASSEMBLE""]",0.2,10000,0.02,0.12
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",E1,0.2,"[""ELECTRIC"", ""CART"", ""SC-SUPPORT""]",0.2,10000,0.02,0.1
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",PL1,0.2,"[""PLUMB""]",0.2,10000,0.02,0.1
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",T1,0.2,"[""WET""]",0.2,10000,0.02,0.12
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",T2,0.2,"[""WET""]",0.2,10000,0.02,0.12
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",C1,0.2,"[""COAT""]",0.2,10000,0.02,0.12
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",QA1,0.2,"[""QA"", ""TOOL""]",0.2,10000,0.02,0.08
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",Lop,0.2,"[""CRANE""]",0.2,10000,0.02,0.15
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",Lrig,0.2,"[""RIG""]",0.2,10000,0.02,0.15
+"{""period_h"": 24, ""windows"": [{""end_h"": 4, ""start_h"": 0}, {""end_h"": 8.5, ""start_h"": 4.5}]}",Lsig,0.2,"[""SIGNAL""]",0.2,10000,0.02,0.15

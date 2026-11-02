@@ -1,0 +1,5 @@
+unit,source_root,termination,time_h,received,audit,decision_audit,pid,exit_code,elapsed_s,at,scope
+N-CPU-EDD,.local/p053-execution-20261028-r1,WINDOW_CENSORED,720,1,PASS,PASS,130692,1,425.1619209999917,2026-10-28T12:00:49.651283+00:00,retained original failed/censored attempt; not rerun
+C-CPU-EDD,.local/p053-execution-20261028-r2,WINDOW_CENSORED,720,0,PASS,PASS,121224,1,15.127961999969557,2026-10-28T13:42:01.624659+00:00,retained original failed/censored attempt; not rerun
+C-CPU-EDD-r3,.local/p053-execution-20261028-r2,WINDOW_CENSORED,720,0,PASS,PASS,93040,1,34.388764600036666,2026-10-28T14:20:43.777508+00:00,retained original failed/censored attempt; not rerun
+U-CPU-EDD,.local/p053-execution-20261028-r2,PREPARATION_BUDGET,3.2035647222222075,0,PASS,INCOMPLETE,134560,1,15.689054099959321,2026-10-28T14:11:42.395860+00:00,retained original failed/censored attempt; not rerun

@@ -1,0 +1,52 @@
+{
+  "id": "P07-04b-stock-cancellation",
+  "group": 4,
+  "caption": "STOCK取消的实际尾段记录与未取消产品接收分开；原720h WINDOW_CENSORED终态保留。图不代表WIP/J3 HOLD取消后剩余完成，原两次失败另列。",
+  "alt": "STOCK取消的实际尾段记录与未取消产品接收分开；原720h WINDOW_CENSORED终态保留。图不代表WIP/J3 HOLD取消后剩余完成，原两次失败另列。",
+  "source_data": [
+    {
+      "path": "results/p07/r3/computed/C-STOCK-CPU-EDD-r4.json",
+      "bytes": 8225123,
+      "sha256": "215b62d33d870faab8d382003ad337d6d40f6bb55b1f2c7b07314288eb60babf"
+    },
+    {
+      "path": "results/p07/r3/attempts.json",
+      "bytes": 8652,
+      "sha256": "55cb59c2e21aa4ca1bfb309785705b20e0dbe18df1f4948ecc95f90942426183"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/figures.py",
+    "bytes": 18474,
+    "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+  },
+  "format": "P07-FIGURE-PROVENANCE-1",
+  "files": [
+    {
+      "path": "figures/p07/r3/P07-04b-stock-cancellation.png",
+      "bytes": 105259,
+      "sha256": "2649835530986e773b2c76a8c4648a5ca67a7886abbccfba778bd5168fd62f33"
+    },
+    {
+      "path": "figures/p07/r3/P07-04b-stock-cancellation.svg",
+      "bytes": 12140,
+      "sha256": "29430b6f65e2a65353fa886dfbe1a4488113b5c8b8e4d3b951408c12f27750ef"
+    },
+    {
+      "path": "figures/p07/r3/P07-04b-stock-cancellation.pdf",
+      "bytes": 14367,
+      "sha256": "cc3befdc79f7c9c2da85e9fc7ed7434993cab601aeea3cdafe4f9af04302f4dc"
+    }
+  ],
+  "width_inches": 11.0,
+  "height_inches": 4.5,
+  "raster_dpi": 300,
+  "font_family": "DejaVu Sans",
+  "matplotlib": "3.11.2",
+  "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+  "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+  "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+  "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+  "smoothing": "NONE",
+  "publisher_compliance_claim": false
+}

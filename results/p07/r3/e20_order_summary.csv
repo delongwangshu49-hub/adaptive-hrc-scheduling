@@ -1,0 +1,4 @@
+order_id,run_id,product_ids,registered_products,released_products,received_products,incomplete_products,all_received,observation_end_h,scope
+ORD-BASE,P051-E20-866d7cd0e9594603b92f6463dc5bb0a4,"[""PRODUCT-1""]",1,1,1,0,True,387.7324633333333,ORIGINAL_R14_STOPPED_PREFIX
+ORD-NORMAL,P051-E20-866d7cd0e9594603b92f6463dc5bb0a4,"[""PRODUCT-2"", ""PRODUCT-3""]",2,2,0,2,False,387.7324633333333,ORIGINAL_R14_STOPPED_PREFIX
+ORD-URGENT,P051-E20-866d7cd0e9594603b92f6463dc5bb0a4,"[""PRODUCT-4""]",1,1,0,1,False,387.7324633333333,ORIGINAL_R14_STOPPED_PREFIX

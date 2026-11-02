@@ -1,0 +1,57 @@
+{
+  "id": "P07-02-scenario-values",
+  "group": 2,
+  "caption": "原版本五情景原值；C为STOCK取消后的剩余接收，原720h截尾保留。共同窗含已声明派生尾部，不能当实际休息；全部原失败另见attempts表。",
+  "alt": "原版本五情景原值；C为STOCK取消后的剩余接收，原720h截尾保留。共同窗含已声明派生尾部，不能当实际休息；全部原失败另见attempts表。",
+  "source_data": [
+    {
+      "path": "results/p07/r3/summary.json",
+      "bytes": 20494,
+      "sha256": "6689c62ae5a2d86a15e828e50b308eff4f7c278ae36084f59a5944392981e66c"
+    },
+    {
+      "path": "results/p07/r3/pairs.json",
+      "bytes": 9032,
+      "sha256": "4ec826f6dad6988c8290bd81f32713cbe586ac6e749578e4d41e39095114b656"
+    },
+    {
+      "path": "results/p07/r3/attempts.json",
+      "bytes": 8652,
+      "sha256": "55cb59c2e21aa4ca1bfb309785705b20e0dbe18df1f4948ecc95f90942426183"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/figures.py",
+    "bytes": 18474,
+    "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+  },
+  "format": "P07-FIGURE-PROVENANCE-1",
+  "files": [
+    {
+      "path": "figures/p07/r3/P07-02-scenario-values.png",
+      "bytes": 291307,
+      "sha256": "aada5535d1a3dfdf37905e8792f9a5256af4d4895beb29c38fab4bcbdb539b8d"
+    },
+    {
+      "path": "figures/p07/r3/P07-02-scenario-values.svg",
+      "bytes": 49863,
+      "sha256": "faba984fc8d57ebb1ab79f4dd7869278afa9d204d719ce1a4e900f970fb5ff49"
+    },
+    {
+      "path": "figures/p07/r3/P07-02-scenario-values.pdf",
+      "bytes": 22609,
+      "sha256": "b13f3579dafce742fe49039fc768ca94a7e7b848312b44f2117c935908bb563b"
+    }
+  ],
+  "width_inches": 11.0,
+  "height_inches": 8.0,
+  "raster_dpi": 300,
+  "font_family": "DejaVu Sans",
+  "matplotlib": "3.11.2",
+  "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+  "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+  "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+  "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+  "smoothing": "NONE",
+  "publisher_compliance_claim": false
+}

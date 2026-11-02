@@ -1,0 +1,52 @@
+{
+  "id": "P07-05a-four-mechanisms",
+  "group": 5,
+  "caption": "H/HR×正常/较高初始疲劳的四机制；阶段劳动、全产品接收与共同窗曝光分开。HR两格引用N/H的EDD原运行，不增加独立样本。",
+  "alt": "H/HR×正常/较高初始疲劳的四机制；阶段劳动、全产品接收与共同窗曝光分开。HR两格引用N/H的EDD原运行，不增加独立样本。",
+  "source_data": [
+    {
+      "path": "results/p07/r3/mechanisms.json",
+      "bytes": 1601,
+      "sha256": "d951b77422e740d9f215c0cc120d8ffd9cfe2410c38b0b69a635d40c25262245"
+    },
+    {
+      "path": "results/p07/r3/stages.csv",
+      "bytes": 43323,
+      "sha256": "8ea124b0a04fe41022187c2050f53e6d892267ff5bd77d914b5637dea63c75db"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/figures.py",
+    "bytes": 18474,
+    "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+  },
+  "format": "P07-FIGURE-PROVENANCE-1",
+  "files": [
+    {
+      "path": "figures/p07/r3/P07-05a-four-mechanisms.png",
+      "bytes": 182709,
+      "sha256": "e0b58c87810e67ea308b11125a119ca52501952490563622a0e7ec991e4426ef"
+    },
+    {
+      "path": "figures/p07/r3/P07-05a-four-mechanisms.svg",
+      "bytes": 21203,
+      "sha256": "54ccaa7c6e4b53937cb2ea6798456b7ee88cd4e0e81412c238feaf36b4427758"
+    },
+    {
+      "path": "figures/p07/r3/P07-05a-four-mechanisms.pdf",
+      "bytes": 13830,
+      "sha256": "f1fac1818d434871cc28c2ee0878c2ab09c7f60ea79207c07a8b376e546c65dd"
+    }
+  ],
+  "width_inches": 12.0,
+  "height_inches": 4.5,
+  "raster_dpi": 300,
+  "font_family": "DejaVu Sans",
+  "matplotlib": "3.11.2",
+  "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+  "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+  "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+  "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+  "smoothing": "NONE",
+  "publisher_compliance_claim": false
+}

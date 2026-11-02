@@ -1,0 +1,234 @@
+{
+  "format": "P07-DUAL-DOMAIN-EXPORT-1",
+  "cases": [
+    {
+      "case": "normal",
+      "identity": {
+        "run_id": "P063-NORMAL",
+        "epoch": 0,
+        "run_spec_sha256": "c42214c250266e2580b717f75a049617ab21eaa6222e8dc745a6e6768de75f39",
+        "initial_config_sha256": "2105c1670829e5fdc250e72ef3ee886cb7ef34a453be6b32f29536b41124d071",
+        "catalog_hash": "314f53e81e6507560a02e8e05944a99c481c5b6a1c3a220ad450270363fbfec2",
+        "catalog_version": 0,
+        "state_revision": 4473,
+        "observation_id": "OBS-4473",
+        "event_count": 4473,
+        "event_prefix_hash": "cb3afbb66ef546b7de78a0cf407ba72da497ddeed1732a68857846a0b3e92f87"
+      },
+      "rows": 24680,
+      "total_gantt_rows": 24680,
+      "planned_full_schedule_rows": 1023,
+      "row_counts_by_state": {
+        "ACTUAL": 23645,
+        "UNSCHEDULED": 12,
+        "PLANNED": 1023
+      },
+      "row_counts_by_kind": {
+        "MARKER": 277,
+        "PLAN": 12,
+        "RESOURCE_FACT": 5470,
+        "FACT_PREFIX": 1023,
+        "PERSON_INTERVAL": 16875,
+        "FULL_PLAN": 1023
+      },
+      "status": "EXACT_SOURCE_COPY_AND_SAME_OBSERVATION",
+      "legacy_order_binding": "DIRECT_ORDER_PAYLOAD",
+      "scope": "COMPLETE_NORMAL_CPU",
+      "native_render_created": false,
+      "age_semantics": "ORIGINAL_STALE_READ_ONLY_PRESERVED",
+      "files": [
+        {
+          "original": {
+            "path": ".local/p063-execution-20261101-r1/audits/normal/desktop-view.json",
+            "bytes": 20888821,
+            "sha256": "12eeac540588f2185b16ad739af92c5e3f26b336ab2ce5f73e42f60098a03b35"
+          },
+          "export": {
+            "path": "results/p07/r3/exports/normal/gantt.json",
+            "bytes": 20888821,
+            "sha256": "12eeac540588f2185b16ad739af92c5e3f26b336ab2ce5f73e42f60098a03b35"
+          }
+        },
+        {
+          "original": {
+            "path": ".local/p063-execution-20261101-r1/audits/normal/scene-domain-projection.json",
+            "bytes": 205596,
+            "sha256": "2614143e297a5bcbf4bb1c0a267e9ae1f8bd690f9e68c0f78c6af341597b6697"
+          },
+          "export": {
+            "path": "results/p07/r3/exports/normal/scene-domain.json",
+            "bytes": 205596,
+            "sha256": "2614143e297a5bcbf4bb1c0a267e9ae1f8bd690f9e68c0f78c6af341597b6697"
+          }
+        },
+        {
+          "original": {
+            "path": ".local/p063-execution-20261101-r1/audits/normal/presentation-cache.json",
+            "bytes": 136471,
+            "sha256": "f29572ab82743e3f8fc47c5058e248f0cf95d2ce2a78fab6d9035db8bb15ec59"
+          },
+          "export": {
+            "path": "results/p07/r3/exports/normal/presentation-cache.json",
+            "bytes": 136471,
+            "sha256": "f29572ab82743e3f8fc47c5058e248f0cf95d2ce2a78fab6d9035db8bb15ec59"
+          }
+        }
+      ]
+    },
+    {
+      "case": "dynamic",
+      "identity": {
+        "run_id": "P063-DYNAMIC-r2",
+        "epoch": 0,
+        "run_spec_sha256": "965db51ccbd6fdf2a91443349a2ee132bc834800ab3069a36b2117a500086354",
+        "initial_config_sha256": "2105c1670829e5fdc250e72ef3ee886cb7ef34a453be6b32f29536b41124d071",
+        "catalog_hash": "61d72ee6b9d6d8ed3bdff859d8057f9dd4efae462e15485c69ca5a51e8e01e35",
+        "catalog_version": 1,
+        "state_revision": 106,
+        "observation_id": "OBS-106",
+        "event_count": 106,
+        "event_prefix_hash": "0cd0093e67494042b8441f50a5ef7c568adc1b5bb9f9a226da0972ca3f15a6eb"
+      },
+      "rows": 2676,
+      "total_gantt_rows": 2676,
+      "planned_full_schedule_rows": 2046,
+      "row_counts_by_state": {
+        "ACTUAL": 183,
+        "UNSCHEDULED": 447,
+        "PLANNED": 2046
+      },
+      "row_counts_by_kind": {
+        "MARKER": 86,
+        "PLAN": 447,
+        "RESOURCE_FACT": 17,
+        "FACT_PREFIX": 5,
+        "PERSON_INTERVAL": 75,
+        "FULL_PLAN": 2046
+      },
+      "status": "EXACT_SOURCE_COPY_AND_SAME_OBSERVATION",
+      "legacy_order_binding": "DIRECT_ORDER_PAYLOAD",
+      "scope": "LOCAL_STOPPED_ARCHIVE",
+      "native_render_created": false,
+      "age_semantics": "ORIGINAL_STALE_READ_ONLY_PRESERVED",
+      "files": [
+        {
+          "original": {
+            "path": ".local/p063-execution-20261101-r1/audits/dynamic/desktop-view.json",
+            "bytes": 2504894,
+            "sha256": "552f1f4adb57dab7ccd860e806d59c2e4c2daad8bab36f12600619324d05cf4c"
+          },
+          "export": {
+            "path": "results/p07/r3/exports/dynamic/gantt.json",
+            "bytes": 2504894,
+            "sha256": "552f1f4adb57dab7ccd860e806d59c2e4c2daad8bab36f12600619324d05cf4c"
+          }
+        },
+        {
+          "original": {
+            "path": ".local/p063-execution-20261101-r1/audits/dynamic/scene-domain-projection.json",
+            "bytes": 50464,
+            "sha256": "393d247b6a617f7fb3d66f10d709c3f66fed698812baf566601bda4bbf986e23"
+          },
+          "export": {
+            "path": "results/p07/r3/exports/dynamic/scene-domain.json",
+            "bytes": 50464,
+            "sha256": "393d247b6a617f7fb3d66f10d709c3f66fed698812baf566601bda4bbf986e23"
+          }
+        },
+        {
+          "original": {
+            "path": ".local/p063-execution-20261101-r1/audits/dynamic/presentation-cache.json",
+            "bytes": 198607,
+            "sha256": "359a140d07af0433bf82006b2cf47b3ff28abf619960ea772e1b4c60fd3453cc"
+          },
+          "export": {
+            "path": "results/p07/r3/exports/dynamic/presentation-cache.json",
+            "bytes": 198607,
+            "sha256": "359a140d07af0433bf82006b2cf47b3ff28abf619960ea772e1b4c60fd3453cc"
+          }
+        }
+      ]
+    },
+    {
+      "case": "kit",
+      "identity": {
+        "run_id": "P051-5c420551c468461b832db49e9c88074f",
+        "epoch": 0,
+        "run_spec_sha256": "ceb3a029875f26a44db05c1ecbc2aeec4205f6b26a6db826ced0a85140f8a7c3",
+        "initial_config_sha256": "2105c1670829e5fdc250e72ef3ee886cb7ef34a453be6b32f29536b41124d071",
+        "catalog_hash": "b032baa3d99d6169eb329afca0965b75acbdbc74371a89c3d498075349782e97",
+        "catalog_version": 1,
+        "state_revision": 329,
+        "observation_id": "OBS-329",
+        "event_count": 329,
+        "event_prefix_hash": "9a41d1c255909066273ecfecc155c1bec9e730900ac56d4b05ecae31f91e6eb4"
+      },
+      "rows": 5241,
+      "total_gantt_rows": 5241,
+      "planned_full_schedule_rows": 2046,
+      "row_counts_by_state": {
+        "ACTUAL": 2752,
+        "UNSCHEDULED": 443,
+        "PLANNED": 2046
+      },
+      "row_counts_by_kind": {
+        "MARKER": 86,
+        "PLAN": 443,
+        "RESOURCE_FACT": 45,
+        "FACT_PREFIX": 11,
+        "PERSON_INTERVAL": 2610,
+        "FULL_PLAN": 2046
+      },
+      "status": "EXACT_SOURCE_COPY_AND_SAME_OBSERVATION",
+      "legacy_order_binding": "OBSERVATION_PRODUCT_IDENTITIES; ORDER_DEFINITIONS_IN_COMPANION_GANTT",
+      "scope": "LOCAL_STOPPED_ARCHIVE",
+      "native_render_created": false,
+      "age_semantics": "ORIGINAL_STALE_READ_ONLY_PRESERVED",
+      "files": [
+        {
+          "original": {
+            "path": ".local/p063-execution-20261101-r1/audits/kit/desktop-view.json",
+            "bytes": 5041199,
+            "sha256": "085b0933edf6505c480ad1b048086c5c1a6d3f3074b4557d4d0d93dfeebb54c6"
+          },
+          "export": {
+            "path": "results/p07/r3/exports/kit/gantt.json",
+            "bytes": 5041199,
+            "sha256": "085b0933edf6505c480ad1b048086c5c1a6d3f3074b4557d4d0d93dfeebb54c6"
+          }
+        },
+        {
+          "original": {
+            "path": ".local/p063-execution-20261101-r1/audits/kit/scene-domain-projection.json",
+            "bytes": 52791,
+            "sha256": "a19da93a1ba54048651ed881822ffa3a77a56848df17e300f67ca7ee286470c3"
+          },
+          "export": {
+            "path": "results/p07/r3/exports/kit/scene-domain.json",
+            "bytes": 52791,
+            "sha256": "a19da93a1ba54048651ed881822ffa3a77a56848df17e300f67ca7ee286470c3"
+          }
+        },
+        {
+          "original": {
+            "path": ".local/p063-execution-20261101-r1/audits/kit/saved-presentation-cache.json",
+            "bytes": 269126,
+            "sha256": "9367300991aa370e1151451cdcddc4aa72037383541beb4c6698013d7cf6ae53"
+          },
+          "export": {
+            "path": "results/p07/r3/exports/kit/presentation-cache.json",
+            "bytes": 269126,
+            "sha256": "9367300991aa370e1151451cdcddc4aa72037383541beb4c6698013d7cf6ae53"
+          }
+        }
+      ]
+    }
+  ],
+  "source_code": {
+    "path": "analysis/p07/export.py",
+    "bytes": 4871,
+    "sha256": "397c42695baa7a8e810fa9f6d1f2f39e0d1e4d02525e6ce07c9464779339e7e2"
+  },
+  "new_kit_runs": 0,
+  "synchronized_native_screenshot_claim": false
+}

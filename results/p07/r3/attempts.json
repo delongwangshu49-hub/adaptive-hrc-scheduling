@@ -1,0 +1,220 @@
+{
+  "source": {
+    "path": "docs/delivery/p053_failure_index_r2.json",
+    "bytes": 8015,
+    "sha256": "2652a9fce3c5cdee482627fe43232d1d14f979c490df2df18879d736ed2f9b7d"
+  },
+  "full_original_index": {
+    "production_failed_or_censored": [
+      {
+        "unit": "N-CPU-EDD",
+        "root": ".local/p053-execution-20261028-r1",
+        "exit": {
+          "pid": 130692,
+          "exit_code": 1,
+          "elapsed_s": 425.1619209999917,
+          "at": "2026-10-28T12:00:49.651283+00:00"
+        },
+        "summary": {
+          "termination": "WINDOW_CENSORED",
+          "time_h": 720,
+          "received": 1,
+          "audit": "PASS",
+          "decision_audit": "PASS"
+        },
+        "result": ".local/p053-execution-20261028-r1/N-CPU-EDD-result.json",
+        "scope": "retained original failed/censored attempt; not rerun"
+      },
+      {
+        "unit": "C-CPU-EDD",
+        "root": ".local/p053-execution-20261028-r2",
+        "exit": {
+          "pid": 121224,
+          "exit_code": 1,
+          "elapsed_s": 15.127961999969557,
+          "at": "2026-10-28T13:42:01.624659+00:00"
+        },
+        "summary": {
+          "termination": "WINDOW_CENSORED",
+          "time_h": 720,
+          "received": 0,
+          "audit": "PASS",
+          "decision_audit": "PASS"
+        },
+        "result": ".local/p053-execution-20261028-r2/C-CPU-EDD-result.json",
+        "scope": "retained original failed/censored attempt; not rerun"
+      },
+      {
+        "unit": "C-CPU-EDD-r3",
+        "root": ".local/p053-execution-20261028-r2",
+        "exit": {
+          "pid": 93040,
+          "exit_code": 1,
+          "elapsed_s": 34.388764600036666,
+          "at": "2026-10-28T14:20:43.777508+00:00"
+        },
+        "summary": {
+          "termination": "WINDOW_CENSORED",
+          "time_h": 720,
+          "received": 0,
+          "audit": "PASS",
+          "decision_audit": "PASS"
+        },
+        "result": ".local/p053-execution-20261028-r2/C-CPU-EDD-r3-result.json",
+        "scope": "retained original failed/censored attempt; not rerun"
+      },
+      {
+        "unit": "U-CPU-EDD",
+        "root": ".local/p053-execution-20261028-r2",
+        "exit": {
+          "pid": 134560,
+          "exit_code": 1,
+          "elapsed_s": 15.689054099959321,
+          "at": "2026-10-28T14:11:42.395860+00:00"
+        },
+        "summary": {
+          "termination": "PREPARATION_BUDGET",
+          "time_h": 3.2035647222222075,
+          "received": 0,
+          "audit": "PASS",
+          "decision_audit": "INCOMPLETE"
+        },
+        "result": ".local/p053-execution-20261028-r2/U-CPU-EDD-result.json",
+        "scope": "retained original failed/censored attempt; not rerun"
+      }
+    ],
+    "C_STOCK_window_termination": "both new C-STOCK runs retain WINDOW_CENSORED at720h with remaining_products_complete=true; PRODUCT-1 cancelled and PRODUCT-2 received; not two received or an OPERATIONS_COMPLETE terminal",
+    "WIP": "both actual WIP failures remain; J3 HOLD remainder not established",
+    "partial_kit_tools": "prepared and frozen; not invoked because shared r4 all-pass route succeeded",
+    "identity": "P053-FAILURE-INDEX-r2",
+    "at": "2026-10-29T09:08:50.630892+00:00",
+    "reference_amendment_of": {
+      "path": "docs/delivery/p053_failure_index_r1.json",
+      "sha256": "4ace5cdcd96082834d72dcc5ad9e91ad004529cd0be3c2d08ffdf9ebe1fe53e2",
+      "bytes": 3465
+    },
+    "auxiliary_attempts": [
+      {
+        "attempt_id": "AUX-N-EDD-FIRST-AUDIT-CANCEL-REQUEST",
+        "category": "AUXILIARY_AUDIT",
+        "state": "AUXILIARY_AUDIT_CANCEL_REQUESTED_QUADRATIC_PREFIX_COST",
+        "code_path": ".local/p053-execution-20261028-r2/independent.py",
+        "actual_evidence": [
+          {
+            "path": ".local/p053-execution-20261028-r2/N-CPU-EDD-independent-first-cancel.json",
+            "sha256": "ac22581676895b778ed5a19e5871f40345166298585033c34b404452d2332344",
+            "bytes": 471
+          }
+        ],
+        "actual_evidence_fields": [
+          "state",
+          "pid",
+          "cpu_s",
+          "started_at",
+          "at",
+          "reason"
+        ],
+        "cpu_s": 912.03125,
+        "request_after_start_wall_s": 934.574251,
+        "actual_exit_code": null,
+        "actual_exit_status": "UNKNOWN_NOT_ESTABLISHED_BY_CANCEL_REQUEST",
+        "production_failure": false
+      },
+      {
+        "attempt_id": "PREP-S18-F0-REJECTED",
+        "category": "PREPARATION_ADMISSION_REJECTION",
+        "state": "PREPARATION_REJECTED_NO_PRODUCTION",
+        "reason": "SIM_PRESERVED_PARAMETER:people",
+        "code_path": ".local/p053-execution-20261028-r1/prepare-failed-r1.py",
+        "actual_evidence": [
+          {
+            "path": ".local/p053-execution-20261028-r1/preflight-failure.json",
+            "sha256": "3ee2fcb5eb592ea6c2266a2c3261fa2791f940382226299f0d58710211588213",
+            "bytes": 145
+          }
+        ],
+        "actual_evidence_fields": [
+          "state",
+          "reason",
+          "original_guard_unchanged",
+          "production_started"
+        ],
+        "actual_exit_code": null,
+        "actual_exit_status": "NOT_RECORDED_IN_THIS_RECEIPT",
+        "production_started": 0,
+        "production_failure": false
+      },
+      {
+        "attempt_id": "INITIAL-INTERFACE-ASSERTION",
+        "category": "HISTORICAL_TEST_FAILURE",
+        "state": "FAILED_LOG_RETAINED",
+        "reason": "serialized typed equality assertion differs; not an environment/import failure",
+        "code_path": "tests/test_research_initial.py",
+        "code_path_scope": "current related test path; not a historical-source identity claim",
+        "actual_evidence": [
+          {
+            "path": ".local/p053-execution-20261028-r1/initial-interface-tests-r1.log",
+            "sha256": "1b3521bd18c1f96a5d2da272cda013e976272522322097f6aba5348450200442",
+            "bytes": 1309
+          }
+        ],
+        "actual_exit_code": null,
+        "actual_exit_status": "NOT_RECORDED_BY_UNITTEST_LOG",
+        "later_pass_evidence": [
+          {
+            "path": ".local/p053-execution-20261028-r1/initial-interface-tests-r2.log",
+            "sha256": "03f04fd88a6b526c118774e6447c2a6a7a7449873d8f7934ce2b9dd5ec2bd63d",
+            "bytes": 629
+          }
+        ],
+        "production_failure": false
+      },
+      {
+        "attempt_id": "RESEARCH-INTERFACE-MISSING-END-H",
+        "category": "HISTORICAL_TEST_FAILURE",
+        "state": "FAILED_LOG_RETAINED",
+        "reason": "OnlinePolicy.__init__ missing required keyword-only end_h; not an environment/import failure",
+        "code_path": "tests/test_research_initial.py",
+        "code_path_scope": "current related test path; not a historical-source identity claim",
+        "actual_evidence": [
+          {
+            "path": ".local/p053-execution-20261028-r1/research-interface-tests-r3.log",
+            "sha256": "7fe7b32afc312e22f697501bcabcc3df035e5f12ebda8073f4340f21ecdd7ca1",
+            "bytes": 1444
+          }
+        ],
+        "actual_exit_code": null,
+        "actual_exit_status": "NOT_RECORDED_BY_UNITTEST_LOG",
+        "later_pass_evidence": [
+          {
+            "path": ".local/p053-execution-20261028-r1/research-interface-tests-r4.log",
+            "sha256": "7a7c9f1a0cf7a172e0c4bb1376ea9fc00f7943efcd856350982975d907cdfef5",
+            "bytes": 797
+          }
+        ],
+        "production_failure": false
+      }
+    ],
+    "unverified_legacy_notes": [
+      {
+        "legacy_claim": "wrong initial test environment attempt retained; later original66 log is authoritative",
+        "state": "UNKNOWN_NO_MATCHING_FAILURE_EVIDENCE_LOCATED",
+        "actual_evidence": [],
+        "incorrect_old_target": ".local/p053-execution-20261028-r3/targeted-tests.log",
+        "old_target_role": "66-test PASS validation log, not evidence of an earlier environment failure",
+        "counted_as_confirmed_attempt": false
+      }
+    ],
+    "validation_logs": [
+      {
+        "role": "original66 targeted tests PASS; never a failed-environment receipt",
+        "evidence": {
+          "path": ".local/p053-execution-20261028-r3/targeted-tests.log",
+          "sha256": "6c787e9e5ae603a6147486ce8659f549446ad04313aaccdd9e2f3b9e708465fb",
+          "bytes": 172
+        }
+      }
+    ],
+    "scope": "reference and taxonomy correction only; real four production failures unchanged; no new run/test attempt counted here"
+  }
+}

@@ -1,0 +1,473 @@
+{
+  "groups": 5,
+  "native_mermaid": {
+    "path": "figures/p07/r3/P07-01-feedback.md",
+    "bytes": 857,
+    "sha256": "c1e833acbc5ab434f881aa4041b05f33b9382f2387caa815002d48c87a5de1d5"
+  },
+  "figures": [
+    {
+      "id": "P07-02-scenario-values",
+      "group": 2,
+      "caption": "原版本五情景原值；C为STOCK取消后的剩余接收，原720h截尾保留。共同窗含已声明派生尾部，不能当实际休息；全部原失败另见attempts表。",
+      "alt": "原版本五情景原值；C为STOCK取消后的剩余接收，原720h截尾保留。共同窗含已声明派生尾部，不能当实际休息；全部原失败另见attempts表。",
+      "source_data": [
+        {
+          "path": "results/p07/r3/summary.json",
+          "bytes": 20494,
+          "sha256": "6689c62ae5a2d86a15e828e50b308eff4f7c278ae36084f59a5944392981e66c"
+        },
+        {
+          "path": "results/p07/r3/pairs.json",
+          "bytes": 9032,
+          "sha256": "4ec826f6dad6988c8290bd81f32713cbe586ac6e749578e4d41e39095114b656"
+        },
+        {
+          "path": "results/p07/r3/attempts.json",
+          "bytes": 8652,
+          "sha256": "55cb59c2e21aa4ca1bfb309785705b20e0dbe18df1f4948ecc95f90942426183"
+        }
+      ],
+      "script": {
+        "path": "analysis/p07/figures.py",
+        "bytes": 18474,
+        "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+      },
+      "format": "P07-FIGURE-PROVENANCE-1",
+      "files": [
+        {
+          "path": "figures/p07/r3/P07-02-scenario-values.png",
+          "bytes": 291307,
+          "sha256": "aada5535d1a3dfdf37905e8792f9a5256af4d4895beb29c38fab4bcbdb539b8d"
+        },
+        {
+          "path": "figures/p07/r3/P07-02-scenario-values.svg",
+          "bytes": 49863,
+          "sha256": "faba984fc8d57ebb1ab79f4dd7869278afa9d204d719ce1a4e900f970fb5ff49"
+        },
+        {
+          "path": "figures/p07/r3/P07-02-scenario-values.pdf",
+          "bytes": 22609,
+          "sha256": "b13f3579dafce742fe49039fc768ca94a7e7b848312b44f2117c935908bb563b"
+        }
+      ],
+      "width_inches": 11.0,
+      "height_inches": 8.0,
+      "raster_dpi": 300,
+      "font_family": "DejaVu Sans",
+      "matplotlib": "3.11.2",
+      "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+      "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+      "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+      "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+      "smoothing": "NONE",
+      "publisher_compliance_claim": false
+    },
+    {
+      "id": "P07-03a-resource-gantt",
+      "group": 3,
+      "caption": "预先指定N/F/C三个EDD代表的全部10项设备/工装所有权区间；同设备直接锁和ENTITY锁取并集。空行表示该运行无对应持有区间，完整资源表与全行双域导出保留。横条不是预测计划。",
+      "alt": "预先指定N/F/C三个EDD代表的全部10项设备/工装所有权区间；同设备直接锁和ENTITY锁取并集。空行表示该运行无对应持有区间，完整资源表与全行双域导出保留。横条不是预测计划。",
+      "source_data": [
+        {
+          "path": "results/p07/r3/resources.csv",
+          "bytes": 1167816,
+          "sha256": "f1c762c3675dfa49d5f26cfe77d95a47d35890eb5ff12276cc77e0b2e0b5b92b"
+        },
+        {
+          "path": "results/p07/r3/summary.json",
+          "bytes": 20494,
+          "sha256": "6689c62ae5a2d86a15e828e50b308eff4f7c278ae36084f59a5944392981e66c"
+        },
+        {
+          "path": "results/p07/r3/computed/N-CPU-EDD.json",
+          "bytes": 15060076,
+          "sha256": "425ba251cbee760822d77d49efe7e4f11a53d7b4cd7778ed9ace183df4b1a003"
+        },
+        {
+          "path": "results/p07/r3/computed/F-CPU-EDD.json",
+          "bytes": 15069287,
+          "sha256": "401b205127a1fd6808c0edef25e5f8471bba6706d3c8565490ecf9d3ea26c4f2"
+        },
+        {
+          "path": "results/p07/r3/computed/C-STOCK-CPU-EDD-r4.json",
+          "bytes": 8225123,
+          "sha256": "215b62d33d870faab8d382003ad337d6d40f6bb55b1f2c7b07314288eb60babf"
+        }
+      ],
+      "script": {
+        "path": "analysis/p07/figures.py",
+        "bytes": 18474,
+        "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+      },
+      "format": "P07-FIGURE-PROVENANCE-1",
+      "files": [
+        {
+          "path": "figures/p07/r3/P07-03a-resource-gantt.png",
+          "bytes": 168229,
+          "sha256": "7c39f56baf33ee48371beb6f1bf0309e49c438fea90741c7adf223b5be20fb71"
+        },
+        {
+          "path": "figures/p07/r3/P07-03a-resource-gantt.svg",
+          "bytes": 114165,
+          "sha256": "f99d71f0b73a4e5512daf3affe898d26dc2f29a89f74cb541debb92a35712890"
+        },
+        {
+          "path": "figures/p07/r3/P07-03a-resource-gantt.pdf",
+          "bytes": 21941,
+          "sha256": "a72f9316e8b4fb4075254184686fd68d60b2d0e989abf29161e7510251fe9cc0"
+        }
+      ],
+      "width_inches": 12.0,
+      "height_inches": 9.0,
+      "raster_dpi": 300,
+      "font_family": "DejaVu Sans",
+      "matplotlib": "3.11.2",
+      "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+      "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+      "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+      "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+      "smoothing": "NONE",
+      "publisher_compliance_claim": false
+    },
+    {
+      "id": "P07-03b-all-person-fatigue",
+      "group": 3,
+      "caption": "固定15人的实际生命周期疲劳，按实际区间函数绘制，恢复至0处显式插入折点；每条图线积分与同窗E核对，无平滑或抽样。N虚线、H实线，720h派生评价另在数据表报告。",
+      "alt": "固定15人的实际生命周期疲劳，按实际区间函数绘制，恢复至0处显式插入折点；每条图线积分与同窗E核对，无平滑或抽样。N虚线、H实线，720h派生评价另在数据表报告。",
+      "source_data": [
+        {
+          "path": "results/p07/r3/people.csv",
+          "bytes": 48798,
+          "sha256": "01ee49922a1285e56f311ee5759cedcc206dd3a2858f614e83fcf0d11d0992c7"
+        },
+        {
+          "path": "results/p07/r3/activity.csv",
+          "bytes": 57845,
+          "sha256": "dc542f4de72b50cb90f864546df9a576e378e2ccc11a288de8b70cbba17ee323"
+        },
+        {
+          "path": "results/p07/r3/computed/N-CPU-EDD.json",
+          "bytes": 15060076,
+          "sha256": "425ba251cbee760822d77d49efe7e4f11a53d7b4cd7778ed9ace183df4b1a003"
+        },
+        {
+          "path": "results/p07/r3/computed/H-CPU-EDD.json",
+          "bytes": 15090653,
+          "sha256": "e6c337bbae1de9f6a26441990c2e056ad4bcbe33a59d3778667ef80396e13e1b"
+        }
+      ],
+      "script": {
+        "path": "analysis/p07/figures.py",
+        "bytes": 18474,
+        "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+      },
+      "format": "P07-FIGURE-PROVENANCE-1",
+      "files": [
+        {
+          "path": "figures/p07/r3/P07-03b-all-person-fatigue.png",
+          "bytes": 574968,
+          "sha256": "9544649e1add793d5ca3e8e7fd17d238f881e0cd09fcf5991650d69e7c112c71"
+        },
+        {
+          "path": "figures/p07/r3/P07-03b-all-person-fatigue.svg",
+          "bytes": 236549,
+          "sha256": "00df550bb12ac31c6fa470f21e6f3be84868b3031e18cb6eae4f7545e022a7f2"
+        },
+        {
+          "path": "figures/p07/r3/P07-03b-all-person-fatigue.pdf",
+          "bytes": 42665,
+          "sha256": "9c25e7ed5438b32c453026e554c18ae6b3c9661865f49fc12dddf613b8c8a07b"
+        }
+      ],
+      "width_inches": 11.0,
+      "height_inches": 11.0,
+      "raster_dpi": 300,
+      "font_family": "DejaVu Sans",
+      "matplotlib": "3.11.2",
+      "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+      "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+      "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+      "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+      "smoothing": "NONE",
+      "publisher_compliance_claim": false
+    },
+    {
+      "id": "P07-03c-dynamic-denominators",
+      "group": 3,
+      "caption": "两个原局部动态案例各16人的真实在岗与可用人时；离岗者仍保留，新人到岗前不补零。两个案例窗口/方法不同，图不作成对方法效应比较。",
+      "alt": "两个原局部动态案例各16人的真实在岗与可用人时；离岗者仍保留，新人到岗前不补零。两个案例窗口/方法不同，图不作成对方法效应比较。",
+      "source_data": [
+        {
+          "path": "results/p07/r3/dynamic_people.csv",
+          "bytes": 9230,
+          "sha256": "f5bb646f11d4a50faa8840a6ae8da7a07c48982999b97f29159175f1a53f4239"
+        },
+        {
+          "path": "results/p07/r3/dynamic_people.json",
+          "bytes": 8984214,
+          "sha256": "b9a06c9728169aa3303f048fe406eb2dd2212dd959e64ccf3c3e348da247efce"
+        }
+      ],
+      "script": {
+        "path": "analysis/p07/figures.py",
+        "bytes": 18474,
+        "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+      },
+      "format": "P07-FIGURE-PROVENANCE-1",
+      "files": [
+        {
+          "path": "figures/p07/r3/P07-03c-dynamic-denominators.png",
+          "bytes": 229427,
+          "sha256": "4d5033ce8389332ea44b46b74a69c0d2283569e6b9d8c9ba214b2f66372bda45"
+        },
+        {
+          "path": "figures/p07/r3/P07-03c-dynamic-denominators.svg",
+          "bytes": 44048,
+          "sha256": "9b5c668ae87d56eb1db97b3c6ac4bb5fd92698f400c07ad544059fbb6902437b"
+        },
+        {
+          "path": "figures/p07/r3/P07-03c-dynamic-denominators.pdf",
+          "bytes": 17586,
+          "sha256": "e3723733ca92d3831e57d841073c11c283dfe106398856a06d90a8219497983e"
+        }
+      ],
+      "width_inches": 12.0,
+      "height_inches": 7.0,
+      "raster_dpi": 300,
+      "font_family": "DejaVu Sans",
+      "matplotlib": "3.11.2",
+      "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+      "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+      "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+      "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+      "smoothing": "NONE",
+      "publisher_compliance_claim": false
+    },
+    {
+      "id": "P07-04-response-timelines",
+      "group": 4,
+      "caption": "故障实际里程碑、急单实际结果及r14前60h变化/采用安排。r14最终387.732h STOPPED，仅1接收3未接收；计划采用不表示实际完成；8h追平单值未评价。",
+      "alt": "故障实际里程碑、急单实际结果及r14前60h变化/采用安排。r14最终387.732h STOPPED，仅1接收3未接收；计划采用不表示实际完成；8h追平单值未评价。",
+      "source_data": [
+        {
+          "path": "results/p07/r3/milestones.csv",
+          "bytes": 547415,
+          "sha256": "35ae525166852331e24862c3d9911b8b5b58bf273f094685179aca794ef5f446"
+        },
+        {
+          "path": "results/p07/r3/products.csv",
+          "bytes": 5514,
+          "sha256": "6897fb5766e872f32e92bc6f19673ed5ce8749e6b43f835324a71e15c1baf0fc"
+        },
+        {
+          "path": "results/p07/r3/e20_order_details.json",
+          "bytes": 13509,
+          "sha256": "b612bf21314d52f19336216793274c395712917b7ce38d6851bfb11a26a1a97d"
+        },
+        {
+          "path": "results/p07/r3/e20_orders.csv",
+          "bytes": 1910,
+          "sha256": "b40596db668ca11cb3475d4e38d5132d07e8f966566b84202e62b10430c18e7d"
+        }
+      ],
+      "script": {
+        "path": "analysis/p07/figures.py",
+        "bytes": 18474,
+        "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+      },
+      "format": "P07-FIGURE-PROVENANCE-1",
+      "files": [
+        {
+          "path": "figures/p07/r3/P07-04-response-timelines.png",
+          "bytes": 214557,
+          "sha256": "14cbce902cf69fc1d5023e537a87233aa0ea06311d15c76be1b0bef503db64ca"
+        },
+        {
+          "path": "figures/p07/r3/P07-04-response-timelines.svg",
+          "bytes": 26014,
+          "sha256": "cc55f9ef5b0bcd2576443725f1c0561700661b31ce2edd06c75a49b9d91c944a"
+        },
+        {
+          "path": "figures/p07/r3/P07-04-response-timelines.pdf",
+          "bytes": 23865,
+          "sha256": "f54baf3d87297747e30fd395b356966651a71ffda9e2b81fd888c783889af914"
+        }
+      ],
+      "width_inches": 12.0,
+      "height_inches": 8.0,
+      "raster_dpi": 300,
+      "font_family": "DejaVu Sans",
+      "matplotlib": "3.11.2",
+      "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+      "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+      "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+      "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+      "smoothing": "NONE",
+      "publisher_compliance_claim": false
+    },
+    {
+      "id": "P07-04b-stock-cancellation",
+      "group": 4,
+      "caption": "STOCK取消的实际尾段记录与未取消产品接收分开；原720h WINDOW_CENSORED终态保留。图不代表WIP/J3 HOLD取消后剩余完成，原两次失败另列。",
+      "alt": "STOCK取消的实际尾段记录与未取消产品接收分开；原720h WINDOW_CENSORED终态保留。图不代表WIP/J3 HOLD取消后剩余完成，原两次失败另列。",
+      "source_data": [
+        {
+          "path": "results/p07/r3/computed/C-STOCK-CPU-EDD-r4.json",
+          "bytes": 8225123,
+          "sha256": "215b62d33d870faab8d382003ad337d6d40f6bb55b1f2c7b07314288eb60babf"
+        },
+        {
+          "path": "results/p07/r3/attempts.json",
+          "bytes": 8652,
+          "sha256": "55cb59c2e21aa4ca1bfb309785705b20e0dbe18df1f4948ecc95f90942426183"
+        }
+      ],
+      "script": {
+        "path": "analysis/p07/figures.py",
+        "bytes": 18474,
+        "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+      },
+      "format": "P07-FIGURE-PROVENANCE-1",
+      "files": [
+        {
+          "path": "figures/p07/r3/P07-04b-stock-cancellation.png",
+          "bytes": 105259,
+          "sha256": "2649835530986e773b2c76a8c4648a5ca67a7886abbccfba778bd5168fd62f33"
+        },
+        {
+          "path": "figures/p07/r3/P07-04b-stock-cancellation.svg",
+          "bytes": 12140,
+          "sha256": "29430b6f65e2a65353fa886dfbe1a4488113b5c8b8e4d3b951408c12f27750ef"
+        },
+        {
+          "path": "figures/p07/r3/P07-04b-stock-cancellation.pdf",
+          "bytes": 14367,
+          "sha256": "cc3befdc79f7c9c2da85e9fc7ed7434993cab601aeea3cdafe4f9af04302f4dc"
+        }
+      ],
+      "width_inches": 11.0,
+      "height_inches": 4.5,
+      "raster_dpi": 300,
+      "font_family": "DejaVu Sans",
+      "matplotlib": "3.11.2",
+      "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+      "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+      "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+      "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+      "smoothing": "NONE",
+      "publisher_compliance_claim": false
+    },
+    {
+      "id": "P07-05a-four-mechanisms",
+      "group": 5,
+      "caption": "H/HR×正常/较高初始疲劳的四机制；阶段劳动、全产品接收与共同窗曝光分开。HR两格引用N/H的EDD原运行，不增加独立样本。",
+      "alt": "H/HR×正常/较高初始疲劳的四机制；阶段劳动、全产品接收与共同窗曝光分开。HR两格引用N/H的EDD原运行，不增加独立样本。",
+      "source_data": [
+        {
+          "path": "results/p07/r3/mechanisms.json",
+          "bytes": 1601,
+          "sha256": "d951b77422e740d9f215c0cc120d8ffd9cfe2410c38b0b69a635d40c25262245"
+        },
+        {
+          "path": "results/p07/r3/stages.csv",
+          "bytes": 43323,
+          "sha256": "8ea124b0a04fe41022187c2050f53e6d892267ff5bd77d914b5637dea63c75db"
+        }
+      ],
+      "script": {
+        "path": "analysis/p07/figures.py",
+        "bytes": 18474,
+        "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+      },
+      "format": "P07-FIGURE-PROVENANCE-1",
+      "files": [
+        {
+          "path": "figures/p07/r3/P07-05a-four-mechanisms.png",
+          "bytes": 182709,
+          "sha256": "e0b58c87810e67ea308b11125a119ca52501952490563622a0e7ec991e4426ef"
+        },
+        {
+          "path": "figures/p07/r3/P07-05a-four-mechanisms.svg",
+          "bytes": 21203,
+          "sha256": "54ccaa7c6e4b53937cb2ea6798456b7ee88cd4e0e81412c238feaf36b4427758"
+        },
+        {
+          "path": "figures/p07/r3/P07-05a-four-mechanisms.pdf",
+          "bytes": 13830,
+          "sha256": "f1fac1818d434871cc28c2ee0878c2ab09c7f60ea79207c07a8b376e546c65dd"
+        }
+      ],
+      "width_inches": 12.0,
+      "height_inches": 4.5,
+      "raster_dpi": 300,
+      "font_family": "DejaVu Sans",
+      "matplotlib": "3.11.2",
+      "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+      "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+      "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+      "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+      "smoothing": "NONE",
+      "publisher_compliance_claim": false
+    },
+    {
+      "id": "P07-05b-computation",
+      "group": 5,
+      "caption": "原机器/原顺序的总墙钟、搜索诊断和实际缓存计划派发；各计时字段可能嵌套，不合计成分项总成本；CPU时间和峰内存未测，不补0。候选检查不等于实际采用。",
+      "alt": "原机器/原顺序的总墙钟、搜索诊断和实际缓存计划派发；各计时字段可能嵌套，不合计成分项总成本；CPU时间和峰内存未测，不补0。候选检查不等于实际采用。",
+      "source_data": [
+        {
+          "path": "results/p07/r3/costs.json",
+          "bytes": 15282,
+          "sha256": "bc46560955846bff15a0c1f4bde0e4cfbaee36bbcbfdcab4ea62f01767898ea4"
+        },
+        {
+          "path": "results/p07/r3/summary.json",
+          "bytes": 20494,
+          "sha256": "6689c62ae5a2d86a15e828e50b308eff4f7c278ae36084f59a5944392981e66c"
+        }
+      ],
+      "script": {
+        "path": "analysis/p07/figures.py",
+        "bytes": 18474,
+        "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+      },
+      "format": "P07-FIGURE-PROVENANCE-1",
+      "files": [
+        {
+          "path": "figures/p07/r3/P07-05b-computation.png",
+          "bytes": 179793,
+          "sha256": "66adec82f196f6b71d4300059924a659db237f96ea48c0c70662ba2ceabfe35d"
+        },
+        {
+          "path": "figures/p07/r3/P07-05b-computation.svg",
+          "bytes": 31830,
+          "sha256": "7387d301c906e4f2a7c4c60e28da999ac88c1f001d747ef85e65045be68411b8"
+        },
+        {
+          "path": "figures/p07/r3/P07-05b-computation.pdf",
+          "bytes": 16641,
+          "sha256": "29ec5913b68be0e026a93ac172c3087e3c723a6bf10537c18aa1e7272004b7b3"
+        }
+      ],
+      "width_inches": 12.0,
+      "height_inches": 4.8,
+      "raster_dpi": 300,
+      "font_family": "DejaVu Sans",
+      "matplotlib": "3.11.2",
+      "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+      "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+      "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+      "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+      "smoothing": "NONE",
+      "publisher_compliance_claim": false
+    }
+  ],
+  "data_validation": {
+    "path": "results/p07/r3/validation.json",
+    "bytes": 22403,
+    "sha256": "2ec0db41831de52255c94a1b7d873d6b9837f0f318e98c48f29a8d278e1eb8f6"
+  },
+  "new_production_runs": 0,
+  "new_kit_runs": 0
+}

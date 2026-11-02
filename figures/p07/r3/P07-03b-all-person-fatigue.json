@@ -1,0 +1,62 @@
+{
+  "id": "P07-03b-all-person-fatigue",
+  "group": 3,
+  "caption": "固定15人的实际生命周期疲劳，按实际区间函数绘制，恢复至0处显式插入折点；每条图线积分与同窗E核对，无平滑或抽样。N虚线、H实线，720h派生评价另在数据表报告。",
+  "alt": "固定15人的实际生命周期疲劳，按实际区间函数绘制，恢复至0处显式插入折点；每条图线积分与同窗E核对，无平滑或抽样。N虚线、H实线，720h派生评价另在数据表报告。",
+  "source_data": [
+    {
+      "path": "results/p07/r3/people.csv",
+      "bytes": 48798,
+      "sha256": "01ee49922a1285e56f311ee5759cedcc206dd3a2858f614e83fcf0d11d0992c7"
+    },
+    {
+      "path": "results/p07/r3/activity.csv",
+      "bytes": 57845,
+      "sha256": "dc542f4de72b50cb90f864546df9a576e378e2ccc11a288de8b70cbba17ee323"
+    },
+    {
+      "path": "results/p07/r3/computed/N-CPU-EDD.json",
+      "bytes": 15060076,
+      "sha256": "425ba251cbee760822d77d49efe7e4f11a53d7b4cd7778ed9ace183df4b1a003"
+    },
+    {
+      "path": "results/p07/r3/computed/H-CPU-EDD.json",
+      "bytes": 15090653,
+      "sha256": "e6c337bbae1de9f6a26441990c2e056ad4bcbe33a59d3778667ef80396e13e1b"
+    }
+  ],
+  "script": {
+    "path": "analysis/p07/figures.py",
+    "bytes": 18474,
+    "sha256": "d42f207c4e932684518a8518504abbaf1cf7e87020d81c65c2f7a63a1ae52a1e"
+  },
+  "format": "P07-FIGURE-PROVENANCE-1",
+  "files": [
+    {
+      "path": "figures/p07/r3/P07-03b-all-person-fatigue.png",
+      "bytes": 574968,
+      "sha256": "9544649e1add793d5ca3e8e7fd17d238f881e0cd09fcf5991650d69e7c112c71"
+    },
+    {
+      "path": "figures/p07/r3/P07-03b-all-person-fatigue.svg",
+      "bytes": 236549,
+      "sha256": "00df550bb12ac31c6fa470f21e6f3be84868b3031e18cb6eae4f7545e022a7f2"
+    },
+    {
+      "path": "figures/p07/r3/P07-03b-all-person-fatigue.pdf",
+      "bytes": 42665,
+      "sha256": "9c25e7ed5438b32c453026e554c18ae6b3c9661865f49fc12dddf613b8c8a07b"
+    }
+  ],
+  "width_inches": 11.0,
+  "height_inches": 11.0,
+  "raster_dpi": 300,
+  "font_family": "DejaVu Sans",
+  "matplotlib": "3.11.2",
+  "palette": "GRAYSCALE_WITH_LINESTYLE_MARKER_HATCH_REDUNDANCY",
+  "inference": "Five fixed deterministic scenario pairs; no sampling CI or p values",
+  "journal": "NOT_TARGETED; GENERAL_RESEARCH_EXPORT_NOT_JOURNAL_CERTIFICATION",
+  "missing_and_censoring": "Explicit unknown/censored states retained in source tables",
+  "smoothing": "NONE",
+  "publisher_compliance_claim": false
+}

@@ -1,0 +1,16 @@
+{
+  "status": "LOCAL_G07_CANDIDATE_NOT_PUBLISHED",
+  "base": "4bf20625cdbe4e362050f1c20ca1f42076842a9f",
+  "proposed_tag": "step-P07-r1",
+  "source_tests": 1272,
+  "isolated_wheel_tests": 1272,
+  "core_package_members_unchanged": 110,
+  "remote_CI": "NOT_EXECUTED",
+  "formats": "Full source ZIP, exact delta ZIP, core wheel and sdist, external file manifest and SHA256SUMS",
+  "core_wheel_scope": "Core runtime only; analysis scripts, derived input and figures are in the source bundle",
+  "dependencies": "analysis/p07/requirements.txt",
+  "replay_entry": "analysis/p07/reproduce.py replay --figures",
+  "publication_authorized": false,
+  "new_formal_production_runs": 0,
+  "new_kit_runs": 0
+}

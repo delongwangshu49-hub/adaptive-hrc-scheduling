@@ -1,0 +1,50 @@
+[
+  {
+    "mechanism": "M-H-N",
+    "original_unit": "M-H-N",
+    "distinct_additional_sample": true,
+    "phase_count": 24,
+    "branch_labour_h": 12.754662950470554,
+    "branch_exposure_F_h": 2.80764741877736,
+    "last_received_h": 531.8589726666667,
+    "common_window_sum_E": 250.2843842428642,
+    "common_window_max_E": 35.13245345067578,
+    "peak_F": 0.666123083333333
+  },
+  {
+    "mechanism": "M-H-H",
+    "original_unit": "M-H-H",
+    "distinct_additional_sample": true,
+    "phase_count": 24,
+    "branch_labour_h": 12.719375711372205,
+    "branch_exposure_F_h": 2.8732690220173756,
+    "last_received_h": 553.9299583333333,
+    "common_window_sum_E": 320.1180123474397,
+    "common_window_max_E": 41.945003329911714,
+    "peak_F": 0.7907676837611106
+  },
+  {
+    "mechanism": "M-HR-N",
+    "original_unit": "N-CPU-EDD",
+    "distinct_additional_sample": false,
+    "phase_count": 12,
+    "branch_labour_h": 4.03632084444444,
+    "branch_exposure_F_h": 0.17810815206225283,
+    "last_received_h": 531.8589726666667,
+    "common_window_sum_E": 241.56411052900708,
+    "common_window_max_E": 35.37405705553961,
+    "peak_F": 0.666123083333333
+  },
+  {
+    "mechanism": "M-HR-H",
+    "original_unit": "H-CPU-EDD",
+    "distinct_additional_sample": false,
+    "phase_count": 12,
+    "branch_labour_h": 4.032490458333328,
+    "branch_exposure_F_h": 0.14979479655688827,
+    "last_received_h": 531.8589726666667,
+    "common_window_sum_E": 305.370320355057,
+    "common_window_max_E": 39.55593521935177,
+    "peak_F": 0.7907676837611106
+  }
+]

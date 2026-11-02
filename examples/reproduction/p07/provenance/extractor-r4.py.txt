@@ -1,0 +1,210 @@
+"""Stream immutable saved runs into compact, independently inspectable features."""
+
+import argparse
+import gzip
+import json
+import sys
+from collections import defaultdict
+from pathlib import Path
+from time import perf_counter
+
+import ijson
+
+from load import P053, ROOT, pin, read, sha, write
+
+sys.path[:0] = [str(ROOT / 'src'), str(ROOT / 'analysis'), str(ROOT / 'scripts')]
+from adaptive_hrc_scheduling.contracts.codec import as_data
+from adaptive_hrc_scheduling.contracts.production import decode, digest
+from adaptive_hrc_scheduling.domain.production import Configuration
+from adaptive_hrc_scheduling.dynamic_orders import CatalogHistory
+
+COMMAND_KEYS = ('id', 'product_id', 'activity_id', 'operation_id', 'attempt', 'unit_index',
+                'mode_id', 'roles', 'resume_of', 'service', 'branch')
+JOURNAL_KEYS = (
+    'sequence', 'time_h', 'run_id', 'epoch', 'trigger', 'receipt_id', 'receipt_kind',
+    'search_call', 'selected_source', 'cache_sha256', 'cache_invalidated', 'cache_origin',
+    'cycle_seconds', 'decision_seconds', 'construction_seconds', 'initial_seconds',
+    'search_seconds', 'repair_seconds', 'verification_seconds', 'candidate_gate_seconds',
+    'candidate_acceptance_seconds', 'fallback_seconds', 'feedback_verification_seconds',
+    'iterations', 'trials', 'verification_calls', 'budget_exceeded', 'cycle_budget_exceeded',
+    'total_budget', 'change', 'final_reason', 'termination', 'dispatched', 'selected_proposal',
+)
+
+
+def one_field(path, field):
+    with Path(path).open('rb') as f:
+        return next(ijson.items(f, field, use_float=True), None)
+
+
+def events(path, fmt):
+    if fmt == 'JSONL_GZIP':
+        with gzip.open(path, 'rt', encoding='utf-8') as f:
+            for line in f:
+                yield json.loads(line)
+    else:
+        with Path(path).open('rb') as f:
+            yield from ijson.items(f, 'events.item', use_float=True)
+
+
+def compact_command(c):
+    return {k: c.get(k) for k in COMMAND_KEYS}
+
+
+def feature_events(source, fmt, end_h, unit):
+    compact, commands, segments, milestones, person_changes = [], {}, [], [], []
+    opened = {}
+    prev, run_id, epoch, final = 0.0, None, None, None
+    seen = set()
+    for e in events(source, fmt):
+        t = e['occurred_sim_h']
+        if e['id'] in seen or t < prev or t > end_h + 1e-8:
+            raise ValueError('EVENT_ID_OR_CLOCK:' + unit)
+        seen.add(e['id'])
+        if run_id is None:
+            run_id, epoch = e['run_id'], e['epoch']
+        if (e['run_id'], e['epoch']) != (run_id, epoch):
+            raise ValueError('EVENT_RUN_OR_EPOCH:' + unit)
+        state = e['state']
+        current = {(row['resource_id'], row['command_id'], 'OWNERSHIP', None)
+                   for row in state['owners']}
+        # The production contract's reservations are material-lot reservations,
+        # not device locks. Keep their quantity and separate identity/units.
+        current |= {('LOT:' + row['lot_id'],
+                     f"{row['product_id']}/{row['activity_id']}/{row['attempt']}",
+                     'MATERIAL_RESERVATION', row['quantity'])
+                    for row in state['reservations']}
+        for key in set(opened) - current:
+            start = opened.pop(key)
+            if t > start:
+                segments.append(dict(resource_id=key[0], command_id=key[1], kind=key[2],
+                                     quantity=key[3], start_h=start, end_h=t))
+        for key in current - set(opened):
+            opened[key] = t
+        c = e.get('command')
+        if c:
+            item = compact_command(c)
+            if c['id'] in commands and commands[c['id']] != item:
+                raise ValueError('COMMAND_CONTENT_CHANGED:' + c['id'])
+            commands[c['id']] = item
+        world = e.get('world')
+        if world:
+            milestones.append(dict(event_id=e['id'], event_sequence=e['sequence'],
+                                   time_h=t, kind=world['kind'], entity_id=world.get('entity_id'),
+                                   product_id=world.get('product_id'), result=world.get('result')))
+            if world['kind'].startswith('PERSON_'):
+                pid = world['entity_id']
+                flags = state['failed_resources']
+                status = next((k for k in ('DEPARTED', 'DEPARTURE_PENDING', 'ABSENT_HOLD', 'ABSENT')
+                               if f'P043.{k}.{pid}' in flags), 'PRESENT')
+                h = next(x for x in state['humans'] if x['person_id'] == pid)
+                person_changes.append(dict(person_id=pid, time_h=t, status=status,
+                                           event_id=e['id'], event_sequence=e['sequence'],
+                                           fatigue=h['fatigue'], exposure=h['exposure'], peak=h['peak']))
+        rb = e.get('readback')
+        compact.append(dict(id=e['id'], sequence=e['sequence'], kind=e['kind'],
+                            occurred_sim_h=t, command_id=c['id'] if c else None,
+                            reason=e.get('reason'), world=world,
+                            readback={k: rb[k] for k in ('command_id', 'progress')} if rb else None,
+                            state=dict(products=state['products'], revision=state['revision'])))
+        final, prev = state, t
+    if final is None:
+        raise ValueError('NO_EVENTS:' + unit)
+    for key, start in opened.items():
+        if end_h > start:
+            segments.append(dict(resource_id=key[0], command_id=key[1], kind=key[2],
+                                 quantity=key[3], start_h=start, end_h=end_h, right_censored=True))
+    return dict(run_id=run_id, epoch=epoch, events=compact, commands=commands,
+                resource_intervals=segments, milestones=milestones,
+                person_changes=person_changes), final
+
+
+def journal(folder):
+    path = folder / 'online-journal.json'
+    if not path.exists():
+        return [], dict(status='NOT_APPLICABLE_FIXED_H_NO_ONLINE_POLICY', source=None)
+    rows = []
+    with path.open('rb') as f:
+        for row in ijson.items(f, 'item', use_float=True):
+            rows.append({k: row.get(k) for k in JOURNAL_KEYS})
+    return rows, dict(status='RECORDED_PER_DECISION', source=pin(path))
+
+
+def extract_unit(item, output):
+    unit = item['unit']
+    out = output / f'{unit}.json'
+    if out.exists():
+        raise FileExistsError('IMMUTABLE_EXTRACTION_ALREADY_EXISTS:' + unit)
+    began = perf_counter()
+    ap = ROOT / item['analysis']['path']
+    if sha(ap) != item['analysis']['sha256']:
+        raise ValueError('ANALYSIS_CHANGED:' + unit)
+    analysis = read(ap)
+    source = ROOT / item['source']['path']
+    actual_sha = sha(source)
+    if actual_sha != item['source']['expected_sha256']:
+        raise ValueError('ORIGINAL_SOURCE_HASH_CHANGED:' + unit)
+    config_path = ROOT / item['configuration']['path']
+    config = read(config_path)
+    c = decode(Configuration, config)
+    if digest(c) != analysis['configuration_sha256']:
+        raise ValueError('CONFIGURATION_BINDING:' + unit)
+    folder = config_path.parent
+    generation = []
+    result_path = ROOT / P053 / f'{unit}-result.json'
+    if unit.startswith('U-'):
+        generation = one_field(result_path, 'catalog_generations') or []
+        c = CatalogHistory(c, generation).current
+        config = as_data(c)
+    feature, last_state = feature_events(ROOT / item['events']['path'], item['events']['format'],
+                                         analysis['actual_end_h'], unit)
+    sp = folder / 'state.json'
+    # Delivered event-state projections intentionally omit the accumulated
+    # HumanInterval history. Read the saved final state, never substitute that
+    # projection for the full lifecycle ledger.
+    final_state = (read(sp, limit=16_000_000) if sp.exists()
+                   else one_field(source, 'execution.state'))
+    if final_state is None or (analysis['actual_end_h'] > 0 and not final_state['intervals']):
+        raise ValueError('FULL_HUMAN_INTERVAL_HISTORY_REQUIRED:' + unit)
+    if final_state['humans'] != analysis['actual_humans'] or final_state['products'] != analysis['products']:
+        raise ValueError('FINAL_STATE_ANALYSIS_BINDING:' + unit)
+    if abs(final_state['time_h'] - analysis['actual_end_h']) > 1e-8:
+        raise ValueError('FINAL_END_BINDING:' + unit)
+    on_duty = sum(r['end_h'] - r['start_h'] for r in final_state['intervals']
+                  if r['phase'] != 'OFF_SHIFT')
+    if abs(on_duty - analysis['actual_on_duty_person_h']) > 1e-6:
+        raise ValueError('FULL_HUMAN_HISTORY_BINDING:' + unit)
+    rows, jr = journal(folder)
+    feature.update(unit=unit, source_family=item['source_family'], method=item['method'],
+                   scenario=item['scenario'], configuration=config,
+                   final_state={k: final_state[k] for k in
+                                ('time_h', 'humans', 'intervals', 'products', 'failed_resources')},
+                   generations=generation, analysis=analysis, journal=rows, journal_source=jr,
+                   original_runtime_elapsed_s=one_field(result_path, 'elapsed_s'),
+                   original_exit=read(ROOT / item['exit']['path']),
+                   provenance=dict(source=dict(path=item['source']['path'], sha256=actual_sha),
+                                   analysis=item['analysis'], independent=item['independent'],
+                                   configuration=item['configuration'], events=item['events'],
+                                   extractor=pin(Path(__file__))))
+    write(out, feature)
+    elapsed = perf_counter() - began
+    print(json.dumps(dict(unit=unit, status='EXTRACTED_AND_SOURCE_BOUND',
+                          events=len(feature['events']), people=len(final_state['humans']),
+                          human_intervals=len(final_state['intervals']), journal_rows=len(rows),
+                          output_bytes=out.stat().st_size, elapsed_s=round(elapsed, 3))), flush=True)
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--manifest', type=Path, default=ROOT/'results/p07/cache/manifest.json')
+    p.add_argument('--output', type=Path, default=ROOT/'results/p07/cache/runs')
+    p.add_argument('--unit', action='append')
+    args = p.parse_args()
+    args.output.mkdir(parents=True, exist_ok=True)
+    manifest = read(args.manifest)
+    for item in manifest['units']:
+        if not args.unit or item['unit'] in args.unit:
+            extract_unit(item, args.output)
+
+
+if __name__ == '__main__':
+    main()

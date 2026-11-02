@@ -1,0 +1,270 @@
+{
+  "identity": "P07-FULL-REVIEW-FINDINGS-r1",
+  "status": "P07_LIMITED_REPAIR_REQUIRED",
+  "findings": [
+    {
+      "id": "P07-R1",
+      "priority": 2,
+      "status": "OPEN",
+      "title": "Fatigue plot omits recovery-zero breakpoints",
+      "file": "analysis/p07/figures.py",
+      "start": 200,
+      "end": 202,
+      "requirements": [
+        "Q06",
+        "Q12"
+      ],
+      "observed": "Linearly joins interval endpoints across clamp-to-zero REST/OFF_SHIFT; actual delivered numeric integrals are correct",
+      "witness": {
+        "unit": "N-CPU-EDD",
+        "person_id": "P1",
+        "start_h": 8.5,
+        "end_h": 24,
+        "start_F": 0.666123083333333,
+        "recovery_rate": 0.2,
+        "actual_zero_h": 11.830615416666665,
+        "actual_E": 1.1092999053737662,
+        "drawn_E": 5.162453895833331
+      },
+      "aggregate": [
+        {
+          "unit": "N-CPU-EDD",
+          "person_count": 15,
+          "human_intervals": 31140,
+          "actual_sum_E": 241.15743703937494,
+          "drawn_line_area": 539.7566596450754,
+          "drawn_excess": 298.59922260570045,
+          "common_tail_independent": true
+        },
+        {
+          "unit": "H-CPU-EDD",
+          "person_count": 15,
+          "human_intervals": 31215,
+          "actual_sum_E": 304.9636468654249,
+          "drawn_line_area": 612.731646031627,
+          "drawn_excess": 307.76799916620206,
+          "common_tail_independent": true
+        }
+      ],
+      "remedy": "Insert each internal zero crossing; test per-person rendered-polyline area against E; regenerate affected figures/sidecars/index"
+    },
+    {
+      "id": "P07-R2",
+      "priority": 2,
+      "status": "OPEN",
+      "title": "Comprehensive validator accepts inconsistent or impossible result values",
+      "file": "analysis/p07/validate.py",
+      "start": 95,
+      "end": 132,
+      "requirements": [
+        "Q13",
+        "C_EXIT_GATE"
+      ],
+      "observations": [
+        {
+          "case": "unmodified_control",
+          "actual_exit_code": 0,
+          "actual_status": "PASS",
+          "expected": "PASS",
+          "mutation": "NONE"
+        },
+        {
+          "case": "bad_computed_fatigue",
+          "actual_exit_code": 0,
+          "actual_status": "PASS",
+          "expected": "REJECT",
+          "mutation": "computed/N-CPU-EDD.json"
+        },
+        {
+          "case": "bad_pair_delta",
+          "actual_exit_code": 0,
+          "actual_status": "PASS",
+          "expected": "REJECT",
+          "mutation": "pairs.json"
+        },
+        {
+          "case": "bad_dynamic_denominator",
+          "actual_exit_code": 0,
+          "actual_status": "PASS",
+          "expected": "REJECT",
+          "mutation": "dynamic_people.json"
+        },
+        {
+          "case": "bad_E20_actual_start",
+          "actual_exit_code": 0,
+          "actual_status": "PASS",
+          "expected": "REJECT",
+          "mutation": "e20_order_details.json"
+        }
+      ],
+      "original_validator_cli": true,
+      "original_workspace_outputs_mutated": false,
+      "consequence": "Counts and identity checks do not establish numeric consistency; changed outputs can receive a new PASS and hashes",
+      "remedy": "Enforce independent source-to-result and result-to-result checks, then reject all four real bad copies nonzero while accepting the control"
+    },
+    {
+      "id": "P07-R3",
+      "priority": 2,
+      "status": "OPEN",
+      "title": "Promised cancellation material cleanup/residue/sunk-resource ledger absent",
+      "file": "analysis/p07/extract.py",
+      "start": 285,
+      "end": 288,
+      "requirements": [
+        "Q02"
+      ],
+      "plan": "docs/steps/P07_execution_plan_20261101_r2.md:47",
+      "cancellation_witness": [
+        {
+          "unit": "C-STOCK-CPU-EDD-r4",
+          "original_end": 720,
+          "cancelled_product": "PRODUCT-1",
+          "product_lots": 120,
+          "returned_lots": 28,
+          "scrapped_lots": 0,
+          "nonzero_available_lots": 0,
+          "nonzero_consumed_lots": 0,
+          "owners_at_end": 0,
+          "running_at_end": 0,
+          "example_returned_lot": {
+            "arrived": true,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.01",
+            "identified": true,
+            "location": "EXTERNAL",
+            "released": true,
+            "returned": 0.105,
+            "scrapped": 0
+          },
+          "present_in_p07_compact_final_state": false
+        },
+        {
+          "unit": "C-STOCK-CPU-ADAPTIVE-r4",
+          "original_end": 720,
+          "cancelled_product": "PRODUCT-1",
+          "product_lots": 120,
+          "returned_lots": 28,
+          "scrapped_lots": 0,
+          "nonzero_available_lots": 0,
+          "nonzero_consumed_lots": 0,
+          "owners_at_end": 0,
+          "running_at_end": 0,
+          "example_returned_lot": {
+            "arrived": true,
+            "available": 0,
+            "consumed": 0,
+            "converted": 0,
+            "id": "PRODUCT-1.ST-B.01",
+            "identified": true,
+            "location": "EXTERNAL",
+            "released": true,
+            "returned": 0.105,
+            "scrapped": 0
+          },
+          "present_in_p07_compact_final_state": false
+        }
+      ],
+      "original_state_pins": [
+        {
+          "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-EDD-r4/state.json",
+          "bytes": 3790655,
+          "sha256": "52030b003ca22f8be9de09329b68f5c74ac5169064f3574816dc2e4fb0800fc1"
+        },
+        {
+          "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-ADAPTIVE-r4/state.json",
+          "bytes": 3790655,
+          "sha256": "52030b003ca22f8be9de09329b68f5c74ac5169064f3574816dc2e4fb0800fc1"
+        }
+      ],
+      "consequence": "Source fields exist but compact final state omits them; last recorded completion cannot replace a cleanup/residue account",
+      "remedy": "Targeted extraction from original states/events, typed quantities and consumed resources; unknown currency rates remain unknown; keep STOCK and WIP/J3 separate"
+    },
+    {
+      "id": "P07-R4",
+      "priority": 3,
+      "status": "OPEN",
+      "title": "All Gantt display rows mislabeled as plan rows",
+      "file": "analysis/p07/deliver.py",
+      "start": 184,
+      "end": 195,
+      "requirements": [
+        "Q12",
+        "Q13"
+      ],
+      "source_location": "analysis/p07/export.py:96",
+      "actual_row_types": [
+        {
+          "case": "normal",
+          "total_rows": 24680,
+          "by_schedule_state": {
+            "ACTUAL": 23645,
+            "UNSCHEDULED": 12,
+            "PLANNED": 1023
+          },
+          "by_row_kind": {
+            "MARKER": 277,
+            "PLAN": 12,
+            "RESOURCE_FACT": 5470,
+            "FACT_PREFIX": 1023,
+            "PERSON_INTERVAL": 16875,
+            "FULL_PLAN": 1023
+          }
+        },
+        {
+          "case": "dynamic",
+          "total_rows": 2676,
+          "by_schedule_state": {
+            "ACTUAL": 183,
+            "UNSCHEDULED": 447,
+            "PLANNED": 2046
+          },
+          "by_row_kind": {
+            "MARKER": 86,
+            "PLAN": 447,
+            "RESOURCE_FACT": 17,
+            "FACT_PREFIX": 5,
+            "PERSON_INTERVAL": 75,
+            "FULL_PLAN": 2046
+          }
+        },
+        {
+          "case": "kit",
+          "total_rows": 5241,
+          "by_schedule_state": {
+            "ACTUAL": 2752,
+            "UNSCHEDULED": 443,
+            "PLANNED": 2046
+          },
+          "by_row_kind": {
+            "MARKER": 86,
+            "PLAN": 443,
+            "RESOURCE_FACT": 45,
+            "FACT_PREFIX": 11,
+            "PERSON_INTERVAL": 2610,
+            "FULL_PLAN": 2046
+          }
+        }
+      ],
+      "incorrect_total_as_planned": [
+        24680,
+        2676,
+        5241
+      ],
+      "correct_full_plan_rows": [
+        1023,
+        2046,
+        2046
+      ],
+      "remedy": "Separate total_gantt_rows from planned_full_schedule_rows in claims, completion narrative and indexes; preserve historical report"
+    }
+  ],
+  "priority_counts": {
+    "P2": 3,
+    "P3": 1
+  },
+  "original_numeric_human_product_pair_metrics_verified": true,
+  "new_production_business_logic_defect_found": false,
+  "note": "No production defect found is scoped to this offline review; the four issues are analysis/validation/reporting issues"
+}

@@ -1,0 +1,842 @@
+{
+  "identity": "P07-INPUT-INVENTORY-r1",
+  "at": "2026-11-02T04:20:32.480890+00:00",
+  "units": [
+    {
+      "unit": "N-CPU-EDD",
+      "scenario": "N",
+      "method": "EDD",
+      "source_family": "P053-c1",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/N-CPU-EDD-analysis.json",
+        "bytes": 126831,
+        "sha256": "d12c80b5851951188fcd493bf7cbb12595853573884047bd7597a9d7c33d49ca"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/N-CPU-EDD-independent-r2.json",
+        "bytes": 1375530,
+        "sha256": "7250615a52a61072881f39e04401767797bc705a96b7cdcbc3cee94016cbfe4d"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/N-CPU-EDD/session-state.json",
+        "bytes": 1698842362,
+        "expected_sha256": "133eb2711a440da6bfdb1f01d2bc6327c9c8ea91edcd0e7e32c3f70040522e1b"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/N-CPU-EDD/configuration.json",
+        "bytes": 1742532,
+        "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/N-CPU-EDD/events.jsonl.gz",
+        "bytes": 195505833,
+        "sha256": "a88e1fc428170e0bcb3a03ef3cb87581834e97f619db71b81d9a16ba222050f3",
+        "format": "JSONL_GZIP"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/N-CPU-EDD-exit.json",
+        "bytes": 105,
+        "sha256": "0f7ef0795c0e4ca47094551a77e4b4454240a8f04675ebf01e44fb33848b491e"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    },
+    {
+      "unit": "N-CPU-ADAPTIVE",
+      "scenario": "N",
+      "method": "ADAPTIVE",
+      "source_family": "P053-c1",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/N-CPU-ADAPTIVE-analysis.json",
+        "bytes": 126846,
+        "sha256": "864f382f348a214b378e8bc3ed741888638fb9cf59eb7e0e8a908a2549d27f57"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/N-CPU-ADAPTIVE-independent-r2.json",
+        "bytes": 1375529,
+        "sha256": "8103487701de4c3276c636f19ba30a2c3a4b79541180ed59751559c2b3bd8442"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/N-CPU-ADAPTIVE/session-state.json",
+        "bytes": 1698972950,
+        "expected_sha256": "e3a35238160f1034c4c26b0dee24705b2c502d05c637aca7ee7d3200ae13651f"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/N-CPU-ADAPTIVE/configuration.json",
+        "bytes": 1742532,
+        "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/N-CPU-ADAPTIVE/events.jsonl.gz",
+        "bytes": 195553218,
+        "sha256": "88e92c7ef18162993e7d6f36f396dbf7a7c57c6a8362779773c3662d745edb63",
+        "format": "JSONL_GZIP"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/N-CPU-ADAPTIVE-exit.json",
+        "bytes": 105,
+        "sha256": "3363a40730136e29247cd3e7d9f142d6a96c31b908f917f4860b84c2b770c69a"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    },
+    {
+      "unit": "H-CPU-EDD",
+      "scenario": "H",
+      "method": "EDD",
+      "source_family": "P053-c1",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/H-CPU-EDD-analysis.json",
+        "bytes": 126716,
+        "sha256": "f7f05deb7e09fc3651a4d26dc55f930098be943d6447b80463be6093173d093f"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/H-CPU-EDD-independent-r2.json",
+        "bytes": 1378410,
+        "sha256": "820078748a1a535487eafe3fdd37ca0f64c12b70075b31df64bb733bdb949166"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/H-CPU-EDD/session-state.json",
+        "bytes": 1704684882,
+        "expected_sha256": "4b028c6b5761dbf68056857a641f2b95aaae6c22bff744cb6c8552819d154ab1"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/H-CPU-EDD/configuration.json",
+        "bytes": 1742532,
+        "sha256": "56ac61474b6bce4a79b0a2ed93d189aaa42ee574e7e6929aade63b897425c02f"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/H-CPU-EDD/events.jsonl.gz",
+        "bytes": 195551365,
+        "sha256": "50ef928b87db8b2398ef09fd5ce73e0a15d08a443261be2bf774eb125d217872",
+        "format": "JSONL_GZIP"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/H-CPU-EDD-exit.json",
+        "bytes": 105,
+        "sha256": "7c397bd6c7c9dec249769ac03cc3e5148ea2320af0e247c5002a163e90ec5ba7"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    },
+    {
+      "unit": "H-CPU-ADAPTIVE",
+      "scenario": "H",
+      "method": "ADAPTIVE",
+      "source_family": "P053-c1",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/H-CPU-ADAPTIVE-analysis.json",
+        "bytes": 126731,
+        "sha256": "1964179097af0f1ffb726c61c7955c8d8ac988925cb50eff9702e0829e27b27c"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/H-CPU-ADAPTIVE-independent-r2.json",
+        "bytes": 1378409,
+        "sha256": "2369764674fb5fb197fd71e19bba55a6f6d59228bdaecb7a5eb631608ef0203b"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/H-CPU-ADAPTIVE/session-state.json",
+        "bytes": 1704815605,
+        "expected_sha256": "3876526a50b495d8b9d67c30d06dddddffa1719be2e0673d448ce0338512b0fb"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/H-CPU-ADAPTIVE/configuration.json",
+        "bytes": 1742532,
+        "sha256": "56ac61474b6bce4a79b0a2ed93d189aaa42ee574e7e6929aade63b897425c02f"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/H-CPU-ADAPTIVE/events.jsonl.gz",
+        "bytes": 195594686,
+        "sha256": "db6f90b33c2f1e9a822149d2205df400697f91b6a056c28acc4fdb64cdebf1a9",
+        "format": "JSONL_GZIP"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/H-CPU-ADAPTIVE-exit.json",
+        "bytes": 105,
+        "sha256": "8623ad8be15379b598c4a03840e771ce91a0674603e238a0ad850f859819c1a5"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    },
+    {
+      "unit": "F-CPU-EDD",
+      "scenario": "F",
+      "method": "EDD",
+      "source_family": "P053-c1",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/F-CPU-EDD-analysis.json",
+        "bytes": 126815,
+        "sha256": "c40d2d4da29d95d80c257df3d46a7a92ca38afcc68b71d2811b30b914c086de8"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/F-CPU-EDD-independent-r2.json",
+        "bytes": 365,
+        "sha256": "4f5b2efee622f9a8c7abe70f5c0d2df02bb2054b1bdff98bd35085c3bbfac142"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/F-CPU-EDD/snapshot.json",
+        "bytes": 1695672316,
+        "expected_sha256": "fdba819f61a99ac466fde0aef5643f4e368c969238cf2257346746ff28000db8"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/F-CPU-EDD/configuration.json",
+        "bytes": 1742532,
+        "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/F-CPU-EDD/snapshot.json",
+        "bytes": 1695672316,
+        "sha256": "fdba819f61a99ac466fde0aef5643f4e368c969238cf2257346746ff28000db8",
+        "format": "SNAPSHOT_EVENTS_ARRAY"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/F-CPU-EDD-exit.json",
+        "bytes": 105,
+        "sha256": "6cc481e2fdb4ea66bf65505f7d40460055660ea16d894a7cc2f5e3f167ad2d38"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    },
+    {
+      "unit": "F-CPU-ADAPTIVE",
+      "scenario": "F",
+      "method": "ADAPTIVE",
+      "source_family": "P053-c1",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/F-CPU-ADAPTIVE-analysis.json",
+        "bytes": 126830,
+        "sha256": "32469331ad78350c14d8c55c45e4998ce0a7a6e4cfde115710ca3587502f6ffe"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/F-CPU-ADAPTIVE-independent-r2.json",
+        "bytes": 366,
+        "sha256": "afe9b290bf998729ac9d2e11adf49e4e885392bc7c58523c3dd36df784d01106"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/F-CPU-ADAPTIVE/snapshot.json",
+        "bytes": 1695782536,
+        "expected_sha256": "20f3ab1eada2ff40d267b679c86b1b4f6b84dbaa989015b962505c11ca8fc1e6"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/F-CPU-ADAPTIVE/configuration.json",
+        "bytes": 1742532,
+        "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/F-CPU-ADAPTIVE/snapshot.json",
+        "bytes": 1695782536,
+        "sha256": "20f3ab1eada2ff40d267b679c86b1b4f6b84dbaa989015b962505c11ca8fc1e6",
+        "format": "SNAPSHOT_EVENTS_ARRAY"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/F-CPU-ADAPTIVE-exit.json",
+        "bytes": 106,
+        "sha256": "d5700e4779dada168655a6cb9fa46ecc9cef9f1206ab74c5e253f1c8f7e77efd"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    },
+    {
+      "unit": "U-CPU-EDD-r3",
+      "scenario": "U",
+      "method": "EDD",
+      "source_family": "P053-c2",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/U-CPU-EDD-r3-analysis.json",
+        "bytes": 126767,
+        "sha256": "c1b519d6b0be4a165eeae805656a803253e6dd4fc91900528831cb8182f26e53"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/U-CPU-EDD-r3-independent-r2.json",
+        "bytes": 2044300,
+        "sha256": "db09cae6de0cd78a280cfcd2e2185731d8b0ff94438f6840e8cd8ac2cd677779"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/U-CPU-EDD-r3/session-state.json",
+        "bytes": 1717571732,
+        "expected_sha256": "c738e34a638e53daae5e7ca8a05a0e4315dbeeeed8046de156b915a794d39de4"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/U-CPU-EDD-r3/configuration.json",
+        "bytes": 878339,
+        "sha256": "c643bf5cf97bbf36c25e0a5a4433de92ffdc5bdca1271e6c16bf0f43552daf0e"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/U-CPU-EDD-r3/events.jsonl.gz",
+        "bytes": 198041622,
+        "sha256": "78f8530e2a3d0c109bfbae22ba43a5609a90f65ca6c916c8f9cb07bc70ce1654",
+        "format": "JSONL_GZIP"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/U-CPU-EDD-r3-exit.json",
+        "bytes": 105,
+        "sha256": "3f53708bfd3f1f70455d4c8f916a25771fbbf9f96275ee87e5ad26dab9efe6fb"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    },
+    {
+      "unit": "U-CPU-ADAPTIVE-r3",
+      "scenario": "U",
+      "method": "ADAPTIVE",
+      "source_family": "P053-c2",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/U-CPU-ADAPTIVE-r3-analysis.json",
+        "bytes": 126780,
+        "sha256": "b08a1e582de723089cf63a6a247b6b0b15fcecf91b80c973fcb5d23c8f6ce3f0"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/U-CPU-ADAPTIVE-r3-independent-r2.json",
+        "bytes": 2044403,
+        "sha256": "8440a765919ea824cf27705c86348df57dd6bd93de794fa4015487ec4b120fc4"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/U-CPU-ADAPTIVE-r3/session-state.json",
+        "bytes": 1717791946,
+        "expected_sha256": "2e3829ed1a73a63f3ecfe81e25269f17f2eba05bda5b543d7c81bc48cb645287"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/U-CPU-ADAPTIVE-r3/configuration.json",
+        "bytes": 878339,
+        "sha256": "c643bf5cf97bbf36c25e0a5a4433de92ffdc5bdca1271e6c16bf0f43552daf0e"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/U-CPU-ADAPTIVE-r3/events.jsonl.gz",
+        "bytes": 198097480,
+        "sha256": "499bd6c459969040f1cedc13b3c548bc9fa1364e0d77e65926d286f934240eb6",
+        "format": "JSONL_GZIP"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/U-CPU-ADAPTIVE-r3-exit.json",
+        "bytes": 105,
+        "sha256": "ac6d37489c554ef2858b6ef36aa3c3a4666305c31680b931342d8c1b90efb320"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    },
+    {
+      "unit": "C-STOCK-CPU-EDD-r4",
+      "scenario": "C",
+      "method": "EDD",
+      "source_family": "P053-c2",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/C-STOCK-CPU-EDD-r4-analysis.json",
+        "bytes": 12057,
+        "sha256": "4e264b6d4facf09523d8b40f06e3b4c2ff27fb42e11f3967c56078d44a9f044d"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/C-STOCK-CPU-EDD-r4-independent-r2.json",
+        "bytes": 367,
+        "sha256": "78316509fc52344006bef8e3fa5f46078116c5e8d053f49d5f832406f42e3dd3"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-EDD-r4/snapshot.json",
+        "bytes": 646322651,
+        "expected_sha256": "c971c8c8567e8a24aa3e810a8c9f2e0e9b5558422eff5eebe82303633fecd9cd"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-EDD-r4/configuration.json",
+        "bytes": 1742532,
+        "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-EDD-r4/snapshot.json",
+        "bytes": 646322651,
+        "sha256": "c971c8c8567e8a24aa3e810a8c9f2e0e9b5558422eff5eebe82303633fecd9cd",
+        "format": "SNAPSHOT_EVENTS_ARRAY"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/C-STOCK-CPU-EDD-r4-exit.json",
+        "bytes": 106,
+        "sha256": "7608a33710c16c6f1102d3309c5adea102245677959fb545a3c3c4ca6ee5746f"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    },
+    {
+      "unit": "C-STOCK-CPU-ADAPTIVE-r4",
+      "scenario": "C",
+      "method": "ADAPTIVE",
+      "source_family": "P053-c2",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/C-STOCK-CPU-ADAPTIVE-r4-analysis.json",
+        "bytes": 12072,
+        "sha256": "5372720e20a289c47a13ae7cb6198d7d91e90b3edbb3a70e2c3ae47a65ff2f19"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/C-STOCK-CPU-ADAPTIVE-r4-independent-r2.json",
+        "bytes": 367,
+        "sha256": "4fb9790dc77e09d15e3ae36c6b7d0195c3dcaf142eca15cb9356bbc319fbfafb"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-ADAPTIVE-r4/snapshot.json",
+        "bytes": 646379701,
+        "expected_sha256": "8601d8724db0e372b88fae19dbf97ee831f97959632616ffb840e2fb9a0ba4b6"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-ADAPTIVE-r4/configuration.json",
+        "bytes": 1742532,
+        "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/C-STOCK-CPU-ADAPTIVE-r4/snapshot.json",
+        "bytes": 646379701,
+        "sha256": "8601d8724db0e372b88fae19dbf97ee831f97959632616ffb840e2fb9a0ba4b6",
+        "format": "SNAPSHOT_EVENTS_ARRAY"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/C-STOCK-CPU-ADAPTIVE-r4-exit.json",
+        "bytes": 106,
+        "sha256": "585d135422549aa6f5380d4fd8e6a5a6c2dbb9cea7eea92515f48f47e3d75215"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    },
+    {
+      "unit": "M-H-N",
+      "scenario": "MECHANISM",
+      "method": "H",
+      "source_family": "P053-c1",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/M-H-N-analysis.json",
+        "bytes": 135956,
+        "sha256": "bcc786f0dd2c78c840326cf463924569eecfb00dcfb76c0c8afa57b681255e82"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/M-H-N-independent-r2.json",
+        "bytes": 367,
+        "sha256": "d5cbf925cf1d1e21df3e4c013143bdbd16a65174f8dedb8c11a2504229f35189"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/M-H-N/snapshot.json",
+        "bytes": 1706671236,
+        "expected_sha256": "e0bfecfe6f53ff196e33a85122fa460a7708b942f48a829549ace9faa14df31a"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/M-H-N/configuration.json",
+        "bytes": 1742532,
+        "sha256": "383a11b63b6e8f3c81fff2611a966d79b924bb3c6c3ad1f1149646328b9cc966"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/M-H-N/snapshot.json",
+        "bytes": 1706671236,
+        "sha256": "e0bfecfe6f53ff196e33a85122fa460a7708b942f48a829549ace9faa14df31a",
+        "format": "SNAPSHOT_EVENTS_ARRAY"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/M-H-N-exit.json",
+        "bytes": 106,
+        "sha256": "f29b074affcade160c318bb899f23311c4f6213ccd78cf07d2c5d45ae4d5606e"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    },
+    {
+      "unit": "M-H-H",
+      "scenario": "MECHANISM",
+      "method": "H",
+      "source_family": "P053-c1",
+      "analysis": {
+        "path": ".local/p053-execution-20261028-r2/M-H-H-analysis.json",
+        "bytes": 121439,
+        "sha256": "4ee9ac1c1e4c01d68bc53d04d78891a4c2b26a6b532c54a655e02a392aa3e009"
+      },
+      "independent": {
+        "path": ".local/p053-execution-20261028-r2/M-H-H-independent-r2.json",
+        "bytes": 366,
+        "sha256": "7f201986296e7bbb26bca7f88224748f27385677a8c7db6a0deb57f3e179655e"
+      },
+      "source": {
+        "path": ".local/p053-execution-20261028-r2/runs/M-H-H/snapshot.json",
+        "bytes": 1707552051,
+        "expected_sha256": "c3ccea84bb7ac1cdfc49716dc53913732ed39554fbf2ae58f3315e34890d3e98"
+      },
+      "configuration": {
+        "path": ".local/p053-execution-20261028-r2/runs/M-H-H/configuration.json",
+        "bytes": 1742532,
+        "sha256": "56ac61474b6bce4a79b0a2ed93d189aaa42ee574e7e6929aade63b897425c02f"
+      },
+      "events": {
+        "path": ".local/p053-execution-20261028-r2/runs/M-H-H/snapshot.json",
+        "bytes": 1707552051,
+        "sha256": "c3ccea84bb7ac1cdfc49716dc53913732ed39554fbf2ae58f3315e34890d3e98",
+        "format": "SNAPSHOT_EVENTS_ARRAY"
+      },
+      "exit": {
+        "path": ".local/p053-execution-20261028-r2/M-H-H-exit.json",
+        "bytes": 106,
+        "sha256": "a4ee38a8c0cf4ea4124b48461d19951a809b8faf53fe4b2a1fd86da14b7f5b23"
+      },
+      "available_fields": [
+        "unit",
+        "source_path",
+        "source_sha256",
+        "source_bytes",
+        "configuration_sha256",
+        "independent_path",
+        "independent_sha256",
+        "actual_end_h",
+        "actual_whole_metrics",
+        "actual_humans",
+        "products",
+        "modes",
+        "mode_attempts",
+        "stages",
+        "total_branch_labour_h",
+        "actual_on_duty_person_h",
+        "common_horizon",
+        "claim"
+      ],
+      "extraction_status": "PENDING_RAW_EVENT_FEATURE_EXTRACTION"
+    }
+  ],
+  "field_coverage": [
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "N-CPU-EDD",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "N-CPU-ADAPTIVE",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "H-CPU-EDD",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "H-CPU-ADAPTIVE",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "F-CPU-EDD",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "F-CPU-ADAPTIVE",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "U-CPU-EDD-r3",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "U-CPU-ADAPTIVE-r3",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "C-STOCK-CPU-EDD-r4",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "C-STOCK-CPU-ADAPTIVE-r4",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "M-H-N",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "FIXED_RESEARCH",
+      "unit": "M-H-H",
+      "small_analysis": true,
+      "dynamic_presence": false,
+      "raw_event_file": true,
+      "need": "event features, full activity intervals, cost attribution"
+    },
+    {
+      "input_class": "DYNAMIC_PEOPLE",
+      "path": ".local/p043-20261023/cpu-formal-r2/session-state.json",
+      "exists": true,
+      "status": "LOCATED"
+    },
+    {
+      "input_class": "DYNAMIC_PEOPLE",
+      "path": ".local/p043-20261023/kit-formal-r3/session-state.json",
+      "exists": true,
+      "status": "LOCATED"
+    },
+    {
+      "input_class": "DYNAMIC_ORDER_AND_E20",
+      "path": "docs/delivery/p061_event_chain_trace_r1.json",
+      "exists": true,
+      "status": "LOCATED"
+    },
+    {
+      "input_class": "FAILURE_CENSOR",
+      "path": "docs/delivery/p053_failure_index_r2.json",
+      "exists": true,
+      "status": "LOCATED"
+    },
+    {
+      "input_class": "DUAL_DOMAIN",
+      "path": "docs/delivery/p063_reproduction_r1.json",
+      "exists": true,
+      "status": "LOCATED"
+    },
+    {
+      "input_class": "RECOVERY",
+      "path": "docs/delivery/p062_recovery_continuity_r1.json",
+      "exists": true,
+      "status": "LOCATED"
+    }
+  ],
+  "mechanism_aliases": {
+    "M-HR-N": "N-CPU-EDD",
+    "M-HR-H": "H-CPU-EDD"
+  },
+  "new_production_runs": 0,
+  "new_kit_runs": 0
+}
