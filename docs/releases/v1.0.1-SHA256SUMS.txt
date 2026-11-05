@@ -1,0 +1,3 @@
+40dbc127a4b7b30fed4ba94731bbbb56ac9e56ff1fe0ffb3db3d29a331f12d9e  HRC-Workbench-Windows-x64.zip
+7a38931f2230c7e076969b8956e77bb3f20c81128210d5d9901eb186ef17aa82  report-mic-en_reviewed.pdf
+150f6af2284d2896f7306502676dfaf2a7a65b757bae27328e172814f80d5be8  report-mic-zh_reviewed.pdf

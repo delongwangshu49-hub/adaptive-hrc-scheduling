@@ -16,7 +16,7 @@
 
 Adaptive HRC Scheduling supports **factory production of steel Modular Integrated Construction (MiC)**. It connects module production tasks, worker fatigue, robot collaboration and resource constraints to scheduling, execution simulation and Gantt views. Run reference cases, apply order and workforce changes, and reproduce research results from saved records.
 
-**The first official release, v1.0.0, includes a Windows portable workbench and English/Chinese reports.** The main workflows verified on the build machine are usable; bugs and unknown issues may remain.
+**The first official release, v1.0.1, includes a Windows portable workbench and English/Chinese reports.** The main workflows verified on the build machine are usable; bugs and unknown issues may remain.
 
 <img src="docs/assets/readme/workbench-native-p051.jpg" alt="Archived native workbench: an Isaac 3D viewport on the left and an execution Gantt on the right" width="100%">
 
@@ -26,10 +26,10 @@ An actual archived workbench window. The original image, run identity and captur
 
 | Download | Entry point |
 | --- | --- |
-| Windows x64 portable workbench · 340 MB | [Download ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/HRC-Workbench-Windows-x64.zip) · [User guide](docs/releases/v1.0.0.md) |
-| English report · 24 pages | [Read PDF](reports/final/report-mic-en_reviewed.pdf) · [Direct download](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/report-mic-en_reviewed.pdf) |
-| 中文报告 · 22 页 | [Read PDF](reports/final/report-mic-zh_reviewed.pdf) · [Direct download](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/report-mic-zh_reviewed.pdf) |
-| Release and integrity | [Release notes](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/tag/v1.0.0) · [SHA-256](docs/releases/v1.0.0-SHA256SUMS.txt) |
+| Windows x64 portable workbench · 340 MB | [Download ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.1/HRC-Workbench-Windows-x64.zip) · [User guide](docs/releases/v1.0.1.md) |
+| English report · 24 pages | [Read PDF](reports/final/report-mic-en_reviewed.pdf) · [Direct download](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.1/report-mic-en_reviewed.pdf) |
+| 中文报告 · 22 页 | [Read PDF](reports/final/report-mic-zh_reviewed.pdf) · [Direct download](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.1/report-mic-zh_reviewed.pdf) |
+| Release and integrity | [Release notes](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/tag/v1.0.1) · [SHA-256](docs/releases/v1.0.1-SHA256SUMS.txt) |
 
 The portable package includes Python, Qt, the scheduler, the Gantt frontend and a read-only example. CPU mode runs directly; the native 3D viewport connects to a separately installed Isaac Sim. Existing reference cases, research figures and reproducible inputs remain available.
 
@@ -47,11 +47,11 @@ The portable package includes Python, Qt, the scheduler, the Gantt frontend and 
 
 ### Windows portable app
 
-1. [Download the ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/HRC-Workbench-Windows-x64.zip), extract it completely and double-click `HRC-Workbench.exe`. Keep the adjacent `app` folder.
+1. [Download the ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.1/HRC-Workbench-Windows-x64.zip), extract it completely and double-click `HRC-Workbench.exe`. Keep the adjacent `app` folder.
 2. Use **启动配置 (Launch configuration)** to run the default CPU case, or open the read-only example through **便携设置与示例 (Portable settings and examples)**.
 3. Initial scheduling and Gantt verification take time. Finish with **安全停止 (Safe stop)** and wait for the worker to exit. Results default to `%LOCALAPPDATA%\HRCWorkbench\runs`.
 
-Native 3D additionally requires **Isaac Sim 6.1 and PowerShell 7**. Select the Isaac installation root in settings and use a writable ASCII-only results path, such as `C:\HRC\runs`. CPU mode and archives support Chinese paths. See the [portable guide](docs/releases/v1.0.0.md) for complete steps and log locations.
+Native 3D additionally requires **Isaac Sim 6.1 and PowerShell 7**. Select the Isaac installation root in settings and use a writable ASCII-only results path, such as `C:\HRC\runs`. CPU mode and archives support Chinese paths. See the [portable guide](docs/releases/v1.0.1.md) for complete steps and log locations.
 
 ### Reproduce the research examples from source
 
@@ -215,7 +215,7 @@ Ownership intervals show when resources were held, including resources with no h
 
 Initial planning, replanning and Gantt verification remain slow, and waiting feedback needs improvement. Live performance targets, some dynamic completion paths and WIP cancellation remain incomplete. Manual REST is unavailable; testing on other machines, long runs and owner-operated acceptance remain pending. This version supports simulation research.
 
-Established solutions are being evaluated and follow-up improvements are being planned. See the [release notes](docs/releases/v1.0.0.md#known-issues-and-validation-scope) for details and operating conditions. Please report bugs with reproduction steps through [Issues](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/issues).
+Established solutions are being evaluated and follow-up improvements are being planned. See the [release notes](docs/releases/v1.0.1.md#known-issues-and-validation-scope) for details and operating conditions. Please report bugs with reproduction steps through [Issues](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/issues).
 
 ## Development and validation
 
@@ -231,7 +231,7 @@ Run the P07 checks separately:
 uv run --locked python -m unittest discover -s tests -p 'test_p07*.py' -v
 ```
 
-The existing G07 release, `step-P07-r3`, passed 1276 checks in each of four Ubuntu/Windows source and isolated-wheel CI rounds. Portable packaging separately passed 23 frontend and 41 targeted Python checks, plus local CPU, archive and external Kit verification. See the badge and [Actions](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml) for CI associated with the current release commit, and the [release notes](docs/releases/v1.0.0.md) for packaging validation scope.
+The existing G07 release, `step-P07-r3`, passed 1276 checks in each of four Ubuntu/Windows source and isolated-wheel CI rounds. Portable packaging separately passed 23 frontend and 41 targeted Python checks, plus local CPU, archive and external Kit verification. See the badge and [Actions](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml) for CI associated with the current release commit, and the [release notes](docs/releases/v1.0.1.md) for packaging validation scope.
 
 ```text
 src/adaptive_hrc_scheduling/   Production model, contracts, scheduling and execution
@@ -251,7 +251,7 @@ Reports and release guides are available in English and Simplified Chinese. Deta
 
 | Topic | Guide |
 | --- | --- |
-| Official release and reports | [Portable guide](docs/releases/v1.0.0.md) · [English PDF](reports/final/report-mic-en_reviewed.pdf) · [中文 PDF](reports/final/report-mic-zh_reviewed.pdf) |
+| Official release and reports | [Portable guide](docs/releases/v1.0.1.md) · [English PDF](reports/final/report-mic-en_reviewed.pdf) · [中文 PDF](reports/final/report-mic-zh_reviewed.pdf) |
 | Setup and CPU execution | [Environment setup](docs/setup.md) · [Production and saved-run reconstruction](docs/public_validation/reproduction.md) |
 | Desktop interaction | [Workbench usage](docs/public_workbench/usage.md) · [Interaction cases](docs/public_workbench/interaction_cases.tsv) |
 | Model and contracts | [Production specification](docs/model/specification.md) · [Dynamic backend](docs/public_backend/README.md) · [Shared interaction contract](docs/public_delivery_r2/interaction_contract_r3.md) |

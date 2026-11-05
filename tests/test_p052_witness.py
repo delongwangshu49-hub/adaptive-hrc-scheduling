@@ -37,7 +37,10 @@ class WitnessTests(unittest.TestCase):
                     {"verified": True},
                 )
                 self.assertEqual(run.call_args.kwargs["timeout"], expected)
-                self.assertEqual(run.call_args.args[0][2], "p051_desktop.forecast_worker")
+                self.assertEqual(
+                    run.call_args.args[0],
+                    [sys.executable, "-B", "-X", "utf8", "-m", "p051_desktop.forecast_worker"],
+                )
 
     def test_recipe_preserves_all_physical_and_person_inputs(self):
         original = base()

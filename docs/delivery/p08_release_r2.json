@@ -1,0 +1,91 @@
+{
+  "format": "P08-OFFICIAL-DELIVERY-2",
+  "release_tag": "v1.0.1",
+  "previous_delivery": {
+    "path": "docs/delivery/p08_release_r1.json",
+    "bytes": 6278,
+    "sha256": "a44ae18d2bfdd6c0cfd0ffd6d4c5cfe859b424c8c05394acce511e0c28a8677f"
+  },
+  "previous_artifact_relocations": [
+    {
+      "original_path": "README.md",
+      "path": "docs/archive/p08/candidate-r1/README.md",
+      "bytes": 21024,
+      "sha256": "60957284eecb38378b3a3fbe58680c7cacb694ccbf281791f76b267508d0a72d"
+    },
+    {
+      "original_path": "README.zh-CN.md",
+      "path": "docs/archive/p08/candidate-r1/README.zh-CN.md",
+      "bytes": 18411,
+      "sha256": "8c1a8c396a104a31fb4e34b9715512395efc22cf8d3a1047bdd046ff7ba6136f"
+    },
+    {
+      "original_path": "tests/test_p07_delivery_bytes.py",
+      "path": "docs/archive/p08/candidate-r1/tests/test_p07_delivery_bytes.py",
+      "bytes": 7014,
+      "sha256": "60cd10d1fdc872afa91cd53ed43e4c8b92b978ac5ddb00f0098b14f47ad8e6c6"
+    }
+  ],
+  "current_artifacts": [
+    {
+      "path": "README.md",
+      "bytes": 21024,
+      "sha256": "0a0c54365d554ea8484ecd4bafd21c3689727088c718604f370d98ac5ddf52bf"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "bytes": 18411,
+      "sha256": "a9d4208ed2649dde202f4c43309b78502dcf40fb60e951d3020fea550da74004"
+    },
+    {
+      "path": "tests/test_p07_delivery_bytes.py",
+      "bytes": 7953,
+      "sha256": "67780b7b9d647a92ef858f7d4fe57596f2a650f4c0505d0709180dc22526618d"
+    },
+    {
+      "path": "tests/test_p052_witness.py",
+      "bytes": 4902,
+      "sha256": "dcb73b3ecc9c037fa40d835492e7ccbea6d08934bf3db98a665372290f5ff09d"
+    },
+    {
+      "path": "docs/releases/v1.0.1.md",
+      "bytes": 6639,
+      "sha256": "2d73d6340f38224e8482b3d597bd8a93e11108ecaa513642f3d155ee92fded4e"
+    },
+    {
+      "path": "docs/releases/v1.0.1.zh-CN.md",
+      "bytes": 5564,
+      "sha256": "0a6a8e2989fc0840c6d255d52e93748d6ae4b6a56c3978ab4f1a3262b1183b1e"
+    },
+    {
+      "path": "docs/releases/v1.0.1-SHA256SUMS.txt",
+      "bytes": 282,
+      "sha256": "a8d1445b28aae524740252b17014b65fbfa39071d3581fd151329cafc7a03002"
+    }
+  ],
+  "release_assets": [
+    {
+      "bytes": 340032822,
+      "sha256": "40dbc127a4b7b30fed4ba94731bbbb56ac9e56ff1fe0ffb3db3d29a331f12d9e",
+      "name": "HRC-Workbench-Windows-x64.zip"
+    },
+    {
+      "bytes": 1289634,
+      "sha256": "7a38931f2230c7e076969b8956e77bb3f20c81128210d5d9901eb186ef17aa82",
+      "name": "report-mic-en_reviewed.pdf"
+    },
+    {
+      "bytes": 1498510,
+      "sha256": "150f6af2284d2896f7306502676dfaf2a7a65b757bae27328e172814f80d5be8",
+      "name": "report-mic-zh_reviewed.pdf"
+    }
+  ],
+  "initial_candidate": {
+    "tag": "v1.0.0",
+    "commit": "1291225f8a144d8e9c5541e77fb0dccb041ad4ab",
+    "ci_run": 42028390200,
+    "failure": "Legacy test assumed a fixed argument position before portable UTF-8 flags"
+  },
+  "runtime_and_reports": "Unchanged from the original sealed ZIP and reviewed PDFs",
+  "e12": "OWNER_PENDING"
+}

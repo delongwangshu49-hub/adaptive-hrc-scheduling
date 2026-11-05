@@ -141,7 +141,25 @@ class P07DeliveryBytesTests(unittest.TestCase):
                 add(moved)
             else:
                 add(row)
+        revision = load("docs/delivery/p08_release_r2.json")
+        add(revision["previous_delivery"])
+        self.assertEqual(revision["previous_delivery"]["path"], "docs/delivery/p08_release_r1.json")
+        revised_moves = {
+            row["original_path"]: row for row in revision["previous_artifact_relocations"]
+        }
+        self.assertEqual(len(revised_moves), len(revision["previous_artifact_relocations"]))
+        self.assertEqual(
+            set(revised_moves), {"README.md", "README.zh-CN.md", "tests/test_p07_delivery_bytes.py"}
+        )
         for row in delivery["current_artifacts"]:
+            if row["path"] in revised_moves:
+                moved = revised_moves[row["path"]]
+                self.assertEqual(moved["sha256"], row["sha256"])
+                self.assertEqual(moved["path"], "docs/archive/p08/candidate-r1/" + row["path"])
+                add(moved)
+            else:
+                add(row)
+        for row in revision["current_artifacts"]:
             add(row)
         binding = load("docs/delivery/feedback_metric_binding_r3.json")
         for row in binding["upstream_contracts"]:

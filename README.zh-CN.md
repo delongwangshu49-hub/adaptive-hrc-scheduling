@@ -16,7 +16,7 @@
 
 Adaptive HRC Scheduling 面向**钢结构模块化集成建筑（MiC）的工厂制造**，把模块生产任务、人员疲劳、机器人协作和资源约束连接到调度、执行仿真与甘特图。可用它运行参考案例、施加订单和人员变更，并从保存的记录复现研究结果。
 
-**第一正式版 v1.0.0 已提供 Windows 便携工作台和中英双语报告。** 本机已验证的主要功能可用，仍可能存在 bug 或尚未发现的问题。
+**第一正式版 v1.0.1 已提供 Windows 便携工作台和中英双语报告。** 本机已验证的主要功能可用，仍可能存在 bug 或尚未发现的问题。
 
 <img src="docs/assets/readme/workbench-native-p051.jpg" alt="真实归档工作台：左侧为Isaac三维视口，右侧为执行甘特" width="100%">
 
@@ -26,10 +26,10 @@ Adaptive HRC Scheduling 面向**钢结构模块化集成建筑（MiC）的工厂
 
 | 获取内容 | 入口 |
 | --- | --- |
-| Windows x64 便携工作台 · 340 MB | [下载 ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/HRC-Workbench-Windows-x64.zip) · [使用说明](docs/releases/v1.0.0.zh-CN.md) |
-| 中文报告 · 22 页 | [阅读 PDF](reports/final/report-mic-zh_reviewed.pdf) · [直接下载](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/report-mic-zh_reviewed.pdf) |
-| English report · 24 pages | [阅读 PDF](reports/final/report-mic-en_reviewed.pdf) · [直接下载](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/report-mic-en_reviewed.pdf) |
-| 版本与完整性 | [发布记录](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/tag/v1.0.0) · [SHA-256](docs/releases/v1.0.0-SHA256SUMS.txt) |
+| Windows x64 便携工作台 · 340 MB | [下载 ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.1/HRC-Workbench-Windows-x64.zip) · [使用说明](docs/releases/v1.0.1.zh-CN.md) |
+| 中文报告 · 22 页 | [阅读 PDF](reports/final/report-mic-zh_reviewed.pdf) · [直接下载](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.1/report-mic-zh_reviewed.pdf) |
+| English report · 24 pages | [阅读 PDF](reports/final/report-mic-en_reviewed.pdf) · [直接下载](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.1/report-mic-en_reviewed.pdf) |
+| 版本与完整性 | [发布记录](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/tag/v1.0.1) · [SHA-256](docs/releases/v1.0.1-SHA256SUMS.txt) |
 
 便携包自带 Python、Qt、调度程序、甘特前端和只读示例。CPU 模式可直接使用；原生三维视口连接用户单独安装的 Isaac Sim。现有参考案例、研究图表与可复现输入继续保留。
 
@@ -47,11 +47,11 @@ Adaptive HRC Scheduling 面向**钢结构模块化集成建筑（MiC）的工厂
 
 ### Windows 便携版
 
-1. [下载 ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/HRC-Workbench-Windows-x64.zip)，完整解压后双击 `HRC-Workbench.exe`，保留同级 `app` 文件夹。
+1. [下载 ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.1/HRC-Workbench-Windows-x64.zip)，完整解压后双击 `HRC-Workbench.exe`，保留同级 `app` 文件夹。
 2. 在 **启动配置** 中运行默认 CPU 案例，或通过 **便携设置与示例** 打开只读示例。
 3. 初次排程和甘特核验需要等待；结束时使用 **安全停止**，等工作进程退出。默认结果位于 `%LOCALAPPDATA%\HRCWorkbench\runs`。
 
-原生 3D 另需 **Isaac Sim 6.1 与 PowerShell 7**。在设置中选择 Isaac 安装根目录，并使用纯 ASCII 的可写结果路径，例如 `C:\HRC\runs`。CPU 和存档支持中文路径。完整步骤及日志位置见[便携版指南](docs/releases/v1.0.0.zh-CN.md)。
+原生 3D 另需 **Isaac Sim 6.1 与 PowerShell 7**。在设置中选择 Isaac 安装根目录，并使用纯 ASCII 的可写结果路径，例如 `C:\HRC\runs`。CPU 和存档支持中文路径。完整步骤及日志位置见[便携版指南](docs/releases/v1.0.1.zh-CN.md)。
 
 ### 从源码复现研究样例
 
@@ -215,7 +215,7 @@ N/H 的 EDD 配置仅初始 F 从 0.2 改为 0.6。实际全生命周期新增�
 
 初排、重排和甘特核验仍偏慢，等待反馈也有待改善；实时性能目标、部分动态完成与在制品取消路径尚未全部达成。手动 REST 未实现，异机与长期运行验证、负责人连续人工验收仍待完成。当前版本用于仿真研究。
 
-针对这些问题，正在评估成熟方案并规划后续改进。详细边界与使用条件见[版本说明](docs/releases/v1.0.0.zh-CN.md#已知问题与验证范围)；欢迎通过 [Issues](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/issues) 提交 bug 和复现记录。
+针对这些问题，正在评估成熟方案并规划后续改进。详细边界与使用条件见[版本说明](docs/releases/v1.0.1.zh-CN.md#已知问题与验证范围)；欢迎通过 [Issues](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/issues) 提交 bug 和复现记录。
 
 ## 开发与验证
 
@@ -231,7 +231,7 @@ uv run --locked --no-cache --no-editable --reinstall-package adaptive-hrc-schedu
 uv run --locked python -m unittest discover -s tests -p 'test_p07*.py' -v
 ```
 
-既有 G07 发布 `step-P07-r3` 的 Ubuntu/Windows 源码及隔离 wheel 四轮 CI 各通过 1276 项检查。便携包另完成 23 项前端和 41 项 Python 定向检查，以及本机 CPU、存档和外置 Kit 验证。当前发布提交的 CI 结果见上方徽章与 [Actions](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml)；封包验证范围见[版本说明](docs/releases/v1.0.0.zh-CN.md)。
+既有 G07 发布 `step-P07-r3` 的 Ubuntu/Windows 源码及隔离 wheel 四轮 CI 各通过 1276 项检查。便携包另完成 23 项前端和 41 项 Python 定向检查，以及本机 CPU、存档和外置 Kit 验证。当前发布提交的 CI 结果见上方徽章与 [Actions](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml)；封包验证范围见[版本说明](docs/releases/v1.0.1.zh-CN.md)。
 
 ```text
 src/adaptive_hrc_scheduling/   生产模型、契约、调度与执行
@@ -251,7 +251,7 @@ docs/                        指南、模型定义与证据
 
 | 主题 | 指南 |
 | --- | --- |
-| 正式版与报告 | [便携版指南](docs/releases/v1.0.0.zh-CN.md) · [中文 PDF](reports/final/report-mic-zh_reviewed.pdf) · [English PDF](reports/final/report-mic-en_reviewed.pdf) |
+| 正式版与报告 | [便携版指南](docs/releases/v1.0.1.zh-CN.md) · [中文 PDF](reports/final/report-mic-zh_reviewed.pdf) · [English PDF](reports/final/report-mic-en_reviewed.pdf) |
 | 安装与 CPU 执行 | [环境安装](docs/setup.md) · [生产与保存重建](docs/public_validation/reproduction.md) |
 | 桌面交互 | [工作台操作](docs/public_workbench/usage.md) · [交互案例](docs/public_workbench/interaction_cases.tsv) |
 | 模型与契约 | [生产规范](docs/model/specification.md) · [动态后端](docs/public_backend/README.md) · [共享交互契约](docs/public_delivery_r2/interaction_contract_r3.md) |
