@@ -44,6 +44,7 @@ function App(){
   const [form,setForm]=useState(savedContext.form||null),[drafts,setDrafts]=useState(savedContext.drafts||{}),[preview,setPreview]=useState(null),[selection,setSelection]=useState(savedContext.selection||null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[details,setDetails]=useState(!!savedContext.details),[menu,setMenu]=useState(null);
   const [settings,setSettings]=useState(()=>navigationSettings(savedContext.settings||{}));
   const [setup,setSetup]=useState({variant:'SR-W1',products:1,method:'ADAPTIVE',backend:'isaac',simulation_rate:.01});
+  const [portable,setPortable]=useState(null);
   const [camera,setCamera]=useState(savedContext.camera||'Overview');
   const [detached,setDetached]=useState(false);
   const menuTrigger=useRef(null),formTrigger=useRef(null);
@@ -67,7 +68,11 @@ function App(){
         if(e.kind==='submit'){setPreview(null);setBusy(false);setError('');}
         if(e.kind==='launched'){setBusy(false);setForm(null);rpc('layout',{form_open:false}).catch(onError);}
       });
-      rpc('initialize').then(r=>{setLayout(r.layout);setLanguage(r.language);setPhase(r.phase);rpc('layout',{form_open:!!savedContext.form||!!savedContext.details}).catch(onError);}).catch(onError);
+      rpc('initialize').then(r=>{
+        setLayout(r.layout);setLanguage(r.language);setPhase(r.phase);setPortable(r.portable);
+        if(r.portable&&!r.portable.isaac_ready)setSetup(s=>({...s,backend:'light'}));
+        rpc('layout',{form_open:!!savedContext.form||!!savedContext.details}).catch(onError);
+      }).catch(onError);
     });return()=>{alive=false};
   },[]);
   const openForm=(kind,priority)=>{formTrigger.current=menu?menuTrigger.current:document.activeElement;setForm(kind);setPreview(null);setError('');setMenu(null);if(priority)setDrafts(s=>({...s,[kind]:{...defaults,...s[kind],priority}}));rpc('layout',{form_open:true}).catch(onError);};
@@ -123,13 +128,17 @@ function App(){
       <Timeline phase={planFailure?'PLAN_BLOCKED':phase} plot={p[1]} profile={profile} labelWidth={labelWidth} view={view} t={t} selection={picked} onSelect={choose} settings={settings} setSettings={setSettings} onError={onError} rpc={rpc} language={language}/>
     </>}
     <section className="aux" style={{left:pad,right:pad,top:auxY,height:auxHeight}}>
-      {form==='setup'?<form className="form-line" onSubmit={e=>{e.preventDefault();setBusy(true);rpc('start',setup).catch(onError)}}>
+      {form==='setup'?<form className={portable?'form-line portable-config':'form-line'} onSubmit={e=>{e.preventDefault();setBusy(true);rpc('start',setup).catch(onError)}}>
         <Field label={t('variant')} width={180}><select value={setup.variant} onChange={e=>setSetup(s=>({...s,variant:e.target.value}))}><option>SR-W1</option><option>SR-W2</option></select></Field>
         <Field label={t('products')} width={100}><input type="number" min="1" max="3" value={setup.products} onChange={e=>setSetup(s=>({...s,products:Number(e.target.value)}))}/></Field>
         <Field label={t('method')} width={160}><select value={setup.method} onChange={e=>setSetup(s=>({...s,method:e.target.value}))}><option value="ADAPTIVE">{language==='zh'?'完整计划 · 固定工时':'Full plan · fixed hours'}</option></select></Field>
-        <Field label={t('backend')} width={180}><select value={setup.backend} onChange={e=>setSetup(s=>({...s,backend:e.target.value}))}><option value="isaac">Isaac / Kit</option><option value="light">CPU</option></select></Field>
-        <Field label={t('rate')} width={180}><input type="number" min="0.0001" max="100" step="0.01" value={setup.simulation_rate} onChange={e=>setSetup(s=>({...s,simulation_rate:Number(e.target.value)}))}/></Field>
+        <Field label={t('backend')} width={180}><select value={setup.backend} onChange={e=>setSetup(s=>({...s,backend:e.target.value}))}><option value="isaac" disabled={portable&&!portable.isaac_ready}>Isaac / Kit</option><option value="light">CPU</option></select></Field>
+        <Field label={t('rate')} width={180}><input type="number" min="0.0001" max="100" step="any" value={setup.simulation_rate} onChange={e=>setSetup(s=>({...s,simulation_rate:Number(e.target.value)}))}/></Field>
         <button className="primary" disabled={busy}>{busy?t('pending'):t('startNow')}</button><Button onClick={closeForm}>{t('cancel')}</Button>
+        {portable&&<Button disabled={busy} onClick={()=>rpc('portable_settings').then(next=>{
+          setPortable(next);
+          if(!next.isaac_ready)setSetup(s=>({...s,backend:'light'}));
+        }).catch(onError)}>{language==='zh'?'便携设置与示例':'Portable setup & example'}</Button>}
       </form>:form?<>
         {preview?<div className="preview-line"><div><strong>{t('actualParams')} · {t(preview.kind==='ORDER_CREATE'&&preview.payload.priority==='URGENT'?'urgent':kindNames[preview.kind])}</strong><div className="parameter-summary">{Object.entries(preview.payload).filter(([k])=>!k.includes('sha256')&&k!=='scene_reference').map(([k,v])=><span key={k}>{parameterLabel(k,language)}: {typeof v==='object'?JSON.stringify(v):String(v)}</span>)}</div><small>{t('bindingNote')}</small><small>{preview.target_id} · {preview.time_rule} · #{preview.client_sequence} · {preview.request_id}</small></div><Button className="primary" disabled={busy} onClick={commit}>{t('confirm')}</Button><Button onClick={()=>setPreview(null)}>{t('cancel')}</Button></div>:
         <form className="form-line" onSubmit={review}>

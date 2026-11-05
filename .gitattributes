@@ -108,3 +108,30 @@ docs/delivery/p062_native_close_resolution_r1.json -text
 
 # Retain the approved bilingual candidate while finalizing release status.
 docs/archive/p07/bilingual-candidate-r2/** -text
+
+# First official delivery: exact source and historical presentation bytes.
+docs/archive/p07/published-r3/** -text
+docs/releases/** -text
+docs/delivery/p08_release_r1.json -text
+README.md -text
+README.zh-CN.md -text
+tests/test_p07_delivery_bytes.py -text
+desktop/p051/src/p051_desktop/app.py -text
+desktop/p051/src/p051_desktop/gantt.py -text
+desktop/p051/src/p051_desktop/portable.py -text
+desktop/p051/web/src/main.jsx -text
+desktop/p051/web/src/style.css -text
+scripts/run_s19b_prototype.py -text
+docs/releases/v1.0.0.md -text
+docs/releases/v1.0.0.zh-CN.md -text
+docs/releases/v1.0.0-SHA256SUMS.txt -text
+desktop/p051/portable/START-HERE.md -text
+desktop/p051/portable/THIRD-PARTY.md -text
+desktop/p051/portable/WorkbenchLauncher.cs -text
+desktop/p051/portable/build.ps1 -text
+desktop/p051/portable/finalize.py -text
+desktop/p051/portable/licenses/GPL-2.0-only.txt -text
+desktop/p051/portable/licenses/GPL-3.0-only.txt -text
+desktop/p051/portable/licenses/LGPL-3.0-only.txt -text
+desktop/p051/portable/portable-launch.py -text
+desktop/p051/portable/stage.py -text

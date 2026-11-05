@@ -123,7 +123,25 @@ class P07DeliveryBytesTests(unittest.TestCase):
         released_paths = [row["path"] for row in released["current_artifacts"]]
         self.assertIn("README.md", released_paths)
         self.assertIn("README.zh-CN.md", released_paths)
+        delivery = load("docs/delivery/p08_release_r1.json")
+        add(delivery["previous_presentation"])
+        self.assertEqual(
+            delivery["previous_presentation"]["path"], "docs/delivery/p07_presentation_r3.json"
+        )
+        moves = {row["original_path"]: row for row in delivery["previous_artifact_relocations"]}
+        self.assertEqual(len(moves), len(delivery["previous_artifact_relocations"]))
+        self.assertEqual(
+            set(moves), {"README.md", "README.zh-CN.md", "tests/test_p07_delivery_bytes.py"}
+        )
         for row in released["current_artifacts"]:
+            if row["path"] in moves:
+                moved = moves[row["path"]]
+                self.assertEqual(moved["sha256"], row["sha256"])
+                self.assertEqual(moved["path"], "docs/archive/p07/published-r3/" + row["path"])
+                add(moved)
+            else:
+                add(row)
+        for row in delivery["current_artifacts"]:
             add(row)
         binding = load("docs/delivery/feedback_metric_binding_r3.json")
         for row in binding["upstream_contracts"]:

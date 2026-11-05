@@ -4,7 +4,7 @@
   <a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a>
 </p>
 
-<p align="center">Dynamic human-robot collaborative scheduling for modular building production.</p>
+<p align="center">A human-robot scheduling and simulation workbench for steel Modular Integrated Construction (MiC).</p>
 
 <p align="center">
   <a href="pyproject.toml"><img src="https://img.shields.io/badge/Python-3.12.13-555?labelColor=222" alt="Python 3.12.13"></a>
@@ -14,24 +14,24 @@
 
 <p align="center"><a href="#quick-start">Quick start</a> · <a href="#architecture">Architecture</a> · <a href="#research-results">Results</a> · <a href="#known-limitations-and-unfinished-work">Known limitations</a> · <a href="#documentation">Documentation</a></p>
 
-Adaptive HRC Scheduling is a research prototype for production planning, execution feedback and reproducible analysis. It models task precedence, worker qualifications and fatigue, collaboration modes, equipment, materials, transport and space constraints in one production system.
+Adaptive HRC Scheduling supports **factory production of steel Modular Integrated Construction (MiC)**. It connects module production tasks, worker fatigue, robot collaboration and resource constraints to scheduling, execution simulation and Gantt views. Run reference cases, apply order and workforce changes, and reproduce research results from saved records.
+
+**The first official release, v1.0.0, includes a Windows portable workbench and English/Chinese reports.** The main workflows verified on the build machine are usable; bugs and unknown issues may remain.
 
 <img src="docs/assets/readme/workbench-native-p051.jpg" alt="Archived native workbench: an Isaac 3D viewport on the left and an execution Gantt on the right" width="100%">
 
 An actual archived workbench window. The original image, run identity and capture scope are recorded in [visual provenance](docs/public_validation/visual_provenance.json).
 
-## Project status
+## First official release
 
-The current application domain is **S18-SIM-A1 simulation research**. The CPU workflow and the optional Windows / Isaac workbench have separate environments.
+| Download | Entry point |
+| --- | --- |
+| Windows x64 portable workbench · 340 MB | [Download ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/HRC-Workbench-Windows-x64.zip) · [User guide](docs/releases/v1.0.0.md) |
+| English report · 24 pages | [Read PDF](reports/final/report-mic-en_reviewed.pdf) · [Direct download](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/report-mic-en_reviewed.pdf) |
+| 中文报告 · 22 页 | [Read PDF](reports/final/report-mic-zh_reviewed.pdf) · [Direct download](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/report-mic-zh_reviewed.pdf) |
+| Release and integrity | [Release notes](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/tag/v1.0.0) · [SHA-256](docs/releases/v1.0.0-SHA256SUMS.txt) |
 
-| Area | What the evidence establishes | Remaining scope |
-| --- | --- | --- |
-| Normal CPU reference | 436 static operations completed; 1/1 product received | One complete reference case |
-| Continuous dynamic Kit case | 1 product received and 3 unreceived at the 387.732 h observation end | Full dynamic completion remains unproven |
-| Live delivery performance | Functional display and request paths were exercised | 2 s source-age target unmet; sustained 4 Hz unestablished; 10/s and 50/s load qualification insufficient |
-| Desktop milestone | An owner-approved, limited functional scope was closed after shutdown issues | Its original performance and broader acceptance goals remain open |
-
-[Known limitations](#known-limitations-and-unfinished-work) lists the unfinished work and the scope of those closures.
+The portable package includes Python, Qt, the scheduler, the Gantt frontend and a read-only example. CPU mode runs directly; the native 3D viewport connects to a separately installed Isaac Sim. Existing reference cases, research figures and reproducible inputs remain available.
 
 ## What you can do
 
@@ -44,6 +44,16 @@ The current application domain is **S18-SIM-A1 simulation research**. The CPU wo
 | Reproduce results | Product, worker, resource and cost ledgers with source hashes, independent checks and saved domain exports |
 
 ## Quick start
+
+### Windows portable app
+
+1. [Download the ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.0/HRC-Workbench-Windows-x64.zip), extract it completely and double-click `HRC-Workbench.exe`. Keep the adjacent `app` folder.
+2. Use **启动配置 (Launch configuration)** to run the default CPU case, or open the read-only example through **便携设置与示例 (Portable settings and examples)**.
+3. Initial scheduling and Gantt verification take time. Finish with **安全停止 (Safe stop)** and wait for the worker to exit. Results default to `%LOCALAPPDATA%\HRCWorkbench\runs`.
+
+Native 3D additionally requires **Isaac Sim 6.1 and PowerShell 7**. Select the Isaac installation root in settings and use a writable ASCII-only results path, such as `C:\HRC\runs`. CPU mode and archives support Chinese paths. See the [portable guide](docs/releases/v1.0.0.md) for complete steps and log locations.
+
+### Reproduce the research examples from source
 
 Start by rebuilding the saved results. This path needs **Python 3.12.13** and **uv 0.12.3**; it does not require a GPU, Isaac Sim or a new production run. Commands below use PowerShell 7.
 
@@ -67,12 +77,14 @@ uv run --locked python scripts/verify_production_chain.py --output .local/new-no
 
 This command executes a complete case. Inspect the saved end state, actual product receipts and independent audit together. The [production and reconstruction guide](docs/public_validation/reproduction.md) explains installation, saved-run checks and distribution scope. The core wheel contains the runtime; analysis inputs and figures are supplied in the full source bundle.
 
-### Optional Windows workbench
+### Run the Windows workbench from source
 
-The desktop application uses PySide6 / Qt WebEngine and packaged Web assets. Configure Isaac Sim separately using the [workbench guide](docs/public_workbench/usage.md).
+The desktop application uses PySide6 / Qt WebEngine. Rebuild the frontend to match the current sources using the commands below. Configure Isaac Sim separately using the [workbench guide](docs/public_workbench/usage.md).
 
 ```powershell
 uv sync --locked --project desktop/p051
+npm.cmd --prefix desktop/p051/web ci
+npm.cmd --prefix desktop/p051/web run build
 & ./desktop/p051/.venv/Scripts/python.exe ./scripts/run_p051_workbench.py --help
 & ./desktop/p051/.venv/Scripts/python.exe ./scripts/run_p051_workbench.py
 ```
@@ -201,34 +213,9 @@ Ownership intervals show when resources were held, including resources with no h
 
 ## Known limitations and unfinished work
 
-Status snapshot: **2 November 2026**. Functional milestone closures and the original full project goals have different acceptance scopes.
+Initial planning, replanning and Gantt verification remain slow, and waiting feedback needs improvement. Live performance targets, some dynamic completion paths and WIP cancellation remain incomplete. Manual REST is unavailable; testing on other machines, long runs and owner-operated acceptance remain pending. This version supports simulation research.
 
-| Area | Open limitation or restricted scope |
-| --- | --- |
-| Strategy effectiveness | The fixed study has not established a general ADAPTIVE advantage. All nine noncancelled received run-products per method are late; the only resolved total-exposure difference is tiny. |
-| Live performance | The 2 s source-age target is unmet. Sustained 4 Hz is unestablished, and steady-state plus 10/s and 50/s qualification is insufficient. The desktop milestone closed within an owner-approved limited functional scope. |
-| Dynamic completion and WIP | Original E20 stopped with 1/4 received; WIP/J3 HOLD residual completion is not established. Complete normal CPU references and saved local checkpoints do not fill those gaps. |
-| Native lifecycle | Selected save/shutdown paths passed after an asynchronous capture barrier repair. The historical 621.01-driver K01 root cause remains open; this was not an SDK or driver fix. |
-| Manual operations and acceptance | Manual REST, owner-operated checks and final joint acceptance remain pending. P08/P09 have not started. |
-| Industrial applicability | The domain is simulation research. USD kinematic readback does not establish industrial dynamics or safety certification; industrial G2 remains open. |
-| Costs and measurements | Currency policies are incomplete in some cases. CPU time and peak memory were not recorded. Unknown values remain unknown rather than zero. |
-| Frontend dependency | The pinned 2026-11-01 toolchain audit reports one high-severity Vite dependency entry. No dependency upgrade was included; see [audit and deployment scope](docs/public_validation/toolchain_advisories.md). |
-
-The [failure and repair record](docs/public_validation/failures_and_repairs.md), [limited desktop closeout](docs/validation/P06_2_limited_scope_completion_r1.md), and [project status](docs/public_results/status.md) retain the original boundaries and evidence (Chinese).
-
-<details>
-<summary>Material failures and the scope of subsequent repairs</summary>
-
-| Record | Repair or closure | What remains |
-| --- | --- | --- |
-| Native shutdown hang | An asynchronous screenshot barrier was added; a later selected native close returned successfully | The original failed run and historical driver-crash root cause remain in the record |
-| Saved-plan reference checks | Invalid version, foreign-run plan and missing-reference copies are rejected after a bounded validator repair | The repair does not change scheduling results or erase the original false-pass evidence |
-| P07 analysis and exports | Recovery-zero plotting, result validation, cancellation ledgers and display/plan row labels were repaired | Previous results, figures and review findings remain traceable |
-| First G07 publication | Git line-ending normalization broke 108 active hash pins; byte-preserving attributes and a regression fixed the r2 export | The r1 tag, failed byte checks and cancelled CI are retained |
-
-[P06 failures](docs/public_validation/failures_and_repairs.md) · [P07 repairs](docs/validation/P07_limited_repair_r1.md) · [G07 publication record](docs/validation/G07_publication_r1.md) (Chinese).
-
-</details>
+Established solutions are being evaluated and follow-up improvements are being planned. See the [release notes](docs/releases/v1.0.0.md#known-issues-and-validation-scope) for details and operating conditions. Please report bugs with reproduction steps through [Issues](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/issues).
 
 ## Development and validation
 
@@ -244,7 +231,7 @@ Run the P07 checks separately:
 uv run --locked python -m unittest discover -s tests -p 'test_p07*.py' -v
 ```
 
-The earlier G07 baseline, `4158ba0` / `step-P07-r2`, ran 1273 tests in each Ubuntu/Windows source and isolated-wheel CI round. The local presentation candidate passed 1276 tests in each source and isolated-wheel round. This revision is identified by [step-P07-r3](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/tree/step-P07-r3). Use the [CPU workflow](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml) for results associated with the release commit; the [candidate record](docs/delivery/g07_presentation_candidate_r2.json) describes the checks performed before publication.
+The existing G07 release, `step-P07-r3`, passed 1276 checks in each of four Ubuntu/Windows source and isolated-wheel CI rounds. Portable packaging separately passed 23 frontend and 41 targeted Python checks, plus local CPU, archive and external Kit verification. See the badge and [Actions](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/workflows/ci.yml) for CI associated with the current release commit, and the [release notes](docs/releases/v1.0.0.md) for packaging validation scope.
 
 ```text
 src/adaptive_hrc_scheduling/   Production model, contracts, scheduling and execution
@@ -260,10 +247,11 @@ Report issues with the version, reproduction steps, actual end state and relevan
 
 ## Documentation
 
-The detailed guides currently use Simplified Chinese; this README provides the English entry point.
+Reports and release guides are available in English and Simplified Chinese. Detailed research evidence retains its original Chinese records.
 
 | Topic | Guide |
 | --- | --- |
+| Official release and reports | [Portable guide](docs/releases/v1.0.0.md) · [English PDF](reports/final/report-mic-en_reviewed.pdf) · [中文 PDF](reports/final/report-mic-zh_reviewed.pdf) |
 | Setup and CPU execution | [Environment setup](docs/setup.md) · [Production and saved-run reconstruction](docs/public_validation/reproduction.md) |
 | Desktop interaction | [Workbench usage](docs/public_workbench/usage.md) · [Interaction cases](docs/public_workbench/interaction_cases.tsv) |
 | Model and contracts | [Production specification](docs/model/specification.md) · [Dynamic backend](docs/public_backend/README.md) · [Shared interaction contract](docs/public_delivery_r2/interaction_contract_r3.md) |
@@ -272,4 +260,4 @@ The detailed guides currently use Simplified Chinese; this README provides the E
 
 ## License
 
-Code is available under the [MIT License](LICENSE). Model assumptions, image sources and data scope are documented with their respective evidence.
+Project code is available under the [MIT License](LICENSE). Bundled third-party runtimes retain their respective [component licenses](desktop/p051/portable/THIRD-PARTY.md). Model assumptions, image sources and data scope are documented with their respective evidence.

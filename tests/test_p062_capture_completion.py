@@ -76,10 +76,54 @@ class CaptureCompletionTests(unittest.TestCase):
     def test_original_main_close_native_exit_and_failure_contract_AST_is_unchanged(self):
         tree = ast.parse(SOURCE.read_text(encoding="utf-8-sig"))
         main = next(x for x in tree.body if isinstance(x, ast.FunctionDef) and x.name == "main")
+        # P08 adds exactly one configurable render-cache assignment. Validate
+        # that expression before restoring the original for the lifecycle pin.
+        assignments = [
+            node
+            for node in ast.walk(main)
+            if isinstance(node, ast.Assign)
+            and any(
+                isinstance(target, ast.Name) and target.id == "cache" for target in node.targets
+            )
+        ]
+        self.assertEqual(len(assignments), 1)
+        expected = ast.parse(
+            'Path(os.environ.get("P051_RENDER_CACHE") or ROOT / ".local/s19b-render-cache/optix")',
+            mode="eval",
+        ).body
+        self.assertEqual(ast.dump(assignments[0].value), ast.dump(expected))
+        assignments[0].value = ast.parse(
+            'ROOT / ".local/s19b-render-cache/optix"', mode="eval"
+        ).body
         checksum = hashlib.sha256(ast.dump(main, include_attributes=False).encode()).hexdigest()
         self.assertEqual(
             checksum, "fe09bcaf10d720d4b6075dde63ea60d449e67a02fda2061fe42c44967b09f387"
         )
+
+    def test_portable_render_cache_uses_explicit_path_or_original_default(self):
+        tree = ast.parse(SOURCE.read_text(encoding="utf-8-sig"))
+        main = next(x for x in tree.body if isinstance(x, ast.FunctionDef) and x.name == "main")
+        assignment = next(
+            node
+            for node in ast.walk(main)
+            if isinstance(node, ast.Assign)
+            and any(
+                isinstance(target, ast.Name) and target.id == "cache" for target in node.targets
+            )
+        )
+        code = compile(ast.Expression(assignment.value), str(SOURCE), "eval")
+        root = Path("project")
+        cases = [
+            ({}, root / ".local/s19b-render-cache/optix"),
+            ({"P051_RENDER_CACHE": ""}, root / ".local/s19b-render-cache/optix"),
+            ({"P051_RENDER_CACHE": "chosen/cache"}, Path("chosen/cache")),
+        ]
+        for environment, expected in cases:
+            with self.subTest(environment=environment):
+                namespace = dict(
+                    ROOT=root, Path=Path, os=types.SimpleNamespace(environ=environment)
+                )
+                self.assertEqual(eval(code, namespace), expected)
 
     def test_capture_helper_has_no_shutdown_exit_or_closed_success_bypass(self):
         tree = ast.parse(SOURCE.read_text(encoding="utf-8-sig"))

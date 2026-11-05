@@ -1,0 +1,183 @@
+{
+  "format": "P08-OFFICIAL-DELIVERY-1",
+  "release_tag": "v1.0.0",
+  "edition": "First official application delivery; embedded library metadata remains 0.1.0",
+  "previous_presentation": {
+    "path": "docs/delivery/p07_presentation_r3.json",
+    "bytes": 15263,
+    "sha256": "2e181316e2352de7d85e5dac12dca28ea3cbb5079e22bde14adf9d278750cdcd"
+  },
+  "previous_artifact_relocations": [
+    {
+      "original_path": "README.md",
+      "path": "docs/archive/p07/published-r3/README.md",
+      "bytes": 21746,
+      "sha256": "d692f26a333d51793e4e7b60ee899c06426e246e8845d37b06aed2a795d7c846"
+    },
+    {
+      "original_path": "README.zh-CN.md",
+      "path": "docs/archive/p07/published-r3/README.zh-CN.md",
+      "bytes": 18805,
+      "sha256": "0509b9eda67316cebe3db44fe04e288537ab01748491d011fc86dba8ccd96e1e"
+    },
+    {
+      "original_path": "tests/test_p07_delivery_bytes.py",
+      "path": "docs/archive/p07/published-r3/tests/test_p07_delivery_bytes.py",
+      "bytes": 6102,
+      "sha256": "232ff44a705cc8df85690264f0f3e489abc101b3b6d48a27adc5160f877e2888"
+    }
+  ],
+  "current_artifacts": [
+    {
+      "path": "README.md",
+      "bytes": 21024,
+      "sha256": "60957284eecb38378b3a3fbe58680c7cacb694ccbf281791f76b267508d0a72d"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "bytes": 18411,
+      "sha256": "8c1a8c396a104a31fb4e34b9715512395efc22cf8d3a1047bdd046ff7ba6136f"
+    },
+    {
+      "path": "tests/test_p07_delivery_bytes.py",
+      "bytes": 7014,
+      "sha256": "60cd10d1fdc872afa91cd53ed43e4c8b92b978ac5ddb00f0098b14f47ad8e6c6"
+    },
+    {
+      "path": "tests/test_p062_capture_completion.py",
+      "bytes": 6366,
+      "sha256": "a6f858e4e9ae0ed3b827b90310375e8406be41cc0be41e78c5d07d282eb56eff"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/app.py",
+      "bytes": 40267,
+      "sha256": "7a8b6c5b29794aa8e13baa16ab6327ab073f0c09ea2bb371ddb5f778e2427df0"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/gantt.py",
+      "bytes": 15947,
+      "sha256": "36d4e00a22887b4fe80e0171f6e1c1eeccdcf5f0c94daf267eaedafad5867412"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/portable.py",
+      "bytes": 2141,
+      "sha256": "b45781ce50f41f81fa38ec3c7a1e71c9078302395934d0a739c51f20e96de19e"
+    },
+    {
+      "path": "desktop/p051/web/src/main.jsx",
+      "bytes": 31313,
+      "sha256": "48c97f9f7fef9a8394d29956aa5fbd2aecfffd23d1ce322c25823c5bc93b9da0"
+    },
+    {
+      "path": "desktop/p051/web/src/style.css",
+      "bytes": 10193,
+      "sha256": "7b77b18c96d08b5cc045ab523f1eb9245f7256ffb588ec25ec1896184055f3aa"
+    },
+    {
+      "path": "scripts/run_s19b_prototype.py",
+      "bytes": 34456,
+      "sha256": "7d6f8e9897da893918e865da69f5519f7c20e17eeff459f1e7754a7b4d79ce28"
+    },
+    {
+      "path": "docs/releases/v1.0.0.md",
+      "bytes": 6455,
+      "sha256": "188692d4d5b862913bb295c4527a05ad8b6b0e9f1b2c68d3f4d46dd434b36a88"
+    },
+    {
+      "path": "docs/releases/v1.0.0.zh-CN.md",
+      "bytes": 5395,
+      "sha256": "4c7659caa0fd209369d2bcb7c9a3ffde1f7373b7212fac25de849e0a972dd4f5"
+    },
+    {
+      "path": "docs/releases/v1.0.0-SHA256SUMS.txt",
+      "bytes": 282,
+      "sha256": "a8d1445b28aae524740252b17014b65fbfa39071d3581fd151329cafc7a03002"
+    },
+    {
+      "path": "reports/final/report-mic-en_reviewed.pdf",
+      "bytes": 1289634,
+      "sha256": "7a38931f2230c7e076969b8956e77bb3f20c81128210d5d9901eb186ef17aa82"
+    },
+    {
+      "path": "reports/final/report-mic-zh_reviewed.pdf",
+      "bytes": 1498510,
+      "sha256": "150f6af2284d2896f7306502676dfaf2a7a65b757bae27328e172814f80d5be8"
+    },
+    {
+      "path": "desktop/p051/portable/START-HERE.md",
+      "bytes": 2819,
+      "sha256": "1f2ef65698b58beacb12fb5cc6da023b5e3a3d8e255c59cc2117cd1b7b740a39"
+    },
+    {
+      "path": "desktop/p051/portable/THIRD-PARTY.md",
+      "bytes": 1883,
+      "sha256": "5dca8b91b1097211708c107081eb6028ccec86ac56ec12b9385f3f8fbf2a7593"
+    },
+    {
+      "path": "desktop/p051/portable/WorkbenchLauncher.cs",
+      "bytes": 2190,
+      "sha256": "c04a0172cb85b2a020e5d3ca158bbac41c2a792e6371a019c9845ffd4737e805"
+    },
+    {
+      "path": "desktop/p051/portable/build.ps1",
+      "bytes": 2983,
+      "sha256": "0f68ccc0cbf1500743797bd0c3facbb077895f925abae9182be1fd740b95f2ad"
+    },
+    {
+      "path": "desktop/p051/portable/finalize.py",
+      "bytes": 2888,
+      "sha256": "ba698d39d651e011c96d4af31f9b3df33533750f5a66e62fad2b3ec2aa88c9b2"
+    },
+    {
+      "path": "desktop/p051/portable/licenses/GPL-2.0-only.txt",
+      "bytes": 18092,
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+    },
+    {
+      "path": "desktop/p051/portable/licenses/GPL-3.0-only.txt",
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    },
+    {
+      "path": "desktop/p051/portable/licenses/LGPL-3.0-only.txt",
+      "bytes": 7651,
+      "sha256": "da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768"
+    },
+    {
+      "path": "desktop/p051/portable/portable-launch.py",
+      "bytes": 1489,
+      "sha256": "e1778935dd49502f8691c3f3d7301293017c9facb60a0ce907dd1a8883095d75"
+    },
+    {
+      "path": "desktop/p051/portable/stage.py",
+      "bytes": 3577,
+      "sha256": "bbf369b95c43bb08bd9692b2f1b1a19c8a58eb888116d61a3bb3eb510290f6dc"
+    }
+  ],
+  "release_assets": [
+    {
+      "bytes": 340032822,
+      "sha256": "40dbc127a4b7b30fed4ba94731bbbb56ac9e56ff1fe0ffb3db3d29a331f12d9e",
+      "name": "HRC-Workbench-Windows-x64.zip"
+    },
+    {
+      "bytes": 1289634,
+      "sha256": "7a38931f2230c7e076969b8956e77bb3f20c81128210d5d9901eb186ef17aa82",
+      "name": "report-mic-en_reviewed.pdf"
+    },
+    {
+      "bytes": 1498510,
+      "sha256": "150f6af2284d2896f7306502676dfaf2a7a65b757bae27328e172814f80d5be8",
+      "name": "report-mic-zh_reviewed.pdf"
+    }
+  ],
+  "validation": {
+    "packaging": "Build-machine CPU, archive and external Kit validation",
+    "python_targeted": 41,
+    "frontend": 23,
+    "e12": "OWNER_PENDING",
+    "other_machine": "UNTESTED"
+  },
+  "numerical_results": "Reviewed research values and all existing examples and figures retained",
+  "improvement_work": "Research and planning; proposed optimizations are not part of this release"
+}

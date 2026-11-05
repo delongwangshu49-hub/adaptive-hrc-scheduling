@@ -752,7 +752,9 @@ def main():
     app = None
     try:
         if request["backend"] == "isaac":
-            cache = ROOT / ".local/s19b-render-cache/optix"
+            cache = Path(
+                os.environ.get("P051_RENDER_CACHE") or ROOT / ".local/s19b-render-cache/optix"
+            )
             cache.mkdir(parents=True, exist_ok=True)
             os.environ["OPTIX_CACHE_PATH"] = str(cache)
             from isaacsim import SimulationApp

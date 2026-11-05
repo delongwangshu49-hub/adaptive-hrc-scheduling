@@ -34,6 +34,7 @@ from .client import Client, prepare_launch  # noqa: E402
 from .delta import ProjectionDelta  # noqa: E402
 from .exit_status import completion_status  # noqa: E402
 from .geometry import accepts_host, plan  # noqa: E402
+from .portable import POWERSHELL, PortableSettings  # noqa: E402
 from .write_fence import BLOCKED_PHASES, control_phase  # noqa: E402
 
 
@@ -162,19 +163,24 @@ class Workbench(QWidget):
         self.setWindowTitle("连续生产工作台 · Production Workbench · P05.1")
         self.resize(1366, 768)
         self.setMinimumSize(1280, 720)
-        self.runs = Path(runs or ROOT / ".local/p051-ui-runs")
+        self.portable = PortableSettings(ROOT) if (ROOT / "portable-launch.py").is_file() else None
+        self.runs = Path(
+            runs or (self.portable.runs if self.portable else ROOT / ".local/p051-ui-runs")
+        )
         self.audit = Path(audit) if audit else None
         if self.audit:
             self.audit.mkdir(parents=True, exist_ok=True)
         self.directory = Path(directory) if directory else None
-        self.writable = writable
+        self.writable = writable and not (
+            self.portable and self.directory and self.directory.resolve() == self.portable.archive
+        )
         self.client = None
         self.worker = None
         self.launch = None
         self.worker_log = None
         self.worker_exit = None
         self.worker_completion = None
-        self.phase = "DISCONNECTED"
+        self.phase = "SAVED_READ_ONLY" if self.directory and not self.writable else "DISCONNECTED"
         self.detached = False
         self.display_error = None
         self.frame_identity = None
@@ -258,7 +264,10 @@ class Workbench(QWidget):
                 language=self.language,
                 phase=self.phase,
                 directory=str(self.directory) if self.directory else None,
+                portable=self.portable.status() if self.portable else None,
             )
+        if action == "portable_settings" and self.portable:
+            return self.show_portable_settings()
         if action == "hud":
             if data["corner"] not in (
                 "hidden",
@@ -333,28 +342,39 @@ class Workbench(QWidget):
         if action == "start":
             if self.worker and self.worker.poll() is None:
                 raise ValueError("WORKER_ALREADY_RUNNING")
-            if self.outstanding or self.future:
+            if self.outstanding and self.outstanding != "poll":
                 raise ValueError("WAIT_FOR_PENDING_OPERATION")
+            if self.portable and data.get("backend", "isaac") == "isaac":
+                if not self.portable.status()["isaac_ready"]:
+                    raise ValueError(
+                        "请配置 Isaac Sim 6.1 和 PowerShell 7 / Configure Isaac Sim 6.1 and PowerShell 7"
+                    )
+                if not str(self.runs).isascii():
+                    raise ValueError(
+                        "Kit 截图需要纯 ASCII 结果路径，请在便携设置中更改结果目录。 / "
+                        "Kit capture requires an ASCII results path. Change it in Portable settings."
+                    )
+            self.release_reader()
             self.phase = "PREPARING"
             self.detached = False
             self.future = self.executor.submit(prepare_launch, ROOT, self.runs, data)
             self.outstanding = "launch"
             return dict(status="PREPARING")
-        if action == "open":
+        if action == "open" or (action == "portable_archive" and self.portable):
             if self.worker and self.worker.poll() is None:
                 raise ValueError("WORKER_ALREADY_RUNNING")
-            directory = QFileDialog.getExistingDirectory(
-                self,
-                "打开保存会话 / Open saved session",
-                str(self.runs),
-                options=QFileDialog.Option.DontUseNativeDialog,
-            )
+            if action == "portable_archive":
+                directory = self.portable.archive
+            else:
+                directory = QFileDialog.getExistingDirectory(
+                    self,
+                    "打开保存会话 / Open saved session",
+                    str(self.runs),
+                    options=QFileDialog.Option.DontUseNativeDialog,
+                )
             if directory:
-                self.directory = Path(directory)
-                self.client = None
-                self.writable = False
-                self.phase = "SAVED_READ_ONLY"
-            return dict(directory=directory, writable=False)
+                self.open_saved(Path(directory))
+            return dict(directory=str(directory), writable=False)
         if action in ("preview", "submit"):
             blocked = self.enforce_write_fence()
             if blocked:
@@ -418,10 +438,12 @@ class Workbench(QWidget):
         if action == "export":
             if not self.snapshot.get("envelope"):
                 raise ValueError("NO_VERIFIED_FRAME")
+            target = self.runs if self.portable else self.directory
+            target.mkdir(parents=True, exist_ok=True)
             path, _ = QFileDialog.getSaveFileName(
                 self,
                 "导出已验证投影 / Export verified projection",
-                str(self.directory / "timeline-view.json"),
+                str(target / "timeline-view.json"),
                 "JSON (*.json)",
                 options=QFileDialog.Option.DontUseNativeDialog,
             )
@@ -439,6 +461,82 @@ class Workbench(QWidget):
                 QDesktopServices.openUrl(QUrl.fromLocalFile(str(self.directory.resolve())))
             return dict(directory=str(self.directory))
         raise ValueError("UNSUPPORTED_UI_ACTION")
+
+    def choose_portable_path(self, action):
+        settings = self.portable
+        selecting_isaac = action == "portable_isaac"
+        title = (
+            "选择 Isaac Sim 6.1 目录 / Select Isaac Sim 6.1 folder"
+            if selecting_isaac
+            else ("选择结果目录 / Select results folder")
+        )
+        directory = QFileDialog.getExistingDirectory(
+            self, title, str(settings.isaac or "") if selecting_isaac else str(self.runs)
+        )
+        if directory:
+            path = Path(directory).resolve()
+            if selecting_isaac and not (path / "python.bat").is_file():
+                raise ValueError("所选目录缺少 python.bat / The selected folder lacks python.bat")
+            settings.save(
+                isaac=path if selecting_isaac else settings.isaac,
+                runs=settings.runs if selecting_isaac else path,
+            )
+            self.runs = settings.runs
+        return settings.status()
+
+    def show_portable_settings(self):
+        status = self.portable.status()
+        box = QMessageBox(self)
+        box.setWindowTitle("便携设置 / Portable settings")
+        box.setTextFormat(Qt.TextFormat.PlainText)
+        box.setText(
+            "CPU 和甘特组件已加载 / CPU and Gantt components loaded\n"
+            f"Isaac Sim 6.1: {status['isaac_version'] or '未就绪 / Unavailable'}\n"
+            f"{status['isaac'] or ''}\n"
+            f"PowerShell 7: {'OK' if status['powershell'] else '未安装 / Missing'}\n"
+            f"结果目录 / Results: {status['runs']}"
+        )
+        if status["error"]:
+            box.setInformativeText(status["error"])
+        isaac = box.addButton("选择 Isaac / Select Isaac", QMessageBox.ButtonRole.ActionRole)
+        runs = box.addButton("更改结果目录 / Change results", QMessageBox.ButtonRole.ActionRole)
+        archive = box.addButton("打开示例存档 / Open example", QMessageBox.ButtonRole.ActionRole)
+        archive.setEnabled(status["archive"] and not (self.worker and self.worker.poll() is None))
+        box.addButton(QMessageBox.StandardButton.Close)
+        box.exec()
+        selected = box.clickedButton()
+        if selected in (isaac, runs):
+            return self.choose_portable_path(
+                "portable_isaac" if selected is isaac else "portable_runs"
+            )
+        if selected is archive:
+            self.invoke("portable_archive", {})
+        return self.portable.status()
+
+    def open_saved(self, directory):
+        if not any(
+            (directory / name).is_file() for name in ("run-spec.json", "session/run-spec.json")
+        ):
+            raise ValueError("目录缺少会话规格 / No run-spec.json in the selected folder")
+        if self.future and self.outstanding != "poll":
+            raise ValueError("WAIT_FOR_PENDING_OPERATION")
+        self.release_reader()
+        self.directory, self.launch, self.worker = directory, None, None
+        self.worker_exit = self.worker_completion = None
+        self.writable = self.detached = False
+        self.phase = "SAVED_READ_ONLY"
+        self.snapshot, self.last_projection_key, self.delta = {}, None, ProjectionDelta()
+        self.emit("projection", self.delta.encode(dict(status="UNKNOWN", writable=False)))
+
+    def release_reader(self):
+        if self.client:
+            schedules = self.client.schedules
+            if self.future:
+                self.future.add_done_callback(lambda _: schedules.close())
+                self.future = self.outstanding = None
+            else:
+                schedules.close()
+            self.client = None
 
     def send_view(self, action, **data):
         if not self.directory or not self.launch or self.worker_exit is not None:
@@ -468,19 +566,24 @@ class Workbench(QWidget):
         env["PYTHONUTF8"] = "1"
         request_path = directory / "request.json"
         if request["backend"] == "isaac":
+            if self.portable:
+                env["P051_RENDER_CACHE"] = str(self.runs / ".kit-cache/optix")
             command = [
-                "C:/Program Files/PowerShell/7/pwsh.exe",
+                str(POWERSHELL) if self.portable else "C:/Program Files/PowerShell/7/pwsh.exe",
                 "-NoProfile",
                 "-File",
                 str(ROOT / "scripts/launch_s19b_kit.ps1"),
                 "-IsaacRoot",
-                "D:/Dev/tools/isaac-sim-6.1",
+                str(self.portable.isaac) if self.portable else "D:/Dev/tools/isaac-sim-6.1",
                 "-RequestFile",
                 str(request_path),
             ]
         else:
             command = [
                 str(ROOT / ".venv/Scripts/python.exe"),
+                "-B",
+                "-X",
+                "utf8",
                 "-u",
                 str(ROOT / "scripts/run_s19b_prototype.py"),
                 "--request",

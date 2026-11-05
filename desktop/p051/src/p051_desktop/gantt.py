@@ -16,7 +16,7 @@ def audit_separately(payload):
     full_schedule = payload.get("full_schedule")
     e20 = payload.get("initial", {}).get("id", "").startswith("P051-FIXED-r1:P052-E20-r1:")
     result = subprocess.run(
-        [sys.executable, "-m", "p051_desktop.forecast_worker"],
+        [sys.executable, "-B", "-X", "utf8", "-m", "p051_desktop.forecast_worker"],
         input=json.dumps(payload, ensure_ascii=False),
         text=True,
         encoding="utf-8",
