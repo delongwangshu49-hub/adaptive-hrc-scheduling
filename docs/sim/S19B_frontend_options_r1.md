@@ -4,7 +4,7 @@
 
 ## 交接事实与保护范围
 
-S19A 已按 S19A-COMPLETION-PUBLISH-APPROVAL-004 完成整步限定验收并实际发布：main 提交 `aab9ca848eec6816717f2929a8217f642c3bc2bd`，标签 `step-S19A-r1`。实际发布集合为48文件；远端689文件与提交内容逐一一致，[CI 38122279431](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/38122279431) 成功，Windows及Ubuntu源码/隔离wheel各858项通过。实际回执补录见 [LOG230](../../PROGRESS_LOG.md#log230补录s19a整步实际发布与ci)；原[验收记录](../validation/S19A_completion_acceptance_r2.json)、[发布范围](../validation/S19A_completion_publication_r1.md)和[完成证据](../validation/S19A_completion_r2.md)保留封存时点。
+S19A 已按 S19A-COMPLETION-PUBLISH-APPROVAL-004 完成整步限定验收并实际发布：main 提交 `aab9ca848eec6816717f2929a8217f642c3bc2bd`，标签 `step-S19A-r1`。实际发布集合为48文件；远端689文件与提交内容逐一一致，[CI 38122279431](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/actions/runs/38122279431) 成功，Windows及Ubuntu源码/隔离wheel各858项通过。实际回执补录见 [LOG230](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/PROGRESS_LOG.md#log230%E8%A1%A5%E5%BD%95s19a%E6%95%B4%E6%AD%A5%E5%AE%9E%E9%99%85%E5%8F%91%E5%B8%83%E4%B8%8Eci)；原[验收记录](../validation/S19A_completion_acceptance_r2.json)、[发布范围](../validation/S19A_completion_publication_r1.md)和[完成证据](../validation/S19A_completion_r2.md)保留封存时点。
 
 保护现有几何尺寸、控制根、碰撞、路线、操作手位、工时、容量及人因参数；已批准静态涂装、地面/工作区和贴图条纹保持。人物运动为原尺寸内的运动学显示，转弯有XY缩小补偿，人体可见尺寸与占用体差异仍保留。36秒/864帧Kit视频、14图、3816次USD守卫及有限4回执前缀按原受测范围成立，不扩大为新完整生产链证据。
 

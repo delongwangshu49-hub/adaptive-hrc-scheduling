@@ -8,6 +8,7 @@ admission checks remain active.
 import copy
 import gzip
 import json
+import os
 from dataclasses import replace
 from time import perf_counter
 
@@ -35,7 +36,7 @@ class RulePolicy:
 
     method = "P051_FULL_CONSTRUCTIVE"
 
-    def __init__(self, session, modes=(), order=()):
+    def __init__(self, session, modes=(), order=(), *, preparation=None):
         self.session = session
         self.config = session.world.config
         self.modes, self.order = modes, order
@@ -43,8 +44,11 @@ class RulePolicy:
         self.candidates, self.journal = [], []
         self.cache_hash = None
         self.budget = self
+        self.preparation = preparation
 
     def decide(self, value, snapshot, decisions, *, sequence, rejected):
+        if self.preparation is not None:
+            return self.preparation.decide(self, value, sequence=sequence, rejected=rejected)
         from .planning.production import choose
 
         priority = dict(self.order)
@@ -73,15 +77,20 @@ class RulePolicy:
         pass
 
 
-def preview(session, decisions, *, modes=(), order=()):
+def preview(session, decisions, *, modes=(), order=(), reuse=None):
     """Isolated executor and catalog; future facts never enter the live session."""
     from .control.production_loop import run
+    from .preview_geometry import ReplayGeometry, geometry_scope
+    from .preview_reuse import PreviewPreparation, shareable_records
 
+    if reuse is None:
+        reuse = os.environ.get("P051_PREVIEW_REUSE", "1") != "0"
+    memo = shareable_records(session.world) if reuse else {}
     clone = copy.copy(session)
     for key, value in session.__dict__.items():
         if isinstance(value, (dict, list, set)):
-            setattr(clone, key, copy.deepcopy(value))
-    clone.world = copy.deepcopy(session.world)
+            setattr(clone, key, copy.deepcopy(value, memo.copy()))
+    clone.world = copy.deepcopy(session.world, memo.copy())
     # Runtime timing subclasses contain callbacks bound to the live recorder.
     # A hypothetical replay must never emit into that live timing ledger.
     from .production_backend import ProductionBackend
@@ -93,7 +102,9 @@ def preview(session, decisions, *, modes=(), order=()):
     clone.active_products = set(session.active_products)
     clone.world.dispatch_products = clone.active_products
     clone.history.active_products = clone.active_products
-    clone.policy = RulePolicy(clone, modes, order)
+    clone.policy = RulePolicy(
+        clone, modes, order, preparation=PreviewPreparation() if reuse else None
+    )
     clone.lifecycle = clone.projection = None
     clone.closed, clone.stopped, clone.terminal = True, False, False
     clone.boundary = lambda: None
@@ -106,16 +117,18 @@ def preview(session, decisions, *, modes=(), order=()):
     from .control.session_lifecycle import Lifecycle
 
     obligations = Lifecycle(clone)
-    result = run(
-        clone.backend,
-        clone.scenario(),
-        joint_policy=clone.policy,
-        session=clone,
-        continuation=True,
-        planning_preview=True,
-        prefix_decisions=decisions,
-        stop_condition=lambda world: obligations.clear(),
-    )
+    with geometry_scope(ReplayGeometry() if reuse and memo else None):
+        result = run(
+            clone.backend,
+            clone.scenario(),
+            joint_policy=clone.policy,
+            session=clone,
+            continuation=True,
+            planning_preview=True,
+            reuse_preparation=bool(reuse),
+            prefix_decisions=decisions,
+            stop_condition=lambda world: obligations.clear(),
+        )
     require(
         result.audit.status == result.decision_audit.status == "PASS",
         "FULL_REPLAY_AUDIT:"
@@ -289,6 +302,7 @@ class FullSchedulePolicy(RulePolicy):
         self.bindings = []
         self.checked_events = 0
         self.paused = self.cancelled = False
+        self.stage_feedback = None
 
     def catalog_changed(self, affected_ids, operations, event_ids=(), protected_commands=()):
         self.dirty = "CATALOG_CHANGE"
@@ -329,6 +343,8 @@ class FullSchedulePolicy(RulePolicy):
         reason, self.dirty = self.dirty, None
         self.calls += 1
         entry = dict(call=self.calls, reason=reason, at_h=w.s.time_h, anchor=anchor)
+        if self.stage_feedback:
+            self.stage_feedback("PLANNING", self.calls, self.version + 1)
         try:
             stable = ()
             if self.plan:
@@ -465,6 +481,13 @@ class FullSchedulePolicy(RulePolicy):
         s.account.charge(charge)
         self.journal.append(charge)
         save_atomic(s.output / "full-schedule-state.json", self.report())
+        if self.stage_feedback:
+            self.stage_feedback(
+                "FAILED" if self.failure else "AWAITING_VERIFICATION",
+                self.calls,
+                entry.get("version", self.version + 1),
+                None if self.failure else self.cache_hash,
+            )
 
     def decide(self, value, snapshot, decisions, *, sequence, rejected):
         obs = value.observation

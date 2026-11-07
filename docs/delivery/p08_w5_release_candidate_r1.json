@@ -1,0 +1,84 @@
+{
+  "status": "LOCAL_CANDIDATE_NOT_PUBLISHED",
+  "proposal": "v1.1.0",
+  "previous_delivery": {
+    "path": "docs/delivery/p08_release_r2.json",
+    "sha256": "8f455787a53ebdcd23be0afff9dc482e2f332db8af635f2b1249d0ed50f70f20"
+  },
+  "previous_artifact_relocations": [
+    {
+      "original_path": "README.md",
+      "path": "docs/archive/p08/v1.0.1/README.md",
+      "sha256": "0a0c54365d554ea8484ecd4bafd21c3689727088c718604f370d98ac5ddf52bf"
+    },
+    {
+      "original_path": "README.zh-CN.md",
+      "path": "docs/archive/p08/v1.0.1/README.zh-CN.md",
+      "sha256": "a9d4208ed2649dde202f4c43309b78502dcf40fb60e951d3020fea550da74004"
+    },
+    {
+      "original_path": "tests/test_p07_delivery_bytes.py",
+      "path": "docs/archive/p08/v1.0.1/tests/test_p07_delivery_bytes.py",
+      "sha256": "67780b7b9d647a92ef858f7d4fe57596f2a650f4c0505d0709180dc22526618d"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/app.py",
+      "path": "docs/archive/p08/v1.0.1/desktop/p051/src/p051_desktop/app.py",
+      "sha256": "7a8b6c5b29794aa8e13baa16ab6327ab073f0c09ea2bb371ddb5f778e2427df0"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/gantt.py",
+      "path": "docs/archive/p08/v1.0.1/desktop/p051/src/p051_desktop/gantt.py",
+      "sha256": "36d4e00a22887b4fe80e0171f6e1c1eeccdcf5f0c94daf267eaedafad5867412"
+    },
+    {
+      "original_path": "desktop/p051/web/src/main.jsx",
+      "path": "docs/archive/p08/v1.0.1/desktop/p051/web/src/main.jsx",
+      "sha256": "48c97f9f7fef9a8394d29956aa5fbd2aecfffd23d1ce322c25823c5bc93b9da0"
+    },
+    {
+      "original_path": "desktop/p051/web/src/style.css",
+      "path": "docs/archive/p08/v1.0.1/desktop/p051/web/src/style.css",
+      "sha256": "7b77b18c96d08b5cc045ab523f1eb9245f7256ffb588ec25ec1896184055f3aa"
+    },
+    {
+      "original_path": "scripts/run_s19b_prototype.py",
+      "path": "docs/archive/p08/v1.0.1/scripts/run_s19b_prototype.py",
+      "sha256": "7d6f8e9897da893918e865da69f5519f7c20e17eeff459f1e7754a7b4d79ce28"
+    }
+  ],
+  "current_artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "f1777d6de850ce2520c27bcdac9ca0f5ea74a13c403be8e640dfaad1c759f214"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "sha256": "f83f1565ce4f71114290c1ede67bd97dac43e2be22ed1d1959f04c695b93304e"
+    },
+    {
+      "path": "tests/test_p07_delivery_bytes.py",
+      "sha256": "03ab15bc5d020fa2d27b95d5cb721d2ff2411ea9328f10ead62e0cc6a96c601a"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/app.py",
+      "sha256": "cc0c79f41ecc51d2baf0b8bfd19c3cd3a308bf17a4a53b551da52f6158a17f2d"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/gantt.py",
+      "sha256": "9059a73037647fc30c52af7cf254f0302334e0700873ca6acf2de54b57086584"
+    },
+    {
+      "path": "desktop/p051/web/src/main.jsx",
+      "sha256": "a737c0fa116ccdde1a65aeafbd79b895d2f4a01ea1d5414b4239c197bc95bbd6"
+    },
+    {
+      "path": "desktop/p051/web/src/style.css",
+      "sha256": "9db2d92217fc9a4f989ee55890b0b954b6fe6302bc76fc89bf5b68eac7b57b4c"
+    },
+    {
+      "path": "scripts/run_s19b_prototype.py",
+      "sha256": "0d9db420c6b66b14016f16c6d869b4d0fc101a1038c8d757497945160a3d3863"
+    }
+  ]
+}

@@ -89,6 +89,10 @@ class ScheduleReader:
         self.verified = {}
         self.pending = {}
         self.failure = None
+        self.full_sources = {}
+        self.full_failures = {}
+        self.full_current = None
+        self.full_history = {}
         self.revision = 0
         self.executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="forecast-audit")
 
@@ -99,7 +103,10 @@ class ScheduleReader:
                 try:
                     self.verified[key] = future.result()
                 except Exception as error:
-                    self.failure = str(error)
+                    if key in self.full_sources:
+                        self.full_failures[key] = str(error)
+                    else:
+                        self.failure = str(error)
                 self.revision += 1
         if self.failure:
             raise ValueError(self.failure)
@@ -107,7 +114,10 @@ class ScheduleReader:
     def close(self):
         self.executor.shutdown(wait=False, cancel_futures=True)
 
-    def read(self, client):
+    def read(self, client, *, full_reference_error=None):
+        if full_reference_error:
+            current_key = (self.full_current or {}).get("artifact_sha256")
+            return self.full_rows(self.full_history, current_key, failure=True)
         full = client.packet.get("full_schedule")
         if full is not None:
             return self.read_full(client, full)
@@ -194,29 +204,88 @@ class ScheduleReader:
                 result.append(row)
         return result
 
-    def read_full(self, client, ref):
+    def observe_full(self, ref, envelope):
+        if ref is None:
+            return
+        if not isinstance(ref, dict) or "artifact_sha256" not in ref:
+            raise ValueError("FULL_PLAN_REFERENCE_FORMAT")
         key = ref["artifact_sha256"]
         if key is None:
-            return []
-        if key not in self.verified:
-            if key not in self.pending:
-                self.pending[key] = self.executor.submit(
-                    audit_separately,
-                    dict(
-                        full_schedule=True,
-                        directory=str(client.directory),
-                        reference=ref,
-                        initial=client.consumer.basis["configuration"],
-                        events=client.consumer.events[
-                            : ref.get("anchor_events", len(client.consumer.events))
-                        ],
-                    ),
-                )
-            return []
+            if (
+                type(ref.get("version")) is not int
+                or ref["version"] != 0
+                or type(ref.get("solve_calls")) is not int
+                or ref["solve_calls"] < 0
+            ):
+                raise ValueError("FULL_PLAN_REFERENCE_FORMAT")
+            return
+        if ref.get("plan_id") != envelope["run_id"] + ":FULL":
+            raise ValueError("FULL_PLAN_RUN_IDENTITY")
+        if (
+            not isinstance(key, str)
+            or not re.fullmatch(r"[a-f0-9]{64}", key)
+            or any(type(ref.get(k)) is not int for k in ("version", "solve_calls", "anchor_events"))
+            or not 1 <= ref["version"] <= ref["solve_calls"]
+            or not 0 <= ref["anchor_events"] <= envelope.get("event_count", ref["anchor_events"])
+        ):
+            raise ValueError("FULL_PLAN_REFERENCE_FORMAT")
+        source = self.full_sources.get(key)
+        pending = ref.get("failure") or ref.get("planning")
+        if source and (
+            any(ref[k] != source[k] for k in ("version", "plan_id", "anchor_events"))
+            or (not pending and ref["solve_calls"] != source["task"])
+        ):
+            raise ValueError("FULL_PLAN_REFERENCE_CHANGED")
+        if not pending:
+            self.full_sources.setdefault(
+                key,
+                dict(
+                    **{
+                        k: ref[k]
+                        for k in ("artifact_sha256", "version", "plan_id", "anchor_events")
+                    },
+                    task=ref["solve_calls"],
+                    sampled_monotonic_s=envelope["sampled_monotonic_s"],
+                    sampled_sim_h=envelope["sampled_sim_h"],
+                ),
+            )
+
+    def read_full(self, client, ref):
+        key = ref["artifact_sha256"]
+        if client is None:
+            # A cache-only caller can project already verified plans without
+            # an observation source or authority to start another audit.
+            plans = {
+                sha: plan
+                for sha, plan in self.verified.items()
+                if plan.get("format") == "P051-FULL-SCHEDULE-1"
+            }
+            return self.full_rows(plans, key, ref.get("failure")) if key in plans else []
+        self.observe_full(ref, client.consumer.envelope)
+        source = self.full_sources.get(key)
+        if source and not ref.get("planning"):
+            if self.full_current is None or source["version"] > self.full_current["version"]:
+                if key in self.verified:
+                    self.full_current = source
+                    self.full_history[key] = self.verified[key]
+                elif key not in self.pending and key not in self.full_failures:
+                    self.pending[key] = self.executor.submit(
+                        audit_separately,
+                        dict(
+                            full_schedule=True,
+                            directory=str(client.directory),
+                            reference=ref,
+                            initial=client.consumer.basis["configuration"],
+                            events=client.consumer.events[: ref["anchor_events"]],
+                        ),
+                    )
+        current_key = (self.full_current or {}).get("artifact_sha256")
+        return self.full_rows(self.full_history, current_key, ref.get("failure"))
+
+    @staticmethod
+    def full_rows(plans, current_key, failure):
         result = []
-        for checksum, plan in self.verified.items():
-            if plan.get("format") != "P051-FULL-SCHEDULE-1":
-                continue
+        for checksum, plan in plans.items():
             for i, r in enumerate(plan["intervals"]):
                 cmd = r["command"]
                 result.append(
@@ -224,10 +293,8 @@ class ScheduleReader:
                         row_id=f"full:{plan['version']}:{i}",
                         row_kind="FULL_PLAN",
                         schedule_state="PLANNED",
-                        proposal_state=(
-                            "RETAINED_BLOCKED" if ref.get("failure") else "CURRENT_PLAN"
-                        )
-                        if checksum == key
+                        proposal_state=("RETAINED_BLOCKED" if failure else "CURRENT_PLAN")
+                        if checksum == current_key
                         else "SUPERSEDED",
                         plan_id=plan["plan_id"],
                         plan_version=plan["version"],

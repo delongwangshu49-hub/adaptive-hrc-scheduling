@@ -122,7 +122,7 @@
 
 ## 五、后续承接和本次审阅对象
 
-[总纲补丁 FACTORY-OPERATIONS-20261003-r2](../PROJECT_CHARTER.md#factory-operations-patch)逐项承接生产设备配置迁移、运输与人员状态、成品容量/接收、多订单背压、同域比较和扰动评价；它补充已获规划认可的 FLOW-LAYOUT-20261003-r1，但本补丁尚待审阅，不启动后续步骤。
+[总纲补丁 FACTORY-OPERATIONS-20261003-r2](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#factory-operations-patch)逐项承接生产设备配置迁移、运输与人员状态、成品容量/接收、多订单背压、同域比较和扰动评价；它补充已获规划认可的 FLOW-LAYOUT-20261003-r1，但本补丁尚待审阅，不启动后续步骤。
 
 负责人本次可审阅的关键决定为：主 CR1/入料运输分工和取消独立棚状 HST1 的目标方向；两套固定焊接站；移动检测/配送车与明确操作者；有限通道行为；B=2 成品槽和装载接口；全任务覆盖与验收门；后续契约迁移边界。本文已经给出推荐项，未把推荐写成人工选择。若放行本版，实施仍限获批的 S13 场景与验证，冻结生产配置继续等待独立范围授权。
 

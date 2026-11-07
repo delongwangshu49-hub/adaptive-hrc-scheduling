@@ -1,0 +1,36 @@
+{
+  "revision": "r2",
+  "application_version_proposal": "v1.1.0",
+  "python_library_version": "0.1.0",
+  "publication": "PREPARED_FOR_V1_1_0_PRERELEASE",
+  "runtime_source_sha256": "45cebc06cecdef0e421add06d337bfb8d695e89cd46b52054ca1e8f0386afdc1",
+  "application_code_changed": false,
+  "tests_or_locks_changed": false,
+  "public_scope_exclusions": 5,
+  "historical_link_migrations": {
+    "documents": 31,
+    "links": 49,
+    "new_dangling_internal_links": 0
+  },
+  "publication_simulated_cases": 29,
+  "real_git_or_remote_writes": 0,
+  "report_pages": {
+    "en": 28,
+    "zh": 25
+  },
+  "figures": {
+    "original_files": 51,
+    "original_hashes_unchanged": true,
+    "new_research_charts": 0,
+    "new_process_figure": 0
+  },
+  "E12": "OWNER_PENDING",
+  "P08": "OVERALL_INCOMPLETE",
+  "P09": "NOT_STARTED",
+  "full_checks": {
+    "source": 1299,
+    "wheel": 1299,
+    "origin": "r1 complete shared rounds, unchanged runtime/tests/locks; not repeated in r2"
+  },
+  "new_native_or_performance_runs": 0
+}

@@ -241,6 +241,35 @@ def run(request, output, app=None, control=None):
             if not (session.lifecycle and session.replay_source):
                 session.submit(change)
     policy = session.policy if session else OnlinePolicy(config, Limits(**limits_data), end_h=720)
+    if hasattr(policy, "stage_feedback"):
+        plan_started = None
+
+        def plan_stage(phase, task, version, artifact=None):
+            nonlocal plan_started
+            now = time.monotonic()
+            if phase == "PLANNING":
+                plan_started = now
+            try:
+                atomic_json(
+                    output / "p051-planning.json",
+                    dict(
+                        format="P051-PLANNING-1",
+                        run_id=session.spec["run_id"],
+                        epoch=session.spec["epoch"],
+                        request_id=request["request_id"],
+                        task=task,
+                        sequence=2 * task - (phase == "PLANNING"),
+                        phase=phase,
+                        version=version,
+                        artifact_sha256=artifact,
+                        started_monotonic_s=plan_started,
+                        changed_monotonic_s=now,
+                    ),
+                )
+            except OSError as error:
+                print(f"P051 planning feedback unavailable: {error}", file=sys.stderr, flush=True)
+
+        policy.stage_feedback = plan_stage
     timing = OnlineTiming(engine, policy)
     sequence = 0
     view_sequence = -1
@@ -326,6 +355,7 @@ def run(request, output, app=None, control=None):
             camera=str(viewport.camera_path) if viewport else None,
             display_error=current_display_error,
             full_schedule=policy.reference() if hasattr(policy, "reference") else None,
+            planning_feedback="P051-PLANNING-1" if hasattr(policy, "stage_feedback") else None,
             **extra,
         )
         atomic_json(output / "live.json", value)

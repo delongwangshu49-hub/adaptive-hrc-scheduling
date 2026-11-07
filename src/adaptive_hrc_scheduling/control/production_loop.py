@@ -9,6 +9,7 @@ from adaptive_hrc_scheduling.contracts.production import digest
 from adaptive_hrc_scheduling.control.production_decisions import check_decisions, record
 from adaptive_hrc_scheduling.domain import production as m
 from adaptive_hrc_scheduling.planning.production import choose, planning_input
+from adaptive_hrc_scheduling.preview_geometry import geometry_scope
 from adaptive_hrc_scheduling.production_admission import applicable, completed_activity
 from adaptive_hrc_scheduling.production_checker import check_run
 
@@ -106,6 +107,7 @@ def _run(
     orderly_stop=None,
     session=None,
     planning_preview=False,
+    reuse_preparation=False,
 ):
     life = getattr(session, "lifecycle", None)
     world = getattr(backend, "world", backend)
@@ -117,20 +119,21 @@ def _run(
         require(joint_policy is session.policy, "SESSION_POLICY_BINDING")
     if continuation:
         history = dict(catalog=session.history) if session is not None else {}
-        require(
-            check_run(world.config, world.snapshot(), **history).status == "PASS"
-            and (
-                planning_preview
-                or check_decisions(
-                    world.config,
-                    world.snapshot(),
-                    tuple(record(d) for d in prefix_decisions),
-                    **history,
-                ).status
-                == "PASS"
-            ),
-            "VERIFIED_CONTINUATION_PREFIX_REQUIRED",
-        )
+        with geometry_scope(None):
+            require(
+                check_run(world.config, world.snapshot(), **history).status == "PASS"
+                and (
+                    planning_preview
+                    or check_decisions(
+                        world.config,
+                        world.snapshot(),
+                        tuple(record(d) for d in prefix_decisions),
+                        **history,
+                    ).status
+                    == "PASS"
+                ),
+                "VERIFIED_CONTINUATION_PREFIX_REQUIRED",
+            )
     else:
         require(world.s.time_h == 0 and not world.events, "FRESH_RUN_REQUIRED")
     c = world.config
@@ -168,6 +171,17 @@ def _run(
     obstruction_path = "/World/Static/S15_TEST_PATH_OBSTRUCTION"
     preparation_steps = 0
     stop_facts = None
+    decision_records = {}
+
+    def record_decision(decision):
+        if not planning_preview or not reuse_preparation:
+            return record(decision)
+        prior = decision_records.get(id(decision))
+        if prior is not None and prior[0] is decision:
+            return prior[1]
+        row = record(decision)
+        decision_records[id(decision)] = (decision, row)
+        return row
 
     def fact(kind, entity, pid, evidence="ML-METHOD", result="PASS", attempt=0):
         ident = f"{scenario.id}-{kind}-{entity}" + (f"-A{attempt}" if attempt else "")
@@ -218,17 +232,18 @@ def _run(
         if session is not None:
             session.boundary()
             session.refresh_capacity()
-            c = world.config
-            places = {p.id: p for p in c.places}
-            lots = {lot.id: lot for lot in c.lots}
-            incoming = {
-                lot.id: next(
-                    o for o in c.operations if o.entity_id == lot.id and o.action == "TRANSFER"
-                )
-                for lot in c.lots
-                if not lot.parent_ids
-            }
-            static_ids = {o.id for o in c.operations}
+            if not planning_preview or not reuse_preparation or c is not world.config:
+                c = world.config
+                places = {p.id: p for p in c.places}
+                lots = {lot.id: lot for lot in c.lots}
+                incoming = {
+                    lot.id: next(
+                        o for o in c.operations if o.entity_id == lot.id and o.action == "TRANSFER"
+                    )
+                    for lot in c.lots
+                    if not lot.parent_ids
+                }
+                static_ids = {o.id for o in c.operations}
         stop_requested = bool(
             (session is not None and session.stopped) or (orderly_stop and orderly_stop(world))
         )
@@ -639,7 +654,7 @@ def _run(
             joint_policy.decide(
                 value,
                 world.snapshot(),
-                (record(d) for d in decisions),
+                (record_decision(d) for d in decisions),
                 sequence=sequence,
                 rejected=rejected,
             )
@@ -857,8 +872,9 @@ def _run(
         if session is not None and (session.history.generations or session.workforce_enabled)
         else {}
     )
-    audit = check_run(c, snapshot, **dynamic)
-    decision_audit = check_decisions(c, snapshot, (record(d) for d in decisions), **dynamic)
+    with geometry_scope(None):
+        audit = check_run(c, snapshot, **dynamic)
+        decision_audit = check_decisions(c, snapshot, (record(d) for d in decisions), **dynamic)
     manifest = {
         "protocol": "S15-PARITY-1",
         "scenario": scenario.__dict__,

@@ -19,7 +19,7 @@ from build_simulation_production import configuration as base  # noqa: E402
 from p051_desktop.client import Client, prepare_launch  # noqa: E402
 from p051_desktop.projection import WorkColors  # noqa: E402
 
-from adaptive_hrc_scheduling.contracts.session import digest  # noqa: E402
+from adaptive_hrc_scheduling.contracts.session import canonical, digest  # noqa: E402
 from adaptive_hrc_scheduling.control.online import Limits  # noqa: E402
 from adaptive_hrc_scheduling.control.session import Session  # noqa: E402
 from adaptive_hrc_scheduling.control.session_budget import Profile  # noqa: E402
@@ -94,6 +94,36 @@ class AdapterTests(unittest.TestCase):
         view = self.client.poll()
         self.assertEqual(view["receipts"][-1]["status"], "ACCEPTED")
         self.assertEqual(view["business_results"], [])
+
+    def test_bad_plan_reference_does_not_discard_business_receipt(self):
+        r = self.client.build_request(self.form())
+        self.client.submit(r)
+        receipt = self.session.receive(r)
+        self.assertEqual(receipt["status"], "ACCEPTED")
+        for _ in range(2):
+            self.session.projection.publish(self.session.world.observe())
+        path = self.path / "timeline.jsonl"
+        first, damaged, successor = [json.loads(line) for line in path.read_bytes().splitlines()]
+        damaged["full_schedule"] = dict(artifact_sha256="a" * 64, plan_id="OTHER:FULL")
+        damaged["packet_sha256"] = digest(
+            {k: v for k, v in damaged.items() if k != "packet_sha256"}
+        )
+        successor["previous_packet_sha256"] = damaged["packet_sha256"]
+        successor["packet_sha256"] = digest(
+            {k: v for k, v in successor.items() if k != "packet_sha256"}
+        )
+        path.write_bytes(canonical(first) + b"\n" + canonical(damaged) + b"\n")
+        view = self.client.poll()
+        self.assertEqual(view["status"], "VERIFIED")
+        self.assertEqual(view["full_reference_error"], "FULL_PLAN_RUN_IDENTITY")
+        self.assertFalse(view["writable"])
+        self.assertEqual(view["receipts"], [receipt])
+        with path.open("ab") as stream:
+            stream.write(canonical(successor) + b"\n")
+        view = self.client.poll()
+        self.assertIsNone(view["full_reference_error"])
+        self.assertTrue(view["writable"])
+        self.assertEqual(view["receipts"], [receipt])
 
     def test_corrupt_packet_freezes_last_rows_and_disables_writes(self):
         old = deepcopy(self.client.consumer.rows)

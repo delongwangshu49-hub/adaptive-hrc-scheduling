@@ -1,0 +1,52 @@
+{
+  "en": {
+    "status": "PASS",
+    "pages": 27,
+    "original_body_preserved": true,
+    "cover_changes": [
+      "cover revision",
+      "cover engineering note"
+    ],
+    "original_tables": 8,
+    "original_math_groups": 5,
+    "original_media_preserved": true,
+    "pdf_appendix_complete": true,
+    "external_word_links": 30,
+    "pdf_links": 33,
+    "baseline_pixel_equal_pages": 22,
+    "docx_sha256": "f62041653404cc2c752399f6397a716c76f77049b7e395a45009a4d6ca80f9d5",
+    "pdf_sha256": "6c8828e5f2b9051dc94efd5748e1aa427e3e8fab416a7bf8c0c8df9131c74f1d",
+    "account_metadata_sanitized": true,
+    "rendering": "Native Word PDF plus render_docx.rasterize and Poppler at 120 dpi"
+  },
+  "zh": {
+    "status": "PASS",
+    "pages": 24,
+    "original_body_preserved": true,
+    "cover_changes": [
+      "cover revision",
+      "cover engineering note"
+    ],
+    "original_tables": 8,
+    "original_math_groups": 5,
+    "original_media_preserved": true,
+    "pdf_appendix_complete": true,
+    "external_word_links": 27,
+    "pdf_links": 30,
+    "baseline_pixel_equal_pages": 19,
+    "docx_sha256": "f87058d1c486cd5681caa2d086d05946b31fe0ba2df9c5e2df708ad239f31d21",
+    "pdf_sha256": "f9d7caf996f72beb7affc36279bd00373cc8e14e72a9df7f06dec48d468ebdf9",
+    "account_metadata_sanitized": true,
+    "rendering": "Native Word PDF plus render_docx.rasterize and Poppler at 120 dpi"
+  },
+  "visual_qa": {
+    "rendered_pages": 51,
+    "overview_all_pages": true,
+    "affected_pages_full_size": true,
+    "retained_baseline_pixel_equal_pages": 41,
+    "clipping_overlap_or_missing_glyphs_found": false,
+    "minimum_appendix_body_to_footer_gap_points": 28
+  },
+  "word_converter_fallback": "LibreOffice unavailable; native Word export with the document renderer Poppler rasterization",
+  "layout_revisions_retained_locally": true
+}

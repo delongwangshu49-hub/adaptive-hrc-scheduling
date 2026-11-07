@@ -1,0 +1,260 @@
+{
+  "status": "PUBLICATION_SCOPE_R2",
+  "base": "27c5c34de14c41dcbc2e8d4e1f9fe327d9966df6",
+  "excluded": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "323aba31250effc80d42e3db56901530be76b91e6d751091a648ee09f96403ce",
+      "bytes": 86342,
+      "reason": "Internal governance, prompt ledger or project master plan; retained locally and in earlier release"
+    },
+    {
+      "path": "PROGRESS_LOG.md",
+      "sha256": "0a14d988227fd7a67a7c60c56b7230851b53fcbb24f789ae8b0e06ff7bf106c7",
+      "bytes": 364366,
+      "reason": "Internal governance, prompt ledger or project master plan; retained locally and in earlier release"
+    },
+    {
+      "path": "PROMPT_LEDGER.md",
+      "sha256": "264c019722cf09f6663e5e9c51b3d3934c057a2b4999328e251609de5835fa0b",
+      "bytes": 235731,
+      "reason": "Internal governance, prompt ledger or project master plan; retained locally and in earlier release"
+    },
+    {
+      "path": "docs/PROJECT_CHARTER.md",
+      "sha256": "713916f5e22fc41c56e6ccf5b76638cea2de9351af166fe0f55e1e3d67472e6f",
+      "bytes": 120973,
+      "reason": "Internal governance, prompt ledger or project master plan; retained locally and in earlier release"
+    },
+    {
+      "path": "docs/roadmap.md",
+      "sha256": "d61690feb8bfb24a6e0029eca7e822069a83dbdb74b90d7a67fcf0e9d4dd0ec6",
+      "bytes": 43891,
+      "reason": "Internal governance, prompt ledger or project master plan; retained locally and in earlier release"
+    }
+  ],
+  "local_files_preserved": true,
+  "old_tags_and_releases_preserved": true,
+  "future_index_removal_only": true,
+  "source_zip_equals_proposed_tree": true,
+  "historical_link_migrations": [
+    {
+      "path": "docs/architecture.md",
+      "before_sha256": "085db6e14b0c3f97c17c1ac0ff7b6baf495e3def0c5cfaf1b82f58f7fc7254ed",
+      "after_sha256": "ed4972fb70cf431670033e10d5e5a2813764b4bf168463144ec2849eb828c7fc",
+      "links": 5,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/repair_plan.md",
+      "before_sha256": "14629e4d41dc8109550d4f2339f48b33e80765128bf363504dce8a58220f01a4",
+      "after_sha256": "8c2d82e62d1f2b42541f1ca8781b8e80d7cbff58943998478915e280aa95cc02",
+      "links": 4,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/setup.md",
+      "before_sha256": "59f7e3e6e5eab4d650d60ce91f7b6ea16a720e0be05aa18a4e7e9e9cf1876222",
+      "after_sha256": "b8e72075955e4866a8767a09d0cac56cc2e6e7d8f7d1e73a3023ff153f0aa655",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/experiments/S20_execution_plan_r1.md",
+      "before_sha256": "742a3bf48362dfcc9ab1682bfd8fcfb51972d5dc0ac2e284e81a4fd4a1ec84f1",
+      "after_sha256": "53f7e01fb2281405cf8206bd42b166aeb0cc0805cb96ebde86cd2a3ffedeed6a",
+      "links": 2,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/model/events.md",
+      "before_sha256": "ab9b4e110aecfac8797a97e822ddbafe35ed3feac5bd218e555826092b0b5956",
+      "after_sha256": "02415b3b1791273cef0911c5cc1e4e4a4357286f78732865558e998499d82ac2",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/model/execution.md",
+      "before_sha256": "c6a7fb18b63df6a93720e68f1015fbfc028a88f3841b6cdcbdfec05f73f06add",
+      "after_sha256": "9ddbc2ded56ba48cf1cb544e1ed3563694d4e7cbad31bf3fb57b27225e18a6bc",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/model/fatigue.md",
+      "before_sha256": "62c419f8e6a72d6e77c729ff80904eded33cead84bc15c188d140c143f800a0f",
+      "after_sha256": "99e65406de17a740c77d7395a6f8d773e6c2c51e2855b22a9bcf48c08648270b",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/model/material_logistics_extension.md",
+      "before_sha256": "d9248e72edcc48148b5ae33d77879e168078c8a5d6bef2176600d38c890ee358",
+      "after_sha256": "18e67e509294a2b304332054100b57b3a4902df48e9e1c82796c3d03b5fabeec",
+      "links": 2,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/model/specification.md",
+      "before_sha256": "44bcdc7976932b54cbe4d828ea4753c1726df875b1153b363ced8508b2be361d",
+      "after_sha256": "b64524cc78b7cab0cf53fe742f198d3c3e71ed485cadd32a530c3bec1e3888ff",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/research/hypotheses.md",
+      "before_sha256": "5c8b81822657ab9154fea1c80b6d578e27022442f2754c8312c1195493981b28",
+      "after_sha256": "9b5736279ef61b60434addfb6d198f0e2414196b83b9dd37ee664e480f09690c",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/research/related_work.md",
+      "before_sha256": "fc88de2307a56b658f32487350b7e007d0bcce9675c2710df16719e489a2158e",
+      "after_sha256": "e9de0c35efc5d2c6487b38216258150e6442820a71974b4d272ca700cd54e4d0",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/sim/S13_equipment_decisions.md",
+      "before_sha256": "21e910f8fa1fcc1577c4a385607fc9cdcb34fb356736fdd57c359c37ef89276d",
+      "after_sha256": "4e461fca231dddadad47dae647e3cba793c19efd6a73c86ac6e35f8192e0e94d",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/sim/S13_process_coverage.md",
+      "before_sha256": "4ed56a74c0c220e25ccae94da1efcc80fb56cb8b7b42e7c0729dae43c186b07f",
+      "after_sha256": "9ffeffb9cf8b5a753863880ba7876b3c8b27e1246b8b486eabe6bce96b0b0603",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/sim/S13_revision_proposal_r4.md",
+      "before_sha256": "66fb0aa5bdb8821cea420a61d8ffeeb205524d9d543e556125f3d8af60b6c31e",
+      "after_sha256": "c3562cc5bdeef51f80709cb32c84afd22496a2574b647394c990039543bae093",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/sim/S13_revision_proposal_r5.md",
+      "before_sha256": "02097f7e69e3bf94a8f23e1165cba3795337a8331b4419e46d5469f51f0c1add",
+      "after_sha256": "88c877a3ef90eea5bc824296a14823a7104eebd97f2d5126a5de51b5fe24a2b7",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/sim/S13_scene_proposal.md",
+      "before_sha256": "248d945aab7af85880b1af67589fc72b415bb7a06b2eab7b793f3afbeedd0311",
+      "after_sha256": "623289f65fb82eb763757f8e7fd7348658f71e968651e95b32d9d72aeb745fed",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/sim/S19B_frontend_options_r1.md",
+      "before_sha256": "847c14e5255ac4050b19d013d97e64161109f8dd70b95928aaefbbd48b974258",
+      "after_sha256": "4960d62b3bf92e8c09177182971f8e90b38e877579932b0e1c496fe0a88a5f13",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/C03.md",
+      "before_sha256": "fe07e202bf6bcb22639cb617ec76912ae7eaae1b5e75836f52361d0efd69d406",
+      "after_sha256": "27e339bcf446223f75a28ae31000d3bd4c5b7d6a6087201250f46461e4dd60cf",
+      "links": 3,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S00.md",
+      "before_sha256": "3ced8a3eee7f3eadc2f82326bcb4b2366a1b442a9b0f72e5cdc2b9d9db6ed549",
+      "after_sha256": "0f8c92154e37bd1277cc194087c7a4135edd103a081bfe19d229a08c48189739",
+      "links": 5,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S01.md",
+      "before_sha256": "30ef41744b2b7150dc0a9c036ca413370a03e16613dc2603dbacda3827bb9ba9",
+      "after_sha256": "45b841e6eca376b41aeefd07f3abac48315d78744d9528094819c8b64f42d513",
+      "links": 2,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S02.md",
+      "before_sha256": "c0f8631639d9cd70d3fc59bf9f1ae4d6676f7e2d613f288305a3073e67d51e6e",
+      "after_sha256": "bab84398fb823c9c693e81990e835b5cbe451416eda10bb147b784efe4e70e5b",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S03.md",
+      "before_sha256": "40222134859561e49b9651092c82da0495d6cd45e4a7f4d6a58a4db20e0ece06",
+      "after_sha256": "227e9a4f19096689f061712dcc56a36ffd6dee5f0f7e1cf772716b73651e95a2",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S13.md",
+      "before_sha256": "856fc5b0ff4ee0426cd3f41950bad77807c79bbe06bd95b5d60435249d6e66d3",
+      "after_sha256": "c4bed42c39d955c069b9e4ad4005066af3ca606418e6bf507dcf451f9169350e",
+      "links": 2,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S15.md",
+      "before_sha256": "a4328b5b84d66b9ac4c388bb6838af391c0c2e983a6e9f9dff41630c37b77ff3",
+      "after_sha256": "f8d6e9f77cbf39f379ee0bb8c1b436f485b4503495516b5b0144779f67488f76",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S16.md",
+      "before_sha256": "06d3d25e67d1108a90a5305a9d9045b6235e6b5bdd5466e7703c5fc6a0a097d6",
+      "after_sha256": "6e51346aa76b3dbb9a127e9baa41617b35c1ae454ce6b875c30e0e092d40997e",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S17.md",
+      "before_sha256": "556cd148cc8a244f405698e4d5d246208eed68f494ecd739ebd7d76d555ce07a",
+      "after_sha256": "c81619aa053fc74da72801a07ae3771bcad5f57b138ea888e438b4842bdac7a4",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S18.md",
+      "before_sha256": "96255d309b85f6b5de7ae45378ec44076d6eaeaf5997a49cb0a0ec255f4d1eac",
+      "after_sha256": "7595f7d3bc799bf785f7e42bed0fb873f2fdf0598df573082873f548fb790e39",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S19.md",
+      "before_sha256": "6bdbcfb76c0a01e085e5bb62dea07d546c486bba78e759810c05f5dd9849727b",
+      "after_sha256": "146b3d2adcca6ba9f70ad59273a7f3b852c699514d1a3a4c1a85be701050f968",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S19A.md",
+      "before_sha256": "6422604ee0d14a58f8f46c6cd8daed7d3cc7fa84a66526abfb2e68ee6d11827d",
+      "after_sha256": "9021beaf40e4eff82eb640f8cac35964ad004ea62d81a1dfa8c63bb9e2277fcb",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S20.md",
+      "before_sha256": "05a3a11ca7b8c4eef54bf65db0d31f9dc3a5acae2ec9051b6a4d2b26e9b6f7ac",
+      "after_sha256": "f0f15e452232cff970e0a5180b68c20ac09b9a650032489104d8ed93ca43fd74",
+      "links": 1,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    },
+    {
+      "path": "docs/steps/S20_handoff.md",
+      "before_sha256": "b1035a5b5e97425ba31a98b96a3b38ea5feac46a92eb74b29e4ba534126f3a66",
+      "after_sha256": "b11e1de2242fa586a9295a74a7b2d4ef7ed58e88dd95f758eeb58c4ed84fda7d",
+      "links": 2,
+      "change": "Only links to excluded internal documents now resolve to the retained historical v1.0.1 release"
+    }
+  ],
+  "historical_source_hashes": "Earlier source manifests remain unchanged and describe their historical versions; current link-only edits are separately bound here."
+}

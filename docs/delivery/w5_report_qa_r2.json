@@ -1,0 +1,48 @@
+{
+  "en": {
+    "status": "PASS",
+    "pages": 28,
+    "original_body_preserved": true,
+    "cover_changes": [
+      "cover revision",
+      "cover engineering note"
+    ],
+    "original_tables": 8,
+    "original_math_groups": 5,
+    "original_media_preserved": true,
+    "pdf_appendix_complete": true,
+    "external_word_links": 30,
+    "pdf_links": 33,
+    "baseline_pixel_equal_pages": 22,
+    "docx_sha256": "b2dd43ce5ab10fea1d566a0685d2cb26bb0a5262d29952687fbe4f50efa1cfa3",
+    "pdf_sha256": "b9c9563ef3542556c3a028dc9948648227b64f7d84b167db19339ebdb3896749",
+    "account_metadata_sanitized": true,
+    "rendering": "Native Word PDF plus render_docx.rasterize and Poppler at 120 dpi"
+  },
+  "zh": {
+    "status": "PASS",
+    "pages": 25,
+    "original_body_preserved": true,
+    "cover_changes": [
+      "cover revision",
+      "cover engineering note"
+    ],
+    "original_tables": 8,
+    "original_math_groups": 5,
+    "original_media_preserved": true,
+    "pdf_appendix_complete": true,
+    "external_word_links": 27,
+    "pdf_links": 30,
+    "baseline_pixel_equal_pages": 19,
+    "docx_sha256": "4ef494eaa9cbf9ceaa54e952c8c0698908c5fb0567bb5181ffda677d8c54f5e9",
+    "pdf_sha256": "4bbb28320edb7ed0dc30d0c8f88f26f01bf6b8b2c94906384ca4452a14bfc9e6",
+    "account_metadata_sanitized": true,
+    "rendering": "Native Word PDF plus render_docx.rasterize and Poppler at 120 dpi"
+  },
+  "visual_qa": {
+    "rendered_pages": 53,
+    "original_research_pages_pixel_equal": 41,
+    "changed_appendix_pages_inspected": true,
+    "rejected_diagram_absent": true
+  }
+}

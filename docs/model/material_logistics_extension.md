@@ -6,7 +6,7 @@
 
 2026-10-04现行决定（PR108 / LOG118）：负责人已批准S14-CONTRACT-20261004-r1的ML01—ML12限定修订，决策S14-ML-APPROVAL-001。允许按表修改D01/D03/D04所列项并继续S14共用契约、验证及适配；通过前置出口后进入适配主体，不再等待本表批准。D02/G2与HR禁用、D05顺序、D06元数据及其余冻结边界保持。S15—S28及新快照Git/远端写入仍未授权。以下待决定文字保留其历史时点。
 
-2026-10-04；`S14-CONTRACT-20261004-r1`；**PROPOSED / DECISION_PENDING**。S14 已按 PR107 启动；本稿请求下列具体研究规则的修订授权，尚未修改生产契约或实现扩展适配。依据为[总纲前置出口](../PROJECT_CHARTER.md#process-layout-patch)、[设备补丁](../PROJECT_CHARTER.md#factory-operations-patch)和 [S13 目标设备证据](../sim/S13_equipment_decisions.md)。
+2026-10-04；`S14-CONTRACT-20261004-r1`；**PROPOSED / DECISION_PENDING**。S14 已按 PR107 启动；本稿请求下列具体研究规则的修订授权，尚未修改生产契约或实现扩展适配。依据为[总纲前置出口](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#process-layout-patch)、[设备补丁](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#factory-operations-patch)和 [S13 目标设备证据](../sim/S13_equipment_decisions.md)。
 
 ## 所需决定和保留边界
 

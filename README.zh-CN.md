@@ -22,6 +22,12 @@ Adaptive HRC Scheduling 面向**钢结构模块化集成建筑（MiC）的工厂
 
 实际归档的原生工作台窗口。原图、运行身份与采样范围见[图像来源](docs/public_validation/visual_provenance.json)。
 
+## v1.1.0 预发布
+
+W5 更新加入已验证计划等待反馈和单次调用独占的回放准备。下方保留稳定版 v1.0.1。E12 仍待负责人本人验收，P08 整体未完。
+
+[发行与下载](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/tag/v1.1.0) · [Windows x64](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.1.0/HRC-Workbench-Windows-x64-v1.1.0.zip) · [英文报告](reports/w5/report-mic-en_w5-candidate-r2.pdf) · [中文报告](reports/w5/report-mic-zh_w5-candidate-r2.pdf) · [使用指南](docs/releases/v1.1.0-candidate.zh-CN.md)
+
 ## 第一正式版
 
 | 获取内容 | 入口 |
@@ -261,3 +267,10 @@ docs/                        指南、模型定义与证据
 ## 许可
 
 项目代码采用 [MIT License](LICENSE)。便携包所含第三方运行时分别遵循其[组件许可](desktop/p051/portable/THIRD-PARTY.md)。模型假设、图像来源与数据范围随对应证据文档提供。
+
+
+## W5 本地集成候选
+
+**v1.1.0 预发布。** v1.1.0 预发布版本集成已验证计划等待反馈与单次调用独占的回放准备。重排期间保留上一已验证甘特图，切图绑定当前任务，安全 STOP 与独立核验保持。`P051_PREVIEW_REUSE=0` 使用完整 Python 准备路径；`P051_WAIT_FEEDBACK=0` 隐藏新增反馈。上方已发布 v1.0.1 入口继续有效。
+
+历史 W3 四组 CPU 配对中提交至已核验投影减少 17.33%、净回放减少 26.50%，数值绑定此前隔离候选。W5 的功能与封包检查不替代新的四组性能或工业资格验证。见[候选指南](docs/releases/v1.1.0-candidate.zh-CN.md)与[验证摘要](docs/validation/W5_integration_r1.md)。E12 仍待负责人本人验收，P08 整体未完。

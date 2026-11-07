@@ -1,6 +1,6 @@
 # 建筑领域研究假设与反证口径
 
-版本 C03-0.1；2026-10-02；全部PROPOSED / UNTESTED。依据[总纲](../PROJECT_CHARTER.md)，A/D主线和B/C辅助定位不变。文献支撑研究动机，生产来源支撑工艺，两者都不能直接证明本项目效果。
+版本 C03-0.1；2026-10-02；全部PROPOSED / UNTESTED。依据[总纲](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md)，A/D主线和B/C辅助定位不变。文献支撑研究动机，生产来源支撑工艺，两者都不能直接证明本项目效果。
 
 | ID | 可检验陈述 | 对照及控制 | 不支持的情况 |
 | --- | --- | --- | --- |

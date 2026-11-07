@@ -1,0 +1,20 @@
+{
+  "en": {
+    "original_sha256": "a127068f3b87d8577acf9860a0a1c8618858ec571ed28aec4571878e7908d455",
+    "public_baseline_sha256": "fd8ad31696ded0a330aca1cc4647abb36fbffb7438d1ffba80e02fe3207217d6",
+    "changed_parts": [
+      "docProps/core.xml"
+    ],
+    "body_images_tables_and_math_unchanged": true,
+    "account_metadata_replaced_with_role": true
+  },
+  "zh": {
+    "original_sha256": "c38d96cab692d33defa63fc38460b9931f14a8b781b4bab5abed302e808146e0",
+    "public_baseline_sha256": "b03e2120da8f26d071b5be19ff208dd23aae832503ee3387ee43e05fe5f38873",
+    "changed_parts": [
+      "docProps/core.xml"
+    ],
+    "body_images_tables_and_math_unchanged": true,
+    "account_metadata_replaced_with_role": true
+  }
+}

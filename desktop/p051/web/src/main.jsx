@@ -34,6 +34,21 @@ words.zh.scroll='滚轮滚动 · Shift平移 · Ctrl缩放';words.en.scroll='Whe
 const parameters={template_id:['模板','Template'],template_revision:['模板版本','Template revision'],order_id:['订单','Order'],quantity:['数量','Quantity'],due_sim_h:['交期 h','Due h'],priority:['优先级','Priority'],material_plan_id:['物料计划','Material plan'],arrival_rule:['到达规则','Arrival rule'],person_id:['人员','Person'],qualifications:['资格','Qualifications'],qualification_evidence_id:['资格证据','Qualification evidence'],parameter_template_id:['人员模板','Person template'],calendar_id:['日历','Calendar'],valid_until_h:['资格有效至 h','Qualified until h'],initial_f:['初始 F','Initial F'],arrival_location:['到岗位置','Arrival location'],scene_entity_id:['场景对象','Scene entity'],reason:['原因','Reason'],handover_policy:['交接策略','Handover policy'],safety_policy:['安全策略','Safety policy'],duration_h:['休息时长 h','Rest duration h'],repair_evidence_id:['维修证据','Repair evidence'],scope:['停止范围','Stop scope']};
 function parameterLabel(key,language){return parameters[key]?.[language==='zh'?0:1]||key;}
 const statusNames={VERIFIED:'fresh',STALE:'stale',STALE_CORRUPT:'warning',UNKNOWN:'unknown',AGE_UNKNOWN:'unknown'};
+const feedbackWords={
+  zh:{
+    WAITING:'等待已核验计划',PLANNING:'排程中',AWAITING_VERIFICATION:'等待独立核验',AVAILABLE:'计划可用',FAILED:'排程或核验失败',UNAVAILABLE:'当前排程状态不可确认',HELD:'停止阶段 · 保留已核验计划',
+    shown:'已核验计划',retained:'上一已核验计划',planAge:'计划源龄',obsAge:'业务观测源龄',obsSample:'业务观测源时刻',heartbeat:'进程心跳龄',sample:'计划源时刻',
+    sent:'停止请求已发送',accept:'受理',PENDING:'等待',UNKNOWN:'UNKNOWN · 查询原 ID',ACCEPTED:'已持久受理',REJECTED:'已拒绝',
+    save:'排空保存',SAVED:'已保存',UNCONFIRMED:'未确认',exit:'实际退出',pendingExit:'未观测',launcher:'启动器',restoreStop:'恢复原停止请求',restoreNote:'只恢复缺失的原请求，使用原 ID 和原参数。',
+  },
+  en:{
+    WAITING:'Waiting for a verified plan',PLANNING:'Scheduling',AWAITING_VERIFICATION:'Awaiting independent verification',AVAILABLE:'Plan ready',FAILED:'Scheduling or verification failed',UNAVAILABLE:'Current scheduling status unconfirmed',HELD:'Stopping or ended · retaining the verified plan',
+    shown:'Verified plan',retained:'Previous verified plan',planAge:'Plan source age',obsAge:'Observation age',obsSample:'Observation source time',heartbeat:'Worker heartbeat age',sample:'Plan source time',
+    sent:'Stop request sent',accept:'Acceptance',PENDING:'Pending',UNKNOWN:'UNKNOWN · query original ID',ACCEPTED:'Durably accepted',REJECTED:'Rejected',
+    save:'Drain and save',SAVED:'Saved',UNCONFIRMED:'Unconfirmed',exit:'Actual exit',pendingExit:'Unobserved',launcher:'Launcher',restoreStop:'Restore original stop',restoreNote:'Restore the missing request with its original ID and parameters.',
+  },
+};
+const seconds=value=>Number.isFinite(value)?value.toFixed(1)+' s':'—';
 const kindNames={ORDER_UPDATE:'updateOrder',ORDER_CREATE:'normal',PERSON_ARRIVE:'arrive',PERSON_DEPART:'depart',PERSON_ABSENT:'absent',PERSON_RETURN:'return',REST_REQUEST:'rest',DEVICE_FAIL:'failure',DEVICE_REPAIR:'repaired',ORDER_CANCEL:'cancelOrder',CLOSE_INPUT:'fence',STOP_REQUEST:'stop'};
 const defaults={kind:'ORDER_CREATE',target_id:'',template_id:'SR-W1',quantity:'1',due_sim_h:'720',priority:'NORMAL',person_template:'P043-W1-v1',arrival_location:'F1',initial_f:'0.1',reason:'OPERATOR_REQUEST',duration_h:'0.1',repair_evidence_id:'',material_plan_id:'TEMPLATE-JIT-v1',time_rule:'IMMEDIATE',requested_sim_h:'0',expires_sim_h:'720'};
 function Field({label,children,width=160}){return <label className="field" style={{width}}><span>{label}</span>{children}</label>}
@@ -42,6 +57,7 @@ function Button({children,onClick,disabled,className='',title,...props}){return 
 function App(){
   const [language,setLanguage]=useState(savedContext.language||'zh'),[layout,setLayout]=useState(null),[view,setView]=useState({}),[native,setNative]=useState({}),[phase,setPhase]=useState('DISCONNECTED');
   const [form,setForm]=useState(savedContext.form||null),[drafts,setDrafts]=useState(savedContext.drafts||{}),[preview,setPreview]=useState(null),[selection,setSelection]=useState(savedContext.selection||null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[details,setDetails]=useState(!!savedContext.details),[menu,setMenu]=useState(null);
+  const [stopQuery,setStopQuery]=useState(null);
   const [settings,setSettings]=useState(()=>navigationSettings(savedContext.settings||{}));
   const [setup,setSetup]=useState({variant:'SR-W1',products:1,method:'ADAPTIVE',backend:'isaac',simulation_rate:.01});
   const [portable,setPortable]=useState(null);
@@ -62,7 +78,8 @@ function App(){
       nativeBridge.event.connect(raw=>{if(!alive)return;const e=JSON.parse(raw);
         if(e.kind==='layout')setLayout(e.data);
         if(e.kind==='projection')setView(old=>{if(e.data.rows_mode!=='upsert')return e.data;const rows=new Map((old.rows||[]).map(r=>[r.row_id,r]));for(const key of e.data.row_deletes||[])rows.delete(key);for(const row of e.data.rows||[])rows.set(row.row_id,row);return {...e.data,rows:[...rows.values()]};});
-        if(e.kind==='status'){setPhase(e.data.phase);setNative(e.data);setDetached(!!e.data.detached);setView(v=>({...v,source_age_s:e.data.source_age_s??v.source_age_s}));}
+        if(e.kind==='status'){setPhase(e.data.phase);setNative(e.data);setDetached(!!e.data.detached);}
+        if(e.kind==='session_reset'){setPreview(null);setSelection(null);setNative({});setStopQuery(null);}
         if(e.kind==='error')onError(e.data.error);
         if(e.kind==='preview'){setPreview(e.data);setBusy(false);}
         if(e.kind==='submit'){setPreview(null);setBusy(false);setError('');}
@@ -90,12 +107,31 @@ function App(){
   const picked=selection&&view.rows?.find(r=>r.row_id===selection.row_id)||selection;
   const toggleDetails=value=>{setDetails(value);rpc('layout',{form_open:!!form||value}).catch(onError);};
   const choose=row=>{setSelection(row);};
-  const canWrite=!!view.writable&&!detached;
+  const canWrite=!!view.writable&&!detached&&!native.observation_stale&&!native.stop_holding;
   useEffect(()=>{if(form==='REST_REQUEST'){setForm(null);setPreview(null);}},[form]);
   const nativePlan=native.frame?.full_schedule;
   const planFailure=view.full_schedule?.failure;
   const blockedLabel=language==='zh'?'排程受阻 · 等待恢复':'Plan blocked · awaiting recovery';
   const fullPlanning=['RUNNING','CONNECTING'].includes(phase)&&nativePlan?.planning===true;
+  const feedback=detached?null:native.waiting_feedback;
+  const stop=native.stop_feedback, w=feedbackWords[language];
+  const queriedStop=stopQuery&&(stop||stopQuery);
+  const queryOriginal=()=>rpc('query').then(({stop,...receipts})=>{
+    setView(s=>({...s,...receipts}));
+    if(stop){setStopQuery(stop);toggleDetails(true);}
+  }).catch(onError);
+  const shownVersion=view.verified_full_schedule?.version;
+  const previousPlan=shownVersion!=null&&feedback?.phase&&feedback.phase!=='AVAILABLE';
+  const observationStatus=view.status==='VERIFIED'&&native.observation_stale?'STALE':view.status;
+  const feedbackStage=feedback?.phase&&w[feedback.phase];
+  const stageLabel=feedbackStage
+    ? [feedbackStage,feedback.wait_s==null?null:seconds(feedback.wait_s),feedback.candidate_version==null?null:t('candidate')+' v'+feedback.candidate_version].filter(Boolean).join(' · ')
+    : planFailure?(phase==='RUNNING'?blockedLabel:phase+' · '+blockedLabel):fullPlanning?(language==='zh'?'排程中 · 模拟时钟暂停':'Planning · simulation paused'):phase;
+  const stopLabel=stop&&[
+    w.sent, w.accept+' '+w[stop.acceptance], w.save+' '+w[stop.save],
+    w.exit+' '+(stop.worker_exit??w.pendingExit),
+    stop.launcher_exit!=null&&stop.launcher_exit!==stop.worker_exit?w.launcher+' '+stop.launcher_exit:null,
+  ].filter(Boolean).join(' · ');
   const runBusy=(['PREPARING','CONNECTING','RUNNING','STOPPING','STOPPED','STOP_BLOCKED','DISPLAY_UNKNOWN'].includes(phase)&&native.worker_exit==null)||!!native.native;
   const p=layout?.plots,profile=layout?.profile||'compact';
   const labelWidth=layout?.label_width||210;
@@ -107,25 +143,36 @@ function App(){
   const footerHeight=profile==='wide'?32:profile==='narrow'?24:20;
   const auxY=(layout?.client[1]||768)-pad-footerHeight-gap-auxHeight;
   return <main lang={language==='zh'?'zh-CN':'en'} className={profile} onKeyDown={keyboard} onClick={()=>menu&&setMenu(null)}>
-    <header style={{left:pad,top:pad,right:pad,height:mast}}><div><h1>{t('title')}</h1><span className="phase">{t(statusNames[view.status]||'disconnected')} · {planFailure?(phase==='RUNNING'?blockedLabel:phase+' · '+blockedLabel):fullPlanning?(language==='zh'?'排程中 · 模拟时钟暂停':'Planning · simulation paused'):phase}</span></div><div className="clock">{Number.isFinite(view.envelope?.sampled_sim_h)?view.envelope.sampled_sim_h.toFixed(4)+' h':'—'}<small>{t('time')} · {view.clock?.simulation_rate??'—'} h/s</small></div></header>
-    <div className="identity-strip" style={{left:pad,right:pad,top:pad+mast+gap,height:identityHeight}}><span>{view.envelope?.run_id||t('waiting')}</span><span>{view.backend||'—'} · {language==='zh'?'目录':'Catalog'} v{view.envelope?.catalog_version??'—'} · {language==='zh'?'完整计划':'Full plan'} v{view.full_schedule?.version??'—'} · {t('age')} {view.source_age_s==null?'—':view.source_age_s.toFixed(1)+'s'} · {t('selection')}: {picked?.work_number||'—'}</span></div>
+    <header style={{left:pad,top:pad,right:pad,height:mast}}><div><h1>{t('title')}</h1><span className="phase" data-plan-phase={feedback?.phase}>{t(statusNames[observationStatus]||'disconnected')} · {stageLabel}</span></div><div className="clock">{Number.isFinite(view.envelope?.sampled_sim_h)?view.envelope.sampled_sim_h.toFixed(4)+' h':'—'}<small>{t('time')} · {view.clock?.simulation_rate??'—'} h/s</small></div></header>
+    <div className="identity-strip" style={{left:pad,right:pad,top:pad+mast+gap,height:identityHeight}}>
+      <span className="run-identity" title={view.envelope?.run_id}>{view.backend||'—'} · {view.envelope?.run_id||t('waiting')}</span>
+      {stopLabel&&<span className="stop-progress" title={stop.request_id}>{stopLabel}</span>}
+      <span className="plan-identity" data-plan-version={shownVersion}>
+        {previousPlan?w.retained:w.shown} {shownVersion==null?'—':'v'+shownVersion}
+        {shownVersion!=null&&feedback&&<> · {feedback.plan_age_s==null?w.sample+' '+(feedback.plan_sample_h?.toFixed(2)??'—')+' h':w.planAge+' '+seconds(feedback.plan_age_s)}</>}
+        {phase==='SAVED_READ_ONLY'
+          ? ' · '+w.obsSample+' '+(view.envelope?.sampled_sim_h?.toFixed(2)??'—')+' h'
+          : ' · '+w.obsAge+' '+seconds(native.source_age_s)}
+        {feedback?.heartbeat_age_s!=null&&' · '+w.heartbeat+' '+seconds(feedback.heartbeat_age_s)}
+      </span>
+    </div>
     <nav style={{left:pad,right:pad,top:actionsY,height:44}}>
       <Button onClick={()=>openForm('setup')} disabled={runBusy}>{t('start')}</Button><Button onClick={()=>rpc('open').catch(onError)} disabled={runBusy}>{t('open')}</Button>
       <Button onClick={()=>rpc('connection',{detached:!detached}).then(r=>setDetached(r.detached)).catch(onError)}>{t(detached?'reconnect':'disconnect')}</Button>
       <Button className="primary" onClick={()=>openForm('ORDER_CREATE','NORMAL')} disabled={!canWrite}>{t('normal')}</Button><Button onClick={()=>openForm('ORDER_CREATE','URGENT')} disabled={!canWrite}>{t('urgent')}</Button>
       <div className="menu-root"><Button onClick={e=>toggleMenu('people',e)} aria-haspopup="menu" aria-expanded={menu==='people'} disabled={!canWrite}>{t('people')}</Button>{menu==='people'&&<div className="menu" role="menu">{['PERSON_ARRIVE','PERSON_DEPART','PERSON_ABSENT','PERSON_RETURN','REST_REQUEST'].map(k=><button role="menuitem" key={k} disabled={k==='REST_REQUEST'} title={k==='REST_REQUEST'?(language==='zh'?'手动休息尚未实现；自动排程休息不受影响':'Manual rest is unavailable; scheduled rest remains active'):undefined} onClick={()=>openForm(k)}>{t(kindNames[k])}{k==='REST_REQUEST'?(language==='zh'?'（未实现）':' (unavailable)'):''}</button>)}</div>}</div>
       <div className="menu-root"><Button onClick={e=>toggleMenu('events',e)} aria-haspopup="menu" aria-expanded={menu==='events'} disabled={!canWrite}>{t('more')}</Button>{menu==='events'&&<div className="menu" role="menu">{['ORDER_UPDATE','DEVICE_FAIL','DEVICE_REPAIR','ORDER_CANCEL'].map(k=><button role="menuitem" key={k} disabled={k==='REST_REQUEST'} title={k==='REST_REQUEST'?(language==='zh'?'手动休息尚未实现；自动排程休息不受影响':'Manual rest is unavailable; scheduled rest remains active'):undefined} onClick={()=>openForm(k)}>{t(kindNames[k])}{k==='REST_REQUEST'?(language==='zh'?'（未实现）':' (unavailable)'):''}</button>)}</div>}</div>
-      <Button onClick={()=>openForm('CLOSE_INPUT')} disabled={!canWrite}>{t('close')}</Button><Button className="stop" onClick={()=>openForm('STOP_REQUEST')} disabled={!runBusy}>{t('stop')}</Button>
+      <Button onClick={()=>openForm('CLOSE_INPUT')} disabled={!canWrite}>{t('close')}</Button><Button className="stop" onClick={()=>openForm('STOP_REQUEST')} disabled={!runBusy||(native.stop_holding&&!native.stop_recoverable)}>{native.stop_recoverable?w.restoreStop:t('stop')}</Button>
       <Button onClick={()=>{rpc('restore').catch(onError)}}>{t('restore')}</Button><Button onClick={()=>{const l=language==='zh'?'en':'zh';setLanguage(l);rpc('language',{language:l}).catch(onError)}}>{t('language')}</Button>
     </nav>
     {p&&<>
       {[0,1].map(n=>{const rect=p[n],title=profile==='wide'?32:profile==='narrow'?28:24,toolbar=64;return <div key={n} className="panel-title" style={{left:rect.x-(n?labelWidth:0),top:rect.y-title-toolbar,width:rect.width+(n?labelWidth:0),height:title}}><strong>{n?t('gantt'):t('native')+' / '+t('readonly')}</strong><Button onClick={()=>rpc('fullscreen').catch(onError)}>{t(native.fullscreen?'windowed':'maximize')}</Button></div>})}
-      <div className="native-tools" style={{left:p[0].x,top:p[0].y-64,width:p[0].width,height:64}}><label>{t('camera')} <select value={camera} onChange={e=>{setCamera(e.target.value);rpc('camera',{camera:e.target.value}).catch(onError)}}>{['Overview','Top','Supply','Equipment','Crossing','Finished','Gantry','F1','Fork','Test'].map(c=><option key={c}>{c}</option>)}</select></label><Button disabled={!picked} onClick={()=>rpc('locate',{entity_id:picked.product_id||picked.display_product_id||picked.resource_id||picked.person_id}).catch(onError)}>{t('locate')}</Button><span className="native-capsule">{language==='zh'?'模拟时刻':'Sim time'} {view.envelope?.sampled_sim_h?.toFixed(3)||'—'} h · {t(statusNames[view.status]||'unknown')} · {language==='zh'?'计划':'Plan'} v{view.full_schedule?.version??'—'}</span></div>
+      <div className="native-tools" style={{left:p[0].x,top:p[0].y-64,width:p[0].width,height:64}}><label>{t('camera')} <select value={camera} onChange={e=>{setCamera(e.target.value);rpc('camera',{camera:e.target.value}).catch(onError)}}>{['Overview','Top','Supply','Equipment','Crossing','Finished','Gantry','F1','Fork','Test'].map(c=><option key={c}>{c}</option>)}</select></label><Button disabled={!picked} onClick={()=>rpc('locate',{entity_id:picked.product_id||picked.display_product_id||picked.resource_id||picked.person_id}).catch(onError)}>{t('locate')}</Button><span className="native-capsule">{language==='zh'?'模拟时刻':'Sim time'} {view.envelope?.sampled_sim_h?.toFixed(3)||'—'} h · {t(statusNames[observationStatus]||'unknown')} · {w.shown} v{shownVersion??'—'}</span></div>
 
       {!native.native&&<div className="native-empty" style={{left:p[0].x,top:p[0].y,width:p[0].width,height:p[0].height}}>{t('disconnected')}<small>{t('future')}</small></div>}
       <div className="native-axis" style={{left:p[0].x,top:p[0].y+p[0].height,width:p[0].width,height:profile==='compact'?20:24}}>{t('nativeState')}: r{native.frame?.source_state_revision??'—'} · {t('age')} {native.frame?.age_s?.toFixed(1)??'—'}s · {t('gantt')}: r{view.envelope?.state_revision??'—'}</div>
       <div className="split-handle vertical" style={{left:p[0].x+p[0].width,top:p[0].y-(profile==='wide'?96:88),width:8,height:p[0].height+(profile==='wide'?120:112)}} role="separator" aria-label={t('restore')} tabIndex="0" onPointerDown={e=>e.currentTarget.setPointerCapture(e.pointerId)} onPointerMove={e=>{if(!e.currentTarget.hasPointerCapture(e.pointerId))return;rpc('split',{ratio:Math.max(.1,Math.min(.9,(e.clientX-p[0].x)/(p[0].width+p[1].width+labelWidth)))}).then(setLayout).catch(onError)}} onKeyDown={e=>{if(['ArrowRight','ArrowLeft'].includes(e.key))rpc('split',{ratio:Math.max(.1,Math.min(.9,(layout.split_ratio||.5)+(e.key==='ArrowRight'?.01:-.01)))}).then(setLayout).catch(onError)}}/>
-      <Timeline phase={planFailure?'PLAN_BLOCKED':phase} plot={p[1]} profile={profile} labelWidth={labelWidth} view={view} t={t} selection={picked} onSelect={choose} settings={settings} setSettings={setSettings} onError={onError} rpc={rpc} language={language}/>
+      <Timeline phase={planFailure?'PLAN_BLOCKED':phase} waitingForPlan={shownVersion==null&&['WAITING','PLANNING','AWAITING_VERIFICATION'].includes(feedback?.phase)} plot={p[1]} profile={profile} labelWidth={labelWidth} view={view} t={t} selection={picked} onSelect={choose} settings={settings} setSettings={setSettings} onError={onError} rpc={rpc} language={language}/>
     </>}
     <section className="aux" style={{left:pad,right:pad,top:auxY,height:auxHeight}}>
       {form==='setup'?<form className={portable?'form-line portable-config':'form-line'} onSubmit={e=>{e.preventDefault();setBusy(true);rpc('start',setup).catch(onError)}}>
@@ -140,7 +187,7 @@ function App(){
           if(!next.isaac_ready)setSetup(s=>({...s,backend:'light'}));
         }).catch(onError)}>{language==='zh'?'便携设置与示例':'Portable setup & example'}</Button>}
       </form>:form?<>
-        {preview?<div className="preview-line"><div><strong>{t('actualParams')} · {t(preview.kind==='ORDER_CREATE'&&preview.payload.priority==='URGENT'?'urgent':kindNames[preview.kind])}</strong><div className="parameter-summary">{Object.entries(preview.payload).filter(([k])=>!k.includes('sha256')&&k!=='scene_reference').map(([k,v])=><span key={k}>{parameterLabel(k,language)}: {typeof v==='object'?JSON.stringify(v):String(v)}</span>)}</div><small>{t('bindingNote')}</small><small>{preview.target_id} · {preview.time_rule} · #{preview.client_sequence} · {preview.request_id}</small></div><Button className="primary" disabled={busy} onClick={commit}>{t('confirm')}</Button><Button onClick={()=>setPreview(null)}>{t('cancel')}</Button></div>:
+        {preview?<div className="preview-line"><div><strong>{t('actualParams')} · {t(preview.kind==='ORDER_CREATE'&&preview.payload.priority==='URGENT'?'urgent':kindNames[preview.kind])}</strong><div className="parameter-summary">{Object.entries(preview.payload).filter(([k])=>!k.includes('sha256')&&k!=='scene_reference').map(([k,v])=><span key={k}>{parameterLabel(k,language)}: {typeof v==='object'?JSON.stringify(v):String(v)}</span>)}</div><small>{preview.recovery?w.restoreNote:t('bindingNote')}</small><small>{preview.target_id} · {preview.time_rule} · #{preview.client_sequence} · {preview.request_id}</small></div><Button className="primary" disabled={busy} onClick={commit}>{t('confirm')}</Button><Button onClick={()=>setPreview(null)}>{t('cancel')}</Button></div>:
         <form className="form-line" onSubmit={review}>
           {form==='ORDER_CREATE'?<>{select('template_id','template',[['SR-W1','SR-W1'],['SR-W2','SR-W2']],200)}{field('quantity','quantity','number',96)}{field('due_sim_h','due','number',160)}{select('priority','priority',[['NORMAL',t('normalOption')],['URGENT',t('urgentOption')]],136)}{field('target_id','target','text',220)}</>:
           !['CLOSE_INPUT','STOP_REQUEST'].includes(form)&&<>{field('target_id','target','text',220)}
@@ -156,10 +203,10 @@ function App(){
           {form==='ORDER_CREATE'&&select('material_plan_id','material',[['TEMPLATE-JIT-v1',t('jit')],['TEMPLATE-DELAY-1H-v1',t('delay')]],180)}
           {select('time_rule','timeRule',[['IMMEDIATE',t('immediate')],['AT_SIM_H',t('atTime')]],200)}{d.time_rule==='AT_SIM_H'&&field('requested_sim_h','at','number',180)}{field('expires_sim_h','expires','number',180)}
         </form>}
-      </>:<div className="detail-line"><Button onClick={()=>toggleDetails(!details)}>{t('detail')}</Button><span>{picked?`${picked.display_name||picked[language==='zh'?'operation_name_zh':'operation_name_en']||picked.operation_id||picked.resource_id||picked.person_id||''} · ${t(picked.schedule_state?.toLowerCase())}`:t('noSelection')}</span><span className="legend"><i className="solid"/>{t('actual')} <i/>{t(view.full_schedule?'planned':'committed')} {!view.full_schedule&&<><i className="dashed"/>{t('tentative')}</>}</span><Button onClick={()=>rpc('query').then(r=>setView(s=>({...s,...r}))).catch(onError)}>{t('query')}</Button><Button onClick={()=>rpc('evidence').catch(onError)}>{t('evidence')}</Button></div>}
+      </>:<div className="detail-line"><Button onClick={()=>toggleDetails(!details)}>{t('detail')}</Button><span>{picked?`${picked.display_name||picked[language==='zh'?'operation_name_zh':'operation_name_en']||picked.operation_id||picked.resource_id||picked.person_id||''} · ${t(picked.schedule_state?.toLowerCase())}`:t('noSelection')}</span><span className="legend"><i className="solid"/>{t('actual')} <i/>{t(view.full_schedule?'planned':'committed')} {!view.full_schedule&&<><i className="dashed"/>{t('tentative')}</>}</span><Button onClick={queryOriginal}>{t('query')}</Button><Button onClick={()=>rpc('evidence').catch(onError)}>{t('evidence')}</Button></div>}
       {error&&<div role="alert" className="error" title={error}>{error}</div>}
     </section>
-    {details&&!form&&<div className="details-sheet" style={{left:pad,right:pad,top:auxY,height:auxHeight,maxHeight:auxHeight}}><Button onClick={()=>toggleDetails(false)}>{t('collapse')}</Button>{picked&&<div className="selection-detail"><strong>{picked[language==='zh'?'operation_name_zh':'operation_name_en']||picked.display_name||picked.operation_id}</strong><p>{t('mode')}: {t(picked.schedule_state?.toLowerCase())} · {t(picked.proposal_state?.toLowerCase())||''} · {language==='zh'?'版本':'Version'}: {picked.plan_version||'—'}<br/>{rangeOf(picked)?`${timeLabel(rangeOf(picked)[0],settings.span)} → ${timeLabel(rangeOf(picked)[1],settings.span)} · ${language==='zh'?'区间时长':'Interval'} ${timeLabel(rangeOf(picked)[1]-rangeOf(picked)[0],.01)}`:t('unplanned')} · {(picked.roles||[]).map(x=>x.person_id).join(', ')}<br/>{language==='zh'?'前置工序':'Predecessors'}: {(view.gantt_dependencies||[]).filter(x=>x.target===picked.group_id).map(x=>{const g=(view.gantt_groups||[]).find(g=>g.id===x.source);return g?.[language==='zh'?'name_zh':'name_en']||x.source}).join(' / ')||'—'}</p><small>{t('source')}: {picked.start_event_id||picked.observation_id||'—'} · {picked.operation_id} · {picked.command_id}</small></div>}<table><thead><tr><th>{t('request')}</th><th>{t('effective')}</th><th>{t('business')}</th></tr></thead><tbody>{(view.submitted||[]).map(r=>{const receipt=(view.receipts||[]).find(x=>x.request_id===r.request_id);const business=(view.business_results||[]).filter(x=>x.request_id===r.request_id);return <tr key={r.request_id}><td>{t(r.kind==='ORDER_CREATE'&&r.payload?.priority==='URGENT'?'urgent':kindNames[r.kind])} · {r.target_id}<small>{r.request_id}</small></td><td>{receipt?`${receipt.status} · ${receipt.reason} · ${receipt.actual_applied_sim_h??receipt.sim_h}h`:t('unknownReceipt')}</td><td>{business.length?business.map(x=>x.status||x.kind||x.result).join(' · '):t('unknown')}</td></tr>})}</tbody></table>{!(view.submitted||[]).length&&<p>{t('none')}</p>}</div>}
+    {details&&!form&&<div className="details-sheet" style={{left:pad,right:pad,top:auxY,height:auxHeight,maxHeight:auxHeight}}><Button onClick={()=>toggleDetails(false)}>{t('collapse')}</Button>{queriedStop&&<p className="selection-detail"><strong>{t('stop')}</strong> · {w[queriedStop.acceptance]} <small>{queriedStop.request_id}</small></p>}{picked&&<div className="selection-detail"><strong>{picked[language==='zh'?'operation_name_zh':'operation_name_en']||picked.display_name||picked.operation_id}</strong><p>{t('mode')}: {t(picked.schedule_state?.toLowerCase())} · {t(picked.proposal_state?.toLowerCase())||''} · {language==='zh'?'版本':'Version'}: {picked.plan_version||'—'}<br/>{rangeOf(picked)?`${timeLabel(rangeOf(picked)[0],settings.span)} → ${timeLabel(rangeOf(picked)[1],settings.span)} · ${language==='zh'?'区间时长':'Interval'} ${timeLabel(rangeOf(picked)[1]-rangeOf(picked)[0],.01)}`:t('unplanned')} · {(picked.roles||[]).map(x=>x.person_id).join(', ')}<br/>{language==='zh'?'前置工序':'Predecessors'}: {(view.gantt_dependencies||[]).filter(x=>x.target===picked.group_id).map(x=>{const g=(view.gantt_groups||[]).find(g=>g.id===x.source);return g?.[language==='zh'?'name_zh':'name_en']||x.source}).join(' / ')||'—'}</p><small>{t('source')}: {picked.start_event_id||picked.observation_id||'—'} · {picked.operation_id} · {picked.command_id}</small></div>}<table><thead><tr><th>{t('request')}</th><th>{t('effective')}</th><th>{t('business')}</th></tr></thead><tbody>{(view.submitted||[]).map(r=>{const receipt=(view.receipts||[]).find(x=>x.request_id===r.request_id);const business=(view.business_results||[]).filter(x=>x.request_id===r.request_id);return <tr key={r.request_id}><td>{t(r.kind==='ORDER_CREATE'&&r.payload?.priority==='URGENT'?'urgent':kindNames[r.kind])} · {r.target_id}<small>{r.request_id}</small></td><td>{receipt?`${receipt.status} · ${receipt.reason} · ${receipt.actual_applied_sim_h??receipt.sim_h}h`:t('unknownReceipt')}</td><td>{business.length?business.map(x=>x.status||x.kind||x.result).join(' · '):t('unknown')}</td></tr>})}</tbody></table>{!(view.submitted||[]).length&&<p>{t('none')}</p>}</div>}
     <footer style={{left:pad,right:pad,bottom:pad,height:footerHeight}}><span>{view.status==='VERIFIED'?t('fresh'):t(statusNames[view.status]||'unknown')} · {view.writable?t('form'):t('readonly')} · {view.envelope?.observation_id||'—'} · {t('scroll')}</span><div className="range-controls"><label>{t('begin')} <input aria-label={t('begin')} type="number" step="0.1" value={settings.start} onChange={e=>setSettings(s=>({...s,manual:true,follow:false,start:Math.max(0,Number(e.target.value))}))}/></label><label>{t('span')} <input aria-label={t('span')} type="number" min="0.002" step="0.1" value={settings.span} onChange={e=>setSettings(s=>({...s,manual:true,scaleStep:null,span:Math.max(.002,Number(e.target.value))}))}/></label></div></footer>
   </main>
 }

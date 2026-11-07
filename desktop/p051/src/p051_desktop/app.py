@@ -34,7 +34,9 @@ from .client import Client, prepare_launch  # noqa: E402
 from .delta import ProjectionDelta  # noqa: E402
 from .exit_status import completion_status  # noqa: E402
 from .geometry import accepts_host, plan  # noqa: E402
+from .planning import PlanningFeedback, age  # noqa: E402
 from .portable import POWERSHELL, PortableSettings  # noqa: E402
+from .stop_feedback import StopFeedback  # noqa: E402
 from .write_fence import BLOCKED_PHASES, control_phase  # noqa: E402
 
 
@@ -180,6 +182,9 @@ class Workbench(QWidget):
         self.worker_log = None
         self.worker_exit = None
         self.worker_completion = None
+        self.planning = PlanningFeedback()
+        self.stop_feedback = StopFeedback()
+        self.show_wait_feedback = os.environ.get("P051_WAIT_FEEDBACK", "1") != "0"
         self.phase = "SAVED_READ_ONLY" if self.directory and not self.writable else "DISCONNECTED"
         self.detached = False
         self.display_error = None
@@ -388,8 +393,14 @@ class Workbench(QWidget):
             ):
                 from s19b_desktop.control import command
 
-                state = read_json(self.directory / "control-state.json", 32_000_000)
-                envelope = command(self.launch, "stop", state["last_sequence"] + 1)
+                if self.stop_feedback.holding:
+                    stop = self.stop_feedback.status(self.directory, self.launch, self.worker_exit)
+                    if not stop["recoverable"]:
+                        raise ValueError("QUERY_ORIGINAL_STOP_ID")
+                    envelope = self.stop_feedback.envelope
+                else:
+                    state = read_json(self.directory / "control-state.json", 32_000_000)
+                    envelope = command(self.launch, "stop", state["last_sequence"] + 1)
                 preview = dict(
                     kind="STOP_REQUEST",
                     target_id=self.launch["run_id"],
@@ -399,21 +410,33 @@ class Workbench(QWidget):
                     request_id=envelope["command_id"],
                     transport="S19B-CONTROL-1",
                     envelope=envelope,
+                    recovery=self.stop_feedback.holding,
                 )
                 self.emit("preview", preview)
                 return dict(status="PREVIEW_READY")
             if action == "submit" and data.get("transport") == "S19B-CONTROL-1":
-                from s19b_desktop.control import submit, validate_command
+                from s19b_desktop.control import validate_command
 
                 envelope = validate_command(data["envelope"], self.launch)
                 if envelope["action"] != "stop":
                     raise ValueError("STOP_ONLY_CONTROL_BRIDGE")
-                key = submit(self.directory, envelope)
+                if self.stop_feedback.holding:
+                    if not data.get("recovery") or not self.stop_feedback.restore_missing(
+                        self.directory, self.launch, envelope
+                    ):
+                        raise ValueError("QUERY_ORIGINAL_STOP_ID")
+                    request_id, key = self.stop_feedback.command_id, self.stop_feedback.key
+                else:
+                    if data.get("recovery"):
+                        raise ValueError("STOP_RECOVERY_EXPIRED")
+                    request_id, key = self.stop_feedback.send(self.directory, envelope)
                 self.emit(
                     "submit",
-                    dict(request_id=envelope["command_id"], status="SUBMITTED", transport=key),
+                    dict(request_id=request_id, status="SUBMITTED", transport=key),
                 )
                 return dict(status="SUBMITTED")
+            if self.stop_feedback.holding:
+                raise ValueError("QUERY_ORIGINAL_STOP_ID")
             if self.detached or self.display_error:
                 raise ValueError("DISPLAY_UNKNOWN; reconnect before business input")
             if not self.client:
@@ -432,6 +455,9 @@ class Workbench(QWidget):
             return dict(
                 receipts=self.snapshot.get("receipts", []),
                 submitted=self.snapshot.get("submitted", []),
+                stop=self.stop_feedback.status(self.directory, self.launch, self.worker_exit)
+                if self.launch
+                else None,
             )
         if action in ("camera", "locate"):
             return self.send_view(action, **data)
@@ -523,12 +549,16 @@ class Workbench(QWidget):
         self.release_reader()
         self.directory, self.launch, self.worker = directory, None, None
         self.worker_exit = self.worker_completion = None
+        self.planning = PlanningFeedback()
+        self.stop_feedback = StopFeedback()
         self.writable = self.detached = False
         self.phase = "SAVED_READ_ONLY"
         self.snapshot, self.last_projection_key, self.delta = {}, None, ProjectionDelta()
         self.emit("projection", self.delta.encode(dict(status="UNKNOWN", writable=False)))
+        self.emit("session_reset", {})
 
     def release_reader(self):
+        self.pending_call = None
         if self.client:
             schedules = self.client.schedules
             if self.future:
@@ -560,6 +590,11 @@ class Workbench(QWidget):
         self.worker_exit = None
         self.frame_identity = self.frame_changed_at = None
         self.worker_completion = None
+        self.planning = PlanningFeedback(request)
+        self.stop_feedback = StopFeedback()
+        self.snapshot, self.last_projection_key, self.delta = {}, None, ProjectionDelta()
+        self.emit("projection", self.delta.encode(dict(status="UNKNOWN", writable=False)))
+        self.emit("session_reset", {})
         env = os.environ.copy()
         for name in ("PYTHONHOME", "PYTHONPATH", "VIRTUAL_ENV", "PYTHONEXE"):
             env.pop(name, None)
@@ -666,7 +701,17 @@ class Workbench(QWidget):
         try:
             # A completed poll may predate the terminal save. Fence before it
             # can restore writable UI state or release a queued confirmation.
-            self.enforce_write_fence()
+            blocked = self.enforce_write_fence()
+            if self.directory and self.planning.identity:
+                control_root = (
+                    self.client.write_fence.control_directory if self.client else self.directory
+                )
+                self.planning.refresh(
+                    control_root,
+                    terminal=bool(blocked),
+                    exited=self.worker_exit is not None
+                    or (self.worker is not None and self.worker.poll() is not None),
+                )
             if self.future and self.future.done():
                 future, task = self.future, self.outstanding
                 self.future = self.outstanding = None
@@ -674,7 +719,24 @@ class Workbench(QWidget):
                 if task == "launch":
                     self.start_worker(*result)
                 elif task == "poll":
-                    if self.worker_exit is not None or not self.writable:
+                    candidate = result.get("verified_full_schedule")
+                    if (
+                        self.planning.identity
+                        and candidate
+                        and candidate != self.snapshot.get("verified_full_schedule")
+                    ):
+                        if self.enforce_write_fence():
+                            self.planning.frozen = True
+                        else:
+                            self.planning.refresh_stage(control_root)
+                    result = self.planning.project(
+                        result, self.snapshot, hold=self.stop_feedback.holding
+                    )
+                    if (
+                        self.worker_exit is not None
+                        or not self.writable
+                        or self.stop_feedback.holding
+                    ):
                         result = dict(result, writable=False)
                     self.snapshot = result
                     if (
@@ -701,6 +763,7 @@ class Workbench(QWidget):
                         self.display_error,
                         shown.get("writable"),
                         shown.get("write_block_reason"),
+                        (shown.get("verified_full_schedule") or {}).get("artifact_sha256"),
                     )
                     if projection_key != self.last_projection_key:
                         self.emit("projection", self.delta.encode(shown))
@@ -751,6 +814,12 @@ class Workbench(QWidget):
                     and not self.future
                 ):
                     self.client = Client(self.directory, writable=self.writable)
+                    if self.writable and not self.launch:
+                        self.planning = PlanningFeedback(
+                            self.client.write_fence.launch,
+                            require_stage=False,
+                            spec=self.client.spec,
+                        )
                 if self.client and not self.future:
                     self.outstanding = "poll"
                     self.future = self.executor.submit(self.client.poll)
@@ -790,6 +859,17 @@ class Workbench(QWidget):
                         and frame["counter_age_s"] is not None
                         and frame["counter_age_s"] < 5
                     )
+            now = time.monotonic()
+            observation_age = (
+                age((self.snapshot.get("envelope") or {}).get("sampled_monotonic_s"), now)
+                if self.phase != "SAVED_READ_ONLY"
+                else None
+            )
+            stop = (
+                self.stop_feedback.status(self.directory, self.launch, self.worker_exit)
+                if self.launch
+                else None
+            )
             self.emit(
                 "status",
                 dict(
@@ -800,7 +880,18 @@ class Workbench(QWidget):
                     frame=frame,
                     detached=self.detached,
                     fullscreen=self.isFullScreen(),
-                    source_age_s=self.snapshot.get("source_age_s"),
+                    source_age_s=observation_age,
+                    observation_stale=observation_age is None or observation_age > 5,
+                    waiting_feedback=self.planning.status(
+                        self.snapshot,
+                        hold=self.stop_feedback.holding,
+                        failed=self.phase in ("FAILED", "STOP_BLOCKED"),
+                    )
+                    if self.show_wait_feedback
+                    else None,
+                    stop_feedback=stop if self.show_wait_feedback else None,
+                    stop_holding=self.stop_feedback.holding,
+                    stop_recoverable=bool(stop and stop["recoverable"]),
                 ),
             )
             if self.audit:
@@ -870,10 +961,21 @@ class Workbench(QWidget):
             "停止新调度并等待安全段排空？\nStop new dispatch and drain safe segments?",
         )
         if answer == QMessageBox.StandardButton.Yes:
-            from s19b_desktop.control import command, submit
+            self.send_safe_stop()
 
+    def send_safe_stop(self):
+        from s19b_desktop.control import command
+
+        if self.stop_feedback.holding:
+            self.stop_feedback.restore_missing(
+                self.directory, self.launch, self.stop_feedback.envelope
+            )
+        else:
             state = read_json(self.directory / "control-state.json", 32_000_000)
-            submit(self.directory, command(self.launch, "stop", state["last_sequence"] + 1))
+            if not state["stop"]:
+                self.stop_feedback.send(
+                    self.directory, command(self.launch, "stop", state["last_sequence"] + 1)
+                )
 
     def closeEvent(self, event):
         if self.worker and self.worker.poll() is None:
@@ -885,10 +987,7 @@ class Workbench(QWidget):
             event.ignore()
             if answer == QMessageBox.StandardButton.Yes:
                 try:
-                    from s19b_desktop.control import command, submit
-
-                    state = read_json(self.directory / "control-state.json", 32_000_000)
-                    submit(self.directory, command(self.launch, "stop", state["last_sequence"] + 1))
+                    self.send_safe_stop()
                     self.close_when_drained = True
                 except (ValueError, OSError) as error:
                     self.emit("error", dict(error=str(error)))

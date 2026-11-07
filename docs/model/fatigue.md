@@ -17,7 +17,7 @@ D以共同cap/人员集合/窗口报告ΣE、max E、逐人峰值及交付，不
 
 ## 现行 S09 r2 管道实现参考
 
-以下原说明保留用于运行和回归；历史“本步/待审”只指原快照，不是建筑规范或当前批准状态。历史发布见LOG049，新领域见[总纲](../PROJECT_CHARTER.md)。
+以下原说明保留用于运行和回归；历史“本步/待审”只指原快照，不是建筑规范或当前批准状态。历史发布见LOG049，新领域见[总纲](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md)。
 
 # S07 疲劳与恢复数值模型
 

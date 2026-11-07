@@ -85,11 +85,11 @@ flowchart TD
 | 薄运行控制层（计划） | 经能力检查把请求交后端，关联运行身份、请求、确认和状态同步 | 后端确认才生效；幂等、过期隔离、断连未知、重连不重发 | S19B；生产驱动端到端验证后开放控制 |
 | 研究/复现 | 协议→A/D/B/C→论证→复现→报告→归档 | 测试集隔离、负结果/截尾保留、发布另批 | S20→S21→S22→S23→S24→S25→S26→S27→S28 |
 
-结构性修复选择与增量/替换成本比较见[修复方案](repair_plan.md)。S10—S28及新增S19A/S19B的每步输入、执行、产物、验证、失败出口及授权见[总纲逐步正文](PROJECT_CHARTER.md#文档职责与执行顺序)，依赖摘要见[路线索引](roadmap.md)；旧C06—C08仅历史映射。C04/C05建筑契约与轻量执行已实现；r2已验收并发布。S10独立日志重建与指标r2已发布，入口为`checker.py`/`metrics.py`，范围及限制见[独立检查](validation/checker.md)。S11静态生成器位于`planning/`，候选完整轨迹经独立核验；S12轻量动态重排位于`control/`；S13—S15的场景、适配及限定生产闭环已实现和发布，保留各自证据边界；S16静态匹配CP-SAT参照r2已限定验收并发布，见[S16步骤卡](steps/S16.md)；S17固定模式骨架及静态/生产当前窗口适配器位于`algorithms/`，r2已实际限定验收/批准/发布，见[S17步骤卡](steps/S17.md)；S18联合准入/条件程序分支见[联合接口](algorithms/joint_modes.md)，真实研究因G2 OPEN及S15 HR映射缺失BLOCKED；S19—S28及S19A/S19B未启动。
+结构性修复选择与增量/替换成本比较见[修复方案](repair_plan.md)。S10—S28及新增S19A/S19B的每步输入、执行、产物、验证、失败出口及授权见[总纲逐步正文](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#%E6%96%87%E6%A1%A3%E8%81%8C%E8%B4%A3%E4%B8%8E%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F)，依赖摘要见[路线索引](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/roadmap.md)；旧C06—C08仅历史映射。C04/C05建筑契约与轻量执行已实现；r2已验收并发布。S10独立日志重建与指标r2已发布，入口为`checker.py`/`metrics.py`，范围及限制见[独立检查](validation/checker.md)。S11静态生成器位于`planning/`，候选完整轨迹经独立核验；S12轻量动态重排位于`control/`；S13—S15的场景、适配及限定生产闭环已实现和发布，保留各自证据边界；S16静态匹配CP-SAT参照r2已限定验收并发布，见[S16步骤卡](steps/S16.md)；S17固定模式骨架及静态/生产当前窗口适配器位于`algorithms/`，r2已实际限定验收/批准/发布，见[S17步骤卡](steps/S17.md)；S18联合准入/条件程序分支见[联合接口](algorithms/joint_modes.md)，真实研究因G2 OPEN及S15 HR映射缺失BLOCKED；S19—S28及S19A/S19B未启动。
 
 恢复状态需包含人因、工作单元、准备/资格、实物/锁、事件游标、随机流与观测队列；双后端共享语义而非互写实际状态。规格/规则/参数/实例/代码版本在manifest绑定，避免旧管道实例被新名称误认成建筑产品。
 
-PR070增设C05实现及见证完成后的[工作区与阶段收尾](PROJECT_CHARTER.md#c05-closeout)：核对C00—C05职责、契约、代码、证据与入口自洽，清理冗余后整理GitHub确切上传审阅包并一次请求授权。该流程属于修复收尾，不新增算法层，PR071已授权该本地收尾，实际记录见阶段收尾。
+PR070增设C05实现及见证完成后的[工作区与阶段收尾](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#c05-closeout)：核对C00—C05职责、契约、代码、证据与入口自洽，清理冗余后整理GitHub确切上传审阅包并一次请求授权。该流程属于修复收尾，不新增算法层，PR071已授权该本地收尾，实际记录见阶段收尾。
 
 实际建筑实现使用包内`domain/building.py`、`contracts/building.py`、`building_human.py`、`building_backend.py`，以明确入口隔开历史领域；接口与验证见[建筑执行验证](validation/building_execution.md)。
 
@@ -111,4 +111,4 @@ S12 r2的`control/ledger.py`复用S10独立事件重建核对每轮实际前缀�
 
 读回/日志可供审查和明确标注的执行真值诊断视图；规划器仍只能消费原有授权观测通道，界面不得把隐藏真值或未来情景注入规划器。画面和曲线绑定同一运行与时间来源并标示陈旧数据；演示暂停、注入和取消留痕并与正式对照数据隔离。正式图表走冻结分析流程，绑定数据/脚本/版本/配置/种子或配对键/聚合规则，前端截图不能替代统计证据。
 
-验收按[总纲A1—A3、B1—B3](PROJECT_CHARTER.md#s19a)执行；负责人视觉审阅与完整操作任务须真实记录。前端开关及规定负载下核对生产语义、调度/反馈预算和记录精度，不以降低科研记录精度隐藏开销；只读面板完成不等于S19B完成。两步验收及影响重验后再进入S20冻结；冻结后按[图文与变更规则](PROJECT_CHARTER.md#visual-evidence-rules)分级复核，影响生产、观察或统计口径则先审批协议变更再确定重跑范围。
+验收按[总纲A1—A3、B1—B3](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#s19a)执行；负责人视觉审阅与完整操作任务须真实记录。前端开关及规定负载下核对生产语义、调度/反馈预算和记录精度，不以降低科研记录精度隐藏开销；只读面板完成不等于S19B完成。两步验收及影响重验后再进入S20冻结；冻结后按[图文与变更规则](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#visual-evidence-rules)分级复核，影响生产、观察或统计口径则先审批协议变更再确定重跑范围。

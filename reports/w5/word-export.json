@@ -1,0 +1,14 @@
+{
+  "en": {
+    "contents": "Abstract\t3\r1 Introduction\t4\r1.1 Production problem\t4\r1.2 Aim and research questions\t4\r1.3 Contributions\t4\r2 Related works\t5\r2.1 Collaboration and dynamic allocation\t5\r2.2 Fatigue, recovery and decision objectives\t5\r2.3 Rescheduling and bounded search\t5\r2.4 Position of the present study\t5\r3 Methodology\t7\r3.1 Production model and constraints\t7\r3.2 Collaboration modes and human state\t8\r3.3 Equipment, order and physical states\t9\r3.4 Execution feedback and independent validation\t10\r3.5 Adaptive controller and legal baseline\t10\r3.6 Dynamic catalogs and continuous sessions\t11\r3.7 Dual-view workbench and saved results\t12\r4 Experiments\t13\r4.1 Evidence design, versions and questions\t13\r4.2 Metrics and comparison rules\t13\r4.3 Normal production and closed-loop correctness\t14\r4.4 Collaboration, fatigue and the whole-module outcome\t14\r4.5 Equipment failure and legal recovery\t17\r4.6 Orders, cancellation and dynamic personnel\t18\r4.7 Strategy outcomes and computational effort\t19\r4.8 Failure history, performance and reproducibility\t20\r4.9 Scope and limitations\t20\r5 Conclusion\t21\r5.1 Answers to the research questions\t21\r5.2 Supported follow-up work\t21\rReferences\t22\rAppendix A. Evidence, reproduction and requirement locations\t23\rAppendix B. Contribution and AI assistance\t24\rAppendix C W1 to W5 engineering integration\t25\rC.1 Purpose and version of the evidence\t25\rC.2 What the staged work established\t25\rC.3 The integrated implementation and independent checks\t26\rC.4 Operating the candidate and returning to the original path\t26\rC.5 Interpretation and remaining acceptance\t27\r",
+    "pages": 27,
+    "tables": 8,
+    "equations": 5
+  },
+  "zh": {
+    "contents": "摘要\t3\r1 引言\t4\r1.1 生产问题\t4\r1.2 研究目标与问题\t4\r1.3 研究贡献\t4\r2 相关研究\t4\r2.1 协作模式与动态分配\t4\r2.2 疲劳、恢复与决策目标\t5\r2.3 重调度与有界搜索\t5\r2.4 本研究的定位\t5\r3 研究方法\t6\r3.1 生产模型与约束\t6\r3.2 协作模式与人员状态\t6\r3.3 设备、订单与物理状态\t8\r3.4 执行反馈与独立验证\t8\r3.5 自适应控制器与可行规则基线\t9\r3.6 动态目录与连续会话\t9\r3.7 双视图工作台与保存结果\t10\r4 实验\t11\r4.1 证据设计、版本与问题\t11\r4.2 指标与比较规则\t11\r4.3 正常生产与闭环正确性\t12\r4.4 协作、疲劳与完整模块结果\t12\r4.5 设备故障与符合约束的恢复\t15\r4.6 订单、取消与动态人员\t16\r4.7 策略结果与计算开销\t17\r4.8 失败历史、性能与可复现性\t18\r4.9 研究范围与局限\t18\r5 结论\t19\r5.1 研究问题的回答\t19\r5.2 后续工作\t19\r参考文献\t20\r附录 A 证据、复现与需求定位\t21\r附录 B 个人贡献与 AI 辅助说明\t22\r附录 C W1 至 W5 工程集成\t23\rC.1 目的与证据版本\t23\rC.2 各阶段实际形成的证据\t23\rC.3 集成实现与独立检查\t23\rC.4 候选操作与原路径回退\t24\rC.5 结果解释与待完成验收\t24\r",
+    "pages": 24,
+    "tables": 8,
+    "equations": 5
+  }
+}

@@ -47,6 +47,14 @@ def _geometry_context(config):
 
 
 def boxes(config, state, excluded=()):
+    from . import preview_geometry
+
+    if preview_geometry.current() is not None:
+        if config.schema_version == "P043-PROD-1.0":
+            from .dynamic_workforce import off_shift
+
+            excluded = (*excluded, *(p.id for p in config.people if off_shift(state, p.id)))
+        return preview_geometry._boxes_uncached(config, state, excluded)
     if config.schema_version == "P043-PROD-1.0":
         from adaptive_hrc_scheduling.dynamic_workforce import off_shift
 
@@ -81,6 +89,10 @@ def _boxes_cached(
 
 
 def _boxes_uncached(config, state, excluded=()):
+    from . import preview_geometry
+
+    if preview_geometry.current() is not None:
+        return preview_geometry._boxes_uncached(config, state, excluded)
     places = {p.id: p for p in config.places}
     positions = {p.id: p.location for p in state.positions}
     transit = {}
@@ -309,6 +321,10 @@ def _boxes_uncached(config, state, excluded=()):
 
 
 def transport_blocker(config, state, op, rt):
+    from . import preview_geometry
+
+    if preview_geometry.current() is not None:
+        return preview_geometry.transport_blocker(config, state, op, rt)
     conflict = concurrent_crane_blocker(config, state, op, rt)
     if conflict is not None:
         return conflict
@@ -367,6 +383,10 @@ def concurrent_crane_blocker(config, state, op, rt):
 
 
 def output_blocker(config, state, op):
+    from . import preview_geometry
+
+    if preview_geometry.current() is not None:
+        return preview_geometry.output_blocker(config, state, op)
     from adaptive_hrc_scheduling.production_geometry import output_shapes
 
     outputs = output_shapes(config, op)
@@ -427,6 +447,10 @@ def clear_segment(a, b, obstacles, size=(0.6, 1.2, 1.9), margin=0.02):
 
 
 def support_paths_clear(config, state, old, layout, elapsed=0):
+    from . import preview_geometry
+
+    if preview_geometry.current() is not None:
+        return preview_geometry.support_paths_clear(config, state, old, layout, elapsed)
     """Nominal swept support geometry, shared without executor state mutations."""
     rack = next(r for r in state.supports if r.root == layout.root)
     ids = tuple(f"SC-{layout.root}-{i}" for i in range(22))
@@ -480,6 +504,10 @@ def walk_obstacles(config, state, person, source, target):
 
 
 def walk_blocker(config, state, person, source, target, points):
+    from . import preview_geometry
+
+    if preview_geometry.current() is not None:
+        return preview_geometry.walk_blocker(config, state, person, source, target, points)
     obstacles = walk_obstacles(config, state, person, source, target)
     fork_location = next(p.location for p in state.positions if p.id == "FORK-01")
     fork = next((p.position for p in config.places if p.id == fork_location), None)
@@ -542,7 +570,11 @@ def walk(config, state, person, source, target):
 
     starts, finishes = access(source, start), access(target, end, True)
     require(starts and finishes, "NO_LEGAL_PERSON_ACCESS")
-    points = _walk_graph(starts, finishes, tuple(obstacle))
+    from .preview_geometry import current
+
+    geometry = current()
+    graph = geometry.graph if geometry is not None else _walk_graph
+    points = graph(starts, finishes, tuple(obstacle))
     require(
         walk_blocker(config, state, person, source, target, points) is None, "NO_LEGAL_PERSON_ROUTE"
     )

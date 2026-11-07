@@ -48,4 +48,4 @@ OUT1=(30,24)，FG1=(20,24)，FG2=(20,34)，DISPATCH=(30,34)，支承顶0.6 m；�
 | 无叉运/配送车资源 | SCN-FORK-01、SCN-CART-01 | 新实例、载荷能力和司机资格待审 |
 | OUT1容量1 | OUT1＋独立FG1/FG2＋DISPATCH | 有限容量/外部接收契约后续承接 |
 
-全部目标对象只写 `sceneId`，不写生产 `domainId`。旧配置、旧场景与六设备回归可由 `--legacy` 和原构建检查入口单独复现。冻结配置/Schema/执行器无本次修改；未来责任见[获批总纲补丁](../PROJECT_CHARTER.md#factory-operations-patch)。
+全部目标对象只写 `sceneId`，不写生产 `domainId`。旧配置、旧场景与六设备回归可由 `--legacy` 和原构建检查入口单独复现。冻结配置/Schema/执行器无本次修改；未来责任见[获批总纲补丁](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#factory-operations-patch)。

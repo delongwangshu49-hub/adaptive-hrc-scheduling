@@ -1,0 +1,58 @@
+# Appendix C W1 to W5 engineering integration
+
+## C.1 Purpose and version of the evidence
+
+This appendix records engineering work after the reviewed research report. The five research chapters, original figures, numerical tables, equations, references and contribution statement are retained. W1 measured the waiting path, W2a made its state visible, W3 reduced replay preparation, and W5 integrates the selected repairs into a distributable candidate. Both W4 trials were rejected. This edition is prepared for the v1.1.0 prerelease; the embedded Python library retains version 0.1.0. Owner-operated E12 remains pending.
+
+The main engineering judgment is that replay preparation can be reduced while preserving the adopted plan and its proof. The original W3 result supports retaining that approach. W5 tests the integrated implementation and delivery paths; its functional checks do not provide a new four-pair performance estimate. Planning speed and the delivery-time comparison between ADAPTIVE and EDD are separate outcomes. The research finding of no final-receipt advantage in the five fixed scenario pairs remains unchanged.
+
+## C.2 What the staged work established
+
+W1's recorded CPU initial-plan and replan build times were 84.065 s and 94.001 s. Three first verified archive projections took 18.599 s, 18.996 s and 18.814 s. These measurements identified substantial work in replay and independent verification. They are historical observations with their own process and input identities, rather than timing values for the W5 package.
+
+W2a separates planning, waiting for independent verification, available and failed states. During replanning, the workbench retains the previous independently verified Gantt layer and labels its version and age alongside the candidate version. Actual observations and heartbeats retain separate meanings. A result can replace the displayed plan only when the task, run, epoch and checked plan reference agree. The repair also preserves an accepted business receipt when a plan reference fails, rejects late results after a new task begins, and freezes elapsed waiting time on failure.
+
+STOP uses the existing control envelope. Request submission, durable acceptance, saving and the actual worker exit are shown separately. An UNKNOWN response allows querying the original STOP identity. Recovery of a missing envelope requires an explicit action and the original byte identity, without introducing a second accepted STOP. The five-second stale-write protection remains active. Historical W2a tests covered 128 Python/frontend checks; its three sets of 40 local Qt samples had p95 input, bridge and stage-presentation delays of 59.6 ms, 45.5 ms and 164.8 ms. Those numbers describe that W2a test, not new W5 latency qualification.
+
+The selected W3 approach shares only structurally checked immutable configuration, state and event records. Event lists, operation and route dictionaries, business requests, catalog priorities and execution state remain private to the preview. A seed backend is reusable only for the same configuration object, run and epoch, and every dispatch decision still binds the current observation. Stable priorities are reused only while the configuration, priority inputs and requested order remain unchanged. Geometry preparation retains the original obstacle order and the original segment-intersection test, including support movement and collision rejection.
+
+The earlier isolated W3 candidate completed four actual CPU AB/BA pairs, eight runs in total. Its paired median reduction was 17.331061% from change submission to APPLIED plus independently verified projection, and 26.501367% for net replay after subtracting execution and causal audits. All eight runs retained their original STOP, final save and zero worker exit. Two later review findings concerned per-call dependency isolation and insufficient evidence rejection. Their limited repair passed 20 targeted checks and one normal CPU chain. The four-pair numbers remain attached to the earlier measured candidate; the repaired and integrated versions have no replacement four-pair estimate.
+
+W4's private structural-validation cache increased the fixed-boundary-to-save time from 35.900 s to 36.746 s and net replay from 18.697 s to 18.968 s. Its second trial reused geometry outside the exclusion set: two AB/BA pairs increased the save endpoint and net replay by paired medians of 2.770% and 3.660%. Both trials retained their failed retention decisions and were excluded from W5. Their equal plans and proofs do not establish a performance benefit.
+
+## C.3 The integrated implementation and independent checks
+
+W5 replaces the experimental source-rewriting overlays with ordinary package modules. Each preview owns its seed, priority cache and geometry preparation. Context-local geometry is restored after nested calls or exceptions, and concurrent previews do not replace public planner functions. The execution and causal audits explicitly leave replay geometry scope and run through the original geometry path. No W4 cache is installed. The normal transaction, event, plan-adoption and STOP owners remain unchanged.
+
+The fixed L1 v2 boundary is generation 1, revision 177, event count 177 and simulation time 0.36948611111111135 h. The integrated plan SHA-256 is 63b2ceacada7cc79d56b679b518576da1d3f3d0b29c8aa59d848abdee39a1733. The uncompressed proof SHA-256 is db4c69f5b88e2513c398d031afc65ae626c7f06513680faed22ed4d25bbaa4d7. Both exactly match the original fixed-boundary records. This is an equivalence check for that input, not a new field-speed result.
+
+{{VALIDATION}}
+
+The reproducible source artifact starts from the published v1.0.1 tree and adds an explicit W2a/W5 path set. Unrelated uncommitted files and private test-fixture substitutions stay outside it. A migrated presentation contract retains the original v1.0.1 README and test bytes while binding the new bilingual README. The full source ZIP, exact delta, wheel, source distribution and Windows portable ZIP each have external hashes; the portable ZIP also carries a per-file manifest. Package identity, tested entry points and report identities are recorded in the candidate manifest.
+
+## C.4 Operating the candidate and returning to the original path
+
+Extract the complete Windows package and start HRC-Workbench.exe beside its app directory. The package includes its own Python, Qt WebEngine, scheduling components and read-only archive. Start a single-product SR-W1 CPU session from Launch configuration. During initial planning the workbench shows a waiting state; during a change it keeps the previous verified plan until the new plan passes independent verification. Use Safe stop and wait for durable acceptance, completed saving and the actual worker exit before closing the workbench. A saved archive is opened read-only and cannot authorize new business writes.
+
+Set P051_PREVIEW_REUSE=0 before launching to use the original full-copy, original geometry and unseeded Python preparation path. Set P051_WAIT_FEEDBACK=0 to hide the added waiting feedback. These controls leave original verification, write protection and STOP handling active. The published v1.0.1 package and tags remain available as the prior delivery; this candidate does not overwrite them.
+
+Optional native 3D uses separately installed Isaac Sim and PowerShell 7. Use an ASCII-only results directory. The W5 native test is confined to a new local synthetic USD stage, SyntheticReceiver and a private test session. Its ORDER_UPDATE changes only simulation data; STOP ends and saves that local simulation. No physical factory equipment, PLC, robot controller or external order system is connected. SDK, driver and system settings are unchanged. The local simulation has a 900 s wall budget, with a separate shutdown reserve. An unproven launch boundary is skipped and reported rather than widened.
+
+## C.5 Interpretation and remaining acceptance
+
+{{KIT}}
+
+W5 concerns the waiting workflow, replay preparation and distributable integration. It supplies no new industrial speed claim, paired Kit speed estimate or physiological evidence. The original 2 s source-age target remains NOT_MET; sustained 4 Hz and the 10/s and 50/s request-rate qualifications remain unestablished or insufficient under their original definitions. E20 retains its accepted split scope and original all-four-received NOT_MET result. In-process cancellation and J3 HOLD, manual REST, historical K01 diagnosis and the recorded frontend advisory retain their previous status.
+
+E12 remains OWNER_PENDING because the author has not performed the required continuous operation. P08 remains OVERALL_INCOMPLETE and P09 has not started. Publication authorization and the author's continuous-operation record are separate. Automated verification does not substitute for the author's operation. The contribution and AI-assistance declaration in Appendix B also applies to this engineering update.
+
+
+## C.6 Delivery correction in revision r2
+
+The full review found three release-preparation defects after the functional W5 package had been sealed. Revision r2 separates the private review inventory from the public release inventory. The public checksum list covers exactly the public payload and its public artifact manifest; it no longer requires local execution logs or unpublished release-preparation files.
+
+The proposed public tree excludes the five internal governance, prompt-ledger and master-plan files. Their local originals, the first W5 packet and the review record remain intact. Forty-nine links in thirty-one historical documents now explicitly resolve to the retained v1.0.1 source. Earlier source manifests retain their original hashes and historical meaning. The new source and delta are compared with the complete proposed public tree, so exclusions apply to both the source ZIP and the future Git index.
+
+Publication commands now stop on every nonzero git or gh result. Separate gates check the original base, empty staged area, exact reviewed blobs and modes, a new commit, an annotated tag with the correct target, the actual first-attempt push CI, all four source/wheel rounds and uploaded attachment digests. Twenty-nine simulated publication-flow cases cover success and rejection paths without a real Git or remote write. The future procedure removes internal files from the index only and preserves their local copies.
+
+This correction changes delivery boundaries and documentation, not scheduling calculations, dependencies or research measurements. The original research figures therefore remain unchanged. The r1 CPU/Kit evidence and 1,299-test source and wheel rounds remain bound to the unchanged application source; r2 does not claim a fresh paired timing result or a new native run. E12, P08 and the remaining qualification limits retain the status in Section C.5.

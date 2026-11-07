@@ -15,8 +15,33 @@ class P07DeliveryBytesTests(unittest.TestCase):
         def load(path):
             return json.loads((ROOT / path).read_bytes())
 
+        candidate_migrations = load("docs/delivery/p08_w5_release_candidate_r1.json")
+        historical_w5 = {
+            row["original_path"]: row
+            for row in candidate_migrations["previous_artifact_relocations"]
+        }
+
+        publication = load("docs/delivery/w5_publication_binding_r1.json")
+        publication_moves = {
+            row["original_path"]: row for row in publication["previous_artifact_relocations"]
+        }
+        self.assertEqual(
+            set(publication_moves),
+            {"README.md", "README.zh-CN.md", "tests/test_p07_delivery_bytes.py"},
+        )
+
         def add(pin):
             path = pin["path"]
+            # Earlier contracts retain their exact published bytes. Only an
+            # explicit path AND original digest can select that historical file.
+            moved = historical_w5.get(path)
+            if moved is not None and pin["sha256"] == moved["sha256"]:
+                pin = moved
+                path = pin["path"]
+            published_prior = publication_moves.get(path)
+            if published_prior is not None and pin["sha256"] == published_prior["sha256"]:
+                pin = published_prior
+                path = pin["path"]
             self.assertTrue((ROOT / path).resolve().is_relative_to(ROOT.resolve()))
             self.assertFalse(path.startswith(".local/"))
             if path in expected:
@@ -159,7 +184,38 @@ class P07DeliveryBytesTests(unittest.TestCase):
                 add(moved)
             else:
                 add(row)
+        candidate = load("docs/delivery/p08_w5_release_candidate_r1.json")
+        add(candidate["previous_delivery"])
+        self.assertEqual(
+            candidate["previous_delivery"]["path"], "docs/delivery/p08_release_r2.json"
+        )
+        w5_moves = {row["original_path"]: row for row in candidate["previous_artifact_relocations"]}
+        self.assertEqual(len(w5_moves), len(candidate["previous_artifact_relocations"]))
+        self.assertEqual(
+            set(w5_moves),
+            {
+                "README.zh-CN.md",
+                "desktop/p051/src/p051_desktop/app.py",
+                "desktop/p051/web/src/main.jsx",
+                "desktop/p051/src/p051_desktop/gantt.py",
+                "tests/test_p07_delivery_bytes.py",
+                "README.md",
+                "scripts/run_s19b_prototype.py",
+                "desktop/p051/web/src/style.css",
+            },
+        )
         for row in revision["current_artifacts"]:
+            if row["path"] in w5_moves:
+                moved = w5_moves[row["path"]]
+                self.assertEqual(moved["sha256"], row["sha256"])
+                self.assertEqual(moved["path"], "docs/archive/p08/v1.0.1/" + row["path"])
+                add(moved)
+            else:
+                add(row)
+        for row in candidate["current_artifacts"]:
+            add(row)
+        add(publication["previous_candidate"])
+        for row in publication["current_artifacts"]:
             add(row)
         binding = load("docs/delivery/feedback_metric_binding_r3.json")
         for row in binding["upstream_contracts"]:

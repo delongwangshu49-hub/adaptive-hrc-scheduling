@@ -2,7 +2,7 @@ import React,{useEffect,useLayoutEffect,useMemo,useRef,useState} from 'react';
 import {useVirtualizer} from '@tanstack/react-virtual';
 import {chartRows,rangeOf,fitRange,ticks,timeLabel,scrollDomain,scaleSpan,followStart} from './gantt-model.mjs';
 
-export default function Timeline({phase,plot:outerPlot,profile,labelWidth,view,t,selection,onSelect,settings,setSettings,onError,rpc,language}){
+export default function Timeline({phase,waitingForPlan,plot:outerPlot,profile,labelWidth,view,t,selection,onSelect,settings,setSettings,onError,rpc,language}){
   const plot={...outerPlot,height:outerPlot.height-16};
   const scrollbar=useRef(null);
   const scrollSync=useRef(false);
@@ -88,6 +88,6 @@ export default function Timeline({phase,plot:outerPlot,profile,labelWidth,view,t
     {hover&&<div className="gantt-hover" style={{left:plot.x+8,top:plot.y+plot.height-65,maxWidth:plot.width-16}}>{hover.row.display_note||hover.row[en?'operation_name_en':'operation_name_zh']||hover.row.operation_id}<br/>{timeLabel(hover.iv[0],span)} → {timeLabel(hover.iv[1],span)} · {t(hover.row.schedule_state?.toLowerCase())}{hover.row.end_status==='WINDOW_CENSORED'?' · '+(en?'window truncated':'窗口截尾'):''}</div>}
     {!!view.full_schedule?.failure&&<div role="status" className="plan-blocked" style={{left:plot.x+6,top:plot.y+22,maxWidth:plot.width-12}}><strong>{en?'Plan blocked · retained schedule is not executable':'排程受阻 · 保留计划暂不可执行'}</strong><details><summary>{en?'Reason and recovery':'原因与恢复'}</summary>{en?'Submit a valid repair/return or cancel affected work. Accepted future recovery waits at safe simulation boundaries.':'请提交合法维修/返回，或取消受影响工作。已接纳的未来恢复按安全模拟边界等待。'}<pre>{view.full_schedule.failure}</pre></details></div>}
     {!!view.forecast_audit_pending&&<span className="forecast-pending" style={{position:"absolute",left:plot.x+8,top:plot.y+18,color:"#C5AD7A",fontSize:12}}>{en?"Forecast verification in progress":"预测区间正在独立核验"}</span>}
-    {!items.length&&<div className="empty" style={{left:plot.x+16,top:plot.y+40}}>{t('empty')}</div>}
+    {(waitingForPlan||!items.length)&&<div className="empty" style={{left:plot.x+16,top:plot.y+40}}>{t(waitingForPlan?'waiting':'empty')}</div>}
   </>;
 }

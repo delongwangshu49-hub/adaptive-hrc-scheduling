@@ -1,0 +1,83 @@
+{
+  "status": "W5_LOCAL_VALIDATION_COMPLETE_NOT_PUBLISHED",
+  "recorded": "2026-11-07T15:54:50.614196+08:00",
+  "application_version_proposal": "v1.1.0",
+  "python_library_version": "0.1.0",
+  "source_baseline": "27c5c34de14c41dcbc2e8d4e1f9fe327d9966df6",
+  "library_source_sha256": "45cebc06cecdef0e421add06d337bfb8d695e89cd46b52054ca1e8f0386afdc1",
+  "full_checks": {
+    "passed": true,
+    "entry": "scripts/check.py",
+    "rounds": [
+      {
+        "tests": 1299,
+        "seconds": 954.882
+      },
+      {
+        "tests": 1299,
+        "seconds": 1174.645
+      }
+    ],
+    "original_identities": 1277,
+    "added": 22
+  },
+  "targeted": {
+    "ownership_fallback": 11,
+    "bad_evidence": 12,
+    "publication_guards": 2,
+    "frontend": 23,
+    "original_good_and_bad_cases": 5,
+    "presentation_tamper_rejections": 3
+  },
+  "qt_p95_ms": [
+    62.24800006020814,
+    77.13810005225241,
+    293.8400999410078
+  ],
+  "portable": {
+    "cpu_worker_exit": 0,
+    "cpu_save": "STOPPED/COMPLETE",
+    "cpu_update_accepted_applied_once": true,
+    "stop_accepted_once": true,
+    "read_only_example_rows": 1023,
+    "feedback_disabled_rows": 1023,
+    "saved_v2_current_rows": 1023,
+    "exe_archive_exit": 0,
+    "source_and_delivered_wheel_identity_equal": true,
+    "sdist_wheel_identical": true
+  },
+  "kit": {
+    "status": "PASS",
+    "native_exit": 0,
+    "save": "STOPPED/COMPLETE",
+    "new_synthetic_session": true,
+    "simulation_wall_budget_s": 900,
+    "paired_speed_claim": false,
+    "read_only_v2_intervals": 1023
+  },
+  "frontend_rebuild": {
+    "html_js_css_exact": true,
+    "map_mappings_and_sources_exact": true,
+    "map_sources_content_equal_after_crlf_normalization": true
+  },
+  "historical_w3": {
+    "primary_reduction_pct": 17.331061290974837,
+    "net_reduction_pct": 26.501367297550388,
+    "version": "Earlier isolated measured candidate, before limited repair",
+    "new_w5_four_pairs": false
+  },
+  "w4": "Both trials rejected and excluded",
+  "E12": "OWNER_PENDING",
+  "P08": "OVERALL_INCOMPLETE",
+  "P09": "NOT_STARTED",
+  "report_kit_en": "The local synthetic Kit chain passed with the same portable source identity: initial planning, independent verification, a single simulation-only ORDER_UPDATE, retention of v1 while v2 was pending, verified v2, original safe STOP, STOPPED/COMPLETE saving and confirmed native process exit 0. The installed Isaac Sim 6.1 runtime created a new private USD simulation. The launch retained the 900 s simulation wall budget and a separate two-hour test window with a 45-minute shutdown reserve. The saved v2 session reopened read-only and rendered 1,023 independently checked current intervals. This is one functional native run, with no paired Kit timing data or industrial speed qualification.",
+  "report_kit_zh": "本机合成 Kit 链通过，库源码身份与便携候选一致：初排、独立核验、一次仅修改仿真数据的 ORDER_UPDATE、v2 待核时保留 v1、新版核验切图、原安全 STOP、STOPPED/COMPLETE 保存及原生进程实际退出 0。已安装的 Isaac Sim 6.1 新建私有 USD 仿真。启动保持 900 s 仿真墙钟预算，并单列两小时测试窗口和 45 分钟退出收尾余量。保存的 v2 会话以只读方式重开并呈现 1,023 条独立核验的当前计划区间。这是一次原生功能运行，没有 Kit 配对计时数据，也不构成工业提速资格。",
+  "publication": "NOT_PUBLISHED",
+  "retained_failures": [
+    "old cache access",
+    "intermediate source change",
+    "historical byte contract migration",
+    "restricted renderer code 49",
+    "saved-view probe v1 and historical-row assumptions"
+  ]
+}

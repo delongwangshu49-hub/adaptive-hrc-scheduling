@@ -1,0 +1,39 @@
+{
+  "status": "PREPARED_FOR_AUTHORIZED_V1_1_0_PRERELEASE",
+  "version": "v1.1.0",
+  "previous_candidate": {
+    "path": "docs/delivery/p08_w5_release_candidate_r1.json",
+    "sha256": "a409927c578fe57c93468ffd670146410e68b48e26b0ed45d628ed5100e07024"
+  },
+  "previous_artifact_relocations": [
+    {
+      "original_path": "README.md",
+      "path": "docs/archive/p08/w5-reviewed-r2/README.md",
+      "sha256": "f1777d6de850ce2520c27bcdac9ca0f5ea74a13c403be8e640dfaad1c759f214"
+    },
+    {
+      "original_path": "README.zh-CN.md",
+      "path": "docs/archive/p08/w5-reviewed-r2/README.zh-CN.md",
+      "sha256": "f83f1565ce4f71114290c1ede67bd97dac43e2be22ed1d1959f04c695b93304e"
+    },
+    {
+      "original_path": "tests/test_p07_delivery_bytes.py",
+      "path": "docs/archive/p08/w5-reviewed-r2/tests/test_p07_delivery_bytes.py",
+      "sha256": "03ab15bc5d020fa2d27b95d5cb721d2ff2411ea9328f10ead62e0cc6a96c601a"
+    }
+  ],
+  "current_artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "0769b423f6596a0a2b1bd02f30f9533271ad5880ae063c9b4c0e1f9779c38667"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "sha256": "a39536242639ef79e849731155060be626a0f12acd4de74ca898bcb3194b5187"
+    },
+    {
+      "path": "tests/test_p07_delivery_bytes.py",
+      "sha256": "3f61824b8673eb41b1094e5f325232ee890cee7cac780829e2cc73d2aca8f5d8"
+    }
+  ]
+}

@@ -18,3 +18,7 @@
 .gantt-name{padding:3px 7px;min-height:28px}.gantt-name strong{font-size:12px;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gantt-label .expand{min-height:28px}.time-scrollbar{position:absolute;overflow-x:scroll;overflow-y:hidden;background:#252525}.time-scrollbar::-webkit-scrollbar{height:14px}.time-scrollbar::-webkit-scrollbar-thumb{background:#78746e;border:3px solid #252525;min-width:24px}.time-scrollbar:focus-visible{outline:2px solid #D2CEC6;outline-offset:-2px}
 
 .plan-blocked{position:absolute;z-index:6;background:#292929;border:1px solid #8c7964;color:#d7c4a1;padding:6px;font-size:12px;max-height:150px;overflow:auto}.plan-blocked summary{cursor:pointer}.plan-blocked pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;max-height:80px;overflow:auto}
+
+.identity-strip .run-identity{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.identity-strip .plan-identity,.identity-strip .stop-progress{flex-shrink:0;font-variant-numeric:tabular-nums}
+.identity-strip .stop-progress{color:#E7E5E1}

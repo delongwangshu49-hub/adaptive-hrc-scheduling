@@ -113,6 +113,7 @@ def choose(
     order_bias=(),
     start_slots=(),
     rest_people=(),
+    _world_factory=None,
 ):
     validate(value, config=config)
     if rule not in ("EDD", "SPT", "FASTEST_LEGAL"):
@@ -123,7 +124,8 @@ def choose(
 
     modes, crews, order, slots = map(dict, (mode_choices, crew_choices, order_bias, start_slots))
     start, obs = time.perf_counter(), value.observation
-    world = ProductionBackend(config, run_id=obs.run_id, epoch=obs.epoch)
+    factory = ProductionBackend if _world_factory is None else _world_factory
+    world = factory(config, run_id=obs.run_id, epoch=obs.epoch)
     world.s = obs.state
     for running in obs.state.running:
         if running.command.service:

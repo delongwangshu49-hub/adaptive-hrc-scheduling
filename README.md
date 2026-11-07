@@ -22,6 +22,12 @@ Adaptive HRC Scheduling supports **factory production of steel Modular Integrate
 
 An actual archived workbench window. The original image, run identity and capture scope are recorded in [visual provenance](docs/public_validation/visual_provenance.json).
 
+## v1.1.0 prerelease
+
+The W5 update adds verified-plan waiting feedback and call-owned replay preparation. The previous stable v1.0.1 remains below. E12 remains owner-pending and P08 remains incomplete.
+
+[Release and downloads](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/tag/v1.1.0) · [Windows x64](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.1.0/HRC-Workbench-Windows-x64-v1.1.0.zip) · [English report](reports/w5/report-mic-en_w5-candidate-r2.pdf) · [中文报告](reports/w5/report-mic-zh_w5-candidate-r2.pdf) · [Guide](docs/releases/v1.1.0-candidate.md)
+
 ## First official release
 
 | Download | Entry point |
@@ -261,3 +267,10 @@ Reports and release guides are available in English and Simplified Chinese. Deta
 ## License
 
 Project code is available under the [MIT License](LICENSE). Bundled third-party runtimes retain their respective [component licenses](desktop/p051/portable/THIRD-PARTY.md). Model assumptions, image sources and data scope are documented with their respective evidence.
+
+
+## W5 local integration candidate
+
+**v1.1.0 prerelease.** The v1.1.0 prerelease integrates verified-plan waiting feedback and call-owned replay preparation. It preserves the previous verified Gantt during replanning, binds promotion to the current task, and keeps safe STOP and independent verification. Set `P051_PREVIEW_REUSE=0` for the full Python preparation path; `P051_WAIT_FEEDBACK=0` hides the added feedback. The published v1.0.1 remains available above.
+
+The historical W3 four-pair CPU result (17.33% shorter submit-to-verified projection and 26.50% less net replay) belongs to the earlier isolated candidate. W5 has functional and packaging checks, with no new four-pair or industrial performance qualification. See the [candidate guide](docs/releases/v1.1.0-candidate.md) and [validation summary](docs/validation/W5_integration_r1.md). E12 remains owner-pending and P08 remains incomplete.

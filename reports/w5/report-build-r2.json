@@ -1,0 +1,18 @@
+{
+  "en": {
+    "source_sha256": "fd8ad31696ded0a330aca1cc4647abb36fbffb7438d1ffba80e02fe3207217d6",
+    "docx_sha256_before_word_fields": "0e520ea441e6c5d3cfb83a1e48080a04e0450fa283aefb8471515e17f5a1c979",
+    "original_paragraphs": 224,
+    "original_tables": 8,
+    "figures_preserved": true,
+    "appendix_source_sha256": "d86e47be594c4e6d5e4ded74488fbee8d1e0351fa3d789228c0ed174ad97c690"
+  },
+  "zh": {
+    "source_sha256": "b03e2120da8f26d071b5be19ff208dd23aae832503ee3387ee43e05fe5f38873",
+    "docx_sha256_before_word_fields": "3f4979261eb6eb075203be9b3da995faa7d87f001c4c72ddb2128c27e4d3f0ea",
+    "original_paragraphs": 224,
+    "original_tables": 8,
+    "figures_preserved": true,
+    "appendix_source_sha256": "15dfacc93d24249aa1cfc500b2836e7c71c61529f6cb451e1de43e14d9b52839"
+  }
+}

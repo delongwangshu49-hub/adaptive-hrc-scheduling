@@ -98,7 +98,7 @@ S13拟检查给定关节角的正运动学与USD读回TCP一致、连续关节�
 
 ## 布局与尺寸依据
 
-权威输入为[钢规格](../model/selected_steel.md)、[生产证据](../research/production_evidence.md)、[当前契约实例](../../examples/building_contracts/configuration.json)及[总纲S13](../PROJECT_CHARTER.md#s13)。产品名义包络6×3×3.2 m、楼板18 m²、湿区2×1.5 m来自已限定冻结的研究抽象A；截面、板厚、重心、吊点、净距及起重净空仍U。场地与以下坐标是本方案新提出的布局A，待批准，不是实测厂房。
+权威输入为[钢规格](../model/selected_steel.md)、[生产证据](../research/production_evidence.md)、[当前契约实例](../../examples/building_contracts/configuration.json)及[总纲S13](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#s13)。产品名义包络6×3×3.2 m、楼板18 m²、湿区2×1.5 m来自已限定冻结的研究抽象A；截面、板厚、重心、吊点、净距及起重净空仍U。场地与以下坐标是本方案新提出的布局A，待批准，不是实测厂房。
 
 建议场地42×34 m、右手坐标、Z向上，原点为地面西南角，X向东、Y向北，地面顶面z=0。本版沿用r2替代r1的54×40 m所采用的布局，以缩短龙门吊覆盖尺度并给轨道与支腿保留独立边带；不是厂房工程优化结论。所有模块长边沿X；支承面暂取z=0.6 m，产品最高z=3.8 m。支承高度、显示梁厚和门窗尺寸均是可追溯的视觉参数，不写回生产规格，不由体积×密度推算质量。厂房拟有完整轮廓、地坪、柱梁和可切换屋顶/外墙层，检查视角可隐藏遮挡，柱子避开轨道及吊载包络。
 

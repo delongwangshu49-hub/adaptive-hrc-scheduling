@@ -40,6 +40,7 @@ class Client:
         self.colors = WorkColors(self.spec["run_id"], self.spec["epoch"])
         self.offset = 0
         self.packet = None
+        self.full_reference_error = None
         self.receipts = {}
         self.writable = writable and self.spec["mode"] == "INTERACTIVE_PRODUCTION"
         self.client_path = self.directory / "p051-client.json"
@@ -79,6 +80,15 @@ class Client:
                     self.packet = self.consumer.materialized_packet
                     for r in p["receipts"]:
                         self.receipts[r["request_id"]] = r
+                    # The verified observation and its receipts commit together.
+                    # A damaged optional plan reference only rejects the plan.
+                    self.full_reference_error = None
+                    try:
+                        self.schedules.observe_full(
+                            self.packet.get("full_schedule"), self.consumer.envelope
+                        )
+                    except (ValueError, TypeError, KeyError) as exc:
+                        self.full_reference_error = str(exc)
                     consumed += 1
                     # Amortize the full display projection over a short backlog
                     # slice. Every packet is still checked and committed in order.
@@ -165,6 +175,8 @@ class Client:
                 view["status"] = "STALE"
         view["forecast_audit_pending"] = len(self.schedules.pending)
         blocked = self.write_fence.reason()
+        if view.get("full_schedule_audit_error"):
+            blocked = blocked or "FULL_SCHEDULE_AUDIT_FAILED"
         view.update(
             error=self.error,
             write_block_reason=blocked,
@@ -197,12 +209,13 @@ class Client:
             )
             self.configuration_key = key
         config = self.display_configuration
-        forecasts = self.schedules.read(self)
+        forecasts = self.schedules.read(self, full_reference_error=self.full_reference_error)
         view = enrich(dict(view, rows=view["rows"] + forecasts), config, self.consumer.events)
         view = self.colors.project(view, config)
         from adaptive_hrc_scheduling.dynamic_workforce import registry
 
         blocked = self.write_fence.reason()
+        full = None if self.full_reference_error else self.packet.get("full_schedule")
         return dict(
             view,
             error=self.error,
@@ -219,7 +232,11 @@ class Client:
             catalog=deepcopy(self.packet["catalog"]),
             clock=deepcopy(self.spec["clock"]),
             backend=self.spec["backend"],
-            full_schedule=deepcopy(self.packet.get("full_schedule")),
+            full_schedule=deepcopy(full),
+            verified_full_schedule=self.schedules.full_current,
+            full_schedule_audit_error=self.full_reference_error
+            or (self.schedules.full_failures.get(full["artifact_sha256"]) if full else None),
+            full_reference_error=self.full_reference_error,
             ui_options=dict(
                 locations=[p["id"] for p in config["places"]],
                 repair_evidence=[p["id"] for p in config["evidence"] if p["status"] == "PASS"],

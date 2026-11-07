@@ -23,6 +23,8 @@ import check_p062_canvas_age as age_tool  # noqa: E402
 import supervise_s19b as supervisor  # noqa: E402
 from p051_desktop.client import Client  # noqa: E402
 from p051_desktop.delta import ProjectionDelta  # noqa: E402
+from p051_desktop.planning import PlanningFeedback, age  # noqa: E402
+from p051_desktop.stop_feedback import StopFeedback  # noqa: E402
 from p051_desktop.write_fence import BLOCKED_PHASES, control_phase  # noqa: E402
 from s19b_desktop.model import atomic_json, read_json  # noqa: E402
 from test_session_lifecycle import setup_session  # noqa: E402
@@ -81,6 +83,7 @@ def host_methods():
         control_phase=control_phase,
         atomic_json=atomic_json,
         read_json=read_json,
+        age=age,
         time=time,
         json=json,
     )
@@ -248,6 +251,9 @@ class TerminalFenceTests(unittest.TestCase):
             phase="STOPPED",
             emit=lambda kind, data: events.append((kind, data)),
             delta=ProjectionDelta(),
+            planning=PlanningFeedback(),
+            stop_feedback=StopFeedback(),
+            show_wait_feedback=True,
             future=future,
             outstanding="poll",
             pending_call=None,

@@ -81,4 +81,4 @@ T1内沿用同一个PRODUCT-1.BOTTOM域组件根，并附场景批次标识；�
 
 显示槽数只是位置/外观参数，没有提升域库位或bay容量。PRE只表达已存在的CUT；除锈、钻孔、倒角和板材加工仍待工艺证据判定，未增设备。Q1保持异常产品隔离用途，正常结构检验在J3、最终检验/包装在F1。
 
-全部15人的具名起点和独立可达路径见版本化布局与真实检查报告；人员行走、准备和等待尚未接入S14/S18/S22的计时及人因。场景动作不改变D01—D06，质量UNKNOWN，HR禁用。上游材料、人员、运输执行由[总纲补丁](../PROJECT_CHARTER.md#process-layout-patch)所列后续授权步骤承接。
+全部15人的具名起点和独立可达路径见版本化布局与真实检查报告；人员行走、准备和等待尚未接入S14/S18/S22的计时及人因。场景动作不改变D01—D06，质量UNKNOWN，HR禁用。上游材料、人员、运输执行由[总纲补丁](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#process-layout-patch)所列后续授权步骤承接。

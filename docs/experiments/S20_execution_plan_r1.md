@@ -15,7 +15,7 @@ S20 的出口是可解析、可追溯、可公平比较且经负责人明确接�
 | 当前目录与身份 | 当前仓库；只读确认当前分支 main、HEAD 为 `c8c1f74aa26111c6747b87d99f5730a24497f071`；沿用本目录，不建分支、worktree 或子代理，无 Git 写入 |
 | 已发布基线 | `step-S19B-r2`；既有发布回执记录远端 828 文件树一致、CI38883440959 双平台源码/隔离 wheel 各 862 项通过。本次读取既有回执，未重新检查远端或重跑 CI |
 | 授权入口 | [交接](../steps/S20_handoff.md)、[步骤卡](../steps/S20.md)、AGENTS 当前 PR188/LOG258；当前仅授权规划 |
-| 任务与证据规则 | [总纲 S20](../PROJECT_CHARTER.md#s20)、[图文规则](../PROJECT_CHARTER.md#visual-evidence-rules)、2026-10-08 研究域衔接、物流及设备/人员/成品缓冲补丁；历史待审补丁须在阶段 1 对照后续实际批准，不能直接当现行配置 |
+| 任务与证据规则 | [总纲 S20](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#s20)、[图文规则](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#visual-evidence-rules)、2026-10-08 研究域衔接、物流及设备/人员/成品缓冲补丁；历史待审补丁须在阶段 1 对照后续实际批准，不能直接当现行配置 |
 | 研究准入 | `S18-SIM-A1`、[SR01—SR08 方案](../model/S18_simulation_scope_proposal_r1.md)及[实际批准](../model/S18_simulation_scope_approval_r1.json)；适用产品、组件、输出、过程与消费者版本须绑定 |
 | 参数来源 | [参数表](../model/parameters.md)、[证据台账](../research/production_evidence.md)为追溯入口；旧候选窗口、敏感性点值和宏观数值不自动变为本轮批准值 |
 | 旧协议 | 已定位 S19A 视觉及 S19B B3/第五步/有限修复协议；它们属于原视觉/前端验证域，只复用有适用证明的身份、预算和证据规则，不改名充当 S20 正式协议 |

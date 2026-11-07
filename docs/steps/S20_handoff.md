@@ -25,6 +25,6 @@
 
 ## 必要阅读入口
 
-根AGENTS当前状态与[本步卡](S20.md)；[项目总纲S20](../PROJECT_CHARTER.md#s20)、`visual-evidence-rules`、2026-10-08研究域衔接、S20—S28物流与设备补丁；[路线表](../roadmap.md)仅作索引，旧未授权状态以本次决定覆盖。已有协议/实例/分析计划如存在，先读取并标记继承关系，不覆盖旧版本。README、PROGRESS_LOG和PROMPT_LEDGER只需读取与当前基线相关的段落。
+根AGENTS当前状态与[本步卡](S20.md)；[项目总纲S20](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/PROJECT_CHARTER.md#s20)、`visual-evidence-rules`、2026-10-08研究域衔接、S20—S28物流与设备补丁；[路线表](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/blob/v1.0.1/docs/roadmap.md)仅作索引，旧未授权状态以本次决定覆盖。已有协议/实例/分析计划如存在，先读取并标记继承关系，不覆盖旧版本。README、PROGRESS_LOG和PROMPT_LEDGER只需读取与当前基线相关的段落。
 
 本对话写完交接后不再并发修改项目治理。创建/接收回执存 `.local/s20-handoff-20261019/`；新对话核对接收后直接编写推进规划并交负责人审阅。此轮不暂存、提交、打标签、推送或发布。
