@@ -10,12 +10,14 @@ from copy import deepcopy
 
 from adaptive_hrc_scheduling.contracts.session import digest, loads
 
+from .processes import CancellableProcesses
 
-def audit_separately(payload):
+
+def audit_separately(payload, runner=None):
     """CPU audit cannot hold the projection reader or its GIL for a rollout."""
     full_schedule = payload.get("full_schedule")
     e20 = payload.get("initial", {}).get("id", "").startswith("P051-FIXED-r1:P052-E20-r1:")
-    result = subprocess.run(
+    result = (runner.run if runner else subprocess.run)(
         [sys.executable, "-B", "-X", "utf8", "-m", "p051_desktop.forecast_worker"],
         input=json.dumps(payload, ensure_ascii=False),
         text=True,
@@ -95,6 +97,10 @@ class ScheduleReader:
         self.full_history = {}
         self.revision = 0
         self.executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="forecast-audit")
+        self.processes = CancellableProcesses()
+
+    def audit(self, payload):
+        return audit_separately(payload, self.processes)
 
     def drain(self):
         for key, future in list(self.pending.items()):
@@ -112,6 +118,7 @@ class ScheduleReader:
             raise ValueError(self.failure)
 
     def close(self):
+        self.processes.close()
         self.executor.shutdown(wait=False, cancel_futures=True)
 
     def read(self, client, *, full_reference_error=None):
@@ -168,7 +175,7 @@ class ScheduleReader:
                     raise ValueError("GANTT_RUN_IDENTITY")
                 if cache_key not in self.pending:
                     self.pending[cache_key] = self.executor.submit(
-                        audit_separately,
+                        self.audit,
                         dict(
                             data=data,
                             reference=ref,
@@ -270,7 +277,7 @@ class ScheduleReader:
                     self.full_history[key] = self.verified[key]
                 elif key not in self.pending and key not in self.full_failures:
                     self.pending[key] = self.executor.submit(
-                        audit_separately,
+                        self.audit,
                         dict(
                             full_schedule=True,
                             directory=str(client.directory),

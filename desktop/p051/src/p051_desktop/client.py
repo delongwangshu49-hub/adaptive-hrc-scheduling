@@ -17,7 +17,7 @@ from adaptive_hrc_scheduling.contracts.session import (
 from adaptive_hrc_scheduling.control.session import submit_file
 from adaptive_hrc_scheduling.dynamic_orders import template_registry
 from adaptive_hrc_scheduling.timeline import TimelineConsumer
-from adaptive_hrc_scheduling.workforce_session import arrival_payload
+from adaptive_hrc_scheduling.workforce_session import arrival_payload, scene_person_path
 
 from .gantt import ScheduleReader, enrich
 from .projection import WorkColors, person_results
@@ -116,6 +116,7 @@ class Client:
             elapsed_s=time.perf_counter() - began,
             packets=consumed,
             byte_cursor=self.offset,
+            total_bytes=path.stat().st_size if path.is_file() else None,
             sequence=self.consumer.sequence,
         )
         result["reader_metrics"] = self.poll_metrics
@@ -227,6 +228,13 @@ class Client:
             + person_results(self.consumer.events),
             people=deepcopy(self.packet["people"]),
             devices=deepcopy(self.packet["devices"]),
+            request_context=deepcopy(self.journal.get("confirmation_bindings", {})),
+            product_statuses=deepcopy(
+                self.packet.get("source", {})
+                .get("observation", {})
+                .get("state", {})
+                .get("products")
+            ),
             workforce_statistics=deepcopy(self.packet["workforce_statistics"]),
             plan=deepcopy(self.packet["plan"]),
             catalog=deepcopy(self.packet["catalog"]),
@@ -239,6 +247,11 @@ class Client:
             full_reference_error=self.full_reference_error,
             ui_options=dict(
                 locations=[p["id"] for p in config["places"]],
+                person_locations={
+                    p["id"]: p["location"]
+                    for p in self.packet["source"]["observation"]["state"]["positions"]
+                    if any(person["id"] == p["id"] for person in self.packet["people"])
+                },
                 repair_evidence=[p["id"] for p in config["evidence"] if p["status"] == "PASS"],
                 person_templates=list(registry()),
             ),
@@ -281,7 +294,7 @@ class Client:
                 initial_f=payload.get("initial_f", 0.1),
             )
             if self.spec["backend"] == "ISAAC":
-                payload["scene_reference"]["prim_path"] = "/World/P043/People/" + target
+                payload["scene_reference"]["prim_path"] = scene_person_path(target)
         if kind in ("CLOSE_INPUT", "STOP_REQUEST"):
             target = self.spec["run_id"]
         request = dict(
@@ -345,6 +358,7 @@ class Client:
             preview_state_revision=request["expected_state_revision"],
             submitted_state_revision=submitted["expected_state_revision"],
             business_payload_unchanged=submitted["payload"] == request["payload"],
+            plan_version_before=(view.get("verified_full_schedule") or {}).get("version"),
         )
         self.journal["sequence"] = request["client_sequence"]
         self.journal["requests"][request["request_id"]] = submitted

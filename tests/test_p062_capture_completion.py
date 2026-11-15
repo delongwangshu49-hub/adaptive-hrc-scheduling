@@ -2,10 +2,13 @@
 
 import ast
 import hashlib
+import json
+import sys
+import tempfile
 import types
 import unittest
 from pathlib import Path
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "scripts/run_s19b_prototype.py"
@@ -24,6 +27,53 @@ def load_capture(clock):
 
 
 class CaptureCompletionTests(unittest.TestCase):
+    def test_cpu_first_publication_binds_sources_before_render_capture(self):
+        self.addCleanup(setattr, sys, "path", list(sys.path))
+        sys.path[:0] = [str(ROOT / "scripts"), str(ROOT / "desktop/s19b/src")]
+        import run_s19b_prototype as worker
+
+        from adaptive_hrc_scheduling.control.online_timing import OnlineTiming
+
+        probes = []
+
+        def timing(*args):
+            probe = OnlineTiming(*args)
+            probes.append(probe)
+            return probe
+
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            sources = b'{"source":"startup-regression"}'
+            (output / "sources.json").write_bytes(sources)
+            request = dict(
+                run_id="P051-STARTUP-REGRESSION",
+                request_id="INITIAL-PUBLICATION",
+                backend="light",
+                draft=dict(products=1, variant="SR-W1", release_times=[0]),
+            )
+            try:
+                with (
+                    patch(
+                        "adaptive_hrc_scheduling.control.production_loop.run",
+                        side_effect=RuntimeError("FIRST_PUBLICATION_BOUNDARY_REACHED"),
+                    ),
+                    patch("adaptive_hrc_scheduling.control.online_timing.OnlineTiming", timing),
+                    self.assertRaisesRegex(RuntimeError, "FIRST_PUBLICATION_BOUNDARY_REACHED"),
+                ):
+                    worker.run(request, output)
+                live = json.loads((output / "live.json").read_bytes())
+                self.assertEqual(live["phase"], "INITIALIZED")
+                self.assertEqual(live["source_version"], hashlib.sha256(sources).hexdigest())
+                self.assertEqual(live["run_id"], request["run_id"])
+                self.assertEqual(live["request_id"], request["request_id"])
+                self.assertIsNone(live["camera"])
+                self.assertEqual(
+                    json.loads((output / "p051-startup.json").read_bytes())["phase"], "CPU_READY"
+                )
+            finally:
+                for probe in probes:
+                    probe.close()
+
     def test_existing_complete_png_does_not_skip_SDK_completion_barrier(self):
         capture = load_capture(lambda: 0)
         path = Mock()
@@ -95,6 +145,52 @@ class CaptureCompletionTests(unittest.TestCase):
         assignments[0].value = ast.parse(
             'ROOT / ".local/s19b-render-cache/optix"', mode="eval"
         ).body
+        # v1.3 adds an explicit windowless validation flag. Check the sole
+        # configuration difference, then pin every original close/exit branch.
+        constructors = [
+            node
+            for node in ast.walk(main)
+            if isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Name)
+            and node.func.id == "SimulationApp"
+        ]
+        self.assertEqual(len(constructors), 1)
+        config = constructors[0].args[0]
+        self.assertIsInstance(config, ast.Dict)
+        fields = [
+            i
+            for i, key in enumerate(config.keys)
+            if isinstance(key, ast.Constant) and key.value == "headless"
+        ]
+        self.assertEqual(len(fields), 1)
+        self.assertEqual(
+            ast.dump(config.values[fields[0]]),
+            ast.dump(ast.Name(id="HEADLESS_VALIDATION", ctx=ast.Load())),
+        )
+        config.values[fields[0]] = ast.Constant(value=False)
+        # Also pin the exact new source registration and read-only startup
+        # telemetry. Neither is permitted to alter native close or exit logic.
+        new_sources = ast.parse(
+            'sources.extend([ROOT / "scripts/p051_native_telemetry.py", ROOT / "scripts/p051_scene_link.py", ROOT / "desktop/p051/web/src/design-tokens.json"])'
+        ).body[0]
+        old_sources = ast.parse('sources.append(ROOT / "scripts/p051_native_telemetry.py")').body[0]
+        startup = ast.parse(
+            'atomic_json(output / "p051-startup.json", dict(run_id=request["run_id"], request_id=request["request_id"], epoch=0, phase="STARTING_KIT", headless_validation=HEADLESS_VALIDATION, published_monotonic_s=time.monotonic()))'
+        ).body[0]
+        counts = [0, 0]
+
+        class RestoreDisplayAdditions(ast.NodeTransformer):
+            def visit_Expr(self, node):
+                if ast.dump(node) == ast.dump(new_sources):
+                    counts[0] += 1
+                    return old_sources
+                if ast.dump(node) == ast.dump(startup):
+                    counts[1] += 1
+                    return None
+                return self.generic_visit(node)
+
+        main = RestoreDisplayAdditions().visit(main)
+        self.assertEqual(counts, [1, 1])
         checksum = hashlib.sha256(ast.dump(main, include_attributes=False).encode()).hexdigest()
         self.assertEqual(
             checksum, "fe09bcaf10d720d4b6075dde63ea60d449e67a02fda2061fe42c44967b09f387"

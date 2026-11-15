@@ -1,0 +1,62 @@
+{
+  "box-selection.png": {
+    "sha256": "f1fe77a2b7ad65a6a2ca165f4a1e256351931c61169c092db6236d8d6f01184b",
+    "source": "ui-evidence-r9/05-final-box-selection.png",
+    "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+    "altered": false
+  },
+  "empty-selection.png": {
+    "sha256": "52fea3d389164b5e2e0c5817214b627699f550525770c2cc61246fc8b3cca580",
+    "source": "ui-evidence-r9/06-empty-click-cleared.png",
+    "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+    "altered": false
+  },
+  "crane-click.png": {
+    "sha256": "94d7b4a5f3c4b5483f62612d1bb20148db696230db67e592939cda2b633c2301",
+    "source": "ui-evidence-r9/07-crane-click-linked.png",
+    "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+    "altered": false
+  },
+  "return-location.png": {
+    "sha256": "1283b8d588e1745f914968e58e9c95df455c9f2bd984aa78e5f2dd7341f8b46e",
+    "source": "ui-evidence-r9/02-af1-return-location-prefilled.png",
+    "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+    "altered": false
+  },
+  "dual-overview.png": {
+    "sha256": "8421f43e9a8e2cf73519cc6a4913e2284bf2206f1559fc3fe2c89bee4a3790cd",
+    "source": "ui-evidence-r9/09-urgent-v5-dual-overview.png",
+    "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+    "altered": false
+  },
+  "saved-exit.png": {
+    "sha256": "0fee6ffbb2d58f76550c3ff0b03e8f6c8c13e9e6ccae67afee4ab6e439f23101",
+    "source": "ui-evidence-r9/10-stopped-saved-kit-exit-zero.png",
+    "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+    "altered": false
+  },
+  "device-repaired.png": {
+    "sha256": "0db9c70562bcd3aaf7986c9d5e1c148f35a19faf8608b2262ced440797a57924",
+    "source": "ui-evidence-r8/05-device-repair-v3-verified-maximized.png",
+    "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+    "altered": false
+  },
+  "read-only-reopened.png": {
+    "sha256": "3acad8b53377d68e175ea41c1c9b9611752b4725fe4310c2898170b0f50ff769",
+    "source": "ui-evidence-r10-attempt2/01-readonly-v5-verified.png",
+    "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+    "altered": false
+  },
+  "overview-restored.png": {
+    "sha256": "9c9cc14202717d5d76d49034c2755f148ba5d8ceb551430b86f0fc702d5c822f",
+    "source": "ui-evidence-r10-attempt2/02-overview-scroll-reset.png",
+    "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+    "altered": false
+  },
+  "dual-export.png": {
+    "sha256": "ed83e0a9117e8490a60bd6dbf4ac4020ac5c34749089d426c0925e695ad676db",
+    "source": "ui-evidence-r9/dual-final.png",
+    "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+    "altered": false
+  }
+}

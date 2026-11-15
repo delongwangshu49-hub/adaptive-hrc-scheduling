@@ -1,0 +1,19 @@
+{
+  "full_checks_passed": true,
+  "native_required_flows_passed": true,
+  "evidence": "../../docs/delivery/v140_native_acceptance_r1.json",
+  "text": {
+    "en": {
+      "NATIVE_SELECTION": "Actual local input selected the crane CR1, the person OP1 and registered material objects, performed forward and reverse rectangles, and cleared selection on empty space. The final r9 rectangle selected 32 entities; a direct CR1 click linked 13 work intervals. Window resizing and 150% system DPI were observed. The available input API cannot hold modifier keys while injecting mouse input, so Shift/Ctrl/Alt mouse combinations remain mapping-tested rather than natively accepted. A final display-only follow-up resets vertical scroll when changing view or filter and removes inactive overview expand controls; read-only native reopening verified that correction.",
+      "NATIVE_PLANNING": "The repaired core passed an order change after executed work, CUT1 failure and repair, AF1 absence and same-ID return, V140-W1 arrival and departure, and a final urgent order. Repair replanning took 105.199 s in r8. Return, arrival and departure in r9 took 96.915, 95.056 and 100.153 s. The final urgent request registered PRODUCT-2 and produced independently verified plan v5 after 391.935 s. These are different states in continuous local sessions, not paired speed comparisons. The new product had not physically started before safe stop; registration, verified scheduling and visible execution remain distinct facts.",
+      "NATIVE_EXIT": "The final native session saved at approximately 1.768 simulated hours. Both Isaac and the workbench returned exit code 0. Reopening its archive in the final display revision independently verified v5 without launching Kit; hashes of all 79 saved files were unchanged. The reopened application also exited 0. Dual PNG and PDF export was exercised through the native interface, with separate scene and schedule timestamps. The 178.7 MB timeline took about 7–8 minutes to validate incrementally while the interface remained usable; long-archive loading performance remains a limitation.",
+      "CHECKS": "The final Python revision passed all 1,343 tests from source and all 1,343 from an isolated installed wheel, in 1,160.464 s and 1,156.765 s, respectively, with no failures or skips. All former 1,333 identities were retained and imports were checked against the intended installation. A subsequent change affected only timeline scrolling, overview controls and the frontend bundle; Python, native scripts and tests remained byte-identical. All 41 frontend checks and the final native reopening follow-up passed. The portable CPU flow also started, planned, stopped, saved and exited 0 from a Chinese path containing spaces. Release-gate simulations passed 29 cases without real Git writes."
+    },
+    "zh": {
+      "NATIVE_SELECTION": "本机真实输入完成 CR1 吊车、OP1 人员与已登记物料的点击、正反向拖框和空白清除。最终 r9 框选得到 32 个实体，CR1 直接点击关联 13 个工作区间；窗口缩放和 150% 系统 DPI 已实际检查。当前自动操作接口不能持续按住修饰键再投递鼠标，故 Shift/Ctrl/Alt 组合只记事件映射检查，未记原生鼠标通过。最后一次仅显示层修正补充视图/筛选切换时重置纵向位置并移除概览无效展开控件，已在只读原生重开中复验。",
+      "NATIVE_PLANNING": "修复后的核心完成已执行前缀后的改单、CUT1 故障及维修、AF1 缺勤与同 ID 返回、V140-W1 到岗及离岗，以及最后一次急单。r8 维修重排耗时 105.199 s；r9 返回、到岗和离岗分别耗时 96.915、95.056 和 100.153 s。最后急单登记 PRODUCT-2，391.935 s 后生成并独立核验 v5。这些是连续会话中不同状态的单次功能观察，不能当作成对性能对照。本次安全停止前，新增产品尚未物理开工，登记、排程核验和可见执行保持分别记载。",
+      "NATIVE_EXIT": "最终原生会话在约 1.768 模拟小时保存，Isaac 与工作台实际退出码均为 0。以最终显示修正版只读重开该存档后，v5 再次通过核验，未启动 Kit，79 个存档文件摘要保持；重开后的工作台也实际退出 0。双图 PNG 和 PDF 经原生界面导出成功，场景与排程采样时刻分别标明。 178.7 MB 时间线逐包核验读取约需 7–8 分钟，期间界面可操作并显示进度，长存档读取性能仍待改进。",
+      "CHECKS": "最终 Python 修订的源码与隔离安装 wheel 各通过全部 1,343 项，分别耗时 1,160.464 s 和 1,156.765 s，无失败、无跳过；原 1,333 个身份保留，实际导入来源核对通过。随后仅调整甘特滚动、概览控件及前端构建，Python、原生脚本和测试字节保持，41 项前端检查和最终原生重开专项通过。便携 CPU 流程在中文空格路径完成启动、计划、停止、保存及实际退出 0。发布门禁的 29 个模拟流程用例通过，没有真实 Git 写入。"
+    }
+  }
+}

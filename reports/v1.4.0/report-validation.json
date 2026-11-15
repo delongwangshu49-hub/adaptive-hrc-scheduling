@@ -1,0 +1,54 @@
+{
+  "en": {
+    "pages": 33,
+    "original_paragraphs": 261,
+    "changed_original_paragraphs": [
+      [
+        3,
+        "English five-chapter report\nP08 W5 | Local integration candidate v1.1.0 r2",
+        "English five-chapter report\nApplication v1.4.0 | Local validation edition"
+      ],
+      [
+        5,
+        "The report documents the implemented simulation framework and its measured results. Owner operation is scheduled after document completion and is recorded separately. Appendix C records the subsequent W1 to W5 engineering candidate.",
+        "The report documents the implemented simulation framework and its measured results. Owner operation is scheduled after document completion and is recorded separately. Appendix C records the subsequent W1 to W5 engineering candidate. Appendix D records version 1.4.0 native acceptance and release preparation; publication remains pending."
+      ]
+    ],
+    "original_tables": 8,
+    "equations": 5,
+    "original_figures": 5,
+    "new_figures": 2,
+    "figures_byte_identical": true,
+    "math_unchanged": true,
+    "appendix_text_present": true,
+    "docx_sha256": "c63a7b3eb5f25ca70f7db73955121dfb118af4825a3cf01082a3d1a2eedfb93d",
+    "pdf_sha256": "18880ad17a22da022e70bf445cf3e277d2922c11af6072ee5921bb2a9bb1e06f",
+    "pdf_links": 81
+  },
+  "zh": {
+    "pages": 29,
+    "original_paragraphs": 261,
+    "changed_original_paragraphs": [
+      [
+        3,
+        "英文五章报告中译本\nP08 W5 | 本地集成候选 v1.1.0 r2",
+        "英文五章报告中译本\n应用 v1.4.0 | 本地验证版"
+      ],
+      [
+        5,
+        "本报告记录已实现的仿真框架及其测量结果。负责人操作安排在文稿完成后，另行记录。附录 C 记录此后的 W1 至 W5 工程候选。",
+        "本报告记录已实现的仿真框架及其测量结果。负责人操作安排在文稿完成后，另行记录。附录 C 记录此后的 W1 至 W5 工程候选。附录 D 增补 1.4.0 版原生验收与发布准备，尚未发布。"
+      ]
+    ],
+    "original_tables": 8,
+    "equations": 5,
+    "original_figures": 5,
+    "new_figures": 2,
+    "figures_byte_identical": true,
+    "math_unchanged": true,
+    "appendix_text_present": true,
+    "docx_sha256": "94489d1dd0ef0e4b7ddc6e3d82ebb98d3b7093fe78421592cd92c74ae4ecc596",
+    "pdf_sha256": "b9f205bb08b352ccbb3de5f83597a1bbc46d15af376055e52c5fb17c5baa1c6d",
+    "pdf_links": 78
+  }
+}

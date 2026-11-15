@@ -23,6 +23,7 @@ import check_p062_canvas_age as age_tool  # noqa: E402
 import supervise_s19b as supervisor  # noqa: E402
 from p051_desktop.client import Client  # noqa: E402
 from p051_desktop.delta import ProjectionDelta  # noqa: E402
+from p051_desktop.linkage import display_context  # noqa: E402
 from p051_desktop.planning import PlanningFeedback, age  # noqa: E402
 from p051_desktop.stop_feedback import StopFeedback  # noqa: E402
 from p051_desktop.write_fence import BLOCKED_PHASES, control_phase  # noqa: E402
@@ -83,6 +84,7 @@ def host_methods():
         control_phase=control_phase,
         atomic_json=atomic_json,
         read_json=read_json,
+        display_context=display_context,
         age=age,
         time=time,
         json=json,
@@ -255,6 +257,9 @@ class TerminalFenceTests(unittest.TestCase):
             stop_feedback=StopFeedback(),
             show_wait_feedback=True,
             future=future,
+            diagnostic_future=None,
+            focus_gantt=True,
+            overlay_open=False,
             outstanding="poll",
             pending_call=None,
             detached=False,

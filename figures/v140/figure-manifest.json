@@ -1,0 +1,42 @@
+{
+  "scope": "One fixed-input instrumented CPU replay; not two released EXEs or final native end-to-end performance",
+  "language": "English",
+  "style_reference": "analysis/p07/presentation_figures.py",
+  "style_reference_sha256": "2c2427ae71609426bcecab145083bb1271ba139152163241619e8f6574601b52",
+  "inherited_rcparams": {
+    "font.family": "DejaVu Sans",
+    "font.size": 12,
+    "axes.titlesize": 14,
+    "axes.labelsize": 12,
+    "axes.spines.top": false,
+    "axes.spines.right": false,
+    "svg.fonttype": "none",
+    "pdf.fonttype": 42,
+    "svg.hashsalt": "p07-question-led-r1",
+    "figure.facecolor": "white",
+    "axes.facecolor": "white",
+    "savefig.facecolor": "white"
+  },
+  "inherited_palette": {
+    "HUMAN": "#616975",
+    "COLLAB": "#1d4ed8",
+    "INK": "#17212e"
+  },
+  "data_sha256": "2f2ce7afb34fe4d9c2685f30e4cc6add693736613e9104d0d3b44418e4e19853",
+  "facts_sha256": "c7a0e8755bb93267eea78061967e82ab903f1ca1fce892ad95b4cc1884106b9f",
+  "transformations": "Original five matched observations; declared warm-ups excluded; linear axis; no CI, smoothing or omitted slow pair.",
+  "outputs": {
+    "V140-paired-replay-en.png": {
+      "bytes": 219682,
+      "sha256": "48c2012aa50ed3e597e1248bd064239eadb35fd58074779841e6b03b60620b2f"
+    },
+    "V140-paired-replay-en.svg": {
+      "bytes": 18113,
+      "sha256": "796b60f70fba9fdd28d496ec55795074725b06f57171d087f0600f3e965c6c97"
+    },
+    "V140-paired-replay-en.pdf": {
+      "bytes": 26406,
+      "sha256": "a66ee80768d4ebadfedfb646cfe8d37931faab7fb8245ee4856474361d491d66"
+    }
+  }
+}

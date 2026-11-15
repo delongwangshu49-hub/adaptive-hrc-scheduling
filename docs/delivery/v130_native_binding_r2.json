@@ -1,0 +1,255 @@
+{
+  "version": "1.3.0",
+  "revision": "native-r2",
+  "status": "LOCAL_REPAIR_VERIFIED_NATIVE_DIRECT_PICK_OPEN_NOT_PUBLISHED",
+  "base_binding_sha256": "006e8d2052352b0d4564001555a67feca21f62c49f6c43ef316d7cf7d5a348b1",
+  "previous_artifact_relocations": [
+    {
+      "original_path": "README.md",
+      "path": "docs/archive/v1.3.0-r1/README.md",
+      "sha256": "c08a2a810e41eea9e3b3907779e247e0b7b0e8ececf89c1420b303a6eb8a515a"
+    },
+    {
+      "original_path": "README.zh-CN.md",
+      "path": "docs/archive/v1.3.0-r1/README.zh-CN.md",
+      "sha256": "613ac4cffbb1976a78f67ceb9d5c9821a6f5562349e8d350fdfcfe6e4780a868"
+    },
+    {
+      "original_path": "desktop/p051/portable/START-HERE.md",
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/portable/START-HERE.md",
+      "sha256": "184acd2ac788095d0a5a984d9c267627e8359ed8421cf858ad178c8b965eb7b6"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/app.py",
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/src/p051_desktop/app.py",
+      "sha256": "6c4990cd5dea5c42cfba8aa6aa6d339191c71db69640840a09ff870071fd8c80"
+    },
+    {
+      "original_path": "desktop/p051/web/dist/assets/index-DkSsSNep.js",
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/dist/assets/index-DkSsSNep.js",
+      "sha256": "55b32c13b2672186729e8317cebfc6939cad7a63efdb46734354bb062e99326b"
+    },
+    {
+      "original_path": "desktop/p051/web/dist/assets/index-DkSsSNep.js.map",
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/dist/assets/index-DkSsSNep.js.map",
+      "sha256": "44fb801514d6b8551a111692597c0528f100544cb313d74cf983b3cee9f2ef29"
+    },
+    {
+      "original_path": "desktop/p051/web/dist/index.html",
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/dist/index.html",
+      "sha256": "47ed3c930abd31191122232bed9cf26b74ec6ea10ce8b72ceae042b04f412358"
+    },
+    {
+      "original_path": "desktop/p051/web/src/LinkedExperience.jsx",
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/src/LinkedExperience.jsx",
+      "sha256": "57e4ecbd8d15b5d3af1e2fa1a840ad3b09f15477366bf1a17eac79e760a6c864"
+    },
+    {
+      "original_path": "desktop/p051/web/src/linkage.mjs",
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/src/linkage.mjs",
+      "sha256": "f0f29e026e028f74867c979246d52ec5fc37882b9f64783aad5d65f0dbee2748"
+    },
+    {
+      "original_path": "desktop/p051/web/src/main.jsx",
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/src/main.jsx",
+      "sha256": "0baca23955da177c000764fdc2e2e9b604151f9f741264ca8f237180c3af073d"
+    },
+    {
+      "original_path": "desktop/p051/web/tests/linkage.test.mjs",
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/tests/linkage.test.mjs",
+      "sha256": "635c5ba017b0a01569bba863ae2fefa64ea0d8315831b78bdc4ff0ea18ab7a14"
+    },
+    {
+      "original_path": "docs/releases/v1.3.0-user-guide.en.md",
+      "path": "docs/archive/v1.3.0-r1/docs/releases/v1.3.0-user-guide.en.md",
+      "sha256": "0ea476c17d67d4ad4f7995bc0e6a154179eec258e2f4dd87abc45e2b94732477"
+    },
+    {
+      "original_path": "docs/releases/v1.3.0-user-guide.zh-CN.md",
+      "path": "docs/archive/v1.3.0-r1/docs/releases/v1.3.0-user-guide.zh-CN.md",
+      "sha256": "a95fcbdfb25a792540560375f1c48f62eeeaf2786264ac387db4670363db842d"
+    },
+    {
+      "original_path": "scripts/p051_scene_link.py",
+      "path": "docs/archive/v1.3.0-r1/scripts/p051_scene_link.py",
+      "sha256": "f232344a79b5829ae3882a940a418672983999b8e9d75b71bb90b221fcc1ec0e"
+    },
+    {
+      "original_path": "scripts/run_s19b_prototype.py",
+      "path": "docs/archive/v1.3.0-r1/scripts/run_s19b_prototype.py",
+      "sha256": "6575619be483062b9b9b2ac660c10d515acfb47a1676c7f14bc70f90ec2c4f32"
+    },
+    {
+      "original_path": "src/adaptive_hrc_scheduling/full_schedule.py",
+      "path": "docs/archive/v1.3.0-r1/src/adaptive_hrc_scheduling/full_schedule.py",
+      "sha256": "0dbc5aa82abacadd7ae0286445e624f63ece738d99aa437ebd4223d08f7e7226"
+    },
+    {
+      "original_path": "tests/test_p07_delivery_bytes.py",
+      "path": "docs/archive/v1.3.0-r1/tests/test_p07_delivery_bytes.py",
+      "sha256": "490fbf207d3754eca907705d563c72dea8744fca2d33945302194ad4d1b7b021"
+    }
+  ],
+  "current_artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "831a3dd17e4e162bcc41ac51ee446c225f2b4e144a36c53fef9c59e6725f42d3"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "sha256": "14347f7e73b5e5d7a7dbbbc416b157d3a637a0ac3b88546223968dd30c27d959"
+    },
+    {
+      "path": "desktop/p051/portable/START-HERE.md",
+      "sha256": "021308ebe65a5c4d4802615481614c918d20ba0462015a785b77cf9bac9507dc"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/app.py",
+      "sha256": "2d034350f5275a7f0b2d1480125bc164e2f4b28ec61cf49c1104234a6623bd2e"
+    },
+    {
+      "path": "desktop/p051/web/dist/assets/index-CAh8MRxb.js",
+      "sha256": "eec8359288dde314e5b83cb370520d036f7b27131966a9b93d7e8b3b254eefb5"
+    },
+    {
+      "path": "desktop/p051/web/dist/assets/index-CAh8MRxb.js.map",
+      "sha256": "f94da951916033600ae7daf434ab128a69ed2b4a3c0c36b4345cf8d4e1e93845"
+    },
+    {
+      "path": "desktop/p051/web/dist/index.html",
+      "sha256": "eb34026b6f0d8b1de0a2e8de9da89ddc6e8457fd1863ddf0d9a998f176e906dd"
+    },
+    {
+      "path": "desktop/p051/web/src/LinkedExperience.jsx",
+      "sha256": "bc53267df874f464708a63f50c0cf08fa85a4d01fe490781f5d147afae5a5dd8"
+    },
+    {
+      "path": "desktop/p051/web/src/linkage.mjs",
+      "sha256": "bb7ee8f79fbf8db826d0a5bdbb0c5506df8021702e6d9a635a7ef6a4d4673226"
+    },
+    {
+      "path": "desktop/p051/web/src/main.jsx",
+      "sha256": "da3e28eee8a8c99a648b00465c749050f85f6c657a05599d6c77c51e76584d2a"
+    },
+    {
+      "path": "desktop/p051/web/tests/linkage.test.mjs",
+      "sha256": "6ec2913a22165ca73547e1c8d2ffc09f17abdd142d41dace0cc219f597b29560"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/README.md",
+      "sha256": "c08a2a810e41eea9e3b3907779e247e0b7b0e8ececf89c1420b303a6eb8a515a"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/README.zh-CN.md",
+      "sha256": "613ac4cffbb1976a78f67ceb9d5c9821a6f5562349e8d350fdfcfe6e4780a868"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/portable/START-HERE.md",
+      "sha256": "184acd2ac788095d0a5a984d9c267627e8359ed8421cf858ad178c8b965eb7b6"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/src/p051_desktop/app.py",
+      "sha256": "6c4990cd5dea5c42cfba8aa6aa6d339191c71db69640840a09ff870071fd8c80"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/dist/assets/index-DkSsSNep.js",
+      "sha256": "55b32c13b2672186729e8317cebfc6939cad7a63efdb46734354bb062e99326b"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/dist/assets/index-DkSsSNep.js.map",
+      "sha256": "44fb801514d6b8551a111692597c0528f100544cb313d74cf983b3cee9f2ef29"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/dist/index.html",
+      "sha256": "47ed3c930abd31191122232bed9cf26b74ec6ea10ce8b72ceae042b04f412358"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/src/LinkedExperience.jsx",
+      "sha256": "57e4ecbd8d15b5d3af1e2fa1a840ad3b09f15477366bf1a17eac79e760a6c864"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/src/linkage.mjs",
+      "sha256": "f0f29e026e028f74867c979246d52ec5fc37882b9f64783aad5d65f0dbee2748"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/src/main.jsx",
+      "sha256": "0baca23955da177c000764fdc2e2e9b604151f9f741264ca8f237180c3af073d"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/desktop/p051/web/tests/linkage.test.mjs",
+      "sha256": "635c5ba017b0a01569bba863ae2fefa64ea0d8315831b78bdc4ff0ea18ab7a14"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/docs/releases/v1.3.0-user-guide.en.md",
+      "sha256": "0ea476c17d67d4ad4f7995bc0e6a154179eec258e2f4dd87abc45e2b94732477"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/docs/releases/v1.3.0-user-guide.zh-CN.md",
+      "sha256": "a95fcbdfb25a792540560375f1c48f62eeeaf2786264ac387db4670363db842d"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/scripts/p051_scene_link.py",
+      "sha256": "f232344a79b5829ae3882a940a418672983999b8e9d75b71bb90b221fcc1ec0e"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/scripts/run_s19b_prototype.py",
+      "sha256": "6575619be483062b9b9b2ac660c10d515acfb47a1676c7f14bc70f90ec2c4f32"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/src/adaptive_hrc_scheduling/full_schedule.py",
+      "sha256": "0dbc5aa82abacadd7ae0286445e624f63ece738d99aa437ebd4223d08f7e7226"
+    },
+    {
+      "path": "docs/archive/v1.3.0-r1/tests/test_p07_delivery_bytes.py",
+      "sha256": "490fbf207d3754eca907705d563c72dea8744fca2d33945302194ad4d1b7b021"
+    },
+    {
+      "path": "docs/assets/v1.3.0-native-r2/person-arrival.jpg",
+      "sha256": "12b7278e9f69287467a28c0efc215ddebc3d0a8c1082d3dcf535a1c2cb8b4e3c"
+    },
+    {
+      "path": "docs/assets/v1.3.0-native-r2/saved-and-exited.jpg",
+      "sha256": "534d8ad8e8ae5031affe3144a68cdb0240ff9093b6d3fdcc4befc1839a75a644"
+    },
+    {
+      "path": "docs/assets/v1.3.0-native-r2/urgent-order-registration.jpg",
+      "sha256": "26fbaa24fa1a773317fcdf6b3813df0dd05813b5322b0889364aa8f151c35f96"
+    },
+    {
+      "path": "docs/delivery/v130_native_acceptance_r2.json",
+      "sha256": "173e57eac2ed6b9d0d8f9746e55ed76c995a94a5bac5da17802403711c5a6e4c"
+    },
+    {
+      "path": "docs/releases/v1.3.0-user-guide.en.md",
+      "sha256": "4e58bfb7de52d25d4b8d91c1db811b3584b4bdc3036ab4d4c474c609f4c7fecf"
+    },
+    {
+      "path": "docs/releases/v1.3.0-user-guide.zh-CN.md",
+      "sha256": "80cd78da892858087a62a675e22303bb3c7bd319f627f829b7ee3bb581f3337e"
+    },
+    {
+      "path": "docs/validation/UX_v1.3.0_native_validation_r2.md",
+      "sha256": "6d49e3c3a12879a19813794f99d610ce67a74c158a8e22817965812d7e531dfb"
+    },
+    {
+      "path": "scripts/p051_scene_link.py",
+      "sha256": "2cff08bd8d6150dc5dbd31eda4b0eb15fce344e22d806fa4f848c668f8b9bebb"
+    },
+    {
+      "path": "scripts/run_s19b_prototype.py",
+      "sha256": "47c9634513c070040364df8b4c69da137531577309e6d8514b93a74bc69ac881"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/full_schedule.py",
+      "sha256": "02ea9484d6f15c25fba9db9c63c2db33c525b7ff173266b247656913fd6ec3d0"
+    },
+    {
+      "path": "tests/test_p07_delivery_bytes.py",
+      "sha256": "78e5a51e9f3ab10849d87336d8725d38d30d29c14c516208aa349b04daa66a30"
+    },
+    {
+      "path": "tests/test_workbench_native_repairs.py",
+      "sha256": "85a4b68b0470154f16f25ef5245f3215cab67dec33bb1d4df1111467eef768c7"
+    }
+  ]
+}

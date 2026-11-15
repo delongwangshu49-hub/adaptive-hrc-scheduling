@@ -77,15 +77,17 @@ class RulePolicy:
         pass
 
 
-def preview(session, decisions, *, modes=(), order=(), reuse=None):
+def preview(session, decisions, *, modes=(), order=(), reuse=None, measurements=None):
     """Isolated executor and catalog; future facts never enter the live session."""
     from .control.production_loop import run
     from .preview_geometry import ReplayGeometry, geometry_scope
     from .preview_reuse import PreviewPreparation, shareable_records
 
+    began = perf_counter()
     if reuse is None:
         reuse = os.environ.get("P051_PREVIEW_REUSE", "1") != "0"
     memo = shareable_records(session.world) if reuse else {}
+    shared_at = perf_counter()
     clone = copy.copy(session)
     for key, value in session.__dict__.items():
         if isinstance(value, (dict, list, set)):
@@ -117,6 +119,14 @@ def preview(session, decisions, *, modes=(), order=(), reuse=None):
     from .control.session_lifecycle import Lifecycle
 
     obligations = Lifecycle(clone)
+    replay_at = perf_counter()
+    audit_at = None
+
+    def observe_stage(_backend, phase):
+        nonlocal audit_at
+        if phase == "before_audit":
+            audit_at = perf_counter()
+
     with geometry_scope(ReplayGeometry() if reuse and memo else None):
         result = run(
             clone.backend,
@@ -128,6 +138,20 @@ def preview(session, decisions, *, modes=(), order=(), reuse=None):
             reuse_preparation=bool(reuse),
             prefix_decisions=decisions,
             stop_condition=lambda world: obligations.clear(),
+            execution_hook=observe_stage if measurements is not None else None,
+        )
+    finished = perf_counter()
+    if measurements is not None:
+        measurements.update(
+            backend_type=type(session.world).__name__,
+            reuse_requested=bool(reuse),
+            shared_records=len(memo),
+            geometry_reuse=bool(reuse and memo),
+            share_validation_s=shared_at - began,
+            clone_s=replay_at - shared_at,
+            replay_s=(audit_at or finished) - replay_at,
+            audit_s=finished - audit_at if audit_at is not None else None,
+            total_s=finished - began,
         )
     require(
         result.audit.status == result.decision_audit.status == "PASS",
@@ -285,6 +309,37 @@ def intervals(result):
     ]
 
 
+def frozen_prefix_unchanged(previous, rows, events):
+    """Freeze exact receipts, allowing only the existing dispatch clock tolerance.
+
+    Dispatch binds a near-equal planned clock to the delivered observation. A
+    subsequent preview must retain that actual start exactly, rather than
+    restore the prediction. A running end may inherit the same clock roundoff;
+    completed ends remain bound exactly to their actual receipts.
+    """
+    started = {e.command.id: e for e in events if e.kind == "STARTED"}
+    ended = {e.command_id: e.occurred_sim_h for e in events if e.kind == "COMPLETED"}
+    interrupted = {e.command_id for e in events if e.kind == "EXCEPTION"}
+    old = {r["command_id"]: r for r in previous if r["command_id"] in started}
+    new = {r["command_id"]: r for r in rows}
+    return all(
+        key in new
+        and new[key]["start_h"] == started[key].occurred_sim_h
+        and abs(started[key].occurred_sim_h - row["start_h"]) <= 1e-8
+        and all(new[key][field] == row[field] for field in ("operation_id", "roles"))
+        and (
+            key in interrupted
+            or new[key]["end_h"] == ended.get(key, row["end_h"])
+            or key not in ended
+            and started[key].occurred_sim_h != row["start_h"]
+            and new[key]["end_h"] is not None
+            and row["end_h"] is not None
+            and abs(new[key]["end_h"] - row["end_h"]) <= 1e-8
+        )
+        for key, row in old.items()
+    )
+
+
 class FullSchedulePolicy(RulePolicy):
     """Atomically adopt a verified complete schedule and consume it without solving."""
 
@@ -343,24 +398,30 @@ class FullSchedulePolicy(RulePolicy):
         reason, self.dirty = self.dirty, None
         self.calls += 1
         entry = dict(call=self.calls, reason=reason, at_h=w.s.time_h, anchor=anchor)
+        stages = entry["stages"] = {}
         if self.stage_feedback:
             self.stage_feedback("PLANNING", self.calls, self.version + 1)
         try:
             stable = ()
             if self.plan:
-                interrupted = {e.command_id for e in w.events if e.kind == "EXCEPTION"}
                 activities = list(dict.fromkeys(r["activity_id"] for r in self.plan["intervals"]))
                 stable = tuple((aid, i - len(activities) - 1) for i, aid in enumerate(activities))
             try:
-                baseline = preview(s, decisions, order=stable)
+                baseline = preview(
+                    s, decisions, order=stable, measurements=stages.setdefault("baseline", {})
+                )
             except ValueError as exc:
                 if not stable:
                     raise
                 entry["stable_insertion_failure"] = str(exc)
-                baseline = preview(s, decisions)
+                baseline = preview(
+                    s, decisions, measurements=stages.setdefault("baseline_fallback", {})
+                )
                 stable = ()
             chosen = baseline
+            proposal_at = perf_counter()
             modes, solver = mode_proposal(w.config)
+            stages["proposal_process_s"] = perf_counter() - proposal_at
             entry["solver"] = solver
             actual_modes = {
                 e.command.activity_id: e.command.mode_id
@@ -373,7 +434,13 @@ class FullSchedulePolicy(RulePolicy):
             entry["optimization"] = "FEASIBLE_BASELINE_NO_DISTINCT_MODE_PROPOSAL"
             if different:
                 try:
-                    candidate = preview(s, decisions, modes=modes, order=stable)
+                    candidate = preview(
+                        s,
+                        decisions,
+                        modes=modes,
+                        order=stable,
+                        measurements=stages.setdefault("candidate", {}),
+                    )
                     if candidate.snapshot.state.time_h < baseline.snapshot.state.time_h - 1e-9:
                         chosen = candidate
                         entry["optimization"] = "VERIFIED_MAKESPAN_IMPROVEMENT"
@@ -381,6 +448,7 @@ class FullSchedulePolicy(RulePolicy):
                         entry["optimization"] = "NO_MAKESPAN_IMPROVEMENT"
                 except ValueError as exc:
                     entry["optimization"] = "CANDIDATE_REJECTED:" + str(exc)
+            proof_at = perf_counter()
             require(
                 anchor == (s.version, w.s.revision, len(w.events), w.s.time_h),
                 "FULL_OBSOLETE_RESULT",
@@ -396,18 +464,13 @@ class FullSchedulePolicy(RulePolicy):
                 and d.plan.commands[0].id not in started
             ]
             # Completed and running commands are inherited from the exact prefix.
+            require(
+                tuple(chosen.snapshot.events[: len(w.events)]) == tuple(w.events),
+                "FULL_ACTUAL_PREFIX_CHANGED",
+            )
             if self.plan:
-                old = {
-                    r["command_id"]: r for r in self.plan["intervals"] if r["command_id"] in started
-                }
-                new = {r["command_id"]: r for r in rows}
                 require(
-                    all(
-                        k in new
-                        and all(new[k][f] == v[f] for f in ("start_h", "operation_id", "roles"))
-                        and (k in interrupted or new[k]["end_h"] == v["end_h"])
-                        for k, v in old.items()
-                    ),
+                    frozen_prefix_unchanged(self.plan["intervals"], rows, w.events),
                     "FULL_FROZEN_PREFIX_CHANGED",
                 )
             version = self.version + 1
@@ -452,6 +515,7 @@ class FullSchedulePolicy(RulePolicy):
                     ),
                     stream,
                 )
+            stages["prefix_plan_and_proof_s"] = perf_counter() - proof_at
             self.plan, self.version, self.queue = plan, version, planned
             self.cache_hash = checksum
             self.failure = None
@@ -502,6 +566,11 @@ class FullSchedulePolicy(RulePolicy):
             if abs(source.issued_sim_h - obs.sampled_h) <= 1e-8:
                 command = replace(
                     source,
+                    # Metered execution and replay can reach the same boundary
+                    # with different floating-point tails. Bind the command to
+                    # the observed clock inside the existing matching tolerance;
+                    # the executor still requires exact time and revision.
+                    issued_sim_h=obs.sampled_h,
                     expected_revision=obs.state.revision,
                     config_sha256=obs.config_sha256,
                     schema_version=self.config.schema_version,

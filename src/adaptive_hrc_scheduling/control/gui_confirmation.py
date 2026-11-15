@@ -18,6 +18,9 @@ def bind_pending(session):
         return None
     directory = session.output / "p051-confirmations"
     (directory / "results").mkdir(parents=True, exist_ok=True)
+    # Files are atomically published in producer order, but directory enumeration
+    # is unspecified. Validate before ordering; preserve invalid-file evidence.
+    pending = []
     for path in (directory / "inbox").glob("*.json"):
         raw = path.read_bytes()
         try:
@@ -37,6 +40,8 @@ def bind_pending(session):
                 seen[key] = True
                 session._p051_invalid_confirmations = seen
             continue
+        pending.append((preview["producer_id"], preview["client_sequence"], path.name, preview))
+    for _, _, _, preview in sorted(pending, key=lambda item: item[:3]):
         key = preview["request_id"]
         result_path = directory / "results" / (key + ".json")
         if result_path.exists():

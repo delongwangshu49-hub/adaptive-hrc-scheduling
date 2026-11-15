@@ -1,10 +1,17 @@
 import React,{useEffect,useMemo,useRef,useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import Timeline from './Timeline.jsx';
+import {Welcome,Summary,Setup,Inspector,Support,ErrorBanner} from './Experience.jsx';
+import {appVersion,archiveProgress,receiptLabel,phaseLabel} from './experience.mjs';
 import {navigationSettings,rangeOf,timeLabel} from './gantt-model.mjs';
 import {makePayload} from './model.mjs';
 import './style.css';
+import './experience.css';
+import {applyTheme} from './theme.mjs';
+applyTheme(document);
 
+import {SceneTools,ContextStrip,Events,SceneEmpty} from './LinkedExperience.jsx';
+import {rowForEntity,selectedEntity,restoreSelection,viewCamera,requestTargets,sceneSelectionState,orderUpdateDraft,personReturnDraft} from './linkage.mjs';
 let nativeBridge;
 const calls=[];
 function rpc(action,data={}){
@@ -19,6 +26,9 @@ en:{title:'Production Workbench',start:'Run setup',open:'Open session',normal:'N
 };
 const savedContext=(()=>{try{return JSON.parse(sessionStorage.getItem('p051-view')||'{}')}catch{return {}}})();
 words.zh.updateOrder='修改优先级/交期';words.en.updateOrder='Edit priority / due';
+words.zh.orderIdentifier='订单编号';words.en.orderIdentifier='Order ID';
+words.zh.editParameters='返回修改';words.en.editParameters='Edit parameters';
+words.zh.confirmNote='确认后提交，接纳和生效状态以回执为准。';words.en.confirmNote='Confirm to submit. Check the receipt for acceptance and effective status.';
 words.zh.planned='完整计划';words.en.planned='Full plan';words.zh.current_plan='当前完整计划';words.en.current_plan='Current full plan';
 words.zh.events='事件点';words.en.events='Events';
 words.zh.windowed='恢复窗口';words.en.windowed='Restore window';
@@ -58,6 +68,14 @@ function App(){
   const [language,setLanguage]=useState(savedContext.language||'zh'),[layout,setLayout]=useState(null),[view,setView]=useState({}),[native,setNative]=useState({}),[phase,setPhase]=useState('DISCONNECTED');
   const [form,setForm]=useState(savedContext.form||null),[drafts,setDrafts]=useState(savedContext.drafts||{}),[preview,setPreview]=useState(null),[selection,setSelection]=useState(savedContext.selection||null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[details,setDetails]=useState(!!savedContext.details),[menu,setMenu]=useState(null);
   const [stopQuery,setStopQuery]=useState(null);
+  const [support,setSupport]=useState(null),[diagnostics,setDiagnostics]=useState(null),[checking,setChecking]=useState(false),[exampleAvailable,setExampleAvailable]=useState(false);
+  const [eventsOpen,setEventsOpen]=useState(false);
+  const [linkedIds,setLinkedIds]=useState([]);
+  const [selectedIds,setSelectedIds]=useState([]),[selectedPaths,setSelectedPaths]=useState([]);
+  const sceneSelection=useRef(null),viewRef=useRef(view);viewRef.current=view;
+  const openSupport=section=>{setSupport(section);rpc('overlay',{open:true}).catch(onError);};
+  const closeSupport=()=>{setSupport(null);rpc('overlay',{open:false}).catch(onError);};
+  const diagnose=(full=false)=>{setChecking(true);setDiagnostics(null);rpc('diagnostics',{full,backend:setup.backend}).catch(e=>{setChecking(false);onError(e);});};
   const [settings,setSettings]=useState(()=>navigationSettings(savedContext.settings||{}));
   const [setup,setSetup]=useState({variant:'SR-W1',products:1,method:'ADAPTIVE',backend:'isaac',simulation_rate:.01});
   const [portable,setPortable]=useState(null);
@@ -65,10 +83,12 @@ function App(){
   const [detached,setDetached]=useState(false);
   const menuTrigger=useRef(null),formTrigger=useRef(null);
   const restoreFocus=element=>requestAnimationFrame(()=>element?.isConnected&&element.focus());
+  const viewRatio=useRef(savedContext.splitRatio||.5);
   const toggleMenu=(name,event)=>{menuTrigger.current=event.currentTarget;setMenu(menu===name?null:name);};
   useEffect(()=>{if(menu)requestAnimationFrame(()=>document.querySelector('[role="menu"] button:not(:disabled)')?.focus());},[menu]);
+  useEffect(()=>{if(form)requestAnimationFrame(()=>document.querySelector(preview?'.preview-line button.primary':form==='setup'?'.setup-form select':'.form-line select,.form-line input,.form-line button')?.focus());},[form,!!preview]);
   const t=key=>words[language][key]||key;
-  useEffect(()=>{sessionStorage.setItem('p051-view',JSON.stringify({language,form,drafts,selection,details,settings,camera}))},[language,form,drafts,selection,details,settings,camera]);
+  useEffect(()=>{sessionStorage.setItem('p051-view',JSON.stringify({language,form,drafts,selection,details,settings,camera,splitRatio:layout?.split_ratio||viewRatio.current}))},[language,form,drafts,selection,details,settings,camera,layout?.split_ratio]);
   const onError=e=>{setError(e.message||String(e));setBusy(false);};
   useEffect(()=>{
     let alive=true;
@@ -77,36 +97,44 @@ function App(){
       nativeBridge=c.objects.workbench;calls.splice(0).forEach(run=>run());
       nativeBridge.event.connect(raw=>{if(!alive)return;const e=JSON.parse(raw);
         if(e.kind==='layout')setLayout(e.data);
+        if(e.kind==='export_complete')window.dispatchEvent(new CustomEvent('hrc-export-complete',{detail:e.data}));
+        if(e.kind==='diagnostics'){setDiagnostics(e.data);setChecking(false);}
         if(e.kind==='projection')setView(old=>{if(e.data.rows_mode!=='upsert')return e.data;const rows=new Map((old.rows||[]).map(r=>[r.row_id,r]));for(const key of e.data.row_deletes||[])rows.delete(key);for(const row of e.data.rows||[])rows.set(row.row_id,row);return {...e.data,rows:[...rows.values()]};});
-        if(e.kind==='status'){setPhase(e.data.phase);setNative(e.data);setDetached(!!e.data.detached);}
-        if(e.kind==='session_reset'){setPreview(null);setSelection(null);setNative({});setStopQuery(null);}
+        if(e.kind==='status'){setPhase(e.data.phase);if(e.data.phase==='EXITED')setForm(old=>old==='STOP_REQUEST'?null:old);setNative(e.data);setCamera(old=>viewCamera(e.data.scene?.last_command,old));setDetached(!!e.data.detached);const s=e.data.scene?.selection;if(s&&s.sequence!==sceneSelection.current){sceneSelection.current=s.sequence;setSelectedIds([...new Set(s.entity_ids||[])]);setLinkedIds(sceneSelectionState(viewRef.current.rows,s,null).relatedIds);setSelectedPaths(s.paths||[]);setSelection(old=>sceneSelectionState(viewRef.current.rows,s,old).primary);}}
+        if(e.kind==='session_reset'){setPreview(null);setSelection(null);setSelectedIds([]);setLinkedIds([]);setSelectedPaths([]);setNative({});setEventsOpen(false);sceneSelection.current=null;setStopQuery(null);setForm(null);setDetails(false);setBusy(false);rpc('layout',{form_open:false}).catch(onError);}
         if(e.kind==='error')onError(e.data.error);
         if(e.kind==='preview'){setPreview(e.data);setBusy(false);}
-        if(e.kind==='submit'){setPreview(null);setBusy(false);setError('');}
+        if(e.kind==='submit'){setPreview(null);setBusy(false);setError('');setForm(null);setEventsOpen(true);rpc('layout',{form_open:true}).catch(onError);}
         if(e.kind==='launched'){setBusy(false);setForm(null);rpc('layout',{form_open:false}).catch(onError);}
       });
       rpc('initialize').then(r=>{
-        setLayout(r.layout);setLanguage(r.language);setPhase(r.phase);setPortable(r.portable);
-        if(r.portable&&!r.portable.isaac_ready)setSetup(s=>({...s,backend:'light'}));
+        setLayout(r.layout);setLanguage(r.language);setPhase(r.phase);setPortable(r.portable);setExampleAvailable(r.example_available);if(savedContext.splitRatio)rpc('split',{ratio:savedContext.splitRatio}).then(setLayout).catch(onError);
+        setChecking(true);rpc('diagnostics',{backend:'isaac'}).catch(e=>{setChecking(false);onError(e);});
+        // An unavailable Isaac environment stays explicit; never silently switch to CPU.
         rpc('layout',{form_open:!!savedContext.form||!!savedContext.details}).catch(onError);
       }).catch(onError);
     });return()=>{alive=false};
   },[]);
-  const openForm=(kind,priority)=>{formTrigger.current=menu?menuTrigger.current:document.activeElement;setForm(kind);setPreview(null);setError('');setMenu(null);if(priority)setDrafts(s=>({...s,[kind]:{...defaults,...s[kind],priority}}));rpc('layout',{form_open:true}).catch(onError);};
+  const openForm=(kind,priority)=>{setEventsOpen(false);formTrigger.current=menu?menuTrigger.current:document.activeElement;setForm(kind);setPreview(null);setError('');setMenu(null);if(priority)setDrafts(s=>({...s,[kind]:{...defaults,...s[kind],priority}}));if(kind==='ORDER_UPDATE')setDrafts(s=>({...s,[kind]:orderUpdateDraft(view,s[kind]?.target_id||'',{...defaults,...s[kind]})}));rpc('layout',{form_open:true}).catch(onError);};
   const closeForm=()=>{setForm(null);setPreview(null);rpc('layout',{form_open:false}).catch(onError);restoreFocus(formTrigger.current);};
   const keyboard=e=>{
     if(e.key==='Escape'&&(menu||form)){e.preventDefault();e.stopPropagation();if(menu){setMenu(null);restoreFocus(menuTrigger.current);}else closeForm();return;}
     if(menu&&['ArrowDown','ArrowUp','Home','End'].includes(e.key)){const items=[...document.querySelectorAll('[role="menu"] button:not(:disabled)')];if(!items.length)return;e.preventDefault();const i=items.indexOf(document.activeElement),next=e.key==='Home'?0:e.key==='End'?items.length-1:(i+(e.key==='ArrowDown'?1:-1)+items.length)%items.length;items[next].focus();}
   };
-  const d={...defaults,...drafts[form],kind:form};
-  const change=(key,value)=>{setDrafts(s=>({...s,[form]:{...defaults,...s[form],[key]:value}}));setPreview(null);};
-  const field=(key,label,type='text',width=160)=> <Field key={key} label={t(label)} width={width}><input value={d[key]} type={type} onChange={e=>change(key,e.target.value)} step="any" required/></Field>;
+  const rawDraft={...defaults,...drafts[form],kind:form};
+  const d=form==='PERSON_RETURN'?personReturnDraft(view,rawDraft.target_id,rawDraft):rawDraft;
+  const change=(key,value)=>{setDrafts(s=>({...s,[form]:form==='ORDER_UPDATE'&&key==='target_id'?orderUpdateDraft(view,value,{...defaults,...s[form]}):{...defaults,...s[form],[key]:value}}));setPreview(null);};
+  const targetOptions=requestTargets(view.catalog?.objects,form);
+  const field=(key,label,type='text',width=160)=> <Field key={key} label={t(label)} width={width}><input value={d[key]} type={type} onChange={e=>change(key,e.target.value)} step="any" list={key==='target_id'?'known-targets':undefined} required/></Field>;
   const select=(key,label,options,width=160)=><Field key={key} label={t(label)} width={width}><select value={d[key]} onChange={e=>change(key,e.target.value)}>{options.map(([v,text])=><option key={v} value={v}>{text}</option>)}</select></Field>;
-  const review=e=>{e.preventDefault();setError('');setBusy(true);try{const payload=makePayload(form,d);rpc('preview',{kind:form,target_id:d.target_id,payload,time_rule:d.time_rule,requested_sim_h:Number(d.requested_sim_h),expires_sim_h:Number(d.expires_sim_h)}).catch(onError);}catch(e){onError(e);}};
+  const review=e=>{e.preventDefault();setError('');setBusy(true);try{if(form==='PERSON_RETURN'&&!d.arrival_location)throw Error('PERSON_RETURN_LOCATION_UNKNOWN');const payload=makePayload(form,d);rpc('preview',{kind:form,target_id:d.target_id,payload,time_rule:d.time_rule,requested_sim_h:Number(d.requested_sim_h),expires_sim_h:Number(d.expires_sim_h)}).catch(onError);}catch(e){onError(e);}};
   const commit=()=>{setBusy(true);rpc('submit',preview).catch(onError);};
-  const picked=selection&&view.rows?.find(r=>r.row_id===selection.row_id)||selection;
-  const toggleDetails=value=>{setDetails(value);rpc('layout',{form_open:!!form||value}).catch(onError);};
-  const choose=row=>{setSelection(row);};
+  const picked=linkedIds.length?rowForEntity(view.rows||[],linkedIds,selection):restoreSelection(view.rows||[],selection);
+  const toggleDetails=value=>{setEventsOpen(false);setDetails(value);rpc('layout',{form_open:!!form||value}).catch(onError);};
+  const choose=row=>{setSelection(row);setSelectedPaths([]);const entity=selectedEntity(row,native.scene?.entities);setSelectedIds(entity?[entity]:[]);setLinkedIds(entity?[entity]:[]);if(!row&&native.native_available)rpc('clear_selection').catch(onError);if(entity&&native.native_available&&native.scene?.entities?.some(x=>x.id===entity&&x.paths?.length&&x.visible!==false))rpc('locate',{entity_id:entity}).catch(onError);};
+  const showEvents=()=>{setEventsOpen(true);setDetails(false);setForm(null);rpc('layout',{form_open:true}).catch(onError);};
+  const closeEvents=()=>{setEventsOpen(false);rpc('layout',{form_open:false}).catch(onError);};
+  const recent=view.submitted?.at(-1),recentReceipt=recent&&(view.receipts||[]).find(x=>x.request_id===recent.request_id);
   const canWrite=!!view.writable&&!detached&&!native.observation_stale&&!native.stop_holding;
   useEffect(()=>{if(form==='REST_REQUEST'){setForm(null);setPreview(null);}},[form]);
   const nativePlan=native.frame?.full_schedule;
@@ -115,7 +143,7 @@ function App(){
   const fullPlanning=['RUNNING','CONNECTING'].includes(phase)&&nativePlan?.planning===true;
   const feedback=detached?null:native.waiting_feedback;
   const stop=native.stop_feedback, w=feedbackWords[language];
-  const queriedStop=stopQuery&&(stop||stopQuery);
+  const queriedStop=stop||stopQuery;
   const queryOriginal=()=>rpc('query').then(({stop,...receipts})=>{
     setView(s=>({...s,...receipts}));
     if(stop){setStopQuery(stop);toggleDetails(true);}
@@ -126,7 +154,7 @@ function App(){
   const feedbackStage=feedback?.phase&&w[feedback.phase];
   const stageLabel=feedbackStage
     ? [feedbackStage,feedback.wait_s==null?null:seconds(feedback.wait_s),feedback.candidate_version==null?null:t('candidate')+' v'+feedback.candidate_version].filter(Boolean).join(' · ')
-    : planFailure?(phase==='RUNNING'?blockedLabel:phase+' · '+blockedLabel):fullPlanning?(language==='zh'?'排程中 · 模拟时钟暂停':'Planning · simulation paused'):phase;
+    : planFailure?(phase==='RUNNING'?blockedLabel:phase+' · '+blockedLabel):fullPlanning?(language==='zh'?'排程中 · 模拟时钟暂停':'Planning · simulation paused'):phaseLabel(phase,language);
   const stopLabel=stop&&[
     w.sent, w.accept+' '+w[stop.acceptance], w.save+' '+w[stop.save],
     w.exit+' '+(stop.worker_exit??w.pendingExit),
@@ -135,79 +163,77 @@ function App(){
   const runBusy=(['PREPARING','CONNECTING','RUNNING','STOPPING','STOPPED','STOP_BLOCKED','DISPLAY_UNKNOWN'].includes(phase)&&native.worker_exit==null)||!!native.native;
   const p=layout?.plots,profile=layout?.profile||'compact';
   const labelWidth=layout?.label_width||210;
-  const expanded=!!form||details;
-  const pad=profile==='wide'||profile==='narrow'?16:12;
-  const mast=profile==='wide'?64:profile==='narrow'?44:40,identityHeight=profile==='wide'?32:profile==='narrow'?28:24,gap=profile==='wide'||profile==='narrow'?8:(expanded?4:6);
+  const expanded=!!form||details||eventsOpen||!!error||!!menu;
+  useEffect(()=>{rpc('layout',{form_open:expanded}).catch(()=>{});},[expanded]);
+  const chrome=layout?.chrome;
+  const pad=chrome?.pad??12;
+  const mast=chrome?.mast??36,identityHeight=chrome?.identity??24,gap=chrome?.gap??4;
   const actionsY=pad+mast+identityHeight+2*gap;
-  const auxHeight=profile==='wide'?(expanded?200:72):profile==='narrow'?48:(expanded?144:32);
-  const footerHeight=profile==='wide'?32:profile==='narrow'?24:20;
-  const auxY=(layout?.client[1]||768)-pad-footerHeight-gap-auxHeight;
-  return <main lang={language==='zh'?'zh-CN':'en'} className={profile} onKeyDown={keyboard} onClick={()=>menu&&setMenu(null)}>
-    <header style={{left:pad,top:pad,right:pad,height:mast}}><div><h1>{t('title')}</h1><span className="phase" data-plan-phase={feedback?.phase}>{t(statusNames[observationStatus]||'disconnected')} · {stageLabel}</span></div><div className="clock">{Number.isFinite(view.envelope?.sampled_sim_h)?view.envelope.sampled_sim_h.toFixed(4)+' h':'—'}<small>{t('time')} · {view.clock?.simulation_rate??'—'} h/s</small></div></header>
-    <div className="identity-strip" style={{left:pad,right:pad,top:pad+mast+gap,height:identityHeight}}>
-      <span className="run-identity" title={view.envelope?.run_id}>{view.backend||'—'} · {view.envelope?.run_id||t('waiting')}</span>
-      {stopLabel&&<span className="stop-progress" title={stop.request_id}>{stopLabel}</span>}
-      <span className="plan-identity" data-plan-version={shownVersion}>
-        {previousPlan?w.retained:w.shown} {shownVersion==null?'—':'v'+shownVersion}
-        {shownVersion!=null&&feedback&&<> · {feedback.plan_age_s==null?w.sample+' '+(feedback.plan_sample_h?.toFixed(2)??'—')+' h':w.planAge+' '+seconds(feedback.plan_age_s)}</>}
-        {phase==='SAVED_READ_ONLY'
-          ? ' · '+w.obsSample+' '+(view.envelope?.sampled_sim_h?.toFixed(2)??'—')+' h'
-          : ' · '+w.obsAge+' '+seconds(native.source_age_s)}
-        {feedback?.heartbeat_age_s!=null&&' · '+w.heartbeat+' '+seconds(feedback.heartbeat_age_s)}
-      </span>
-    </div>
-    <nav style={{left:pad,right:pad,top:actionsY,height:44}}>
-      <Button onClick={()=>openForm('setup')} disabled={runBusy}>{t('start')}</Button><Button onClick={()=>rpc('open').catch(onError)} disabled={runBusy}>{t('open')}</Button>
-      <Button onClick={()=>rpc('connection',{detached:!detached}).then(r=>setDetached(r.detached)).catch(onError)}>{t(detached?'reconnect':'disconnect')}</Button>
-      <Button className="primary" onClick={()=>openForm('ORDER_CREATE','NORMAL')} disabled={!canWrite}>{t('normal')}</Button><Button onClick={()=>openForm('ORDER_CREATE','URGENT')} disabled={!canWrite}>{t('urgent')}</Button>
-      <div className="menu-root"><Button onClick={e=>toggleMenu('people',e)} aria-haspopup="menu" aria-expanded={menu==='people'} disabled={!canWrite}>{t('people')}</Button>{menu==='people'&&<div className="menu" role="menu">{['PERSON_ARRIVE','PERSON_DEPART','PERSON_ABSENT','PERSON_RETURN','REST_REQUEST'].map(k=><button role="menuitem" key={k} disabled={k==='REST_REQUEST'} title={k==='REST_REQUEST'?(language==='zh'?'手动休息尚未实现；自动排程休息不受影响':'Manual rest is unavailable; scheduled rest remains active'):undefined} onClick={()=>openForm(k)}>{t(kindNames[k])}{k==='REST_REQUEST'?(language==='zh'?'（未实现）':' (unavailable)'):''}</button>)}</div>}</div>
-      <div className="menu-root"><Button onClick={e=>toggleMenu('events',e)} aria-haspopup="menu" aria-expanded={menu==='events'} disabled={!canWrite}>{t('more')}</Button>{menu==='events'&&<div className="menu" role="menu">{['ORDER_UPDATE','DEVICE_FAIL','DEVICE_REPAIR','ORDER_CANCEL'].map(k=><button role="menuitem" key={k} disabled={k==='REST_REQUEST'} title={k==='REST_REQUEST'?(language==='zh'?'手动休息尚未实现；自动排程休息不受影响':'Manual rest is unavailable; scheduled rest remains active'):undefined} onClick={()=>openForm(k)}>{t(kindNames[k])}{k==='REST_REQUEST'?(language==='zh'?'（未实现）':' (unavailable)'):''}</button>)}</div>}</div>
-      <Button onClick={()=>openForm('CLOSE_INPUT')} disabled={!canWrite}>{t('close')}</Button><Button className="stop" onClick={()=>openForm('STOP_REQUEST')} disabled={!runBusy||(native.stop_holding&&!native.stop_recoverable)}>{native.stop_recoverable?w.restoreStop:t('stop')}</Button>
-      <Button onClick={()=>{rpc('restore').catch(onError)}}>{t('restore')}</Button><Button onClick={()=>{const l=language==='zh'?'en':'zh';setLanguage(l);rpc('language',{language:l}).catch(onError)}}>{t('language')}</Button>
+  const auxHeight=chrome?.aux??(expanded?128:36);
+  const footerHeight=chrome?.footer??20;
+  const auxY=chrome?.aux_y??((layout?.client[1]||768)-pad-footerHeight-gap-auxHeight);
+  const menuPos={position:'fixed',left:pad,right:pad,top:auxY,height:auxHeight,display:'flex',alignItems:'flex-start',gap:8,flexWrap:'wrap',padding:12,zIndex:120};
+  const ratio=layout?.split_ratio??.5;const preset=Math.abs(ratio-.5)<.005?'operate':Math.abs(ratio-.58)<.005?'demonstrate':Math.abs(ratio-.42)<.005?'analyze':'custom';
+  const historical=phase==='SAVED_READ_ONLY',progress=archiveProgress(view),freshStart=phase==='DISCONNECTED'&&!view.envelope;
+  const setupMode=form==='setup'&&!runBusy;
+  const hasNative=!!native.native_available&&!detached;
+  const endedSaved=phase==='EXITED'&&stop?.save==='SAVED'&&stop?.worker_exit===0&&stop?.launcher_exit===0;
+  const phaseText=endedSaved?(language==='zh'?'已结束 · 已保存 · 只读':'Ended · saved · read only'):setupMode?(language==='zh'?'新建会话 · 核对参数与启动环境':'New session · configuration and prerequisites'):historical?(language==='zh'?`历史存档 · 只读 · ${progress==null?'正在读取':progress<100?'读取 '+progress+'%':'已读取'}`:`Archive · read only · ${progress==null?'Loading':progress<100?'Loading '+progress+'%':'Loaded'}`):freshStart?(language==='zh'?'完整生产仿真 · Isaac 与甘特联动':'Production simulation · Isaac + timeline'):`${t(statusNames[observationStatus]||'disconnected')} · ${stageLabel}`;
+  return <main style={{'--support-left':p?(p[1].x-labelWidth)+'px':'52%'}} lang={language==='zh'?'zh-CN':'en'} className={profile+(settings.comfortable!==false?' comfortable':'')+(layout?.focus_gantt?' focused':'')+(freshStart?(form?' fresh-setup':' fresh-start'):'')+(setupMode?' configuration-mode':'')} onKeyDown={keyboard} onClick={e=>{if(menu&&!e.target.closest("nav"))setMenu(null);}}>
+    <header style={{left:pad,top:pad,right:pad,height:mast}}>
+      <div className="brand"><h1>{t('title')} <small>v{appVersion}</small></h1><span className="phase" data-plan-phase={feedback?.phase} title={stopLabel||phaseText}>{phaseText}</span></div>
+      {!freshStart&&!setupMode&&<div className="header-summary"><Summary view={view} language={language} onDetails={()=>toggleDetails(true)}/><span className="plan-identity" data-plan-version={shownVersion} title={[w.planAge+' '+seconds(feedback?.plan_age_s),w.obsAge+' '+seconds(native.source_age_s),w.heartbeat+' '+seconds(feedback?.heartbeat_age_s),stopLabel].filter(Boolean).join(' · ')}>{previousPlan?w.retained:w.shown} {shownVersion==null?'—':'v'+shownVersion}{stopLabel&&' · '+stopLabel}</span></div>}
+      <div className="clock" style={{visibility:setupMode?'hidden':'visible'}}>{Number.isFinite(view.envelope?.sampled_sim_h)?view.envelope.sampled_sim_h.toFixed(3)+' h':'—'}<small>{t('time')} · {view.clock?.simulation_rate??'—'} h/s</small></div>
+    </header>
+    <nav aria-label={language==='zh'?'工作台操作':'Workbench commands'} style={{left:pad,right:pad,top:actionsY,height:chrome?.actions??36}}>
+      <div className="menu-root"><Button onClick={e=>toggleMenu('session',e)} aria-haspopup="menu" aria-expanded={menu==='session'}>{language==='zh'?'会话 ▾':'Session ▾'}</Button>{menu==='session'&&<div className="menu" role="menu" style={menuPos}><Button role="menuitem" onClick={()=>openForm('setup')} disabled={runBusy}>{t('start')}</Button><Button role="menuitem" onClick={()=>{setMenu(null);rpc('open').catch(onError)}} disabled={runBusy}>{t('open')}</Button><Button role="menuitem" onClick={()=>{setMenu(null);rpc('connection',{detached:!detached}).then(r=>setDetached(r.detached)).catch(onError)}}>{t(detached?'reconnect':'disconnect')}</Button><Button role="menuitem" onClick={()=>openForm('CLOSE_INPUT')} disabled={!canWrite}>{t('close')}</Button></div>}</div>
+      <div className="command-group"><Button className="primary" onClick={()=>openForm('ORDER_CREATE','NORMAL')} disabled={!canWrite}>{t('normal')}</Button><Button onClick={()=>openForm('ORDER_CREATE','URGENT')} disabled={!canWrite}>{t('urgent')}</Button></div>
+      <div className="menu-root"><Button onClick={e=>toggleMenu('people',e)} aria-haspopup="menu" aria-expanded={menu==='people'} disabled={!canWrite}>{t('people')} ▾</Button>{menu==='people'&&<div className="menu" role="menu" style={menuPos}>{['PERSON_ARRIVE','PERSON_DEPART','PERSON_ABSENT','PERSON_RETURN','REST_REQUEST'].map(k=><button role="menuitem" key={k} disabled={k==='REST_REQUEST'} title={k==='REST_REQUEST'?(language==='zh'?'手动休息尚未实现；自动排程休息不受影响':'Manual rest is unavailable; scheduled rest remains active'):undefined} onClick={()=>openForm(k)}>{t(kindNames[k])}{k==='REST_REQUEST'?(language==='zh'?'（未实现）':' (unavailable)'):''}</button>)}</div>}</div>
+      <div className="menu-root"><Button onClick={e=>toggleMenu('events',e)} aria-haspopup="menu" aria-expanded={menu==='events'} disabled={!canWrite}>{language==='zh'?'工单与设备 ▾':'Orders & equipment ▾'}</Button>{menu==='events'&&<div className="menu" role="menu" style={menuPos}>{['ORDER_UPDATE','DEVICE_FAIL','DEVICE_REPAIR','ORDER_CANCEL'].map(k=><button role="menuitem" key={k} onClick={()=>openForm(k)}>{t(kindNames[k])}</button>)}</div>}</div>
+      <Button className="stop" onClick={()=>openForm('STOP_REQUEST')} disabled={!runBusy||(native.stop_holding&&!native.stop_recoverable)}>{native.stop_recoverable?w.restoreStop:t('stop')}</Button>
+      <span className="command-spacer"/>
+      <select aria-label={language==='zh'?'双图布局':'Dual-view layout'} value={preset} onChange={e=>rpc('view_preset',{preset:e.target.value}).then(setLayout).catch(onError)}>{preset==='custom'&&<option value='custom' disabled>{language==='zh'?'自定义比例':'Custom split'}</option>}<option value='operate'>{language==='zh'?'双图运行':'Operate'}</option><option value='demonstrate'>{language==='zh'?'场景讲解':'Demonstrate'}</option><option value='analyze'>{language==='zh'?'排程分析':'Analyze'}</option></select>
+      <div className="menu-root"><Button onClick={e=>toggleMenu('tools',e)} aria-haspopup="menu" aria-expanded={menu==='tools'}>{language==='zh'?'设置与帮助 ▾':'Settings & help ▾'}</Button>{menu==='tools'&&<div className="menu" role="menu" style={menuPos}><Button role="menuitem" onClick={()=>{setMenu(null);rpc('restore').catch(onError)}}>{t('restore')}</Button><Button role="menuitem" onClick={()=>{setMenu(null);const l=language==='zh'?'en':'zh';setLanguage(l);rpc('language',{language:l}).catch(onError)}}>{t('language')}</Button><Button role="menuitem" onClick={()=>{setMenu(null);openSupport('diagnostics')}}>{language==='zh'?'运行自检':'Diagnostics'}</Button><Button role="menuitem" onClick={()=>{setMenu(null);openSupport('help')}}>{language==='zh'?'使用指南':'Guide'}</Button></div>}</div>
     </nav>
-    {p&&<>
-      {[0,1].map(n=>{const rect=p[n],title=profile==='wide'?32:profile==='narrow'?28:24,toolbar=64;return <div key={n} className="panel-title" style={{left:rect.x-(n?labelWidth:0),top:rect.y-title-toolbar,width:rect.width+(n?labelWidth:0),height:title}}><strong>{n?t('gantt'):t('native')+' / '+t('readonly')}</strong><Button onClick={()=>rpc('fullscreen').catch(onError)}>{t(native.fullscreen?'windowed':'maximize')}</Button></div>})}
-      <div className="native-tools" style={{left:p[0].x,top:p[0].y-64,width:p[0].width,height:64}}><label>{t('camera')} <select value={camera} onChange={e=>{setCamera(e.target.value);rpc('camera',{camera:e.target.value}).catch(onError)}}>{['Overview','Top','Supply','Equipment','Crossing','Finished','Gantry','F1','Fork','Test'].map(c=><option key={c}>{c}</option>)}</select></label><Button disabled={!picked} onClick={()=>rpc('locate',{entity_id:picked.product_id||picked.display_product_id||picked.resource_id||picked.person_id}).catch(onError)}>{t('locate')}</Button><span className="native-capsule">{language==='zh'?'模拟时刻':'Sim time'} {view.envelope?.sampled_sim_h?.toFixed(3)||'—'} h · {t(statusNames[observationStatus]||'unknown')} · {w.shown} v{shownVersion??'—'}</span></div>
-
-      {!native.native&&<div className="native-empty" style={{left:p[0].x,top:p[0].y,width:p[0].width,height:p[0].height}}>{t('disconnected')}<small>{t('future')}</small></div>}
-      <div className="native-axis" style={{left:p[0].x,top:p[0].y+p[0].height,width:p[0].width,height:profile==='compact'?20:24}}>{t('nativeState')}: r{native.frame?.source_state_revision??'—'} · {t('age')} {native.frame?.age_s?.toFixed(1)??'—'}s · {t('gantt')}: r{view.envelope?.state_revision??'—'}</div>
-      <div className="split-handle vertical" style={{left:p[0].x+p[0].width,top:p[0].y-(profile==='wide'?96:88),width:8,height:p[0].height+(profile==='wide'?120:112)}} role="separator" aria-label={t('restore')} tabIndex="0" onPointerDown={e=>e.currentTarget.setPointerCapture(e.pointerId)} onPointerMove={e=>{if(!e.currentTarget.hasPointerCapture(e.pointerId))return;rpc('split',{ratio:Math.max(.1,Math.min(.9,(e.clientX-p[0].x)/(p[0].width+p[1].width+labelWidth)))}).then(setLayout).catch(onError)}} onKeyDown={e=>{if(['ArrowRight','ArrowLeft'].includes(e.key))rpc('split',{ratio:Math.max(.1,Math.min(.9,(layout.split_ratio||.5)+(e.key==='ArrowRight'?.01:-.01)))}).then(setLayout).catch(onError)}}/>
-      <Timeline phase={planFailure?'PLAN_BLOCKED':phase} waitingForPlan={shownVersion==null&&['WAITING','PLANNING','AWAITING_VERIFICATION'].includes(feedback?.phase)} plot={p[1]} profile={profile} labelWidth={labelWidth} view={view} t={t} selection={picked} onSelect={choose} settings={settings} setSettings={setSettings} onError={onError} rpc={rpc} language={language}/>
+    {p&&!freshStart&&!setupMode&&<>
+      {(layout?.focus_gantt?[1]:[0,1]).map(n=>{const rect=p[n],title=chrome?.title??24,toolbar=chrome?.toolbar??36;return <div key={n} className="panel-title" style={{left:rect.x-(n?labelWidth:0),top:rect.y-title-toolbar,width:rect.width+(n?labelWidth:0),height:title}}><strong>{n?(historical?(language==='zh'?'历史计划与执行':'Archived plan & execution'):t('gantt')):t('native')+' · '+(language==='zh'?'生产场景':'Production scene')}</strong><Button onClick={()=>rpc('fullscreen').catch(onError)}>{t(native.fullscreen?'windowed':'maximize')}</Button></div>})}
+      {!layout?.focus_gantt&&<>
+      <SceneTools view={view} native={native} picked={picked} selectedIds={selectedIds} language={language} rpc={rpc} onError={onError} camera={camera} setCamera={setCamera} style={{left:p[0].x,top:p[0].y-(chrome?.toolbar??36),width:p[0].width,height:chrome?.toolbar??36}}/>
+      {!native.native&&<SceneEmpty phase={phase} backend={view.backend} native={native} language={language} onSettings={()=>openSupport('diagnostics')} onStart={runBusy?undefined:()=>openForm('setup')} style={{left:p[0].x,top:p[0].y,width:p[0].width,height:p[0].height}}/>}
+      <ContextStrip view={view} native={native} phase={phase} language={language} onEvents={showEvents} style={{left:p[0].x,top:p[0].y+p[0].height,width:p[0].width,height:24}}/>
+      <div className="split-handle vertical" style={{left:p[0].x+p[0].width,top:p[0].y-24-(chrome?.toolbar??36),width:8,height:p[0].height+48+(chrome?.toolbar??36)}} role="separator" aria-label={t('restore')} tabIndex="0" onPointerDown={e=>e.currentTarget.setPointerCapture(e.pointerId)} onPointerMove={e=>{if(!e.currentTarget.hasPointerCapture(e.pointerId))return;rpc('split',{ratio:Math.max(.1,Math.min(.9,(e.clientX-p[0].x)/(p[0].width+p[1].width+labelWidth)))}).then(setLayout).catch(onError)}} onKeyDown={e=>{if(['ArrowRight','ArrowLeft'].includes(e.key))rpc('split',{ratio:Math.max(.1,Math.min(.9,(layout.split_ratio||.5)+(e.key==='ArrowRight'?.01:-.01)))}).then(setLayout).catch(onError)}}/>
+      </>}
+      <Timeline phase={planFailure?'PLAN_BLOCKED':phase} waitingForPlan={shownVersion==null&&['WAITING','PLANNING','AWAITING_VERIFICATION'].includes(feedback?.phase)} plot={p[1]} profile={profile} labelWidth={labelWidth} toolbarHeight={chrome?.toolbar??36} view={view} t={t} selection={picked} selectedIds={linkedIds} onSelect={choose} settings={settings} setSettings={setSettings} onError={onError} rpc={rpc} language={language}/>
     </>}
     <section className="aux" style={{left:pad,right:pad,top:auxY,height:auxHeight}}>
-      {form==='setup'?<form className={portable?'form-line portable-config':'form-line'} onSubmit={e=>{e.preventDefault();setBusy(true);rpc('start',setup).catch(onError)}}>
-        <Field label={t('variant')} width={180}><select value={setup.variant} onChange={e=>setSetup(s=>({...s,variant:e.target.value}))}><option>SR-W1</option><option>SR-W2</option></select></Field>
-        <Field label={t('products')} width={100}><input type="number" min="1" max="3" value={setup.products} onChange={e=>setSetup(s=>({...s,products:Number(e.target.value)}))}/></Field>
-        <Field label={t('method')} width={160}><select value={setup.method} onChange={e=>setSetup(s=>({...s,method:e.target.value}))}><option value="ADAPTIVE">{language==='zh'?'完整计划 · 固定工时':'Full plan · fixed hours'}</option></select></Field>
-        <Field label={t('backend')} width={180}><select value={setup.backend} onChange={e=>setSetup(s=>({...s,backend:e.target.value}))}><option value="isaac" disabled={portable&&!portable.isaac_ready}>Isaac / Kit</option><option value="light">CPU</option></select></Field>
-        <Field label={t('rate')} width={180}><input type="number" min="0.0001" max="100" step="any" value={setup.simulation_rate} onChange={e=>setSetup(s=>({...s,simulation_rate:Number(e.target.value)}))}/></Field>
-        <button className="primary" disabled={busy}>{busy?t('pending'):t('startNow')}</button><Button onClick={closeForm}>{t('cancel')}</Button>
-        {portable&&<Button disabled={busy} onClick={()=>rpc('portable_settings').then(next=>{
-          setPortable(next);
-          if(!next.isaac_ready)setSetup(s=>({...s,backend:'light'}));
-        }).catch(onError)}>{language==='zh'?'便携设置与示例':'Portable setup & example'}</Button>}
-      </form>:form?<>
-        {preview?<div className="preview-line"><div><strong>{t('actualParams')} · {t(preview.kind==='ORDER_CREATE'&&preview.payload.priority==='URGENT'?'urgent':kindNames[preview.kind])}</strong><div className="parameter-summary">{Object.entries(preview.payload).filter(([k])=>!k.includes('sha256')&&k!=='scene_reference').map(([k,v])=><span key={k}>{parameterLabel(k,language)}: {typeof v==='object'?JSON.stringify(v):String(v)}</span>)}</div><small>{preview.recovery?w.restoreNote:t('bindingNote')}</small><small>{preview.target_id} · {preview.time_rule} · #{preview.client_sequence} · {preview.request_id}</small></div><Button className="primary" disabled={busy} onClick={commit}>{t('confirm')}</Button><Button onClick={()=>setPreview(null)}>{t('cancel')}</Button></div>:
-        <form className="form-line" onSubmit={review}>
-          {form==='ORDER_CREATE'?<>{select('template_id','template',[['SR-W1','SR-W1'],['SR-W2','SR-W2']],200)}{field('quantity','quantity','number',96)}{field('due_sim_h','due','number',160)}{select('priority','priority',[['NORMAL',t('normalOption')],['URGENT',t('urgentOption')]],136)}{field('target_id','target','text',220)}</>:
+      {form==='setup'?<Setup language={language} setup={setup} setSetup={setSetup} portable={portable} busy={busy} onSubmit={e=>{e.preventDefault();setBusy(true);setError('');rpc('start',setup).catch(onError)}} onClose={closeForm} onDiagnose={()=>openSupport('diagnostics')} onSettings={()=>rpc('portable_settings').then(next=>{setPortable(next);setDiagnostics(null);}).catch(onError)}/>:form?<>
+        {preview?<div className="preview-line"><div><strong>{t('actualParams')} · {t(preview.kind==='ORDER_CREATE'&&preview.payload.priority==='URGENT'?'urgent':kindNames[preview.kind])}</strong><div className="parameter-summary">{preview.target_id&&!["STOP_REQUEST","CLOSE_INPUT"].includes(preview.kind)&&<span>{t("target")}: {preview.target_id}</span>}{Object.entries(preview.payload).filter(([k])=>!k.includes('sha256')&&k!=='scene_reference').map(([k,v])=><span key={k}>{parameterLabel(k,language)}: {typeof v==='object'?JSON.stringify(v):({NORMAL:t('normalOption'),URGENT:t('urgentOption')}[v]||String(v))}</span>)}</div><small>{preview.recovery?w.restoreNote:t('confirmNote')}</small><details><summary>{language==='zh'?'提交标识与生效规则':'Submission identity & timing'}</summary><small>{t('bindingNote')}<br/>{preview.target_id} · {preview.time_rule} · #{preview.client_sequence} · {preview.request_id}</small></details></div><Button className="primary" disabled={busy} onClick={commit}>{t('confirm')}</Button><Button onClick={()=>setPreview(null)}>{t('editParameters')}</Button></div>:
+        <form className="form-line" aria-label={t(form==='ORDER_CREATE'&&d.priority==='URGENT'?'urgent':kindNames[form])} onSubmit={review}>
+          {form==='ORDER_CREATE'?<>{select('template_id','template',[['SR-W1','SR-W1'],['SR-W2','SR-W2']],200)}{field('quantity','quantity','number',96)}{field('due_sim_h','due','number',160)}{select('priority','priority',[['NORMAL',t('normalOption')],['URGENT',t('urgentOption')]],136)}{field('target_id','orderIdentifier','text',220)}</>:
           !['CLOSE_INPUT','STOP_REQUEST'].includes(form)&&<>{field('target_id','target','text',220)}
             {form==='PERSON_ARRIVE'&&<>{select('person_template','personTemplate',(view.ui_options?.person_templates||['P043-W1-v1']).map(x=>[x,x]),240)}{field('initial_f','initial','number',96)}</>}
-            {['PERSON_ARRIVE','PERSON_RETURN'].includes(form)&&select('arrival_location','position',(view.ui_options?.locations||['F1','PRE','Q1','OUT1']).map(x=>[x,x]),160)}
-            {form==='ORDER_UPDATE'&&<>{field('due_sim_h','due','number',160)}{select('priority','priority',[['NORMAL',t('normalOption')],['URGENT',t('urgentOption')]],136)}</>}
+            {form==='PERSON_ARRIVE'&&select('arrival_location','position',(view.ui_options?.locations||['F1','PRE','Q1','OUT1']).map(x=>[x,x]),160)}
+            {form==='PERSON_RETURN'&&<Field label={language==='zh'?'返回位置 · 已核验':'Return location · verified'} width={200}><input value={d.arrival_location} readOnly required placeholder={language==='zh'?'先选择人员':'Select a person first'} title={language==='zh'?'同 ID 返回使用该人员离开时的位置。':'Same-ID return uses the last observed location.'}/></Field>}
+            {form==='ORDER_UPDATE'&&<>{field('due_sim_h','due','number',160)}{select('priority','priority',[['',t('choose')],['NORMAL',t('normalOption')],['URGENT',t('urgentOption')]],136)}</>}
             {['PERSON_DEPART','PERSON_ABSENT','DEVICE_FAIL','ORDER_CANCEL'].includes(form)&&field('reason','reason','text',240)}
             {form==='REST_REQUEST'&&field('duration_h','duration','number',180)}
             {form==='DEVICE_REPAIR'&&select('repair_evidence_id','repair',[['',t('choose')],...(view.ui_options?.repair_evidence||[]).map(x=>[x,x])],260)}
           </>}
           {['CLOSE_INPUT','STOP_REQUEST'].includes(form)&&<p className="confirm-info">{t(kindNames[form])} · {t('safe')}</p>}
-          <button className="primary" disabled={busy||(!canWrite&&form!=='STOP_REQUEST')}>{busy?t('pending'):t('preview')}</button><Button onClick={closeForm}>{t('cancel')}</Button>
           {form==='ORDER_CREATE'&&select('material_plan_id','material',[['TEMPLATE-JIT-v1',t('jit')],['TEMPLATE-DELAY-1H-v1',t('delay')]],180)}
           {select('time_rule','timeRule',[['IMMEDIATE',t('immediate')],['AT_SIM_H',t('atTime')]],200)}{d.time_rule==='AT_SIM_H'&&field('requested_sim_h','at','number',180)}{field('expires_sim_h','expires','number',180)}
+          <button className="primary" disabled={busy||(!canWrite&&form!=='STOP_REQUEST')}>{busy?t('pending'):t('preview')}</button><Button onClick={closeForm}>{t('cancel')}</Button>
         </form>}
-      </>:<div className="detail-line"><Button onClick={()=>toggleDetails(!details)}>{t('detail')}</Button><span>{picked?`${picked.display_name||picked[language==='zh'?'operation_name_zh':'operation_name_en']||picked.operation_id||picked.resource_id||picked.person_id||''} · ${t(picked.schedule_state?.toLowerCase())}`:t('noSelection')}</span><span className="legend"><i className="solid"/>{t('actual')} <i/>{t(view.full_schedule?'planned':'committed')} {!view.full_schedule&&<><i className="dashed"/>{t('tentative')}</>}</span><Button onClick={queryOriginal}>{t('query')}</Button><Button onClick={()=>rpc('evidence').catch(onError)}>{t('evidence')}</Button></div>}
-      {error&&<div role="alert" className="error" title={error}>{error}</div>}
+      </>:<div className="detail-line"><Button onClick={()=>toggleDetails(!details)}>{t('detail')}</Button><span className="selection-summary" title={selectedIds.join(', ')}>{selectedIds.length>1?(language==='zh'?`已选 ${selectedIds.length} 个对象 · `:`${selectedIds.length} objects · `):''}{picked?`${picked.display_name||picked[language==='zh'?'operation_name_zh':'operation_name_en']||picked.operation_id||picked.resource_id||picked.person_id||''} · ${t(picked.schedule_state?.toLowerCase())}`:(selectedIds.length||selectedPaths.length?(language==='zh'?'所选对象暂无关联工序':'No related work for this selection'):t('noSelection'))}</span><span className="legend"><i className="solid"/>{t('actual')} <i/>{t(view.full_schedule?'planned':'committed')} {!view.full_schedule&&<><i className="dashed"/>{t('tentative')}</>}</span>{recent&&<Button onClick={showEvents} title={recent.request_id}>{t(kindNames[recent.kind]||'request')} · {receiptLabel(recentReceipt?.status,language)}</Button>}<Button onClick={queryOriginal}>{t('query')}</Button><Button onClick={()=>rpc('evidence').catch(onError)}>{t('evidence')}</Button></div>}
+
     </section>
-    {details&&!form&&<div className="details-sheet" style={{left:pad,right:pad,top:auxY,height:auxHeight,maxHeight:auxHeight}}><Button onClick={()=>toggleDetails(false)}>{t('collapse')}</Button>{queriedStop&&<p className="selection-detail"><strong>{t('stop')}</strong> · {w[queriedStop.acceptance]} <small>{queriedStop.request_id}</small></p>}{picked&&<div className="selection-detail"><strong>{picked[language==='zh'?'operation_name_zh':'operation_name_en']||picked.display_name||picked.operation_id}</strong><p>{t('mode')}: {t(picked.schedule_state?.toLowerCase())} · {t(picked.proposal_state?.toLowerCase())||''} · {language==='zh'?'版本':'Version'}: {picked.plan_version||'—'}<br/>{rangeOf(picked)?`${timeLabel(rangeOf(picked)[0],settings.span)} → ${timeLabel(rangeOf(picked)[1],settings.span)} · ${language==='zh'?'区间时长':'Interval'} ${timeLabel(rangeOf(picked)[1]-rangeOf(picked)[0],.01)}`:t('unplanned')} · {(picked.roles||[]).map(x=>x.person_id).join(', ')}<br/>{language==='zh'?'前置工序':'Predecessors'}: {(view.gantt_dependencies||[]).filter(x=>x.target===picked.group_id).map(x=>{const g=(view.gantt_groups||[]).find(g=>g.id===x.source);return g?.[language==='zh'?'name_zh':'name_en']||x.source}).join(' / ')||'—'}</p><small>{t('source')}: {picked.start_event_id||picked.observation_id||'—'} · {picked.operation_id} · {picked.command_id}</small></div>}<table><thead><tr><th>{t('request')}</th><th>{t('effective')}</th><th>{t('business')}</th></tr></thead><tbody>{(view.submitted||[]).map(r=>{const receipt=(view.receipts||[]).find(x=>x.request_id===r.request_id);const business=(view.business_results||[]).filter(x=>x.request_id===r.request_id);return <tr key={r.request_id}><td>{t(r.kind==='ORDER_CREATE'&&r.payload?.priority==='URGENT'?'urgent':kindNames[r.kind])} · {r.target_id}<small>{r.request_id}</small></td><td>{receipt?`${receipt.status} · ${receipt.reason} · ${receipt.actual_applied_sim_h??receipt.sim_h}h`:t('unknownReceipt')}</td><td>{business.length?business.map(x=>x.status||x.kind||x.result).join(' · '):t('unknown')}</td></tr>})}</tbody></table>{!(view.submitted||[]).length&&<p>{t('none')}</p>}</div>}
-    <footer style={{left:pad,right:pad,bottom:pad,height:footerHeight}}><span>{view.status==='VERIFIED'?t('fresh'):t(statusNames[view.status]||'unknown')} · {view.writable?t('form'):t('readonly')} · {view.envelope?.observation_id||'—'} · {t('scroll')}</span><div className="range-controls"><label>{t('begin')} <input aria-label={t('begin')} type="number" step="0.1" value={settings.start} onChange={e=>setSettings(s=>({...s,manual:true,follow:false,start:Math.max(0,Number(e.target.value))}))}/></label><label>{t('span')} <input aria-label={t('span')} type="number" min="0.002" step="0.1" value={settings.span} onChange={e=>setSettings(s=>({...s,manual:true,scaleStep:null,span:Math.max(.002,Number(e.target.value))}))}/></label></div></footer>
+    {details&&!form&&<Inspector view={view} picked={picked} language={language} t={t} stop={queriedStop} onClose={()=>toggleDetails(false)} onQuery={queryOriginal} onEvidence={()=>rpc('evidence').catch(onError)} style={{left:pad,right:pad,top:auxY,height:auxHeight}}/>}
+    {freshStart&&!form&&<Welcome language={language} exampleAvailable={exampleAvailable} onExample={()=>rpc('example').catch(onError)} onStart={()=>openForm('setup')} onOpen={()=>rpc('open').catch(onError)} onHelp={()=>openSupport('help')} onDiagnose={()=>openSupport('diagnostics')}/>}
+    <datalist id="known-targets">{targetOptions.map(id=><option key={id} value={id}/>)}</datalist>
+    {support&&<Support style={{left:pad,right:pad,top:auxY,height:auxHeight}} section={support} language={language} diagnostics={diagnostics} checking={checking} onCheck={diagnose} onClose={closeSupport} onExport={()=>rpc('diagnostic_export').catch(onError)} onGuide={()=>rpc('help').catch(onError)}/>}
+    {eventsOpen&&<Events view={view} native={native} language={language} onTarget={ids=>{const row=rowForEntity(view.rows,ids,picked);if(row)choose(row);}} onClose={closeEvents} style={{left:pad,right:pad,top:auxY,height:auxHeight}}/>}
+    {error&&<ErrorBanner style={{top:auxY,height:auxHeight}} error={error} language={language} onClose={()=>setError('')} onDiagnose={()=>{setError('');openSupport('diagnostics');diagnose(false);}}/>}
+    <footer style={{left:pad,right:pad,bottom:pad,height:footerHeight,visibility:setupMode?'hidden':'visible'}}><span title={view.envelope?.observation_id||''}>{historical?(language==='zh'?'历史记录':'Historical record'):view.status==='VERIFIED'?t('fresh'):t(statusNames[view.status]||'unknown')} · {view.writable?t('form'):t('readonly')} · {t('scroll')}</span><div className="range-controls"><button onClick={()=>setSettings(s=>({...s,comfortable:s.comfortable===false}))}>{settings.comfortable===false?(language==='zh'?'舒适字号':'Larger text'):(language==='zh'?'紧凑字号':'Compact text')}</button><label>{t('begin')} <input aria-label={t('begin')} type="number" step="0.1" value={settings.start} onChange={e=>setSettings(s=>({...s,manual:true,follow:false,start:Math.max(0,Number(e.target.value))}))}/></label><label>{t('span')} <input aria-label={t('span')} type="number" min="0.002" step="0.1" value={settings.span} onChange={e=>setSettings(s=>({...s,manual:true,scaleStep:null,span:Math.max(.002,Number(e.target.value))}))}/></label></div></footer>
   </main>
 }
 createRoot(document.getElementById('root')).render(<App/>);

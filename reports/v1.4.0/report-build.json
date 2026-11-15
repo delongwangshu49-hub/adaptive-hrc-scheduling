@@ -1,0 +1,20 @@
+{
+  "en": {
+    "baseline": "report-mic-en_w5-candidate-r2.docx",
+    "baseline_sha256": "b2dd43ce5ab10fea1d566a0685d2cb26bb0a5262d29952687fbe4f50efa1cfa3",
+    "original_paragraphs": 261,
+    "original_tables": 8,
+    "figures_preserved": true,
+    "appendix_sha256": "febda90874f75162dc27971e80d51506ba059ea7637120666252af591f6705f2",
+    "docx_before_word_fields_sha256": "f1519414a5d0cea1b3bb9a5eacb8b09eeb69588eb093aa44bfe0120754d9e392"
+  },
+  "zh": {
+    "baseline": "report-mic-zh_w5-candidate-r2.docx",
+    "baseline_sha256": "4ef494eaa9cbf9ceaa54e952c8c0698908c5fb0567bb5181ffda677d8c54f5e9",
+    "original_paragraphs": 261,
+    "original_tables": 8,
+    "figures_preserved": true,
+    "appendix_sha256": "0f0f38a5225e9c0012ad698ad5a770e9d17ea4a209128255f2c3b43bb4891d88",
+    "docx_before_word_fields_sha256": "d48fc23d6f846464afcbbf8fbf110dda241c33312a7e848bcf3bfe67541b5217"
+  }
+}

@@ -24,7 +24,10 @@ def _retain(value, memo):
 def shareable_records(world):
     """Unknown backends or mutable contract records take the full-copy path."""
     if type(world) is not ProductionBackend:
-        return {}
+        from .control.online_timing import known_record_wrapper
+
+        if not known_record_wrapper(world):
+            return {}
     memo = {}
     try:
         for value in (world.config, world.s, *world.events):

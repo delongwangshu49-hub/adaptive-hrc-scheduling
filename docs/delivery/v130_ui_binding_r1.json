@@ -1,0 +1,406 @@
+{
+  "version": "1.3.0",
+  "status": "LOCAL_CANDIDATE_NATIVE_UI_ACCEPTANCE_PENDING_NOT_PUBLISHED",
+  "base_version": "1.2.0",
+  "base_binding_sha256": "93d8193acc96e9883f6de141189fe187294ce755bc56753a5ffe0b0ef1407032",
+  "previous_artifact_relocations": [
+    {
+      "original_path": "README.md",
+      "path": "docs/archive/v1.2.0/README.md",
+      "sha256": "90c2dd9bf17ca960f155dde4fca8689643bf6bdd86bcca345229c0f6f2cbc907"
+    },
+    {
+      "original_path": "README.zh-CN.md",
+      "path": "docs/archive/v1.2.0/README.zh-CN.md",
+      "sha256": "7192c9b957a398ed12155a4586f021060e5bf73eca1f1ff8203464f2528a9c90"
+    },
+    {
+      "original_path": "desktop/p051/portable/START-HERE.md",
+      "path": "docs/archive/v1.2.0/desktop/p051/portable/START-HERE.md",
+      "sha256": "d2e27d159a07152eb7b3bb9377299f7e97c14e7455eef09ddcfc6fc82e4db4ed"
+    },
+    {
+      "original_path": "desktop/p051/portable/WorkbenchLauncher.cs",
+      "path": "docs/archive/v1.2.0/desktop/p051/portable/WorkbenchLauncher.cs",
+      "sha256": "ef277e5cf92b91a12c67953fd6be40ab0d7ab98e62c6cdbd954e42ad155cb1bc"
+    },
+    {
+      "original_path": "desktop/p051/portable/stage.py",
+      "path": "docs/archive/v1.2.0/desktop/p051/portable/stage.py",
+      "sha256": "d1bda15db925ae93de5026d69d96875cb2fb2adfe20c872be34f76d965606114"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/app.py",
+      "path": "docs/archive/v1.2.0/desktop/p051/src/p051_desktop/app.py",
+      "sha256": "23175bc523b518ba00cac6ed276d20a97549554ec5101f85cd084fe7825f7316"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/client.py",
+      "path": "docs/archive/v1.2.0/desktop/p051/src/p051_desktop/client.py",
+      "sha256": "3a93f1fbc70039c446a96cfcce7bcc489043e0355509a9b24d75bee215ed3e9b"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/diagnostics.py",
+      "path": "docs/archive/v1.2.0/desktop/p051/src/p051_desktop/diagnostics.py",
+      "sha256": "856eaeda9fe347ddd61e907de0d5498b231c8b09a186ade355a1dac99718c1c4"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/geometry.py",
+      "path": "docs/archive/v1.2.0/desktop/p051/src/p051_desktop/geometry.py",
+      "sha256": "0c71761ee3089add2f2ecf53dea9d8ec0ef5a8164fe185b2e6f7cd49cd0969db"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/presentation.py",
+      "path": "docs/archive/v1.2.0/desktop/p051/src/p051_desktop/presentation.py",
+      "sha256": "03cc384eaf0ecdd763427b863bf7db7ca5de521ed80396854841af7474b9d646"
+    },
+    {
+      "original_path": "desktop/p051/web/dist/assets/index-D8XNGnmN.js",
+      "path": "docs/archive/v1.2.0/desktop/p051/web/dist/assets/index-D8XNGnmN.js",
+      "sha256": "90f82b90f806213e5bb8f496a495d19b707a9344bc0cd07e149fe58bff4ad4b1"
+    },
+    {
+      "original_path": "desktop/p051/web/dist/assets/index-D8XNGnmN.js.map",
+      "path": "docs/archive/v1.2.0/desktop/p051/web/dist/assets/index-D8XNGnmN.js.map",
+      "sha256": "f2f15e7d4b238f9eef0d7366d213d5a17067c9760205c33e863f3414a728cdb0"
+    },
+    {
+      "original_path": "desktop/p051/web/dist/assets/index-nQSYvaui.css",
+      "path": "docs/archive/v1.2.0/desktop/p051/web/dist/assets/index-nQSYvaui.css",
+      "sha256": "e1b9515b6c3ca23fe41c7b6f41c451cfbf34ce965d4d99966dff0279d2cbe844"
+    },
+    {
+      "original_path": "desktop/p051/web/dist/index.html",
+      "path": "docs/archive/v1.2.0/desktop/p051/web/dist/index.html",
+      "sha256": "1d71f81d4a9c12289019237e4bcf9c260460a7893e205d52b5f4201fb68fcaa9"
+    },
+    {
+      "original_path": "desktop/p051/web/package-lock.json",
+      "path": "docs/archive/v1.2.0/desktop/p051/web/package-lock.json",
+      "sha256": "f28c1f3992c1cc2eccbe8616caaba369edb45536a3e2075cc7a5943233895f34"
+    },
+    {
+      "original_path": "desktop/p051/web/package.json",
+      "path": "docs/archive/v1.2.0/desktop/p051/web/package.json",
+      "sha256": "ea0356f33964888081e4f7764ea936fca817554fd61550a84aac758782c9d979"
+    },
+    {
+      "original_path": "desktop/p051/web/src/Experience.jsx",
+      "path": "docs/archive/v1.2.0/desktop/p051/web/src/Experience.jsx",
+      "sha256": "1f5bcee5d51e3ee06cdc06b12cef0bbf24d364b383185fc515751d92290d5539"
+    },
+    {
+      "original_path": "desktop/p051/web/src/Timeline.jsx",
+      "path": "docs/archive/v1.2.0/desktop/p051/web/src/Timeline.jsx",
+      "sha256": "dc562821390643eced1c41ed5057a7477756587c343fd5c44525bc0f2dc0674e"
+    },
+    {
+      "original_path": "desktop/p051/web/src/experience.css",
+      "path": "docs/archive/v1.2.0/desktop/p051/web/src/experience.css",
+      "sha256": "52bbf3ca50897978c2c79299b459c7c15fd8484a1b383f8e6ac0b7b266d54b81"
+    },
+    {
+      "original_path": "desktop/p051/web/src/experience.mjs",
+      "path": "docs/archive/v1.2.0/desktop/p051/web/src/experience.mjs",
+      "sha256": "cd65bfe85d6be1783ea62bb254aa84611f056e2a592913c6c905419a5b496076"
+    },
+    {
+      "original_path": "desktop/p051/web/src/main.jsx",
+      "path": "docs/archive/v1.2.0/desktop/p051/web/src/main.jsx",
+      "sha256": "339b51f4ea0ae27fcc4a188479a39ff98b1caffe9d22a4e2af8b67a09490cefd"
+    },
+    {
+      "original_path": "scripts/run_s19b_prototype.py",
+      "path": "docs/archive/v1.2.0/scripts/run_s19b_prototype.py",
+      "sha256": "0d9db420c6b66b14016f16c6d869b4d0fc101a1038c8d757497945160a3d3863"
+    },
+    {
+      "original_path": "src/adaptive_hrc_scheduling/control/gui_confirmation.py",
+      "path": "docs/archive/v1.2.0/src/adaptive_hrc_scheduling/control/gui_confirmation.py",
+      "sha256": "db1d1547430fafd5bf847de41563d3b76a298fe9ef56dd119ad0b4275a4ad589"
+    },
+    {
+      "original_path": "src/adaptive_hrc_scheduling/workforce_session.py",
+      "path": "docs/archive/v1.2.0/src/adaptive_hrc_scheduling/workforce_session.py",
+      "sha256": "4a5e764f0e17dec8504cc7a98937ae5429174509ea7f13e51a793a9d7b61c7ae"
+    },
+    {
+      "original_path": "tests/test_p062_capture_completion.py",
+      "path": "docs/archive/v1.2.0/tests/test_p062_capture_completion.py",
+      "sha256": "a6f858e4e9ae0ed3b827b90310375e8406be41cc0be41e78c5d07d282eb56eff"
+    },
+    {
+      "original_path": "tests/test_p062_limited_repair.py",
+      "path": "docs/archive/v1.2.0/tests/test_p062_limited_repair.py",
+      "sha256": "301558fc5b88f456da83db9fbc2a4c95f6e34d8b782bdb06fca23264ac7ba8f4"
+    },
+    {
+      "original_path": "tests/test_p07_delivery_bytes.py",
+      "path": "docs/archive/v1.2.0/tests/test_p07_delivery_bytes.py",
+      "sha256": "ffc462e259897537787169771e1126b8aaadbac41f784a95a9ebb13fabce04f7"
+    },
+    {
+      "original_path": "tests/test_workbench_experience.py",
+      "path": "docs/archive/v1.2.0/tests/test_workbench_experience.py",
+      "sha256": "78f4aebcf231b1e90e5a307499516a4707ccdb683bb3618e1b65092da6bb38ac"
+    }
+  ],
+  "current_artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "c08a2a810e41eea9e3b3907779e247e0b7b0e8ececf89c1420b303a6eb8a515a"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "sha256": "613ac4cffbb1976a78f67ceb9d5c9821a6f5562349e8d350fdfcfe6e4780a868"
+    },
+    {
+      "path": "desktop/p051/portable/START-HERE.md",
+      "sha256": "184acd2ac788095d0a5a984d9c267627e8359ed8421cf858ad178c8b965eb7b6"
+    },
+    {
+      "path": "desktop/p051/portable/WorkbenchLauncher.cs",
+      "sha256": "a487655084c5805c566dd77452da747e5f74f0f7ee1b03d55aeb64063bb3a1f8"
+    },
+    {
+      "path": "desktop/p051/portable/stage.py",
+      "sha256": "3e6a24d003819893e2bce0f564b7ba2a745658bb143602e9d2d97dee27f1889a"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/app.py",
+      "sha256": "6c4990cd5dea5c42cfba8aa6aa6d339191c71db69640840a09ff870071fd8c80"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/client.py",
+      "sha256": "085acce69399919107afd2d68b6d33ed50a37d9f160ddb1b5172bb3964a6319f"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/diagnostics.py",
+      "sha256": "e2f1f516139d441eea72971ed36249835a79510c1b7765aada737213c89ff5a6"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/geometry.py",
+      "sha256": "c57724e5feedebb736360b3e34695664ac3ebd5dde31abc46d99c38b42b41f6f"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/linkage.py",
+      "sha256": "63dc4d02f21f762b3d5dc11dff1f5d836f9529adf4b649bdb76908f7055d1197"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/presentation.py",
+      "sha256": "5b7c0437ea3a1283eb65205cba7650c36d199a12dfcdf0dc198e5317609c4c70"
+    },
+    {
+      "path": "desktop/p051/web/dist/assets/index-CZzwnmuF.css",
+      "sha256": "bd6231603683ebf48db0e5094fb21eec7e73cc88b7d9d0756a35e4a6d8e84196"
+    },
+    {
+      "path": "desktop/p051/web/dist/assets/index-DkSsSNep.js",
+      "sha256": "55b32c13b2672186729e8317cebfc6939cad7a63efdb46734354bb062e99326b"
+    },
+    {
+      "path": "desktop/p051/web/dist/assets/index-DkSsSNep.js.map",
+      "sha256": "44fb801514d6b8551a111692597c0528f100544cb313d74cf983b3cee9f2ef29"
+    },
+    {
+      "path": "desktop/p051/web/dist/index.html",
+      "sha256": "47ed3c930abd31191122232bed9cf26b74ec6ea10ce8b72ceae042b04f412358"
+    },
+    {
+      "path": "desktop/p051/web/package-lock.json",
+      "sha256": "3fac22cedf59eb57bb226559fb25c89a613333714fc711bde6d21153368d64db"
+    },
+    {
+      "path": "desktop/p051/web/package.json",
+      "sha256": "147988a9bc23b34631bbaf59a2641f4b07dcafeab801d8a469192e641d61f46a"
+    },
+    {
+      "path": "desktop/p051/web/src/Experience.jsx",
+      "sha256": "f214dcc7609121c6975a079aeb07247a5e56ab639949b2b9cc929e6ce9bfe962"
+    },
+    {
+      "path": "desktop/p051/web/src/LinkedExperience.jsx",
+      "sha256": "57e4ecbd8d15b5d3af1e2fa1a840ad3b09f15477366bf1a17eac79e760a6c864"
+    },
+    {
+      "path": "desktop/p051/web/src/Timeline.jsx",
+      "sha256": "fcbecd34a8dfc3f32254cface4fff624aeecaebeb676995196632d1896218db0"
+    },
+    {
+      "path": "desktop/p051/web/src/experience.css",
+      "sha256": "b6a9af7e2f9371b7773d092e28f580ab17d94d32309172b46f5f44e9c72e861a"
+    },
+    {
+      "path": "desktop/p051/web/src/experience.mjs",
+      "sha256": "49cf2b7546f6b0e42428221cdd964b9d8e9e10984f208e4068eba7825f9b1753"
+    },
+    {
+      "path": "desktop/p051/web/src/linkage.mjs",
+      "sha256": "f0f29e026e028f74867c979246d52ec5fc37882b9f64783aad5d65f0dbee2748"
+    },
+    {
+      "path": "desktop/p051/web/src/main.jsx",
+      "sha256": "0baca23955da177c000764fdc2e2e9b604151f9f741264ca8f237180c3af073d"
+    },
+    {
+      "path": "desktop/p051/web/tests/linkage.test.mjs",
+      "sha256": "635c5ba017b0a01569bba863ae2fefa64ea0d8315831b78bdc4ff0ea18ab7a14"
+    },
+    {
+      "path": "docs/archive/v1.2.0/README.md",
+      "sha256": "90c2dd9bf17ca960f155dde4fca8689643bf6bdd86bcca345229c0f6f2cbc907"
+    },
+    {
+      "path": "docs/archive/v1.2.0/README.zh-CN.md",
+      "sha256": "7192c9b957a398ed12155a4586f021060e5bf73eca1f1ff8203464f2528a9c90"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/portable/START-HERE.md",
+      "sha256": "d2e27d159a07152eb7b3bb9377299f7e97c14e7455eef09ddcfc6fc82e4db4ed"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/portable/WorkbenchLauncher.cs",
+      "sha256": "ef277e5cf92b91a12c67953fd6be40ab0d7ab98e62c6cdbd954e42ad155cb1bc"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/portable/stage.py",
+      "sha256": "d1bda15db925ae93de5026d69d96875cb2fb2adfe20c872be34f76d965606114"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/src/p051_desktop/app.py",
+      "sha256": "23175bc523b518ba00cac6ed276d20a97549554ec5101f85cd084fe7825f7316"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/src/p051_desktop/client.py",
+      "sha256": "3a93f1fbc70039c446a96cfcce7bcc489043e0355509a9b24d75bee215ed3e9b"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/src/p051_desktop/diagnostics.py",
+      "sha256": "856eaeda9fe347ddd61e907de0d5498b231c8b09a186ade355a1dac99718c1c4"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/src/p051_desktop/geometry.py",
+      "sha256": "0c71761ee3089add2f2ecf53dea9d8ec0ef5a8164fe185b2e6f7cd49cd0969db"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/src/p051_desktop/presentation.py",
+      "sha256": "03cc384eaf0ecdd763427b863bf7db7ca5de521ed80396854841af7474b9d646"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/web/dist/assets/index-D8XNGnmN.js",
+      "sha256": "90f82b90f806213e5bb8f496a495d19b707a9344bc0cd07e149fe58bff4ad4b1"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/web/dist/assets/index-D8XNGnmN.js.map",
+      "sha256": "f2f15e7d4b238f9eef0d7366d213d5a17067c9760205c33e863f3414a728cdb0"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/web/dist/assets/index-nQSYvaui.css",
+      "sha256": "e1b9515b6c3ca23fe41c7b6f41c451cfbf34ce965d4d99966dff0279d2cbe844"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/web/dist/index.html",
+      "sha256": "1d71f81d4a9c12289019237e4bcf9c260460a7893e205d52b5f4201fb68fcaa9"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/web/package-lock.json",
+      "sha256": "f28c1f3992c1cc2eccbe8616caaba369edb45536a3e2075cc7a5943233895f34"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/web/package.json",
+      "sha256": "ea0356f33964888081e4f7764ea936fca817554fd61550a84aac758782c9d979"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/web/src/Experience.jsx",
+      "sha256": "1f5bcee5d51e3ee06cdc06b12cef0bbf24d364b383185fc515751d92290d5539"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/web/src/Timeline.jsx",
+      "sha256": "dc562821390643eced1c41ed5057a7477756587c343fd5c44525bc0f2dc0674e"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/web/src/experience.css",
+      "sha256": "52bbf3ca50897978c2c79299b459c7c15fd8484a1b383f8e6ac0b7b266d54b81"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/web/src/experience.mjs",
+      "sha256": "cd65bfe85d6be1783ea62bb254aa84611f056e2a592913c6c905419a5b496076"
+    },
+    {
+      "path": "docs/archive/v1.2.0/desktop/p051/web/src/main.jsx",
+      "sha256": "339b51f4ea0ae27fcc4a188479a39ff98b1caffe9d22a4e2af8b67a09490cefd"
+    },
+    {
+      "path": "docs/archive/v1.2.0/scripts/run_s19b_prototype.py",
+      "sha256": "0d9db420c6b66b14016f16c6d869b4d0fc101a1038c8d757497945160a3d3863"
+    },
+    {
+      "path": "docs/archive/v1.2.0/src/adaptive_hrc_scheduling/control/gui_confirmation.py",
+      "sha256": "db1d1547430fafd5bf847de41563d3b76a298fe9ef56dd119ad0b4275a4ad589"
+    },
+    {
+      "path": "docs/archive/v1.2.0/src/adaptive_hrc_scheduling/workforce_session.py",
+      "sha256": "4a5e764f0e17dec8504cc7a98937ae5429174509ea7f13e51a793a9d7b61c7ae"
+    },
+    {
+      "path": "docs/archive/v1.2.0/tests/test_p062_capture_completion.py",
+      "sha256": "a6f858e4e9ae0ed3b827b90310375e8406be41cc0be41e78c5d07d282eb56eff"
+    },
+    {
+      "path": "docs/archive/v1.2.0/tests/test_p062_limited_repair.py",
+      "sha256": "301558fc5b88f456da83db9fbc2a4c95f6e34d8b782bdb06fca23264ac7ba8f4"
+    },
+    {
+      "path": "docs/archive/v1.2.0/tests/test_p07_delivery_bytes.py",
+      "sha256": "ffc462e259897537787169771e1126b8aaadbac41f784a95a9ebb13fabce04f7"
+    },
+    {
+      "path": "docs/archive/v1.2.0/tests/test_workbench_experience.py",
+      "sha256": "78f4aebcf231b1e90e5a307499516a4707ccdb683bb3618e1b65092da6bb38ac"
+    },
+    {
+      "path": "docs/releases/v1.3.0-user-guide.en.md",
+      "sha256": "0ea476c17d67d4ad4f7995bc0e6a154179eec258e2f4dd87abc45e2b94732477"
+    },
+    {
+      "path": "docs/releases/v1.3.0-user-guide.zh-CN.md",
+      "sha256": "a95fcbdfb25a792540560375f1c48f62eeeaf2786264ac387db4670363db842d"
+    },
+    {
+      "path": "scripts/p051_scene_link.py",
+      "sha256": "f232344a79b5829ae3882a940a418672983999b8e9d75b71bb90b221fcc1ec0e"
+    },
+    {
+      "path": "scripts/run_s19b_prototype.py",
+      "sha256": "6575619be483062b9b9b2ac660c10d515acfb47a1676c7f14bc70f90ec2c4f32"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/control/gui_confirmation.py",
+      "sha256": "22d7d7dca3164aa1c54e19aa72596be02acaa9f1dfe5eb285747e9896cdc861e"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/workforce_session.py",
+      "sha256": "47f2525f95bf3b2175612f47ca93d117f6d02c965146c98d15cfd6935722242f"
+    },
+    {
+      "path": "tests/test_p062_capture_completion.py",
+      "sha256": "eb96406dd159cfdadec1f9b8bca40600409ee1671313fdf66bc6795c5cb8c315"
+    },
+    {
+      "path": "tests/test_p062_limited_repair.py",
+      "sha256": "7e300fb45a866195413f8b03eaaaa7a388e84c7b50ee8db46dd971eb0b9f5b83"
+    },
+    {
+      "path": "tests/test_p07_delivery_bytes.py",
+      "sha256": "490fbf207d3754eca907705d563c72dea8744fca2d33945302194ad4d1b7b021"
+    },
+    {
+      "path": "tests/test_workbench_experience.py",
+      "sha256": "efb5aec1cf1f99614ef9816c4536fb2461d4bdc4d7793c584fd1105d3191aae7"
+    },
+    {
+      "path": "tests/test_workbench_linkage.py",
+      "sha256": "7b3abbed9d241ede691a68070b564e93d5466180caaea73744e8857fc4c2c903"
+    }
+  ]
+}

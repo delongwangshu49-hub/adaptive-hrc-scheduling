@@ -1,0 +1,261 @@
+{
+  "version": "1.4.0",
+  "status": "LOCAL_NATIVE_VALIDATION_COMPLETE_NOT_PUBLISHED",
+  "required_flows_passed": true,
+  "observed_at": "2026-11-15T00:19:01.285550+08:00",
+  "native_runs": [
+    "P051-500739bc35d7418390421d9a5b11f9e9",
+    "P051-1b2cb4db875c40b0baae06652b9715cf"
+  ],
+  "final_plan_version": 5,
+  "final_plan_sha256": "efc12e465986ed5a080a79f6dbbfa5952433ced02baaaf90e2a01371bef2b7f9",
+  "final_sim_h": 1.768397222222222,
+  "full_checks": {
+    "candidate": "candidate-code-r4",
+    "source_files": 1594,
+    "results": [
+      {
+        "name": "source",
+        "exit_code": 0,
+        "exited": true,
+        "source_unchanged": true,
+        "tests": 1343,
+        "elapsed_seconds": 1160.464,
+        "old_test_identities_retained": true,
+        "missing_old": [],
+        "import_binding_passed": true,
+        "skips": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "wheel",
+        "exit_code": 0,
+        "exited": true,
+        "source_unchanged": true,
+        "tests": 1343,
+        "elapsed_seconds": 1156.765,
+        "old_test_identities_retained": true,
+        "missing_old": [],
+        "import_binding_passed": true,
+        "skips": 0,
+        "failures": 0,
+        "errors": 0
+      }
+    ],
+    "passed": true,
+    "published": false,
+    "controller_recovery": "Original controller failed after spawning both jobs because its historical-log path was mistyped. Jobs were not restarted; independent process handles observed both exits 0. Per-process import receipts and complete logs are preserved.",
+    "process_exit_evidence": "full-process-exits-r4.json"
+  },
+  "source_inventory_sha256": "762b4e98405bdcbb8132813137834fe192b169ddee7b756fa7e7d043d066ceca",
+  "final_frontend_followup": {
+    "changed_paths": [
+      "desktop/p051/web/dist/assets/index-DLK275XI.js",
+      "desktop/p051/web/dist/assets/index-CCFlbMb-.js",
+      "desktop/p051/web/dist/assets/index-CCFlbMb-.js.map",
+      "desktop/p051/web/dist/index.html",
+      "desktop/p051/web/dist/assets/index-DLK275XI.js.map",
+      "desktop/p051/web/src/Timeline.jsx"
+    ],
+    "python_core_and_tests_identical": true,
+    "node_tests": 41,
+    "native": {
+      "passed": true,
+      "source_sha256": "236878f5197f62f18bd9f534ef27e1b6da0f7352c0c2330120724caaffdf448c",
+      "flow": "Actual r10 native window: scroll lower in process view, switch to product overview, close options; both product rows appear at top and expand controls absent.",
+      "evidence": "ui-evidence-r10-attempt2/02-overview-scroll-reset.png",
+      "frontend_tests": 41
+    }
+  },
+  "native_selection": {
+    "direct_crane": true,
+    "direct_person": true,
+    "direct_material": true,
+    "box_multiple": true,
+    "reverse_box": true,
+    "blank_clear": true,
+    "scene_to_web_keyboard": true,
+    "modifier_mouse_combinations": "NOT_ACTUALLY_INJECTED_BY_AVAILABLE_CUA_API",
+    "multiple_monitors": "NOT_TESTED"
+  },
+  "order_and_resource_flows": {
+    "order_update": "VERIFIED_R8_V2",
+    "urgent_create": "APPLIED_R9_PRODUCT_2_VERIFIED_V5",
+    "device_failure": "APPLIED_R8_PLAN_BLOCKED",
+    "device_repair": "APPLIED_R8_VERIFIED_V3",
+    "person_absence": "APPLIED_R9_HIDDEN",
+    "same_id_return": "APPLIED_R9_CONTROL_AF1_VISIBLE_V2",
+    "new_person_arrival": "APPLIED_R9_VISIBLE_V3",
+    "planned_departure": "APPLIED_R9_HIDDEN_V4",
+    "urgent_product_physical_start": "NOT_REACHED_BEFORE_SAFE_STOP"
+  },
+  "final_budget_entries": [
+    {
+      "elapsed_s": 84.65744249999989,
+      "overrun_s": 0,
+      "remaining_s": 3515.3425575,
+      "sequence": -2147483647,
+      "trigger": "INITIAL",
+      "used_s": 84.65744249999989
+    },
+    {
+      "elapsed_s": 43.843000500004564,
+      "overrun_s": 0,
+      "remaining_s": 3471.4995569999955,
+      "sequence": -2147483646,
+      "trigger": "CATALOG_CHANGED",
+      "used_s": 128.50044300000445
+    },
+    {
+      "elapsed_s": 96.91549240000313,
+      "overrun_s": 0,
+      "remaining_s": 3374.5840645999924,
+      "sequence": -2147483645,
+      "trigger": "CATALOG_CHANGED",
+      "used_s": 225.41593540000758
+    },
+    {
+      "elapsed_s": 95.05645419999928,
+      "overrun_s": 0,
+      "remaining_s": 3279.527610399993,
+      "sequence": -2147483644,
+      "trigger": "CATALOG_CHANGED",
+      "used_s": 320.47238960000686
+    },
+    {
+      "elapsed_s": 100.15302350000275,
+      "overrun_s": 0,
+      "remaining_s": 3179.3745868999904,
+      "sequence": -2147483643,
+      "trigger": "CATALOG_CHANGED",
+      "used_s": 420.6254131000096
+    },
+    {
+      "elapsed_s": 391.9349225000042,
+      "overrun_s": 0,
+      "remaining_s": 2787.439664399986,
+      "sequence": -2147483642,
+      "trigger": "CATALOG_CHANGED",
+      "used_s": 812.5603356000138
+    }
+  ],
+  "native_exit": {
+    "kit_exit_code": 0,
+    "exe_exit_code": 0,
+    "readonly_exe_exit_code": 0
+  },
+  "readonly_reopen": {
+    "files": 79,
+    "unchanged": true,
+    "verified_plan_version_observed": 5,
+    "new_worker_started": false,
+    "phase": "SAVED_READ_ONLY",
+    "final_state_revision": 1133,
+    "final_sim_h": 1.768397222222222,
+    "timeline_bytes": 178705135,
+    "first_observation_monotonic": 36145.89,
+    "last_observation_monotonic": 36629.218,
+    "observed_at": "2026-11-15T00:18:18.550645+08:00",
+    "observed_loading_seconds": 408.0940000000046
+  },
+  "diagnostics": {
+    "CPU": {
+      "exit_code": 0,
+      "warnings": [],
+      "failures": 0
+    },
+    "Isaac": {
+      "exit_code": 2,
+      "warnings": [
+        "isaac.scope"
+      ],
+      "failures": 0
+    }
+  },
+  "cpu_portable": {
+    "passed": true,
+    "exit_code": 0,
+    "issue": null
+  },
+  "performance": {
+    "preflight_median_old_s": 273.498,
+    "preflight_median_new_s": 230.9169,
+    "median_reduction_percent": 15.569,
+    "final_native_urgent_s": 391.9349225000042,
+    "target_60_seconds_met": false,
+    "target_50_percent_met": false
+  },
+  "image_provenance": {
+    "box-selection.png": {
+      "sha256": "f1fe77a2b7ad65a6a2ca165f4a1e256351931c61169c092db6236d8d6f01184b",
+      "source": "ui-evidence-r9/05-final-box-selection.png",
+      "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+      "altered": false
+    },
+    "empty-selection.png": {
+      "sha256": "52fea3d389164b5e2e0c5817214b627699f550525770c2cc61246fc8b3cca580",
+      "source": "ui-evidence-r9/06-empty-click-cleared.png",
+      "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+      "altered": false
+    },
+    "crane-click.png": {
+      "sha256": "94d7b4a5f3c4b5483f62612d1bb20148db696230db67e592939cda2b633c2301",
+      "source": "ui-evidence-r9/07-crane-click-linked.png",
+      "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+      "altered": false
+    },
+    "return-location.png": {
+      "sha256": "1283b8d588e1745f914968e58e9c95df455c9f2bd984aa78e5f2dd7341f8b46e",
+      "source": "ui-evidence-r9/02-af1-return-location-prefilled.png",
+      "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+      "altered": false
+    },
+    "dual-overview.png": {
+      "sha256": "8421f43e9a8e2cf73519cc6a4913e2284bf2206f1559fc3fe2c89bee4a3790cd",
+      "source": "ui-evidence-r9/09-urgent-v5-dual-overview.png",
+      "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+      "altered": false
+    },
+    "saved-exit.png": {
+      "sha256": "0fee6ffbb2d58f76550c3ff0b03e8f6c8c13e9e6ccae67afee4ab6e439f23101",
+      "source": "ui-evidence-r9/10-stopped-saved-kit-exit-zero.png",
+      "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+      "altered": false
+    },
+    "device-repaired.png": {
+      "sha256": "0db9c70562bcd3aaf7986c9d5e1c148f35a19faf8608b2262ced440797a57924",
+      "source": "ui-evidence-r8/05-device-repair-v3-verified-maximized.png",
+      "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+      "altered": false
+    },
+    "read-only-reopened.png": {
+      "sha256": "3acad8b53377d68e175ea41c1c9b9611752b4725fe4310c2898170b0f50ff769",
+      "source": "ui-evidence-r10-attempt2/01-readonly-v5-verified.png",
+      "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+      "altered": false
+    },
+    "overview-restored.png": {
+      "sha256": "9c9cc14202717d5d76d49034c2755f148ba5d8ceb551430b86f0fc702d5c822f",
+      "source": "ui-evidence-r10-attempt2/02-overview-scroll-reset.png",
+      "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+      "altered": false
+    },
+    "dual-export.png": {
+      "sha256": "ed83e0a9117e8490a60bd6dbf4ac4020ac5c34749089d426c0925e695ad676db",
+      "source": "ui-evidence-r9/dual-final.png",
+      "capture": "ACTUAL_LOCAL_WINDOW_OR_APPLICATION_EXPORT",
+      "altered": false
+    }
+  },
+  "publication": false,
+  "owner_E12": "OWNER_PENDING",
+  "teammate_machine": "PENDING",
+  "remote_CI": "NOT_RUN",
+  "limitations": [
+    "Modifier + mouse combinations not actually injected",
+    "No new industrial qualification",
+    "Urgent product registered and independently scheduled; its later physical start was not reached in this stopped run",
+    "178.7 MB archive loading remains slow: about 7–8 minutes for this observed session"
+  ]
+}

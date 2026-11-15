@@ -25,6 +25,49 @@ class P07DeliveryBytesTests(unittest.TestCase):
         publication_moves = {
             row["original_path"]: row for row in publication["previous_artifact_relocations"]
         }
+        experience = load("docs/delivery/v120_ui_binding_r1.json")
+        experience_moves = {
+            row["original_path"]: row for row in experience["previous_artifact_relocations"]
+        }
+        dual = load("docs/delivery/v130_ui_binding_r1.json")
+        dual_moves = {row["original_path"]: row for row in dual["previous_artifact_relocations"]}
+        native = load("docs/delivery/v130_native_binding_r2.json")
+        native_moves = {
+            row["original_path"]: row for row in native["previous_artifact_relocations"]
+        }
+        redesign = load("docs/delivery/v140_ui_binding_r1.json")
+        redesign_moves = {
+            row["original_path"]: row for row in redesign["previous_artifact_relocations"]
+        }
+        accepted = load("docs/delivery/v140_native_binding_r1.json")
+        accepted_moves = {
+            row["original_path"]: row for row in accepted["previous_artifact_relocations"]
+        }
+        self.assertEqual(len(accepted_moves), len(accepted["previous_artifact_relocations"]))
+        for path, row in accepted_moves.items():
+            self.assertEqual(row["path"], "docs/archive/v1.4.0-preflight-r6/" + path)
+        self.assertEqual(len(redesign_moves), len(redesign["previous_artifact_relocations"]))
+        for path, row in redesign_moves.items():
+            self.assertEqual(row["path"], "docs/archive/v1.3.0-native-r2/" + path)
+        self.assertEqual(len(native_moves), len(native["previous_artifact_relocations"]))
+        for path, row in native_moves.items():
+            self.assertEqual(row["path"], "docs/archive/v1.3.0-r1/" + path)
+        self.assertEqual(len(dual_moves), len(dual["previous_artifact_relocations"]))
+        for path, row in dual_moves.items():
+            self.assertEqual(row["path"], "docs/archive/v1.2.0/" + path)
+        self.assertEqual(len(experience_moves), len(experience["previous_artifact_relocations"]))
+        self.assertTrue(
+            {
+                "README.md",
+                "README.zh-CN.md",
+                "tests/test_p07_delivery_bytes.py",
+                "desktop/p051/src/p051_desktop/app.py",
+                "desktop/p051/src/p051_desktop/gantt.py",
+                "desktop/p051/web/src/main.jsx",
+            }.issubset(experience_moves)
+        )
+        for path, row in experience_moves.items():
+            self.assertEqual(row["path"], "docs/archive/v1.1.0/" + path)
         self.assertEqual(
             set(publication_moves),
             {"README.md", "README.zh-CN.md", "tests/test_p07_delivery_bytes.py"},
@@ -42,8 +85,30 @@ class P07DeliveryBytesTests(unittest.TestCase):
             if published_prior is not None and pin["sha256"] == published_prior["sha256"]:
                 pin = published_prior
                 path = pin["path"]
+            experience_prior = experience_moves.get(path)
+            if experience_prior is not None and pin["sha256"] == experience_prior["sha256"]:
+                pin = experience_prior
+                path = pin["path"]
+            self.assertTrue((ROOT / path).resolve().is_relative_to(ROOT.resolve()))
+            dual_prior = dual_moves.get(path)
+            if dual_prior is not None and pin["sha256"] == dual_prior["sha256"]:
+                pin = dual_prior
+                path = pin["path"]
             self.assertTrue((ROOT / path).resolve().is_relative_to(ROOT.resolve()))
             self.assertFalse(path.startswith(".local/"))
+            native_prior = native_moves.get(path)
+            if native_prior is not None and pin["sha256"] == native_prior["sha256"]:
+                pin = native_prior
+                path = pin["path"]
+            redesign_prior = redesign_moves.get(path)
+            if redesign_prior is not None and pin["sha256"] == redesign_prior["sha256"]:
+                pin = redesign_prior
+                path = pin["path"]
+            accepted_prior = accepted_moves.get(path)
+            if accepted_prior is not None and pin["sha256"] == accepted_prior["sha256"]:
+                pin = accepted_prior
+                path = pin["path"]
+            self.assertTrue((ROOT / path).resolve().is_relative_to(ROOT.resolve()))
             if path in expected:
                 self.assertEqual(expected[path], pin["sha256"], path)
             expected[path] = pin["sha256"]
@@ -216,6 +281,16 @@ class P07DeliveryBytesTests(unittest.TestCase):
             add(row)
         add(publication["previous_candidate"])
         for row in publication["current_artifacts"]:
+            add(row)
+        for row in experience["current_artifacts"]:
+            add(row)
+        for row in dual["current_artifacts"]:
+            add(row)
+        for row in native["current_artifacts"]:
+            add(row)
+        for row in redesign["current_artifacts"]:
+            add(row)
+        for row in accepted["current_artifacts"]:
             add(row)
         binding = load("docs/delivery/feedback_metric_binding_r3.json")
         for row in binding["upstream_contracts"]:

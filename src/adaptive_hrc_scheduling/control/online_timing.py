@@ -2,6 +2,14 @@
 
 from collections import defaultdict
 from time import perf_counter
+from weakref import WeakSet
+
+_record_wrappers = WeakSet()
+
+
+def known_record_wrapper(world):
+    """Only exact, locally generated instrumentation classes share native records."""
+    return type(world) in _record_wrappers
 
 
 def distribution(values):
@@ -35,6 +43,10 @@ class OnlineTiming:
         # A per-instance subclass supplies descriptors that bind to each copy.
         self.original_world_class = type(self.world)
         self.world.__class__ = type("TimedProductionBackend", (self.original_world_class,), {})
+        from adaptive_hrc_scheduling.production_backend import ProductionBackend
+
+        if self.original_world_class is ProductionBackend:
+            _record_wrappers.add(type(self.world))
         self.wrap_world("_event", "event_record", self.event_emitted)
         for name in ("dispatch", "advance", "apply_world", "complete", "progress", "exception"):
             self.wrap_world(name, "execution_state")
@@ -165,4 +177,5 @@ class OnlineTiming:
     def close(self):
         for obj, name, original in reversed(self.patches):
             setattr(obj, name, original)
+        _record_wrappers.discard(type(self.world))
         self.world.__class__ = self.original_world_class

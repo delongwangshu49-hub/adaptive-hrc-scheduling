@@ -1,0 +1,80 @@
+{
+  "status": "DATA_AND_FIGURE_AUDIT_PASS",
+  "observed_at": "2026-11-15T14:21:46.167929+08:00",
+  "research_files_unchanged_from_published_head": 187,
+  "research_files_by_area": {
+    "analysis/p07/": 22,
+    "examples/reproduction/p07/": 28,
+    "results/p07/": 86,
+    "figures/p07/": 51
+  },
+  "reproduced_files": {
+    "results/p07/presentation-r1/activity_decomposition.csv": "591ee3a0aac0c519542439613d1fe6dec3e2145dc67807c0f9185908fc510f92",
+    "results/p07/presentation-r1/cancellation_resources.csv": "40e0f740f86cbe3151546e6f3a240d6bddb0989b8a341d9498e53817767a8033",
+    "results/p07/presentation-r1/delivery_lateness.csv": "1b617979aa0cd9842593d671468b3248bba05371f8b9226feae2ceecb196cebf",
+    "results/p07/presentation-r1/dynamic_denominators.csv": "5728a2b4ef6a6bbf4636d1e946b7e20c0a668404975d0c4bd80c94481d8a73f6",
+    "results/p07/presentation-r1/e20_response.csv": "d9199f4bd0b09cdba8d5b12c6940b9106bece9fa362ae910bb659cb423d89bc4",
+    "results/p07/presentation-r1/fatigue_first_day.csv": "39143724a3995527e77f75571d799e656cd71ca8d77e44c127fb4de122b3dbf7",
+    "results/p07/presentation-r1/fatigue_windows.csv": "2cd8a8c0d5905df507404487cdfd507c3311080667336a5764012740b82e1f19",
+    "results/p07/presentation-r1/mechanism_contrasts.csv": "88a0640883797e78c0402aa3a70085f0cc74c47a8e244af3f2541ed3f34f9cfa",
+    "results/p07/presentation-r1/method_tradeoff.csv": "8306983d41716f2616af4f8f11a19497e01daf7ed3b07d6d7fec0de868e6d889",
+    "results/p07/presentation-r1/tables.json": "eb9832b901fbe2041cf54b0ef7d27120c32e6476fc6ca615dfe284b7b7794774",
+    "figures/p07/r4/P07-R4-01-mechanism-contrast.pdf": "be7d1ffad0368314421ba2255afc941fe6c4d9f7c78bfeb817e80ce7cd7c3ab4",
+    "figures/p07/r4/P07-R4-01-mechanism-contrast.png": "a2d0246d49fd92f01d2c32f21825606df7f9e2c3a3e82a4438f8d90b64b5d632",
+    "figures/p07/r4/P07-R4-01-mechanism-contrast.svg": "596c662b0ba682c8777c5b2337b00a764004ca0cbc253a20506b5bbcccba1866",
+    "figures/p07/r4/P07-R4-02-order-event-chain.pdf": "2319d437e0c34680b6091cbff22be3165212193caf021d64c0dac07a75d4d734",
+    "figures/p07/r4/P07-R4-02-order-event-chain.png": "cd30c2be7817047a025b9ba88ccc2032b4b5afe34e681d3b7ad9d98fcb479abd",
+    "figures/p07/r4/P07-R4-02-order-event-chain.svg": "d25ad4c2ad23be3a4634ec119322f0042bc58055c8f748275340df9a3dbc281d",
+    "figures/p07/r4/P07-R4-03-time-and-exposure.pdf": "8a53ea0d65d179c92342f9a8c42caa3dca8da17669f2cfcd577e460381ef2a61",
+    "figures/p07/r4/P07-R4-03-time-and-exposure.png": "0c10d131ff47dcc62df2141033f9ad715850db50bcc405fecc97a72b3c231874",
+    "figures/p07/r4/P07-R4-03-time-and-exposure.svg": "785a48174d3de02e140936cd6b41476333ff0ac6cc17152e91002f2b1edea4b5",
+    "figures/p07/r4/P07-R4-04-initial-fatigue-window.pdf": "8133b12381ff84ade1f352607de9ee11709678f33300e5c97e4f25bce96d9ffb",
+    "figures/p07/r4/P07-R4-04-initial-fatigue-window.png": "d2dfe8a2365ff6b070f90b52ba095214e2d63b2c386f6d12a09333436708af54",
+    "figures/p07/r4/P07-R4-04-initial-fatigue-window.svg": "232d2c144aaf1ffd261ad916128a4d7a8b104dd8ba903e016843b20528c9f57f"
+  },
+  "new_production": 0,
+  "new_kit": 0,
+  "screenshot_decision": "Use the final r10 read-only capture as latest UI; label static final scene. Preserve r9 live capture separately and retain historic research screenshots with original captions.",
+  "chart_decision": "Preserve four research figures; add one paired-replay chart showing all five pairs, slower pair and ratio-of-medians. Keep differing native scenarios in a table, not an improvement chart.",
+  "latest_ui_runtime_file_count": 202,
+  "data": "../../figures/v140/paired-replay-data.json",
+  "unchanged_research_unit_count": 12,
+  "byte_identical_regenerated_artifacts": {
+    "csv": 9,
+    "numerical_tables_json": 1,
+    "figure_files": 12
+  },
+  "provenance_receipts": "Regenerated manifest/validation paths and their receipt hashes differ by output location; numerical data and PNG/SVG/PDF files are byte-identical.",
+  "screenshots": {
+    "latest": {
+      "path": "docs/assets/readme/workbench-native-v140-final.png",
+      "source": "ui-evidence-r10-attempt2/01-readonly-v5-verified.png",
+      "sha256": "3acad8b53377d68e175ea41c1c9b9611752b4725fe4310c2898170b0f50ff769",
+      "state": "SAVED_READ_ONLY; full archive loaded; scene is a labelled final frame",
+      "altered": false
+    },
+    "live": {
+      "path": "docs/assets/readme/workbench-native-v140.png",
+      "source": "ui-evidence-r9/09-urgent-v5-dual-overview.png",
+      "sha256": "8421f43e9a8e2cf73519cc6a4913e2284bf2206f1559fc3fe2c89bee4a3790cd",
+      "state": "Actual r9 production; before the final overview scroll/control-only change",
+      "altered": false
+    }
+  },
+  "native_measurements_s": {
+    "r8_repair": 105.1988799000028,
+    "r9_return": 96.91549240000313,
+    "r9_arrival": 95.05645419999928,
+    "r9_departure": 100.15302350000275,
+    "r9_urgent": 391.9349225000042
+  },
+  "native_measurement_source": "Final budget entries; intermediate departure snapshot predates completion and is not used as its final timing.",
+  "style_correction": {
+    "language": "English",
+    "shared_by_both_report_languages": true,
+    "reference": "analysis/p07/presentation_figures.py",
+    "reference_sha256": "2c2427ae71609426bcecab145083bb1271ba139152163241619e8f6574601b52",
+    "measurements_unchanged": true,
+    "previous_candidate_preserved": "r4"
+  }
+}

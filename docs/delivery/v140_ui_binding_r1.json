@@ -1,0 +1,531 @@
+{
+  "version": "1.4.0",
+  "status": "LOCAL_PREFLIGHT_NATIVE_ACCEPTANCE_PENDING_NOT_PUBLISHED",
+  "base_binding_sha256": "5fc42896be6adc92ccb8ff9e532fe4e8ef90564b31f311ce703951d12ba1f3f7",
+  "previous_artifact_relocations": [
+    {
+      "original_path": "README.md",
+      "path": "docs/archive/v1.3.0-native-r2/README.md",
+      "sha256": "831a3dd17e4e162bcc41ac51ee446c225f2b4e144a36c53fef9c59e6725f42d3"
+    },
+    {
+      "original_path": "README.zh-CN.md",
+      "path": "docs/archive/v1.3.0-native-r2/README.zh-CN.md",
+      "sha256": "14347f7e73b5e5d7a7dbbbc416b157d3a637a0ac3b88546223968dd30c27d959"
+    },
+    {
+      "original_path": "desktop/p051/portable/START-HERE.md",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/portable/START-HERE.md",
+      "sha256": "021308ebe65a5c4d4802615481614c918d20ba0462015a785b77cf9bac9507dc"
+    },
+    {
+      "original_path": "desktop/p051/portable/WorkbenchLauncher.cs",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/portable/WorkbenchLauncher.cs",
+      "sha256": "a487655084c5805c566dd77452da747e5f74f0f7ee1b03d55aeb64063bb3a1f8"
+    },
+    {
+      "original_path": "desktop/p051/portable/stage.py",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/portable/stage.py",
+      "sha256": "3e6a24d003819893e2bce0f564b7ba2a745658bb143602e9d2d97dee27f1889a"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/app.py",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/src/p051_desktop/app.py",
+      "sha256": "2d034350f5275a7f0b2d1480125bc164e2f4b28ec61cf49c1104234a6623bd2e"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/diagnostics.py",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/src/p051_desktop/diagnostics.py",
+      "sha256": "e2f1f516139d441eea72971ed36249835a79510c1b7765aada737213c89ff5a6"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/geometry.py",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/src/p051_desktop/geometry.py",
+      "sha256": "c57724e5feedebb736360b3e34695664ac3ebd5dde31abc46d99c38b42b41f6f"
+    },
+    {
+      "original_path": "desktop/p051/src/p051_desktop/linkage.py",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/src/p051_desktop/linkage.py",
+      "sha256": "63dc4d02f21f762b3d5dc11dff1f5d836f9529adf4b649bdb76908f7055d1197"
+    },
+    {
+      "original_path": "desktop/p051/web/dist/assets/index-CAh8MRxb.js",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/dist/assets/index-CAh8MRxb.js",
+      "sha256": "eec8359288dde314e5b83cb370520d036f7b27131966a9b93d7e8b3b254eefb5"
+    },
+    {
+      "original_path": "desktop/p051/web/dist/assets/index-CAh8MRxb.js.map",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/dist/assets/index-CAh8MRxb.js.map",
+      "sha256": "f94da951916033600ae7daf434ab128a69ed2b4a3c0c36b4345cf8d4e1e93845"
+    },
+    {
+      "original_path": "desktop/p051/web/dist/assets/index-CZzwnmuF.css",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/dist/assets/index-CZzwnmuF.css",
+      "sha256": "bd6231603683ebf48db0e5094fb21eec7e73cc88b7d9d0756a35e4a6d8e84196"
+    },
+    {
+      "original_path": "desktop/p051/web/dist/index.html",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/dist/index.html",
+      "sha256": "eb34026b6f0d8b1de0a2e8de9da89ddc6e8457fd1863ddf0d9a998f176e906dd"
+    },
+    {
+      "original_path": "desktop/p051/web/package-lock.json",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/package-lock.json",
+      "sha256": "3fac22cedf59eb57bb226559fb25c89a613333714fc711bde6d21153368d64db"
+    },
+    {
+      "original_path": "desktop/p051/web/package.json",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/package.json",
+      "sha256": "147988a9bc23b34631bbaf59a2641f4b07dcafeab801d8a469192e641d61f46a"
+    },
+    {
+      "original_path": "desktop/p051/web/src/Experience.jsx",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/Experience.jsx",
+      "sha256": "f214dcc7609121c6975a079aeb07247a5e56ab639949b2b9cc929e6ce9bfe962"
+    },
+    {
+      "original_path": "desktop/p051/web/src/LinkedExperience.jsx",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/LinkedExperience.jsx",
+      "sha256": "bc53267df874f464708a63f50c0cf08fa85a4d01fe490781f5d147afae5a5dd8"
+    },
+    {
+      "original_path": "desktop/p051/web/src/Timeline.jsx",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/Timeline.jsx",
+      "sha256": "fcbecd34a8dfc3f32254cface4fff624aeecaebeb676995196632d1896218db0"
+    },
+    {
+      "original_path": "desktop/p051/web/src/experience.css",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/experience.css",
+      "sha256": "b6a9af7e2f9371b7773d092e28f580ab17d94d32309172b46f5f44e9c72e861a"
+    },
+    {
+      "original_path": "desktop/p051/web/src/experience.mjs",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/experience.mjs",
+      "sha256": "49cf2b7546f6b0e42428221cdd964b9d8e9e10984f208e4068eba7825f9b1753"
+    },
+    {
+      "original_path": "desktop/p051/web/src/gantt-model.mjs",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/gantt-model.mjs",
+      "sha256": "922d2b5a8fb9a2e5643522e4480bee0127a5214261538f18760ba39e4c713884"
+    },
+    {
+      "original_path": "desktop/p051/web/src/linkage.mjs",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/linkage.mjs",
+      "sha256": "bb7ee8f79fbf8db826d0a5bdbb0c5506df8021702e6d9a635a7ef6a4d4673226"
+    },
+    {
+      "original_path": "desktop/p051/web/src/main.jsx",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/main.jsx",
+      "sha256": "da3e28eee8a8c99a648b00465c749050f85f6c657a05599d6c77c51e76584d2a"
+    },
+    {
+      "original_path": "desktop/p051/web/src/style.css",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/style.css",
+      "sha256": "9db2d92217fc9a4f989ee55890b0b954b6fe6302bc76fc89bf5b68eac7b57b4c"
+    },
+    {
+      "original_path": "desktop/p051/web/tests/gantt.test.mjs",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/tests/gantt.test.mjs",
+      "sha256": "a1d79bf1ce192558a04bdf47b5951250244b3db4e15c2b2601f5ee4f09acde77"
+    },
+    {
+      "original_path": "desktop/p051/web/tests/linkage.test.mjs",
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/tests/linkage.test.mjs",
+      "sha256": "6ec2913a22165ca73547e1c8d2ffc09f17abdd142d41dace0cc219f597b29560"
+    },
+    {
+      "original_path": "scripts/p051_scene_link.py",
+      "path": "docs/archive/v1.3.0-native-r2/scripts/p051_scene_link.py",
+      "sha256": "2cff08bd8d6150dc5dbd31eda4b0eb15fce344e22d806fa4f848c668f8b9bebb"
+    },
+    {
+      "original_path": "scripts/run_s19b_prototype.py",
+      "path": "docs/archive/v1.3.0-native-r2/scripts/run_s19b_prototype.py",
+      "sha256": "47c9634513c070040364df8b4c69da137531577309e6d8514b93a74bc69ac881"
+    },
+    {
+      "original_path": "src/adaptive_hrc_scheduling/control/online_timing.py",
+      "path": "docs/archive/v1.3.0-native-r2/src/adaptive_hrc_scheduling/control/online_timing.py",
+      "sha256": "99d7ca99895b5cd2dba3fa77cbab0485e1d0d3ec0ecc0651aa399a394d4f2808"
+    },
+    {
+      "original_path": "src/adaptive_hrc_scheduling/full_schedule.py",
+      "path": "docs/archive/v1.3.0-native-r2/src/adaptive_hrc_scheduling/full_schedule.py",
+      "sha256": "02ea9484d6f15c25fba9db9c63c2db33c525b7ff173266b247656913fd6ec3d0"
+    },
+    {
+      "original_path": "src/adaptive_hrc_scheduling/preview_geometry.py",
+      "path": "docs/archive/v1.3.0-native-r2/src/adaptive_hrc_scheduling/preview_geometry.py",
+      "sha256": "dca1509bf5d292dae5acafe20cd722aaaad6f7bece151f7c0d0becd12a257a41"
+    },
+    {
+      "original_path": "src/adaptive_hrc_scheduling/preview_reuse.py",
+      "path": "docs/archive/v1.3.0-native-r2/src/adaptive_hrc_scheduling/preview_reuse.py",
+      "sha256": "b65065e1efac098ef2b3cd40951ab441be61a97cf61ffa8893f9a39b68903ea0"
+    },
+    {
+      "original_path": "src/adaptive_hrc_scheduling/production_navigation.py",
+      "path": "docs/archive/v1.3.0-native-r2/src/adaptive_hrc_scheduling/production_navigation.py",
+      "sha256": "3d035a9088d67f7f2cccc520cb73afbe4d2a908e3734063bfe5a80ad2155fcdc"
+    },
+    {
+      "original_path": "tests/test_p062_capture_completion.py",
+      "path": "docs/archive/v1.3.0-native-r2/tests/test_p062_capture_completion.py",
+      "sha256": "eb96406dd159cfdadec1f9b8bca40600409ee1671313fdf66bc6795c5cb8c315"
+    },
+    {
+      "original_path": "tests/test_p07_delivery_bytes.py",
+      "path": "docs/archive/v1.3.0-native-r2/tests/test_p07_delivery_bytes.py",
+      "sha256": "78e5a51e9f3ab10849d87336d8725d38d30d29c14c516208aa349b04daa66a30"
+    },
+    {
+      "original_path": "tests/test_preview_reuse.py",
+      "path": "docs/archive/v1.3.0-native-r2/tests/test_preview_reuse.py",
+      "sha256": "d58e6b99e6c9dd018c137f99ed86c3a90b1a8a19cfd935cece707361a13cce7b"
+    },
+    {
+      "original_path": "tests/test_workbench_experience.py",
+      "path": "docs/archive/v1.3.0-native-r2/tests/test_workbench_experience.py",
+      "sha256": "efb5aec1cf1f99614ef9816c4536fb2461d4bdc4d7793c584fd1105d3191aae7"
+    },
+    {
+      "original_path": "tests/test_workbench_linkage.py",
+      "path": "docs/archive/v1.3.0-native-r2/tests/test_workbench_linkage.py",
+      "sha256": "7b3abbed9d241ede691a68070b564e93d5466180caaea73744e8857fc4c2c903"
+    }
+  ],
+  "current_artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "6a5b3deaadbac9871f42f4ad47b2692721a23124e59767fb28652ca01d5be328"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "sha256": "aba6669d627c50ce0f242e80f3d0f550e223e5d343b217d6a753f25bab5af9ab"
+    },
+    {
+      "path": "desktop/p051/portable/START-HERE.md",
+      "sha256": "c46cef743aa4a44d1f5d103679d1591134ddaabf9e51832b2e1bace802c798f0"
+    },
+    {
+      "path": "desktop/p051/portable/WorkbenchLauncher.cs",
+      "sha256": "9fe2b159df21f032fb337aed0625ec3998a929763c94bac1cbdb92ecbe2a94dc"
+    },
+    {
+      "path": "desktop/p051/portable/stage.py",
+      "sha256": "e5871e3d778f429d18b2f290f8ddc5b594a5b3310fb19dbe9c493a441d0ee4ab"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/app.py",
+      "sha256": "5ab6f84203b239bcf17dc13d922d6341491ab615c2ff34c3f85af7d9c08af890"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/diagnostics.py",
+      "sha256": "1bd2b14de5773a42c00ffaa2c2df30ee9d2d9bc62408e5c22f88aed64f181721"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/geometry.py",
+      "sha256": "75a30beb0ba84dc8ca2cde0e77aba2e6a58a56a99f1e81291f2b73a28abb3ca4"
+    },
+    {
+      "path": "desktop/p051/src/p051_desktop/linkage.py",
+      "sha256": "5b9a3831c815239717740967df226e38baf1df5a81104aed6f20bd86f2861d8c"
+    },
+    {
+      "path": "desktop/p051/web/dist/assets/index-CQTIOdBH.css",
+      "sha256": "af07e6e86174ac6e69d9b4d3e4b8dc80181d324db482d42235158c87a061afd4"
+    },
+    {
+      "path": "desktop/p051/web/dist/assets/index-ldfr1XuJ.js",
+      "sha256": "c5741e388271148cd24b9de7ae3249488a7af132b744249e2b85260dd86cf5e5"
+    },
+    {
+      "path": "desktop/p051/web/dist/assets/index-ldfr1XuJ.js.map",
+      "sha256": "03aa64810c0ec83a99f65b9007191d4c80059657f4dcecc6305ce158dc9bf630"
+    },
+    {
+      "path": "desktop/p051/web/dist/assets/scene-preview-Lk7MyQ69.png",
+      "sha256": "85081e0536f2554f9109b82210e7c7c03f634e23f9e2eebe627a5a6fd8bea8e7"
+    },
+    {
+      "path": "desktop/p051/web/dist/index.html",
+      "sha256": "14e3bafea667bff4a492beb2d8e5a2192fed978a1e0eced6e84a29af61304593"
+    },
+    {
+      "path": "desktop/p051/web/package-lock.json",
+      "sha256": "ac3ba9480f49e21bfd7031488889deb7cda1b69f6bdc2213469145069e515f47"
+    },
+    {
+      "path": "desktop/p051/web/package.json",
+      "sha256": "60d4942003a68368e02b20c49c8305431e860f2c0491b9d20cb0e88f6c04f629"
+    },
+    {
+      "path": "desktop/p051/web/src/Experience.jsx",
+      "sha256": "5e8539ab3ff1af4025e50a18cb70947c29ab11e7b5bd889e372a6f3b9daf4e18"
+    },
+    {
+      "path": "desktop/p051/web/src/LinkedExperience.jsx",
+      "sha256": "6b924ebe316cb2d039fc66a462184e00f5cd5bd83ee31281eb3ac59df1dcea36"
+    },
+    {
+      "path": "desktop/p051/web/src/Timeline.jsx",
+      "sha256": "69683a81828b4d9613293dd574d851aa5cb58dc03464cae5b81559752efbd016"
+    },
+    {
+      "path": "desktop/p051/web/src/assets/scene-preview.png",
+      "sha256": "85081e0536f2554f9109b82210e7c7c03f634e23f9e2eebe627a5a6fd8bea8e7"
+    },
+    {
+      "path": "desktop/p051/web/src/design-tokens.json",
+      "sha256": "b1f0648214fb077c2627d19f2c7878f2bc505d4111154cd8f97571dba639a365"
+    },
+    {
+      "path": "desktop/p051/web/src/experience.css",
+      "sha256": "2b98bbbf0f6c2e33f22492ed380355825f885e3ed6730e8786b05f945e1bc9e1"
+    },
+    {
+      "path": "desktop/p051/web/src/experience.mjs",
+      "sha256": "02d6467634b433815e1339aa0fe5426971fec5ecaef0412508dba2c482f75e1b"
+    },
+    {
+      "path": "desktop/p051/web/src/gantt-model.mjs",
+      "sha256": "53d8f1b41718c10a59171f1f23ff551e39f5e78b89b06a6ab56ad7f0a40f31ef"
+    },
+    {
+      "path": "desktop/p051/web/src/linkage.mjs",
+      "sha256": "04c1b6f6625aa33143259c327d1b799a417df1568392654c563b9f55b55c7ce3"
+    },
+    {
+      "path": "desktop/p051/web/src/main.jsx",
+      "sha256": "d104862ea7c06d67bf7ae236276ac04a93946259c4cf4bf9eaa567c69feb5181"
+    },
+    {
+      "path": "desktop/p051/web/src/style.css",
+      "sha256": "43d35f6c3b14c760563e44da95119a864026b1f189e5b0fe57bd5be3838d3f5e"
+    },
+    {
+      "path": "desktop/p051/web/src/theme.mjs",
+      "sha256": "d40f5698626e076433ee8e483d4b496ea205923bec35b7f452fa95c03c047c08"
+    },
+    {
+      "path": "desktop/p051/web/tests/gantt.test.mjs",
+      "sha256": "eaf3ab73fcd52fdb1c6334e8cf1e8931518803262105f1f111ab8555023e660f"
+    },
+    {
+      "path": "desktop/p051/web/tests/linkage.test.mjs",
+      "sha256": "ae01f57724bccad0c6bbdc4d3bee9eccfb039a5c23d91836c8e3cdcde5fd17de"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/README.md",
+      "sha256": "831a3dd17e4e162bcc41ac51ee446c225f2b4e144a36c53fef9c59e6725f42d3"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/README.zh-CN.md",
+      "sha256": "14347f7e73b5e5d7a7dbbbc416b157d3a637a0ac3b88546223968dd30c27d959"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/portable/START-HERE.md",
+      "sha256": "021308ebe65a5c4d4802615481614c918d20ba0462015a785b77cf9bac9507dc"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/portable/WorkbenchLauncher.cs",
+      "sha256": "a487655084c5805c566dd77452da747e5f74f0f7ee1b03d55aeb64063bb3a1f8"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/portable/stage.py",
+      "sha256": "3e6a24d003819893e2bce0f564b7ba2a745658bb143602e9d2d97dee27f1889a"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/src/p051_desktop/app.py",
+      "sha256": "2d034350f5275a7f0b2d1480125bc164e2f4b28ec61cf49c1104234a6623bd2e"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/src/p051_desktop/diagnostics.py",
+      "sha256": "e2f1f516139d441eea72971ed36249835a79510c1b7765aada737213c89ff5a6"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/src/p051_desktop/geometry.py",
+      "sha256": "c57724e5feedebb736360b3e34695664ac3ebd5dde31abc46d99c38b42b41f6f"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/src/p051_desktop/linkage.py",
+      "sha256": "63dc4d02f21f762b3d5dc11dff1f5d836f9529adf4b649bdb76908f7055d1197"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/dist/assets/index-CAh8MRxb.js",
+      "sha256": "eec8359288dde314e5b83cb370520d036f7b27131966a9b93d7e8b3b254eefb5"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/dist/assets/index-CAh8MRxb.js.map",
+      "sha256": "f94da951916033600ae7daf434ab128a69ed2b4a3c0c36b4345cf8d4e1e93845"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/dist/assets/index-CZzwnmuF.css",
+      "sha256": "bd6231603683ebf48db0e5094fb21eec7e73cc88b7d9d0756a35e4a6d8e84196"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/dist/index.html",
+      "sha256": "eb34026b6f0d8b1de0a2e8de9da89ddc6e8457fd1863ddf0d9a998f176e906dd"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/package-lock.json",
+      "sha256": "3fac22cedf59eb57bb226559fb25c89a613333714fc711bde6d21153368d64db"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/package.json",
+      "sha256": "147988a9bc23b34631bbaf59a2641f4b07dcafeab801d8a469192e641d61f46a"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/Experience.jsx",
+      "sha256": "f214dcc7609121c6975a079aeb07247a5e56ab639949b2b9cc929e6ce9bfe962"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/LinkedExperience.jsx",
+      "sha256": "bc53267df874f464708a63f50c0cf08fa85a4d01fe490781f5d147afae5a5dd8"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/Timeline.jsx",
+      "sha256": "fcbecd34a8dfc3f32254cface4fff624aeecaebeb676995196632d1896218db0"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/experience.css",
+      "sha256": "b6a9af7e2f9371b7773d092e28f580ab17d94d32309172b46f5f44e9c72e861a"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/experience.mjs",
+      "sha256": "49cf2b7546f6b0e42428221cdd964b9d8e9e10984f208e4068eba7825f9b1753"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/gantt-model.mjs",
+      "sha256": "922d2b5a8fb9a2e5643522e4480bee0127a5214261538f18760ba39e4c713884"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/linkage.mjs",
+      "sha256": "bb7ee8f79fbf8db826d0a5bdbb0c5506df8021702e6d9a635a7ef6a4d4673226"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/main.jsx",
+      "sha256": "da3e28eee8a8c99a648b00465c749050f85f6c657a05599d6c77c51e76584d2a"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/src/style.css",
+      "sha256": "9db2d92217fc9a4f989ee55890b0b954b6fe6302bc76fc89bf5b68eac7b57b4c"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/tests/gantt.test.mjs",
+      "sha256": "a1d79bf1ce192558a04bdf47b5951250244b3db4e15c2b2601f5ee4f09acde77"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/desktop/p051/web/tests/linkage.test.mjs",
+      "sha256": "6ec2913a22165ca73547e1c8d2ffc09f17abdd142d41dace0cc219f597b29560"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/scripts/p051_scene_link.py",
+      "sha256": "2cff08bd8d6150dc5dbd31eda4b0eb15fce344e22d806fa4f848c668f8b9bebb"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/scripts/run_s19b_prototype.py",
+      "sha256": "47c9634513c070040364df8b4c69da137531577309e6d8514b93a74bc69ac881"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/src/adaptive_hrc_scheduling/control/online_timing.py",
+      "sha256": "99d7ca99895b5cd2dba3fa77cbab0485e1d0d3ec0ecc0651aa399a394d4f2808"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/src/adaptive_hrc_scheduling/full_schedule.py",
+      "sha256": "02ea9484d6f15c25fba9db9c63c2db33c525b7ff173266b247656913fd6ec3d0"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/src/adaptive_hrc_scheduling/preview_geometry.py",
+      "sha256": "dca1509bf5d292dae5acafe20cd722aaaad6f7bece151f7c0d0becd12a257a41"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/src/adaptive_hrc_scheduling/preview_reuse.py",
+      "sha256": "b65065e1efac098ef2b3cd40951ab441be61a97cf61ffa8893f9a39b68903ea0"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/src/adaptive_hrc_scheduling/production_navigation.py",
+      "sha256": "3d035a9088d67f7f2cccc520cb73afbe4d2a908e3734063bfe5a80ad2155fcdc"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/tests/test_p062_capture_completion.py",
+      "sha256": "eb96406dd159cfdadec1f9b8bca40600409ee1671313fdf66bc6795c5cb8c315"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/tests/test_p07_delivery_bytes.py",
+      "sha256": "78e5a51e9f3ab10849d87336d8725d38d30d29c14c516208aa349b04daa66a30"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/tests/test_preview_reuse.py",
+      "sha256": "d58e6b99e6c9dd018c137f99ed86c3a90b1a8a19cfd935cece707361a13cce7b"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/tests/test_workbench_experience.py",
+      "sha256": "efb5aec1cf1f99614ef9816c4536fb2461d4bdc4d7793c584fd1105d3191aae7"
+    },
+    {
+      "path": "docs/archive/v1.3.0-native-r2/tests/test_workbench_linkage.py",
+      "sha256": "7b3abbed9d241ede691a68070b564e93d5466180caaea73744e8857fc4c2c903"
+    },
+    {
+      "path": "docs/releases/v1.4.0-user-guide.en.md",
+      "sha256": "28f4c3ba3c454334f34379366ab2bd03a90f46f75b8e04c235743ede8de92a5c"
+    },
+    {
+      "path": "docs/releases/v1.4.0-user-guide.zh-CN.md",
+      "sha256": "c8551f77bf1cd96421c9ec974ed375e93546bb66fb4e6f2414ff9cf9c5ca5ba0"
+    },
+    {
+      "path": "docs/validation/UX_v1.4.0_acceptance_plan_r1.md",
+      "sha256": "0cae56c0b0f2e517cc98bd17f02eafadff801ef59b2a9079d8ed9ad66a04249c"
+    },
+    {
+      "path": "scripts/p051_scene_link.py",
+      "sha256": "c342d7f141f441626b63204bcf0f3efaf3ca0ba8bc6885ee32e9168eb44303ec"
+    },
+    {
+      "path": "scripts/run_s19b_prototype.py",
+      "sha256": "fbe25241984a809270a5470033193a1c034c7f8d839ad1831b2a660537df9f34"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/control/online_timing.py",
+      "sha256": "0d95350af9a6458b349135f670428ec7c79d3d6bcf36d36f742e2531facaa0aa"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/full_schedule.py",
+      "sha256": "b834369ae370bfdbc49243453fbaf5b60269654afdd2198e5bb2dcf3a342d568"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/preview_geometry.py",
+      "sha256": "0967ee512b0ea7ad556243ee806f6ab7daa220c9e7c84fbeab673c6c02911fc8"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/preview_reuse.py",
+      "sha256": "af72ef9da46d1bd07b273f7f73984f5d14adbc44bcda567a3ee3aa51e45abd06"
+    },
+    {
+      "path": "src/adaptive_hrc_scheduling/production_navigation.py",
+      "sha256": "bd46601199829fb48e3f8156324933636e53d6444c44abcc0abb70297c6cd02c"
+    },
+    {
+      "path": "tests/test_p062_capture_completion.py",
+      "sha256": "7a39c13f442936e5d9fea4b3a9369dc4596899308120ec0b19b361a9a945e2de"
+    },
+    {
+      "path": "tests/test_p07_delivery_bytes.py",
+      "sha256": "7889ff2962a80bb80ef031f052556e06b03b5b06e198f6f67567370a96077b2c"
+    },
+    {
+      "path": "tests/test_preview_reuse.py",
+      "sha256": "53c9d61f9c37645380385f352d2554dc8c75ae58c7c29d89de6b8184b94fd531"
+    },
+    {
+      "path": "tests/test_workbench_experience.py",
+      "sha256": "4abc152e2abe19d9415b5f56ebbf58d9f214b78d14bdfd93671d0ffc6dbf61ce"
+    },
+    {
+      "path": "tests/test_workbench_linkage.py",
+      "sha256": "1f34b22044ee49acf49e8149417ebebcf142ef3ca21e80d03723e53f5b6b3da5"
+    }
+  ]
+}

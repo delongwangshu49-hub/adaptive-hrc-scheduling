@@ -2,14 +2,15 @@
 
 import heapq
 import math
+from collections import OrderedDict
 from contextlib import contextmanager
 from contextvars import ContextVar
 from functools import lru_cache
 
 from . import production_navigation as nav
 from . import production_supports as supports
-from .contracts.codec import require
-from .domain.production import Configuration
+from .contracts.codec import ContractError, _checked, require, type_hints
+from .domain.production import Configuration, State
 from .production_geometry import standing_point, transport_sweeps
 from .production_pedestrians import fork_walk_phases, walk_yaw
 
@@ -141,6 +142,7 @@ def _build_static(config):
 
 
 def _boxes_uncached(config, state, excluded=()):
+    excluded = frozenset(excluded)
     places, operations, routes, entries = _static_geometry(config)
     positions = {p.id: p.location for p in state.positions}
     transit = {}
@@ -215,11 +217,10 @@ def _boxes_uncached(config, state, excluded=()):
         for beam in supports.parking(config, rack.root):
             x, y, z = beam.position
             box(f"SC-HOLDER-{rack.root}-{beam.index}", (x, y, z - 0.0225), (0.06, 0.5, 0.005))
-    available = {
-        item.id: item.available
-        + sum((r.quantity for r in state.reservations if r.lot_id == item.id))
-        for item in state.lots
-    }
+    reserved = {}
+    for reservation in state.reservations:
+        reserved[reservation.lot_id] = reserved.get(reservation.lot_id, 0) + reservation.quantity
+    available = {item.id: item.available + reserved.get(item.id, 0) for item in state.lots}
     for obj in (*config.lots, *config.entities):
         loc = positions[obj.id]
         if (
@@ -609,6 +610,41 @@ class ReplayGeometry:
         self.static_rows = {}
         self.support_rows = {}
         self.graph = lru_cache(maxsize=128)(_walk_graph)
+        self.box_rows = OrderedDict()
+
+    def boxes(self, config, state, excluded=()):
+        """Retain exact immutable geometry inputs within this invocation only.
+
+        Exclusions participate in the key: filtering a full result would change
+        the ordered duplicate-place suppression. Callers always get a new list.
+        """
+        names = ("running", "motions", "positions", "supports", "lots", "reservations")
+        values = (config, *(getattr(state, name) for name in names))
+        exclusions = tuple(sorted(excluded))
+        key = (*(id(value) for value in values), exclusions)
+        previous = self.box_rows.get(key)
+        if previous is not None and all(a is b for a, b in zip(previous[0], values)):
+            self.box_rows.move_to_end(key)
+            return list(previous[1])
+        result = _boxes_uncached(config, state, exclusions)
+        # Mutable or foreign records are evaluated but never retained.
+        if (
+            type(config) is Configuration
+            and type(state) is State
+            and all(type(value) is tuple for value in values[1:])
+        ):
+            kinds = (Configuration, *(type_hints(State)[name] for name in names))
+            try:
+                valid = all(
+                    _checked(kind, value, "$geometry")[1] for kind, value in zip(kinds, values)
+                )
+            except (ContractError, TypeError, AttributeError):
+                valid = False
+            if valid:
+                self.box_rows[key] = (values, tuple(result))
+                if len(self.box_rows) > 64:
+                    self.box_rows.popitem(last=False)
+        return result
 
     def static(self, config):
         key = id(config)

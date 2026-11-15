@@ -54,7 +54,7 @@ def boxes(config, state, excluded=()):
             from .dynamic_workforce import off_shift
 
             excluded = (*excluded, *(p.id for p in config.people if off_shift(state, p.id)))
-        return preview_geometry._boxes_uncached(config, state, excluded)
+        return preview_geometry.current().boxes(config, state, excluded)
     if config.schema_version == "P043-PROD-1.0":
         from adaptive_hrc_scheduling.dynamic_workforce import off_shift
 

@@ -16,11 +16,48 @@
 
 Adaptive HRC Scheduling supports **factory production of steel Modular Integrated Construction (MiC)**. It connects module production tasks, worker fatigue, robot collaboration and resource constraints to scheduling, execution simulation and Gantt views. Run reference cases, apply order and workforce changes, and reproduce research results from saved records.
 
-**The first official release, v1.0.1, includes a Windows portable workbench and English/Chinese reports.** The main workflows verified on the build machine are usable; bugs and unknown issues may remain.
+## Version 1.4.0
 
-<img src="docs/assets/readme/workbench-native-p051.jpg" alt="Archived native workbench: an Isaac 3D viewport on the left and an execution Gantt on the right" width="100%">
+**Full Isaac simulation and a verified Gantt chart share the same workbench.** Change orders and resources, inspect the accepted request and new plan, and observe the resulting physical execution. Actual work and future plans remain separately identified.
 
-An actual archived workbench window. The original image, run identity and capture scope are recorded in [visual provenance](docs/public_validation/visual_provenance.json).
+<img src="docs/assets/readme/workbench-native-v140-final.png" alt="Final v1.4.0 display revision reopened read-only, with a labelled saved Isaac frame and verified Gantt plan" width="100%">
+
+Latest display revision, captured during actual read-only reopening. The left panel is the explicitly labelled saved Isaac frame; the right panel shows independently verified plan v5. This is a saved session, not a running simulation. [Screenshot and data audit](docs/validation/UX_v1.4.0_visual_data_audit_r1.md).
+
+<details>
+<summary>Live production acceptance before the final overview-only display correction</summary>
+
+<img src="docs/assets/readme/workbench-native-v140.png" alt="Actual r9 live Isaac and Gantt acceptance before the final scroll and overview-control correction" width="100%">
+
+Original r9 live capture, retained unchanged. The final r10 change resets overview scroll and removes inactive expand buttons; no production or scene code changed.
+
+</details>
+
+| Change | What it improves |
+| --- | --- |
+| Direct scene selection | Click or drag a rectangle in Isaac and inspect linked work; clear selection by clicking empty space |
+| Connected order changes | Track submission, application, verified plans and actual scene state separately |
+| Replanning | Restore safe replay reuse and prevent floating-point boundary differences from triggering extra solves or false frozen-prefix rejection |
+| Charcoal interface | Consistent 3 px controls, shared focus behavior, current order values and personnel return locations, and confirmation targets visible at first glance |
+| Save and recover | Safe-stop progress, observed native exit, verified final screenshots and read-only reopening |
+
+The fixed-input preflight median was 273.498 → 230.917 s (15.57% lower), with one slower pair. This is version-bound replay evidence, not a universal native speed guarantee; the 60 s and 50% targets remain unmet. Native acceptance, full regression and remaining coverage are reported in the [validation record](docs/validation/UX_v1.4.0_native_validation_r1.md).
+
+[English timing figure in the original research style and checked data](figures/v140/README.md). The ratio of variant medians gives 15.57%; the median of the five paired percentage reductions is 12.25%. Both summaries retain the slower fourth pair.
+
+
+[User guide](docs/releases/v1.4.0-user-guide.en.md) · [English full report](reports/v1.4.0/report-mic-en_v1.4.0.pdf) · [中文完整报告](reports/v1.4.0/report-mic-zh_v1.4.0.pdf) · [Report rebuilding](reports/v1.4.0/BUILD.md) · [Release notes](docs/releases/v1.4.0-candidate.en.md)
+
+This engineering edition records local candidate validation. Publication status and downloadable assets are listed on [GitHub Releases](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases). Owner E12 and teammate-machine checks remain pending. Earlier published downloads are retained below.
+
+<details>
+<summary>Earlier local workbench revisions</summary>
+
+The v1.3.0 native-r2 candidate established dual-view and request linkage, repaired capture/exit handling and passed 1323 source and wheel tests. Direct native clicking remained open in that historical version. [v1.3.0 record](docs/validation/UX_v1.3.0_native_validation_r2.md).
+
+The v1.2.0 candidate introduced guided startup, diagnostics, saved settings and exports. [v1.2.0 guide](docs/releases/v1.2.0-user-guide.en.md). Neither local candidate was published. The earlier workbench image and its provenance remain in [the visual archive](docs/public_validation/visual_provenance.json).
+
+</details>
 
 ## v1.1.0 prerelease
 
@@ -52,6 +89,8 @@ The portable package includes Python, Qt, the scheduler, the Gantt frontend and 
 ## Quick start
 
 ### Windows portable app
+
+The download below is the retained published v1.0.1 package. For the local v1.4.0 candidate, use the newly supplied ZIP and the [v1.4.0 guide](docs/releases/v1.4.0-user-guide.en.md).
 
 1. [Download the ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.1/HRC-Workbench-Windows-x64.zip), extract it completely and double-click `HRC-Workbench.exe`. Keep the adjacent `app` folder.
 2. Use **启动配置 (Launch configuration)** to run the default CPU case, or open the read-only example through **便携设置与示例 (Portable settings and examples)**.
@@ -88,6 +127,7 @@ This command executes a complete case. Inspect the saved end state, actual produ
 The desktop application uses PySide6 / Qt WebEngine. Rebuild the frontend to match the current sources using the commands below. Configure Isaac Sim separately using the [workbench guide](docs/public_workbench/usage.md).
 
 ```powershell
+uv sync --locked --link-mode copy
 uv sync --locked --project desktop/p051
 npm.cmd --prefix desktop/p051/web ci
 npm.cmd --prefix desktop/p051/web run build

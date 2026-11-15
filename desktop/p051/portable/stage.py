@@ -12,6 +12,7 @@ SCRIPTS = (
     "inspect_s19b_scene_supports.py",
     "launch_s19b_kit.ps1",
     "p051_native_telemetry.py",
+    "p051_scene_link.py",
     "run_s19b_prototype.py",
     "supervise_s19b.py",
 )
@@ -74,6 +75,23 @@ def stage(project, destination, python, web):
     shutil.copy2(project / "LICENSE", destination / "LICENSE.txt")
     for name in ("START-HERE.md", "THIRD-PARTY.md", "WorkbenchLauncher.cs"):
         shutil.copy2(portable / name, destination)
+    copy_tree(project / "tools/diagnostics", app / "tools/diagnostics")
+    shutil.copy2(
+        project / "tools/diagnostics/工作台排错与AI修复指南.md",
+        destination / "工作台排错与AI修复指南.txt",
+    )
+    shutil.copy2(portable / "HRC-SelfCheck.cmd", destination)
+    for source, name in (
+        ("v1.4.0-user-guide.zh-CN.md", "新版使用指南.txt"),
+        ("v1.4.0-user-guide.en.md", "USER-GUIDE.txt"),
+    ):
+        guide = (project / "docs/releases" / source).read_text(encoding="utf-8")
+        (destination / name).write_text(
+            guide.replace("../assets/v1.4.0/", "使用截图/v1.4.0/"), encoding="utf-8"
+        )
+    screenshots = project / "docs/assets/v1.4.0"
+    if screenshots.is_dir():
+        copy_tree(screenshots, destination / "使用截图/v1.4.0")
     copy_tree(portable / "licenses", destination / "licenses/qt")
     for name in ("index.html", "package.json", "package-lock.json", "vite.config.js"):
         shutil.copy2(project / "desktop/p051/web" / name, web)

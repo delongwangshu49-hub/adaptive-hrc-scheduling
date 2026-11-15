@@ -3,6 +3,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using System.Reflection;
+
+[assembly: AssemblyVersion("1.4.0.0")]
+[assembly: AssemblyFileVersion("1.4.0.0")]
 
 internal static class WorkbenchLauncher
 {
@@ -34,7 +38,7 @@ internal static class WorkbenchLauncher
             string python = Path.Combine(root, ".venv", "Scripts", "python.exe");
             string script = Path.Combine(root, "portable-launch.py");
             if (!File.Exists(python) || !File.Exists(script))
-                throw new FileNotFoundException("Extract the complete ZIP and keep the app folder beside this EXE.");
+                throw new FileNotFoundException("运行文件缺失，请完整解压新版 ZIP，保留 EXE 同级 app 文件夹。\nExtract the complete ZIP and keep its app folder.\n\nPython: " + python + "\nLauncher: " + script + "\n\n运行 HRC-SelfCheck.cmd 可生成具体排错报告。\nRun HRC-SelfCheck.cmd for a diagnostic report.");
 
             var arguments = new StringBuilder("-B -X utf8 ").Append(Quote(script));
             foreach (string arg in args)

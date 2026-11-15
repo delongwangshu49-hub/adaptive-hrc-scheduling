@@ -16,11 +16,48 @@
 
 Adaptive HRC Scheduling 面向**钢结构模块化集成建筑（MiC）的工厂制造**，把模块生产任务、人员疲劳、机器人协作和资源约束连接到调度、执行仿真与甘特图。可用它运行参考案例、施加订单和人员变更，并从保存的记录复现研究结果。
 
-**第一正式版 v1.0.1 已提供 Windows 便携工作台和中英双语报告。** 本机已验证的主要功能可用，仍可能存在 bug 或尚未发现的问题。
+## 1.4.0 版本
 
-<img src="docs/assets/readme/workbench-native-p051.jpg" alt="真实归档工作台：左侧为Isaac三维视口，右侧为执行甘特" width="100%">
+**Isaac 全仿真与经过核验的甘特图共同组成工作台。** 修改工单和资源后，可以逐步检查请求接纳、新计划及后续物理执行；实际工作与未来计划分别标注。
 
-实际归档的原生工作台窗口。原图、运行身份与采样范围见[图像来源](docs/public_validation/visual_provenance.json)。
+<img src="docs/assets/readme/workbench-native-v140-final.png" alt="1.4.0 最终显示版只读重开实测：已标注的 Isaac 保存末帧与已核验甘特计划" width="100%">
+
+最新版显示修订的原生只读重开实测。左侧明确标注为保存的 Isaac 场景末帧，右侧为独立核验后的 v5 计划；这是已保存会话，不是运行中的仿真。[截图与数据复核](docs/validation/UX_v1.4.0_visual_data_audit_r1.md)。
+
+<details>
+<summary>最终概览显示修订前的实时生产验收画面</summary>
+
+<img src="docs/assets/readme/workbench-native-v140.png" alt="r9 实时 Isaac 与甘特验收原图，早于最后的滚动及概览控件修正" width="100%">
+
+r9 实时生产截图原样保留。最后的 r10 修订仅重置概览滚动并移除无效展开按钮，生产与场景代码没有变化。
+
+</details>
+
+| 改动 | 使用上的变化 |
+| --- | --- |
+| 三维直接选择 | 在 Isaac 中点击或拖框，查看关联工作；空白点击清除选择 |
+| 工单变更联动 | 分别跟踪提交、生效、核验计划与实际场景状态 |
+| 重排 | 恢复安全回放复用，避免浮点时间边界引起多余求解或冻结前缀误拒绝 |
+| 灰黑界面 | 统一 3 px 控件圆角、焦点切换、改单参数与人员返回位置回填、确认页目标展示 |
+| 保存与恢复 | 展示安全停止进度、实际原生退出、经核对的末帧与只读重开 |
+
+固定输入预检的耗时中位数为 273.498 → 230.917 s，降低 15.57%，其中一对反而更慢。这是绑定版本的回放证据，不是普遍的原生耗时保证；60 s 和提速 50% 目标仍未达到。实际原生操作、完整回归及覆盖限制见[验证记录](docs/validation/UX_v1.4.0_native_validation_r1.md)。
+
+[沿用原科研图样式的英文五对耗时图及核对数据](figures/v140/README.md)。两组中位数之比给出 15.57%，五个逐对降幅的中位数为 12.25%；两种统计均保留第四对变慢的结果。
+
+
+[新版指南](docs/releases/v1.4.0-user-guide.zh-CN.md) · [中文完整报告](reports/v1.4.0/report-mic-zh_v1.4.0.pdf) · [English full report](reports/v1.4.0/report-mic-en_v1.4.0.pdf) · [报告重建](reports/v1.4.0/BUILD.md) · [版本说明](docs/releases/v1.4.0-candidate.zh-CN.md)
+
+本工程版本记录本地候选验证。发布状态和可下载附件以 [GitHub Releases](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases) 实际条目为准。E12 负责人本人操作和组员电脑复测仍待完成。下方保留历史已发布版本的下载。
+
+<details>
+<summary>此前本地工作台修订</summary>
+
+v1.3.0 native-r2 建立双图与请求联动，修复截图收尾和退出处理，源码与 wheel 各 1323 项通过；该历史版本的三维直接点击仍未关闭。[v1.3.0 记录](docs/validation/UX_v1.3.0_native_validation_r2.md)。
+
+v1.2.0 加入引导启动、自检、常用配置和导出。[v1.2.0 指南](docs/releases/v1.2.0-user-guide.zh-CN.md)。这两个本地候选均未发布。原工作台图片及来源继续保存在[图像档案](docs/public_validation/visual_provenance.json)。
+
+</details>
 
 ## v1.1.0 预发布
 
@@ -52,6 +89,8 @@ W5 更新加入已验证计划等待反馈和单次调用独占的回放准备�
 ## 快速开始
 
 ### Windows 便携版
+
+下方下载仍指向已发布的 v1.0.1。试用本地 v1.4.0 时，请使用本次交付的新 ZIP 和 [v1.4.0 使用指南](docs/releases/v1.4.0-user-guide.zh-CN.md)。
 
 1. [下载 ZIP](https://github.com/delongwangshu49-hub/adaptive-hrc-scheduling/releases/download/v1.0.1/HRC-Workbench-Windows-x64.zip)，完整解压后双击 `HRC-Workbench.exe`，保留同级 `app` 文件夹。
 2. 在 **启动配置** 中运行默认 CPU 案例，或通过 **便携设置与示例** 打开只读示例。
@@ -88,6 +127,7 @@ uv run --locked python scripts/verify_production_chain.py --output .local/new-no
 桌面应用使用 PySide6 / Qt WebEngine。先按以下命令重建与当前源码匹配的前端；Isaac Sim 按[工作台指南](docs/public_workbench/usage.md)单独配置。
 
 ```powershell
+uv sync --locked --link-mode copy
 uv sync --locked --project desktop/p051
 npm.cmd --prefix desktop/p051/web ci
 npm.cmd --prefix desktop/p051/web run build

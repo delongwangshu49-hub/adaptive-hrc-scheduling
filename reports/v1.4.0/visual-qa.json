@@ -1,0 +1,343 @@
+{
+  "status": "62_PAGES_RENDERED_CHANGED_PAGES_REVIEWED",
+  "reviewed_at": "2026-11-15T14:50:38.894266+08:00",
+  "method": "Actual Word PDF export, Poppler scale-to 1400; exact pixel comparison to reviewed r4; changed final English-figure pages visually inspected.",
+  "findings": "English research-style figure shared by both languages. No clipping or overflow observed. Original research content unchanged.",
+  "prior_review_sha256": "cbcefa0ef596d97fe0433c31a6f0693333386d9d87dda3194511ae1894c1733b",
+  "comparison": {
+    "en": {
+      "pixel_identical_prior_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "changed_prior_pages": [
+        33
+      ],
+      "new_pages": []
+    },
+    "zh": {
+      "pixel_identical_prior_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "changed_prior_pages": [
+        29
+      ],
+      "new_pages": []
+    }
+  },
+  "pdf_sha256": {
+    "en": "18880ad17a22da022e70bf445cf3e277d2922c11af6072ee5921bb2a9bb1e06f",
+    "zh": "b9f205bb08b352ccbb3de5f83597a1bbc46d15af376055e52c5fb17c5baa1c6d"
+  },
+  "pages": {
+    "en": [
+      {
+        "page": 1,
+        "png_sha256": "53752e5e8f7a3ae7f3c99807a81111694fe1113bdeecf5282c264b1bc3118abb"
+      },
+      {
+        "page": 2,
+        "png_sha256": "13ec87f0a086f191274e8a702c5e1723f1343c710584e4e47e1bb2bb1f711492"
+      },
+      {
+        "page": 3,
+        "png_sha256": "49cec09af3d740d49652a3995d23c77655072e0de6f75055fa30e9ca0ea12f34"
+      },
+      {
+        "page": 4,
+        "png_sha256": "be825a11eda632a6c8d27afb611cd586435397a08332a6b8dcc171f5bee3a575"
+      },
+      {
+        "page": 5,
+        "png_sha256": "a1449274e552f51a0529e50734d8203fc0f4c695d3c5bd6ad450e82fb990256d"
+      },
+      {
+        "page": 6,
+        "png_sha256": "b0baa0e4126ad61e07867d9ed68f38cdf53777d7d093124d8103795f1a20b2a7"
+      },
+      {
+        "page": 7,
+        "png_sha256": "a1e43eead9db95d7fc8e804883fea5b95a0f9a0a67a230dbabcd75971aeb2c02"
+      },
+      {
+        "page": 8,
+        "png_sha256": "706aadbcb94753d4df999df60aec2c4fe90dcd888a6254f7c581e4550ca07dbd"
+      },
+      {
+        "page": 9,
+        "png_sha256": "792e138879d8c4d9bd016ba4b1d45496300e7539c110d5a970bfb0e4dd86b6f0"
+      },
+      {
+        "page": 10,
+        "png_sha256": "86777b9ea1bcd28ee77a302ce55259368969ed77f99bafe3c0b45150a89256cf"
+      },
+      {
+        "page": 11,
+        "png_sha256": "32ea400645a6346ac21cf027b27ed08b147efb6d3697572f934ce74fc9d8d87e"
+      },
+      {
+        "page": 12,
+        "png_sha256": "c247f42a143baeb8c3691582281281d39dd6ac2bce7f1048b5061854f04f6310"
+      },
+      {
+        "page": 13,
+        "png_sha256": "c0c09645634eae9cc20e73eed7178a285ca239c05242cfa284ab37bcd422f58f"
+      },
+      {
+        "page": 14,
+        "png_sha256": "13ef33dd4087d96e6021fc1ba5b4ad239293d2dbe8615e6d6db8bb6e0cb7c49e"
+      },
+      {
+        "page": 15,
+        "png_sha256": "5c90a402b43e52d698f18d6e9a1934823dc54b50fc26a6c60d428d37882d6983"
+      },
+      {
+        "page": 16,
+        "png_sha256": "2ad22bd6273c367c4d5473171650e96a1162f5d0c962abab2f9d833e939da5d3"
+      },
+      {
+        "page": 17,
+        "png_sha256": "61d5e3acb129f0db1393a3643fbf67ceeb807bcdba286ea3ca793a7a2bfee393"
+      },
+      {
+        "page": 18,
+        "png_sha256": "e30421bba64d5b92303b03004522bab55d30bd5727a627d8b5b71fb2f88b9ec0"
+      },
+      {
+        "page": 19,
+        "png_sha256": "170986966fe671ec298caa0ae5deeee1a5f6de51fd8a2bbc6a234ac7a99038d4"
+      },
+      {
+        "page": 20,
+        "png_sha256": "7d18bc378497bd413e276b605b6af9ebffe38914f02238f352ef03a196a978ea"
+      },
+      {
+        "page": 21,
+        "png_sha256": "aa2a2c1731a944602e240099eb027cca33d485bcaa23fbbca65cf3d63e8d07b6"
+      },
+      {
+        "page": 22,
+        "png_sha256": "70983b68bb9660558bf3a64bfebae4b4967faadc947c0f3c677f0d28098cb543"
+      },
+      {
+        "page": 23,
+        "png_sha256": "9524ba6dee119f319a5fe7896899b26f7d839ab9009ad7c7b2e17e87ecedb6af"
+      },
+      {
+        "page": 24,
+        "png_sha256": "bf57f08010d16f15a1680ad82d75d4aa7751738ce77f627ed371f0f21b683361"
+      },
+      {
+        "page": 25,
+        "png_sha256": "eee3905bd07747408a135f880c0aec35ed749709ff91cfc6a7e33b479ddf27dd"
+      },
+      {
+        "page": 26,
+        "png_sha256": "9779f7474cfe36d01a12186c93260548dfa9ccf646b0a856a04121064614b433"
+      },
+      {
+        "page": 27,
+        "png_sha256": "966876670aaa748fac24a8f6cb8cd1716c30419f42af718554d1ddbcdcc32e25"
+      },
+      {
+        "page": 28,
+        "png_sha256": "a1d9bdb23989cc0595627c727f50e21890ecc875f9292f36cfb84c5a7fcf5b34"
+      },
+      {
+        "page": 29,
+        "png_sha256": "7e3f6f334546c03473dd24171c1b0ec582051e51019fd56f1a8ac235ea1a75a1"
+      },
+      {
+        "page": 30,
+        "png_sha256": "8fc5bf49d097501b033d942bdad292f3c5105ec2594d3cde6a748112a4fc8971"
+      },
+      {
+        "page": 31,
+        "png_sha256": "a1962d1441d386adbaf3f330913c18c0d6688fcf15c89db3e897391e5afe7eb6"
+      },
+      {
+        "page": 32,
+        "png_sha256": "fa6ecc921f59259a5af7d8a6f37625f4efdc9cab73550e3aaf95c29ded92491c"
+      },
+      {
+        "page": 33,
+        "png_sha256": "41924c0e1a31afa4ab84af541cd10f3d58b879ac9feaf2e75bf4e19f430b6e22"
+      }
+    ],
+    "zh": [
+      {
+        "page": 1,
+        "png_sha256": "02d84a16584cf1e96cc2c9de1ee73f2d624f247c0e998779e2afe007c30d98a7"
+      },
+      {
+        "page": 2,
+        "png_sha256": "34c50810c787a3566167c8d3fca7a800ec9b8f922698440dcf16f100eba434b1"
+      },
+      {
+        "page": 3,
+        "png_sha256": "b2b647ade87f2d73cc503eb256d094f0265650d5b920636cbe5c444538997c0d"
+      },
+      {
+        "page": 4,
+        "png_sha256": "c411e7e2248ca549d9774fe3b0bb44c58b6375bb3a9fa0366c2b5f950fdd9be7"
+      },
+      {
+        "page": 5,
+        "png_sha256": "865c20565f89ac5c9f9d94c5b597dfcdfc1df23de56190a873bc723f5bd4a9df"
+      },
+      {
+        "page": 6,
+        "png_sha256": "5442e09086f676e67c09d6e53a0e45482872fda34b6f3528723359a2fe88f92e"
+      },
+      {
+        "page": 7,
+        "png_sha256": "c67e37721bdb1bc0501407e065556098d7f39e76f4f7353c7562fcc6866ddade"
+      },
+      {
+        "page": 8,
+        "png_sha256": "089f2a341986751bfcb567affbae9688f3a052b33a4b0330ea6e09ae74d7d979"
+      },
+      {
+        "page": 9,
+        "png_sha256": "b1eea6af97ac2a5ffd74e5da77473b92af0087543ef35f68314054c3238f0285"
+      },
+      {
+        "page": 10,
+        "png_sha256": "2e3d0804e4a391a3d4c5a9e6d3bdfed6074530dd05df11879730984fb2a9ae72"
+      },
+      {
+        "page": 11,
+        "png_sha256": "059480b2794154af6b0134dc6eb80e88fb99643beab3302968e966455832b796"
+      },
+      {
+        "page": 12,
+        "png_sha256": "a6b9b228900598ab860455cbe08c258316ad4f41b4d0f693d641d24fa65954c4"
+      },
+      {
+        "page": 13,
+        "png_sha256": "2cc9d08620b702fa4e4dbe942135ed8df1065b7df339dde5307ec92eca1480f4"
+      },
+      {
+        "page": 14,
+        "png_sha256": "592046bbcf5207de93582feee99e3b086b05d64fa8473e0d626fe31cc983ffdd"
+      },
+      {
+        "page": 15,
+        "png_sha256": "c5406c3daa480cc467464ea575475c20ccd6f7cddc8f880ec5a4a8d20238a886"
+      },
+      {
+        "page": 16,
+        "png_sha256": "f4263a2c57178306ca7e9a8173a626d6a7567055467d572cad8154850c51c21e"
+      },
+      {
+        "page": 17,
+        "png_sha256": "b76bd9198ec4ee5e77f0941e71add7a59dd29b372008d9c76f8be602f08a4c73"
+      },
+      {
+        "page": 18,
+        "png_sha256": "b4799c80aea1df4b56639364c27d6fda25fb5876bc0e3407945bd7e70a575d33"
+      },
+      {
+        "page": 19,
+        "png_sha256": "65848c6a1c8a22573e01afaca08e2e8dfaead07423b986a7fdace9f7d45de51e"
+      },
+      {
+        "page": 20,
+        "png_sha256": "302625f96d2bd6f2a26106fbc3deb2d238138c9ce124eb6edd3375e4fd3ab0c4"
+      },
+      {
+        "page": 21,
+        "png_sha256": "a3d74159fb659ee4860300093a8f07880660cf7ce6f5c6ac15cfc8bfcc84a54d"
+      },
+      {
+        "page": 22,
+        "png_sha256": "e97cafb6adcd5cb9ae1e528b5fd6aae406cf48c34ce9c95849fdcc7bdc9e55e1"
+      },
+      {
+        "page": 23,
+        "png_sha256": "b22a85cf36d0e32889c09f95ba53069aff0daad092a458f606309cad3b459c13"
+      },
+      {
+        "page": 24,
+        "png_sha256": "0645e63e75083fec871b67494be2b3383e5a6492c10bfedf5243899c7c31a92e"
+      },
+      {
+        "page": 25,
+        "png_sha256": "94c7ece110974bd531270c43724a16c76dc282ff7b10fd98595eedcba1834e3c"
+      },
+      {
+        "page": 26,
+        "png_sha256": "ac9e391b0bdbdd0f92ca76b46a2ddc2ed7d785cba77ab6c754a378abd3b6b420"
+      },
+      {
+        "page": 27,
+        "png_sha256": "46240985b10f7898381e37f73d68b75370836a111eb516e782f7afd2fbf4cff4"
+      },
+      {
+        "page": 28,
+        "png_sha256": "49364418e5321b3aeb9298cd3e7d300c70699a7a4c250ab3ec90a5544b5127b2"
+      },
+      {
+        "page": 29,
+        "png_sha256": "db299f544f5188d16226334747516baf4a3152181aba51f7085f762c8c6cf8f2"
+      }
+    ]
+  }
+}

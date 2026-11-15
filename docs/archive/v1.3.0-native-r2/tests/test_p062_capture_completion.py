@@ -1,0 +1,191 @@
+"""Capture lifecycle barrier and unchanged original native-close contract."""
+
+import ast
+import hashlib
+import types
+import unittest
+from pathlib import Path
+from unittest.mock import Mock
+
+ROOT = Path(__file__).resolve().parents[1]
+SOURCE = ROOT / "scripts/run_s19b_prototype.py"
+
+
+def load_capture(clock):
+    tree = ast.parse(SOURCE.read_text(encoding="utf-8-sig"))
+    function = next(
+        x
+        for x in tree.body
+        if isinstance(x, ast.FunctionDef) and x.name == "capture_swapchain_complete"
+    )
+    namespace = {"time": types.SimpleNamespace(monotonic=clock)}
+    exec(compile(ast.Module(body=[function], type_ignores=[]), str(SOURCE), "exec"), namespace)
+    return namespace["capture_swapchain_complete"]
+
+
+class CaptureCompletionTests(unittest.TestCase):
+    def test_existing_complete_png_does_not_skip_SDK_completion_barrier(self):
+        capture = load_capture(lambda: 0)
+        path = Mock()
+        path.read_bytes.return_value = b"imageIEND\xaeB`\x82"
+        events = []
+        app = Mock()
+        app.update.side_effect = lambda: events.append("frame")
+        interface = Mock()
+        interface.capture_next_frame_swapchain.side_effect = lambda name: events.append("request")
+        interface.wait_async_capture.side_effect = lambda: events.append("barrier")
+        capture(app, lambda: events.append("fit"), path, interface, notify=events.append)
+        self.assertEqual(
+            events,
+            ["REQUESTED", "request", "fit", "frame", "PNG_COMPLETE", "barrier", "ASYNC_COMPLETE"],
+        )
+        interface.wait_async_capture.assert_called_once_with()
+
+    def test_missing_and_temporarily_locked_png_keep_pumping_before_barrier(self):
+        capture = load_capture(lambda: 0)
+        path = Mock()
+        path.read_bytes.side_effect = [FileNotFoundError(), PermissionError(), b"IEND\xaeB`\x82"]
+        app, interface, fit = Mock(), Mock(), Mock()
+        capture(app, fit, path, interface)
+        self.assertEqual(app.update.call_count, 3)
+        self.assertEqual(fit.call_count, 3)
+        interface.wait_async_capture.assert_called_once_with()
+
+    def test_incomplete_png_timeout_preserves_failure_and_never_claims_async_complete(self):
+        capture = load_capture(Mock(side_effect=[0, 0, 31]))
+        path, interface = Mock(), Mock()
+        path.read_bytes.return_value = b"partial"
+        phases = []
+        with self.assertRaisesRegex(RuntimeError, "KIT_SWAPCHAIN_CAPTURE_TIMEOUT"):
+            capture(Mock(), Mock(), path, interface, notify=phases.append)
+        interface.wait_async_capture.assert_not_called()
+        self.assertEqual(phases, ["REQUESTED"])
+
+    def test_SDK_barrier_exception_is_preserved_without_completion_receipt(self):
+        capture = load_capture(lambda: 0)
+        path, interface = Mock(), Mock()
+        path.read_bytes.return_value = b"IEND\xaeB`\x82"
+        error = RuntimeError("capture driver refused completion")
+        interface.wait_async_capture.side_effect = error
+        phases = []
+        with self.assertRaises(RuntimeError) as caught:
+            capture(Mock(), Mock(), path, interface, notify=phases.append)
+        self.assertIs(caught.exception, error)
+        self.assertEqual(phases, ["REQUESTED", "PNG_COMPLETE"])
+
+    def test_original_main_close_native_exit_and_failure_contract_AST_is_unchanged(self):
+        tree = ast.parse(SOURCE.read_text(encoding="utf-8-sig"))
+        main = next(x for x in tree.body if isinstance(x, ast.FunctionDef) and x.name == "main")
+        # P08 adds exactly one configurable render-cache assignment. Validate
+        # that expression before restoring the original for the lifecycle pin.
+        assignments = [
+            node
+            for node in ast.walk(main)
+            if isinstance(node, ast.Assign)
+            and any(
+                isinstance(target, ast.Name) and target.id == "cache" for target in node.targets
+            )
+        ]
+        self.assertEqual(len(assignments), 1)
+        expected = ast.parse(
+            'Path(os.environ.get("P051_RENDER_CACHE") or ROOT / ".local/s19b-render-cache/optix")',
+            mode="eval",
+        ).body
+        self.assertEqual(ast.dump(assignments[0].value), ast.dump(expected))
+        assignments[0].value = ast.parse(
+            'ROOT / ".local/s19b-render-cache/optix"', mode="eval"
+        ).body
+        # v1.3 adds an explicit windowless validation flag. Check the sole
+        # configuration difference, then pin every original close/exit branch.
+        constructors = [
+            node
+            for node in ast.walk(main)
+            if isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Name)
+            and node.func.id == "SimulationApp"
+        ]
+        self.assertEqual(len(constructors), 1)
+        config = constructors[0].args[0]
+        self.assertIsInstance(config, ast.Dict)
+        fields = [
+            i
+            for i, key in enumerate(config.keys)
+            if isinstance(key, ast.Constant) and key.value == "headless"
+        ]
+        self.assertEqual(len(fields), 1)
+        self.assertEqual(
+            ast.dump(config.values[fields[0]]),
+            ast.dump(ast.Name(id="HEADLESS_VALIDATION", ctx=ast.Load())),
+        )
+        config.values[fields[0]] = ast.Constant(value=False)
+        # Also pin the exact new source registration and read-only startup
+        # telemetry. Neither is permitted to alter native close or exit logic.
+        new_sources = ast.parse(
+            'sources.extend([ROOT / "scripts/p051_native_telemetry.py", ROOT / "scripts/p051_scene_link.py"])'
+        ).body[0]
+        old_sources = ast.parse('sources.append(ROOT / "scripts/p051_native_telemetry.py")').body[0]
+        startup = ast.parse(
+            'atomic_json(output / "p051-startup.json", dict(run_id=request["run_id"], request_id=request["request_id"], epoch=0, phase="STARTING_KIT", headless_validation=HEADLESS_VALIDATION, published_monotonic_s=time.monotonic()))'
+        ).body[0]
+        counts = [0, 0]
+
+        class RestoreDisplayAdditions(ast.NodeTransformer):
+            def visit_Expr(self, node):
+                if ast.dump(node) == ast.dump(new_sources):
+                    counts[0] += 1
+                    return old_sources
+                if ast.dump(node) == ast.dump(startup):
+                    counts[1] += 1
+                    return None
+                return self.generic_visit(node)
+
+        main = RestoreDisplayAdditions().visit(main)
+        self.assertEqual(counts, [1, 1])
+        checksum = hashlib.sha256(ast.dump(main, include_attributes=False).encode()).hexdigest()
+        self.assertEqual(
+            checksum, "fe09bcaf10d720d4b6075dde63ea60d449e67a02fda2061fe42c44967b09f387"
+        )
+
+    def test_portable_render_cache_uses_explicit_path_or_original_default(self):
+        tree = ast.parse(SOURCE.read_text(encoding="utf-8-sig"))
+        main = next(x for x in tree.body if isinstance(x, ast.FunctionDef) and x.name == "main")
+        assignment = next(
+            node
+            for node in ast.walk(main)
+            if isinstance(node, ast.Assign)
+            and any(
+                isinstance(target, ast.Name) and target.id == "cache" for target in node.targets
+            )
+        )
+        code = compile(ast.Expression(assignment.value), str(SOURCE), "eval")
+        root = Path("project")
+        cases = [
+            ({}, root / ".local/s19b-render-cache/optix"),
+            ({"P051_RENDER_CACHE": ""}, root / ".local/s19b-render-cache/optix"),
+            ({"P051_RENDER_CACHE": "chosen/cache"}, Path("chosen/cache")),
+        ]
+        for environment, expected in cases:
+            with self.subTest(environment=environment):
+                namespace = dict(
+                    ROOT=root, Path=Path, os=types.SimpleNamespace(environ=environment)
+                )
+                self.assertEqual(eval(code, namespace), expected)
+
+    def test_capture_helper_has_no_shutdown_exit_or_closed_success_bypass(self):
+        tree = ast.parse(SOURCE.read_text(encoding="utf-8-sig"))
+        capture = next(
+            x
+            for x in tree.body
+            if isinstance(x, ast.FunctionDef) and x.name == "capture_swapchain_complete"
+        )
+        calls = [x.func for x in ast.walk(capture) if isinstance(x, ast.Call)]
+        self.assertFalse(
+            any(
+                isinstance(x, ast.Attribute) and x.attr in ("shutdown", "close", "_exit")
+                for x in calls
+            )
+        )
+
+
+if __name__ == "__main__":
+    unittest.main()

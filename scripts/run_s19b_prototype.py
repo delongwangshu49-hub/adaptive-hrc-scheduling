@@ -12,6 +12,7 @@ import traceback
 from dataclasses import replace
 from pathlib import Path
 
+HEADLESS_VALIDATION = os.environ.get("HRC_HEADLESS_VALIDATION") == "1"
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / "src"), str(ROOT / "scripts"), str(ROOT / "desktop/s19b/src")]
 
@@ -64,6 +65,44 @@ def capture_swapchain_complete(
     notify("ASYNC_COMPLETE")
 
 
+def capture_viewport_complete(
+    app, fit_viewport, path, viewport, capture_api, renderer_capture, *, notify=None, timeout_s=30
+):
+    """Finish both the viewport future and renderer work before releasing Kit."""
+    import asyncio
+
+    notify = notify or (lambda phase: None)
+    notify("REQUESTED")
+
+    async def take():
+        await capture_api(viewport, str(path)).wait_for_result()
+
+    task = asyncio.ensure_future(take())
+    deadline = time.monotonic() + timeout_s
+    while not task.done() and time.monotonic() < deadline:
+        fit_viewport()
+        app.update()
+    if not task.done():
+        task.cancel()
+        raise RuntimeError("CAPTURE_TIMEOUT")
+    task.result()
+    while time.monotonic() < deadline:
+        try:
+            if path.read_bytes().endswith(b"IEND\xaeB`\x82"):
+                break
+        except (FileNotFoundError, PermissionError):
+            pass
+        fit_viewport()
+        app.update()
+    else:
+        raise RuntimeError("CAPTURE_INCOMPLETE")
+    notify("PNG_COMPLETE")
+    # wait_for_result() covers the viewport future and a few frames, not the
+    # renderer capture queue. The SDK's own viewport tests use this barrier.
+    renderer_capture.wait_async_capture()
+    notify("ASYNC_COMPLETE")
+
+
 def run(request, output, app=None, control=None):
     from build_simulation_production import configuration
 
@@ -76,6 +115,20 @@ def run(request, output, app=None, control=None):
     from adaptive_hrc_scheduling.control.production_loop import run as production_run
     from adaptive_hrc_scheduling.production_backend import ProductionBackend
 
+    def startup(phase):
+        atomic_json(
+            output / "p051-startup.json",
+            dict(
+                run_id=request["run_id"],
+                request_id=request["request_id"],
+                epoch=0,
+                phase=phase,
+                headless_validation=HEADLESS_VALIDATION,
+                published_monotonic_s=time.monotonic(),
+            ),
+        )
+
+    startup("BUILDING_SCENE" if app else "PREPARING_CPU")
     draft = request["draft"]
     config = configuration(products=draft["products"], variant=draft["variant"])
     config = replace(
@@ -116,6 +169,7 @@ def run(request, output, app=None, control=None):
     viewport = None
     display_camera = None
     receiver = None
+    selection_guard = None
     if app is not None:
         import carb
         import omni.appwindow
@@ -146,7 +200,9 @@ def run(request, output, app=None, control=None):
         engine.port.step = with_receiver
         viewport = get_active_viewport()
         viewport_window = get_active_viewport_window()
-        if not viewport_window.dock_in_window("DockSpace", omni.ui.DockPosition.SAME):
+        if not HEADLESS_VALIDATION and not viewport_window.dock_in_window(
+            "DockSpace", omni.ui.DockPosition.SAME
+        ):
             raise RuntimeError("KIT_VIEWPORT_DOCK_NOT_CONFIRMED")
         viewport_window.visible = True
         # Render the scene only; keep editing panels and menus outside this trial UI.
@@ -171,6 +227,9 @@ def run(request, output, app=None, control=None):
             carb.settings.get_settings().set(
                 "/exts/omni.kit.manipulator.prim.core/tools/enabled", False
             )
+            from p051_scene_link import selection_only_viewport
+
+            selection_guard = selection_only_viewport(viewport_window)
         UsdGeom.Scope.Define(scene.stage, "/S19B")
         display_camera = "/S19B/ReviewCamera"
         Sdf.CopySpec(
@@ -201,8 +260,14 @@ def run(request, output, app=None, control=None):
             for key, value in (
                 ("position_x", 0),
                 ("position_y", 0),
-                ("width", omni.ui.Workspace.get_main_window_width()),
-                ("height", omni.ui.Workspace.get_main_window_height()),
+                (
+                    "width",
+                    1280 if HEADLESS_VALIDATION else omni.ui.Workspace.get_main_window_width(),
+                ),
+                (
+                    "height",
+                    720 if HEADLESS_VALIDATION else omni.ui.Workspace.get_main_window_height(),
+                ),
             ):
                 if abs(getattr(viewport_window, key) - value) > 0.05:
                     setattr(viewport_window, key, value)
@@ -298,7 +363,7 @@ def run(request, output, app=None, control=None):
         current_display_error = display_errors[-1]
 
     def catalog():
-        return entity_catalog(as_data(config), engine.port.mapping if app else None)
+        return entity_catalog(as_data(world.config), engine.port.mapping if app else None)
 
     atomic_json(
         output / "entity-catalog.json",
@@ -489,33 +554,52 @@ def run(request, output, app=None, control=None):
     def capture(name):
         if viewport is None:
             return
-        import asyncio
-
+        from omni.kit.renderer.capture import acquire_renderer_capture_interface
         from omni.kit.viewport.utility import capture_viewport_to_file
 
-        async def take():
-            await capture_viewport_to_file(viewport, str(output / name)).wait_for_result()
+        capture_viewport_complete(
+            app,
+            fit_viewport,
+            output / name,
+            viewport,
+            capture_viewport_to_file,
+            acquire_renderer_capture_interface(),
+            notify=lambda phase: atomic_json(
+                output / "viewport-capture-completion.json",
+                dict(
+                    run_id=request["run_id"],
+                    request_id=request["request_id"],
+                    phase=phase,
+                    artifact=name,
+                    scope="CAPTURE_LIFECYCLE_NOT_BUSINESS_PROGRESS",
+                ),
+            ),
+        )
 
-        task = asyncio.ensure_future(take())
-        deadline = time.monotonic() + 30
-        while not task.done() and time.monotonic() < deadline:
+    scene_link = None
+    if app is not None and request["run_id"].startswith("P051-"):
+        from p051_scene_link import SceneLink
+
+        def pump_view():
             fit_viewport()
             app.update()
-        if not task.done():
-            raise RuntimeError("CAPTURE_TIMEOUT")
-        task.result()
-        while time.monotonic() < deadline:
-            try:
-                if (output / name).read_bytes().endswith(b"IEND\xaeB`\x82"):
-                    return
-            except (FileNotFoundError, PermissionError):
-                pass
-            fit_viewport()
-            app.update()
-        raise RuntimeError("CAPTURE_INCOMPLETE")
 
+        scene_link = SceneLink(
+            output,
+            request,
+            scene.stage,
+            viewport,
+            display_camera,
+            catalog,
+            world,
+            digest,
+            capture,
+            pump_view,
+            input_probe=selection_guard.input_probe,
+        )
     publish("INITIALIZED")
     capture("scene-before.png")
+    startup("FIRST_FRAME_READY" if app else "CPU_READY")
     if control:
         control.initialized()
 
@@ -526,6 +610,8 @@ def run(request, output, app=None, control=None):
             fit_viewport()
             timing.kit_update(app)
             guarded_display(view_request, record_display_error)
+            if scene_link is not None:
+                guarded_display(scene_link.poll, record_display_error)
         if control:
             control.poll()
         publish(
@@ -572,7 +658,13 @@ def run(request, output, app=None, control=None):
         if control
         else "FINITE_1H_EVENT_BOUNDARY_PREFIX_NOT_COMPLETE_ORDER",
         closed=False,
-        display_mode="VISIBLE_KIT_RAYTRACED_PROTOTYPE" if app else "CPU_EVENT",
+        display_mode=(
+            "WINDOWLESS_KIT_RAYTRACED_VALIDATION"
+            if HEADLESS_VALIDATION
+            else "VISIBLE_KIT_RAYTRACED_PROTOTYPE"
+        )
+        if app
+        else "CPU_EVENT",
         industrial_qualification="NOT_ESTABLISHED",
     )
     report["status"] = (
@@ -622,7 +714,35 @@ def run(request, output, app=None, control=None):
         # Owner review passed this item on 2026-10-16; retain historical
         # diagnostics without re-opening or re-running the support investigation.
     capture("scene-after.png")
-    if app is not None:
+    if viewport is not None:
+        atomic_json(
+            output / "p051-scene-last-frame.json",
+            dict(
+                run_id=request["run_id"],
+                request_id=request["request_id"],
+                epoch=0,
+                image="scene-after.png",
+                image_sha256=hashlib.sha256((output / "scene-after.png").read_bytes()).hexdigest(),
+                sampled_sim_h=world.s.time_h,
+                source_state_revision=world.s.revision,
+                frame_number=viewport.frame_info.get("frame_number"),
+                camera_path=str(viewport.camera_path),
+                scope="STATIC_FINAL_CAPTURE_NOT_LIVE_OR_REPLAY",
+            ),
+        )
+    if app is not None and HEADLESS_VALIDATION:
+        capture("kit-windowless-frame.png")
+        atomic_json(
+            output / "capture-completion.json",
+            dict(
+                run_id=request["run_id"],
+                request_id=request["request_id"],
+                phase="ASYNC_COMPLETE",
+                artifact="kit-windowless-frame.png",
+                scope="VIEWPORT_RENDER_NO_NATIVE_WINDOW",
+            ),
+        )
+    if app is not None and not HEADLESS_VALIDATION:
         from omni.kit.renderer.capture import acquire_renderer_capture_interface
 
         for kit_window in omni.ui.Workspace.get_windows():
@@ -703,6 +823,8 @@ def run(request, output, app=None, control=None):
             time.sleep(0.03)
     if app is not None:
         engine.port.step = original_step
+    if selection_guard is not None:
+        selection_guard.destroy()
     return report
 
 
@@ -763,7 +885,13 @@ def main():
         ROOT / "desktop/s19b/pyproject.toml",
     ]
     if request["run_id"].startswith("P051-"):
-        sources.append(ROOT / "scripts/p051_native_telemetry.py")
+        sources.extend(
+            [
+                ROOT / "scripts/p051_native_telemetry.py",
+                ROOT / "scripts/p051_scene_link.py",
+                ROOT / "desktop/p051/web/src/design-tokens.json",
+            ]
+        )
     atomic_json(
         output / "sources.json",
         {
@@ -789,9 +917,20 @@ def main():
             os.environ["OPTIX_CACHE_PATH"] = str(cache)
             from isaacsim import SimulationApp
 
+            atomic_json(
+                output / "p051-startup.json",
+                dict(
+                    run_id=request["run_id"],
+                    request_id=request["request_id"],
+                    epoch=0,
+                    phase="STARTING_KIT",
+                    headless_validation=HEADLESS_VALIDATION,
+                    published_monotonic_s=time.monotonic(),
+                ),
+            )
             app = SimulationApp(
                 {
-                    "headless": False,
+                    "headless": HEADLESS_VALIDATION,
                     "width": 1280,
                     "height": 720,
                     "window_width": 1000,

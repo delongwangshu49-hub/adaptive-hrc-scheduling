@@ -1,6 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {rangeOf,fitRange,ticks,chartRows,scrollDomain,timeLabel,navigationSettings,scaleSpan,followStart} from '../src/gantt-model.mjs';
+import {productionRange,productionLane} from '../src/gantt-model.mjs';
+
+test('production navigation finds live work without changing exact intervals',()=>{
+  const future={start_h:30,end_h:31,schedule_state:'PLANNED'},done={start_h:0,end_h:.002,schedule_state:'ACTUAL'},live={start_h:2,end_h:2.5,schedule_state:'ACTUAL',end_status:'OPEN'};
+  const rows=[future,done,live],before=JSON.stringify(rows),window=productionRange(rows,2.1);
+  assert.ok(window.start<=2.1&&window.start+window.span>=2.5);
+  assert.equal(productionLane([{rows:[done]},{rows:[future]},{rows:[live]}],2.1),2);
+  assert.equal(productionLane([{rows:[done]},{rows:[future]}],2.1),1);
+  assert.equal(productionLane([{rows:[]}],2.1),-1);
+  assert.equal(JSON.stringify(rows),before);
+});
 
 test('default navigation migrates whole-plan view to 10h grids and follow',()=>{const migrated=navigationSettings({span:313,follow:false,product:'P'});assert.equal(migrated.scaleStep,10);assert.equal(migrated.follow,true);assert.equal(migrated.product,'P');assert.equal(navigationSettings({...migrated,follow:false,start:120}).start,120);for(const width of [300,414,575,680]){const span=scaleSpan(width);const marks=ticks(0,span,width,10);assert.ok(span<313);assert.ok(marks.slice(1).every((x,i)=>x.time-marks[i].time===10));}});
 test('following pans with verified simulation time and freezes when stale or stopped',()=>{assert.equal(followStart(0,80,60,true,'VERIFIED','RUNNING'),0);assert.equal(followStart(0,80,70,true,'VERIFIED','RUNNING'),10);assert.equal(followStart(10,80,71,true,'VERIFIED','RUNNING'),11);for(const [enabled,status,phase] of [[false,'VERIFIED','RUNNING'],[true,'STALE','RUNNING'],[true,'VERIFIED','STOPPED'],[true,'VERIFIED','STOPPING']])assert.equal(followStart(10,80,150,enabled,status,phase),10);assert.equal(followStart(200,80,70,true,'VERIFIED','RUNNING'),10);});

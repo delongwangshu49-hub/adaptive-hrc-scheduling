@@ -43,6 +43,16 @@ def make_spec(config, profile, *, rates, **kwargs):
     return spec
 
 
+def scene_person_path(pid):
+    """Keep legacy USD identifiers; encode other domain IDs without collisions."""
+    import re
+
+    token = pid
+    if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", pid) or pid.startswith("id_"):
+        token = "id_" + pid.encode("utf-8").hex()
+    return "/World/P043/People/" + token
+
+
 def arrival_payload(config, pid, template_id="P043-W1-v1", *, location="F1", initial_f=0.1):
     base = registry()[template_id]
     return dict(
@@ -79,7 +89,7 @@ def check_request(session, req, *, applying=False):
             ref["domain_id"] == ref["scene_entity_id"] == pid and ref["template_revision"] == "v1",
             "PERSON_SCENE_IDENTITY",
         )
-        expected = "CPU:N/A" if session.spec["backend"] == "CPU" else "/World/P043/People/" + pid
+        expected = "CPU:N/A" if session.spec["backend"] == "CPU" else scene_person_path(pid)
         require(ref["prim_path"] == expected, "PERSON_SCENE_PATH")
         require(person.valid_until_h > world.s.time_h, "PERSON_QUALIFICATION_EXPIRED")
     else:

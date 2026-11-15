@@ -7,9 +7,20 @@ import subprocess
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
+from copy import deepcopy
 from pathlib import Path
 
-from PySide6.QtCore import QObject, Qt, QTimer, QUrl, Signal, Slot
+from PySide6.QtCore import (
+    QEvent,
+    QLibraryInfo,
+    QObject,
+    Qt,
+    QTimer,
+    QTranslator,
+    QUrl,
+    Signal,
+    Slot,
+)
 from PySide6.QtGui import QColor, QDesktopServices, QPalette
 from PySide6.QtWebChannel import QWebChannel
 from PySide6.QtWebEngineCore import QWebEnginePage, QWebEngineProfile, QWebEngineSettings
@@ -30,12 +41,20 @@ sys.path[:0] = [str(ROOT), str(ROOT / "src"), str(ROOT / "scripts"), str(ROOT / 
 from s19b_desktop.embedded import KitHost  # noqa: E402
 from s19b_desktop.model import atomic_json, read_json  # noqa: E402
 
-from .client import Client, prepare_launch  # noqa: E402
+from .client import Client  # noqa: E402
 from .delta import ProjectionDelta  # noqa: E402
+from .diagnostics import (  # noqa: E402
+    APP_VERSION,
+    check_startup,
+    full_diagnostics,
+    prepare_checked_launch,
+)
 from .exit_status import completion_status  # noqa: E402
-from .geometry import accepts_host, plan  # noqa: E402
+from .geometry import accepts_host, dual_plan  # noqa: E402
+from .linkage import display_context, last_scene_capture, queue_view, snapshot_result  # noqa: E402
 from .planning import PlanningFeedback, age  # noqa: E402
 from .portable import POWERSHELL, PortableSettings  # noqa: E402
+from .processes import CancellableProcesses  # noqa: E402
 from .stop_feedback import StopFeedback  # noqa: E402
 from .write_fence import BLOCKED_PHASES, control_phase  # noqa: E402
 
@@ -43,21 +62,47 @@ from .write_fence import BLOCKED_PHASES, control_phase  # noqa: E402
 def configure_application(app):
     app.setStyle("Fusion")
     palette = QPalette()
-    for role, color in {
-        "Window": "#202020",
-        "WindowText": "#E7E5E1",
-        "Base": "#171717",
-        "AlternateBase": "#292929",
-        "Text": "#E7E5E1",
-        "Button": "#292929",
-        "ButtonText": "#E7E5E1",
-        "Highlight": "#525252",
-        "HighlightedText": "#FFFFFF",
-        "ToolTipBase": "#292929",
-        "ToolTipText": "#E7E5E1",
+    try:
+        tokens = json.loads((ROOT / "desktop/p051/web/src/design-tokens.json").read_text("utf-8"))
+    except (OSError, ValueError):
+        # Keep diagnostics accessible for an incomplete extraction.
+        return
+    for role, name in {
+        "Window": "surface",
+        "WindowText": "ink",
+        "Base": "bg",
+        "AlternateBase": "raised",
+        "Text": "ink",
+        "Button": "raised",
+        "ButtonText": "ink",
+        "Highlight": "accent",
+        "HighlightedText": "onaccent",
+        "ToolTipBase": "raised",
+        "ToolTipText": "ink",
     }.items():
-        palette.setColor(getattr(QPalette.ColorRole, role), QColor(color))
+        if isinstance(tokens, dict) and isinstance(tokens.get(name), str):
+            palette.setColor(getattr(QPalette.ColorRole, role), QColor(tokens[name]))
     app.setPalette(palette)
+    if not isinstance(tokens, dict) or not all(
+        isinstance(tokens.get(name), str)
+        for name in ("line", "raised", "ink", "accent", "muted", "surface")
+    ):
+        return
+    radius = tokens.get("radius", 3)
+    if not isinstance(radius, (int, float)) or not 0 <= radius <= 12:
+        radius = 3
+    app.setStyleSheet(
+        "QPushButton, QLineEdit, QComboBox {"
+        f"border:1px solid {tokens['line']}; border-radius:{radius}px;"
+        f"background:{tokens['raised']}; color:{tokens['ink']}; padding:5px 10px;"
+        "} QPushButton:default, QPushButton:focus, QLineEdit:focus, QComboBox:focus {"
+        f"border-color:{tokens['accent']};"
+        "} QPushButton:hover {"
+        f"background:{tokens['line']};"
+        "} QPushButton:disabled {"
+        f"color:{tokens['muted']}; background:{tokens['surface']};"
+        "}"
+    )
 
 
 def ask_yes_no(parent, title, message):
@@ -66,6 +111,9 @@ def ask_yes_no(parent, title, message):
     box.setText(message)
     box.setIcon(QMessageBox.Icon.NoIcon)
     box.setStandardButtons(QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+    chinese = getattr(parent, "language", "zh") == "zh"
+    box.button(QMessageBox.StandardButton.Yes).setText("安全停止" if chinese else "Stop safely")
+    box.button(QMessageBox.StandardButton.No).setText("继续运行" if chinese else "Keep running")
     box.setDefaultButton(QMessageBox.StandardButton.No)
     box.exec()
     return box.standardButton(box.clickedButton())
@@ -124,6 +172,28 @@ class NativeViewport(KitHost):
         minima.append((layout_minimum.width(), layout_minimum.height()))
         return tuple(max(x[i] for x in minima) for i in (0, 1))
 
+    def measure(self):
+        result = super().measure()
+        if result is None:
+            return None
+        from ctypes import wintypes
+
+        self.api.WindowFromPoint.argtypes = [wintypes.POINT]
+        self.api.WindowFromPoint.restype = wintypes.HWND
+        self.api.IsWindowEnabled.argtypes = [wintypes.HWND]
+        rectangle = result["scene_window_physical"]
+        hit = self.api.WindowFromPoint(
+            wintypes.POINT((rectangle[0] + rectangle[2]) // 2, (rectangle[1] + rectangle[3]) // 2)
+        )
+        result["input_window"] = dict(
+            scene_enabled=bool(self.api.IsWindowEnabled(self.hwnd)),
+            scene_style=hex(self.api.GetWindowLongPtrW(self.hwnd, -16)),
+            scene_exstyle=hex(self.api.GetWindowLongPtrW(self.hwnd, -20)),
+            center_hits_scene=hit == self.hwnd,
+            center_hits_own_child=bool(self.api.IsChild(int(self.window().winId()), hit)),
+        )
+        return result
+
     def commit(self, geometry, reviewed):
         minimum = self.effective_minimum()
         if (
@@ -162,7 +232,7 @@ class Bridge(QObject):
 class Workbench(QWidget):
     def __init__(self, *, directory=None, writable=False, runs=None, audit=None):
         super().__init__()
-        self.setWindowTitle("连续生产工作台 · Production Workbench · P05.1")
+        self.setWindowTitle(f"HRC Workbench · 生产工作台 · v{APP_VERSION}")
         self.resize(1366, 768)
         self.setMinimumSize(1280, 720)
         self.portable = PortableSettings(ROOT) if (ROOT / "portable-launch.py").is_file() else None
@@ -192,14 +262,26 @@ class Workbench(QWidget):
         self.frame_changed_at = None
         self.view_sequence = 0
         self.form_open = False
+        self.focus_gantt = False
+        self.overlay_open = False
+        self.diagnostic_executor = ThreadPoolExecutor(
+            max_workers=1, thread_name_prefix="HRC-diagnostics"
+        )
+        self.diagnostic_future = None
+        self.check_processes = CancellableProcesses()
+        self.diagnostic_result = None
         self.split_ratio = 0.5
         self.label_width = None
         self.language = "zh"
+        self.qt_translator = QTranslator(self)
+        self.update_native_language()
         self.executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="P051-display")
         self.future = None
         self.outstanding = None
         self.pending_call = None
         self.snapshot = {}
+        self.last_frame_key = None
+        self.last_scene_frame = None
         self.last_layout = None
         self.last_emit = 0
         self.last_projection_key = None
@@ -210,6 +292,7 @@ class Workbench(QWidget):
         self.hud = QLabel(self)
         self.hud.hide()
         self.web = QWebEngineView(self)
+        QApplication.instance().installEventFilter(self)
         self.web.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         profile = QWebEngineProfile(self.web)
         self.page = LocalPage(profile, self.web)
@@ -244,11 +327,38 @@ class Workbench(QWidget):
         stop = QPushButton("安全停止 / Safe stop")
         stop.clicked.connect(self.confirm_stop)
         recovery_layout.addWidget(stop)
-        self.recovery.setStyleSheet(
-            "background:#202020;color:#E7E5E1; font-size:14px; QPushButton{background:#292929;border:1px solid #525252;padding:6px;}"
-        )
+        self.recovery.setStyleSheet("font-size:14px;")
         self.recovery.hide()
         self.arrange()
+
+    def update_native_language(self):
+        app = QApplication.instance()
+        app.removeTranslator(self.qt_translator)
+        if self.language == "zh" and self.qt_translator.load(
+            "qtbase_zh_CN", QLibraryInfo.path(QLibraryInfo.LibraryPath.TranslationsPath)
+        ):
+            app.installTranslator(self.qt_translator)
+
+    def eventFilter(self, watched, event):
+        if (
+            event.type() == QEvent.Type.MouseButtonPress
+            and isinstance(watched, QWidget)
+            and hasattr(self, "web")
+            and (watched is self.web or self.web.isAncestorOf(watched))
+            and self.native.hwnd
+        ):
+            # Qt may still consider WebEngine focused after the foreign Kit
+            # child took Win32 focus. Restore it only on a real web click.
+            # No global hook, synthesized input, or focus changes on polling.
+            self.web.clearFocus()
+            self.web.setFocus(Qt.FocusReason.MouseFocusReason)
+            if sys.platform == "win32":
+                from ctypes import wintypes
+
+                self.native.api.SetFocus.argtypes = [wintypes.HWND]
+                self.native.api.SetFocus.restype = wintypes.HWND
+                self.native.api.SetFocus(int(self.web.winId()))
+        return super().eventFilter(watched, event)
 
     def emit(self, kind, value):
         if self.audit and kind in ("preview", "submit", "worker_exit", "launched", "error", "load"):
@@ -270,7 +380,79 @@ class Workbench(QWidget):
                 phase=self.phase,
                 directory=str(self.directory) if self.directory else None,
                 portable=self.portable.status() if self.portable else None,
+                version=APP_VERSION,
+                example_available=self.example_directory().is_dir(),
             )
+        if action == "overlay":
+            self.overlay_open = bool(data.get("open"))
+            self.arrange()
+            return dict(open=self.overlay_open)
+        if action == "focus_gantt":
+            self.focus_gantt = False
+            self.split_ratio = 0.42 if data.get("enabled", True) else 0.5
+            self.arrange()
+            return self.last_layout
+        if action == "view_preset":
+            ratios = {"operate": 0.5, "demonstrate": 0.58, "analyze": 0.42}
+            if data.get("preset") not in ratios:
+                raise ValueError("VIEW_PRESET")
+            self.split_ratio = ratios[data["preset"]]
+            self.arrange()
+            return self.last_layout
+        if action == "example":
+            if self.worker and self.worker.poll() is None:
+                raise ValueError("WORKER_ALREADY_RUNNING")
+            directory = self.example_directory()
+            if not directory.is_dir():
+                raise ValueError("EXAMPLE_MISSING: " + str(directory))
+            self.open_saved(directory)
+            return dict(directory=str(directory))
+        if action == "diagnostics":
+            if self.diagnostic_future:
+                return dict(status="PENDING")
+            backend = (
+                self.launch["backend"]
+                if self.launch and self.worker_exit is None
+                else data.get("backend", "isaac")
+            )
+            if data.get("full"):
+                self.diagnostic_future = self.diagnostic_executor.submit(
+                    full_diagnostics,
+                    ROOT,
+                    self.runs,
+                    POWERSHELL,
+                    backend,
+                    self.directory,
+                    self.check_processes,
+                )
+            else:
+                self.diagnostic_future = self.diagnostic_executor.submit(
+                    check_startup,
+                    ROOT,
+                    self.runs,
+                    backend,
+                    self.portable.isaac if self.portable else None,
+                    POWERSHELL,
+                    runner=self.check_processes,
+                )
+            return dict(status="PENDING")
+        if action == "diagnostic_export":
+            if not self.diagnostic_result:
+                raise ValueError("RUN_DIAGNOSTICS_FIRST")
+            path, _ = QFileDialog.getSaveFileName(
+                self,
+                "保存诊断报告 / Save diagnostics",
+                str(self.runs / "HRC-diagnosis.json"),
+                "JSON (*.json)",
+                options=QFileDialog.Option.DontUseNativeDialog,
+            )
+            if path:
+                atomic_json(Path(path), self.diagnostic_result)
+            return dict(path=path)
+        if action == "help":
+            guide = ROOT / "tools/diagnostics/工作台排错与AI修复指南.md"
+            QDesktopServices.openUrl(QUrl.fromLocalFile(str(guide)))
+            return dict(path=str(guide))
         if action == "portable_settings" and self.portable:
             return self.show_portable_settings()
         if action == "hud":
@@ -292,7 +474,7 @@ class Workbench(QWidget):
             ratio = data["ratio"]
             if type(ratio) not in (int, float) or not 0.1 <= ratio <= 0.9:
                 raise ValueError("SPLIT_RANGE")
-            candidate = plan(
+            candidate, _ = dual_plan(
                 self.width(),
                 self.height(),
                 form_open=self.form_open,
@@ -305,7 +487,7 @@ class Workbench(QWidget):
             self.arrange()
             return self.last_layout
         if action == "labelwidth":
-            candidate = plan(
+            candidate, _ = dual_plan(
                 self.width(),
                 self.height(),
                 form_open=self.form_open,
@@ -321,6 +503,7 @@ class Workbench(QWidget):
             self.language = data["language"]
             if self.language not in ("zh", "en"):
                 raise ValueError("LANGUAGE")
+            self.update_native_language()
             return dict(language=self.language)
         if action == "connection":
             self.detached = bool(data.get("detached", False))
@@ -341,6 +524,7 @@ class Workbench(QWidget):
             self.showNormal() if self.isFullScreen() else self.showFullScreen()
             return dict(fullscreen=self.isFullScreen())
         if action == "restore":
+            self.focus_gantt = False
             self.split_ratio = 0.5
             self.arrange()
             return self.last_layout
@@ -362,7 +546,15 @@ class Workbench(QWidget):
             self.release_reader()
             self.phase = "PREPARING"
             self.detached = False
-            self.future = self.executor.submit(prepare_launch, ROOT, self.runs, data)
+            self.future = self.executor.submit(
+                prepare_checked_launch,
+                ROOT,
+                self.runs,
+                data,
+                self.portable.isaac if self.portable else None,
+                POWERSHELL,
+                self.check_processes,
+            )
             self.outstanding = "launch"
             return dict(status="PREPARING")
         if action == "open" or (action == "portable_archive" and self.portable):
@@ -459,7 +651,7 @@ class Workbench(QWidget):
                 if self.launch
                 else None,
             )
-        if action in ("camera", "locate"):
+        if action in ("camera", "locate", "focus", "clear_selection", "camera_back", "snapshot"):
             return self.send_view(action, **data)
         if action == "export":
             if not self.snapshot.get("envelope"):
@@ -482,11 +674,65 @@ class Workbench(QWidget):
                 )
                 atomic_json(Path(path), value)
             return dict(path=path)
+        if action == "export_view":
+            from .presentation import export_view
+
+            if not self.snapshot.get("envelope"):
+                raise ValueError("NO_VERIFIED_FRAME")
+            suffix = data.get("format", "png")
+            if suffix not in ("png", "pdf", "csv"):
+                raise ValueError("EXPORT_FORMAT")
+            dual = bool(data.get("dual"))
+            if dual and (
+                suffix == "csv"
+                or not self.launch
+                or self.launch["backend"] != "isaac"
+                or self.worker_exit is not None
+            ):
+                raise ValueError("SCENE_EXPORT_REQUIRES_LIVE_ISAAC")
+            if getattr(self, "pending_export", None):
+                raise ValueError("SCENE_EXPORT_IN_PROGRESS")
+            self.runs.mkdir(parents=True, exist_ok=True)
+            path, _ = QFileDialog.getSaveFileName(
+                self,
+                "导出当前视图 / Export current view",
+                str(self.runs / (("scene-and-timeline." if dual else "timeline-view.") + suffix)),
+                suffix.upper() + " (*." + suffix + ")",
+                options=QFileDialog.Option.DontUseNativeDialog,
+            )
+            if path:
+                if dual:
+                    frozen = deepcopy(self.snapshot)
+                    response = self.send_view("snapshot")
+                    self.pending_export = dict(
+                        path=path,
+                        snapshot=frozen,
+                        data=deepcopy(data),
+                        language=self.language,
+                        sequence=response["sequence"],
+                        launch=deepcopy(self.launch),
+                        directory=self.directory,
+                        started=time.monotonic(),
+                    )
+                    return dict(path=path, status="CAPTURING_SCENE")
+                export_view(
+                    path,
+                    self.snapshot,
+                    data,
+                    language=self.language,
+                    historical=self.phase == "SAVED_READ_ONLY",
+                )
+            return dict(path=path)
         if action == "evidence":
             if self.directory:
                 QDesktopServices.openUrl(QUrl.fromLocalFile(str(self.directory.resolve())))
             return dict(directory=str(self.directory))
         raise ValueError("UNSUPPORTED_UI_ACTION")
+
+    def example_directory(self):
+        return (
+            self.portable.archive if self.portable else ROOT / "tests/fixtures/p053/legacy-session"
+        )
 
     def choose_portable_path(self, action):
         settings = self.portable
@@ -553,6 +799,8 @@ class Workbench(QWidget):
         self.stop_feedback = StopFeedback()
         self.writable = self.detached = False
         self.phase = "SAVED_READ_ONLY"
+        self.focus_gantt = False
+        self.arrange()
         self.snapshot, self.last_projection_key, self.delta = {}, None, ProjectionDelta()
         self.emit("projection", self.delta.encode(dict(status="UNKNOWN", writable=False)))
         self.emit("session_reset", {})
@@ -569,18 +817,16 @@ class Workbench(QWidget):
             self.client = None
 
     def send_view(self, action, **data):
-        if not self.directory or not self.launch or self.worker_exit is not None:
+        if (
+            not self.directory
+            or not self.launch
+            or self.launch["backend"] != "isaac"
+            or self.worker_exit is not None
+        ):
             raise ValueError("NATIVE_SESSION_UNAVAILABLE")
-        self.view_sequence += 1
-        request = dict(
-            run_id=self.launch["run_id"],
-            request_id=self.launch["request_id"],
-            epoch=0,
-            sequence=self.view_sequence,
-            action=action,
-            **data,
+        self.view_sequence = queue_view(
+            self.directory, self.launch, action, data, self.view_sequence
         )
-        atomic_json(self.directory / "view-request.json", request)
         return dict(status="SUBMITTED_VIEW_ONLY", sequence=self.view_sequence)
 
     def start_worker(self, directory, request):
@@ -625,14 +871,25 @@ class Workbench(QWidget):
                 str(request_path),
             ]
         self.worker_log = (directory / "p051-worker.log").open("w", encoding="utf-8")
-        self.worker = subprocess.Popen(
-            command,
-            cwd=ROOT,
-            env=env,
-            stdout=self.worker_log,
-            stderr=subprocess.STDOUT,
-            creationflags=subprocess.CREATE_NO_WINDOW,
-        )
+        try:
+            self.worker = subprocess.Popen(
+                command,
+                cwd=ROOT,
+                env=env,
+                stdout=self.worker_log,
+                stderr=subprocess.STDOUT,
+                creationflags=subprocess.CREATE_NO_WINDOW,
+            )
+        except OSError as exc:
+            self.worker_log.write(
+                json.dumps(dict(command=command, cwd=str(ROOT), error=str(exc)), ensure_ascii=False)
+            )
+            self.worker_log.close()
+            raise OSError(
+                f"WORKER_START_FAILED: {exc}\nExecutable: {command[0]}\nWorking directory: {ROOT}\nLog: {directory / 'p051-worker.log'}"
+            ) from exc
+        self.focus_gantt = False
+        self.arrange()
         self.phase = "CONNECTING"
         self.emit(
             "launched",
@@ -641,20 +898,28 @@ class Workbench(QWidget):
 
     def arrange(self):
         self.web.setGeometry(self.rect())
-        p = plan(
+        p, chrome = dual_plan(
             self.width(),
             self.height(),
             form_open=self.form_open,
             split_ratio=self.split_ratio,
             label_width=self.label_width,
+            auxiliary_height=240 if self.overlay_open else None,
         )
+        self.split_ratio = chrome["split_ratio"]
         if not p.geometry_admissible:
             self.split_ratio, self.label_width = 0.5, None
-            p = plan(self.width(), self.height(), form_open=self.form_open)
+            p, chrome = dual_plan(
+                self.width(),
+                self.height(),
+                form_open=self.form_open,
+                auxiliary_height=240 if self.overlay_open else None,
+            )
         if not p.geometry_admissible:
             self.emit("error", dict(error=p.reason))
             return
         try:
+            # Help is below both plots; native and schedule rectangles remain disjoint.
             self.native.commit(p.plots[0], p)
         except ValueError as error:
             self.emit("error", dict(error=str(error)))
@@ -671,6 +936,9 @@ class Workbench(QWidget):
             equal_panels=self.split_ratio == 0.5,
             equal_area=False,
             split_ratio=self.split_ratio,
+            focus_gantt=self.focus_gantt,
+            aux_extra=0,
+            chrome=chrome,
         )
         self.emit("layout", self.last_layout)
         if hasattr(self, "recovery"):
@@ -684,7 +952,7 @@ class Workbench(QWidget):
             phase = control_phase(self.directory, self.launch)
             if phase in BLOCKED_PHASES:
                 blocked = "CONTROL_" + phase
-                if phase != "UNKNOWN":
+                if phase != "UNKNOWN" and self.worker_exit is None:
                     self.phase = phase
         if self.client:
             blocked = self.client.write_fence.reason() or blocked
@@ -699,6 +967,43 @@ class Workbench(QWidget):
 
     def poll(self):
         try:
+            pending = getattr(self, "pending_export", None)
+            if pending:
+                try:
+                    result = snapshot_result(
+                        pending["directory"], pending["launch"], pending["sequence"]
+                    )
+                    if result:
+                        from .presentation import export_view
+
+                        self.pending_export = None
+                        export_view(
+                            pending["path"],
+                            pending["snapshot"],
+                            pending["data"],
+                            language=pending["language"],
+                            scene_image=result[0],
+                            scene_meta=result[1],
+                        )
+                        self.emit("export_complete", dict(path=pending["path"]))
+                    elif time.monotonic() - pending["started"] > 90:
+                        raise ValueError("SCENE_EXPORT_TIMEOUT")
+                except Exception:
+                    self.pending_export = None
+                    raise
+            if self.diagnostic_future and self.diagnostic_future.done():
+                future, self.diagnostic_future = self.diagnostic_future, None
+                try:
+                    self.diagnostic_result = future.result()
+                    self.emit("diagnostics", self.diagnostic_result)
+                except Exception as exc:
+                    self.emit(
+                        "diagnostics",
+                        dict(
+                            ready=False,
+                            checks=[dict(id="DIAGNOSTICS", status="FAIL", target="", fix=str(exc))],
+                        ),
+                    )
             # A completed poll may predate the terminal save. Fence before it
             # can restore writable UI state or release a queued confirmation.
             blocked = self.enforce_write_fence()
@@ -715,7 +1020,14 @@ class Workbench(QWidget):
             if self.future and self.future.done():
                 future, task = self.future, self.outstanding
                 self.future = self.outstanding = None
-                result = future.result()
+                try:
+                    result = future.result()
+                except Exception:
+                    if task == "launch":
+                        self.phase = "FAILED"
+                        self.pending_call = None
+                        self.emit("status", dict(phase=self.phase, worker_exit=None))
+                    raise
                 if task == "launch":
                     self.start_worker(*result)
                 elif task == "poll":
@@ -870,14 +1182,31 @@ class Workbench(QWidget):
                 if self.launch
                 else None
             )
+            capture_key = (
+                str(self.directory),
+                self.phase,
+                (self.snapshot.get("envelope") or {}).get("run_id"),
+            )
+            if capture_key != getattr(self, "last_frame_key", None):
+                self.last_frame_key = capture_key
+                self.last_scene_frame = (
+                    last_scene_capture(self.directory, capture_key[2])
+                    if self.phase in ("EXITED", "SAVED_READ_ONLY")
+                    else None
+                )
             self.emit(
                 "status",
                 dict(
                     phase=self.phase,
+                    native_available=bool(
+                        self.native.hwnd and self.launch and self.worker_exit is None
+                    ),
                     native=self.native.measure(),
                     worker_exit=self.worker_exit,
                     language=self.language,
                     frame=frame,
+                    scene=display_context(self.directory, self.launch),
+                    last_scene_frame=self.last_scene_frame,
                     detached=self.detached,
                     fullscreen=self.isFullScreen(),
                     source_age_s=observation_age,
@@ -957,8 +1286,10 @@ class Workbench(QWidget):
             return
         answer = ask_yes_no(
             self,
-            "安全停止 / Safe stop",
-            "停止新调度并等待安全段排空？\nStop new dispatch and drain safe segments?",
+            "安全停止" if self.language == "zh" else "Safe stop",
+            "停止新调度，完成当前安全段并保存会话？"
+            if self.language == "zh"
+            else "Stop new dispatch, drain safe segments and save the session?",
         )
         if answer == QMessageBox.StandardButton.Yes:
             self.send_safe_stop()
@@ -981,8 +1312,10 @@ class Workbench(QWidget):
         if self.worker and self.worker.poll() is None:
             answer = ask_yes_no(
                 self,
-                "生产仍运行 / Production running",
-                "关闭窗口需先安全停止并等待原进程退出。提交停止请求？\nSafely stop and wait for the worker before closing?",
+                "生产仍在运行" if self.language == "zh" else "Production is running",
+                "关闭窗口前会安全停止、保存会话，并等待 Isaac 退出。现在停止？"
+                if self.language == "zh"
+                else "Stop safely, save the session and wait for Isaac to exit before closing?",
             )
             event.ignore()
             if answer == QMessageBox.StandardButton.Yes:
@@ -994,9 +1327,11 @@ class Workbench(QWidget):
             return
         self.hud.hide()
         self.timer.stop()
+        self.check_processes.close()
         if self.client:
             self.client.schedules.close()
         self.executor.shutdown(wait=False, cancel_futures=True)
+        self.diagnostic_executor.shutdown(wait=False, cancel_futures=True)
         self.page.setWebChannel(None)
         super().closeEvent(event)
 

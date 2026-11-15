@@ -69,6 +69,52 @@ class PreviewReuseTests(unittest.TestCase):
         c = prep.world(world.config, run_id="OTHER", epoch=7)
         self.assertEqual((c.run_id, c.epoch), ("OTHER", 7))
 
+    def test_native_timing_wrapper_keeps_reuse_and_live_ledger_private(self):
+        from adaptive_hrc_scheduling.control.online_timing import OnlineTiming
+
+        session = setup_session(Path(self.tmp.name) / "timed")
+        policy = full_schedule.RulePolicy(session)
+        timing = OnlineTiming(session.world, policy)
+        wrapped = type(session.world)
+        try:
+            self.assertTrue(shareable_records(session.world))
+            with patch.object(
+                session.world,
+                "s",
+                replace(session.world.s, positions=list(session.world.s.positions)),
+            ):
+                self.assertEqual(shareable_records(session.world), {})
+
+            def boundary(*args, session, **kwargs):
+                self.assertIs(type(session.world), ProductionBackend)
+                self.assertIsNotNone(preview_geometry.current())
+                self.assertIs(session.world.config, timing.world.config)
+                self.assertIsNot(session.world.operations, timing.world.operations)
+                session.world.observe()
+                self.assertFalse(timing.samples)
+                raise ValueError("private replay")
+
+            with patch.object(production_loop, "run", boundary):
+                with self.assertRaisesRegex(ValueError, "private replay"):
+                    full_schedule.preview(session, ())
+            self.assertIs(type(session.world), wrapped)
+        finally:
+            timing.close()
+        self.assertIs(type(session.world), ProductionBackend)
+
+    def test_timed_unknown_or_name_spoofed_subclass_cannot_share(self):
+        from adaptive_hrc_scheduling.control.online_timing import OnlineTiming
+
+        session = setup_session(Path(self.tmp.name) / "unknown")
+        unknown = type("TimedProductionBackend", (ProductionBackend,), {})
+        session.world.__class__ = unknown
+        timing = OnlineTiming(session.world, full_schedule.RulePolicy(session))
+        try:
+            self.assertEqual(shareable_records(session.world), {})
+        finally:
+            timing.close()
+        self.assertIs(type(session.world), unknown)
+
     def overlap(self, first, failures):
         entered = {name: threading.Event() for name in ("a", "b")}
         release = {name: threading.Event() for name in ("a", "b")}
@@ -187,3 +233,32 @@ class PreviewReuseTests(unittest.TestCase):
         self.assertIsNone(
             preview_geometry._first_blocking_obstacle((0, 1, 0), (4, 1, 0), boxes, (0, 0, 0), 0)
         )
+
+    def test_geometry_cache_retains_inputs_and_detaches_results(self):
+        world = self.session.world
+        geometry = preview_geometry.ReplayGeometry()
+        with preview_geometry.geometry_scope(geometry):
+            first = production_navigation.boxes(world.config, world.s)
+            with patch.object(
+                preview_geometry, "_boxes_uncached", side_effect=AssertionError("miss")
+            ):
+                second = production_navigation.boxes(world.config, world.s)
+            self.assertEqual(first, second)
+            self.assertIsNot(first, second)
+            first.clear()
+            self.assertTrue(production_navigation.boxes(world.config, world.s))
+            for excluded in (("FORK-01",), ("W1", "W2"), ("PRE-IN",)):
+                actual = production_navigation.boxes(world.config, world.s, excluded)
+                with preview_geometry.geometry_scope(None):
+                    expected = production_navigation.boxes(world.config, world.s, excluded)
+                self.assertEqual(actual, expected)
+            mutable = replace(world.s, positions=list(world.s.positions))
+            before = len(geometry.box_rows)
+            production_navigation.boxes(world.config, mutable)
+            self.assertEqual(len(geometry.box_rows), before)
+            mutable.positions[0] = replace(mutable.positions[0], location="IN_TRANSIT")
+            self.assertEqual(
+                production_navigation.boxes(world.config, mutable),
+                preview_geometry._boxes_uncached(world.config, mutable),
+            )
+        self.assertFalse(preview_geometry.ReplayGeometry().box_rows)

@@ -1,0 +1,21 @@
+{
+  "bg": "#191919",
+  "surface": "#232323",
+  "raised": "#2E2E2E",
+  "line": "#464646",
+  "ink": "#E8E8E8",
+  "muted": "#B8B8B8",
+  "accent": "#A2B9CC",
+  "onaccent": "#191919",
+  "primary": "#D0D0D0",
+  "selected": "#35393C",
+  "actual": "#89B3A0",
+  "plan": "#B5BDC4",
+  "warning": "#D2B47C",
+  "danger": "#D58F89",
+  "font": "Microsoft YaHei UI, Segoe UI, sans-serif",
+  "fontSize": 14,
+  "smallSize": 12,
+  "radius": 3,
+  "spacing": [4, 8, 12, 16, 24]
+}

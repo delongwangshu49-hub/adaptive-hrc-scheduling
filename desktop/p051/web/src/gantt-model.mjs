@@ -17,6 +17,22 @@ export function navigationSettings(saved={}){
   const defaults={mode:'operation',product:'',query:'',states:[],compare:false,collapsed:[],expanded:[]};
   return saved.navigationVersion===3?{...defaults,...saved}:{...defaults,...saved,navigationVersion:3,start:0,span:40,scaleStep:10,follow:true,manual:false};
 }
+export function productionRange(rows,now=0){
+  const live=rows.filter(r=>r.schedule_state==='ACTUAL'&&r.end_status==='OPEN').map(rangeOf).filter(Boolean);
+  const end=Math.max(now+.25,...live.map(r=>r[1]));
+  const span=Math.max(.5,Math.min(8,(end-now)*1.5));
+  return {start:Math.max(0,now-span*.2),span};
+}
+export function productionLane(items,now=0){
+  let best=-1,score=Infinity;
+  for(let i=0;i<items.length;i++)for(const row of items[i].rows||[]){
+    const range=rangeOf(row);if(!range)continue;
+    const distance=range[0]<=now&&range[1]>=now?0:range[0]>now?range[0]-now:now-range[1]+1e6;
+    const rank=distance+(row.schedule_state==='ACTUAL'?-0.001:0);
+    if(rank<score){score=rank;best=i;}
+  }
+  return best;
+}
 export function scaleSpan(width,step=10){return Math.max(2,Math.floor(width/85))*step;}
 export function followStart(start,span,now,enabled,status,phase){
   if(!enabled||status!=='VERIFIED'||phase!=='RUNNING'||!Number.isFinite(now))return start;

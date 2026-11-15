@@ -93,3 +93,78 @@ def accepts_host(layout: Plan, measured_minimum: tuple[int, int]) -> bool:
         and r.width >= measured_minimum[0]
         and r.height >= measured_minimum[1]
     )
+
+
+def gantt_focus(width, height, *, form_open=False, label_width=None):
+    """CPU/archive layout; never used to commit a native viewport rectangle."""
+    from dataclasses import replace
+
+    extra = 70 if form_open else 0
+    base = plan(width, height, form_open=form_open, extra_aux_height=extra, label_width=label_width)
+    pad = 16 if width >= 1440 else 12
+    plot = base.plots[1]
+    return replace(
+        base,
+        plots=(
+            base.plots[0],
+            Rect(pad + base.label_width, plot.y, width - 2 * pad - base.label_width, plot.height),
+        ),
+        orientation="gantt-focus",
+    )
+
+
+def dual_plan(
+    width, height, *, form_open=False, split_ratio=0.5, label_width=None, auxiliary_height=None
+):
+    """Always retain both surfaces; clamp preferences to actual panel budgets."""
+    from dataclasses import replace
+
+    wide = width >= 1440
+    pad, gap = (12, 4) if wide else (8, 3)
+    mast, identity, actions = (48 if wide else 44), 0, 36
+    title, toolbar, axis, footer = 24, 36, 24, 24
+    if height < 768:
+        pad, gap, mast, actions, toolbar = 8, 3, 36, 32, 32
+    aux = 128 if form_open else (36 if wide else 32)
+    if auxiliary_height is not None:
+        if type(auxiliary_height) is not int or not 32 <= auxiliary_height <= 300:
+            raise ValueError("AUXILIARY_HEIGHT")
+        aux = auxiliary_height
+    label = label_width if label_width is not None else (230 if wide else 180)
+    available = width - 2 * pad - 8
+    # Leave one integer pixel for float-to-int rounding at each guarded edge.
+    minimum, maximum = 501 / max(1, available), 1 - (301 + label) / max(1, available)
+    ratio = max(minimum, min(maximum, split_ratio)) if minimum <= maximum else 0.5
+    original = plan(width, height, split_ratio=ratio, label_width=label)
+    top = pad + mast + identity + actions + 3 * gap + title + toolbar
+    bottom = height - pad - footer - 2 * gap - aux - axis
+    first_width = int(available * ratio)
+    plots = (
+        Rect(pad, top, first_width, max(0, bottom - top)),
+        Rect(
+            pad + first_width + 8 + label,
+            top,
+            available - first_width - label,
+            max(0, bottom - top),
+        ),
+    )
+    fits = (
+        width >= 1280
+        and height >= 720
+        and plots[0].width >= 500
+        and plots[1].width >= 300
+        and all(r.height >= 160 for r in plots)
+    )
+    return replace(original, plots=plots, geometry_admissible=fits, orientation="horizontal"), dict(
+        pad=pad,
+        gap=gap,
+        mast=mast,
+        identity=identity,
+        actions=actions,
+        title=title,
+        toolbar=toolbar,
+        footer=footer,
+        aux=aux,
+        aux_y=bottom + axis + gap,
+        split_ratio=ratio,
+    )
